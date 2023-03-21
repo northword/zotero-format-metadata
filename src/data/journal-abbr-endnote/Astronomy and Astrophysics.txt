@@ -1,0 +1,3675 @@
+﻿AAS Photo Bulletin	AASPB
+AAS/Division for Planetary Sciences Meeting Abstracts	DPS
+AAS/Division of Dynamical Astronomy Meeting	DDA
+AAS/High Energy Astrophysics Division	HEAD
+AAS/Historical Astronomy Division	HAD
+AAS/Solar Physics Division Meeting	SPD
+Abastumanskaia Astrofizicheskaia Observatoriia Biulleten	AbaOB
+Abbadia Observatory Observations	AbbOO
+Abh. Konigl. Preuss. Akad. Wissenschaften Jahre 1906,92, Berlin,1907	AbhKP
+Academia Scientiarum Fennica Annales Series Physica	ASFAS
+Academic Open Internet Journal	AOIJ
+Academie des Science Paris Comptes Rendus Serie B Sciences Physiques	CRASB
+Academie des Sciences Comptes Rendus Serie Mecanique Physique Chimie Sciences de la Terre et de l Univers	CR2
+Academie des Sciences Paris Comptes Rendus	CRAS
+Academie des Sciences Paris Comptes Rendus Serie Generale La Vie des Sciences	CRASG
+Academie des Sciences Paris Comptes Rendus Serie Physique Astrophysique	CRASP
+Academie des Sciences Paris Comptes Rendus Serie Sciences Mathematiques	CRASM
+Academie des Sciences Paris Comptes Rendus Vie Academique Semester Supplement	CRASA
+Academie Royale de Belgique Classe des Sciences Memoires	MeARB
+Academie Serbe des Sciences et des Arts Bulletin Classe des Sciences Techniques	ASSAB
+Accademia di Scienze e Lettere Istituto Lombardo Rendiconti Serie della Classe di Scienze Matematiche e Naturali Sezione Scienze Matematiche Fisiche Chimiche e Geologiche	ASLLR
+Accademia Nazionale dei Lincei Atti Rendiconti Classe di Matematica e Applicazioni	ANLAM
+Accademia Nazionale dei Lincei Atti Rendiconti Classe di Scienze Fisiche e Naturali	ANLAF
+Accademia Nazionale dei Lincei Atti Rendiconti Classe di Scienze Fisiche Matematiche e Naturali	ANLAR
+Acoustical Imaging and Holography	AIH
+Acoustical Physics	APhy
+Acoustical Society of America Journal	ASAJ
+Acoustics Letters	AcouL
+Acta Acustica	AcAcu
+Acta Aerodynamica Sinica	AcAer
+Acta Aeronautica et Astronautica Sinica	AcAAS
+Acta Applicandae Mathematicae	AcAM
+Acta Armamentarii	AcArm
+Acta Astronautica	AcAau
+Acta Astronomica	AcA
+Acta Astronomica Sinica	AcASn
+Acta Astronomica Supplementa	AcAS
+Acta Astrophysica Sinica	AcApS
+Acta Automatica Sinica	AcAuS
+Acta Biochimica and Biophysica Academiae Scientarium Hungarica	AcBAS
+Acta Biochimica et Biophysica Hungarica	AcBBH
+Acta Biochimica et Biophysica Sinica	AcBBS
+Acta Biotheoretica	AcBio
+Acta Chemica Scandinavica Series A	AcCS
+Acta Cosmologica	AcC
+Acta Crystallographica Section A	AcCrA
+Acta Crystallographica Section B	AcCrB
+Acta Crystallographica Section C	AcCrC
+Acta Electrochimica	AcElc
+Acta Electronica	AcEle
+Acta Electronica Sinica	AcElS
+Acta Frequenza	AcFre
+Acta Geophysica Polonica	AcGeP
+Acta Historica Astronomiae	AcHA
+Acta Materiae Compositae Sinica	AcMCS
+Acta Materialia	AcMat
+Acta Mathematica	AcMa
+Acta Mathematica Hungarica	AcMaH
+Acta Mechanica	AcMec
+Acta Mechanica Sinica	AcMSn
+Acta Mechanica Solida Sinica	AcMSS
+Acta Metallurgica	AcMet
+Acta Metallurgica et Materialia	AcM&M
+Acta Metallurgica et Materialia Supplement	AcMMS
+Acta Meteorologica Sinica	AcMeS
+Acta Numerica	AcNum
+Acta Odontologica Scandinavica	AcOdS
+Acta Optica Sinica	AcOpS
+Acta Orthopaedica Scandinavica	AcOrS
+Acta Physica	AcPhy
+Acta Physica Academiae Scientiarum Hungaricae	APASH
+Acta Physica Austriaca	AcPhA
+Acta Physica Austriaca Supplement	AcPAS
+Acta Physica et Chemica	AcPhC
+Acta Physica Hungarica	AcPhH
+Acta Physica Hungarica Heavy Ion Physics	APHHI
+Acta Physica Polonica A	AcPPA
+Acta Physica Polonica B	AcPPB
+Acta Physica Sinica	AcPSn
+Acta Physica Slovaca	AcPSl
+Acta Physiologica Scandinavica	AcPhS
+Acta Polytechnica Scandinavica Applied Physics Series	AcPSc
+Acta Polytechnica Scandinavica Physics	AcPSP
+Acta Societatis Scientarum Fennicae	ASSF
+Acta Societatis Scientarum Fennicae Series A	ASSFA
+Acta Technica	AcTec
+Acta Universitatis Caroliae. Mathematica et Physica	AcMPh
+Acta Universitatis Caroliae. Mathematica et Physica Supplement	AcMPS
+Active and Passive Electronic Components	APEC
+Acustica	Acu
+Ad Astra	AdAs
+Adaptive Behaviour	AdBeh
+Adgeziia Rasplavov i Paika Materialov	ARPM
+Adsorption	Adsor
+Advanced Ceramic Materials	AdCM
+Advanced Composites Letters	AdCoL
+Advanced Materials and Processes	AMP
+Advanced Performance Materials	APM
+Advanced Series in Astrophysics and Cosmology	AdSAC
+Advanced Series in Mathematical Physics	AdSMP
+Advanced Series on Directions in High Energy Physics	ASDHE
+Advanced Texts in Physics	AdTPh
+Advances in Aeronautical Sciences	AdAeS
+Advances in Applied Mathematics	AdApM
+Advances in Astronomy and Astrophysics	AdA&A
+Advances in Atmospheric Sciences	AdAtS
+Advances in Atomic and Molecular Physics	AdAMP
+Advances in Atomic Molecular and Optical Physics	AAMOP
+Advances in Biological and Medical Physics	AdBMP
+Advances in Biophysics	AdBio
+Advances in Cardiovascular Physics	AdCP
+Advances in Chemical Physics	AdChP
+Advances in Computational Mathematics	AdCoM
+Advances in Earth and Planetary Sciences	AdEPS
+Advances in Earth Oriented Applications and Space Technology	AdEOA
+Advances in Electronics and Electron Physics	AdEEP
+Advances in Electronics and Electron Physics Supplement	AEEPS
+Advances in Exploration Geophysics	AdExG
+Advances in Geophysical Data Processing	AdGDP
+Advances in Geophysical Research	AdGR
+Advances in Geophysics	AdGeo
+Advances in Geophysics Supplement	AdGeS
+Advances in Geosciences	AdG
+Advances in Imaging and Electron Physics	ADIEP
+Advances in Mathematics	AdMat
+Advances in Mechanics and Physics of Surfaces	AdMPS
+Advances in Mechanics Uspekhi Mekhaniki	AdMUM
+Advances in Nuclear Physics	AdNuP
+Advances in Physical Geochemistry	AdPhG
+Advances in Physics	AdPhy
+Advances in Plasma Physics	AdPlP
+Advances in Plasma Physics Research	AdPPR
+Advances in Polymer Science	AdPoS
+Advances in Radio Science	AdRS
+Advances in Solid State Physics	AdSSP
+Advances in Space Research	AdSpR
+Advances in Theoretical and Mathematical Physics	AdTMP
+Advances in Water Resources	AdWR
+AEG Telefunken Technische Mitteilungen	ATTM
+Aerodinamika kanalov i ventiliatorov	Aekv
+Aerodinamika Razrezhennykh Gazov	AeRaG
+Aerojet Technology	AerTe
+Aerokosmicheski Izsledvaniia B lgariia	AeIBu
+Aeronautical Journal	AeJ
+Aeronautical Quarterly	AeQ
+Aeronautical Society India Journal	AeSIJ
+Aerosol Science & Technology	AS&T
+Aerosol Science Technology	AerST
+Aerospace America	AeAm
+Aerospace China	AeCh
+Aerospace Composites Materials	AeCM
+Aerospace Dynamics	AeDy
+Aerospace Engineering	AeEn
+Aerospace Materials	AeMat
+Aerospace Medicine	AeMed
+Aerospace Research in Bulgaria	ARBl
+Aerospace UK	Aero
+AFGL-TR-0208 Environemental Research papers	AFGL
+African Skies	AfrSk
+AGU Fall Meeting Abstracts	AGUFM
+AGU Spring Meeting Abstracts	AGUSM
+AI EDAM	EDAM
+AIAA Journal	AIAAJ
+AIAA Student Journal	AIASJ
+AIChE Journal	AIChE
+Air and Space	AirSp
+Air et Cosmos	AirCo
+Air Force Magazine	AFMa
+Air International	AiInt
+Air Pollution Control Association Journal	APCAJ
+Aircraft Engineering	AirE
+Aircraft Engineering & Aerospace Technology	AE&AT
+Akademia Athenon Praktika	AkAtP
+Akademiia Nauk Armianskoi SSR Doklady	DoArm
+Akademiia Nauk Azerbaidzhanskoi SSR Doklady	DoAze
+Akademiia Nauk Azerbaidzhanskoi SSR Izvestiia Seriia Fiziko Tekhnicheskikh i Matematicheskikh Nauk	IzAze
+Akademiia Nauk Belorusskoi SSR Institut Fiziki Nauchnaia Sessiia Minsk Belorussian SSR Zhurnal Prikladnoi Spektroskopii	IFBel
+Akademiia Nauk BSSR Doklady	DoBel
+Akademiia Nauk Gruzii Soobshcheniia	SoGru
+Akademiia Nauk Kazakhskoi SSR Vestnik	VeKaz
+Akademiia Nauk Latviiskoi SSR Izvestiia Seriia Fizicheskikh i Tekhnicheskikh Nauk	IzLat
+Akademiia Nauk Moldavskoi SSR Izvestiia Seriia Fiziko Tekhnicheskikh i Matematicheskikh Nauk	IzMol
+Akademiia Nauk SSSR Doklady	DoSSR
+Akademiia Nauk SSSR Fizika Atmosfery i Okeana	FizAO
+Akademiia Nauk SSSR Investiia Mekhanika Zhidkosti i Gaza	InSSR
+Akademiia Nauk SSSR, Izvestiia, Fizika Zemli	IzFZ
+Akademiia Nauk SSSR Izvestiia Seriia Fizicheskaia	IzSSR
+Akademiia Nauk SSSR Mekhanika Zhidkosti i Gaza	MeSSR
+Akademiia Nauk SSSR Otdelenie Obshchei Fiziki i Astronomii Nauchnaia Sessiia Moscow USSR Uspekhi Fizicheskikh Nauk	FiMos
+Akademiia Nauk SSSR Sibirskoe Otdelenie Izvestiia	IzSib
+Akademiia Nauk SSSR Sibirskoe Otdelenie Izvestiia Seriia Tekhnicheskie Nauki	SiSSR
+Akademiia Nauk SSSR Sibirskoi Otdelenie Izvestiia Seriia Tekhnicheskikh Nauk	KzSib
+Akademiia Nauk SSSR Vestnik	VeSSR
+Akademiia Nauk Tadzhikskoi SSR Doklady	DoTad
+Akademiia Nauk Tadzhikskoi SSR Fiziko Tekhnicheskii Institut Dyushambe Tadzhik SSR Akademiia Nauk Tadzhikskoi SSR Doklady	FiSSR
+Akademiia Nauk Tadzhikskoi SSR Institut Astrofiziki Biulleten	ABTad
+Akademiia Nauk Turkmenskoi SSR Izvestiia Seriia Fiziko Tekhnicheskikh Khimicheskikh i Geologicheskikh Nauk	IzTur
+Akademiia Nauk Ukrain skoi RSR Dopovidi Seriia Fiziko Matematichni ta Tekhnichni Nauki	FiUkr
+Akademiia Nauk Ukrainian SSSR Izvestiia Seriia Fizicheskaia	IzUkr
+Akademiia Nauk Ukrains koi RSR Dopovidi Matematika Prirodoznavstvo Tekhnichni Nauki	PrUkr
+Akademiia Nauk Ukrains koi RSR Dopovidi Seriia Fiziko Matematichni ta Tekhnichni Nauki	DoUkr
+Akademiia Nauk Ukrains koi RSR Visnik	ViUkr
+Akademiia Nauk Ukrainskoi SSR Morskie Gidrofizicheskie Issledovaniia	MGUkr
+Akademiia Nauk Uzbekskoi SSR Doklady	DoUzb
+Akademiia Nauk Uzbekskoi SSR Izvestiia Seriia Fiziko Matematicheskikh Nauk	IzUzb
+Akademiia Navuk BSSR Vestsi Seryia Fizika Tekhnichnykh Navuk	VeNav
+Akusticheskii Zhurnal	AkZh
+Akustika i Ul trazvukovaia Tekhnika	AkTek
+Alma Ata Izdatel Nauka	AAIzN
+Alta Frequenza	AlFr
+Alta Frequenza Rivista di Elettronica	AFRE
+Ambio	Ambio
+American Association of Variable Stars Observers Abstracts	AVSOA
+American Association of Variable Stars Observers Monographs	AVSOM
+American Association of Variable Stars Observers Quarterly Reports	AVSOQ
+American Association of Variable Stars Observers Reports	AVSOR
+American Astronomical Society Meeting Abstracts	AAS
+American Ceramic Society Bulletin	ACSB
+American Ceramic Society Communications	ACSC
+American Ceramic Society Journal	ACSJ
+American Chemical Society Journal	JAChS
+American Helicopter Society Journal	AHSJ
+American Journal of Cardiology	AmJC
+American Journal of Mathematics	AmJM
+American Journal of Physics	AmJPh
+American Journal of Science	AmJS
+American Journal of Science and Arts	AmJSA
+American Meteorological Society Bulletin	AMSBu
+American Mineralogist	AmMin
+American Scientist	AmSci
+American Society of Mechanical Engineers	ASME
+Anais do Observatorio Astronomico da Universidade de Coimbra	AnCoi
+Analog Integrated Circuits and Signal Processing	AICSP
+The Analyst	Ana
+Analytical Biochemistry	AnBio
+Analytical Chemistry	AnaCh
+Analytical Instrumentation	AnaIn
+Anglo-Australian Observatory Epping Newsletter	AAONw
+Anglo-Australian Observatory Epping Preprint	AAOPr
+Ankara Universite Faculte des Sciences Communications Serie Mathematiques Physique et Astronomie	CSMPA
+Ann Rev	AnRev
+Annalen der Koeniglichen Sternwarte bei Muenchen	AnMun
+Annalen der Physik	AnP
+Annalen der Universitaets-Sternwarte Wien	AnWie
+Annalen Meteorologie	AnMet
+Annalen van de Sterrewacht te Leiden	AnLei
+Annales d'Astrophysique	AnAp
+Annales de la Fondation Louis de Broglie	AFLB
+Annales de la Societe Scietifique de Bruxelles	ASSB
+Annales de Geophysique	AnG
+Annales de L'Institut Henri Poincare Section Physique Theorique	AnIHP
+Annales de l'Observatoire Astron. et Meteo. de Toulouse	AnTou
+Annales de l'Observatoire astronomique de Tokyo	AOTok
+Annales de l'Observatoire de Besancon	AnBes
+Annales de l'Observatoire de Bordeaux	AnBor
+Annales de l'Observatoire de Nice	AnNic
+Annales de l'Observatoire de Paris	AnPar
+Annales de l'Observatoire de Paris. Observations	AnPOb
+Annales de l'Observatoire de Strasbourg	AnStr
+Annales de l'Observatoire Imperial de Rio de Janeiro	AnRio
+Annales de l'Observatoire national d'Athènes	AnAth
+Annales de l'Observatoire Royal de Belgique	AnOB
+Annales de l'Observatoire Royal de Belgique Nouvelle serie	AnOBN
+Annales de l'Observatoire Royal de Bruxelles	AnBru
+Annales de Physique	AnPh
+Annales de Physique Biologique et Medicale	AnPBM
+Annales de Physique Colloque Supplement	AnPCS
+Annales des Telecommunications	AnTel
+Annales du Bureau des Longitudes, Gauthier-Villars, Paris	AnGVP
+Annales Geophysicae	AnGeo
+Annales Geophysicae Series A Upper Atmosphere and Space Sciences	AnGeA
+Annales Geophysicae Series B Terrestrial and Planetary Physics	AnGeB
+Annales of the Dearborn Observatory	AnDea
+Annales Tectonicae	AnTec
+Annals of the Astrophysical Observatory of the Smithsonian Institution	AnSAO
+Annals of the Bosscha Observatory Lembang (Java) Indonesia	AnBos
+Annals of the Cape Observatory	AnCap
+Annals of the Dudley Observatory	AnDud
+Annals of the Institute of Statistical Mathematics	AnISM
+Annals of the Israel Physical Society	AnIPS
+Annals of the Lowell Observatory	AnLow
+Annals of the Observatory of Lucien Libert	AnLL
+Annals of the Observatory of Lund	AnLun
+Annals of the Private Observatory of Lucien Libert	AnOLL
+Annals of the Royal Observatory, Edinburgh	AnEdi
+Annals of the Tokyo Astronomical Observatory	AnTok
+Annals of Geophysics	AGp
+Annals of Global Analysis Geometry	AnGAG
+Annals of Harvard College Observatory	AnHar
+Annals of Mathematics	AnMat
+Annals of Mathematics and Artificial Intelligence	AnMAI
+Annals of Operations Research	AnOR
+Annals of Physics	AnPhy
+Annals of Research on Engineering Education	AnREE
+Annals of Royal Observatory, Cape of Good Hope	AnCGH
+Annals of Science	AnSci
+Annual report of the Astronomer of the Winchester Observatory of Yale College	YalAR
+Annual Report of the Kodaikanal Observatory	ARKod
+Annual Report of the Maria Mitchell Association	MMAAR
+Annual Report of the Windsor Observatory, New South Wales	WinAR
+Annual Review of Astronomy and Astrophysics	ARA&A
+Annual Review of Earth and Planetary Sciences	AREPS
+Annual Review of Energy	AnRE
+Annual Review of Fluid Mechanics	AnRFM
+Annual Review of Materials Science	AnRMS
+Annual Review of Nuclear and Particle Science	ARNPS
+Annual Review of Physical Chemistry	ARPC
+Annual Reviews of Computational Physics	ARCP
+Annual Scientific Supplement to Urania	ASSU
+Annuario publicado pelo Imperial Observatorio do Rio de Janeiro	IORA
+Antarctic Meteorite Newsletter	AnMN
+Antarctic Meteorite Research	AMR
+Antarktika	Antk
+Antenny	Anten
+Apatity Akademiia Nauk SSSR	ApAN
+Apatity Kol skii Filial AN SSSR	ApKF
+Apeiron	Apei
+Applicable Analysis	AppAn
+Applications of Mathematics	ApMa
+Applied Acoustics	ApAc
+Applied Artificial Intelligence	ApAI
+Applied Composite Materials	ApCM
+Applied Computational Electromagnetics Society Journal	ACESJ
+Applied Energy	ApEn
+Applied Environmental Microbiology	ApEnM
+Applied Mathematical Finance	ApMF
+Applied Mathematics	ApMat
+Applied Mathematics Computation	ApMaC
+Applied Mathematics Letters	ApMaL
+Applied Mathematics Mechanics English Edition	ApMaM
+Applied Mathematics Optimization	ApMaO
+Applied Mechanics Reviews	ApMRv
+Applied Microbiology	ApMic
+Applied Microgravity Technology	ApMT
+Applied Numerical Mathematics	ApNM
+Applied Optics	ApOpt
+Applied Physics	ApPhy
+Applied Physics A: Materials Science & Processing	ApPhA
+Applied Physics B: Lasers and Optics	ApPhB
+Applied Physics B Photophysics Laser Chemistry	ApPPL
+Applied Physics Communications	ApPhC
+Applied Physics Letters	ApPhL
+Applied Scientific Research	ApScR
+Applied Spectroscopy	ApSpe
+Applied Spectroscopy Reviews	ApSRv
+Applied Superconductivity	ApSup
+Applied Surface Science	ApSS
+APS Meeting Abstracts	APS
+Aquatic Conservation: Marine and Freshwater Ecosystems	ACMFE
+Arabian Journal of Science Engineering	AJSE
+Archaeoastronomy	Arch
+Archaeoastronomy Supplement	ArchS
+Archaeometry	Archa
+Archiv Elektronik und Uebertragungstechnik	ArElU
+Archiv Meteorologie Geophysik und Bioklimatologie Serie B Klimatologie und Umweltmeteorologie Strahlungsforschung	AMGBK
+Archiv Meteorologie Geophysik und Bioklimatologie Serie Meteorologie und Geophysik	AMGBS
+Archive Applied Mechanics	ArApM
+Archive for History of Exact Sciences	AHES
+Archive for Rational Mechanics and Analysis	ArRMA
+Archive of Biochemistry and Biophysics	ArBB
+Archives Acoustics	ArAco
+Archives des Sciences	ArS
+Archives for Meteorology Geophysics and Bioclimatology Series A Meteorology and Atmopsheric Physics	AMGBA
+Archives for Meteorology Geophysics and Bioclimatology Series B Theoretical and Applied Climatology	AMGBB
+Archives Internationales de Physiologie de Biochimie et de Biophysique	AIPBB
+Archives Mechanics Archiwum Mechaniki Stosowanej	ArMAM
+Archivum Combustionis	ArCom
+Archiwum Akustyki	ArAku
+Archiwum Automatyki i Telemechaniki	ArAuT
+Archiwum Budowy Maszyn	ArBuM
+Archiwum Elektrotechniki	ArEle
+Archiwum Mechaniki Stosowanej	ArMeS
+Archiwum Procesow Spalania	ArPSp
+Archiwum Termodynamiki i Spalania	ArTSp
+Arctic, Antarctic and Alpine Research	AAAR
+Ark. Mat. Astr. Fys.	ArMAF
+Arkiv for Astronomi	ArA
+Armagh Observatory Leaflet	ArmOL
+Artificial Satellites	ArtSa
+ArXiv Astrophysics e-prints	astroph
+ArXiv Computer Science e-prints	cs
+ArXiv Condensed Matter e-prints	condmat
+ArXiv General Relativity and Quantum Cosmology e-prints	grqc
+ArXiv High Energy Physics - Experiment e-prints	hepex
+ArXiv High Energy Physics - Lattice e-prints	heplat
+ArXiv High Energy Physics - Phenomenology e-prints	hepph
+ArXiv High Energy Physics - Theory e-prints	hepth
+ArXiv Mathematical Physics e-prints	mathph
+ArXiv Mathematics e-prints	math
+ArXiv Nonlinear Sciences e-prints	nlin
+ArXiv Nuclear Experiment e-prints	nuclex
+ArXiv Nuclear Theory e-prints	nuclth
+ArXiv Physics e-prints	physics
+ArXiv Quantum Physics e-prints	quantph
+ASHRAE Journal	ASHRA
+Aslib Proceedings: new information perspectives	Aslib
+ASME Transactions Journal Engineering Materials and Technology	ATJEM
+ASME Transactions Journal of Dynamic Systems and Measurement Control B	ATJDS
+ASME Transactions Journal of Electronic Packaging	ATJEl
+ASME Transactions Journal of Engineering Gas Turbines and Power	ATJEG
+ASME Transactions Journal of Engineering Power	ATJEn
+ASME Transactions Journal of Fluids Engineering	ATJFE
+ASME Transactions Journal of Heat Transfer	ATJHT
+ASME Transactions Journal of Lubrication Technology	ATJLT
+ASME Transactions Journal of Solar Energy and Engineering	ATJSE
+ASME Transactions Journal of Tribology	ATJTr
+ASME Transactions Journal of Turbomachinery	ATJTu
+ASME Transactions Journal of Vibration Acoustics	ATJVA
+ASME Transactions Series E Journal of Applied Mechanics	ATJAM
+ASME Transactions Series Journal of Engineering Power	ATJEP
+Assembly Automation	AsAut
+Association of Lunar and Planetary Observers Journal	ALPOJ
+Association Technique Maritime et Aeronautique Bulletin	ATMAB
+Association Technique Maritime et Aeronautique Session Paris France ONERA TP	ATMAS
+Associazione Veneta Osservatori di Stelle Variabili Bulletin	AVSVB
+Aster	Aster
+ASTM Standardization News	StNws
+Astrobiology	AsBio
+Astrofizicheskie Issledovaniia Izvestiya Spetsial'noj Astrofizicheskoj Observatorii	AISAO
+Astrofizicheskie Issledovaniya Sofia	AISof
+Astrofizika	Afz
+Astrometriia i Astrofizika	AAfz
+Astron. Inst. Univ. Basel	AUBas
+Astronautica Acta	AsAc
+Astronautica Acta Supplement	AsAcS
+Astronautics Aeronautics	AsAer
+Astronautik	Asnau
+The Astronomer's Telegram	ATel
+Astronomical and Astrophysical Transactions	A&AT
+Astronomical and Meteorological Observations made at the U.S. Naval Observatory	USNOM
+Astronomical Circular	ACiCh
+Astronomical Contributions from the University of Manchester	ACMan
+Astronomical Contributions from the University of South Florida Tampa	TamCo
+Astronomical Data Analysis Software and Systems	adass
+Astronomical Data Center Bulletin	ADCBu
+Astronomical Herald	AstHe
+Astronomical Journal	AJ
+Astronomical Notes University of Gothenburg Sweden Section of Astronomy	ANote
+Astronomical Observations made at the U.S. Naval Observatory	USNOA
+Astronomical Papers University of California Los Angeles	UCLAP
+Astronomical register	AReg
+Astronomical Society of South Africa, Cape Centre	ASSA
+Astronomicheskii Vestnik	AVest
+Astronomicheskii Vestnik Issledovaniia Solnechnoi Sistemy	AVISS
+Astronomicheskii Zhurnal	AZh
+Astronomicheskij Tsirkulyar	ATsir
+Astronomicheskoj Observatorii Kazan Byulleten	KazOB
+Astronomie und Raumfahrt	A&R
+Astronomische Abhandlungen der Hamburger Sternwarte	AAHam
+Astronomische Beobachtungen angestellt auf der K. Sternwarte zu Bogenhausen bei Muenchen	ABMun
+Astronomische Beobachtungen auf der Koniglichen Sternwarte zu Berlin	ABSBe
+Astronomische Beobachtungen auf der Sternwarte der Koeniglichen Christian-Albrechts-Universitaet zu Kiel	ABKie
+Astronomische Mitteilungen der Eidenössischen Sternwarte Zürich	MiZur
+Astronomische Mitteilungen der Universitaets-Sternwarte zu Goettingen	MiGoe
+Astronomische Nachrichten	AN
+Astronomische Nachrichten Supplement	ANS
+Astronomischer Jahresbericht	AJa
+Astronomisches Rechen-Institut Heidelberg Mitteilungen Serie A	MiARI
+Astronomisches Rechen-Institut Heidelberg Mitteilungen Serie B	MiARB
+Astronomisk Tidsskrift	ATi
+Astronomy	Ast
+Astronomy	Astro
+Astronomy and Astrophysics	A&A
+Astronomy and Astro-Physics	AstAp
+Astronomy and Astrophysics Abstracts Heidelberg	A&AA
+Astronomy and Astrophysics Review	A&ARv
+Astronomy and Astrophysics Supplement Series	A&AS
+Astronomy and Geophysics	A&G
+Astronomy Data Image Library	ADIL
+Astronomy Education Review	AEdRv
+Astronomy Express	AExpr
+Astronomy Letters	AstL
+Astronomy Quarterly	AstQ
+Astronomy Reports	ARep
+Astrononomy and Astrophysics Series	AASPP
+Astroparticle Physics	APh
+Astrophysica Norvegica	ApNr
+Astrophysical Investigations	ApInv
+Astrophysical Journal	ApJ
+Astrophysical Journal Supplement Series	ApJS
+Astrophysical Letters	ApL
+Astrophysical Letters Communications	ApL&C
+Astrophysics	Ap
+Astrophysics and Space Physics Reviews	ASPRv
+Astrophysics and Space Science	Ap&SS
+Astrophysics and Space Science Supplement	ApSSS
+Astrophysics and Space Sciences Transactions	ASTRA
+Astrophysics monographs University of Chicago Press	MKAtl
+Astrophysics Reports Publications of the Beijing Astronomical Observatory	ArBei
+Asymptotic Analysis	AsAna
+AT T Technical Journal	ATTTJ
+Atlas Poiskovykh Kart Peremennykh Zvezd	AtlVS
+Atmosphere	Atmos
+Atmosphere Ocean	AtO
+Atmospheric Chemistry & Physics	ACP
+Atmospheric Chemistry & Physics Discussions	ACPD
+Atmospheric Environment	AtmEn
+Atmospheric Research	AtmRe
+Atmospheric Science	AtSc
+Atmospheric Science Letters	AtScL
+Atmospheric Technology	AtmTe
+Atomic Data and Nuclear Data Tables	ADNDT
+Atomic Energy Review	AtERv
+Atomic Molecular and Optical Physics	AMOP
+Atomic Physics	AtPhy
+Atomisation Spray Technology	AtST
+Atomnaia Energiia	AtEn
+Atomno Vodorodnaia Energetika i Tekhnologiia	AVET
+ATR Australian Telecommunication Research	ATR
+Auroral physics	AurPh
+Australian Journal of Chemical Education	AuJCE
+Australian Journal of Chemistry	AJCh
+Australian Journal of Physics	AuJPh
+Australian Journal of Physics Astrophysical Supplement	AuJPA
+Australian Journal of Scientific Research A Physical Sciences	AuSRA
+Australian Journal of Soil Research	AJSR
+Australian Mathematical Society Journal Series B -- Applied Mathematics	AuMSJ
+Australian Meteorological Magazine	AuMM
+Automatic Control Theory Applications	ACTAp
+Automatica	Autom
+Autonomous Robots	AuRob
+Aviation Space and Environmental Medicine	AvSeM
+Aviation Week Space Technology	AvWST
+Aviatsiia i Kosmonavtika	AvKos
+Aviatsionnaia Tekhnika	AvTek
+Avtomatika i Telemekhanika	AvTel
+Avtomatizatsiia Proektirovaniia Elektronike	AvPE
+Avtometriia	Avtme
+Babes Bolyai Universitas Studia Series Mathematica	BBUSS
+Babes Bolyai Universitas Studia Series Physica	BBUSM
+Baltic Astronomy	BaltA
+Bamberg Kleine Veroeffentlichungen der Remeis-Sternwarte	BamKV
+BAV Rundbrief - Mitteilungsblatt der Berliner Arbeits-gemeinschaft fuer Veraenderliche Sterne	BAVSR
+Bayerische Akademie Wissenschaften mathematisch naturwissenschaftliche Klasse Sitzungsberichte	BAWMN
+BBC Engineering	BBCEn
+Be Star Newsletter	BeSN
+Behavior Research Methods Instruments and Computers	BRMIC
+Behaviour & Information Technology	BIT
+Beijing University Aeronautics and Astronautics Journal	BUAAJ
+Beitraege Plasmaphysik	BePl
+Beitraege zur Geophysik	BeiGe
+Beitraege zur Physik Atmosphaere	BePhA
+Belgian Royal Observatory Communications Series Geophysics Series	BROGS
+Bell Laboratories Record	BLabR
+Beobachtungs-Ergebnisse der Koniglichen Sternwarte zu Berlin	BESBe
+Beobachtungs-Zirkular der Astronomischen Nachrichten	ANZi
+Berichte der Bunsen-Gesellschaft Physical Chemistry Chemical Physics Berichte	BBGPC
+Berlin East Germany Akademie Verlag GmbH Ergebnisse Plasmaphysik und Gaselektronik	BADPG
+Berlin East Germany Akademie Verlag GmbH Shriftenreihe des Zentralinstituts Mathematik und Mechanik	BAVMM
+Berlin Gebrueder Borntraeger Geoexploration Monographs Series	BGBGM
+Berliner Arbeitsgemeinschaft fuer Veraenderliche Sterne - Mitteilungen	BAVSM
+Bernoulli	Bern
+Beskontaktnye Elektricheskie Mashiny	BeElM
+Biblioteca Astrei Basarabene	AstBa
+Bielefeld Encounters in Physics and Mathematics	BEPM
+Bildmessung und Luftbildwessen	BiLuf
+Biochemical and Biophysical Research Communications	BBRC
+Biochemistry and Cell Biology	BCB
+Biochimica et Biophysica Acta	AcBB
+Biogeosciences	BGeo
+Biogeosciences Discussions	BGD
+Biographical Memoirs National Academy of Sciences	BMNAS
+Biographical Memoirs of Fellows of the Royal Society	BMFRS
+Biological and Medical Physics	BMP
+Biological Physics Series	BPS
+Biological Reviews of the Cambridge Philosophical Society	BRCPS
+Biomedical Microdevices	BioMi
+Biometrika	Biome
+Bionika	Bion
+Biophysical Chemistry	BioCh
+Biophysical Journal	BpJ
+Biophysics and Bioengineering Series	BpBeS
+Biophysics of Structure and Mechanism	BioSM
+Biophysics USSR	Bioph
+Biophysik	Biopk
+Biorheology	Biorh
+BioScience	BioSc
+Biotechnology Letters	BiotL
+Biuletyn Obserwatoium Astronomicznego Uniwersytetu M. Kopernika w Toruniu	BOTor
+Bjull. Inst. Astrofizikii	BIAst
+BLAZAR Data	BlazD
+Boletin de la Asociacion Argentina de Astronomia La Plata Argentina	BAAA
+Boletin de los Observatorios Tonantzintla y Tacubaya	BOTT
+Boletin del Instituto de Matematica Astronomica y Fisica Universidad Nacional de Cordoba Argentina	BIMAF
+Boletin del Instituto de Tonantzintla	BITon
+Boletin mensual del Observatorio del Ebro	BMOE
+Bolgarska Akademiia Nauk Doklady	BlDok
+Bolletino della Societa dei Variabilisti Italiani	BSVit
+Bonner Durchmusterung	BonD
+Boundary-Layer Meteorology	BoLMe
+Brain	Brain
+Bratislava Veda Vydavatelstvo Slovenskej Akademie Vied	BVVSA
+Braunschweig Friedr Vieweg und Sohn GmbH	BFWSG
+Braunschweig Technische Universitaet Mitteilungen	BTUM
+Brazilian Journal of Physics	BrJPh
+Brennstoff Waerme Kraft	BrWK
+The British Journal for the History of Science	BJHS
+The British Journal for the Philosophy of Science	BJPS
+British Journal of Applied Physics	BJAP
+British Journal of Educational Technology	BJET
+British Journal of Mathematical and Statistical Psychology	BJMSP
+British Journal of Psychology	BJP
+British Telecommunications Engineering	BTE
+Brussels Institute Royal Meteorologique de Belgique	BIRM
+AN BSSR Institut Teplo i Massoobmena Vsesoiuznaia Konferentsiia Teplomassoobmenu Minsk Belorussian SSR Preprint	BSSR
+Budapest Akademiai Kiado	BuAkK
+Bulgarian Geophysical Journal	BlGJ
+Bulgarian Journal of Meteorology and Hydrology	BlJMH
+Bulgarian Journal of Physics	BlJPh
+Bulgarska Akademiia Naukite Geofizichni Institut Izvestiia	BlGeo
+Bulgarska Akademiia Naukite Institut Tekhnicheska Kibernetika Izvestiia	BlTek
+Bulgarska Akademiia Naukite Matematicheski Institut Izvestiia	BlMat
+Bulgarska Akademiia Naukite Spisanie	BlSpi
+Bulgarska Akademiia Naukite Tsentralna Laboratoriia Geodeziia Izvestiia	BlTse
+Bulgarsko Geofizichno Spisanie	BlGSp
+Bull. Special Astrophys. Obs.	BSAO
+Bulletin Astronomique	BuAst
+Bulletin Astronomique de Belgrade	BABel
+Bulletin Crimean Astrophysical Observatory	BCrAO
+Bulletin de la Societe Astronomique de France	BSAF
+Bulletin de la Societe Royale des Sciences de Liege	BSRSL
+Bulletin de la Station Astrophotographique de Mainterne	BMai
+Bulletin de l'Academie Polonaise des Sciences Series des Sciences Mathematiques Astronomiques et Physiques	BAPSS
+Bulletin de l'Academie Royale de Belgique	BARB
+Bulletin de l'Association Francaise d'Observateurs d'Etoiles Variables	AFOEV
+Bulletin de l'Observatoire Astronomique de Belgrade	BOBeo
+Bulletin de l'Observatoire de Lyon	LyoBu
+Bulletin der Bedeckungsveraenderlichen-Beobachter der Schweizerischen Astronomischen Gesellschaft	BBSAG
+Bulletin d'Information du Centre de Donnees Stellaires	BICDS
+Bulletin d'information du telescope Canada-France-Hawaii	BCFHT
+Bulletin Geodesique	BGeod
+Bulletin Horaire du Bureau International de l'Heure	BuBIH
+Bulletin (Izvestiya) de l'Observatoire Central a Poulkovo	BOPul
+Bulletin Mathematique	BuMat
+Bulletin of the American Association of Petroleum Geologists	BAAPG
+Bulletin of the American Association of Variable Stars Observers	BAVSO
+Bulletin of the American Astronomical Society	BAAS
+Bulletin of the American Physical Society	BAPS
+Bulletin of the Astronomical Institutes of the Netherlands	BAN
+Bulletin of the Astronomical Institutes of the Netherlands Supplement Series	BANS
+Bulletin of the Astronomical Institutes of Czechoslovakia	BAICz
+Bulletin of the Astronomical Observatoire Royale de Belgique	BAORB
+Bulletin of the Astronomical Observatory of the University of Illinois	IllOB
+Bulletin of the Astronomical Society of Brazil	BASBr
+Bulletin of the Astronomical Society of India	BASI
+Bulletin of the Israel Physical Society	BuIPS
+Bulletin of the Kobe Marine Observatory Kobe Japan	BKobO
+Bulletin of the London Mathematical Society	BuLMS
+The Bulletin of the Seismological Society of America	BuSSA
+Bulletin of the Tokyo Astronomical Observatory	BTok
+Bulletin of the Tokyo Institute of Technology	BToIT
+Bulletin of the University of Besancon Observatory	BUBes
+Bulletin of the Yamagata University Yamagata Japan	BYam
+Bulletin of the Yerkes Observatory of the University of Chicago	YerOB
+Bulletin of Korean Astronomical Society	BKoAS
+Bulletin of Mathematical Biology	BMBio
+Bulletin of Mathematical Biophysics	BMBp
+Bulletin of Pure and Applied Science (Physics)	BPAS
+Bulletin of Volcanology	BVol
+Bulletin Signaletique - Centre National de la Recherche Scientifique	BCNRS
+Bylgarska Akademiya Naukite Dokladi	BAND
+Byulleten' Instituta Astrofiziki Dushanbe Akademiya Nauk Tadzhikskoj SSR	BDus
+Byulleten' Instituta Teoreticheskoj Astronomii (Leningrad)	BITA
+Byulleten' Stalinabadskoj Astronomicheskoj Observatorii Akademiya Nauk Tadzhikskoj SSR	BStaO
+Byurakan Astrophysical Observatory Armenia USSR Reprints	ByuRe
+Byurakanskaya Astrofizicheskaya Observatoriya Preprint	ByuPr
+Cambridge Astrophysics Series	CAS
+Cambridge Contemporary Astrophysics	CCA
+Cambridge Observatories Reprints	CamRe
+Cambridge Studies in Low Temperature Physics	CSLPT
+Cambridge Topics in Mineral Physics and Chemistry	CTMPC
+Canada National Research Council Division Mechanical Engineering National Aeronautical Establishment Quarterly Bulletin	BCNRC
+Canadian Aeronautics and Space Journal	CASJ
+Canadian Aeronautics and Space Journal Quarter	CASJQ
+Canadian Electrical Engineering Journal	CEEJ
+Canadian Geotechnical Journal	CaGeJ
+Canadian Information Processing Society Graphics Interface	CIPSG
+Canadian Journal of Chemical Engineering	CJChE
+Canadian Journal of Chemistry	CaJCh
+Canadian Journal of Civil Engineering	CaJCE
+Canadian Journal of Earth Sciences	CaJES
+Canadian Journal of Electrical Computer Engineering	CJECE
+Canadian Journal of Mathematics	CJMat
+Canadian Journal of Physics	CaJPh
+Canadian Journal of Remote Sensing	CaJRS
+Canadian Journal of Research Section A	CJRA
+Canadian Journal of Soil Science	CaJSS
+Cape Photographic Durchmusterung	CPhD
+Caries Research	CarR
+Carnegie Institute Washington D.C. Publication	GCRV
+Carter Observatory Wellington New Zealand Astronomical Bulletins	CarOB
+Carter Observatory Wellington New Zealand Reprints	CarRe
+Case Western Reserve University Warner and Swasey Observatory Cleveland Ohio Reprints	CasRe
+CASI Transactions	CASI
+Catalogue of suspected variable stars. Acad. of Sciences USSR Shternberg.	CSVS
+Catalysis Letters	CatL
+Catalysis Reviews	CarRv
+CATTECH	Catt
+CCD Astronomy	CCDA
+CEGB Research	CEGB
+Celestial Mechanics	CeMec
+Celestial Mechanics and Dynamical Astronomy	CeMDA
+Cellulose	Cellu
+Center for Astrophysics Cambridge Mass Preprint Series	CfAPr
+Central European Journal of Physics	CEJPh
+Centre de Physique des Houches	CPH
+Ceskoslovensky Casopis pro Fyziku Sekce	CCpFS
+CFD Advances Applications	CFDAA
+Chandra News	ChNew
+Chaos	Chaos
+Chaos Solitons and Fractals	CSF
+Chemical Communications	ChCom
+Chemical Educator	ChEdu
+Chemical Engineering Communications	ChEnC
+Chemical Engineering News	ChEnN
+Chemical Engineering Research & Design. Part A, Transactions of the Institution of Chemical Engineers	CERDA
+Chemical Engineering Science	ChEnS
+Chemical Geology	ChGeo
+Chemical Physics	ChPh
+Chemical Physics Letters	CPL
+Chemical Physics of Solid Surfaces	CPSS
+Chemical Physics of Solid Surfaces and Heterogeneous Catalysis	CPSSH
+Chemical Physics Reports	CPR
+Chemical Society Reviews	ChSRv
+Chemie der Erde / Geochemistry	ChEG
+Chemistry A European Journal	CEJ
+Chemistry and Physics of Carbon	CPCar
+Chemistry and Physics of Lipids	CPLip
+Chile Universidad Departamento de Astronomia Publicaciones	ChUDA
+China Rept Sci Technol JPRS CST	ChRST
+Chinese Astronomy and Astrophysics	ChA&A
+Chinese Institute of Engineers Journal	ChIEJ
+Chinese Journal of Aeronautics	ChJA
+Chinese Journal of Astronony and Astrophysics	ChJAA
+Chinese Journal of Chemical Physics	ChJCP
+Chinese Journal of Geophysics	ChJG
+Chinese Journal of Infrared Research	ChJIR
+Chinese Journal of Lasers	ChJL
+Chinese Journal of Low Temperature Physics	CJLTP
+Chinese Journal of Nuclear Physics	ChJNP
+Chinese Journal of Physics	ChJPh
+Chinese Journal of Semiconductors	ChJS
+Chinese Journal of Space Science	ChJSS
+Chinese Physics	ChPhy
+Chinese Physics Letter	ChPhL
+Chinese Science Bulletin	ChSBu
+Chinese Society of Astronautics Journal	ChSAJ
+Chinese Society of Mechanical Engineers Journal	ChSMJ
+Chinese Space Science Technology	ChSST
+Chislennye Metody Dinamike Razrezhennykh Gazov	CMDRG
+CHOCS	CHOCS
+Chubu Institute Technology Memoirs	CITM
+CIDA	CIDA
+Ciel et Espace	C&E
+Ciel et Terre	C&T
+Ciencias de la Tierra y del Espacio	CTE
+Circolare Interna della Sezione Stelle Variabili dell'Unione Astrofili Italiani	CiSSV
+Circuit World	CirW
+Circuits Systems and Signal Processing	CSSP
+Circulaire de l'Association Francaise d'Observateurs d'Etoiles Variables	CAFOE
+Circular of the British Astronomical Association	CiBAA
+Circular of the Union Observatory Johannesburg	CiUO
+Classical and Quantum Gravity	CQGra
+Classical and Quantum Gravity Supplement	CQGrS
+Classical Reviews in Mathematics and Mathematical Physics	CRMMP
+Classical Theoretical Physics	CTPhy
+Climate Dynamics	ClDy
+Climate of the Past	CliPa
+Climate of the Past Discussions	CliPD
+Clinical Oral Implants Research	COIR
+Clinical Physics and Physiological Measurement	CPPM
+CNR Aeritalia S	CNRAe
+CODATA Bulletin	CODAB
+Coelum Periodico Bimestrale per la Divulgazione dell'Astronomia	Coel
+Collection of Papers on Aerospace Science	AeSc
+Colloid Journal	ColJ
+Colloids and Surfaces	ColSu
+Combinatorics, Probability and Computing	CPC
+Combustion and Flame	CoFl
+Combustion Science and Technology	CST
+Combustion Theory Modelling	CTM
+Commentationes Physico-Mathematicae et Chemico-Medicae	CPMCM
+Comments in Modern Physics	ComMP
+Comments on Astrophysics	ComAp
+Comments on Astrophysics and Space Physics	CoASP
+Commercial Space	ComSp
+Commmunications of the Konkoly Observatory Hungary	CoKon
+Communication Broadcasting	ComBr
+Communication in Statistics - Simulation and Computation	CoSSC
+Communication in Statistics - Theory and Methods	CoSTM
+The Communication Review	ComRv
+Communications de l'Observatoire Royal de Belgique	CoORB
+Communications du Departement d'Astrophysique de la Faculte des Sciences de Mons Mons Astrophysical Papers	MonAP
+Communications from the David Dunlap Observatory	CoDDO
+Communications from the Radcliffe Observatory Pretoria South Africa	CoRad
+Communications from the Royal Observatory Edinburgh	CoROE
+Communications from the University Observatory Oxford	CoOxf
+Communications from the University Observatory St Andrews Scotland	CoStA
+Communications Gillies Inc Electronic Systems in Transportation	CEST
+Communications in Algebra	CoAlg
+Communications in Applied Numerical Methods	CANM
+Communications in Asteroseismology	CoAst
+Communications in Mathematical Physics	CMaPh
+Communications in Nonlinear Science and Numerical Simulations	CNSNS
+Communications in Numerical Methods in Engineering	CNME
+Communications in Partial Differential Equations	CoPDE
+Communications in Pure Applied Mathematics	CPAM
+Communications in Theoretical Physics	CoTPh
+Communications of the Department of Astronomy of Ankara University	CoAnk
+Communications of the Lunar and Planetary Laboratory	CoLPL
+Communications of the University of London Observatory	CoLon
+Communications on Physics	CPhy
+Communications Research Laboratory Journal	CRLJ
+Communications Research Laboratory Review	CRLRv
+Communications Society	ComSo
+COMPEL: The International Journal for Computation and Mathematics in Electrical and Electronic Engineering	Compe
+Complex Variables	CoVar
+Composite Structures	CmpSt
+Composites	Compo
+Composites Engineering	CmpEn
+Composites Manufacturing	CmpMa
+Composites Science Technology	ComST
+Compositio Mathematica	CoMat
+Compte Rendu des Seances de la Societe de Physique et d'Histoire Naturelle de Genere	CRSPH
+Comptes Rendus Academie des Sciences (serie non specifiee)	CR
+Comptes Rendus de l'Academie Bulgare des Sciences	CRABS
+Computational and Applied Mathematical Physics	CAMP
+Computational Mathematics and Mathematical Physics	CMMPh
+Computational Mechanics	CompM
+Computational Optimization and Applications	COA
+Computational Structural Mechanics and Applications	CSMA
+Computer	Comp
+Computer Graphics Image Processing	CGIP
+The Computer Journal	CompJ
+Computer Methods in Applied Mechanics and Engineering	CMAME
+Computer Physics Communications	CoPhC
+Computer Physics Reports	CoPhR
+Computer Science Education	CSEd
+Computer Speech & Language	CS&L
+Computer Vision and Image Understanding	CVIU
+Computer Vision Graphics and Image Processing	CVGIP
+Computer-Aided Design	CAD
+Computers and Biomedical Research	CBR
+Computers and Electrical Engineering	CEE
+Computers and Fluids	CF
+Computers and Geosciences	CG
+Computers and Mathematics with Applications	CMwA
+Computers and Structures	CoStr
+Computers in Physics	ComPh
+Computing	Compu
+Computing Systems in Engineering	ComSE
+COMSAT Technical Review	COMTR
+Comunicacoes do Observatonio Astronomico da Universidade de Coimbra	CoCoi
+Conformal Geometry and Dynamics of the American Mathematical Society	CGDAM
+Connaissance des Temps	CDT
+Connection Science	ConSc
+Consiglio Nazionale delle Ricerche Italia. Laboratorio di Astrofisica Frascati Roma Contributi	CoFra
+Contemporary Concepts in Physics	ConCP
+Contemporary Fundamental Physics	ConFP
+Contemporary Physics	ConPh
+Continental Shelf Research	CSR
+Continuum Mechanics and Thermodynamics	CMT
+Contributions de l'Institut d'Astrophysique de Paris Serie A	CoIAP
+Contributions de l'Institut d'Astrophysique de Paris Serie B	CoIAB
+Contributions dell'Osservatorio Astrofisica dell'Universita di Padova in Asiago	CoAsi
+Contributions dell'Osservatorio Astrononia di Milano-Merate	CoMil
+Contributions from the Armagh Observatory	CoArm
+Contributions from the Astronomical Department of the University of Thessaloniki	CoThe
+Contributions from the Bosscha Observervatory	CoBos
+Contributions from the Cambridge Observatory England	CoCam
+Contributions from the Cerro Tololo Inter-American Observatory	CoTol
+Contributions from the Department of Astronomy University of Tokyo	CoTok
+Contributions from the Dominion Astrophysical Observatory in Victoria	CoDAO
+Contributions from the Dunsink Observatory Dublin Ireland	CoDun
+Contributions from the Institute of Astrophysics and Kwasan Observatory Kyoto	CoKyo
+Contributions from the Kitt Peak National Observatory	CoKit
+Contributions from the Kwasan and Hida Observatories University of Kyoto	CoKwa
+Contributions from the Laboratory of Astronomy - University of Ioannina Greece	CoIoa
+Contributions from the McDonald Observatory University of Texas Fort Davis	CoMcD
+Contributions from the Mount Wilson Observatory / Carnegie Institution of Washington	CMWCI
+Contributions from the Princeton University Observatory	CoPri
+Contributions from the Research and Computing Center Academy of Sciences of Athens Series I Astronomy	CoAth
+Contributions from the Rutherford Observatory of Columbia University New York	CoRut
+Contributions from the Washburn Observatory of the University of Wisconsin	CoWas
+Contributions from the Wroclaw Astronomical Observatory	CoWro
+Contributions of the Astronomical Observatory Skalnate Pleso	CoSka
+Contributions of the Astronomical Observatory Skalnate Pleso Letters	CoSkL
+Contributions of the Astronomical Observatory Skalnate Pleso Supplement	CoSkS
+Contributions of the Louisiana State University Observatory Baton Rouge Louisiana	CoLou
+Contributions of the Observatory of New Mexico State University Las Cruces New Mexico	CoNMx
+Contributions of the Public Observatory and Planetarium in Brno	CoBrn
+Contributions of the Slovak Academy Sciences Geophysical Institute	CSASG
+Contributions of the University of Waterloo Observatory	CoWat
+Contributions of the Van Vleck Observatory	CoVVO
+Contributions of Lick Observatory	CoLic
+Contributions of Lick Observatory, Series II	CLic2
+Contributions of Perkins Observatory	CoPer
+Contributions to Mineralogy and Petrology	CoMP
+Contributions to Plasma Physics	CoPP
+Contributions Universite Catholique de Louvain	CoUCL
+Contributions University of Arizona Steward Observatory Tucson Arizona	CoSte
+Contributions University of Florida Rosemary Hill Observatory Gainesville	CoRHO
+Control and Computers	CoCom
+Copenhagen University Observatory Reprints	CopRe
+Cordoba Durchmusterung	CorD
+Cosmic Research	CosRe
+Cosmic Search Summer	CosSe
+Course of Theoretical Physics	CTP
+C.R. Acad. Sci. Ser. B1	CRB
+Cracow Observatory Reprints	CraRe
+Critical Reviews in Solid State & Materials Sciences	CRSSM
+Cryogenics	Cryo
+Crystallography Reports	CryRp
+Current Applied Physics	CAP
+Current Contents Physical Chemical and Earth Sciences	CCPCE
+Current Eye Research	CEyeR
+Current Science	CSci
+Cybernetics and Systems	CySys
+Czechoslovak Journal of Physics	CzJPh
+Czechoslovak Journal of Physics B	CzJPB
+Czechoslovak Mathematical Journal	CzMJ
+Dalton Transactions	DTr
+David Dunlap Observatory Richmond Hill Reprints	DDORe
+Dearborn Observatory Contributions	DeaCo
+Deep Sea Research Part II: Topical Studies in Oceanography	DSR
+Deep Space Network Progress Report	DSNPR
+Defektoskopiia	Defek
+Defense Electronics	DefEl
+Defense Management Journal	DMJ
+Defense Science Electronics	DeScE
+Defense Science Journal	DSJ
+Defense Systems Review Military Communications	DSRMC
+Delta Scuti Star Newsletter	DSSN
+Der Sternenbote Monatsschrift fuer Oesterreichs Amateur-astronomen	Sterb
+Deutsche Geodaetische Kommission Gravity Network West Germany DSGN Data Adjustment	DGKGN
+Deutsche Hydrographische Zeitschrift	DeHyZ
+Deutsche Physikalische Gesellschaft	DPhyG
+Developments in Solid Earth Geophysics	DSEG
+DFVLR	DFVLR
+Diamond And Related Materials	DRM
+Differentsial nye Uravneniia	DnU
+Digital Signal Processing	DSP
+Dimensions	Dimen
+Dinamicheskie Sistemy	DiSis
+Dinamika i Prochnost Mashin	DPM
+Dinamika razrezhennykh gazov	DiRaG
+DIO	DIO
+Directions in Condensed Matter Physics	DCMP
+DISA Information	DISA
+Discover	Disc
+Display Imaging Technology	DImTe
+Displays	Displ
+Distributed Systems Engineering	DSE
+DLGR Magnetofluiddyn	DLGRM
+D-Lib Magazine	Dlib
+DLR Nachrichten	DLRNa
+Documentation des Observateurs Circulaire	DOCi
+Documentation des Observateurs Institut d'Astrophysique de Paris	DOIAP
+Doklady Akad Nauk Minerologia USSR	DokAN
+Doklady Physical Chemistry	DokPC
+Dominion Astrophysical Observatory Annual Report	DAOAR
+Dornier Post	DorPo
+Dudley Observatory Reports	DudOR
+Dun Echt Observatory Publications	PODE
+Dunsink Observatory Publications	DunOP
+Dunsink Observatory Reprints	DunRe
+Durham Observatory Observations	DurOO
+Dushanbe Izdatel Donish	IzDus
+Dyer Observatory Reprints	DyeRe
+Dynamical Systems: An International Journal	DySys
+Dynamics and Control	DynCo
+Dynamics and Stability of Systems	DSSys
+Dynamics of Atmospheres and Oceans	DyAtO
+Earth and Evolution Sciences	EaEvS
+Earth and Extraterrestrial Sciences	EExSc
+Earth and Planetary Science Letters	E&PSL
+Earth and Space	E&S
+Earth Moon and Planets	EM&P
+Earth, Planets, and Space	EP&S
+Earth Science Reviews	ESRv
+Earth Surface Processes and Landforms	ESPL
+Earth-Oriented Applications and Space Technology	EOAST
+East Europe Rept Sci Affairs JPRS	EERSA
+East European Rept Sci. Technol. JPRS ESA	EERST
+Eclipsing Binaries Circulars	EBCi
+Eesti NSV Teaduste Akadeemia Toimetised Fuusika Matemaatika	ETATF
+Ege University Izmir Publications of the Department of Astronomy	IzmP
+Elastic	Elast
+Electric Machines and Power Systems	EMPS
+Electrical Communication Laboratories Review	ECLRv
+Electrical Engineering of Japan	JElEn
+Electro Optical Systems Design	EOSD
+Electromagnetics	Elecm
+Electronic Journal of Science Education	EJSEd
+Electronic Journal of Theoretical Physics	EJTP
+Electronic Progress	ElPro
+Electronics Communications of Japan	JElCo
+Electronics Letters	ElL
+Electronics Power	ElP
+Electrotechnical Laboratory Circulars	ElLC
+Electrotechnical Laboratory Researches	ElLR
+Elektrische Bahnen	ElBah
+Elektromashinostroenie i Elektrooborudovanie	E&E
+Elektromekhanika	Elem
+Elektronika	Elek
+Elektronnaia Tekhnika Avtomatike	ElTA
+Elektronnoe Modelirovanie	ElMod
+Elektrosviaz Telecommunications Radio Engineering Telecommunications	ETRE
+Elektrotechnik und Maschinenbau	E&M
+Elektrotehniski Vestnik	EVest
+The EMBO Journal	EMBO
+EMC Technology	EMCT
+Emerging Biochemical and Biophysical Techniques	EBBT
+Encyclopedia of Astronomy and Astrophysics	EAA
+Endeavour	Endvr
+Energetika	Energ
+Energia es Atomtechnika	EnAt
+Energy Conversion	EnC
+Energy Conversion Management	ECM
+Energy Sources	EnS
+Energy Technology Review	EnTR
+Energy UK	EnUK
+Engineering Analysis	EngAn
+Engineering Computations	EngCo
+Engineering Fracture Mechanics	EnFM
+Engineering Optimization	EnOp
+Engineering Thermophysics China	CEnTp
+Entropie	Entro
+Environmental Analytical and Physical Chemistry Series	EnAPC
+Environmental Engineering	EnEng
+Environmental Pollution Series B Chemical and Physical	EnP
+Environmental Science Technology	EnST
+Environmental Toxicology	EnTox
+Environmental Toxicology and Water Quality	ETWQ
+Environmentrics	Env
+EOS Transactions	EOSTr
+EPRI Journal	EPRIJ
+Ergaenzungshefte zu den Astronomischen Nachrichten	AnErg
+Ergodic Theory and Dynamical Systems	ETDS
+Ergonomics	Ergo
+ESA Bulletin	ESABu
+ESA Journal	ESAJ
+ESA Scientific Technical Review	ESAST
+Essays in Physics	EssPh
+Estuarine Coastal and Shelf Science	ECSS
+Europe Report Science Technology	ERST
+European Biophysics Journal	EBioJ
+European Journal of Applied Mathematics	EJAM
+European Journal of Biochemistry	EJBio
+European Journal of Combinatorics	EJC
+European Journal of Engineering Education	EJEE
+European Journal of Mechanics B Fluids	EJMF
+European Journal of Mechanics Solids	EJMS
+European Journal of Physics	EJPh
+European Physical Journal A	EPJA
+European Physical Journal Applied Physics	EPJAP
+European Physical Journal B	EPJB
+European Physical Journal C	EPJC
+European Physical Journal D	EPJD
+European Physical Journal E	EPJE
+European Review	EuRv
+European Science Notes	ESN
+European Southern Observatory Annual Reports	ESOAR
+European Southern Observatory ESO Bulletin	ESOB
+European Southern Observatory Scientific Preprints	ESOSP
+European Southern Observatory Scientific Report	ESOSR
+European Transactions Telecommunications Related Technologies	ETTRT
+Europhysics Letters	EL
+EXOSAT Express	EXOSA
+Experimental Astronomy	ExA
+Experimental Eye Research	EEyeR
+Experimental Heat Transfer	ExHT
+Experimental Mechanics	ExM
+Experimental Methods in the Physical Sciences	ExMPS
+Experimental Techniques	ExT
+Experimental Thermal Fluid Science	ExTFS
+Experiments in Fluids	ExFl
+Extraction	Extr
+Facultad de Humanidades y Ciencias Universidad de la Republica Montevideo	PMtv
+Faraday Transactions	FaTr
+Fatigue and Fracture of Engineering Materials and Structures	FFEMS
+Feinwerktechnik und Messtechnik	F&M
+Ferroelectrics	Fer
+Ferroelectrics Letters Section	FerLS
+Few-Body Systems	FBS
+Fiber and Integrated Optics	FiIO
+Fiber Integrated Optics	FIOpt
+Finommechanika Mikrotechnika	FeMik
+First Break	FiBr
+Fizicheskaia Elektronika	FizEl
+Fizicheskaia Mekhanika	FiMek
+Fizika	Fiz
+Fizika A	FizA
+Fizika Aerodispersnykh Sistem	FizAS
+Fizika B	FizB
+Fizika Goreniia i Vzryva	FizGV
+Fizika i Khimiia Obrabotki Materialov	FizKO
+Fizika i Tekhnika Vysokikh Davlenii	FizTV
+Fizika Metallov i Metallovedenie	FizMM
+Fizika Mnogochastichnykh Sistem	FizMS
+Fizika Nizkikh Temperatur	FizNT
+Fizika Plazmy	FizPl
+Fizika Tverdogo Tela	FizTT
+Fizika Zhidkogo Sostoianiia	FizZS
+Fiziki Atmosfery	FizAt
+Fiziko Khimicheskaia Mekhanika Materialov	FizKM
+Fizyki i Chemii Seria Fizyka	FizCh
+Flight International	FliIn
+Flower and Cook Observatory Reprints	F&CRe
+Fluctuation and Noise Letters	FNL
+Flug Revue Flugwelt International	FRFI
+Fluid Dynamics	FlDy
+Fluid Dynamics Research	FlDyR
+Fluid Dynamics Transactions	FlDyT
+Fluid Mechanics of Astrophysics and Geophysics	FMAG
+Fluid Mechanics Soviet Research	FlMSR
+Fluidika	Fluid
+Fluids Quarterly	FluQ
+Food and Bioproducts Processing. Part C, Transactions of the Institution of Chemical Engineers	FBP
+Forschung im Ingenieurwesen	F&I
+Forschung im Ingenieurwesen Engineering Research	F&IER
+Fotointerpretacja w Geografii	FoGeo
+Foundations of Physics	FoPh
+Foundations of Physics Letters	FPhL
+Franklin Institute Journal	FrInJ
+Frequenz	Freq
+Frontiers in Physics	FrPhy
+Frontiers in Physics in China	FrPhC
+Frunze Izdatel Ilim	IzFru
+Fujitsu Scientific Technical Journal	FSTJ
+Fullerene Science and Technology	FST
+Functional Analysis and Its Applications	FAAp
+Functiones et Approximatio Commentarii Mathematici	FACM
+Fundamenta Informaticae	FInfo
+Fundamental and Applied Nuclear Physics Series	FANP
+Fundamental nye Osnovy Opticheskoi Pamiati i Sredy	OOPS
+Fundamental Theories of Physics	FTP
+Fundamentals of Cosmic Physics	FCPh
+Future Spring	Futur
+Galactic Center Newsletter	GCNew
+Games and Economic Behavior	GEB
+Gauthier-Villars Paris Observatory Observations	GVPOO
+Gazodinamika i Teploobmen	GazT
+GEC Journal Research	GECJR
+Geliotekhnika	Gelio
+GEMINI Newsletter Royal Greenwich Observatory	Gemin
+General History of Astronomy	GHA
+General Physiology AND Biophysics	GPB
+General Relativity and Gravitation	GReGr
+Genetica	Gen
+Geocarto International	GeoIn
+Geochemical Journal	GeocJ
+Geochemistry	Geoch
+Geochemistry, Geophysics, Geosystems	GGG
+Geochimica et Cosmochimica Acta	GeCoA
+Geochimica et Cosmochimica Acta Supplement	GeCAS
+Geodeziia i Aerofotos	GeAer
+Geodeziia i Kartografiia	GeKar
+Geodeziia Kartografiia i Aerofotos	GeKaA
+Geodezja i Kartografia	GeoK
+Geodinamica Acta	AcGeo
+Geofizicheskii Sbornik	GeoSb
+Geofizicheskii Zhurnal	GeoZh
+Geografiska Annaler, Series A: Physical Geography	GeoAA
+Geografiska Annaler, Series B: Human Geography	GeoAB
+Geokhimiia	Geokh
+Geological Journal	GeolJ
+Geological Magazine	GeoM
+Geological Society Journal	GeoSJ
+Geological Society of America Bulletin	GSAMB
+Geological Society of America Memoir	GSAMm
+Geology	Geo
+Geomagnetizm i Aeronomiia	Ge&Ae
+Geomagnitnye Issledovaniia	GeoIs
+Geo-Marine Letters	GML
+Geometriae Dedicata	GeoD
+Geomicrobiology Journal	GeomJ
+Geomorphology	Geomo
+Geophysica	Geoph
+Geophysica et Geodaetica	GeGe
+Geophysica Norvegica	GeoNr
+Geophysical and Astrophysical Fluid Dynamics	GApFD
+Geophysical Developments Series	GDS
+Geophysical Journal	GeoJ
+Geophysical Journal International	GeoJI
+Geophysical Prospecting	GeopP
+Geophysical References	GeopR
+Geophysical Research Letters	GeoRL
+Geophysical Surveys	GeoSu
+Geophysics	Geop
+Geophysics and Astrophysics Monographs	GAM
+Georgetown Observatory Monogram	GeoOM
+Georgetown Observatory Reprints	GeoRe
+GEOS Circular on Eclipsing Binaries	GEOSC
+GEOS Note Circulaire	GEOSN
+Geothermal Resources Council Transactions	TrGRC
+Geothermics	Geoth
+Geotimes	Geot
+Gerlands Beitraege zur Geophysik	GBzG
+Geschichte und Lichtwechsel der Veraenderlichen Sterne (Potsdam)	GUL
+Gesellschaft Aerosolforschung Tagung ueber Aerosole Naturwissenschaft Medizin und Technik Messtechnik und technische Anwendung	GATAN
+Gesellschaft angewandte Mathematik und Mechanik Jahrestagung Goettingen West Germany Zeitschrift Flugwissenschaften	GMMWJ
+Gesellschaft Angewandte Mathematik und Mechanik Workshop Paris France	GaMuM
+Gesellschaft Mathematik und Datenverarbeitung mbH Multigrid Methods Special Topics Applications	GMuD
+Gibridnye Vychislitel nye Mashiny i Kompleksy	GVMK
+Gidromekhanika	Gidro
+Gidroprivod i Gidropnevmoavtomatika	GiGi
+Gigiena i Sanitariia	GiSan
+Gigiena Truda i Professional nye Zabolevaniia	GTPZ
+Glasgow Mathematical Journal	GlMaJ
+Global and Planetary Change	GPC
+Global Biogeochemical Cycles	GBioC
+Goethe Link Observatory Reprints	GLORe
+GPS World	GPSW
+Graphical Models and Image Processing	GMIP
+Gravitatsiia i Teoriia Otnositel nosti	GrTOn
+GRB Coordinates Network	GCN
+Griffith Observer	GriO
+Grumman Aerospace Horizons	GrAeH
+Gruppo Italiano RV Tauri Circolare	GICi
+Hale Observatories Reprints	HalRe
+Hamburger Sternw. Warner & Swasey Obs.	LS
+Hamburger Sternwarte Bergedorf	BSD
+Hamburger Sternwarte Sonderdrucke	HamS
+Handbook of Astronomy Astrophysics and Geophysics	HAAG
+Handbook of Biological Physics	HBP
+Handbook of Geophysical Exploration	HGE
+Handbook of Plasma Physics	HPlPh
+Handbook on the Physics and Chemistry of Rare Earths	HPCRE
+Handbuch der Astrophysik	HDA
+Handbuch der Physik	HDP
+Harthaer Beobachtungs-Zirkular	HarZi
+Harvard College Observatory Announcement Card	HarAC
+Harvard College Observatory Annual Report	HarAR
+Harvard College Observatory Bulletin	BHarO
+Harvard College Observatory Circular	HarCi
+Harvard College Observatory Papers	HarPa
+Harvard College Observatory Reprints	HarRe
+Health Physics	HeaPh
+Heat and Mass Transfer	HMT
+Heat Transfer Engineering	HTrEn
+Heat Transfer Japanese Research	HTJR
+Heat Transfer Soviet Research	HTSR
+Helgoland Marine Research	HMR
+Helvetica Chimica Acta	AcHCh
+Helvetica Physica Acta	AcHPh
+Helwan Institute of Astronomy and Geophysics Bulletins	HelOB
+Hemel en Dampkring	HemD
+High Energy Chemistry	HECh
+High Energy Physics and Nuclear Physics	HEPNP
+High Performance Polymers	HPP
+High Pressure Research	HPR
+High Technology	HiTec
+High Temperature Science	HTemS
+High Temperatures and High Pressures	HTHP
+Highlights of Astronomy	HiA
+Historical Studies in the Physical and Biological Sciences	HSPBS
+History of Geophysics	HGeo
+Hokkaido University Faculty Engineering Bulletin	HUFEB
+Hokkaido University Faculty Engineering Memoirs	HUFEM
+Holzforschung	Holz
+Horizons in Biochemistry and Biophysics	HBB
+Horizons in World Physics	HWP
+La Houille Blanche	LHBl
+Hovering Craft and Hydrofoil	HCHy
+Human Gene Therapy	HGT
+Hvar Observatory Bulletin	HvaOB
+Hydrogeology Journal	HydJ
+Hydrological Processes	HyPr
+Hydrology and Earth System Sciences	HESS
+Hydrology and Earth System Sciences Discussions	HESSD
+Hyperfine Interactions	HyInt
+Iadernaia Energiia	IadEn
+Iakutsk Iakutskii Filial SO AN SSSR	IaIaF
+Iasi Institutul Politehnic Buletinul Sectia Electrotehnica Electronica Automatizari	BSEEA
+Iasi Institutul Politehnic Buletinul Sectia Matematica Mecanica Teoretica Fizica	BSMMT
+Iasi Institutul Politehnic Buletinul Sectia Mecanica Tehnica	BSMT
+IBM Journal Research Development	IBMJ
+ICAO Bulletin	ICAOB
+Icarus	Icar
+IEE Journal of Microwaves Optics and Acoustics	JMOA
+IEE Journal of Solid-State Electron Devices	JSSED
+IEE Proceedings B: Electric Power Applications	IPEPA
+IEE Proceedings C: Generation Transmission Distribution	IPGTD
+IEE Proceedings: Communications Speech and Vision	IPCSV
+IEE Proceedings D: Control Theory Applications	IPCTA
+IEE Proceedings E: Computers and Digital Techniques	IPCDT
+IEE Proceedings F: Communications and Radar Processing	IPCRP
+IEE Proceedings F: Communications Radar and Signal Processing	IPCRS
+IEE Proceedings F: Radar and Signal Processing	IPRSP
+IEE Proceedings H: Microwaves Antennas and Propagation	IPMAP
+IEE Proceedings H: Microwaves Optics and Antennas	IPMOA
+IEE Proceedings J: Optoelectronics	IPOpt
+IEE Proceedings: Physical Science Measurement and Instrumentation Management and Education Reviews	IPPSM
+IEE Proceedings: Solid-State Electron Devices	IPSSE
+IEE Reviews	IEERv
+IEEE Aerospace Electronic Systems Magazine	IAESM
+IEEE Antennas Propagation Magazine	IAPM
+IEEE ASSP Magazine	IASSP
+IEEE Circuits Systems Magazine	ICiSM
+IEEE Communications Magazine	IComM
+IEEE Computer Graphics Applications	ICGA
+IEEE Computer Systems Magazine	ICSM
+IEEE Design Test Computers	IDTC
+IEEE Electron Device Letters	IEDL
+IEEE Expert	IExp
+IEEE Journal of Lightwave Technology	IJLT
+IEEE Journal of Oceanic Engineering	IJOE
+IEEE Journal of Quantum Electronics	IJQE
+IEEE Journal of Robotics Automation	IJRA
+IEEE Journal of Solid-State Circuits	IJSSC
+IEEE Journal on Selected Areas in Communications	IJSAC
+IEEE LCS Magazine	ILCSM
+IEEE LTS	ILTS
+IEEE Microwave and Guided Wave Letters	IMGWL
+IEEE Network	IEEEN
+IEEE Photonics Technology Letters	IPTL
+IEEE Proceedings	IEEEP
+IEEE Signal Processing Letters	ISPL
+IEEE Signal Processing Magazine	ISPM
+IEEE Spectrum	IEEES
+IEEE Transactions on Acoustics Speech and Signal Processing	ITASS
+IEEE Transactions on Aerospace Electronic Systems	ITAES
+IEEE Transactions on Antennas and Propagation	ITAP
+IEEE Transactions on Applied Superconductivity	ITAS
+IEEE Transactions on Automatic Control	ITAC
+IEEE Transactions on Biomedical Engineering	ITBE
+IEEE Transactions on Broadcasting	ITB
+IEEE Transactions on Circuits Systems	ITCS
+IEEE Transactions on Communications	ITCom
+IEEE Transactions on Components Hybrids and Manufacturing Technology	ITCHM
+IEEE Transactions on Computer Aided Design	ITCAD
+IEEE Transactions on Computers	ITCmp
+IEEE Transactions on Dielectrics and Electrical Insulation	ITDEI
+IEEE Transactions on Education	ITEdu
+IEEE Transactions on Electrical Insulation	ITEI
+IEEE Transactions on Electromagnetic Compatibility	ITElC
+IEEE Transactions on Electronic Devices	ITED
+IEEE Transactions on Energy Conversion	ITEnC
+IEEE Transactions on Engineering Management	ITEM
+IEEE Transactions on Geoscience and Remote Sensing	ITGRS
+IEEE Transactions on Geoscience Electronics	ITGE
+IEEE Transactions on Image Processing	ITIP
+IEEE Transactions on Industrial Electronics	ITIE
+IEEE Transactions on Industrial Electronics and Control Instrumentation	ITIEC
+IEEE Transactions on Industry Applications	ITIA
+IEEE Transactions on Information Theory	ITIT
+IEEE Transactions on Instrumentation Measurement	ITIM
+IEEE Transactions on Magnetics	ITM
+IEEE Transactions on Medical Imaging	ITMI
+IEEE Transactions on Microwave Theory Techniques	ITMTT
+IEEE Transactions on Neural Networks	ITNN
+IEEE Transactions on Nuclear Science	ITNS
+IEEE Transactions on Parts Hybrids and Packaging	ITPHP
+IEEE Transactions on Pattern Analysis and Machine Intelligence	ITPAM
+IEEE Transactions on Plasma Science	ITPS
+IEEE Transactions on Power Apparatus Systems	ITPAS
+IEEE Transactions on Power Delivery	ITPD
+IEEE Transactions on Power Electronics	ITPE
+IEEE Transactions on Reliability	ITR
+IEEE Transactions on Robotics Automation	ITRA
+IEEE Transactions on Selected Topics in Quantum Electronics	ITSTQ
+IEEE Transactions on Semiconduct M	ITSM
+IEEE Transactions on Signal Processing	ITSP
+IEEE Transactions on Software Engineering	ITSE
+IEEE Transactions on Sonics Ultrasonics	ITSU
+IEEE Transactions on Systems Man and Cybernetics	ITSMC
+IEEE Transactions on Ultrasonics Ferroelectrics and Frequency Control	ITUFF
+IEEE Transactions on Vehicular Technology	ITVT
+IEICE Transactions E	IEICE
+IES Journal	IESJ
+IMA Journal of Applied Mathematics	JApMa
+IMA Journal of Numerical Analysis	IJNA
+IME Proceedings. Part A: Journal of Power and Energy	IMEPA
+IME Proceedings. Part B: Journal of Engineering Manufacture	IMEPB
+IME Proceedings. Part C: Journal of Mechanical Engineering Science	IMEPC
+IME Proceedings. Part D: Journal of Automobile Engineering	IMEPD
+IME Proceedings. Part E: Journal of Process Mechanical Engineering	IMEPE
+IME Proceedings. Part G: Journal of Aerospace Engineering	IMEPG
+IME Proceedings. Part H: Journal of Engineering in Medicine	IMEPH
+IME Proceedings. Part I: Journal of Systems and Control Engineering	IMEPI
+IME Proceedings. Part K: Journal of Multibody Dynamics	IMEPK
+Impact of Computing in Science and Engineering	ICSE
+Indian Academy of Science Aryabhata Proj	IASAP
+Indian Academy of Sciences Proceedings: Earth and Planetary Sciences	InEPS
+Indian Academy of Sciences Proceedings Mathematical Sciences	InMS
+Indian Academy of Sciences Proceedings Section	InASP
+Indian Academy of Sciences Proceedings: Section C Engineering Sciences	InES
+Indian Institute of Astrophysics Newsletter	IIApN
+Indian Institute of Science Journal	InISJ
+Indian Institute of Science Journal of Aeronomical Society of India	InISA
+Indian Institute of Science Space Science Technology Applications: An Overview	InSST
+Indian Institute of Technology Journal on Section Engineering Technology	ITJSE
+Indian Journal of Aerospace Engineering Division	InJAE
+Indian Journal of Biochemistry and Biophysics	InJBB
+Indian Journal of Electronics Telecommunication Engineering Division	InJET
+Indian Journal of Mechanical Engineering Division	InJME
+Indian Journal of Meteorology Hydrology and Geophysics	IJMHG
+Indian Journal of Physics and Proceedings of the Indian Assocatiation for the Cultivation of Science	InJP
+Indian Journal of Physics Section A	InJPA
+Indian Journal of Physics Section B	InJPB
+Indian Journal of Physics Section B B	InJPS
+Indian Journal of Pure and Applied Physics	IJPAP
+Indian Journal of Radio and Space Physics	IJRSP
+Indian Journal of Theoretical Physics	InJTP
+Indian National Science Academy Proceedings Supplement	INSAP
+Indiana University Mathematics Journal	IUMJ
+Infinite Dimensional Analysis, Quantum Probability and Related Topics	IDAQP
+Information and Computation	InCo
+Information Control	InfCo
+Information Display	InfD
+Information Processing and Management	IPM
+Informational Bulletin of the Southern Hemisphere	IBSH
+Informational Bulletin on Variable Stars	IBVS
+Infrared Astronomy	IRA
+Infrared Physics	InfPh
+Infrared Physics and Technology	InPhT
+Ingegneria	Ingeg
+Ingenieria Aeronautica y Astronautica	IA&A
+Ingenieur Archiv	IngAr
+Inorganic Chemistry	InCh
+Institut d'Astronomie de Lausanne	IAL1K
+Institut Royal Meteorologique de Belgique Publications Serie	IRMBP
+Institut Teoreticheskoi Astronomii Biulleten	ITAB
+Institut Teoreticheskoi Astronomii Trudy	TrITA
+Institute Fuel Journal	InFuJ
+Institute of Electronics Communication Engineers of Japan Transactions Section E English	JIECE
+Institute of Physics Academia Sinica Annual Report	IPASA
+Institute of Theoretical Astrophysics Blindern Oslo Reports	OslR
+Institution Engineers Australia Electrical Engineering Transactions	IEAEE
+Institution of Electrical Engineers Proceedings	IEEP
+Institution of Electronic Radio Engineers Journal	IEREJ
+Institution of Electronics Telecommunication Engineers	IETE
+Instituto de Astronomia y Fisica del Espacio Buenos Aires	IAFET
+Instituto de Tonantzintla Boletin	IToBu
+Instituto Venezolano de Astronomia Merida Venezuela	MerRe
+Instruments and Experimental Techniques	IET
+Instytut Lotnictwa Prace	InLoP
+Instytut Maszyn Przeplywowych	InMP
+Instytut Maszyn Przeplywowych Prace	InMPP
+Inta Conie	IntaC
+Integral Transforms and Special Functions	ITSF
+Integrated Computer-Aided Engineering	ICAE
+Integrated Ferroelectrics	InFer
+Interavia	Inter
+Interavia Space Markets	IntSM
+An Interdisciplinary Journal of Physical and Engineering Sciences	ARIJ
+Interdisciplinary Science Reviews	ISRv
+Interfaces and Free Boundaries	IFB
+INTERKOSMOS Prague Astronomicky Ustav Ceskoslovenske Akademie Ved	IPAUC
+International Advances in Nondestructive Testing	IANT
+International Amateur-Professional Photoelectric Photometry Communications	IAPPP
+International Astronomical Union Circular	IAUC
+International Communications in Heat and Mass Transfer	ICHMT
+International Conference Infrared Physics Zurich Switzerland	IrPh
+International Geophysics Series	InGeo
+International Journal for Computational Methods in Engineering Science and Mechanics	IJCEM
+International Journal for Numerical and Analytical Methods in Geomechanics	IJNAM
+International Journal for Numerical Methods in Engineering	IJNME
+International Journal for Numerical Methods in Fluids	IJNMF
+International Journal for Radiation Physics and Chemistry	IJRPC
+International Journal of Adaptive Control and Signal Processing	IJACS
+International Journal of Adhesion Adhesives	IJAA
+International Journal of Analytical and Experimental Modal Analysis	IJAEM
+International Journal of Applied Earth Observation and Geoinformation	IJAEO
+International Journal of Applied Electromagnetics and Mechanics	IJApE
+International Journal of Astrobiology	IJAsB
+International Journal of Aviation Psychology	IJAP
+International Journal of Bifurcation and Chaos	IJBC
+International Journal of Biometeorology	IJBm
+International Journal of Climatology	IJCli
+International Journal of Computational Engineering Science	IJCES
+International Journal of Computational Fluid Dynamics	IJCFD
+International Journal of Computer Mathematics Section B	IJCMS
+International Journal of Computer Vision	IJCV
+International Journal of Control	IJC
+International Journal of Damage Mechanics	IJDM
+International Journal of Earth Sciences	IJEaS
+International Journal of Electronics	IJE
+International Journal of Energy Research	IJER
+International Journal of Engineering and Fluid Mechanics Spring	IJEFM
+International Journal of Engineering Science	IJES
+International Journal of Fatigue	IJFa
+International Journal of Fracture	IJFr
+International Journal of Fusion Energy	IJFE
+International Journal of General Systems	IJGS
+International Journal of Geomagnetism and Aeronomy	IJGA
+International Journal of Heat and Fluid Flow	IJHFF
+International Journal of Heat and Mass Transfer	IJHMT
+International Journal of High Speed Computing	IJHSC
+International Journal of High Speed Electronics and Systems	IJHSE
+International Journal of Hybrid Microelectronics Fall	IJHM
+International Journal of Hydrogen Energy	IJHE
+International Journal of Hyperthermia	IJHy
+International Journal of Image and Graphics	IJIG
+International Journal of Imaging Systems Technology	IJIST
+International Journal of Impact Engineering	IJIE
+International Journal of Infrared and Millimeter Waves	IJIMW
+International Journal of Intelligent Control and Systems	IJICS
+International Journal of Mass Spectrometry and Ion Processes	IJMSI
+International Journal of Mathematical Education in Science and Technology	IJMES
+International Journal of Mathematics	IJM
+International Journal of Mechanical Sciences	IJMS
+International Journal of Mini Microcomputers	IJMM
+International Journal of Modelling and Simulation	IJMoS
+International Journal of Modern Physics A	IJMPA
+International Journal of Modern Physics B	IJMPB
+International Journal of Modern Physics C	IJMPC
+International Journal of Modern Physics D	IJMPD
+International Journal of Modern Physics E	IJMPE
+International Journal of Multiphase Flow	IJMF
+International Journal of Nanoscience	IJN
+International Journal of Neural Systems	IJNS
+International Journal of Non Linear Mechanics	IJNLM
+International Journal of Nonlinear Optical Physics	IJNOP
+International Journal of Numerical Methods for Heat & Fluid Flow	IJNMH
+International Journal of Oral and Maxillofacial Surgery	IJOMS
+International Journal of Photogrammetry and Remote Sensing	IJPRS
+International Journal of Physical and Engineering Sciences	IJPES
+International Journal of Plasticity	IJP
+International Journal of Polymeric Materials	IJPM
+International Journal of Population Geography	IJPG
+International Journal of Production Research	IJPR
+International Journal of Quantum Chemistry	IJQC
+International Journal of Radiation Applications and Instrumentation D Nuclear Tracks and Radiation Measurements	IJRAI
+International Journal of Radiation Biology	IJRB
+International Journal of Reliability, Quality and Safety Engineering	IJRQS
+International Journal of Remote Sensing	IJRS
+International Journal of Robotics Research	IJRR
+International Journal of Satellite Communications	IJSC
+International Journal of Science Education	IJSEd
+International Journal of Solar Energy	IJSE
+International Journal of Solids and Structures	IJSS
+International Journal of Structural Stability and Dynamics	IJSSD
+International Journal of Supercomputer Applications	IJScA
+International Journal of Systems Science	IJSyS
+International Journal of Theoretical Physics	IJTP
+International Journal of Thermophysics	IJT
+International Journal of Turbo Jet Engines	IJTJE
+International Materials Reviews	IMRv
+International Metals Reviews	IMeRv
+International Review of Hydrobiology	IRH
+International Review of Nuclear Physics	IRNP
+International Reviews in Physical Chemistry	IRPC
+International Space Business Review	ISBRv
+Internationale Elektronische Rundschau	IER
+Interplanetary Network Progress Report	IPNPR
+Inventiones Mathematicae	InMat
+Inverse Problems	InvPr
+Investigations in Geophysics	IGeo
+Inzhenerno Fizicheskii Zhurnal	InFiZ
+Ionosfernye Issledovaniia	IonIs
+Ionosphere	Iono
+Iranian Journal of Science Technology	IrJST
+Irish Astronomical Journal	IrAJ
+Irish Astronomical Journal Supplement	IrAJS
+ISA Proceedings	ISAP
+ISA Transactions	ISAT
+Ishikawajima Harima Engineering Review	IHERv
+Isis. Journal of the History of Science Society	Isis
+Isotopes in the Physical and Biomedical Sciences	IPBS
+Israel Journal of Technology	IsJT
+Israel Space Research and Technology Information Bulletin	IsSRT
+ISRO Satellite Centre Journal of Spacecraft Technology	ISCJS
+Issledovanie Zemli iz Kosmosa	IssZK
+Issledovaniia Geomagnetizmu Aeronomii i Fizike Solntsa	IGAFS
+Issledovaniia Mekhanike i Teploobmenu Dvukhfaznykh Sred	IsMTD
+Issledovaniia Uprugosti i Plastichnosti	IssUP
+Issledovaniya Solntsa i Krasnykh Zvezd	ISKZ
+Issues in Science and Technology	IST
+Istanbul University Faculty of Science Journal of Astronomy Physics	IsJAP
+Istanbul University Faculty Science Review Serie C	IsRvC
+Istituto Italiano di Navigazione Atti	IINA
+ITC Journal	ITCJ
+Itogi Nauki i Tekhniki Seriia Astronomiia	INTSA
+Itogi Nauki i Tekhniki Seriia Fizika Plazmy	INTSF
+Itogi Nauki i Tekhniki Seriia Issledovanie Kosmicheskogo Prostranstva	INTSI
+Itogi Nauki i Tekhniki Seriia Meteorologiia i Klimatologiia	INTMK
+Itogi Nauki i Tekhniki Seriia Okeanologiia	INTSO
+Itogi Nauki i Tekhniki Seriia Radiotekhnika	INTSR
+Itogi Nauki i Tekhniki Seriia Sovremennye Problemy Matematiki	INTSS
+Itogi Nauki i Tekhniki Seriia Vozdushnyi Transport	INTSV
+ITU Telecommunication Journal	ITUTJ
+IUE ESA Newsletter	IUEEN
+IUE NASA Newsletter	IUENN
+Izvestiia Akademii Nauk Seriya Fizicheskaya	IzSF
+Izvestiia Glavnoi rossiiskoi astronomicheskoi observatorii	IzGla
+Izvestiya Akademii Nauk Turkmenskoj SSR Ashkhabad	IzAsh
+Izvestiya Akademiya Nauk Armyanskoi	IzArm
+Izvestiya Astrofizicheskogo Instituta Alma-Ata	IzAlm
+Izvestiya Astronomicheskoj Engel'gardt obskoj Observatorii Kazan	IzKaz
+Izvestiya Atmospheric and Oceanic Physics	IzAOP
+Izvestiya Glavnoj Astronomicheskoj Observatorii Kiev	IzKie
+Izvestiya Glavnoj Astronomicheskoj Observatorii v Pulkove	IzPul
+Izvestiya na Fizicheskiya Institut s Aneb	IzAne
+Izvestiya Ordena Trudovogo Krasnogo Znameni Krymskoj Astrofizicheskoj Observatorii	IzKry
+Izvestiya Physics of the Solid Earth	IzPSE
+Izvestiya VUZ Aviatsionnaya Tekhnika	IzAvT
+Izvestiya VUZ Radiofizika	IzRad
+Izviestiia Nikolaevskoi glavnoi astronomicheskoi observatorii	IzNic
+Jahns Wöchentliche Unterhaltungen Für Dilettanten und Freunde der Astronomie, Georgraphie und Witterungskunde	JWUDF
+Jahrbuch der Radioaktivität und Elektronik	JRE
+Japan Astronomical Study Association Circulars	JASAC
+Japan Institute of Metals Journal	JaIMJ
+Japan Society of Aeronautical Space Sciences	JSASS
+Japan Society of Aeronautical Space Sciences Journal	JSASJ
+Japan Society of Aeronautical Space Sciences Transactions	JSAST
+Japan Society of Air Pollution Journal	JSAPJ
+Japan Society of Composite Materials Journal	JSCMJ
+Japan Society of Lubrication Engineers Journal	JSLEJ
+Japan Society of Materials Science Journal	JSMSJ
+Japan Society of Promotion Science	JSPS
+Japanese Journal of Applied Physics	JaJAP
+Japanese Journal of Applied Physics Letters B	JJAPL
+Japanese Journal of Applied Physics Regular Papers Short Notes and Review Papers	JJAPR
+Japanese Journal of Applied Physics Supplement	JJAPS
+JASMA Japan Society of Microgravity Application Journal	JSMAJ
+Jemna Mechanika Optika	JMeOp
+Jena Review	JenRv
+Jodrell Bank Ann Ser Pt	JBASP
+Jodrell Bank Annals	JBAn
+Jodrell Bank Reprints	JBRe
+Johns Hopkins APL Technical Digest	JHATD
+JOM	JOM
+Journal and Proceedings of the Royal Society of New South Wales	RSNSW
+Journal d'Acoustique	JAco
+Journal de Chimie Physique	JCP
+Journal de Chimie Physique et de Physico-Chimie Biologique	JCPPC
+Journal de Mecanique	JMec
+Journal de Mecanique Appliquee	JMecA
+Journal de Mecanique Theorique et Appliquee	JMecT
+Journal de Mecanique Theorique et Appliquee Supplement	JMTAS
+Journal de Physique	JPhys
+Journal de Physique et le Radium	JPR
+Journal de Physique I	JPhy1
+Journal de Physique II	JPhy2
+Journal de Physique III	JPhy3
+Journal de Physique IV	JPhy4
+Journal de Physique Lettres	JPhyL
+Journal de Recherches Atmospheriques	JReAt
+Journal des Astronomes Francais	JAF
+Journal des Observateurs	JO
+Journal d'Optique	JOp
+Journal for the History of Astronomy	JHA
+Journal for the History of Astronomy Supplement	JHAS
+Journal fur die reine und angewandte Mathematik	JRAM
+Journal NIRE	JNIRE
+Journal of the Acoustical Society of Japan	JASJa
+Journal of the American Association of Variable Star Observers (JAAVSO)	JAVSO
+Journal of the American Mathematical Society	JAMS
+Journal of the American Society for Information Science and Technology	JASIS
+Journal of the American Society of Civil Engineers	JASCE
+Journal of the American Water Resources Association	JAWRA
+Journal of the Astronomical Society of Egypt	JASEg
+Journal of the Astronomical Society of Victoria Melbourne	JASV
+Journal of the British Astronomical Association	JBAA
+Journal of the British Astronomical Society	JBAS
+Journal of the British Interplanetary Society	JBIS
+Journal of the Chinese Silicate Society	JCSS
+Journal of the Electrochemical Society	JElS
+Journal of the Indian Institute of Science Section B Physical and Chemical Series	JIISB
+Journal of the Institute of Mathematics and Its Applications	JIMIA
+Journal of the Institution of Electronics and Telecommunication Engineers	JIETE
+Journal of the London Mathematical Society	JLMS
+Journal of the Operational Research Society	JORS
+Journal of the Optical Society of America (1917-1983)	JOSA
+Journal of the Physics of Condensed Matter	JPCM
+Journal of the Royal Aeronautical Society of London	JRASA
+Journal of the Royal Astronomical Society of Canada	JRASC
+Journal of the Royal Astronomical Society of New Zealand	JRASN
+Journal of the Royal College of Surgeons of Edinburgh	JRCSE
+Journal of the Royal Statistical Society: Series D (The Statistician)	JRSSD
+Journal of the Society for Radiological Protection	JSRP
+Journal of the Washington Academy of Sciences	JWasA
+Journal of Acoustic Emission	JAE
+Journal of Aerosol Science	JAerS
+Journal of Aerospace Engineering	JAerE
+Journal of Aerospace Power	JAerP
+Journal of African Earth Sciences	JAfES
+Journal of Agricultural Engineering Research	JAER
+The Journal of Agricultural Science	JAS
+Journal of Aircraft	JAir
+Journal of Algebra	JAlg
+Journal of Algebraic Combinatorics	JAlgC
+Journal of Algorithms	JAlgo
+Journal of Alloys and Compounds	JAllC
+Journal of American Ceramic Society	JACS
+Journal of Analytical Atomic Spectrometry	JAAS
+Journal of Applied Crystallography	JApCr
+Journal of Applied Electrochemistry	JApEl
+Journal of Applied Geophysics	JAG
+Journal of Applied Mechanics and Technical Physics	JAMTP
+Journal of Applied Metalworking	JApMw
+Journal of Applied Meteorology	JApMe
+Journal of Applied Photographic Engineering	JAPE
+Journal of Applied Physics	JAP
+Journal of Applied Physiology	JAPh
+Journal of Applied Science and Engineering Section on Electrical Power and Information Systems	JASE
+Journal of Applied Spectroscopy	JApSp
+Journal of Applied Statistics	JApS
+Journal of Approximation Theory	JApT
+Journal of Asian Earth Sciences	JAESc
+Journal of Astronautical Sciences	JAnSc
+Journal of Astronomical Data	JAD
+Journal of Astronomical History and Heritage	JAHH
+Journal of Astronomy and Space Sciences	JASS
+Journal of Astrophysics and Astronomy	JApA
+Journal of Astrophysics and Astronomy Supplement	JApAS
+Journal of Atmospheric and Oceanic Technology	JAtOT
+Journal of Atmospheric and Terrestrial Physics	JATP
+Journal of Atmospheric Chemistry	JAtC
+Journal of Atmospheric Sciences	JAtS
+Journal of Audio Engineering Society	JAES
+Journal of Australian Geology and Geophysics	JAuGG
+Journal of Automated Reasoning	JAuR
+Journal of Ballistics	JBall
+Journal of Biochemical and Biophysical Methods	JBBM
+Journal of Bioenergetics and Biomembranes	JBB
+Journal of Biological Physics	JBP
+Journal of Biomechanics	JBiom
+Journal of Biomedical Optics	JBO
+Journal of Biomolecular NMR	JBNMR
+Journal of Biophysical and Biochemical Cytology	JBBC
+Journal of Biophysique et de Biomecanique	JBiBi
+Journal of Biophysique et Medecine Nucleaire	JBMN
+Journal of Catalysis	JCat
+Journal of Chemical Education	JChEd
+Journal of Chemical Physics	JChPh
+The Journal of Chemical Thermodynamics	JChTh
+Journal of Chromatographic Science	JChS
+Journal of Chromatography	JCh
+Journal of Circuits, Systems and Computers	JCSC
+Journal of Climate	JCli
+Journal of Climate and Applied Meteorology	JCAM
+Journal of Climatology	JClim
+Journal of Clinical Pharmacology	JClP
+Journal of Cluster Science	JCS
+Journal of College Science Teaching	JCScT
+Journal of Colloid and Interface Science	JCIS
+Journal of Combinatorial Theory, Series A	JCTA
+Journal of Combinatorial Theory, Series B	JCTB
+Journal of Communications	JCom
+Journal of Complexity	JComp
+Journal of Composite Materials	JCoMa
+Journal of Composites and Technology Research	JCTR
+Journal of Computational Acoustics	JCA
+Journal of Computational and Applied Mathematics	JCoAM
+Journal of Computational Biology	JCoB
+Journal of Computational Chemistry	JCoCh
+Journal of Computational Mathematics	JCM
+Journal of Computational Neuroscience	JCoN
+Journal of Computational Physics	JCoPh
+Journal of Computer and System Sciences	JCoSS
+Journal of Computer-Aided Materials Design	JCAMD
+Journal of Cosmology and Astro-Particle Physics	JCAP
+Journal of Crystal Growth	JCrGr
+Journal of Dairy Research	JDR
+Journal of Differential Equations	JDE
+Journal of Digital Information	JoDI
+Journal of Dispersion Science and Technology	JDST
+Journal of Double Star Observations	JDSO
+Journal of Dynamical and Control Systems	JDCS
+Journal of Dynamics and Differential Equations	JDDE
+Journal of Elasticity	JElas
+Journal of Electrical and Electronics Engineering Australia	JEEEA
+Journal of Electroceramics	JElec
+Journal of Electromagnetic Waves and Applications	JEWA
+Journal of Electron Microscopy Technique	JEMT
+Journal of Electron Spectroscopy and Related Phenomena	JESRP
+Journal of Electronic Circuits and Systems	JECS
+Journal of Electronic Imaging	JEI
+Journal of Electronic Materials	JEMat
+Journal of Electronics Manufacturing	JElM
+Journal of Energy	JEner
+Journal of Engineering and Applied Sciences	JEAS
+Journal of Engineering and Mathematics	JEnMa
+Journal of Engineering and Mechanics	JEngM
+Journal of Engineering and Thermophysics	JETh
+Journal of Engineering Education Research	JEER
+Journal of Engineering Physics	JEP
+Journal of Engineering Physics and Thermophysics	JEPT
+Journal of Engineering Sciences	JEngS
+Journal of Environmental and Economics Management	JEEM
+Journal of Environmental Sciences	JEnvS
+Journal of Experimental and Theoretical Physics	JETP
+Journal of Experimental and Theoretical Physics Letteres	JETPL
+Journal of Experimental Botany	JExB
+The Journal of Finance	JFin
+Journal of Fire Flammability	JFF
+Journal of Fluid Control	JFC
+Journal of Fluid Mechanics	JFM
+Journal of Fluids and Structures	JFS
+Journal of Fluorescence	JFlu
+Journal of Functional Analysis	JFuA
+Journal of Geodesy	JGeod
+Journal of Geodynamics	JGeo
+Journal of Geographical Systems	JGS
+Journal of Geology	JG
+Journal of Geomagnetism and Geoelectricity	JGG
+Journal of Geomagnetism and Geoelectricity Supplement	JGGS
+Journal of Geometry and Physics	JGP
+Journal of Geophysical Research	JGR
+Journal of Geophysical Research (Atmospheres)	JGRD
+Journal of Geophysical Research (Earth Surface)	JGRF
+Journal of Geophysical Research (Oceans)	JGRC
+Journal of Geophysical Research (Planets)	JGRE
+Journal of Geophysical Research (Solid Earth)	JGRB
+Journal of Geophysical Research (Space Physics)	JGRA
+Journal of Geophysical Research Supplement	JGRS
+Journal of Geophysics and Engineering	JGE
+Journal of Geophysics Zeitschrift Geophysik	JGZG
+Journal of Glaciology	JGlac
+Journal of Global Optimization	JGO
+Journal of Guidance Control	JGuC
+Journal of Guidance Control Dynamics	JGCD
+Journal of Heuristics	JHeu
+Journal of High Energy and Nuclear Physics	JHENP
+Journal of High Energy Physics	JHEP
+Journal of High Energy Physics Conference Proceedings	JHEPC
+Journal of High Speed Networks	JHSN
+Journal of Hydrology	JHyd
+Journal of Hydronautics	JHyn
+Journal of Imaging Science and Technology	JIST
+Journal of Infrared and Millimeter Waves	JIMW
+Journal of Integral Equations	JIEq
+Journal of Intelligent and Robotic Systems	JIRS
+Journal of Intelligent Material Systems and Structures	JIMSS
+Journal of Knot Theory and its Ramifications	JKTR
+Journal of Korean Astronomical Society	JKAS
+Journal of Korean Physical Society	JKPS
+Journal of Laboratory and Clinical Medicine	JLCMe
+Journal of Laser Applications	JLasA
+Journal of Less Common Metals	JLCM
+Journal of Light & Visual Environment	JLVEn
+Journal of Lightwave Technology	JLwT
+Journal of Low Temperature Physics	JLTP
+Journal of Luminescence	JLum
+Journal of Macromolecular Science, Part B: Physics	JMSB
+Journal of Macromolecular Science, Part C: Reviews in Macromolecular Chemistry and Physics	JMSC
+Journal of Macromolecular Science Physics	JMmSP
+Journal of Macromolecular Science Reviews in Macromolecular Chemistry and Physics	JMmSR
+Journal of Magnetic Resonance	JMagR
+Journal of Magnetism and Magnetic Materials	JMMM
+Journal of Marine Systems	JMS
+Journal of Materials and Energy Systems	JMES
+Journal of Materials Chemistry	JMCh
+Journal of Materials Processing and Manufacturing Science	JMPMS
+Journal of Materials Research	JMatR
+Journal of Materials Science	JMatS
+Journal of Materials Science and Materials Electronics	JMSME
+Journal of Materials Science Letters	JMSL
+Journal of Materials Science: Materials in Medicine	JMSMM
+Journal of Materials Synthesis and Processing	JMSP
+Journal of Mathematical Analysis and Applications	JMAA
+Journal of Mathematical and Physical Sciences	JMPS
+Journal of Mathematical Chemistry	JMaCh
+Journal of Mathematical Fluid Mechanics	JMFM
+Journal of Mathematical Imaging and Vision	JMIV
+Journal of Mathematical Physics	JMP
+Journal of Mathematical Psychology	JMPsy
+Journal of Mathematical Sciences	JMaSc
+Journal of Mathematical Sociology	JMSo
+Journal of Mathematics and Physics	JMaPh
+Journal of Mechanical and Engineering Science	JMecE
+Journal of Mechanical Behavior and Materials	JMBM
+Journal of Mechanics Physics and Solids	JMPSo
+Journal of Medecine Nucleaire et Biophysique	JMNB
+Journal of Medical Engineering & Technology	JME&T
+Journal of Metals	JMet
+Journal of Microelectromechanical Systems	JMemS
+Journal of Microlithography, Microfabrication, and Microsystems	JMM&M
+Journal of Micromechanics and Microengineering	JMiMi
+Journal of Microscopy	JMic
+Journal of Modern Optics	JMOp
+Journal of Molecular Biology	JMBio
+Journal of Molecular Electronics	JMoEl
+Journal of Molecular Evolution	JMolE
+Journal of Molecular Spectroscopy	JMoSp
+Journal of Molecular Structure	JMoSt
+Journal of Multivariate Analysis	JMA
+Journal of Nanoparticle Research	JNR
+Journal of Navigation	JNav
+Journal of Neural Engineering	JNEng
+Journal of Neurochemistry	JNeur
+Journal of Neuro-Oncology	JNO
+Journal of Non Crystalline Solids	JNCS
+Journal of Non Equilibrium Thermodynamics	JNET
+Journal of Non Linear Mechanics	JNLM
+Journal of Nondestructive Evaluation	JNE
+Journal of Nonlinear Mathematical Physics	JNMP
+Journal of Nonlinear Optical Physics and Materials	JNOPM
+Journal of NonLinear Science	JNS
+Journal of Nuclear Energy	JNuE
+Journal of Nuclear Materials	JNuM
+Journal of Number Theory	JNT
+Journal of Optical Communications	JOC
+Journal of Optical Technology	JOptT
+Journal of Optics	JOpt
+Journal of Optics A: Pure and Applied Optics	JOptA
+Journal of Optics B: Quantum and Semiclassical Optics	JOptB
+Journal of Optimization Theory Applications	JOTA
+Journal of Oral and Maxillofacial Surgery	JOMS
+Journal of Oral Rehabilitation	JOR
+Journal of Paleontology	JPal
+Journal of Parallel and Distributed Computing	JPDC
+Journal of Petrology	JPet
+Journal of Photogrammetry and Remote Sensing	JPRS
+Journal of Physical and Chemical Reference Data	JPCRD
+Journal of Physical and Colloid Chemistry	JPCC
+Journal of Physical Chemistry A	JPCA
+Journal of Physical Chemistry	JPhCh
+Journal of Physical Chemistry B	JPCB
+Journal of Physical Oceanography	JPO
+Journal of Physics A Mathematical General	JPhA
+Journal of Physics and Chemistry of Solids	JPCS
+Journal of Physics B Atomic Molecular Physics	JPhB
+Journal of Physics C Solid State Physics	JPhC
+Journal of Physics Conference Series	JPC
+Journal of Physics Conference Series	JPhCS
+Journal of Physics D Applied Physics	JPhD
+Journal of Physics E Scientific Instruments	JPhE
+Journal of Physics F Metal Physics	JPhF
+Journal of Physics G Nuclear Physics	JPhG
+Journal of Physics G Nuclear Physics Supplement	JPhGS
+Journal of Physics of the Earth	JPE
+Journal of Physics Teacher Education Online	JPTEO
+Journal of Physiology	JPhsg
+Journal of Plasma Physics	JPlPh
+Journal of Polymer Science A Polymer Physics	JPoSA
+Journal of Polymer Science B Polymer Letters	JPoSB
+Journal of Porous Materials	JPMat
+Journal of Power Sources	JPS
+Journal of Practical Applications in Space	JPAS
+Journal of Propulsion Power	JPP
+Journal of Propulsion Technology	JPT
+Journal of Protein Chemistry	JPrCh
+Journal of Pure Applied Sciences	JPApS
+Journal of Quality Technology	JQT
+Journal of Quantitative Spectroscopy and Radiative Transfer	JQSRT
+Journal of Quaternary Science	JQS
+Journal of Radioanalytical and Nuclear Chemistry	JRNC
+Journal of Radioanalytical Chemistry	JRAC
+Journal of Radiological Protection	JRP
+Journal of Raman Spectroscopy	JRSp
+Journal of Reinforced Plastics and Composites	JRPC
+Journal of Research	JRes
+Journal of Research in Science Teaching	JRScT
+Journal of Research of the National Bureau of Standards	JRNBS
+Journal of Research on Technology in Education	JRTEd
+Journal of Research Section B Mathematical Sciences B	JResB
+Journal of Rheology	JRheo
+Journal of Robotic Systems	JRoS
+Journal of Russian Laser Research	JRLR
+Journal of Science Education and Technology	JSEdT
+Journal of Science Teacher Education	JSTEd
+Journal of Scientific Computing	JSCom
+Journal of Scientific Instruments	JScI
+Journal of Scientific Instruments and of Physics in Industry	JSIPI
+Journal of Sea Research	JSR
+Journal of Seismology	JSeis
+Journal of Series Geophysics	JSGeo
+Journal of Ship Research	JShR
+Journal of Sol-Gel Science and Technology	JSGST
+Journal of Solid State Chemistry France	JSSCh
+Journal of Solution Chemistry	JSCh
+Journal of Sound Vibration	JSV
+Journal of South American Earth Sciences	JSAES
+Journal of Soviet Laser Research	JSLR
+Journal of Space Astronomy Research	JSAR
+Journal of Spacecraft and Rockets	JSpRo
+Journal of Spacecraft Technology	JSpT
+Journal of Statistical Computation and Simulation	JSCS
+Journal of Statistical Mechanics: Theory and Experiment	JSMTE
+Journal of Statistical Physics	JSP
+Journal of Strain Analysis and Engineering Design	JStA
+Journal of Strain Analysis for Engineering Design	JSAED
+Journal of Structural Geology	JSG
+Journal of Structural Mechanics	JSM
+Journal of Superconductivity	JSup
+Journal of Symbolic Computation	JSymC
+Journal of Technical Physics	JTePh
+Journal of Technology	JTech
+Journal of Testing Evaluation	JTeEv
+Journal of Theoretical Biology	JTBio
+Journal of Thermal Analysis and Calorimetry	JTAC
+Journal of Thermal Spray Technology	JTST
+Journal of Thermal Stresses	JThSt
+Journal of Thermophysics and Heat Transfer	JTHT
+Journal of Thermoplastic Composite Materials	JThCM
+Journal of Turbulence	JTurb
+Journal of Vacuum Science Technology	JVST
+Journal of Vibration and Control	JVC
+Journal of Vibration Engineering	JVE
+Journal of Visual Communication and Image Representation	JVCIR
+Journal of Volcanology and Geothermal Research	JVGR
+Journal of Women and Minorities in Science and Engineering	JWMSE
+Journal of X-Ray Science and Technology	JXST
+JPRS Report Science Technology USSR Space	RpScT
+JSME Bulletin	JSMEB
+JSME International Journal	JSMEJ
+JSME Transactions	JSMET
+Kagaku Kogaku Ronbunshu	KKR
+Kakioka Magnetic Observatory Memoirs	MmKMO
+Kapteyn Astronomical Laboratory Groningen Reports	GroR
+Kazan Izdatel Kazanskogo Universiteta	KIzKU
+Kenneth Mees Observatory Reprints	MeeRe
+Kernforschungsanlage Rept Res Results Solid State Nucl Phys	KernR
+Kexue Tongbao	KexT
+Kharkov Izdanie IRE AN USSR	KharI
+Khimiia i Tekhnologiia Topliv i Masel	KTTM
+Khimiia Plazmy	KhPl
+Kibernetika i Vychislitel naia Tekhnika	KVnT
+Kiev Institut Fiziki AN USSR	KiInF
+Kiev Institut Matematiki AN USSR	KiInM
+Kiev Institut Problem Modelirovaniia Energetike AN USSR	KIPME
+Kiev Izdanie Instituta Matematiki AN USSR	KIzIM
+Kiev Izdatel Naukova Dumka	KiIND
+Kiev Izdatel Tekhnika	KiIzT
+Kiev Izdatel Vishcha Shkola	KIzVS
+Kievskij Ordena Lenina Gosudarstvennyj Universitet Shevchenko Astronomicheskaya Observatoriya - Preprint	KiePr
+Kinematika i Fizika Nebesnykh Tel	KFNT
+Kinematika i Fizika Nebesnykh Tel Supplement	KFNTS
+Kinetics and Catalysis	KiCat
+Kishinev Izdatel Shtiintsa	KIzS
+Kleine Veroeffentlichungen der Universitaetssternwarte zu Berlin Babelsberg	KVeBB
+Kleinheubacher Berichte	KlBer
+Kodaikanal Observatory Bulletins	KodOB
+Kodaikanal Observatory Reprints	KodRe
+Komety i Meteory	KomMe
+Koninklijke Nederlandse Akademie van Weteschappen Proceedings Series B Physical Sciences	KNAB
+Korean Institute of Metals and Materials Journal	KIMMJ
+Kosmicheskaia Nauka i Tekhnika	KosNT
+Kosmicheskie Issledovaniia	KosIs
+Kosmicheskie Issledovaniia Ukraine	KosIU
+Kosmicheskie Luchi	KosLu
+Kozmos	Kozmo
+K-Theory	KT
+Kungl. Svenska Vetenskapsakademiens Handlingar	KSVH
+Kvantovaia Elektronika Moscow	KvanE
+Kybernetes	Kyb
+Kyoto University Faculty Engineering Memoirs	KyoMe
+Kyushu Institute Technology Bulletin	KyITB
+Kyushu University Faculty Engineering Memoirs	KUFEM
+Kyushu University Research Institute Applied Mechanics Reports	KyUAM
+Kyushu University Research Institute Industrial Science Reports	KyUSR
+Kyushu University Technology Reports	KyUTR
+Lab on a Chip	LChip
+L'Aeronautique et L'Astronautique	AerAs
+L'Aerotecnica Missili e Spazio	AerMS
+Land Degradation & Development	LDD
+Lapidary Journal	LaJ
+Laser and Particle Beams	LPB
+Laser Elektro Optik	LaEO
+Laser Focus	LaFoc
+Laser Journal	LasJ
+Laser Particle Beams	LaPaB
+Laser Physics	LaPhy
+L'Astrofilo Bolletino Trimestral del Gruppo Astrofili Villaggio Sereno Brescia	Astrf
+L'Astronomie	LAstr
+Latviiskii Matematicheskii Ezhegodnik	LatME
+Laws Observatory Bulletin, University of Missouri	LawOB
+LBL Research Review	LBLRR
+Leaflet of the Astronical Society of the Pacific	ASPL
+Leaflet of the Astronical Society of the Pacific (Supplement)	ASPLS
+L'Echo des Recherches	LERec
+Lecture Notes and Supplements in Physics	LNSP
+Lecture Notes in Earth Sciences, Berlin Springer Verlag	LNES
+Lecture Notes in Engineering, Berlin Springer Verlag	LNEn
+Lecture Notes in Mathematics, Berlin Springer Verlag	LNM
+Lecture Notes in Physics, Berlin Springer Verlag	LNP
+Lecture Notes in Pure and Applied Mathematics	LNPAM
+Leningrad Biblioteka Akademii Nauk SSSR	LeBAN
+Leningrad Energoizdat	LeEne
+Leningrad Gidrometeoizdat	LeGid
+Leningrad Gidrometeoizdat Sovremennye Problemy Atmosfernoi Optiki	PrAtO
+Leningrad Izdatel Energiia	LeIzE
+Leningrad Izdatel Gidrometeoizdat	LeIzG
+Leningrad Izdatel Khimiia	LeIzK
+Leningrad Izdatel Leningradskogo Universiteta	LeIzU
+Leningrad Izdatel Mashinostroenie	LeIzM
+Leningrad Izdatel Nauka	LeIzN
+Leningrad Izdatel Nedra	LIzNe
+Leningrad Izdatel Sudostroenie	LeIzS
+Leningrad, Izdatel'stvo Nauka	IzLen
+Leningrad Lenizdat	LeLen
+Leningradskii Gosudarstvennyi Universitet Problemy Matematicheskoi Fiziki	LGUPM
+Leningradskii Universitet Vestnik Matematika Mekhanika Astronomiia	VeLen
+Leonardo	Leo
+Letters Heat Mass Transfer	LHMT
+Letters in Applied and Engineering Sciences	LAES
+Letters in Mathematical Physics	LMaPh
+Lick Observatory Bulletin	LicOB
+Lietuvos Fizikos Rinkinys	LFR
+Lifetime Data Analysis	LDA
+Lincoln Laboratory Journal	LLabJ
+Liquid Crystals	LiCr
+Lithos	Litho
+Living Reviews in Relativity	LRR
+Living Reviews in Solar Physics	LRSP
+Lockheed Horizons	LockH
+L'Onde Electrique	LOEle
+Low Temperature Physics	LTP
+Lowell Observatory Bulletin	LowOB
+LPI Contributions	LPICo
+Lubrication Engineering	LubEn
+Luft und Raumfahrt	LR
+Luft und Raumfahrt Quarter	LuRaQ
+Luxembourg Commission European Communities	LCEC
+Lvov Izdatel Vishcha Shkola	LIVS
+L'vovskij Ordena Lenina Gosudarstvennyj Universitet Tsirkulyar	LvoTs
+Machine Design	MaDes
+Machine Learning	MLear
+Macromolecular Chemistry and Physics	MmCP
+Madras Observatory Astronomical Observations	MadOO
+Madras Observatory Observations	MadOb
+Magnetic Fusion Energy	MagFE
+Magnetic Resonance Materials in Physics Biology and Medicine	MRMPB
+Magnitnaia Gidrodinamika	MagGi
+Magnitosfernye Issledovaniia	MagIs
+Magyar Tudomanyos Akademia Csillagvizsgalo Intezetenek koezlemenyei	MTACI
+Mannheim West Germany Bibliographisches Institut AG	MWGBI
+ManTech Journal	MaTeJ
+Manuscripta Geodaetica	ManGe
+Marconi Review Quarter	MarRQ
+Marine Geodesy	MarGe
+Marine Geophysical Researches	MarGR
+Marine Petroleum Geology	MarPG
+Mashinostroenie	Mashi
+Masters Thesis	MsT
+Matematicheskaia Fizika	MaFiz
+Matematicheskaia Fizika i Nelineinaia Mekhanika	MFiNM
+Matematicheskie Issledovaniia	MatIs
+Matematicheskie Metody i Fiziko Mekhanicheskie Polia	MMFMP
+Matematicheskii Institut imeni Steklova Trudy	MISTr
+Matematicheskoe Modelirovanie i Teoriia Elektricheskikh Tsepei	MMTET
+Matematichki Vesnik	MatVe
+Materialpruefung	Mater
+Materials and Manufacturing Processes	MMP
+Materials Chemistry and Physics	MCP
+Materials Evaluation	MatEv
+Materials Letters	MatL
+Materials Research Bulletin	MaRBu
+Materials Science and Engineering	MSEng
+Materials Science and Technology	MSTec
+Materials Science Forum	MSF
+Materials Science Technology	MatST
+Materials Transactions JIM	MatTr
+Materiaux et Techniques	MatTe
+Mathematical and Computer Modelling	MComM
+Mathematical Engineering Industry	MEI
+Mathematical Finance	MaFi
+Mathematical Geology	MatG
+Mathematical Methods in the Applied Sciences	MMAS
+Mathematical Modelling	MatM
+Mathematical Modelling Numerical Analysis	MMNA
+Mathematical Models and Methods in Applied Sciences	M3AS
+Mathematical Physics, Analysis and Geometry	MPAG
+Mathematical Physics and Applied Mathematics	MPAM
+Mathematical Physics Studies	MaPhS
+Mathematical Proceedings	MaPr
+Mathematical Proceedings of the Cambridge Philosophical Society	MPCPS
+Mathematics and Mechanics of Solids	MMS
+Mathematics of Computation	MaCom
+Mathematika	Mat
+Max Planck Institut Aeronomie Mitteilungen	MitAe
+Measurement Science and Technology	MeScT
+Measurements	Meas
+Meccanica	Mecc
+Mechanical Engineering	MecEn
+Mechanical Systems and Signal Processing	MSSP
+Mechanics and Physics of Discrete Systems	MPDS
+Mechanics of Composite Materials & Structures	MCMS
+Mechanics of Structures and Machines	MSM
+Mechanics of Time-Dependent Materials	MTDM
+Mechanics Research Communications	MeReC
+Mechanika Teoretyczna i Stosowana	MeTeS
+Mechanism and Machine Theory	MeMaT
+Meddelanden fran Astronomiska Observatorium Uppsala	MeUpp
+Meddelanden fran Lunds Astronomiska Observatorium Serie I	MeLu1
+Meddelanden fran Lunds Astronomiska Observatorium Serie II	MeLu2
+Meddelser fra Ole Romer Observatoriet Aarhus	MeAar
+Mededelingen Universiteit te Gent Sterrenkundig Instituut	MeGen
+Mededelingen van het Astronomisch Instituut van de Katholieke Universiteit Leuven	MeLeu
+Medical Physics	MedPh
+Mekhanika Giroskopicheskikh Sistem	MekGS
+Mekhanika Kompozitnykh Materialov	MekKM
+Mekhanika Polimerov	MekP
+Mekhanika Tverdogo Tela	MekTT
+Melbourne Observatory Annual Report	MelAR
+Melbourne Observatory Observations	MelOO
+Memoires de l'Observatoire de l'Ebre	MmEbr
+Memoires of the Academie Royale de Belgique	MmARB
+Memoires of the Mount Stromlo Observervatory	MmMtS
+Memoires of the Societe Royale des Sciences de Liege	MSRSL
+Memoires Scientifiques de la Revue de Metallurgie	MeSRM
+Memoirs College of Sciences University of Kyoto	MmKyo
+Memoirs of the Astronomical Society of India	MmASI
+Memoirs of the British Astronomical Association	MmBAA
+Memoirs of the Faculty of Science, Kyoto University: Series of Physics, Astrophysics, Geophysics and Chemistry	MFKSU
+Memoirs of the Royal Astronomical Society	MmRAS
+Memorie del R. Osservatorio di Capodimonte in Napoli	MmNap
+Memorie della Societa Astronomica Italiana	MmSAI
+Memorie della Societa Astronomica Italiana Supplement	MSAIS
+Mendeleev Communications	MeCom
+Mercury	Mercu
+Meres es Automatika	MeAut
+The Messenger	Msngr
+Mesures Regulation Automatisme	MeRAu
+Metallofizika	Metal
+Metallovedenie i Termicheskaia Obrabotka Metallov	MTObM
+Metallurgical and Materials Transactions A	MMTA
+Metallurgical Transactions Physical Metallurgy Materials Science	MTPMM
+Meteor Forschungsergebnisse Reihe B Meteorologie und Aeronomie	MTRMA
+Meteorite - The International Quarterly of Meteorites and Meteorite Science	Met
+Meteorites	Metit
+Meteoritics	Metic
+Meteoritics and Planetary Science	M&PS
+Meteoritika	Metik
+Meteornoe Rasprostranenie Radiovoln	MetRR
+Meteornye Issledovaniia	MetIs
+Meteorological Applications	MeApp
+Meteorological Magazine	MetMa
+Meteorological Satellite Center Technical Note	MSCTN
+Meteorological Society of Japan Journal	MeSJJ
+Meteorologicke Zpravy	MetZp
+La Meteorologie	Meteo
+Meteorologiia i Gidrologiia	MeGid
+Meteorologische Rundschau	MetRu
+Meteorologische Zeitschrift	MetZe
+Meteorology and Atmospheric Physics	MAP
+Meteorology Atmospheric Physics	MetAP
+Meteorology Hydrology JPRS	MetHy
+Methoden und Verfahren der Mathematischen Physik	MVMP
+Methods: A Companion to Methods in Enzymology	MCME
+Methods in Computational Physics	MComP
+Methods in Geochemistry and Geophysics	MGG
+Methods in Subnuclear Physics	MSB
+Methods of Experimental Physics	MExP
+Metody Vychislenii	MetVy
+Metrologia	Metro
+Microbial Ecology	MicEc
+Microdevices: Physics and Fabrication Technologies	MPFD
+Microelectronic Engineering	MiEng
+Microelectronics International	MiI
+Microelectronics Reliability	MiRe
+Microgravity Quarterly	MicgQ
+Microgravity Science and Technology	MiST
+Microscale Thermophysical Engineering	MTEng
+Microscopy and Microanalysis	MiMic
+Microwave and Optical Technology Letters	MiOTL
+Microwave Journal	MiJo
+Microwaves	MicWa
+Mikrochimica Acta	AcMik
+Mikroelektronika	Mikro
+Mikroelektronika Sbornik	MikSb
+Milan Associazione Italiana di Meccanica Teorica ed Applicata	MAIMT
+Milano Seminario Matematico e Fisico Rendiconti	MSMFR
+Military Electronics Countermeasures	MiElC
+Mind and Language	MiLa
+Mineral Physics	MinPh
+Mineralium Deposita	MinDe
+Mineralogical Magazine	MinM
+Mineralogy and Petrology	MinPe
+Minor Planet Bulletin	MPBu
+Minor Planet Circulars	MPC
+Minor Planet Electronic Circulars	MPEC
+Minsk Izdatel BGU	IzMin
+Minsk Izdatel Nauka i Tekhnika	MiINT
+Missiles Spacecraft	MisSp
+Mission Analysis Program Solar Electric Propulsion MAPSEP	MAPSE
+Mitsubishi Heavy Industries Technical Review	MHITR
+Mitteilungen der Astronomischen Gesellschaft Hamburg	MitAG
+Mitteilungen der Astronomischen Institute der Universitaet Bonn	MiBon
+Mitteilungen der Astronomisch-Meteorologischen Anstalt der Universitaet Basel Astronomische Reihe	MiBas
+Mitteilungen der Bruno-H.-Buergel-Sternwarte Hartha DDR	MiHar
+Mitteilungen der Hamburger Sternwarte in Bergedorf	MiHam
+Mitteilungen der Konkoly Sternwarte Budapest-Szabadsaghegy	MiKon
+Mitteilungen der Nikolai-Hauptsternwarte zu Pulkowo	MiPul
+Mitteilungen der Sternwarte der Ungarischen Akademie der Wissenschaften Budapest	MiBud
+Mitteilungen der Sternwarte Innsbruck	MiInn
+Mitteilungen der Sternwarte Munchen	MiMun
+Mitteilungen der Sternwarte zu Sonneberg	MiSon
+Mitteilungen der Universitaets-Sternwarte Graz	MiGra
+Mitteilungen der Universitaets-Sternwarte Wien	MiWie
+Mitteilungen der Universitaets-Sternwarte zu Jena	MiJen
+Mitteilungen des Astronomischen Instituts der Universitaet Tuebingen	MiTue
+Mitteilungen des Astronomischen Instituts des Universitaet Munster	MiMue
+Mitteilungen des Astrophysikalischen Observatoriums Potsdam	MiPot
+Modelling Simul. Mater. Sci. Eng.	MSMSE
+Modern Approaches in Geophysics	MAG
+Modern Geology	ModGe
+Modern Instrumentation and Measurements in Physics and Engineering	MIMPE
+Modern Physics Letters A	MPLA
+Modern Physics Letters B	MPLB
+Moldavian Journal of the Physical Sciences	MJPS
+Molecular Biology and Biophysics	MBB
+Molecular Biology Biochemistry and Biophysics	MBBB
+Molecular Crystals and Liquid Crystals	MCLC
+Molecular Genetics and Metabolism	MGM
+Molecular Physics	MolPh
+Molecular Physics Reports	MoPhR
+Molecular Simulation	MoSim
+Monthly Notes of the Astronomical Society of South Africa	MNSSA
+Monthly notes of the Astronomical Society of South Africa	MNSSJ
+Monthly Notices of the Royal Astronomical Society	MNRAS
+Monthly Weather Review	MWRv
+Moon	Moon
+Moon and Planets	M&P
+Morskie Gidrofizicheskie Issledovaniia	MorGI
+Moscow Atomizdat	MAtom
+Moscow Energoatomizdat Biblioteka Automatike	MoEBA
+Moscow Energoizdat	MEner
+Moscow Gidrometeoizdat	MoGid
+Moscow Institut Kosmicheskikh Issledovanii AN SSSR	MoIKI
+Moscow Institut Prikladnoi Matematiki AN SSSR	MoIPM
+Moscow Izdatel Atomizdat	MoIzA
+Moscow Izdatel Energiia	MoIzE
+Moscow Izdatel Energiia Biblioteka Avtomatike	MIEBA
+Moscow Izdatel Energiia Biblioteka Radioelektronike	MIEBR
+Moscow Izdatel Khimiia	MoIzK
+Moscow Izdatel Legkaia Industriia	MIzLI
+Moscow Izdatel Mashinostroenie	MIzMa
+Moscow Izdatel Metallurgiia	MIzMe
+Moscow Izdatel Moskovskogo Universiteta	MoIzM
+Moscow Izdatel Moskovskogo Universiteta Pt	MIzMU
+Moscow Izdatel Nauka	MoIzN
+Moscow Izdatel Nauka AN SSR Fizicheskii Institut Trudy	MINFI
+Moscow Izdatel Nauka AN SSSR Chteniia imeni Vernadskogo	MINCV
+Moscow Izdatel Nauka AN SSSR Fizicheskii Institut Trudy	MoINA
+Moscow Izdatel Nauka AN SSSR Geologicheskoi Institut Trudy	MINGI
+Moscow Izdatel Nauka AN SSSR Matematicheskii Institut Trudy	MINMI
+Moscow Izdatel Nauka Issledovaniia Geomagnetizmu Aeronomii i Fizike Solntsa	MoINI
+Moscow Izdatel Nauka Teoreticheskaia Fizika	MINTF
+Moscow Izdatel Nauka Vychislitel naia Seismologiia	MINVS
+Moscow Izdatel Nedra	MIzNe
+Moscow Izdatel Radio Sviaz	MIzRS
+Moscow Izdatel Sovetskoe Radio	MIzSR
+Moscow Izdatel Sovetskoe Radio Ionosfernye Issledovaniia	MISRI
+Moscow Izdatel Sviaz	MoIzS
+Moscow Izdatel Sviaz Statisticheskaia Teoriia sviazi	MISST
+Moscow Izdatel Transport	MoIzT
+Moscow Izdatel VINITI	MoIzV
+Moscow Izdatel Vysshaia Shkola	MIzVS
+Moscow Izdatel Znanie	MoIzZ
+Moscow Izdatel Znanie Novoe Zhizni Nauke Tekhnike Seriia Fizika	MIZNZ
+Moscow IZMIRAN	MosIZ
+Moscow Mezhdunarodnyi Tsentr Nauchnoi i Tekhnicheskoi Informatsii	MoMTN
+Moscow Mezhduvedomstvennyi Geofizicheskii Komitet	MoMGK
+Moscow VINITI	MoVIN
+Moscow Voenizdat	MosVo
+Moscow Voennoe Izdatel	MosVI
+Moscow Vychislitel nyi Tsentr AN SSSR	MoVNT
+Moscow Vysshaia Shkola	MoVyS
+Moshchnye lazery i lazernaia plazma	MoLLP
+Moskovskii Energeticheskii Institut Trudy	MoEIT
+Moskovskii Gosudarstvennyi Universitet Institut Mekhaniki Nauchnye Trudy	MGUMN
+Moskovskii Gosudarstvennyi Universitet Institut Mekhaniki Otchet	MGIMO
+Moskovskii Universitet Vestnik Seriia Fizika Astronomiia	MVSFA
+Moskovskii Universitet Vestnik Seriia Khimiia	MUVSK
+Moskovskii Universitet Vestnik Seriia Matematika Mekhanika	MVSMM
+Moskovskij Gosudarstvennyj Tekhnicheskij Universitet Vestnik Seriya Mashinostroenie	MGTVM
+Moskovskij Gosudarstvennyj Tekhnicheskij Universitet Vestnik Seriya Priborostroenie	MGTVP
+Motortechnische Zeitschrift	MotZe
+Mount Stromlo Observatory Mimeographs	MtSOM
+Mount Stromlo Observatory Reprints	MtSRe
+Mount Wilson and Palomar Observatory Annual Report	MtWAR
+Mount Wilson and Palomar Observatory Reprints	MtWRe
+Mount Wilson Observatory Annual Report	MWOAR
+MRS Bulletin	MRSBu
+Muenchen Universitaets Schriften Serie	MUSS
+Munich R Oldenbourg Verlag GmbH	MROVG
+Nabliudeniia Iskusstvennykh Sputnikov Zemli	NISZ
+Nachrichten Elektronik	NacEl
+Nachrichtenblatt der Astronomischen Zentralstelle Heidelberg	NAZ
+Nachrichtenblatt der Vereinigung der Sternfreunde	NVS
+Nachrichtentechnische Gesellschaft Fachtagung ueber Antennen	NGFAW
+Nachrichtentechnische Zeitschrift	NacZe
+Nagoya University Faculty Engineering Memoirs	NUFEM
+Nagoya University School Engineering Memoirs	NUSEM
+Nanjing Aeronautical Institute Journal	NaAIJ
+Nanjing University Aeronautics and Astronautics Journal	NUAAJ
+Nanotechnology	Nanot
+Napoli Istituto Universitario Navale Annali	NIUNA
+NASA Circular Letter	NASAL
+NASA Conference Publication	NASAC
+NASA Reference Publication	NASAR
+NASA Special Publication	NASAS
+NASA STI/Recon Technical Report A	STIA
+NASA STI/Recon Technical Report N	STIN
+National Bureau of Standards Special Publication	NBSSP
+National Bureau of Standards Technical Note	NBSTN
+National Geographic	NaGe
+National Institute of Standards and Technology Journal of Research	NISTJ
+National Institute Polar Research Memoirs	PolRe
+National Observatory of Athens Greece Bulletin of the Astronomical Institute	BAth
+National Radio Astronomy Observatory Reprints	NRAOR
+National University Defense Technology Journal	NUDTJ
+Natural Hazards and Earth System Sciences	NHESS
+Natural History	NatH
+Nature	Natur
+Nature Physical Science	NPhS
+Nature Physics	NatPh
+Naturwissenschaften	NW
+Nauchnye Informatsii	NInfo
+Naval Research Reviews	NRRv
+Navigation	Navig
+Navigation Australia	NavAu
+Navigation Paris	NavPa
+Nederlandse Vereiniging voor Weer en Sterrenkunde Werkgroep veranderlijke Sterren Reports	NVVSR
+Network: Computation in Neural Systems	NCNS
+Networks and Spatial Economics	NSpEc
+Neue Annalen der Koeniglichen Sternwarte in Bogenhausen bei Muenchen	AnBog
+Neues Jahrbuch Mineralogie Monatshefte	NJMM
+Neural Computation	NeCom
+Neural Networks	NN
+The Neuroscientist	Neuro
+Neutron Physics and Nuclear Data in Science and Technology	NPNDS
+New Astronomy	NewA
+New Astronomy Review	NewAR
+New Journal of Chemistry	NJCh
+New Journal of Physics	NJPh
+New Scientist	NewSc
+New Technology News	NTN
+New York Academy Sciences Annals	NYASA
+New Zealand Journal Geology and Geophysics	NZJGG
+New Zealand Journal of Science	NZJS
+News Letter of the Astronomical Society of New York	ASNYN
+Nizamiah JAPAL Rangapur Observatories Hyderabad India Contributions	NOHIC
+Nizamiah Observatory Reprints	NizRe
+Noise Control Engineering Journal	NCE
+Nondestructive Testing and Evaluation	NDTE
+Nondestructive Testing Communications	NTCo
+Nonequilibrium Problems in the Physical Sciences and Biology	NPPSB
+Nonlinear Analysis Theory Methods Applications	NATMA
+Nonlinear Optics	NlOpt
+Nonlinear Processes in Geophysics	NPGeo
+Nonlinearity	Nonli
+Nordisk Astronomisk Tidsskrift	NATi
+North Holland Series Applied Mathematics Mechanics	SApMM
+North Hollywood Calif Western Periodicals Co	NHCWP
+Northwestern Polytechnical University Journal	NPUJ
+Not Defined	NoDef
+Nouvelle Revue d'Aeronautique et d'Astronautique	NRA&A
+Nouvelle Revue d'Optique	NROpt
+Nouvelle Revue d'Optique Appliquee	NROA
+Nova Acta Regiae Soc. Sci. Upsaliensis Ser. V	UGC
+Novosibirsk Institut Geologii i Geofiziki SO AN SSSR	NoIGG
+Novosibirsk Institut Gidrodinamiki SO AN SSSR Dinamika Sploshnoi Sredy	NovIG
+Novosibirsk Izdatel Nauka	NoIzN
+NTT Review	NTTRv
+Nuclear Data Sheets	NDS
+Nuclear Engineering and Design	NuEnD
+Nuclear Fusion	NucFu
+Nuclear Fusion Special Supplement	NucFS
+Nuclear Geophysics	NuGeo
+Nuclear Instruments and Methods	NucIM
+Nuclear Instruments and Methods in Physics Research A	NIMPA
+Nuclear Instruments and Methods in Physics Research	NIMPR
+Nuclear Instruments and Methods in Physics Research B	NIMPB
+Nuclear Physics	NucPh
+Nuclear Physics A	NuPhA
+Nuclear Physics B	NuPhB
+Nuclear Physics B Proceedings Supplements	NuPhS
+Nuclear Science Engineering	NSE
+Nuclear Technology	NucTe
+Nuclear Technology Fusion	NucTF
+Nucleic Acids Research	NAR
+Numerical Algorithms	NuAlg
+Numerical Functional Analysis and Optimization	NFAO
+Numerical Heat Transfer	NumHT
+Numerical Heat Transfer Part A - Applications	NHTA
+Numerical Heat Transfer Part B - Fundamentals	NHTB
+Numerische Mathematik	NuMat
+Nuovo Cimento A Serie	NCimA
+Nuovo Cimento B Serie	NCimB
+Nuovo Cimento C Geophysics Space Physics C	NCimC
+Nuovo Cimento D Serie	NCimD
+Nuovo Cimento Lettere	NCimL
+Nuovo Cimento Rivista Serie	NCimR
+Nuovo Cimento Serie	NCimS
+Observation of Variable Stars	OVS
+Observation pi	Obser
+Observations astronomiques faites a l'Observatoire royal de Paris	OAORP
+Observations made at the U.S. Naval Observatory	USNOO
+Observations made at the U.S. Naval Observatory during the Year	USNOY
+Observations Owens Valley Radio Observatory	OOVRO
+Observatoire de Besancon	Bes1K
+Observatoire de Besancon - CNES	OBN1K
+Observatoire de Geneve	Gen1K
+Observatoire de Lyon Reprints	LyoRe
+Observatoire de Meudon	Meu1K
+Observatoire de Nice	Nic1K
+Observatoire Royal de Belgique Communications Serie B	CORB
+Observatorio Astronomico de La Plata Circular	LPlaC
+Observatorio Astronomico de La Plata Separata Astronomica	LPlaS
+Observatorio Astronomico Municipal de Rosario Argentia  Boletin	RosOB
+Observatorio Nacional Publicacoes do Servico Astronomico Rio de Janeiro	RioB
+The Observatory	Obs
+Observatory and Astrophysics Laboratory University of Helsinki Report	HelR
+Observatory Astronomical La Plata Series Astronomies	PLPla
+Obzory Vysokotemperaturnoi Sverkhprovodimosti	ObVyS
+Occasional Notes of the Royal Astronomical Society	ONRAS
+Occasional Reports of the Royal Observatory Edinburgh	ORROE
+Ocean Dynamics	OcDyn
+Ocean Engineering	OcEng
+Ocean Modelling	OcMod
+Ocean Physics and Engineering	OcPhE
+Ocean Science	OcSci
+Ocean Science Discussions	OcSciD
+Oceanographical Society of Japan Journal	OSJaJ
+Oceanologica Acta	AcOC
+Oceanus Summer	Ocean
+Odessa Astronomical Publications	OAP
+Odesskij Gosudarstvennyi Universitet im. I. I. Mechnikova Byulletin Astronomicheskoj Observatorii	BOOde
+Odesskij Gosudarstvennyi Universitet im. I. I. Mechnikova Izvestiya Astronomicheskoj Observatorii	IzOde
+Oesterreichische Akademie Wissenschaften Mathematisch naturwissenschaftliche Klasse Sitzungsberichte Abteilung	OAWMN
+Oikos	Oikos
+Okeanologiia	Okean
+Ondrejov Czechoslovakia Czechoslovak Academy Sciences CAS Astronomical Institute Publications	OCzAS
+ONERA TP	ONERA
+Open European Journal on Variable Stars	OEJV
+Open Learning	OLear
+Open Systems and Information Dynamics	OSID
+Optica Acta	AcOpt
+Optical and Quantum Electronics	OQE
+Optical Engineering	OptEn
+Optical Fiber Technology	OptFT
+Optical Materials	OptMa
+Optical Physics and Engineering	OptPE
+Optical Quantum Electronics	OptQE
+Optical Review	OptRv
+Optical Sciences Center Newsletter	OpSCN
+Optical Society of America Journal A	OSAJ
+Optical Society of America Journal B Optical Physics	OSAJB
+Optical Society of America Journal Optics and Image Science	OSAJI
+Optics & Photonics News	OptPN
+Optics and Lasers in Engineering	OptLE
+Optics and Spectroscopy	OptSp
+Optics Communications	OptCo
+Optics Express	OExpr
+Optics Express	OptEx
+Optics Laser Technology	OptLT
+Optics Letters	OptL
+Optics News	OptN
+Optik	Optik
+Optika Atmosfery	OpAt
+Optika Atmosfery i Okeana	OpAtO
+Optika i Spektroskopiia	OpSp
+Optiko Mekhanicheskaia Promyshlennost	OpMeP
+Optimal Control Applications and Methods	OCAM
+Optoelektronika i Poluprovodnikovaia Tekhnika	OpPuT
+Organic Geochemistry	OrGeo
+Origins of Life	OrLi
+Origins of Life and Evolution of the Biosphere	OLEB
+Orion: Zeitschrift für Amateur-Astronomie	Orion
+Orlando FL Academic Press Inc International Geophysics Series	IGS
+Ortung und Navigation	OrNav
+Osaka Prefecture University Bulletin Series Engineering Natural Sciences	BuENS
+Osaka University Technology Reports	OsUTR
+Osiris	Osir
+Osservatorio Astronomico di Capodimonte Napoli Contributi Astronomici	NapCo
+Osservatorio Astronomico di Collurania Teramo Contributi	TerCo
+Osservatorio Astronomico di Collurania Teramo Memorie ed Osservazioni	TerMm
+Osservatorio Astronomico di Collurania Teramo Note e Comunicazioni	TerNC
+Osservatorio Astronomico di Padova Comunicazioni e Rassegne	PadCR
+Osservatorio Astronomico di Roma su Monte Mario Contributi Scientifici	RomCo
+Osservatorio Astronomico di Trieste Pubblicazioni	TriP
+Osservatorio Privato Specola Ariel Treviso Italia Pubblicazione	TreP
+Osteoarthritis and Cartilage	OsCar
+Otbor i Obrabotka Informatsii	OtObI
+Otbor i Peredacha Informatsii	OtPI
+Oxford Pergamon Press International Series on Natural Philosophy	OISNP
+Oxford Pergamon Press International Tables Selected Constants	OISTS
+Oxford University Observatory Observations	OxfOO
+Oxidation of Metals	OxM
+Ozone: Science & Engineering	OzSE
+Paleobiology	Palb
+Paleoceanography	PalOc
+Papers in Meteorological Research	PMetR
+Papers Meteorology Geophysics	PMG
+Parallel Computing	ParC
+Parasitology	Paras
+Pattern Recognition Letters	PaReL
+Perceptual Motor Skills	PerMS
+Peremennye Zvezdy	PZ
+Peremennye Zvezdy Prilozhenie	PZP
+Periodica Mathematica Hungarica	PMHu
+Periodica Polytechnica Electrical Engineering	PPEE
+Periodica Polytechnica Mechanical Engineering	PPME
+Periodica Polytechnica Transportation Engineering	PPTE
+Perkins Observatory Contributions	PerCo
+Phase Transitions: A Multinational Journal	PTMJ
+Ph.D. Thesis	PhDT
+Philips Journal Research	PhiJR
+Philips Research Reports	PhiRR
+Philips Technical Review	PhiTR
+Philosophical Magazine	PMag
+Philosophical Magazine Letters	PMagL
+Philosophical Magazine, Part A	PMagA
+Philosophical Magazine, Part B	PMagB
+Philosophical Transactions Series I	RSPT
+Phoenix Mitteilungsblatt fuer Veraenderlichenbeobachter	Phoen
+Photo Interpretation	PhInt
+Photochemistry and Photobiology	PcPb
+Photogrammetria	Pg
+Photogrammetric Engineering	PgE
+Photogrammetric Engineering and Remote Sensing	PgERS
+Photonics and Nanostructures	PhNan
+Photonics Spectra	PhoSp
+Photosynthesis Research	PsynR
+Photosynthetica	Psyn
+Physic Letters	PhyL
+Physica	Phy
+Physica A Statistical Mechanics and its Applications	PhyA
+Physica B Condensed Matter	PhyB
+Physica C Superconductivity	PhyC
+Physica D Nonlinear Phenomena	PhyD
+Physica E Low-Dimensional Systems and Nanostructures	PhyE
+Physica Energiae Fortis et Physica Nuclearis	PEFPN
+Physica Norvegica	PhyNr
+Physica Scripta	PhyS
+Physica Scripta B	PhySB
+Physica Scripta Volume T	PhST
+Physica Status Solidi Applied Research	PSSAR
+Physica Status Solidi B Basic Research	PSSBR
+Physica Status Solids	PhySS
+Physical Acoustics	PhAco
+Physical Biology	PhBio
+Physical Chemical and Earth Sciences Research Reports	PCESR
+Physical Chemistry Chemical Physics (Incorporating Faraday Transactions)	PCCP
+Physical Chemistry: Science and Engineering	PCSE
+Physical Geography	PhGeo
+Physical Properties of High Temperature Superconductors	PPHTS
+Physical Research	PhyR
+Physical Review	PhRv
+Physical Review A	PhRvA
+Physical Review B	PhRvB
+Physical Review C	PhRvC
+Physical Review D	PhRvD
+Physical Review E	PhRvE
+Physical Review Letters	PhRvL
+Physical Review Series I	PhRvI
+Physical Review Special Topics Accelerators and Beams	PhRvS
+Physical Review Special Topics Physics Education	PrSTP
+Physical Sciences Data	PSD
+Physical Sciences Series of the Commission of European Communities	PSCEC
+Physical Society of Japan Journal	PSJaJ
+PhysicoChemical Hydrodynamics	PhChH
+Physics - Doklady	DokPh
+Physics and Astrophysics from Spacelab	PhASp
+Physics and Chemistry in Space	PCS
+Physics and Chemistry of the Earth	PCE
+Physics and Chemistry of the Earth A	PCEA
+Physics and Chemistry of the Earth B	PCEB
+Physics and Chemistry of the Earth C	PCEC
+Physics and Chemistry of the Earth Delta	PCED
+Physics and Chemistry of Earth	PhChE
+Physics and Chemistry of Liquids	PCL
+Physics and Chemistry of Materials with Low-Dimensional Structures	PCMLD
+Physics and Chemistry of Materials with Low-Dimensional Structures Series A	PCMLA
+Physics and Chemistry of Materials with Low-Dimensional Structures Series B	PCMLB
+Physics and Chemistry of Materials with Low-Dimensional Structures Series C	PCMLC
+Physics and Chemistry of Minerals	PCM
+Physics and Contemporary Needs	PCN
+Physics and Evolution of the Earth's Interior	PEEI
+Physics and its Applications	PhApp
+Physics and Technology of Particle and Photon Beams	PTPPB
+Physics Bulletin	PhB
+Physics Education	PhyEd
+Physics Essays	PhyEs
+Physics in Collision: High-Energy ee/ep/pp Interactions	PCHEI
+Physics in Medicine and Biology	PMB
+Physics in Perspective	PhP
+Physics in Technology	PhTec
+Physics Laser Fusion	PhLF
+Physics Letters	PhL
+Physics Letters A	PhLA
+Physics Letters B	PhLB
+Physics Letters Section C Physics Reports C	PhLC
+Physics New York	PhyNY
+Physics Notes	PhyN
+Physics of the Earth and Planetary Interiors	PEPI
+Physics of the Solid State	PhSS
+Physics of Atomic Nuclei	PAN
+Physics of Atoms and Molecules	PAM
+Physics of Fluids	PhFl
+Physics of Fluids B	PhFlB
+Physics of Life Reviews	PhLRv
+Physics of Low-Dimensional Structures	PLDS
+Physics of Metals	PhMet
+Physics of Metals and Metallography	PMM
+Physics of Particles and Nuclei	PPN
+Physics of Plasmas	PhPl
+Physics of Quantum Electronics	PhQE
+Physics of Solids and Liquids	PSL
+Physics of Thin Films	PTF
+Physics Reports	PhR
+The Physics Teacher	PhTea
+Physics Today	PhT
+Physics Uspekhi	PhyU
+Physics World	PhyW
+Physik der Kondensiterten Materie	PKM
+Physik in unserer Zeit	PhuZ
+Physikalisch-Chemische Trenn- und Messmethoden	PCTM
+Physikalische Gesellschaft	PhyG
+Physikalische Gesellschaft Zürich	PhyGZ
+Physikalische Zeitschrift	PhyZ
+Physiological Chemistry and Physics	PhyCP
+Physiological Measurement	PhyM
+Physiologist Supplement	PhylS
+Pis ma Astronomicheskii Zhurnal	PAZh
+Pis ma Zhurnal Eksperimental noi i Teoreticheskoi Fiziki	PZETF
+Pis ma Zhurnal Tekhnischeskoi Fiziki	PZhTF
+Planetary and Space Science	P&SS
+Planetary Astronomy	PlAst
+Planetary Report	PlR
+Plant and Cell Physiology	PCPhy
+The Plant Journal	PlJ
+Plasma Chemistry and Plasma Processing	PCPP
+Plasma Physics	PlPh
+Plasma Physics and Controlled Fusion	PPCF
+Plasma Physics Reports	PlPhR
+Plasma Sources Science Technology	PSST
+Plasmas and Ions	Pl&I
+Plasmas and Polymers	PlPo
+Plastiques Renforces Fibres de Verre Textile	PRFVT
+PMTF Zhurnal Prikladnoi Mekhaniki i Tekhnicheskoi Fiziki	PMTF
+Pnevmatika i Gidravlika	PnGid
+Poliarnye Siianiia	PolSi
+Poliarnye Siianiia i Svechenie Nochnogo Neba	PSSNN
+Polish Academy of Science Arch Mech	PASAM
+Polish Academy of Science Artificial Satellites	PASAS
+Polish Academy of Sciences Institute of Geophysics Publications	PASIG
+Polish Academy of Sciences Theory Aggregation Coagulation	PASTA
+Politechnika Czestochowska Zeszyty Naukowe Nauki Techniczne Mechanika	PCZNN
+Politechnika Gdanska Zeszyty Naukowe Mechanika	PGZNM
+Politechnika Slaska Zeszyty Naukowe Mechanika	PSZNM
+Pollution Atmospherique	PolAt
+Polskie Towarzyslwo Milosnikow Astronomii	CraR
+Poluprovodnikovaia Tekhnika i Mikroelektronika	PolTM
+Poluprovodnikovye Pribory i ikh Primenenie	PolPP
+Polymer	Poly
+Polymer Composites	PoCom
+Polymer Physics	PolPh
+Polymer-Plastics Technology and Engineering	PPTEn
+Pomiary Automatyka Kontrola	PomAK
+Popular Astronomisk Tidsskrift	PATi
+Popular Astronomy	PA
+Poroshkovaia Metallurgiia	PorMe
+Postepy Astronautyki	PoAn
+Postepy Astronomii Krakow	PoAst
+Pour la Science	PSci
+Powder Diffraction	PDiff
+Poznan Uniwersytet im Adama Mickiewicza Seria Akustyka	PUAMA
+Poznan Uniwersytet im Adama Mickiewicza Seria Fizyka	PUAMF
+Practical Astronomy	PrAst
+Pradesh  State Observatory Naini Tal Insia Reprints	NaiRe
+Prague Academia	PraAc
+Pramana	Prama
+Precambrian Research	PreR
+Priborostroenie	Prib
+Pribory i Tekhnika Eksperimenta	PriTE
+Prikladnaia Matematika i Mekhanika	PriMM
+Prikladnaia Matematika i Programmirovanie	PriMP
+Prikladnaia Mekhanika	PriM
+Priroda	Prir
+Private Communication	Priv
+Probabilistic Engineering Mechanics	PrEM
+Problemy Arktiki i Antarktiki	PrAiA
+Problemy Bioniki	PrBio
+Problemy Difraktsii i Rasprostraneniia Voln	PrDRV
+Problemy Fiziki Atmosfery	PrFA
+Problemy Iadernoi Fiziki i Kosmicheskikh Luchei	PrFKL
+Problemy Kosmicheskoi Fiziki	PrKFi
+Problemy Mashinostroeniia	PrMas
+Problemy Prochnosti	PrPro
+Problemy Sluchainogo Poiska	PrSP
+Problemy Tekhnicheskoi Elektrodinamiki	PrTE
+Problemy Teorii Gravitatsii i Elementarnykh Chastits	PrTGE
+Problemy Teploenergetiki i Prikladnoi Teplofiziki	PrTPT
+Proceeding of the Japan Academy	PJA
+Proceedings: Biological Sciences	PBioS
+Proceedings: Mathematical, Physical and Engineering Sciences	PMPES
+Proceedings of the American Mathematical Society	PAMS
+Proceedings of the American Philosophical Society	PAPhS
+Proceedings of the Astronomical Society of Australia	PASAu
+Proceedings of the Edinburgh Mathematical Society	PEMS
+Proceedings of the Indian National Science Academy Part A	PINSA
+Proceedings of the Indian National Science Academy Part B	PINSB
+Proceedings of the Institute of General Physics, Adademy of the Sciences of Russia	PIGP
+Proceedings of the IRE	PIRE
+Proceedings of the National Academy of Science	PNAS
+Proceedings of the National Society of Black Physicists	PNSBP
+Proceedings of the Physical Society	PPS
+Proceedings of the Physical Society A	PPSA
+Proceedings of the Physical Society B	PPSB
+Proceedings of the Physical Society of London	PPSL
+Proceedings of the Royal Irish Academy Section A	PRIAA
+Proceedings of The Society for Experimental Biology and Medicine	PSEBM
+Proceedings of Vibration Problems	PrVP
+Program: electronic library & information systems	PELIS
+Progress in Aerospace Sciences	PrAeS
+Progress in Astronautics and Aeronautics	PrAA
+Progress in Astronomy	PABei
+Progress in Biochemistry and Biophysics	PBB
+Progress in Biophysics and Biophysical Chemistry	PBBC
+Progress in Biophysics and Molecular Biology	PBMB
+Progress in Energy and Combustion Science	PrECS
+Progress in Low Temperature Physics	PLTP
+Progress in Materials Science	PrMS
+Progress in Mathematical Physics	PMatP
+Progress in Medical Radiation Physics	PMRP
+Progress in Metal Physics	PMetP
+Progress in Oceanography	PrOce
+Progress in Organic Coatings	POrCo
+Progress in Particle and Nuclear Physics	PrPNP
+Progress in Photochemistry and Photophysics	PPcPp
+Progress in Quantum Electronics	PQE
+Progress In Surface Science	PrSS
+Progress in Theoretical Chemistry and Physics	PTCP
+Progress of Physics/Fortschritte der Physik	PrPh
+Progress of Theoretical Physics	PThPh
+Progress of Theoretical Physics Supplement	PThPS
+Promyshlennaia Teplotekhnika	ProTe
+Propellants and Explosives	PrEx
+Propellants and Explosives Pyrotechnics	PrExP
+Pubblicazioni della R. Universita degli studi di Firenze	PUFir
+Pubblicazioni della Stazione Astronomica Internazionale di Latitudine	PSAIL
+Pubblicazioni dell'Osservatorio Astronomico di Milano-Merate	POMil
+Pubblicazioni dell'Osservatorio Astronomico di Padova	POPad
+Pubblicazioni dell'Osservatorio Astronomico di Palermo	POPal
+Pubblicazioni Varie Fuori Serie dell'Osservatorio Astronomico di Torino	POTor
+Publ. House Czech. Acad. Sci.	PKCat
+Public Understanding of Science	PUS
+Publicacion Facultad de Ciencias Madrid	PMad
+Publicatiile Observatorului Astronomical Universitatii din Cluj	POClu
+Publication de l'Observatoire de Paris Notes et Informations	POPar
+Publication de l'Observatoire de Strasbourg	POStr
+Publication der Koeniglichen Sternwarte in Kiel	PUSK
+Publication of the Pomona College Astronomical Society	PPCAS
+Publication of COMU Astrophysics Research Center	PCARS
+Publication of Korean Astronomical Society	PKAS
+Publication Speciale du Centre de Donnees Stellaires	PSCDS
+Publicationen der K. Universitoats-Sternwarte zu Leipzig	PULei
+Publications de l'Institut d'Astronomie et de Geophysique Louvain	PLAGL
+Publications de l'Observatoire Astronomique de Beograd	POBeo
+Publications de l'Observatoire de l'Universite de Bordeaux	POBor
+Publications de l'Observatoire de Toulouse	POTou
+Publications of the Academy of Science Kasakstan Sect. Astrobotanics	PASK
+Publications of the Allegheny Observatory of the University of Pittsburgh	PAllO
+Publications of the American Astronomical Society	PAAS
+Publications of the Astronomical Institute of the Charles University	PAICU
+Publications of the Astronomical Institute of the Czechoslovak Academy of Sciences	PAICz
+Publications of the Astronomical Institute of the University of Amsterdam	PUAms
+Publications of the Astronomical Institute of the University of Borneo	PBrn
+Publications of the Astronomical Observatory Helsinki	POHel
+Publications of the Astronomical Observatory University of Minnesota	POMin
+Publications of the Astronomical Society of the Pacific	PASP
+Publications of the Astronomical Society of the Pacific Supplement	PASPS
+Publications of the Astronomical Society of Australia	PASA
+Publications of the Astronomical Society of Japan	PASJ
+Publications of the Astronomy Deparment of the Eotvos Lorand University	PADEU
+Publications of the Astronomy Institute of Bonn	PAIB
+Publications of The Astrophysics Branch Ottawa	PAB
+Publications of the Beijing Astronomical Observatory	PBeiO
+Publications of the Bosscha Observatory Lembang Indonesia	PBosO
+Publications of the Cincinnati Observatory	PCinO
+Publications of the Cook Observatory	PCooO
+Publications of the David Dunlap Observatory	PDDO
+Publications of the Department of Astronomy Austin Texas	PDAA
+Publications of the Department of Astronomy University of Chile	PDAUC
+Publications of the Dominion Astrophysical Observatory Victoria	PDAO
+Publications of the Dominion Observatory Ottawa	PDO
+Publications of the Dresden Observatory	PDreO
+Publications of the Flower and Cook Astronomical Observatory	PF&CO
+Publications of the Flower Astronomical Observatory	PFAO
+Publications of the Goethe Link Observatory	PGLO
+Publications of the Goodsell Observatory, Carleton College	PGooO
+Publications of the Istanbul University Observatory	PIstO
+Publications of the Kapteyn Astronomical Laboratory Groningen	PGro
+Publications of the Kirkwood Observatory of Indiana University	PKirO
+Publications of the Laborotory of Astronomy University of Athens	PAth
+Publications of the Leander McCormick Observatory	PMcCO
+Publications of the Manila Observatory	PManO
+Publications of the Munich Observatory	PMunO
+Publications of the National Astronomical Observatory of Japan	PNAOJ
+Publications of the Observatoire de Lyon	POLyo
+Publications of the Observatoire Geneve Series A	PGenA
+Publications of the Observatoire Geneve Series B	PGenB
+Publications of the Observatoire Haute-Provence	POHP
+Publications of the Observatorie Astronomie Nacional Cerro Calan	POANC
+Publications of the Observatory Astronomie University Istambul	POIst
+Publications of the Oslo Observatory	POslO
+Publications of the Owens Valley Observatory	POVRO
+Publications of the Purple Mountain Observatory	PPMtO
+Publications of the Riverview College Observatory	PRCO
+Publications of the Royal Observatory of Edinburgh	PROE
+Publications of the Sproul Observatory	PSprO
+Publications of the Tartuskoj Astrofizica Observatory	PTarO
+Publications of the Tashkent Astronomical Observatory	PTasO
+Publications of the U.S. Naval Observatory Second Series	PUSNO
+Publications of the Van Vleck Observatory	PVVO
+Publications of the Vassar College Observatory	PVasO
+Publications of the Warner & Swasey Observatory	PW&SO
+Publications of the Washburn Observatory	PWasO
+Publications of the Yerkes Observatory	PYerO
+Publications of the Yunnan Observatory	PYunO
+Publications of dell'Osservatorio Astronomie de Bologna	POBol
+Publications of Laws Observatory, University of Missouri	PLawO
+Publications of Lick Observatory	PLicO
+Publications of Michigan Observatory	POMic
+Publications of Osservatorio Astrofisico di Catania	PCat
+Publications of West Hendon House Observatory, Sunderland	PWHHO
+Publications University of Oxford Department of Astrophysics	POxf
+Publikationen des Astrophysikalischen Instituts Koenigstuhl-Heidelberg	PAIKH
+Publikationen des Astrophysikalischen Observatoriums zu Potsdam	POPot
+Publikationer og mindre Meddeler fra Kobenhavns Observatorium	PCopO
+Pulkovo Glavnaia Astronomicheskaia Observatoriia Izvestiia	PGAOI
+Pure & Applied Chemistry	PApCh
+Pure and Applied Geophysics	PApGe
+Pure and Applied Physics	PApPh
+Pure Applied Optics	PApOp
+Qinghua University Journal	QUnJ
+Quality Reliability Engineering International	QREI
+Quantitative Finance	QuFin
+Quantum and Semiclassical Optics	QuSOp
+Quantum Optics	QuOpt
+Quarterly Journal of the Royal Astronomical Society	QJRAS
+Quarterly Journal of the Royal Meteorological Society	QJRMS
+The Quarterly Journal of Mathematics	QJMat
+Quarterly Journal of Mechanics and Applied Mathematics	QJMAM
+Quarterly of Applied Mathematics	QApMa
+Quarterly Reviews of Biophysics	QRBio
+Quaternary Research	QuRes
+Quaternary Science Reviews	QSRv
+Quest	Quest
+Radcliffe Observatory Pretoria South Africa Reprints	RadRe
+Radiant, Journal of the Dutch Meteor Society	Rad
+Radiation and Environmental Biophysics	REB
+Radiation Effects	RadEf
+Radiation Effects and Defects in Solids	REDS
+Radiation Physics and Chemistry	RaPC
+Radiation Research	RaRe
+Radio and Electronic Engineer	RaEE
+Radio Engineering and Electronic Physics	REEP
+Radio Research Laboratories Journal	RaRLJ
+Radio Research Laboratories Review	RaRLR
+Radio Science	RaSc
+Radio Science Bulletin	RaScB
+Radio Science Supplement	RaScS
+Radioelectronika	Radel
+Radiofizika	RaF
+Radioizluchenie Solntsa	RaSol
+Radiophysics and Quantum Electronics	R&QE
+Radiotekhnika	RaT
+Radiotekhnika i Elektronika	RaEl
+Radiotekhnika i Elektronika Radio Engineering Electronic Physics	RERE
+Radiotekhnika Kharkov	RatK
+Radiotekhnika Tecommunications Radio Engineering Radio Engineering	RTRE
+The Ramanujan Journal	RamJ
+Raschety Prochnost	RaPro
+Raumfahrtforschung	RF
+RCA Engineer	RCAEn
+RCA Review	RCARv
+Real-Time Imaging	RTI
+Recent Development in Condensed Matter Physics	RDCMP
+Recent Research Development in Applied Physics	RRDAP
+Recent Research Development in Biophysical Chemistry	RRDBC
+Recent Research Development in Biophysics and Biochemistry	RRDBB
+Recent Research Development in Chemical Physics	RRDCP
+Recent Research Development in Physical Chemistry	RRDPC
+Recent Research Development in Physics	RRDP
+Recent Research Development in Physics of Fluids	RRDPF
+Recent Research Development in Statistical Physics	RRDSP
+La Recherche	Rech
+La Recherche Aerospatiale	ReAer
+La Recherche Aerospatiale Bimonthly Bulletin ESA	ReAeB
+La Recherche Spatiale	ReSp
+Recherches Aeronautiques et Aerospatiales	ReAA
+Recherches Astronomiques de l'Observatoire d'Utrecht	RAOU
+Referationyj Zhurnal	RZh
+Regional Journal of Energy Heat and Mass Transfer	RJEHM
+Remote Sensing Electro Magnetic Spectrum	RSEMS
+Remote Sensing of Environment	RSEnv
+Remote Sensing Quarterly	RSQ
+Renormalization	Renor
+Report Ionosphere Space Research Japan	RISRJ
+Report of the Committee of the Overseers of Harvard College appointed to visit the Observatory	HarOR
+Report of the National Astronomical Observatory of Japan	RNAOJ
+Reports for the year presented by the Board of Managers of the Observatory of Yale University to the President and Fellows	YalRY
+Reports of the Lund Observatory	ROLun
+Reports of Progress in Physics	RPPh
+Reports on Mathematical Physics	RpMP
+Representation Theory of the American Mathematical Society	RTAMS
+Reprints Beijing Astronomical Observatory Academia Sinica	BeiRe
+Republic Observatory Johannesburg Circular	ROCi
+Republic of China National Science Council Proceedings Applied Sciences	ChPAS
+Research in Nondestructive Evaluation	ReNEv
+Research in Science and Technological Education	RSTEd
+Research in Science Education	RScEd
+Research Laboratory Engineering Materials Report	RLEMR
+Research Laboratory Precision Machinery Electronics Bulletin	RLPME
+Research Measurement Approach	RMA
+Research Reports in Physics	RRP
+Research Trends in Physics	RTP
+Resultados del Observatorio Nacional Argentino	RNAO
+Resultados del Observatorio Nacional Argentino en Cordoba	ROCor
+Review of Derivatives Research	RDR
+The Review of Economic Studies	RvES
+The Review of Economics and Statistics	RvE&S
+Review of Physical Chemistry of Japan	RvPCJ
+Review of Physics in Technology	RvPT
+Review of Scientific Instruments	RScI
+Reviews in Aquatic Sciences	RvAqS
+Reviews in Mathematical Physics	RvMaP
+Reviews of Geophysics	RvGeo
+Reviews of Geophysics and Space Physics	RvGSP
+Reviews of Geophysics Supplement	RvGeS
+Reviews of Mineralogy	RvMin
+Reviews of Modern Astronomy	RvMA
+Reviews of Modern Physics	RvMP
+Reviews of Modern Physics Supplement	RvMPS
+Reviews of Optics	RvOp
+Reviews of Plasma Physics	RvPP
+Revista Astronomica Organo de la Asociacion Argengina Amigos de la Astronomia Buenos Aires	RvA
+Revista Brasileira de Fisica	RBrFi
+Revista Colombiana de Fisica	RvCF
+Revista do observatorio : publicacao mensal do Imperial Observatorio do Rio de Janeiro	IORP
+Revista Mexicana de Astronomia y Astrofisica	RMxAA
+Revista Mexicana de Fisica	RMxF
+Revista Real Acad. Ciencias Exact. Fis. Nat. Madrid	RvMad
+Revista Transporturilor si Telecomunicatiilor	RTrTe
+Revue Aerospatiale	AerRv
+Revue d'Acoustique	RvAc
+Revue de Geographie Physique et de Geologie Dynamique	RvGPG
+Revue de Geologie Dynamique et de Geographie Physique	RvGDG
+Revue de Physique Appliquee	RvPA
+Revue du Palais de la Decouverte	RvPD
+Revue Francaise de l'Electricite Quarter	RvFEQ
+Revue Francaise de Mecanique	RFrM
+Revue Francaise de Mecanique Quarter	RFrMQ
+Revue Roumaine de Mathematiques Pures et Appliquees	RRMPA
+Revue Roumaine de Physique	RvRP
+Revue Roumaine des Sciences Techniques Serie de Mecanique Appliquee	RvRST
+Revue Scientifique et Technique CECLES CERS	RST
+Revue Technique Thomson CSF	RvT
+Rezul taty Nabliudenii Iskusstvennykh Sputnikov Zemli	RNISZ
+Rheinisch Westfaelische Technische Hochschule Aerodynamisches Institut Abhandlungen	RWTHA
+Rheologica Acta	AcRhe
+Ricerche Astronomiche	RA
+Riga Izdatel Zinatne	RIzZi
+Rise hvezd Popularne vedecky astronomicky casopis Praha	Rise
+River Research and Applications	RRA
+Rivista di Meteorologia Aeronautica	RMetA
+Rivista Italiana di Geofisica	RIG
+Rivista Italiana di Geofisica e Scienze Affini	RIGSA
+Rivista Tecnica Selenia	RvTS
+Robotica	Robot
+Rocznik Astronomiczny Observatorjum Krakowskiego Krakow	Roczn
+Romanian Astronomical Journal	RoAJ
+Rossiiskaia Akademiia Nauk Izvestiia Energetika	RoIE
+Rossiiskaia Akademiia Nauk Izvestiia Mekhanika Zhidkosti i Gaza	RoIMZ
+Rossiiskaia Akademiia Nauk Izvestiia Seriia Fizicheskaia	RoISF
+Rossijskaya Akademiya Nauk Doklady	RoDok
+Rossijskaya Akademiya Nauk Izvestiya Mekhanika Tverdogo Tela	RoIMT
+Rossijskaya Akademiya Nauk Izvestiya Seriya Fizicheskaya	IzRos
+Rostock Wilhelm Pieck Universitaet Wissenschaftliche Zeitschrift Mathematisch Naturwissenschaftliche Reihe	RWPWZ
+Royal Astronomical Society of New Zealand Publications of Variable Star Section	PVSS
+Royal Astronomical Society of New Zealand Variable Star Section Circulars	VSSCi
+Royal Astronomical Society of New Zealand Variable Star Section Reprints	VSSRe
+Royal Astronomical Society of New Zealand Variable Star Section Special Circulars	VSSSC
+Royal Greenwich Observatory Bulletin	RGOB
+Royal Greenwich Observatory Observations	RGOO
+Royal Observatory Annals	ROAn
+Royal Observatory Cape Mimeogram	CapMi
+Royal Society Edinburgh Communications Physical Sciences	CoRSE
+Royal Society of Edinburgh Proceedings Section	RSEPS
+Royal Society of London Notes & Records	RSN&R
+Royal Society of London Philosophical Transactions Series A	RSPTA
+Royal Society of London Philosophical Transactions Series B	RSPTB
+Royal Society of London Proceedings Series A	RSPSA
+Royal Society of London Proceedings Series B	RSPSB
+Royal Society of London Proceedings Series I	RSPS
+Rozprawy Inzynierskie	RoIn
+Rozprawy Inzynierskie Engineering Transactions	RoIET
+Ruimtevaart	Ruimt
+Russian Journal of Engineering Thermophysics	RJET
+Russian Journal of Mathematical Physics	RJMP
+Russian Journal Physical Chemistry	RJPC
+Russian Journal Theoretical and Applied Mechanics	RJTAM
+Russian Physics Journal	RuPhJ
+Sadhana	Sadha
+Samoletostroenie Tekhnika Vozdushnogo Flota	STVF
+SAMPE Journal	SAMPJ
+SAMPE Quarterly	SAMPQ
+San Diego CA Univelt Inc Science Technology Series	UISTS
+Sankt Peterburgskii Universitet Vestnik Seriia Matematika Mekhanika Astronomiia	MaMeA
+SAO Special Report	SAOSR
+Satellite Communications	SatCo
+SBARMO Bulletin	SBARM
+The Scandinavian Journal of Clinical and Laboratory Investigation	SJCLI
+Scandinavian Journal of Metallurgy	SJMet
+Scandinavian Union of Amateur Astronomers Variable Star Section	SUVSR
+Schweizerische Naturforschende Gesellschaft	SNG
+Sci. Rep. Tohoku Univ. Eighth Ser.	SRToh
+Sci. Reports Tohoku Univ. Ser. I	ReToh
+Science	Sci
+Science & Education	Sc&Ed
+Science and Culture Series: Astrophysics	SCSA
+Science and Culture Series: Physics	SCSP
+Science and Engineering of Composite Materials	SECM
+Science China Series Mathematics Physics Astronomy Technological Sciences	SCSMP
+Science Dimension	SciDi
+Science Education	SciEd
+Science Information Systems Newsletter	SISN
+Science News	SciN
+Science of the Total Environment	ScTEn
+Science Progress	ScPr
+Sciences	Scis
+Sciences et Techniques	Sc&Te
+Scientia (Bologna)	SciB
+Scientia Sinica	SciSn
+Scientia Sinica Series Mathematical Physical Technical Sciences	SSSMP
+Scientific American	SciAm
+Scientometrics	Scim
+Scripta Faculty Science Nat. Ujep Brunensis Physica	SFSN
+Scripta Metallurgica	ScM
+Scripta Metallurgica et Materialia	ScMM
+Sedimentary Geology	SedG
+Sedimentology	Sedim
+Seismological Society America Bulletin	BSSA
+Seismology and Exploration Geophysics	SEGeo
+Selected Topics in Solid State Physics	STSSP
+Semiconductor Science Technology	SeScT
+Semiconductor Science Technology Supplement	SeSTS
+Semiconductors	Semic
+Seminar Kraevym Zadacham Trudy	TrKra
+Seminars in Dialysis	SDia
+Sendai Astronomiaj Raportoj	SenAR
+Sensor Physics and Technology Series	SPTS
+Sensor Review	SeRv
+Sensors and Actuators	SeAc
+Sensors and Actuators A Physical	SeAcA
+Sensors and Actuators B Chemical	SeAcB
+Seoul Korea Atomic Energy Research Institute	SAERI
+Separata Universidad de Chile Departamento de Astronomia Santiago	SanS
+Separation Science and Technology	SS&T
+Serbian Astronomical Journal	SerAJ
+Shanghai Observatory Annals	AnShO
+Shock and Vibration	SV
+Shock Vibration Digest	SVD
+Shock Vibration Information Center Shock Vibration Bulletin	SVICB
+Shock Vibration Information Center Shock Vibration Computer Programs	SVICP
+Shock Vibration Information Center Shock Vibration Digest	SVICD
+Shock Vibration Information Center Shock Vibration Inform Digest	SVICI
+Shock Waves	ShWav
+SIAM Journal of Applied Mathematics	SJAM
+SIAM Journal of Control Optimization	SJCO
+SIAM Journal of Mathematical Analysis	SJMA
+SIAM Journal of Numerical Analysis	SJNA
+SIAM Review	SIAMR
+Siberian Mathematical Journal	SiMaJ
+Sibirskii Fiziko Tekhnicheskii Zhurnal	SiFTZ
+SID Proceedings Quarter	SIDPQ
+Siemens Forschungs und Entwicklungsberichte	SiFoE
+Signal	Sig
+Signal Processing	SigPr
+Simulation	Simul
+Single Molecules	SiMol
+SIRIUS. Zeitschrift fuer Populaere Astronomie	SZPA
+Situ	Situ
+Skin Research and Technology	SRT
+Sky and Telescope	S&T
+Slaboproudy Obzor	SlaOb
+Small Business Economics	SBE
+Smart Material Structures	SMaS
+Smart Materials and Structures	SmMaS
+Smithsonian	Smith
+Smithsonian Astrophysical Observatory Contributions to Astrophysics	SAOCo
+Smithsonian Contributions to Astrophysics	SCoA
+Smithsonian Contributions to Astrophysics	SmCA
+Smithsonian Contributions to Earth Sciences	SmCES
+Social Studies of Science	SSS
+Societa Astronomica Italiana Memorie Quarter	MSAIQ
+Societe Francaise de Photogrammetrie et de Teledetection Bulletin	SFPTB
+Society of Environmental Engineers Journal	SEEJ
+Society of Industrial and Applied Mathematics	SIAM
+Sofia Izdatel Bolgarskoi Akademii Nauk	SIBAN
+Soil Science Society of America Journal	SSSAJ
+Solar Cells	SoCe
+Solar Energy	SoEn
+Solar Energy Materials	SoEnM
+Solar Physics	SoPh
+Solar System Research	SoSyR
+Solar Terrestrial and Environmental Research Japan	STERJ
+Solid Mechanics Archives	SMArc
+Solid State Communications	SSCom
+Solid State Electronics	SSEle
+Solid State Ionics	SSIon
+Solid State Nuclear Magnetic Resonance	SSNMR
+Solid State Physics Advances in Research and Applications	SSPAR
+Solid State Physics Advances in Research and Applications Supplement	SSPAS
+Solid State Technology	SSTec
+Solnechnye Dann. Bull. Akad. Nauk SSSR	BSolD
+Sonderdrucke der Sternwarte Kiel	SoKie
+Sonderdrucke Universitaet Muenster Astronomisches Institut	SoMue
+Soobshchenie Shemakhinskoj Astrofizicheskoj Observatorii	SoShe
+Soobshcheniya Byurakanskoj Observatorii Akademiya Nauk Armyanskoj SSR Erevan	SoByu
+Soobshcheniya Gosudarstvennogo Astronomicheskogo Instituta	SoSht
+Soobshcheniya Spetsial'noj Astrofizicheskoj Observatorii	SoSAO
+Soprotivlenie Materialov i Teoriia Sooruzhenii	SMTS
+Sources and Studies in the History of Mathematics and Physical Sciences	SSHMP
+Sources in the History of Mathematics and Physical Sciences	SHMPS
+South African Astronomical Observatory Circular	SAAOC
+South African Astronomical Observatory Republic	SAAOR
+South African Journal of Physics	SAJPh
+South African Journal of Science	SAJSc
+Southern Skies	SouSt
+Sovetskaia Antarkticheskaia Ekspeditsiia Informatsionnyi Biulleten	SAEIB
+Soviet Aeronomii	SovAe
+Soviet Astronomy	SvA
+Soviet Astronomy Letters	SvAL
+Soviet Journal of Nuclear Physics	SvJNP
+Soviet Journal of Plasma Physics	SvJPP
+Soviet Journal of Quantum Electronics	SvJQE
+Soviet Physics Acoustics	SvPAC
+Soviet Physics Astronomy	SvPhA
+Soviet Physics Crystallography	SvPC
+Soviet Physics Doklady	SPhD
+Soviet Physics JETP	SJETP
+Soviet Physics Semiconductors	SvPS
+Soviet Physics Solid State	SvPSS
+Soviet Physics Technical Physics	SvPTP
+Soviet Physics Uspekhi	SvPhU
+Soviet Scientific Reviews A Physics Reviews	SSRvA
+Soviet Scientific Reviews C Mathematical Physics Reviews	SSRvC
+Soviet Scientific Reviews D Physicochemical Biology Reviews	SSRvD
+Soviet Scientific Reviews E Astrophysics and Space Physics Reviews	SSRvE
+Soviet Technology Reviews	SvTRv
+Space	Space
+Space and Solar Power Review	SSPRv
+Space Communication Broadcasting	SpCoB
+Space Communications	SpCom
+Space Education	SpEd
+Space Markets	SpMar
+Space Medicine Medical Engineering	SpMME
+Space Policy	SpPol
+Space Power	SpPow
+Space Power Resources and Manufacturing Development	SPRMD
+Space Research Bulgaria	SpRBu
+Space Science Instrumentation	SSI
+Space Science Reviews	SSRv
+Space Technology Industrial and Commercial Applications	STICA
+Space Weather	SpWea
+Space World	SpWd
+Space World U	SpWdU
+Space World W	SpWdW
+Space World Y	SpWdY
+Spaceflight	SpFl
+Spaceview	Spvw
+Specola Astronomica Vaticana Annual Reports	VatAR
+Specola Astronomica Vaticana Atlas Stellarum Variabilium	AtlSV
+Specola Astronomica Vaticana Comunicazione	VatCo
+Specola Astronomica Vaticana Miscellanea Astronomica	VatMA
+Specola Astronomica Vaticana Ricerche Spettroscopiche	VatRS
+Specola Astronomica Vaticana Richerche Astronomiche	VatRA
+Spectrochimica Acta	AcSpe
+Spectroscopy Letters	SpecL
+Specula Regia Monachiensi Observationes astronomicae	SRMO
+Speculations in Science and Technology	SScT
+Spika	Spika
+Sports Engineering	SpEng
+Springer Tracts in Modern Physics	STMP
+Springer Verlag Springer Series on Chemical Physics	SSCP
+Springer Verlag Springer Series on Electrophysics	SSEp
+Springer Verlag Springer Series on Group Geophysics Space Research	SSGSR
+Springer Verlag Springer Series on Optical Sciences	SSOS
+Springer Verlag Springer Series on Physics Chemistry Space	SVPCS
+Springer Verlag Springer Series on Solid State Sciences	SSSSS
+Springer Verlag Springer Series on Synergetics	SSSyn
+Springer Verlag Springer Series on Wave Phenomena	SSWP
+Sproul Observatory Reprints	SprRe
+Srpska Akademiia Nauka i Umetnosti Glas Odeljenje Tekhnichkikh Nauka	SANUG
+Star Sky	StSky
+Statistics and Computing	StCom
+Staub Reinhaltung Luft	StReL
+Stephan Mueller Special Publication Series	SMSPS
+Die Sterne	Stern
+Sterne und Weltraum	S&W
+Sternzeit Mitteilungen der Astrnomischen Vereinigungen Aachen	Sterz
+Stevenage Herts England Peter Peregrinus Ltd IEE Electromagnetic Waves Series	IEWS
+Steward Observatory Reprints	SteRe
+Stochastic Analysis and Applications	SAA
+Stochastics and Stochastics Reports	SSRp
+Stockholms Observatoriums Annaler	StoAn
+Stockholms Observatoriums Meddelande	StoMe
+Stockholms Observatoriums Reports	StoOR
+Strabismus	Strab
+Strain	Strai
+Strojarstvo	Stroj
+Structural Optimization	StrOp
+Studia Astronomica Sinica	SASn
+Studia Biophysica	StBio
+Studia Geophysica et Geodaetica	StGG
+Studia Societatis Scientiarum Torunensis Sectio F Astronomia	SSTor
+Studies in the History and Philosophy of Modern Physics	StHPM
+Studies in the History of Mathematics and the Physical Sciences	StHMP
+Studies in Applied Mathematics	StAM
+Studies in Condensed Matter Physics	SCMP
+Studies in Geophysical Optics and Remote Sensing	SGORS
+Studies in Geophysics	StGeo
+Studies in High Energy Physics	StHEP
+Studies in High Energy Physics Cosmology and Gravitation	StHCG
+Studies in Mathematical Physics	StMaP
+Studies in Physical and Theoretical Chemistry	StPTC
+Studies in turbulence	Sttur
+Studii si Cercetari de Astronomie Bucuresti	SCA
+Studii si Cercetari de Fizica	StCeF
+Studii si Cercetari Matematice	StCeM
+Studii si Cercetary de Mecanica Aplicata	StCMA
+Sunworld	Sunwo
+Superconductor Science Technology	SuScT
+Superlattices and Microstructures	SuMi
+Supplementband zu den Annalen der Munchener Sternwarte	AnMuS
+Supplements aux Annales d'Astrophysique	SAnAp
+Surface and Coatings Technology	SuCT
+Surface and Interface Analysis	SurIA
+Surface Review and Letters	SRL
+Surface Reviews and Letters	SuRvL
+Surface Science	SurSc
+Surface Science Reports	SurSR
+Surface Science Spectra	SurSS
+Surveys in Geophysics	SGeo
+Surveys in High Energy Physics	SHEP
+Svarochnoe Proizvodstvo	SvPro
+Sverdlovsk Ural skii Nauchnyi Tsentr AN SSSR	SvUNT
+Sydney Observatory Papers	SydOP
+Synthetic Metals	SynMe
+Systems Analysis Modelling Simulation	SAMS
+Systems Technology	SyTec
+Tagung ueber Mathematische Probleme Geodaesie Oberwolfach West Germany Bulleting Geodesique	TMPGO
+Tartu Akademiia Nauk Estonskoi SSR	TANEs
+Tartu Astrofuusika Observatoorium Teated	TarOT
+Tartuskoj Astrofizicheskoj Observatorii Preprint	TarPr
+Tashkent Izdatel Fan	IzTas
+Tbilisi Georgian SSR Izdatel Metsniereba	IzGeo
+Tbilisi Izdatel Sabchota Sakartvelo	TIzSS
+Technical News	TecN
+Technical Physics Letters	TePhL
+Technika Lotnicza i Astronautyczna	TeLoA
+Techniques of Biochemical and Biophysical Morphology	TBBM
+Techniques of Physics	TPhy
+Technisch oekonomische Informationen zivilen Luftfahrt	ToIzL
+Technische Mitteilungen Krupp Forschungsberichte	TMKF
+Technische Univ Geodesy Global Geodyn	TUnGG
+Technology	Tech
+Technology and Culture	TeCu
+Technology Review	TecRv
+Tectonics	Tecto
+Tectonophysics	Tectp
+Tekhnicheskaia Elektrodinamika	TekEl
+Telecommunication Journal of Australia	TJAu
+Telecommunications and Data Acquisition Progress Report	TDAPR
+Telecommunications and Mission Operations Progress Report	TMOPR
+Telecommunications and Radio Engineering Telecommunications	TRET
+Telematics Informatics	TelIn
+Telettra S	Telet
+Tellus	Tell
+Tellus Series A	TellA
+Tellus Series B Chemical and Physical Meteorology B	TellB
+Tellus Series Dynamic Meteorology and Oceanography	TSDMO
+Teoreticheskaia Elektrotekhnika	TeoEl
+Teoreticheskaia i Prikladnaia Mekhanika	TeoPM
+Teoriia Funktsii Funktsional nyi Analiz i ikh Prilozheniia	TFFAP
+Teoriia Veroiatnostei i ee Primeneniia	TeoVP
+Teploenergetika	Teplo
+Teplofizicheskie svoistva gazov	Tepsg
+Teplofizika i Teplotekhnika	TepT
+Teplofizika Vysokikh Temperatur	TepVT
+Teploobmen i Fizicheskaia Gazodinamika	TFizG
+Teplovye Napriazheniia Elementakh Konstruktsii	TNEK
+La Termotecnica	LTerm
+TESLA Electronics	Tesla
+Teubner Texte zur Physik	TTPhy
+Textures and Microstructures	TexMi
+Theoretica Chimica Acta	AcTC
+Theoretical and Applied Climatology	ThApC
+Theoretical and Applied Fracture Mechanics	ThAFM
+Theoretical and Computational Fluid Dynamics	ThCFD
+Theoretical and Mathematical Physics	TMP
+Theoretical Astrophysics	ThAst
+Theory and Practice of Applied Geophysics	TPAG
+Thin Solid Films	TSF
+Thyssen Edelstahl Technische Berichte	TETB
+Tiflis Izdatel Metsniereba Akademiia Nauk Gruzinskoi SSR Institut Geofiziki Trudy	TrTIM
+Tiflis Izdatel Metsniereba Akademiia Nauk Gruzinskoi SSR Matematicheskii Institut Trudy	TrGru
+Tiflis Izdatel Tbilisskogo Universiteta	IzTif
+Tirada Aparte Universidad Nacional de Cordoba Argentina Observatorio Astronomico	CorTi
+Tissue Engineering	TiEng
+Tochnost i Nadezhnost Kiberneticheskikh Sistem	TNKS
+Tohoku University Science Reports Series Geophysics	TSRSG
+Tokyo Astronomical Bulletin	TokAB
+Tokyo Astronomical Observatory Reprints	TokRe
+Tokyo Denki University Faculty of Engineering Research Reports	TUFER
+Tokyo Metropolitan College Aeronautical Engineering Memoirs	TAEMm
+Tokyo University Faculty of Engineering Journal Series	TUFEJ
+Tokyo University Institute Industrial Science Report	TUISR
+Tokyo University Institute of Space and Aeronautical Science Bulletin	TUASB
+Tokyo University Institute of Space and Aeronautical Science Report	TUASR
+Tomsk Institut Optiki Atmosfery CO AN SSSR	TIOA
+Top. Astrophys. Astron. Space Sci.	TApA
+Topics in Applied Physics	TApPh
+Topics in Catalysis	ToCat
+Topics in Current Physics	TCPh
+Topics in Physical Chemistry	TPhCh
+Torino Accademia delle Scienze Classe di Scienze Fisiche Matematiche e Naturali Atti	ToASC
+Toshiba Review	TosRv
+Toulouse Cepadues Editions	TouCE
+Transactions of the American Geophysical Union	TAGU
+Transactions of the American Mathematical Society	TAMS
+Transactions of the American Philosophical Society	TAPS
+Transactions of the Astronomical Observatory of Yale University	TOYal
+Transactions of the Institute of Measurement and Control	TIMC
+Transactions of the International Astronomical Union	IAUT
+Transactions of the International Union for Cooperation in Solar Research	TIUCS
+Transactions of the Literary and Historical Society of Quebec	TLHSQ
+Transactions of the Optical Society	TrOS
+Transport in Porous Media	TPM
+Transport Theory and Statistical Physics	TTSP
+Travaux de la Societe des Sciences et des Letters de Wroclaw	TSSLW
+Travaux de l'Observatoire de Marseille	TOMar
+Travaux Geophysiques	TraGe
+Trends in Theoretical Physics	TTP
+Tribology Letters	TriL
+Trudy Akademiia Nauk Litovskoi	TrLit
+Trudy Akademiia Nauk SSSR Fizicheskii Institut	TrSSR
+Trudy Astrofiz. Lab. Riga	TrRig
+Trudy Astrofizicheskogo Instituta Alma-Ata	TrAlm
+Trudy Astronomicheskoj Observatorii Leningrad	TrLen
+Trudy Glavnoj Astronomicheskoj Observatorii v Pulkovo	TrPul
+Trudy Gosudarstvennogo Astronomicheskogo Instituta	TrSht
+Trudy Instituta Astrofiziki Dushanbe	TrDus
+Trudy Instituta Astrofiziki Stalinabad	TrSta
+Trudy Kazanskaia Gorodkoj Astronomicheskoj Observatorii	TrKaz
+Trudy Moskovskoe Matematicheskoe Obshchestvo	TrMMO
+Trudy Seminar imeni G Petrovskogo	TrPet
+Trudy Tashkentskoj Astronomicheskoj Observatorii	TrTas
+TsAGI Trudy	TrTsA
+TsAGI Uchenye Zapiski	ZaTsA
+TsIAM Trudy	TrTsI
+Tsing Hua University Journal	TsHUJ
+Tsirkulyar Astronomicheskogo Instituta Akademiya Nauk Uzbekskoj SSR	TITas
+Tsirkulyar Shemakhinskoj Astrofizicheskoj Observatorii	TsShe
+Tsirkulyar Stalinabadskoj Astronomicheskoj Observatorii	TsSta
+Tsirkulyar Tashkentskoj Astronomicheskoj Observatorii	TsTas
+Tsirkulyary Glavnoj Astronomicheskoj Observatorii i Pulkove	TsPul
+Tuebingen Universitaet Astronomisches Institut Diplomarbeit	TUAID
+Tuijin Jishu Journal of Propulsion Technology	TJJPT
+Turbulentnye techeniia	TurTe
+Turkish Journal of Physics	TJPh
+U S Geological Survey Journal Research	UGSJR
+Ukrainskii Fizicheskii Zhurnal	UkFiZ
+Ukrainskii Matematicheskii Zhurnal	UkMaZ
+Ukranian Mathematical Journal	UkMJ
+Ultramicroscopy	Ultmi
+Ultrasonic Imaging	UltIm
+Ultrasonics	Ultra
+Unified System Orbit Computation USOC	USOC
+Unione Matematica Italiana Bollettino	UMIB
+United Nations Programme on Space Applications	UNPSA
+Universita di Napoli Aeritalia S	UNAer
+Universitas Comeniana Acta Facultatis Rerum Naturalium Physica	UCAFR
+Universite de Montpellier	UMt1K
+University Electro Communications Bulletin	UECBu
+University Electro Communications Reports	UnECR
+University Observatory St. Andrews Scotland Reprints	StARe
+University of Hawaii Reprints	HawRe
+University of Illinois Astronomy Department Urbana Illinois	ADUrb
+University of Michigan Observatory Reprints	MicRe
+University of Minnesota 1969 (XXFD)	XXFD
+University of Minnesota Minneapolis	LP
+University of Oklahoma Observatory Reprints	OklRe
+University of Texas Monographs in Astronomy	MAUTx
+University of Texas Publications in Astronomy	PAUTx
+Unpublished	Unpub
+Updates in Applied Physics and Electrical Technology	UAPET
+Uppsala Astronomical Observatory Annals	UppAn
+Uppsala Astronomical Observatory Reports	UppOR
+Upravliaiushchie Sistemy i Mashiny	USM
+Urania	Urani
+Urania Madrid	UrMad
+U.S. Naval Observatory Circulars	USNOC
+U.S. Naval Observatory Reports	USNOR
+Uspekhi Fizicheskikh Nauk	UsFiN
+Uspekhi Mekhaniki Advances Mechanics	UMAM
+USSR Report Cybernetics Computers Automation Technology JPRS UCC	RpCCA
+USSR Report Earth Sciences JPRS UES	RpESc
+USSR Report Space	RpSpR
+USSR Report Space Biology Aerospace Medicine JPRS USB	RpBAM
+USSR Rept Electron Elec Eng JPRS UEE	RpEEE
+USSR Rept Energy JPRS UEN	RpEn
+USSR Rept Eng Equipment JPRS UEQ	RpEE
+USSR Rept Life Sci Biomed Behavioral Sci JPRS	RLSBB
+USSR Rept Machine Tools Metalworking Equipment JPRS UMM	RMTME
+USSR Rept Mater Sci Met JPRS	RpMSM
+USSR Rept Phys Math JPRS UPM	RpPhM
+USSR Rept Space Biol Aerospace Med Jun JPRS	RSBAM
+USSR Rept Space Biol Aerospace Med Sep	RpSBA
+USSR Rept Transportation JPRS UTR	RpTr
+Utilitas Mathematica	UtMat
+Utrechtse Sterrekundige Overdrukken	UtrOv
+Vacuum	Vacuu
+Van Vleck Observatory Reprints	VVORe
+Variable Star Observers League in Japan - Bulletin	VSOLB
+Vatican Observatory Publications	VatOP
+VDI Forschungsheft	VDIF
+VDI Z	VDIZ
+VDI Zeitschriften Fortschritt Berichte Reihe Stroemungstechnik	VDIZF
+Vehicle System Dynamics	VSD
+Veroeffentlichung der Wilhelm Foerster Sterwarte	VeWFS
+Veroeffentlichungen der Badischen Sternwarte zu Heidelberg	VeHei
+Veroeffentlichungen der Grossherzoglichen Sternwarte zu Karlsruhe	VeKar
+Veroeffentlichungen der Remeis-Sternwarte zu Bamberg	VeBam
+Veroeffentlichungen der Sternwarte Babelsberg	VeBab
+Veroeffentlichungen der Sternwarte Munchen	VeMun
+Veroeffentlichungen der Sternwarte Sonneberg	VeSon
+Veroeffentlichungen der Universitaets-Sternwarte Kiel	VeKie
+Veroeffentlichungen der Universitaets-Sternwarte Koenigsberg Pr.	VeKoe
+Veroeffentlichungen der Universitaetssternwarte zu Berlin-Babelsberg	VeBB
+Veroeffentlichungen der Universitaets-Sternwarte zu Goettingen	VeGoe
+Veroeffentlichungen der Universitaets-Sternwarte zu Jena	VeJen
+Veroeffentlichungen der Universitaetssternwarte zu Leipzig	VeLei
+Veroeffentlichungen des Astronomischen Instituts der Ruhr-Universitaet Bochum	VeBoc
+Veroeffentlichungen des Astronomischen Rechen-Instituts Heidelberg	VeARI
+Veroeffentlichungen des Astronomischen Rechen-Instituts zu Berlin-Dahlem	VeABD
+Veroeffentlichungen des Astronomisches Institute der Universitaet Bonn	VeBon
+Veroeffentlichungen des Astronomisches Institute der Universitaet Frankfurt	VeFra
+Veroeffentlichungen des Koeniglichen Astronomischen Rechen-Instituts zu Berlin	VeKAB
+Veroffentlichungen des Zentralinstituts Physik der Erde	VeZPE
+Verslag van den staat der Sterrewacht te Leiden	VeLdn
+Vertica	Vert
+Vertiflite	Vertf
+Vestnik Khar'kovskogo Universiteta	VKha
+Vestnik Kievskogo Universiteta Seriya Astronomii	VKie
+Vestnik Moskovskogo Universiteta Seriya 3 Fizika Astronomiya	VeMos
+Vibration Inst Shock Vibration Digest	VISBD
+Vienna International Atomic Energy Agency	VIAEA
+Vierteljahresschrift der Astronomischen Gesellschaft	VAG
+Vierteljahrschrift für Gerichtliche Medizin und Öffentliches Sanitätswesen	VMed
+Vierteljahrsschrift der Naturforschenden Gesellschaft in Zürich	VNG
+Villanova University Observatory Contributions	VilCo
+Vilnius Astronomijos Observatorijos Biuletenis	VilOB
+Vilnius Izdatel Mokslas	IzVil
+Virginia Journal of Science	VJS
+Vissha Geodeziia	ViGeo
+Vistas in Astronomy	VA
+Vitro Technical Journal	VTJ
+VizieR Online Data Catalog	yCat
+VKI An Introduction to Computational Fluid Dynamics	VICFD
+VKI An Introduction to Modeling Turbulence	VIMT
+VKI Advanced Design of Ventilation Systems	VADVS
+VKI Axial Flow Compressors	VAFC
+VKI Boundary Layers in Turbomachines	VBLT
+VKI Combined Cycles for Power Plants	VCCPP
+VKI Computational Fluid Dynamics	VCFD
+VKI Computational Fluid Dynamics for Industrial Flows	VCFDI
+VKI Computer Graphics Flow Visualization and Computational Fluid Dynamics	VCGFV
+VKI Gas Turbine Engine Transient Behaviour	VGTET
+VKI Industrial Heat Exchangers	VIHE
+VKI Laser Velocimetry	VKILV
+VKI Measurement and Techniques	VKIMT
+VKI Measurement Techniques in Aerodynamics	VMTA
+VKI Methodology Hypersonic Testing	VMHT
+VKI Modeling and Applications of Transport Phenomena in Porous Media	VMATP
+VKI New Approaches in the Description and Modeling of Turbulence	VADMT
+VKI Numerical Grid Generation	VNGG
+VKI Numerical Methods for Flows in Turbomachinery	VNMFT
+VKI Particle Image Displacement Velocimetry	VPIDV
+VKI Radial Turbines	VKIRT
+VKI Spacecraft Propulsion	VKISP
+VKI Turbulent Shear Flows	VTSF
+VKI Vibration Rotor Dynamics	VVRD
+VLSI Design	VLSID
+Voies Aviation Civile Fall Winter	VAC
+Voprosy Atomnoi Nauki i Tekhniki Seriia Fizika Plazmy i Problemy Upravliaemykh Termoiadernykh Reaktsii	VANTS
+Voprosy Dinamiki i Prochnosti	VopDP
+Voprosy Elektroniki Tverdogo Tela	VETT
+Voprosy Gidrodinamiki Atmosfery	VopGA
+Voprosy Kibernetiki	VopK
+Voprosy Metrologicheskogo Obespecheniia Izmereniia Parametrov Tekhnologicheskikh Lazerov	VMOIP
+Voprosy Teorii Atomnykh Stolknovenii	VoTAS
+Voprosy Teorii Plazmy	VopTP
+Voprosy Teorii Sistem Avtomaticheskogo Upravleniia	VTSAU
+Vossische Zeitung	VossZ
+Vsesoiuznaia Konferentsiia Kosmicheskim Lucham Yakutsk USSR Akademiia Nauk SSSR Izvestiia Seriia Fizicheskaia	IzYak
+Vsesoiuznaia Konferentsiia Kosmicheskim Lucham Yerevan Armenian SSR Aademiia Nauk SSSR Izvestiia Seriia Fizicheskaia	IzYer
+Vsesoiuznyi Simpozium Difraktsii i Rasprostraneniiu Voln Lvov Ukrainian SSR Radiofizika	RaUkr
+Vychislitel naia i Prikladnaia Matematika	VnPM
+Vychislitel nye Metody i Programmirovanie	VnMP
+Vyssha Geodeziia	VyGeo
+Waerme und Stoffuebertragung	W&S
+Warsaw University Reprints	WarRe
+Washburn Observatory Astrophysics	WasOA
+Washington DC American Geophysical Union Geophysical Monograph Series	GMS
+Water Resources Research	WRR
+Wave Electronics	WavEl
+Wave Motion	WaMot
+Waves Random Media	WRM
+Wear	Wear
+Wear B	WearB
+Weather	Wthr
+Weight Engineering	WeiEn
+Welding Journal	WeldJ
+Die Weltall	Welt
+WGN, Journal of the International Meteor Organization	JIMO
+Williamstown Observatory Observations	WilOO
+Wind Energy	WiEn
+Wind Engineering	WiEng
+Wissenschaftliche Berichte AEG Telefunken	WisBT
+Wissenschaftliche Zeitschrift	WisZe
+Wroclaw Astronomical Observatory Reprints	WroRe
+Wuli	Wuli
+Yale University Observatory Reports for the year	YalOY
+Yamaguchi University Faculty of Engineering Memoirs	YUFEM
+Yamaguchi University Technology Reports	YUTR
+Zagadnienia Drgan Nieliniowych	ZaDN
+Zavodskaia Laboratoriia	ZaLab
+Zeitschrift Angewandte Mathematik und Mechanik	ZaMM
+Zeitschrift Angewandte Mathematik und Physik	ZaMP
+Zeitschrift der Fachsektion Hydrogeologie in der Deutschen Geologischen Gesellschaft	ZFHDG
+Zeitschrift elektrische Informations und Energietechnik	ZeIE
+Zeitschrift fur Angewandte Geographie	ZAGeo
+Zeitschrift fur Angewandte Physik	ZAPhy
+Zeitschrift fur Anorganische und Allgemeine Chemie	ZAAC
+Zeitschrift fur Astrophysik	ZA
+Zeitschrift fur Eisenbahnwesen und Verkehrstechnik Glasers Annalen	ZEVGA
+Zeitschrift fur Flugwissenschaften	ZFlu
+Zeitschrift fur Flugwissenschaften und Weltraumforschung	ZFlWe
+Zeitschrift fur Geophysik	ZGeo
+Zeitschrift fur Gletscherkunde und Glazialgeologie	ZGlGl
+Zeitschrift fur Kristallographie	ZKri
+Zeitschrift fur Metallkunde	ZMetl
+Zeitschrift fur Meteorologie	ZeMet
+Zeitschrift fur Physik	ZPhy
+Zeitschrift fur Physik A Hadrons and Nuclei	ZPhyA
+Zeitschrift fur Physik B Condensed Matter	ZPhyB
+Zeitschrift fur Physik C Particles and Fields	ZPhyC
+Zeitschrift fur Physik D Atoms Molecules Clusters	ZPhyD
+Zeitschrift fur Physikalische Chemie	ZPC
+Zeitschrift fur Physikalische Chemie Frankfurt	ZPCF
+Zeitschrift fur Physikalische Chemie Leipzig	ZPCL
+Zeitschrift fur Physikalische Chemie Neue Folge	ZPCNF
+Zeitschrift fur Physikalische Chemie Wiesbaden	ZPCW
+Zeitschrift für Elektrochemie und Angewandte Physikalische Chemie	ZEAPC
+Zeitschrift für Mathematik und Physik	ZMP
+Zeitschrift Naturforschung Teil A	ZNatA
+Zeitschrift Naturforschung Teil B	ZNatB
+Zeitschrift Physik	ZeiPh
+Zeitschrift Physik Atomic Nuclei	ZePAN
+Zeitschrift Werkstofftechnik	ZWer
+Zemlia i Vselennaia	ZemVs
+Zenit	Zenit
+Zentralinstitut fuer Astrophysik Mitteilungen des Karl-Schwarzschild-Observatoriums Tautenburg	MiTau
+Zentralinstitut fuer Astrophysik Sternwarte Sonneberg Mitteilungen ueber Veraenderliche Sterne	MitVS
+ZhETF Pis ma Redaktsiiu	ZhPmR
+Zhurnal Eksperimental noi i Teoreticheskoi Fiziki	ZhETF
+Zhurnal Fizicheskoi Khimii	ZhFK
+Zhurnal Nauchnoi i Prikladnoi Fotografii i Kinematografii	ZNPFK
+Zhurnal Physik	ZhPhy
+Zhurnal Prikladnoi Spektroskopii	ZhPS
+Zhurnal Tekhnicheskoi Fiziki	ZhTFi
+Zhurnal Vychislitel noi Matematiki i Matematicheskoi Fiziki	ZVMMF
+Ziran Zazhi	ZiZa
+Zpravodaj VZLU	Zprav
+
