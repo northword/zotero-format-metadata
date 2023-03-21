@@ -1,14 +1,14 @@
 {
-  "name": "zotero-addon-template",
-  "version": "0.1.6",
-  "description": "Zotero Addon Template",
+  "name": "zotero-format-metadata",
+  "version": "0.0.1",
+  "description": "A addon for Zotero to format item metadata",
   "config": {
-    "addonName": "Zotero Addon Template",
-    "addonID": "addontemplate@euclpts.com",
-    "addonRef": "addontemplate",
-    "addonInstance": "AddonTemplate",
-    "releasepage": "https://github.com/windingwind/zotero-addon-template/releases/latest/download/zotero-addon-template.xpi",
-    "updaterdf": "https://raw.githubusercontent.com/windingwind/zotero-addon-template/bootstrap/update.json"
+    "addonName": "Zotero Format Metadata",
+    "addonID": "zotero-format-metadata@northword.cn",
+    "addonRef": "formatmetadata",
+    "addonInstance": "FormatMetadata",
+    "releasepage": "https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-addon-template.xpi",
+    "updaterdf": "https://github.com/northword/zotero-format-metadata/main/update.json"
   },
   "main": "src/index.ts",
   "scripts": {
@@ -28,14 +28,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/windingwind/zotero-addon-template.git"
+    "url": "git+https://github.com/northword/zotero-format-metadata.git"
   },
-  "author": "windingwind",
+  "author": "northword",
   "license": "AGPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/windingwind/zotero-addon-template/issues"
+    "url": "https://github.com/northword/zotero-format-metadata/issues"
   },
-  "homepage": "https://github.com/windingwind/zotero-addon-template#readme",
+  "homepage": "https://github.com/northword/zotero-format-metadata#readme",
   "dependencies": {
     "zotero-plugin-toolkit": "^2.0.1"
   },

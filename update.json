@@ -1,10 +1,10 @@
 {
   "addons": {
-    "addontemplate@euclpts.com": {
+    "zotero-format-metadata@northword.cn": {
       "updates": [
         {
-          "version": "0.1.6",
-          "update_link": "https://github.com/windingwind/zotero-addon-template/releases/latest/download/zotero-addon-template.xpi",
+          "version": "0.0.1",
+          "update_link": "https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-addon-template.xpi",
           "applications": {
             "gecko": {
               "strict_min_version": "60.0"
@@ -12,8 +12,8 @@
           }
         },
         {
-          "version": "0.1.6",
-          "update_link": "https://github.com/windingwind/zotero-addon-template/releases/latest/download/zotero-addon-template.xpi",
+          "version": "0.0.1",
+          "update_link": "https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-addon-template.xpi",
           "applications": {
             "zotero": {
               "strict_min_version": "6.999"
