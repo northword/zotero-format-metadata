@@ -23,9 +23,10 @@ An addon for [Zotero](https://www.zotero.org/) to format item metadata.
   - [x] 根据学校名填充地点
 - [ ] 日期格式化为 ISO 格式
 - [ ] 语言
-  - [ ] 通过语言识别库识别
+  - [x] 通过语言识别库识别（通过 franc 识别标题的语言，转为 ISO 639-1 语言代码）
   - [ ] 期刊与语言的映射
   - [ ] 常见错误语言值直接映射为 ISO 值
+  - [ ] ISO 639 语言代码 转 ISO 3166 国家区域代码
 - [ ] 添加时自动应用
 
 ## Licence

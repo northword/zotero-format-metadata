@@ -3,6 +3,8 @@ import Addon from "../addon";
 import journalAbbrISO4 from "../data/journal-abbr-iso4";
 import universityPlace from "../data/university-place";
 import { HelperExampleFactory } from "./examples";
+import { franc } from "franc";
+import iso6393To6391 from "../data/iso-693-3-to-1"
 
 interface dict {
     [key: string]: string;
@@ -100,11 +102,11 @@ export default class FormatMetadata {
     static async updateUniversityPlaceBatch() {
         const items = Zotero.getActiveZoteroPane().getSelectedItems();
         var num = 0;
-        HelperExampleFactory.progressWindow(`Progressing...\nPlease wait.`, "info", (num / items.length) * 100);
+        const popupwin = HelperExampleFactory.progressWindow(`Progressing...\nPlease wait.`, "info", (num / items.length) * 100);
         for (const item of items) {
             this.updateUniversityPlace(item, universityPlace);
             num++;
-            // HelperExampleFactory.progressWindow(`${num}/${items.length}`, 'success', num/items.length*100 );
+            // HelperExampleFactory.progressWindowChange(`${num}/${items.length}`, 'success', num/items.length*100 );
         }
         HelperExampleFactory.progressWindow(`Done!`, "success", 100);
     }
@@ -129,4 +131,31 @@ export default class FormatMetadata {
             return place;
         }
     }
+
+    static async updateLanguageBatch() {
+        const items = Zotero.getActiveZoteroPane().getSelectedItems();
+        var num = 0;
+        HelperExampleFactory.progressWindow(`Progressing...\nPlease wait.`, "info", (num / items.length) * 100);
+        for (const item of items) {
+            this.updateLanguage(item);
+            num++;
+            // HelperExampleFactory.progressWindow(`${num}/${items.length}`, 'success', num/items.length*100 );
+        }
+        HelperExampleFactory.progressWindow(`Done!`, "success", 100);
+    }
+
+    static async updateLanguage(item: Zotero.Item) {
+        const title = item.getField('title') as string
+        const languageISO639_3 = franc( title );
+        if (languageISO639_3 !== 'und') {
+            const languageISO639_1 = iso6393To6391[languageISO639_3];
+            item.setField('language', languageISO639_1);
+            // TODO: ISO 639-1 或 639-3 语言代码 转 ISO 3166 国家区域代码
+            await item.saveTx();
+        } else {
+            HelperExampleFactory.progressWindow(`“${title}” 过短，无法判断`, "error");
+        }
+
+    }
+
 }

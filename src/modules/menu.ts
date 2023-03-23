@@ -68,7 +68,7 @@ export function registerMenu() {
                 tag: "menuitem",
                 label: "自动设置语言", //getString("menuitem.submenulabel"),
                 commandListener: (ev) => {
-                    formatMetadata.unimplemented();
+                    formatMetadata.updateLanguageBatch();
                 },
                 disabled: true,
             },

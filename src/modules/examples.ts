@@ -979,6 +979,22 @@ export class HelperExampleFactory {
       })
       .show();
   }
+  @example
+  static progressWindowChange(text:string, type: string = "success", progress: number = 100) {
+    new ztoolkit.ProgressWindow(config.addonName)
+      // .createLine({
+      //   text: text,
+      //   type: type,
+      //   progress: progress,
+      // })
+      .changeLine({
+        text: text,
+        type: type,
+        progress: progress,
+        
+      })
+      .show();
+  }
 
   @example
   static vtableExample() {
