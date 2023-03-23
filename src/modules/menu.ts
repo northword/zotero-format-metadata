@@ -64,6 +64,22 @@ export function registerMenu() {
                 },
                 disabled: true,
             },
+            {
+                tag: "menuitem",
+                label: "自动设置语言", //getString("menuitem.submenulabel"),
+                commandListener: (ev) => {
+                    formatMetadata.unimplemented();
+                },
+                disabled: true,
+            },
+            {
+                tag: "menuitem",
+                label: "设置为指定语言", //getString("menuitem.submenulabel"),
+                commandListener: (ev) => {
+                    formatMetadata.unimplemented();
+                },
+                disabled: true,
+            },
         ],
     });
 }
