@@ -7,7 +7,8 @@ import {
 } from "./modules/examples";
 import { config } from "../package.json";
 import { getString, initLocale } from "./modules/locale";
-import { registerPrefsScripts } from "./modules/preferenceScript";
+import { registerPrefs, registerPrefsScripts } from "./modules/preference";
+import { registerMenu } from "./modules/menu";
 
 async function onStartup() {
   await Promise.all([
@@ -32,11 +33,11 @@ async function onStartup() {
     })
     .show();
 
-  BasicExampleFactory.registerPrefs();
+  registerPrefs();
 
-  BasicExampleFactory.registerNotifier();
+  // BasicExampleFactory.registerNotifier();
 
-  KeyExampleFactory.registerShortcuts();
+  // KeyExampleFactory.registerShortcuts();
 
   await Zotero.Promise.delay(1000);
   popupWin.changeLine({
@@ -44,31 +45,33 @@ async function onStartup() {
     text: `[30%] ${getString("startup.begin")}`,
   });
 
-  UIExampleFactory.registerStyleSheet();
+  registerMenu();
 
-  UIExampleFactory.registerRightClickMenuItem();
+  // UIExampleFactory.registerStyleSheet();
 
-  UIExampleFactory.registerRightClickMenuPopup();
+  // UIExampleFactory.registerRightClickMenuItem();
 
-  UIExampleFactory.registerWindowMenuWithSeparator();
+  // UIExampleFactory.registerRightClickMenuPopup();
 
-  await UIExampleFactory.registerExtraColumn();
+  // UIExampleFactory.registerWindowMenuWithSeparator();
 
-  await UIExampleFactory.registerExtraColumnWithCustomCell();
+  // await UIExampleFactory.registerExtraColumn();
 
-  await UIExampleFactory.registerCustomCellRenderer();
+  // await UIExampleFactory.registerExtraColumnWithCustomCell();
 
-  await UIExampleFactory.registerCustomItemBoxRow();
+  // await UIExampleFactory.registerCustomCellRenderer();
 
-  UIExampleFactory.registerLibraryTabPanel();
+  // await UIExampleFactory.registerCustomItemBoxRow();
 
-  await UIExampleFactory.registerReaderTabPanel();
+  // UIExampleFactory.registerLibraryTabPanel();
 
-  PromptExampleFactory.registerNormalCommandExample();
+  // await UIExampleFactory.registerReaderTabPanel();
 
-  PromptExampleFactory.registerAnonymousCommandExample();
+  // PromptExampleFactory.registerNormalCommandExample();
 
-  PromptExampleFactory.registerConditionalCommandExample();
+  // PromptExampleFactory.registerAnonymousCommandExample();
+
+  // PromptExampleFactory.registerConditionalCommandExample();
 
   await Zotero.Promise.delay(1000);
 
@@ -78,7 +81,7 @@ async function onStartup() {
   });
   popupWin.startCloseTimer(5000);
 
-  addon.hooks.onDialogEvents("dialogExample");
+  // addon.hooks.onDialogEvents("dialogExample");
 }
 
 function onShutdown(): void {

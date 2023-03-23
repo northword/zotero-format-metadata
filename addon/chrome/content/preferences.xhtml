@@ -2,30 +2,87 @@
   id="zotero-prefpane-__addonRef__"
   onload="Zotero.__addonInstance__.hooks.onPrefsEvent('load', {window})"
 >
+  <!--常规设置-->
   <groupbox>
-    <label><html:h2>&zotero.__addonRef__.pref.title;</html:h2></label>
+    <caption label="&zotero.__addonRef__.pref.title;" />
     <checkbox
       id="zotero-prefpane-__addonRef__-enable"
       label="&zotero.__addonRef__.pref.enable.label;"
       preference="extensions.zotero.__addonRef__.enable"
     />
+    <!--添加时自动执行格式化-->
+  </groupbox>
+
+  <!--标题-->
+  <groupbox>
+    <caption label="标题替换" />
+    <checkbox
+      id="zotero-prefpane-__addonRef__-enable"
+      label="&zotero.__addonRef__.pref.enable.label;"
+      preference="extensions.zotero.__addonRef__.enable"
+      disabled="true"
+    />
+  </groupbox>
+
+  <!--期刊缩写-->
+  <groupbox>
+    <caption label="Journal Abbr." />
+    <checkbox
+      id="zotero-prefpane-__addonRef__-enable"
+      label="&zotero.__addonRef__.pref.enable.label;"
+      preference="extensions.zotero.__addonRef__.enable"
+      disabled="true"
+    />
     <hbox>
-      <html:label for="zotero-prefpane-__addonRef__-input"
-        >&zotero.__addonRef__.pref.input.label;</html:label
-      >
-      <html:input
-        type="text"
-        id="zotero-prefpane-__addonRef__-input"
-        preference="extensions.zotero.__addonRef__.input"
-      ></html:input>
+      <label value="&zotero.__addonRef__.pref.input.label;" />
     </hbox>
-    <hbox class="virtualized-table-container" flex="1" height="300px">
-      <html:div id="__addonRef__-table-container" />
+  </groupbox>
+
+  <!--DOI-->
+  <groupbox>
+    <caption label="DOI" />
+    <checkbox
+      id="zotero-prefpane-__addonRef__-enable"
+      label="&zotero.__addonRef__.pref.enable.label;"
+      preference="extensions.zotero.__addonRef__.enable"
+      disabled="true"
+    />
+    <hbox>
+      <label value="&zotero.__addonRef__.pref.input.label;" />
+    </hbox>
+  </groupbox>
+
+  <!--日期-->
+  <groupbox>
+    <caption label="日期" />
+    <checkbox
+      id="zotero-prefpane-__addonRef__-enable"
+      label="&zotero.__addonRef__.pref.enable.label;"
+      preference="extensions.zotero.__addonRef__.enable"
+      disabled="true"
+    />
+    <hbox>
+      <label value="&zotero.__addonRef__.pref.input.label;" />
+    </hbox>
+  </groupbox>
+
+  <!--语言-->
+  <groupbox>
+    <caption label="语言" />
+    <checkbox
+      id="zotero-prefpane-__addonRef__-enable"
+      label="&zotero.__addonRef__.pref.enable.label;"
+      preference="extensions.zotero.__addonRef__.enable"
+      disabled="true"
+    />
+    <hbox>
+      <label value="&zotero.__addonRef__.pref.input.label;" />
     </hbox>
   </groupbox>
 </vbox>
-<vbox>
-  <label
-    value="&zotero.__addonRef__.help.version.label;  &zotero.__addonRef__.help.releasetime.label;"
-  ></label>
-</vbox>
+
+<groupbox>
+  <caption label="About" />
+  <label value="&zotero.__addonRef__.help.version.label;"></label>
+  <label value="&zotero.__addonRef__.help.releasetime.label;"></label>
+</groupbox>

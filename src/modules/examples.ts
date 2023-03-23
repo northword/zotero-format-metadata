@@ -970,6 +970,17 @@ export class HelperExampleFactory {
   }
 
   @example
+  static progressWindow(text:string, type: string = "success", progress: number = 100) {
+    new ztoolkit.ProgressWindow(config.addonName)
+      .createLine({
+        text: text,
+        type: type,
+        progress: progress,
+      })
+      .show();
+  }
+
+  @example
   static vtableExample() {
     ztoolkit.getGlobal("alert")("See src/modules/preferenceScript.ts");
   }

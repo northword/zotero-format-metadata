@@ -1,6 +1,6 @@
 // 中国大陆普通高校名单
 
-export const universityPlace = {
+export default {
 
     "北京大学":"北京市",
     "中国人民大学":"北京市",
