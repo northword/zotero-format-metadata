@@ -7,8 +7,8 @@
     "addonID": "zotero-format-metadata@northword.cn",
     "addonRef": "formatmetadata",
     "addonInstance": "FormatMetadata",
-    "releasepage": "https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-addon-template.xpi",
-    "updaterdf": "https://github.com/northword/zotero-format-metadata/main/update.json"
+    "releasepage": "https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-format-metadata.xpi",
+    "updaterdf": "https://github.com/northword/zotero-format-metadata/releases/latest/download/update.json"
   },
   "main": "src/index.ts",
   "scripts": {
