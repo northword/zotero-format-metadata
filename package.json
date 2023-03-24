@@ -52,5 +52,22 @@
     "replace-in-file": "^6.3.5",
     "typescript": "^4.9.4",
     "zotero-types": "^1.0.12"
+  },
+  "release-it": {
+    "npm": {
+      "publish": false
+    },
+    "github": {
+      "release": true,
+      "assets": [
+        "builds/*.xpi",
+        "builds/update.json",
+        "builds/update.rdf"
+      ]
+    },
+    "hooks": {
+      "after:bump": "npm run build",
+      "after:release": "echo Successfully released ${name} v${version} to ${repo.repository}."
+    }
   }
 }
