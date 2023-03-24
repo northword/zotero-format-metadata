@@ -1,2 +1,9 @@
 pref("extensions.zotero.__addonRef__.enable", true);
-pref("extensions.zotero.__addonRef__.input", "This is input");
+pref("extensions.zotero.__addonRef__.add.update", true);
+pref("extensions.zotero.__addonRef__.abbr.type", "ISO4dot");
+pref("extensions.zotero.__addonRef__.abbr.usefull", true);
+pref("extensions.zotero.__addonRef__.lang.enable", true);
+pref("extensions.zotero.__addonRef__.lang.only.enable", true);
+pref("extensions.zotero.__addonRef__.lang.only.cmn", true);
+pref("extensions.zotero.__addonRef__.lang.only.eng", true);
+pref("extensions.zotero.__addonRef__.lang.only.other", "");
