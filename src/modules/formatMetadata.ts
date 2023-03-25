@@ -1,7 +1,7 @@
 import { config } from "../../package.json";
 import Addon from "../addon";
-import journalAbbrISO4 from "../data/journal-abbr-iso4";
-import universityPlace from "../data/university-place";
+import journalAbbrISO4 from "../data/journal-abbr/journal-abbr-iso4";
+import universityPlace from "../data/university-list/university-place";
 import { HelperExampleFactory } from "./examples";
 import { franc } from "franc";
 import iso6393To6391 from "../data/iso-693-3-to-1";
