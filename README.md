@@ -14,20 +14,34 @@ An addon for [Zotero](https://www.zotero.org/) to format item metadata.
   - [ ] 根据期刊名填充期刊缩写
     - [x] 本地术语表
     - [ ] API，用户自定义术语表
-    - [ ] 提供 ISO 4 with dot, ISO 4 without dot, 和 JCR 缩写的偏好选项
-  - [ ] 中英文无缩写时分别是否以全称填充
+    - [x] 提供 ISO 4 with dot, ISO 4 without dot, 和 JCR 缩写的偏好选项
+    - [ ] 无缩写时通过 ISSN LTWA 推断缩写
+    - [ ] 无缩写时分别是否以全称填充
 - [ ] 期刊：DOI 格式化
 - [ ] 期刊：期卷页
   - [ ] 如果没有期卷页，根据 DOI 获取补全
-- [ ] 学位论文：地点
+- [x] 学位论文：地点
   - [x] 根据学校名填充地点
 - [ ] 日期格式化为 ISO 格式
 - [ ] 语言
   - [x] 通过语言识别库识别（通过 franc 识别标题的语言，转为 ISO 639-1 语言代码）
+  - [x] 设置常用语言偏好
   - [ ] 期刊与语言的映射
   - [ ] 常见错误语言值直接映射为 ISO 值
   - [ ] ISO 639 语言代码 转 ISO 3166 国家区域代码
 - [ ] 添加时自动应用
+
+## Install
+
+1. Go to the [release page](https://github.com/northword/zotero-format-metadata/releases/) to download [the latest .xpi file](https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-format-metadata.xpi).  
+If you are in mainland China or cannot access GitHub easily, you can go to the mirror site to download.
+    - Jsdeliver
+    - Gitee
+2. Drag it into the Zotero add-on manager. [How to install a Zotero addon](https://zotero.yuque.com/staff-gkhviy/zotero/addons#B2kU3).
+
+## Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md).
 
 ## Licence
 
@@ -41,3 +55,10 @@ The code of the following plug-ins was referenced during the development of this
 
 - [redleafnew/zotero-updateifsE](https://github.com/redleafnew/zotero-updateifsE)
 - [zoushucai/zotero-journalabbr](https://github.com/zoushucai/zotero-journalabbr)
+
+The following data sets were used:
+
+- [ISO 639-3](https://github.com/wooorm/iso-639-3)
+  - [Map of ISO 639-3 to ISO 639-1](https://github.com/amitbend/iso-639-3-to-1/blob/master/6393-6391.json)
+- [JabRef/abbr.jabref.org](https://github.com/JabRef/abbrv.jabref.org)
+- [中华人民共和国教育部：全国高等学校名单](http://www.moe.gov.cn/jyb_xxgk/s5743/s5744/A03/202110/t20211025_574874.html)
