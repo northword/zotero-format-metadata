@@ -1,7 +1,7 @@
 import { config } from "../../package.json";
 import { getString } from "./locale";
 
-function example(
+export function descriptor(
   target: any,
   propertyKey: string | symbol,
   descriptor: PropertyDescriptor
@@ -9,10 +9,10 @@ function example(
   const original = descriptor.value;
   descriptor.value = function (...args: any) {
     try {
-      ztoolkit.log(`Calling example ${target.name}.${String(propertyKey)}`);
+      ztoolkit.log(`Calling ${target.name}.${String(propertyKey)}`);
       return original.apply(this, args);
     } catch (e) {
-      ztoolkit.log(`Error in example ${target.name}.${String(propertyKey)}`, e);
+      ztoolkit.log(`Error in ${target.name}.${String(propertyKey)}`, e);
       throw e;
     }
   };
@@ -20,7 +20,7 @@ function example(
 }
 
 export class BasicExampleFactory {
-  @example
+  @descriptor
   static registerNotifier() {
     const callback = {
       notify: async (
@@ -54,7 +54,7 @@ export class BasicExampleFactory {
     );
   }
 
-  @example
+  @descriptor
   static exampleNotifierCallback() {
     new ztoolkit.ProgressWindow(config.addonName)
       .createLine({
@@ -65,12 +65,12 @@ export class BasicExampleFactory {
       .show();
   }
 
-  @example
+  @descriptor
   private static unregisterNotifier(notifierID: string) {
     Zotero.Notifier.unregisterObserver(notifierID);
   }
 
-  @example
+  @descriptor
   static registerPrefs() {
     const prefOptions = {
       pluginID: config.addonID,
@@ -85,7 +85,7 @@ export class BasicExampleFactory {
 }
 
 export class KeyExampleFactory {
-  @example
+  @descriptor
   static registerShortcuts() {
     const keysetId = `${config.addonRef}-keyset`;
     const cmdsetId = `${config.addonRef}-cmdset`;
@@ -144,7 +144,7 @@ export class KeyExampleFactory {
       .show();
   }
 
-  @example
+  @descriptor
   static exampleShortcutLargerCallback() {
     new ztoolkit.ProgressWindow(config.addonName)
       .createLine({
@@ -154,7 +154,7 @@ export class KeyExampleFactory {
       .show();
   }
 
-  @example
+  @descriptor
   static exampleShortcutSmallerCallback() {
     new ztoolkit.ProgressWindow(config.addonName)
       .createLine({
@@ -164,7 +164,7 @@ export class KeyExampleFactory {
       .show();
   }
 
-  @example
+  @descriptor
   static exampleShortcutConflictingCallback() {
     const conflictingGroups = ztoolkit.Shortcut.checkAllKeyConflicting();
     new ztoolkit.ProgressWindow("Check Key Conflicting")
@@ -182,7 +182,7 @@ export class KeyExampleFactory {
 }
 
 export class UIExampleFactory {
-  @example
+  @descriptor
   static registerStyleSheet() {
     const styles = ztoolkit.UI.createElement(document, "link", {
       properties: {
@@ -197,7 +197,7 @@ export class UIExampleFactory {
       ?.classList.add("makeItRed");
   }
 
-  @example
+  @descriptor
   static registerRightClickMenuItem() {
     const menuIcon = `chrome://${config.addonRef}/content/icons/favicon@0.5x.png`;
     // item menuitem with icon
@@ -210,7 +210,7 @@ export class UIExampleFactory {
     });
   }
 
-  @example
+  @descriptor
   static registerRightClickMenuPopup() {
     ztoolkit.Menu.register(
       "item",
@@ -232,7 +232,7 @@ export class UIExampleFactory {
     );
   }
 
-  @example
+  @descriptor
   static registerWindowMenuWithSeparator() {
     ztoolkit.Menu.register("menuFile", {
       tag: "menuseparator",
@@ -245,7 +245,7 @@ export class UIExampleFactory {
     });
   }
 
-  @example
+  @descriptor
   static async registerExtraColumn() {
     await ztoolkit.ItemTree.register(
       "test1",
@@ -264,7 +264,7 @@ export class UIExampleFactory {
     );
   }
 
-  @example
+  @descriptor
   static async registerExtraColumnWithCustomCell() {
     await ztoolkit.ItemTree.register(
       "test2",
@@ -291,7 +291,7 @@ export class UIExampleFactory {
     );
   }
 
-  @example
+  @descriptor
   static async registerCustomCellRenderer() {
     await ztoolkit.ItemTree.addRenderCellHook(
       "title",
@@ -305,7 +305,7 @@ export class UIExampleFactory {
     await ztoolkit.ItemTree.refresh();
   }
 
-  @example
+  @descriptor
   static async registerCustomItemBoxRow() {
     await ztoolkit.ItemBox.register(
       "itemBoxFieldEditable",
@@ -345,7 +345,7 @@ export class UIExampleFactory {
     );
   }
 
-  @example
+  @descriptor
   static registerLibraryTabPanel() {
     const tabId = ztoolkit.LibraryTabPanel.register(
       getString("tabpanel.lib.tab.label"),
@@ -389,7 +389,7 @@ export class UIExampleFactory {
     );
   }
 
-  @example
+  @descriptor
   static async registerReaderTabPanel() {
     const tabId = await ztoolkit.ReaderTabPanel.register(
       getString("tabpanel.reader.tab.label"),
@@ -463,7 +463,7 @@ export class UIExampleFactory {
 }
 
 export class PromptExampleFactory {
-  @example
+  @descriptor
   static registerNormalCommandExample() {
     ztoolkit.Prompt.register([
       {
@@ -476,7 +476,7 @@ export class PromptExampleFactory {
     ]);
   }
 
-  @example
+  @descriptor
   static registerAnonymousCommandExample() {
     ztoolkit.Prompt.register([
       {
@@ -675,7 +675,7 @@ export class PromptExampleFactory {
     ]);
   }
 
-  @example
+  @descriptor
   static registerConditionalCommandExample() {
     ztoolkit.Prompt.register([
       {
@@ -704,7 +704,7 @@ export class PromptExampleFactory {
 }
 
 export class HelperExampleFactory {
-  @example
+  @descriptor
   static async dialogExample() {
     const dialogData: { [key: string | number]: any } = {
       inputValue: "test",
@@ -929,7 +929,7 @@ export class HelperExampleFactory {
     ztoolkit.log(dialogData);
   }
 
-  @example
+  @descriptor
   static clipboardExample() {
     new ztoolkit.Clipboard()
       .addText(
@@ -944,7 +944,7 @@ export class HelperExampleFactory {
     ztoolkit.getGlobal("alert")("Copied!");
   }
 
-  @example
+  @descriptor
   static async filePickerExample() {
     const path = await new ztoolkit.FilePicker(
       "Import File",
@@ -958,7 +958,7 @@ export class HelperExampleFactory {
     ztoolkit.getGlobal("alert")(`Selected ${path}`);
   }
 
-  @example
+  @descriptor
   static progressWindowExample() {
     new ztoolkit.ProgressWindow(config.addonName)
       .createLine({
@@ -969,7 +969,7 @@ export class HelperExampleFactory {
       .show();
   }
 
-  @example
+  @descriptor
   static progressWindow(text:string, type: string = "success", progress: number = 100) {
     new ztoolkit.ProgressWindow(config.addonName)
       .createLine({
@@ -979,7 +979,7 @@ export class HelperExampleFactory {
       })
       .show();
   }
-  @example
+  @descriptor
   static progressWindowChange(text:string, type: string = "success", progress: number = 100) {
     new ztoolkit.ProgressWindow(config.addonName)
       // .createLine({
@@ -996,7 +996,7 @@ export class HelperExampleFactory {
       .show();
   }
 
-  @example
+  @descriptor
   static vtableExample() {
     ztoolkit.getGlobal("alert")("See src/modules/preferenceScript.ts");
   }

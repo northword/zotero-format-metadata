@@ -1,14 +1,17 @@
 import { config } from "../../package.json";
 import Addon from "../addon";
-import journalAbbrISO4 from "../data/journal-abbr/journal-abbr-iso4";
+import journalAbbrlocalData from "../data/journal-abbr/journal-abbr-iso4";
 import universityPlace from "../data/university-list/university-place";
 import { HelperExampleFactory } from "./examples";
 import { franc } from "franc";
 import iso6393To6391 from "../data/iso-693-3-to-1";
+import { getPref } from "./untils";
+import { descriptor } from "./examples";
 
 interface dict {
     [key: string]: string;
 }
+
 
 export default class FormatMetadata {
     static getSelection() {
@@ -38,11 +41,13 @@ export default class FormatMetadata {
         const text = getSelection();
     }
 
+    @descriptor
     static unimplemented() {
         ztoolkit.log("此功能尚未实现。");
         window.alert("此功能尚未实现。");
     }
 
+    @descriptor
     getItems() {
         return Zotero.getActiveZoteroPane().getSelectedItems();
     }
@@ -61,43 +66,25 @@ export default class FormatMetadata {
 
     /* 期刊 */
 
+    @descriptor
     static async updateJournalAbbrBatch() {
         const items = Zotero.getActiveZoteroPane().getSelectedItems();
         var num = 0;
         HelperExampleFactory.progressWindow(`Progressing...\nPlease wait.`, "info", (num / items.length) * 100);
         for (const item of items) {
-            this.updateJournalAbbr(item, journalAbbrISO4);
+            await this.updateJournalAbbr(item);
             num++;
             // HelperExampleFactory.progressWindow(`${num}/${items.length}`, 'success', num/items.length*100 );
         }
         HelperExampleFactory.progressWindow(`Done!`, "success", 100);
     }
 
-    static async updateJournalAbbr(item: Zotero.Item, dataBase: dict = journalAbbrISO4) {
+    @descriptor
+    static async updateJournalAbbr(item: Zotero.Item) {
         try {
             var publicationTitle = item.getField("publicationTitle") as string;
-            var journalAbbr = this.getJournalAbbr(publicationTitle, dataBase);
-
-            // 有缩写的，获取首选项，是否处理为 ISO dotless 或 JCR 格式
-            if (journalAbbr !== "") {
-                switch (Zotero.Prefs.get(`extensions.zotero.${config.addonRef}.abbr.type`, true)) {
-                    case "ISO4dot":
-                        break;
-                    case "ISO4dotless":
-                        journalAbbr = this.removeDot(journalAbbr);
-                        break;
-                    case "JCR":
-                        journalAbbr = this.toJCR(journalAbbr);
-                    default:
-                        break;
-                }
-            } else {
-                // 无期刊缩写的，获取首选项，判断是否以全称替代
-                if (Zotero.Prefs.get(`extensions.zotero.${config.addonRef}.abbr.usefull`, true)) {
-                    journalAbbr = publicationTitle;
-                }
-            }
-
+            var journalAbbr = await this.getJournalAbbr(publicationTitle);
+            ztoolkit.log(publicationTitle, journalAbbr);
             item.setField("journalAbbreviation", journalAbbr);
             await item.saveTx();
         } catch (error) {
@@ -105,37 +92,81 @@ export default class FormatMetadata {
         }
     }
 
-    static getJournalAbbr(publicationTitle: string, dataBase: dict = journalAbbrISO4) {
-        publicationTitle = publicationTitle.toLowerCase().trim();
-        var journalAbbr = dataBase[publicationTitle];
-        if (!(journalAbbr == "" || journalAbbr == null || journalAbbr == undefined)) {
-            return journalAbbr;
-        } else {
-            ztoolkit.log(`${publicationTitle} do not have a abbr. in journalAbbrISO4`);
-
-            // 无缩写：去掉前置的 “the” 后再次匹配
-            var journalAbbr = dataBase[publicationTitle.replace("the", "").trim()];
-            if (!(journalAbbr == "" || journalAbbr == null || journalAbbr == undefined)) {
-                ztoolkit.log(
-                    `The "the" in ${publicationTitle} was removed and the abbreviation was successfully matched.`
-                );
-                return journalAbbr;
+    @descriptor
+    static async getJournalAbbr(publicationTitle: string) {
+        // 1. 从本地数据集获取缩写
+        var journalAbbrISO4 = this.getAbbrIso4Locally(publicationTitle, journalAbbrlocalData);
+        // 2. 本地无缩写，是否从 ISSN LTWA 推断完整期刊缩写
+        if (!journalAbbrISO4) {
+            if (getPref("abbr.infer")) {
+                ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} inferring from LTWA`);
+                journalAbbrISO4 = await this.getAbbrFromLTWA(publicationTitle);
             }
-
+        }
+        // 有缩写的，是否处理为 ISO dotless 或 JCR 格式
+        if (journalAbbrISO4) {
+            switch (getPref("abbr.type")) {
+                case "ISO4dot":
+                    return journalAbbrISO4;
+                case "ISO4dotless":
+                    return this.removeDot(journalAbbrISO4);
+                case "JCR":
+                    return this.toJCR(journalAbbrISO4);
+                default:
+                    return journalAbbrISO4;
+            }
+        } else {
+            // 无缩写的，是否以全称替代
+            if (getPref("abbr.usefull")) {
+                ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
+                return publicationTitle;
+            }
+            // 无缩写且不以全称替代，返回空值
             return "";
         }
     }
 
+    @descriptor
+    static getAbbrIso4Locally(publicationTitle: string, dataBase: dict = journalAbbrlocalData) {
+        // 处理传入文本
+        publicationTitle = publicationTitle.toLowerCase().trim();
+        publicationTitle.startsWith("the ") ?? publicationTitle.replace("the", "");
+        // 在本地数据里查找
+        var journalAbbr = dataBase[publicationTitle];
+        if (journalAbbr == "" || journalAbbr == null || journalAbbr == undefined) {
+            ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} do not exist in local dataset`);
+            return false;
+        } else {
+            return journalAbbr;
+        }
+    }
+
+    @descriptor
+    static async getAbbrFromLTWA(publicationTitle: string) {
+        ztoolkit.log("[Abbr] getAbbrFromLTWA()得到的参数为", publicationTitle);
+        var publicationTitle = encodeURI(publicationTitle);
+        var url = `https://abbreviso.toolforge.org/abbreviso/a/${publicationTitle}`;
+        const res = (await Zotero.HTTP.request("GET", url).response) as string;
+        if (res == "" || res == null || res == undefined) {
+            ztoolkit.log("The abbr. inferring from LTWA failed");
+            return false;
+        }
+        return res;
+    }
+
+    @descriptor
     static removeDot(text: string) {
         return text.replace(/\./g, "");
     }
 
+    @descriptor
     static toJCR(text: string) {
         return this.removeDot(text).toUpperCase();
     }
 
     /* 学校地点 */
 
+    @descriptor
     static async updateUniversityPlaceBatch() {
         const items = Zotero.getActiveZoteroPane().getSelectedItems();
         var num = 0;
@@ -148,6 +179,7 @@ export default class FormatMetadata {
         HelperExampleFactory.progressWindow(`Done!`, "success", 100);
     }
 
+    @descriptor
     static async updateUniversityPlace(item: Zotero.Item, dataBase: dict = universityPlace) {
         try {
             var university = item.getField("university") as string;
@@ -159,6 +191,7 @@ export default class FormatMetadata {
         }
     }
 
+    @descriptor
     static getUniversityPlace(university: string, dataBase: dict) {
         var place = dataBase[university];
         if (place == "" || place == null || place == undefined) {
@@ -169,6 +202,9 @@ export default class FormatMetadata {
         }
     }
 
+    /* 条目语言 */
+
+    @descriptor
     static async updateLanguageBatch() {
         const items = Zotero.getActiveZoteroPane().getSelectedItems();
         var num = 0;
@@ -184,6 +220,7 @@ export default class FormatMetadata {
         HelperExampleFactory.progressWindow(`Done!`, "success", 100);
     }
 
+    @descriptor
     static async updateLanguage(item: Zotero.Item) {
         const title = item.getField("title") as string;
 
@@ -199,6 +236,7 @@ export default class FormatMetadata {
         }
     }
 
+    @descriptor
     static getTextLanguage(text: string) {
         // 替换 title 中的 HTML 标签以降低 franc 识别错误
         text = this.delHtmlTag(text);
@@ -210,16 +248,17 @@ export default class FormatMetadata {
         const francOption = {
             only: allowLanguage,
         };
-        if (Zotero.Prefs.get(`extensions.zotero.${config.addonRef}.lang.only.enable`, true)) {
-            Zotero.Prefs.get(`extensions.zotero.${config.addonRef}.lang.cmn`, true) ?? allowLanguage.push("cmn");
-            Zotero.Prefs.get(`extensions.zotero.${config.addonRef}.lang.eng`, true) ?? allowLanguage.push("eng");
-            const otherLang = Zotero.Prefs.get(`extensions.zotero.${config.addonRef}.lang.other`, true) as string;
+        if (getPref("lang.only.enable")) {
+            getPref("lang.cmn") ?? allowLanguage.push("cmn");
+            getPref("lang.eng") ?? allowLanguage.push("eng");
+            const otherLang = getPref("lang.other") as string;
             otherLang !== "" ?? allowLanguage.push.apply(otherLang.split(","));
         }
         ztoolkit.log("Selected ISO 639-3 code is: ", allowLanguage);
         return franc(text, francOption);
     }
 
+    @descriptor
     static delHtmlTag(str: string) {
         return str.replace(/<[^>]+>/g, "");
     }

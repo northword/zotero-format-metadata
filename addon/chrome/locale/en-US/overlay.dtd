@@ -5,6 +5,7 @@
 <!ENTITY zotero.__addonRef__.pref.input.label "输入">
 
 <!ENTITY zotero.__addonRef__.pref.abbr.type "期刊缩写的类型">
+<!ENTITY zotero.__addonRef__.pref.abbr.infer.label "没有期刊缩写时自动推断缩写">
 <!ENTITY zotero.__addonRef__.pref.abbr.usefull.label "没有期刊缩写时使用全称代替">
 
 <!ENTITY zotero.__addonRef__.pref.lang.allow.label "限制常用语言">

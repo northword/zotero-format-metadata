@@ -1,5 +1,6 @@
 import { config } from "../../package.json";
 import { getString } from "./locale";
+import { getPref } from "./untils";
 
 export function registerPrefs() {
     const prefOptions = {
@@ -127,7 +128,7 @@ function bindPrefEvents() {
     // const _document = addon.data.prefs!.window.document;
 
     // addon.data.prefs!.window.document.querySelector(
-    //     `#zotero-prefpane-${config.addonRef}-enable`
+    //     `#${config.addonRef}-enable`
     //   )
     //   ?.addEventListener("command", (e) => {
     //     ztoolkit.log(e);
@@ -137,7 +138,7 @@ function bindPrefEvents() {
     //   });
 
     //   addon.data.prefs!.window.document.querySelector(
-    //     `#zotero-prefpane-${config.addonRef}-input`
+    //     `#${config.addonRef}-input`
     //   )
     //   ?.addEventListener("change", (e) => {
     //     ztoolkit.log(e);
@@ -147,7 +148,7 @@ function bindPrefEvents() {
     //   });
 
     addon.data
-        .prefs!.window.document.querySelector(`#zotero-prefpane-${config.addonRef}-lang-only-enable`)
+        .prefs!.window.document.querySelector(`#${config.addonRef}-lang-only-enable`)
         ?.addEventListener("command", (e) => {
             ztoolkit.log(e);
             disablePrefsLang();
@@ -155,14 +156,14 @@ function bindPrefEvents() {
 }
 
 function disablePrefsLang() {
-    const state = Zotero.Prefs.get(`extensions.zotero.${config.addonRef}.lang.only.enable`, true);
+    const state = getPref("lang.only.enable");
     addon.data
-        .prefs!.window.document.getElementById(`zotero-prefpane-${config.addonRef}-lang-only-cmn`)!
+        .prefs!.window.document.getElementById(`${config.addonRef}-lang-only-cmn`)!
         .setAttribute("disabled", String(!state));
     addon.data
-        .prefs!.window.document.getElementById(`zotero-prefpane-${config.addonRef}-lang-only-eng`)!
+        .prefs!.window.document.getElementById(`${config.addonRef}-lang-only-eng`)!
         .setAttribute("disabled", String(!state));
     addon.data
-        .prefs!.window.document.getElementById(`zotero-prefpane-${config.addonRef}-lang-only-other`)!
+        .prefs!.window.document.getElementById(`${config.addonRef}-lang-only-other`)!
         .setAttribute("disabled", String(state));
 }
