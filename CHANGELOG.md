@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Added
 
 - 当无缩写时，从 ISSN LTWA 推断其缩写
-- 重构批量执行部分代码，提高代码可读性和可维护性
+- 重构部分代码，提高代码可读性和可维护性，减少判断次数
 
 ## [0.0.6] - 2023-03-25
 

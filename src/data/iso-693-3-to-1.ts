@@ -1,9 +1,6 @@
 // https://github.com/amitbend/iso-639-3-to-1/blob/master/6393-6391.json
-interface iso6393To6391 {
-    [key: string]: string
-}
 
-export default<iso6393To6391> {
+export default {
     aae: "sq",
     aao: "ar",
     aar: "aa",

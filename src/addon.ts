@@ -1,5 +1,4 @@
 import ZoteroToolkit from "zotero-plugin-toolkit/dist/index";
-// import { ColumnOptions } from "zotero-plugin-toolkit/dist/helpers/virtualizedTable";
 import hooks from "./hooks";
 
 class Addon {
@@ -14,8 +13,6 @@ class Addon {
     };
     prefs?: {
       window: Window;
-      // columns: Array<ColumnOptions>;
-      // rows: Array<{ [dataKey: string]: string }>;
     };
   };
   // Lifecycle hooks
@@ -50,23 +47,23 @@ class Addon {
  * You can now add the modules under the `MyToolkit` class.
  */
 
-import { BasicTool, unregister } from "zotero-plugin-toolkit/dist/basic";
-import { UITool } from "zotero-plugin-toolkit/dist/tools/ui";
-import { PreferencePaneManager } from "zotero-plugin-toolkit/dist/managers/preferencePane";
+// import { BasicTool, unregister } from "zotero-plugin-toolkit/dist/basic";
+// import { UITool } from "zotero-plugin-toolkit/dist/tools/ui";
+// import { PreferencePaneManager } from "zotero-plugin-toolkit/dist/managers/preferencePane";
 
-export class MyToolkit extends BasicTool {
-  UI: UITool;
-  PreferencePane: PreferencePaneManager;
+// export class MyToolkit extends BasicTool {
+//   UI: UITool;
+//   PreferencePane: PreferencePaneManager;
 
-  constructor() {
-    super();
-    this.UI = new UITool(this);
-    this.PreferencePane = new PreferencePaneManager(this);
-  }
+//   constructor() {
+//     super();
+//     this.UI = new UITool(this);
+//     this.PreferencePane = new PreferencePaneManager(this);
+//   }
 
-  unregisterAll() {
-    unregister(this);
-  }
-}
+//   unregisterAll() {
+//     unregister(this);
+//   }
+// }
 
 export default Addon;

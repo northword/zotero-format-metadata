@@ -38,14 +38,14 @@ export function registerMenu() {
                 tag: "menuitem",
                 label: "期刊缩写", //getString("menuitem.submenulabel"),
                 commandListener: (ev) => {
-                    formatMetadata.updateBatch("abbr");;
+                    formatMetadata.updateBatch("abbr");
                 },
             },
             {
                 tag: "menuitem",
                 label: "学校地点", //getString("menuitem.submenulabel"),
                 commandListener: (ev) => {
-                    formatMetadata.updateBatch("place");;
+                    formatMetadata.updateBatch("place");
                 },
             },
             {
@@ -68,7 +68,7 @@ export function registerMenu() {
                 tag: "menuitem",
                 label: "自动设置语言", //getString("menuitem.submenulabel"),
                 commandListener: (ev) => {
-                    formatMetadata.updateBatch("lang");;
+                    formatMetadata.updateBatch("lang");
                 },
                 disabled: true,
             },

@@ -1,72 +1,17 @@
-import { config } from "../../package.json";
-import Addon from "../addon";
-import journalAbbrlocalData from "../data/journal-abbr/journal-abbr-iso4";
-import universityPlace from "../data/university-list/university-place";
-import iso6393To6391 from "../data/iso-693-3-to-1";
+import { journalAbbrlocalData, universityPlaceLocalData, iso6393To6391Data } from "../data/helper";
 import { HelperExampleFactory, descriptor } from "./examples";
 import { franc } from "franc";
-import { getPref } from "./untils";
+import { getPref } from "./preference";
 // import { getAbbrFromLtwaLocally } from "./abbrevIso";
-
-interface dict {
-    [key: string]: string;
-}
 
 export default class FormatMetadata {
     constructor() {}
-
-    static getSelection() {
-        const editpaneItemBox = document.activeElement;
-        if (editpaneItemBox?.id == "zotero-editpane-item-box" && editpaneItemBox.shadowRoot) {
-            const textAreaElement = editpaneItemBox.shadowRoot.activeElement as HTMLInputElement | null;
-            if (textAreaElement) {
-                const text = textAreaElement.value.substring(
-                    textAreaElement.selectionStart!,
-                    textAreaElement.selectionEnd!
-                );
-                if (text) {
-                    //console.log(textAreaElement, text, textAreaElement.selectionStart, textAreaElement.selectionEnd);
-                    return text;
-                } else {
-                    ztoolkit.log("[MetaFormat] 未选择待替换文本");
-                }
-            } else {
-                ztoolkit.log("[MetaFormat] 焦点未在文本输入元素");
-            }
-        } else {
-            ztoolkit.log("[MetaFormat] 焦点未在可编辑区");
-        }
-    }
-
-    static sub() {
-        const text = getSelection();
-    }
 
     @descriptor
     static unimplemented() {
         ztoolkit.log("此功能尚未实现。");
         window.alert("此功能尚未实现。");
     }
-
-    @descriptor
-    getItems() {
-        return Zotero.getActiveZoteroPane().getSelectedItems();
-    }
-
-    // // 旧的批量更新通用函数，保留备用
-    // // 会导致 callback 里的 this 为 undifined ，弃用。
-    // @descriptor
-    // static updateBatch(callback: (item: Zotero.Item) => void) {
-    //     const items = Zotero.getActiveZoteroPane().getSelectedItems();
-    //     var num = 0;
-    //     HelperExampleFactory.progressWindow(`Progressing...\nPlease wait.`, "info", (num / items.length) * 100);
-    //     for (const item of items) {
-    //         callback(item);
-    //         num++;
-    //         // HelperExampleFactory.progressWindow(`${num}/${items.length}`, 'success', num/items.length*100 );
-    //     }
-    //     HelperExampleFactory.progressWindow(`Done!`, "success", 100);
-    // }
 
     @descriptor
     static updateBatch(mode: string) {
@@ -113,20 +58,6 @@ export default class FormatMetadata {
 
     /* 期刊 */
 
-    // // 旧的批量更新函数，保留备用
-    // @descriptor
-    // static async updateJournalAbbrBatch() {
-    //     const items = Zotero.getActiveZoteroPane().getSelectedItems();
-    //     var num = 0;
-    //     HelperExampleFactory.progressWindow(`Progressing...\nPlease wait.`, "info", (num / items.length) * 100);
-    //     for (const item of items) {
-    //         await this.updateJournalAbbr(item);
-    //         num++;
-    //         // HelperExampleFactory.progressWindow(`${num}/${items.length}`, 'success', num/items.length*100 );
-    //     }
-    //     HelperExampleFactory.progressWindow(`Done!`, "success", 100);
-    // }
-
     @descriptor
     static async updateJournalAbbr(item: Zotero.Item) {
         if (item.itemType == "journalArticle" || item.itemType == "conferencePaper") {
@@ -135,7 +66,6 @@ export default class FormatMetadata {
                 try {
                     var publicationTitle = item.getField("publicationTitle") as string;
                     var journalAbbr = await this.getJournalAbbr(publicationTitle);
-                    ztoolkit.log(publicationTitle, journalAbbr);
                     item.setField("journalAbbreviation", journalAbbr);
                     await item.saveTx();
                 } catch (error) {
@@ -157,7 +87,7 @@ export default class FormatMetadata {
         if (!journalAbbrISO4) {
             if (getPref("abbr.infer")) {
                 ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} inferring from LTWA`);
-                journalAbbrISO4 = await this.getAbbrFromLTWA(publicationTitle);
+                journalAbbrISO4 = await this.getAbbrFromLTWAOnline(publicationTitle);
                 // journalAbbrISO4 = getAbbrFromLtwaLocally(publicationTitle);
             }
         }
@@ -185,7 +115,7 @@ export default class FormatMetadata {
     }
 
     @descriptor
-    static getAbbrIso4Locally(publicationTitle: string, dataBase: dict = journalAbbrlocalData) {
+    static getAbbrIso4Locally(publicationTitle: string, dataBase = journalAbbrlocalData) {
         // 处理传入文本
         publicationTitle = publicationTitle.toLowerCase().trim();
         publicationTitle.startsWith("the ") ?? publicationTitle.replace("the", "");
@@ -200,10 +130,10 @@ export default class FormatMetadata {
     }
 
     @descriptor
-    static async getAbbrFromLTWA(publicationTitle: string) {
+    static async getAbbrFromLTWAOnline(publicationTitle: string) {
         publicationTitle = encodeURI(publicationTitle);
         var url = `https://abbreviso.toolforge.org/abbreviso/a/${publicationTitle}`;
-        const res = await Zotero.HTTP.request("GET", url)
+        const res = await Zotero.HTTP.request("GET", url);
         const result = res.response as string;
         if (result == "" || result == null || result == undefined) {
             ztoolkit.log("[Abbr] Failed to infer the abbr. inferring from LTWA");
@@ -225,26 +155,26 @@ export default class FormatMetadata {
     /* 学校地点 */
 
     @descriptor
-    static async updateUniversityPlace(item: Zotero.Item, dataBase: dict = universityPlace) {
+    static async updateUniversityPlace(item: Zotero.Item) {
         if (item.itemType == "thesis") {
             try {
                 var university = item.getField("university") as string;
-                const place = this.getUniversityPlace(university, dataBase);
+                const place = this.getUniversityPlace(university);
                 item.setField("place", place);
                 await item.saveTx();
             } catch (error) {
                 ztoolkit.log("失败", error);
             }
         } else {
-            ztoolkit.log(`[Abbr] Item type ${item.itemType} is not thesis, skip it.`);
+            ztoolkit.log(`[Place] Item type ${item.itemType} is not thesis, skip it.`);
         }
     }
 
     @descriptor
-    static getUniversityPlace(university: string, dataBase: dict) {
+    static getUniversityPlace(university: string, dataBase = universityPlaceLocalData) {
         var place = dataBase[university];
         if (place == "" || place == null || place == undefined) {
-            ztoolkit.log(`${university} do not have place in ${dataBase}`);
+            ztoolkit.log(`[Place] ${university} do not have place in local data set`);
             return "";
         } else {
             return place;
@@ -260,12 +190,12 @@ export default class FormatMetadata {
         const languageISO639_3 = this.getTextLanguage(title);
 
         if (languageISO639_3 !== "und") {
-            const languageISO639_1 = iso6393To6391[languageISO639_3];
+            const languageISO639_1 = iso6393To6391Data[languageISO639_3];
             item.setField("language", languageISO639_1);
             // TODO: ISO 639-1 或 639-3 语言代码 转 ISO 3166 国家区域代码
             await item.saveTx();
         } else {
-            HelperExampleFactory.progressWindow(`“${title}” 过短，无法判断`, "error");
+            HelperExampleFactory.progressWindow(`Failed to identify the language of text “${title}”`, "failed");
         }
     }
 
@@ -294,5 +224,35 @@ export default class FormatMetadata {
     @descriptor
     static delHtmlTag(str: string) {
         return str.replace(/<[^>]+>/g, "");
+    }
+
+    /* 上下标 */
+
+    @descriptor
+    static getSelection() {
+        const editpaneItemBox = document.activeElement;
+        if (editpaneItemBox?.id == "zotero-editpane-item-box" && editpaneItemBox.shadowRoot) {
+            const textAreaElement = editpaneItemBox.shadowRoot.activeElement as HTMLInputElement | null;
+            if (textAreaElement) {
+                const text = textAreaElement.value.substring(
+                    textAreaElement.selectionStart!,
+                    textAreaElement.selectionEnd!
+                );
+                if (text) {
+                    //console.log(textAreaElement, text, textAreaElement.selectionStart, textAreaElement.selectionEnd);
+                    return text;
+                } else {
+                    ztoolkit.log("[MetaFormat] 未选择待替换文本");
+                }
+            } else {
+                ztoolkit.log("[MetaFormat] 焦点未在文本输入元素");
+            }
+        } else {
+            ztoolkit.log("[MetaFormat] 焦点未在可编辑区");
+        }
+    }
+
+    static sub() {
+        const text = getSelection();
     }
 }
