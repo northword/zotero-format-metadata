@@ -201,15 +201,15 @@ export default class FormatMetadata {
 
     @descriptor
     static async getAbbrFromLTWA(publicationTitle: string) {
-        ztoolkit.log("[Abbr] getAbbrFromLTWA()得到的参数为", publicationTitle);
-        var publicationTitle = encodeURI(publicationTitle);
+        publicationTitle = encodeURI(publicationTitle);
         var url = `https://abbreviso.toolforge.org/abbreviso/a/${publicationTitle}`;
-        const res = (await Zotero.HTTP.request("GET", url).response) as string;
-        if (res == "" || res == null || res == undefined) {
-            ztoolkit.log("[Abbr] The abbr. inferring from LTWA failed");
+        const res = await Zotero.HTTP.request("GET", url)
+        const result = res.response as string;
+        if (result == "" || result == null || result == undefined) {
+            ztoolkit.log("[Abbr] Failed to infer the abbr. inferring from LTWA");
             return false;
         }
-        return res;
+        return result;
     }
 
     @descriptor

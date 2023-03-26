@@ -15,7 +15,7 @@ An addon for [Zotero](https://www.zotero.org/) to format item metadata.
     - [x] 本地术语表
     - [ ] API，用户自定义术语表
     - [x] 提供 ISO 4 with dot, ISO 4 without dot, 和 JCR 缩写的偏好选项
-    - [ ] 无缩写时通过 ISSN LTWA 推断缩写
+    - [x] 无缩写时通过 ISSN LTWA 推断缩写
     - [ ] 无缩写时分别是否以全称填充
 - [ ] 期刊：DOI 格式化
 - [ ] 期刊：期卷页
