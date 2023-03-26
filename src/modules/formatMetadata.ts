@@ -186,13 +186,15 @@ export default class FormatMetadata {
     @descriptor
     static async updateLanguage(item: Zotero.Item) {
         const title = item.getField("title") as string;
-
         const languageISO639_3 = this.getTextLanguage(title);
-
         if (languageISO639_3 !== "und") {
-            const languageISO639_1 = iso6393To6391Data[languageISO639_3];
-            item.setField("language", languageISO639_1);
-            // TODO: ISO 639-1 或 639-3 语言代码 转 ISO 3166 国家区域代码
+            // ISO 639-1 或 639-3 语言代码 转 ISO 3166 国家区域代码
+            // TODO: 添加更多映射
+            var language = this.toIso3166(languageISO639_3);
+            if (!language) {
+                language = this.toIso639_1(languageISO639_3);
+            }
+            item.setField("language", language);
             await item.saveTx();
         } else {
             HelperExampleFactory.progressWindow(`Failed to identify the language of text “${title}”`, "failed");
@@ -204,26 +206,47 @@ export default class FormatMetadata {
         // 替换 title 中的 HTML 标签以降低 franc 识别错误
         text = this.delHtmlTag(text);
 
-        // 文本是否少于 10 字符
-
-        // 获取限制识别语言的首选项
-        const allowLanguage = Array();
         const francOption = {
-            only: allowLanguage,
+            only: Array(),
+            minLength: 3
         };
-        if (getPref("lang.only.enable")) {
-            getPref("lang.cmn") ?? allowLanguage.push("cmn");
-            getPref("lang.eng") ?? allowLanguage.push("eng");
-            const otherLang = getPref("lang.other") as string;
-            otherLang !== "" ?? allowLanguage.push.apply(otherLang.split(","));
+        // 文本是否少于 10 字符
+        if (text.length < 10) {
+            francOption.minLength = 3
         }
-        ztoolkit.log("Selected ISO 639-3 code is: ", allowLanguage);
+        // 限制常用语言
+        if (getPref("lang.only.enable")) {
+            getPref("lang.cmn") ?? francOption.only.push("cmn");
+            getPref("lang.eng") ?? francOption.only.push("eng");
+            const otherLang = getPref("lang.other") as string;
+            otherLang !== "" ?? francOption.only.push.apply(otherLang.split(","));
+        }
+        ztoolkit.log("[lang] Selected ISO 639-3 code is: ", francOption.only);
         return franc(text, francOption);
     }
 
     @descriptor
     static delHtmlTag(str: string) {
         return str.replace(/<[^>]+>/g, "");
+    }
+
+    @descriptor
+    static toIso3166(lang: string) {
+        switch (lang) {
+            case "zh":
+            case "cmn":
+                return "zh-CN";
+            case "en":
+            case "eng":
+                return "en-US";
+            default:
+                return false;
+        }
+    }
+
+    @descriptor
+    static toIso639_1(iso639_3: string) {
+        return iso6393To6391Data[iso639_3];
     }
 
     /* 上下标 */

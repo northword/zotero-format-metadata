@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## Added
+
+- 将识别到的条目语言按 Zotero 要求保存为 ISO 3166 代码。目前仅实现了简中和英文，其他语言待办。
+
+## fixed
+
+- 修复条目标题过短时无法识别语言的问题。目前逻辑：当去除 HTML 标签后标题长度小于 10 时，将 franc 最小长度降低为 3 .
+
 ## [0.0.7] - 2023-03-26
 
 ## Added
