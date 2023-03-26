@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.7] - 2023-03-26
+
 ## Added
 
 - 当无缩写时，从 ISSN LTWA 推断其缩写
@@ -60,7 +62,8 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/0.0.6...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/0.0.7...HEAD
+[0.0.7]: https://github.com/northword/zotero-format-metadata/compare/0.0.6...0.0.7
 [0.0.6]: https://github.com/northword/zotero-format-metadata/compare/0.0.5...0.0.6
 [0.0.5]: https://github.com/northword/zotero-format-metadata/compare/0.0.4...0.0.5
 [0.0.4]: https://github.com/northword/zotero-format-metadata/compare/0.0.3...0.0.4
