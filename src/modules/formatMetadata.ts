@@ -2,18 +2,19 @@ import { config } from "../../package.json";
 import Addon from "../addon";
 import journalAbbrlocalData from "../data/journal-abbr/journal-abbr-iso4";
 import universityPlace from "../data/university-list/university-place";
-import { HelperExampleFactory } from "./examples";
-import { franc } from "franc";
 import iso6393To6391 from "../data/iso-693-3-to-1";
+import { HelperExampleFactory, descriptor } from "./examples";
+import { franc } from "franc";
 import { getPref } from "./untils";
-import { descriptor } from "./examples";
+// import { getAbbrFromLtwaLocally } from "./abbrevIso";
 
 interface dict {
     [key: string]: string;
 }
 
-
 export default class FormatMetadata {
+    constructor() {}
+
     static getSelection() {
         const editpaneItemBox = document.activeElement;
         if (editpaneItemBox?.id == "zotero-editpane-item-box" && editpaneItemBox.shadowRoot) {
@@ -52,43 +53,99 @@ export default class FormatMetadata {
         return Zotero.getActiveZoteroPane().getSelectedItems();
     }
 
-    // static async updateBatch( callback ) {
+    // // 旧的批量更新通用函数，保留备用
+    // // 会导致 callback 里的 this 为 undifined ，弃用。
+    // @descriptor
+    // static updateBatch(callback: (item: Zotero.Item) => void) {
     //     const items = Zotero.getActiveZoteroPane().getSelectedItems();
     //     var num = 0;
-    //     HelperExampleFactory.progressWindow(`Progressing...\nPlease wait.`, 'info', num/items.length*100 );
+    //     HelperExampleFactory.progressWindow(`Progressing...\nPlease wait.`, "info", (num / items.length) * 100);
     //     for (const item of items) {
-    //         callback();
+    //         callback(item);
     //         num++;
     //         // HelperExampleFactory.progressWindow(`${num}/${items.length}`, 'success', num/items.length*100 );
     //     }
-    //     HelperExampleFactory.progressWindow(`Done!`, 'success', 100 );
+    //     HelperExampleFactory.progressWindow(`Done!`, "success", 100);
     // }
 
-    /* 期刊 */
-
     @descriptor
-    static async updateJournalAbbrBatch() {
+    static updateBatch(mode: string) {
         const items = Zotero.getActiveZoteroPane().getSelectedItems();
-        var num = 0;
-        HelperExampleFactory.progressWindow(`Progressing...\nPlease wait.`, "info", (num / items.length) * 100);
-        for (const item of items) {
-            await this.updateJournalAbbr(item);
-            num++;
-            // HelperExampleFactory.progressWindow(`${num}/${items.length}`, 'success', num/items.length*100 );
+        HelperExampleFactory.progressWindow(`Progressing...\nPlease wait.`, "info", 0);
+        switch (mode) {
+            case "std":
+                items.forEach((item) => {
+                    this.updateStdFlow(item);
+                }, this);
+                break;
+            case "abbr":
+                items.forEach((item) => {
+                    this.updateJournalAbbr(item);
+                }, this);
+                break;
+            case "lang":
+                items.forEach((item) => {
+                    this.updateLanguage(item);
+                }, this);
+                break;
+            case "place":
+                items.forEach((item) => {
+                    this.updateUniversityPlace(item);
+                }, this);
+                break;
+            case "doi":
+            case "date":
+            case "chem":
+            default:
+                this.unimplemented;
+                break;
         }
         HelperExampleFactory.progressWindow(`Done!`, "success", 100);
     }
 
+    static updateStdFlow(item: Zotero.Item) {
+        if (getPref("isEnableLang")) {
+            this.updateLanguage(item);
+        }
+        this.updateJournalAbbr(item);
+        this.updateUniversityPlace(item);
+    }
+
+    /* 期刊 */
+
+    // // 旧的批量更新函数，保留备用
+    // @descriptor
+    // static async updateJournalAbbrBatch() {
+    //     const items = Zotero.getActiveZoteroPane().getSelectedItems();
+    //     var num = 0;
+    //     HelperExampleFactory.progressWindow(`Progressing...\nPlease wait.`, "info", (num / items.length) * 100);
+    //     for (const item of items) {
+    //         await this.updateJournalAbbr(item);
+    //         num++;
+    //         // HelperExampleFactory.progressWindow(`${num}/${items.length}`, 'success', num/items.length*100 );
+    //     }
+    //     HelperExampleFactory.progressWindow(`Done!`, "success", 100);
+    // }
+
     @descriptor
     static async updateJournalAbbr(item: Zotero.Item) {
-        try {
-            var publicationTitle = item.getField("publicationTitle") as string;
-            var journalAbbr = await this.getJournalAbbr(publicationTitle);
-            ztoolkit.log(publicationTitle, journalAbbr);
-            item.setField("journalAbbreviation", journalAbbr);
-            await item.saveTx();
-        } catch (error) {
-            ztoolkit.log("失败", error);
+        if (item.itemType == "journalArticle" || item.itemType == "conferencePaper") {
+            if (item.getField("language") !== "zh") {
+                // 英文期刊，获取缩写
+                try {
+                    var publicationTitle = item.getField("publicationTitle") as string;
+                    var journalAbbr = await this.getJournalAbbr(publicationTitle);
+                    ztoolkit.log(publicationTitle, journalAbbr);
+                    item.setField("journalAbbreviation", journalAbbr);
+                    await item.saveTx();
+                } catch (error) {
+                    ztoolkit.log("[Abbr] Failed to update abbr, error is: ", error);
+                }
+            } else {
+                // 中文期刊，是否以全称填充
+            }
+        } else {
+            ztoolkit.log(`[Abbr] Item type ${item.itemType} is not journalArticle or conferencePaper, skip it.`);
         }
     }
 
@@ -101,6 +158,7 @@ export default class FormatMetadata {
             if (getPref("abbr.infer")) {
                 ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} inferring from LTWA`);
                 journalAbbrISO4 = await this.getAbbrFromLTWA(publicationTitle);
+                // journalAbbrISO4 = getAbbrFromLtwaLocally(publicationTitle);
             }
         }
         // 有缩写的，是否处理为 ISO dotless 或 JCR 格式
@@ -148,7 +206,7 @@ export default class FormatMetadata {
         var url = `https://abbreviso.toolforge.org/abbreviso/a/${publicationTitle}`;
         const res = (await Zotero.HTTP.request("GET", url).response) as string;
         if (res == "" || res == null || res == undefined) {
-            ztoolkit.log("The abbr. inferring from LTWA failed");
+            ztoolkit.log("[Abbr] The abbr. inferring from LTWA failed");
             return false;
         }
         return res;
@@ -167,27 +225,18 @@ export default class FormatMetadata {
     /* 学校地点 */
 
     @descriptor
-    static async updateUniversityPlaceBatch() {
-        const items = Zotero.getActiveZoteroPane().getSelectedItems();
-        var num = 0;
-        HelperExampleFactory.progressWindow(`Progressing...\nPlease wait.`, "info", (num / items.length) * 100);
-        for (const item of items) {
-            this.updateUniversityPlace(item, universityPlace);
-            num++;
-            // HelperExampleFactory.progressWindowChange(`${num}/${items.length}`, 'success', num/items.length*100 );
-        }
-        HelperExampleFactory.progressWindow(`Done!`, "success", 100);
-    }
-
-    @descriptor
     static async updateUniversityPlace(item: Zotero.Item, dataBase: dict = universityPlace) {
-        try {
-            var university = item.getField("university") as string;
-            const place = this.getUniversityPlace(university, dataBase);
-            item.setField("place", place);
-            await item.saveTx();
-        } catch (error) {
-            ztoolkit.log("失败", error);
+        if (item.itemType == "thesis") {
+            try {
+                var university = item.getField("university") as string;
+                const place = this.getUniversityPlace(university, dataBase);
+                item.setField("place", place);
+                await item.saveTx();
+            } catch (error) {
+                ztoolkit.log("失败", error);
+            }
+        } else {
+            ztoolkit.log(`[Abbr] Item type ${item.itemType} is not thesis, skip it.`);
         }
     }
 
@@ -203,22 +252,6 @@ export default class FormatMetadata {
     }
 
     /* 条目语言 */
-
-    @descriptor
-    static async updateLanguageBatch() {
-        const items = Zotero.getActiveZoteroPane().getSelectedItems();
-        var num = 0;
-        HelperExampleFactory.progressWindow(`Progressing...\nPlease wait.`, "info", (num / items.length) * 100);
-
-        for (const item of items) {
-            this.updateLanguage(item);
-            num++;
-            ztoolkit.log(num);
-            // HelperExampleFactory.progressWindow(`${num}/${items.length}`, 'success', num/items.length*100 );
-        }
-        ztoolkit.log("done");
-        HelperExampleFactory.progressWindow(`Done!`, "success", 100);
-    }
 
     @descriptor
     static async updateLanguage(item: Zotero.Item) {

@@ -12,10 +12,10 @@ export function registerMenu() {
     //     label: "test", // getString("itemmenu.translateTitle.label"),
     //     id: "zotero-itemmenu-addontemplate-test",
     //     commandListener: (ev) => {
-    //         formatMetadata.unimplemented();
+    //         // formatMetadata.updateBatch(formatMetadata.updateJournalAbbr);
+    //         formatMetadata.updateBatch("abbr");
     //     },
     //     icon: menuIcon,
-    //     disabled: true,
     // });
 
     ztoolkit.Menu.register("item", {
@@ -38,14 +38,14 @@ export function registerMenu() {
                 tag: "menuitem",
                 label: "期刊缩写", //getString("menuitem.submenulabel"),
                 commandListener: (ev) => {
-                    formatMetadata.updateJournalAbbrBatch();
+                    formatMetadata.updateBatch("abbr");;
                 },
             },
             {
                 tag: "menuitem",
                 label: "学校地点", //getString("menuitem.submenulabel"),
                 commandListener: (ev) => {
-                    formatMetadata.updateUniversityPlaceBatch();
+                    formatMetadata.updateBatch("place");;
                 },
             },
             {
@@ -68,7 +68,7 @@ export function registerMenu() {
                 tag: "menuitem",
                 label: "自动设置语言", //getString("menuitem.submenulabel"),
                 commandListener: (ev) => {
-                    formatMetadata.updateLanguageBatch();
+                    formatMetadata.updateBatch("lang");;
                 },
                 disabled: true,
             },
