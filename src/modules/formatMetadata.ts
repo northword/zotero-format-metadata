@@ -1,7 +1,7 @@
 import { journalAbbrlocalData, universityPlaceLocalData, iso6393To6391Data } from "../data/helper";
-import { HelperExampleFactory, descriptor } from "./examples";
 import { franc } from "franc";
 import { getPref } from "./preference";
+import { descriptor, progressWindow } from "./untils";
 // import { getAbbrFromLtwaLocally } from "./abbrevIso";
 
 export default class FormatMetadata {
@@ -212,7 +212,7 @@ export default class FormatMetadata {
             item.setField("language", language);
             await item.saveTx();
         } else {
-            HelperExampleFactory.progressWindow(`Failed to identify the language of text “${title}”`, "failed");
+            progressWindow(`Failed to identify the language of text “${title}”`, "failed");
         }
     }
 

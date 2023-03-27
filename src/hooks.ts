@@ -1,14 +1,10 @@
-import {
-    BasicExampleFactory,
-    HelperExampleFactory,
-    KeyExampleFactory,
-    PromptExampleFactory,
-    UIExampleFactory,
-} from "./modules/examples";
 import { config } from "../package.json";
 import { getString, initLocale } from "./modules/locale";
 import { registerPrefs, registerPrefsScripts } from "./modules/preference";
 import { registerMenu } from "./modules/menu";
+import { registerShortcuts } from "./modules/shortcuts";
+import { registerPrompt } from "./modules/prompt";
+import { progressWindow } from "./modules/untils";
 import FormatMetadata from "./modules/formatMetadata";
 
 async function onStartup() {
@@ -31,7 +27,7 @@ async function onStartup() {
 
     // BasicExampleFactory.registerNotifier();
 
-    // KeyExampleFactory.registerShortcuts();
+    // registerShortcuts();
 
     await Zotero.Promise.delay(1000);
     popupWin.changeLine({
@@ -64,7 +60,7 @@ async function onNotify(event: string, type: string, ids: Array<string | number>
     // You can add your code to the corresponding notify type
     ztoolkit.log("notify", event, type, ids, extraData);
     if (event == "select" && type == "tab" && extraData[ids[0]].type == "reader") {
-        BasicExampleFactory.exampleNotifierCallback();
+        // BasicExampleFactory.exampleNotifierCallback();
     } else {
         return;
     }
@@ -89,35 +85,10 @@ async function onPrefsEvent(type: string, data: { [key: string]: any }) {
 function onShortcuts(type: string) {
     switch (type) {
         case "larger":
-            KeyExampleFactory.exampleShortcutLargerCallback();
-            break;
-        case "smaller":
-            KeyExampleFactory.exampleShortcutSmallerCallback();
+            // KeyExampleFactory.exampleShortcutLargerCallback();
             break;
         case "confliction":
-            KeyExampleFactory.exampleShortcutConflictingCallback();
-            break;
-        default:
-            break;
-    }
-}
-
-function onDialogEvents(type: string) {
-    switch (type) {
-        case "dialogExample":
-            HelperExampleFactory.dialogExample();
-            break;
-        case "clipboardExample":
-            HelperExampleFactory.clipboardExample();
-            break;
-        case "filePickerExample":
-            HelperExampleFactory.filePickerExample();
-            break;
-        case "progressWindowExample":
-            HelperExampleFactory.progressWindowExample();
-            break;
-        case "vtableExample":
-            HelperExampleFactory.vtableExample();
+            // KeyExampleFactory.exampleShortcutConflictingCallback();
             break;
         default:
             break;
@@ -130,7 +101,7 @@ function onDialogEvents(type: string) {
 
 function onUpdateInBatch(mode: string) {
     const items = Zotero.getActiveZoteroPane().getSelectedItems();
-    HelperExampleFactory.progressWindow(`Progressing...\nPlease wait.`, "info", 0);
+    progressWindow(`Progressing...\nPlease wait.`, "info", 0);
     switch (mode) {
         case "std":
             items.forEach((item) => {
@@ -159,7 +130,7 @@ function onUpdateInBatch(mode: string) {
             FormatMetadata.unimplemented();
             break;
     }
-    HelperExampleFactory.progressWindow(`Done!`, "success", 100);
+    progressWindow(`Done!`, "success", 100);
 }
 
 export default {
@@ -168,6 +139,5 @@ export default {
     onNotify,
     onPrefsEvent,
     onShortcuts,
-    // onDialogEvents,
     onUpdateInBatch,
 };

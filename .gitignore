@@ -2,8 +2,9 @@
 node_modules
 package-lock.json
 zotero-cmd.json
-**/*.bak
-**/*.new
 
 # tmp
+**/*.bak
+**/*.new
+**/examples.ts
 **/abbrevIso*
