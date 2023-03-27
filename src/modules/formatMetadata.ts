@@ -48,6 +48,10 @@ export default class FormatMetadata {
         HelperExampleFactory.progressWindow(`Done!`, "success", 100);
     }
 
+    /**
+     * 标准格式化流程
+     * @param item
+     */
     static updateStdFlow(item: Zotero.Item) {
         if (getPref("isEnableLang")) {
             this.updateLanguage(item);
@@ -58,6 +62,11 @@ export default class FormatMetadata {
 
     /* 期刊 */
 
+    /**
+     * 更新某个条目的期刊/会议缩写
+     *
+     * @param item
+     */
     @descriptor
     static async updateJournalAbbr(item: Zotero.Item) {
         if (item.itemType == "journalArticle" || item.itemType == "conferencePaper") {
@@ -79,8 +88,17 @@ export default class FormatMetadata {
         }
     }
 
+    /**
+     * 获取指定期刊的缩写
+     *
+     * @param publicationTitle -  期刊全称
+     * @returns
+     * - String of Abbr. in `ISO 4 dot`, `ISO 4 dotless`, or `JCR` format when exist abbr
+     * - String of its `full name` when no abbr and allow to use its full name
+     * - `""` when no abbr and do not use its full name
+     */
     @descriptor
-    static async getJournalAbbr(publicationTitle: string) {
+    static async getJournalAbbr(publicationTitle: string): Promise<string> {
         // 1. 从本地数据集获取缩写
         var journalAbbrISO4 = this.getAbbrIso4Locally(publicationTitle, journalAbbrlocalData);
         // 2. 本地无缩写，是否从 ISSN LTWA 推断完整期刊缩写
@@ -114,8 +132,17 @@ export default class FormatMetadata {
         }
     }
 
+    /**
+     * Get abbreviation from local dataset.  
+     *
+     * @param publicationTitle - The full name of publication
+     * @param dataBase - local dataset, default journalAbbrlocalData
+     * @returns 
+     * - String of `ISO 4 with dot abbr` when when it exist in the local dataset
+     * - `false` when abbr does not exist in local dataset
+     */
     @descriptor
-    static getAbbrIso4Locally(publicationTitle: string, dataBase = journalAbbrlocalData) {
+    static getAbbrIso4Locally(publicationTitle: string, dataBase = journalAbbrlocalData): string | false {
         // 处理传入文本
         publicationTitle = publicationTitle.toLowerCase().trim();
         publicationTitle.startsWith("the ") ?? publicationTitle.replace("the", "");
@@ -129,6 +156,15 @@ export default class FormatMetadata {
         }
     }
 
+    /**
+     *
+     * Get abbreviation from abbreviso API.  
+     * 该 API 根据 ISSN List of Title Word Abbreviations 推断期刊的 ISO 4 with dot 缩写
+     * @param publicationTitle
+     * @returns
+     * - String of `ISO 4 with dot abbr` when API returns a valid response
+     * - `false` when API returns an invalid response
+     */
     @descriptor
     static async getAbbrFromLTWAOnline(publicationTitle: string) {
         publicationTitle = encodeURI(publicationTitle);
@@ -147,6 +183,11 @@ export default class FormatMetadata {
         return text.replace(/\./g, "");
     }
 
+    /**
+     * Convert ISO 4 with dot format to JCR format.
+     * @param text
+     * @returns String with dots removed and capitalized
+     */
     @descriptor
     static toJCR(text: string) {
         return this.removeDot(text).toUpperCase();
@@ -170,6 +211,15 @@ export default class FormatMetadata {
         }
     }
 
+    /**
+     * Get place of university from local dataset.  
+     *
+     * @param university - The full name of university
+     * @param dataBase - local dataset
+     * @returns 
+     * - String of `place` when when this university exist in the local dataset
+     * - `false` when this university does not exist in local dataset
+     */
     @descriptor
     static getUniversityPlace(university: string, dataBase = universityPlaceLocalData) {
         var place = dataBase[university];
@@ -201,18 +251,23 @@ export default class FormatMetadata {
         }
     }
 
+    /**
+     * Gets text language
+     * @param text
+     * @returns  ISO 639-3 code
+     */
     @descriptor
     static getTextLanguage(text: string) {
         // 替换 title 中的 HTML 标签以降低 franc 识别错误
-        text = this.delHtmlTag(text);
+        text = this.removeHtmlTag(text);
 
         const francOption = {
             only: Array(),
-            minLength: 3
+            minLength: 10,
         };
         // 文本是否少于 10 字符
         if (text.length < 10) {
-            francOption.minLength = 3
+            francOption.minLength = 3;
         }
         // 限制常用语言
         if (getPref("lang.only.enable")) {
@@ -225,11 +280,21 @@ export default class FormatMetadata {
         return franc(text, francOption);
     }
 
+    /**
+     * Removes html tag
+     * @param str
+     * @returns
+     */
     @descriptor
-    static delHtmlTag(str: string) {
+    static removeHtmlTag(str: string) {
         return str.replace(/<[^>]+>/g, "");
     }
 
+    /**
+     * Convert ISO 639 code to ISO 3166 code.
+     * @param lang - ISO 639
+     * @returns ISO 3166 code
+     */
     @descriptor
     static toIso3166(lang: string) {
         switch (lang) {
@@ -244,6 +309,11 @@ export default class FormatMetadata {
         }
     }
 
+    /**
+     * Convert ISO 639-3 code to ISO 639-1 code.
+     * @param iso639_3  - ISO 639-3 code
+     * @returns  ISO 639-1 code
+     */
     @descriptor
     static toIso639_1(iso639_3: string) {
         return iso6393To6391Data[iso639_3];
