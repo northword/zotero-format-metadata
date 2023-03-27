@@ -63,8 +63,7 @@
       "release": true,
       "assets": [
         "builds/*.xpi",
-        "builds/update.json",
-        "builds/update.rdf"
+        "builds/update.json"
       ]
     },
     "hooks": {
