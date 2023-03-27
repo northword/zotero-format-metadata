@@ -13,41 +13,6 @@ export default class FormatMetadata {
         window.alert("此功能尚未实现。");
     }
 
-    @descriptor
-    static updateBatch(mode: string) {
-        const items = Zotero.getActiveZoteroPane().getSelectedItems();
-        HelperExampleFactory.progressWindow(`Progressing...\nPlease wait.`, "info", 0);
-        switch (mode) {
-            case "std":
-                items.forEach((item) => {
-                    this.updateStdFlow(item);
-                }, this);
-                break;
-            case "abbr":
-                items.forEach((item) => {
-                    this.updateJournalAbbr(item);
-                }, this);
-                break;
-            case "lang":
-                items.forEach((item) => {
-                    this.updateLanguage(item);
-                }, this);
-                break;
-            case "place":
-                items.forEach((item) => {
-                    this.updateUniversityPlace(item);
-                }, this);
-                break;
-            case "doi":
-            case "date":
-            case "chem":
-            default:
-                this.unimplemented;
-                break;
-        }
-        HelperExampleFactory.progressWindow(`Done!`, "success", 100);
-    }
-
     /**
      * 标准格式化流程
      * @param item
@@ -133,11 +98,11 @@ export default class FormatMetadata {
     }
 
     /**
-     * Get abbreviation from local dataset.  
+     * Get abbreviation from local dataset.
      *
      * @param publicationTitle - The full name of publication
      * @param dataBase - local dataset, default journalAbbrlocalData
-     * @returns 
+     * @returns
      * - String of `ISO 4 with dot abbr` when when it exist in the local dataset
      * - `false` when abbr does not exist in local dataset
      */
@@ -158,7 +123,7 @@ export default class FormatMetadata {
 
     /**
      *
-     * Get abbreviation from abbreviso API.  
+     * Get abbreviation from abbreviso API.
      * 该 API 根据 ISSN List of Title Word Abbreviations 推断期刊的 ISO 4 with dot 缩写
      * @param publicationTitle
      * @returns
@@ -212,11 +177,11 @@ export default class FormatMetadata {
     }
 
     /**
-     * Get place of university from local dataset.  
+     * Get place of university from local dataset.
      *
      * @param university - The full name of university
      * @param dataBase - local dataset
-     * @returns 
+     * @returns
      * - String of `place` when when this university exist in the local dataset
      * - `false` when this university does not exist in local dataset
      */
