@@ -21,7 +21,7 @@ export function registerShortcuts() {
         },
     });
 
-    // `Ctrl` + `B` -> apply supsrcipt
+    // `Ctrl` + `B` -> apply bold
     ztoolkit.Shortcut.register("event", {
         id: `${config.addonRef}-key-larger`,
         key: "B",
@@ -31,7 +31,7 @@ export function registerShortcuts() {
         },
     });
 
-    // `Ctrl` + `I` -> apply supsrcipt
+    // `Ctrl` + `I` -> apply italic
     ztoolkit.Shortcut.register("event", {
         id: `${config.addonRef}-key-larger`,
         key: "I",

@@ -13,7 +13,7 @@ An addon for [Zotero](https://www.zotero.org/) to format item metadata.
   - [ ] 期刊全称消歧：例如 `Applied Catalysis B-environmental` 与 `Applied Catalysis B: environmental` 为相同期刊
   - [ ] 根据期刊名填充期刊缩写
     - [x] 本地术语表
-    - [ ] ~~API，~~用户自定义术语表
+    - [ ] ~~API，~~ 用户自定义术语表
     - [x] 提供 ISO 4 with dot, ISO 4 without dot, 和 JCR 缩写的偏好选项
     - [x] 无缩写时通过 ISSN LTWA 推断缩写
     - [ ] 无缩写时分别是否以全称填充（英文已可以设置，中文缩写是什么？）
@@ -35,10 +35,11 @@ An addon for [Zotero](https://www.zotero.org/) to format item metadata.
 ## Install
 
 1. Go to the [release page](https://github.com/northword/zotero-format-metadata/releases/) to download [the latest .xpi file](https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-format-metadata.xpi).  
-If you are in mainland China or cannot access GitHub easily, you can go to the mirror site to download.
-    - Jsdeliver
+If you are in mainland China or cannot access GitHub easily, you can go to the following mirror site to download.
+    - [GitHub Proxy](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fnorthword%2Fzotero-format-metadata%2Freleases%2Flatest%2Fdownload%2Fzotero-format-metadata.xpi)
+    - JsDeliver
     - Gitee
-2. Drag it into the Zotero add-on manager. [How to install a Zotero addon](https://zotero.yuque.com/staff-gkhviy/zotero/addons#B2kU3).
+2. Drag it into the Zotero add-on manager. See [How to install a Zotero addon](https://zotero.yuque.com/staff-gkhviy/zotero/addons#B2kU3).
 
 ## Changelog
 

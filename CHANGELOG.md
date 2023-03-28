@@ -39,11 +39,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.0.4] - 2023-03-23
 
-## Added
+### Added
 
 - 使用新的 LOGO [`a7d736e`](https://github.com/northword/zotero-format-metadata/commit/a7d736ef6afd4c20e32cd84afce796737324a1c2)
 
-## Fixed
+### Fixed
 
 - 修复右键菜单的英文翻译 [`3b919db`](https://github.com/northword/zotero-format-metadata/commit/3b919dbaaf9ee802f32cece80a2b89caf50590f0)
 
