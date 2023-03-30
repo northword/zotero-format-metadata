@@ -7,13 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.8] - 2023-03-30
+
 ### Added
 
 - 将识别到的条目语言按 Zotero 要求保存为 ISO 3166 代码。目前仅实现了简中和英文，其他语言待办。
 
-### fixed
+### Fixed
 
 - 修复条目标题过短时无法识别语言的问题。目前逻辑：当去除 HTML 标签后标题长度小于 10 时，将 franc 最小长度降低为 3 .
+
+近日赶查重盲审，缓更新...
 
 ## [0.0.7] - 2023-03-26
 
@@ -70,7 +74,8 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/0.0.7...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/0.0.8...HEAD
+[0.0.8]: https://github.com/northword/zotero-format-metadata/compare/0.0.7...0.0.8
 [0.0.7]: https://github.com/northword/zotero-format-metadata/compare/0.0.6...0.0.7
 [0.0.6]: https://github.com/northword/zotero-format-metadata/compare/0.0.5...0.0.6
 [0.0.5]: https://github.com/northword/zotero-format-metadata/compare/0.0.4...0.0.5
