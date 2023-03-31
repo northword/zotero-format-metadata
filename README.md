@@ -2,6 +2,18 @@
 
 An addon for [Zotero](https://www.zotero.org/) to format item metadata.
 
+[简体中文](./docs/README-zh.md)
+
+## Features
+
+1. Shortcut to set subscripts, bold and italic, etc.
+
+    ![Set subscript via shoutcut](./docs/assets/set-sub-via-shoutcut.gif)
+
+2. Fill in the journal abbreviation according to the journal full name.
+3. Fill in the place of the university according to its name.
+4. Fill in the language of the item according to its title.
+
 ## Todo
 
 - [ ] 标题 HTML 标签
@@ -38,7 +50,7 @@ If you are in mainland China or cannot access GitHub easily, you can go to the f
     - [GitHub Proxy](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fnorthword%2Fzotero-format-metadata%2Freleases%2Flatest%2Fdownload%2Fzotero-format-metadata.xpi)
     - JsDeliver
     - Gitee
-2. Drag it into the Zotero add-on manager. See [How to install a Zotero addon](https://zotero.yuque.com/staff-gkhviy/zotero/addons#B2kU3).
+2. Drag it into the Zotero add-on manager. See [how to install a Zotero addon](https://zotero.yuque.com/staff-gkhviy/zotero/addons#B2kU3).
 
 ## Changelog
 
@@ -56,6 +68,7 @@ The code of the following plug-ins was referenced during the development of this
 
 - [redleafnew/zotero-updateifsE](https://github.com/redleafnew/zotero-updateifsE)
 - [zoushucai/zotero-journalabbr](https://github.com/zoushucai/zotero-journalabbr)
+- [windingwind/zotero-pdf-translate](https://github.com/windingwind/zotero-pdf-translate)
 
 The following data sets were used:
 
