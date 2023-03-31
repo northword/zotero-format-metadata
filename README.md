@@ -5,10 +5,9 @@ An addon for [Zotero](https://www.zotero.org/) to format item metadata.
 ## Todo
 
 - [ ] 标题 HTML 标签
-  - [ ] 快捷键应用上下标
+  - [x] 快捷键应用上下标、粗体斜体等
   - [ ] 选中文本后弹出迷你菜单提供上下标按钮
   - [ ] 建立常见化学式的映射以批量自动替换
-  - [ ] 斜体、粗体等
 - [ ] 期刊：刊名与缩写
   - [ ] 期刊全称消歧：例如 `Applied Catalysis B-environmental` 与 `Applied Catalysis B: environmental` 为相同期刊
   - [ ] 根据期刊名填充期刊缩写

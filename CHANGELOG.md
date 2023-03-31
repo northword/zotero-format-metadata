@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 通过快捷键设置上标（`Ctrl` + `Shift` + `+`）、下标（`Ctrl` + `+`）、粗体（`Ctrl` + `B`）、斜体（`Ctrl` + `I`）。
+
 ## [0.0.8] - 2023-03-30
 
 ### Added

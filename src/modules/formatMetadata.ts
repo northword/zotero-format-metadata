@@ -137,7 +137,7 @@ export default class FormatMetadata {
         const res = await Zotero.HTTP.request("GET", url);
         const result = res.response as string;
         if (result == "" || result == null || result == undefined) {
-            ztoolkit.log("[Abbr] Failed to infer the abbr. inferring from LTWA");
+            ztoolkit.log("[Abbr] Failed to infer the abbr. from LTWA");
             return false;
         }
         return result;
@@ -200,6 +200,11 @@ export default class FormatMetadata {
 
     @descriptor
     static async updateLanguage(item: Zotero.Item) {
+        // WIP: 已有合法 ISO 3166 代码的，不予处理
+        if (this.verifyIso3166(item.getField("language") as string) && getPref("lang.verifyBefore")) {
+            ztoolkit.log("[lang] The item has been skipped due to the presence of valid ISO 3166 code.");
+            return;
+        }
         const title = item.getField("title") as string;
         const languageISO639_3 = this.getTextLanguage(title);
         if (languageISO639_3 !== "und") {
@@ -232,14 +237,19 @@ export default class FormatMetadata {
         };
         // 文本是否少于 10 字符
         if (text.length < 10) {
-            francOption.minLength = 3;
+            francOption.minLength = 2;
+            // 对于短字符串内容，如果不全为英文，则替换掉英文字母以提高识别准确度
+            const textReplaceEN = text.replace(/[a-z]*[A-Z]*/g, "");
+            if (textReplaceEN.length > 1) {
+                text = textReplaceEN;
+            }
         }
         // 限制常用语言
         if (getPref("lang.only.enable")) {
             getPref("lang.cmn") ?? francOption.only.push("cmn");
             getPref("lang.eng") ?? francOption.only.push("eng");
             const otherLang = getPref("lang.other") as string;
-            otherLang !== "" ?? francOption.only.push.apply(otherLang.split(","));
+            otherLang !== "" ?? francOption.only.push.apply(otherLang.replace(/ /g, "").split(","));
         }
         ztoolkit.log("[lang] Selected ISO 639-3 code is: ", francOption.only);
         return franc(text, francOption);
@@ -284,33 +294,63 @@ export default class FormatMetadata {
         return iso6393To6391Data[iso639_3];
     }
 
-    /* 上下标 */
-
-    @descriptor
-    static getSelection() {
-        const editpaneItemBox = document.activeElement;
-        if (editpaneItemBox?.id == "zotero-editpane-item-box" && editpaneItemBox.shadowRoot) {
-            const textAreaElement = editpaneItemBox.shadowRoot.activeElement as HTMLInputElement | null;
-            if (textAreaElement) {
-                const text = textAreaElement.value.substring(
-                    textAreaElement.selectionStart!,
-                    textAreaElement.selectionEnd!
-                );
-                if (text) {
-                    //console.log(textAreaElement, text, textAreaElement.selectionStart, textAreaElement.selectionEnd);
-                    return text;
-                } else {
-                    ztoolkit.log("[MetaFormat] 未选择待替换文本");
-                }
-            } else {
-                ztoolkit.log("[MetaFormat] 焦点未在文本输入元素");
-            }
-        } else {
-            ztoolkit.log("[MetaFormat] 焦点未在可编辑区");
-        }
+    /**
+     * Verify that the given locale code is a valid ISO 3166-1 code
+     * // WIP
+     * @param locale
+     * @returns
+     */
+    static verifyIso3166(locale: string) {
+        return false;
     }
 
-    static sub() {
-        const text = getSelection();
+    /* 上下标 */
+    /**
+     * Get the selected text and replace it with text with or without HTML tags depending on the operation.
+     * @param mode sub | sup | bold | italic
+     * @returns
+     *
+     * @see https://stackoverflow.com/questions/31036076/how-to-replace-selected-text-in-a-textarea-with-javascript
+     */
+    @descriptor
+    static setHtmlTag(mode?: string) {
+        const editpaneItemBox = document.activeElement as HTMLInputElement | null;
+        ztoolkit.log(editpaneItemBox);
+        if (editpaneItemBox) {
+            if (typeof editpaneItemBox.selectionStart == "number" && typeof editpaneItemBox.selectionEnd == "number") {
+                var start = editpaneItemBox.selectionStart;
+                var end = editpaneItemBox.selectionEnd;
+                var selectedText = editpaneItemBox.value.slice(start, end);
+                var before = editpaneItemBox.value.slice(0, start);
+                var after = editpaneItemBox.value.slice(end);
+                // console.log(start, end, selectedText, before, after);
+                switch (mode) {
+                    case "sub":
+                        selectedText = selectedText.startsWith("<sub>")
+                            ? this.removeHtmlTag(selectedText)
+                            : "<sub>" + selectedText + "</sub>";
+                        break;
+                    case "sup":
+                        selectedText = selectedText.startsWith("<sup>")
+                            ? this.removeHtmlTag(selectedText)
+                            : "<sup>" + selectedText + "</sup>";
+                        break;
+                    case "bold":
+                        selectedText = selectedText.startsWith("<b>")
+                            ? this.removeHtmlTag(selectedText)
+                            : "<b>" + selectedText + "</b>";
+                        break;
+                    case "italic":
+                        selectedText = selectedText.startsWith("<i>")
+                            ? this.removeHtmlTag(selectedText)
+                            : "<i>" + selectedText + "</i>";
+                        break;
+                    default:
+                        break;
+                }
+                var text = before + selectedText + after;
+                editpaneItemBox.value = text;
+            }
+        }
     }
 }

@@ -50,15 +50,27 @@ class Addon {
 // import { BasicTool, unregister } from "zotero-plugin-toolkit/dist/basic";
 // import { UITool } from "zotero-plugin-toolkit/dist/tools/ui";
 // import { PreferencePaneManager } from "zotero-plugin-toolkit/dist/managers/preferencePane";
+// import { ShortcutManager } from "zotero-plugin-toolkit/dist/managers/shortcut";
+// import { MenuManager } from "zotero-plugin-toolkit/dist/managers/menu";
+// import { FieldHookManager } from "zotero-plugin-toolkit/dist/managers/fieldHook";
+// import { ProgressWindowHelper } from "zotero-plugin-toolkit/dist/helpers/progressWindow";
 
 // export class MyToolkit extends BasicTool {
 //   UI: UITool;
 //   PreferencePane: PreferencePaneManager;
+//   Shoutcut: ShortcutManager;
+//   Menu: MenuManager;
+//   FieldHooks: FieldHookManager;
+//   // ProgressWindow: typeof ProgressWindowHelper;
 
 //   constructor() {
 //     super();
 //     this.UI = new UITool(this);
 //     this.PreferencePane = new PreferencePaneManager(this);
+//     this.Shoutcut = new ShortcutManager(this);
+//     this.Menu = new MenuManager(this);
+//     this.FieldHooks = new FieldHookManager(this);
+//     // this.ProgressWindow = new ProgressWindowHelper(this);
 //   }
 
 //   unregisterAll() {

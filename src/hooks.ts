@@ -27,7 +27,7 @@ async function onStartup() {
 
     // BasicExampleFactory.registerNotifier();
 
-    // registerShortcuts();
+    registerShortcuts();
 
     await Zotero.Promise.delay(1000);
     popupWin.changeLine({
@@ -84,11 +84,19 @@ async function onPrefsEvent(type: string, data: { [key: string]: any }) {
 
 function onShortcuts(type: string) {
     switch (type) {
-        case "larger":
-            // KeyExampleFactory.exampleShortcutLargerCallback();
+        case "sub":
+            FormatMetadata.setHtmlTag("sub");
+            break;
+        case "sup":
+            FormatMetadata.setHtmlTag("sup");
+            break;
+        case "bold":
+            FormatMetadata.setHtmlTag("bold");
+            break;
+        case "italic":
+            FormatMetadata.setHtmlTag("italic");
             break;
         case "confliction":
-            // KeyExampleFactory.exampleShortcutConflictingCallback();
             break;
         default:
             break;

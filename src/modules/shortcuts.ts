@@ -1,9 +1,9 @@
 import { config } from "../../package.json";
 
 export function registerShortcuts() {
-    // `Ctrl` + `=` -> apply subsrcipt
+    // `Ctrl` + `=` -> apply subscript
     ztoolkit.Shortcut.register("event", {
-        id: `${config.addonRef}-key-larger`,
+        id: `${config.addonRef}-key-sub`,
         key: "=",
         modifiers: "control",
         callback: (keyOptions) => {
@@ -11,11 +11,11 @@ export function registerShortcuts() {
         },
     });
 
-    // `Ctrl` + `+` -> apply supsrcipt
+    // `Ctrl` + `+` -> apply subscript
     ztoolkit.Shortcut.register("event", {
-        id: `${config.addonRef}-key-larger`,
+        id: `${config.addonRef}-key-sup`,
         key: "+",
-        modifiers: "control",
+        modifiers: "control,shift",
         callback: (keyOptions) => {
             addon.hooks.onShortcuts("sup");
         },
@@ -23,7 +23,7 @@ export function registerShortcuts() {
 
     // `Ctrl` + `B` -> apply bold
     ztoolkit.Shortcut.register("event", {
-        id: `${config.addonRef}-key-larger`,
+        id: `${config.addonRef}-key-bold`,
         key: "B",
         modifiers: "control",
         callback: (keyOptions) => {
@@ -33,7 +33,7 @@ export function registerShortcuts() {
 
     // `Ctrl` + `I` -> apply italic
     ztoolkit.Shortcut.register("event", {
-        id: `${config.addonRef}-key-larger`,
+        id: `${config.addonRef}-key-italic`,
         key: "I",
         modifiers: "control",
         callback: (keyOptions) => {
@@ -41,15 +41,15 @@ export function registerShortcuts() {
         },
     });
 
-    // Register an event key to check confliction
-    ztoolkit.Shortcut.register("event", {
-        id: `${config.addonRef}-key-check-conflict`,
-        key: "C",
-        modifiers: "alt",
-        callback: (keyOptions) => {
-            addon.hooks.onShortcuts("confliction");
-        },
-    });
+    // // Register an event key to check confliction
+    // ztoolkit.Shortcut.register("event", {
+    //     id: `${config.addonRef}-key-check-conflict`,
+    //     key: "C",
+    //     modifiers: "alt",
+    //     callback: (keyOptions) => {
+    //         addon.hooks.onShortcuts("confliction");
+    //     },
+    // });
 }
 
 function checkShortcutConflictingCallback() {
