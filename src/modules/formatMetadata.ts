@@ -110,7 +110,7 @@ export default class FormatMetadata {
     static getAbbrIso4Locally(publicationTitle: string, dataBase = journalAbbrlocalData): string | false {
         // 处理传入文本
         publicationTitle = publicationTitle.toLowerCase().trim();
-        publicationTitle.startsWith("the ") ?? publicationTitle.replace("the", "");
+        publicationTitle.startsWith("the ") ? publicationTitle.replace("the", "") : "pass";
         // 在本地数据里查找
         var journalAbbr = dataBase[publicationTitle];
         if (journalAbbr == "" || journalAbbr == null || journalAbbr == undefined) {
@@ -247,10 +247,10 @@ export default class FormatMetadata {
         }
         // 限制常用语言
         if (getPref("lang.only.enable")) {
-            getPref("lang.cmn") ?? francOption.only.push("cmn");
-            getPref("lang.eng") ?? francOption.only.push("eng");
+            getPref("lang.only.cmn") ? francOption.only.push("cmn") : "pass";
+            getPref("lang.only.eng") ? francOption.only.push("eng") : "pass";
             const otherLang = getPref("lang.other") as string;
-            otherLang !== "" ?? francOption.only.push.apply(otherLang.replace(/ /g, "").split(","));
+            otherLang !== "" ? francOption.only.push.apply(otherLang.replace(/ /g, "").split(",")) : "pass";
         }
         ztoolkit.log("[lang] Selected ISO 639-3 code is: ", francOption.only);
         return franc(text, francOption);
