@@ -8,7 +8,7 @@ export default class FormatMetadata {
     constructor() {}
 
     @descriptor
-    static unimplemented() {
+    public static unimplemented() {
         ztoolkit.log("此功能尚未实现。");
         window.alert("此功能尚未实现。");
     }
@@ -33,7 +33,7 @@ export default class FormatMetadata {
      * @param item
      */
     @descriptor
-    static async updateJournalAbbr(item: Zotero.Item) {
+    public static async updateJournalAbbr(item: Zotero.Item) {
         if (item.itemType == "journalArticle" || item.itemType == "conferencePaper") {
             if (item.getField("language") !== "zh") {
                 // 英文期刊，获取缩写
@@ -63,7 +63,7 @@ export default class FormatMetadata {
      * - `""` when no abbr and do not use its full name
      */
     @descriptor
-    static async getJournalAbbr(publicationTitle: string): Promise<string> {
+    private static async getJournalAbbr(publicationTitle: string): Promise<string> {
         // 1. 从本地数据集获取缩写
         var journalAbbrISO4 = this.getAbbrIso4Locally(publicationTitle, journalAbbrlocalData);
         // 2. 本地无缩写，是否从 ISSN LTWA 推断完整期刊缩写
@@ -107,7 +107,7 @@ export default class FormatMetadata {
      * - `false` when abbr does not exist in local dataset
      */
     @descriptor
-    static getAbbrIso4Locally(publicationTitle: string, dataBase = journalAbbrlocalData): string | false {
+    private static getAbbrIso4Locally(publicationTitle: string, dataBase = journalAbbrlocalData): string | false {
         // 处理传入文本
         publicationTitle = publicationTitle.toLowerCase().trim();
         publicationTitle.startsWith("the ") ? publicationTitle.replace("the", "") : "pass";
@@ -132,7 +132,7 @@ export default class FormatMetadata {
      * - `false` when API returns an invalid response
      */
     @descriptor
-    static async getAbbrFromLTWAOnline(publicationTitle: string) {
+    private static async getAbbrFromLTWAOnline(publicationTitle: string) {
         publicationTitle = encodeURI(publicationTitle);
         var url = `https://abbreviso.toolforge.org/abbreviso/a/${publicationTitle}`;
         const res = await Zotero.HTTP.request("GET", url);
@@ -145,7 +145,7 @@ export default class FormatMetadata {
     }
 
     @descriptor
-    static removeDot(text: string) {
+    private static removeDot(text: string) {
         return text.replace(/\./g, "");
     }
 
@@ -155,14 +155,14 @@ export default class FormatMetadata {
      * @returns String with dots removed and capitalized
      */
     @descriptor
-    static toJCR(text: string) {
+    private static toJCR(text: string) {
         return this.removeDot(text).toUpperCase();
     }
 
     /* 学校地点 */
 
     @descriptor
-    static async updateUniversityPlace(item: Zotero.Item) {
+    public static async updateUniversityPlace(item: Zotero.Item) {
         if (item.itemType == "thesis") {
             try {
                 var university = item.getField("university") as string;
@@ -187,7 +187,7 @@ export default class FormatMetadata {
      * - `false` when this university does not exist in local dataset
      */
     @descriptor
-    static getUniversityPlace(university: string, dataBase = universityPlaceLocalData) {
+    private static getUniversityPlace(university: string, dataBase = universityPlaceLocalData) {
         var place = dataBase[university];
         if (place == "" || place == null || place == undefined) {
             ztoolkit.log(`[Place] ${university} do not have place in local data set`);
@@ -200,7 +200,7 @@ export default class FormatMetadata {
     /* 条目语言 */
 
     @descriptor
-    static async updateLanguage(item: Zotero.Item) {
+    public static async updateLanguage(item: Zotero.Item) {
         // WIP: 已有合法 ISO 3166 代码的，不予处理
         if (this.verifyIso3166(item.getField("language") as string) && getPref("lang.verifyBefore")) {
             ztoolkit.log("[lang] The item has been skipped due to the presence of valid ISO 3166 code.");
@@ -228,7 +228,7 @@ export default class FormatMetadata {
      * @returns  ISO 639-3 code
      */
     @descriptor
-    static getTextLanguage(text: string) {
+    private static getTextLanguage(text: string) {
         // 替换 title 中的 HTML 标签以降低 franc 识别错误
         text = this.removeHtmlTag(text);
 
@@ -262,7 +262,7 @@ export default class FormatMetadata {
      * @returns
      */
     @descriptor
-    static removeHtmlTag(str: string) {
+    private static removeHtmlTag(str: string) {
         return str.replace(/<[^>]+>/g, "");
     }
 
@@ -272,7 +272,7 @@ export default class FormatMetadata {
      * @returns ISO 3166 code
      */
     @descriptor
-    static toIso3166(lang: string) {
+    private static toIso3166(lang: string) {
         switch (lang) {
             case "zh":
             case "cmn":
@@ -291,7 +291,7 @@ export default class FormatMetadata {
      * @returns  ISO 639-1 code
      */
     @descriptor
-    static toIso639_1(iso639_3: string) {
+    private static toIso639_1(iso639_3: string) {
         return iso6393To6391Data[iso639_3];
     }
 
@@ -301,7 +301,7 @@ export default class FormatMetadata {
      * @param locale
      * @returns
      */
-    static verifyIso3166(locale: string) {
+    private static verifyIso3166(locale: string) {
         return false;
     }
 
@@ -314,7 +314,7 @@ export default class FormatMetadata {
      * @see https://stackoverflow.com/questions/31036076/how-to-replace-selected-text-in-a-textarea-with-javascript
      */
     @descriptor
-    static setHtmlTag(mode?: string) {
+    public static setHtmlTag(mode?: string) {
         const editpaneItemBox = document.activeElement as HTMLInputElement | null;
         if (editpaneItemBox) {
             if (typeof editpaneItemBox.selectionStart == "number" && typeof editpaneItemBox.selectionEnd == "number") {
