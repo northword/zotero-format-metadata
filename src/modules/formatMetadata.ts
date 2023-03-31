@@ -123,8 +123,9 @@ export default class FormatMetadata {
 
     /**
      *
-     * Get abbreviation from abbreviso API.
-     * 该 API 根据 ISSN List of Title Word Abbreviations 推断期刊的 ISO 4 with dot 缩写
+     * Get abbreviation from abbreviso API.  
+     * This API infer journal abbreviation from ISSN List of Title Word Abbreviations.  
+     * Until March 31, 2023, this API uses the LTWA released in 2017.
      * @param publicationTitle
      * @returns
      * - String of `ISO 4 with dot abbr` when API returns a valid response
@@ -315,7 +316,6 @@ export default class FormatMetadata {
     @descriptor
     static setHtmlTag(mode?: string) {
         const editpaneItemBox = document.activeElement as HTMLInputElement | null;
-        ztoolkit.log(editpaneItemBox);
         if (editpaneItemBox) {
             if (typeof editpaneItemBox.selectionStart == "number" && typeof editpaneItemBox.selectionEnd == "number") {
                 var start = editpaneItemBox.selectionStart;
