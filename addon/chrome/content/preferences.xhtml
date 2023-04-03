@@ -7,7 +7,6 @@
             id="__addonRef__-add-update"
             label="&zotero.__addonRef__.pref.add.update;"
             preference="__prefsPrefix__.add.update"
-            disabled="true"
         />
     </groupbox>
 
@@ -28,8 +27,7 @@
         <checkbox
             id="__addonRef__-enable"
             label="&zotero.__addonRef__.pref.enable.label;"
-            preference="__prefsPrefix__.enable"
-            disabled="true"
+            preference="__prefsPrefix__.isEnableAbbr"
         />
         <hbox align="center">
             <label value="&zotero.__addonRef__.pref.abbr.type;" />
@@ -51,6 +49,16 @@
         />
     </groupbox>
 
+    <!--Place-->
+    <groupbox>
+        <caption label="University Place" />
+        <checkbox
+            id="__addonRef__-enable"
+            label="&zotero.__addonRef__.pref.enable.label;"
+            preference="__prefsPrefix__.isEnablePlace"
+        />
+    </groupbox>
+
     <!--DOI-->
     <groupbox>
         <caption label="DOI" />
@@ -61,7 +69,7 @@
             disabled="true"
         />
         <hbox>
-            <label value="&zotero.__addonRef__.pref.input.label;" />
+            <label value="&zotero.__addonRef__.pref.wip.label;" />
         </hbox>
     </groupbox>
 
@@ -75,7 +83,7 @@
             disabled="true"
         />
         <hbox>
-            <label value="&zotero.__addonRef__.pref.input.label;" />
+            <label value="&zotero.__addonRef__.pref.wip.label;" />
         </hbox>
     </groupbox>
 
@@ -85,8 +93,7 @@
         <checkbox
             id="__addonRef__-lang-enable"
             label="&zotero.__addonRef__.pref.enable.label;"
-            preference="__prefsPrefix__.lang.enable"
-            disabled="true"
+            preference="__prefsPrefix__.isEnableAbbr"
         />
         <checkbox
             id="__addonRef__-lang-only-enable"
@@ -106,7 +113,7 @@
                     preference="__prefsPrefix__.lang.only.eng"
                 />
                 <label value="&zotero.__addonRef__.pref.lang.other.label;" />
-                <html:input type="text" id="__addonRef__-lang-other" preference="__prefsPrefix__.lang.only.other" />
+                <html:input type="text" id="__addonRef__-lang-only-other" preference="__prefsPrefix__.lang.only.other" />
             </hbox>
             <hbox align="center">
                 <label value="&zotero.__addonRef__.pref.lang.other.desc;" />

@@ -1,8 +1,11 @@
 pref("__prefsPrefix__.enable", true);
 pref("__prefsPrefix__.add.update", true);
+pref("__prefsPrefix__.isEnableAbbr", true);
 pref("__prefsPrefix__.abbr.type", "ISO4dot");
 pref("__prefsPrefix__.abbr.infer", true);
 pref("__prefsPrefix__.abbr.usefull", true);
+pref("__prefsPrefix__.isEnablePlace", true);
+pref("__prefsPrefix__.isEnableLang", true);
 pref("__prefsPrefix__.lang.enable", true);
 pref("__prefsPrefix__.lang.only.enable", true);
 pref("__prefsPrefix__.lang.only.cmn", true);

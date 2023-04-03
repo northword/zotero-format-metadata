@@ -3,6 +3,7 @@ import { getString, initLocale } from "./modules/locale";
 import { registerPrefs, registerPrefsScripts } from "./modules/preference";
 import { registerMenu } from "./modules/menu";
 import { registerShortcuts } from "./modules/shortcuts";
+import { registerNotifier } from "./modules/notifier";
 import { registerPrompt } from "./modules/prompt";
 import { progressWindow } from "./modules/untils";
 import FormatMetadata from "./modules/formatMetadata";
@@ -25,17 +26,19 @@ async function onStartup() {
 
     registerPrefs();
 
-    // BasicExampleFactory.registerNotifier();
+    registerNotifier();
 
     registerShortcuts();
 
-    await Zotero.Promise.delay(1000);
+    // await Zotero.Promise.delay(1000);
     popupWin.changeLine({
         progress: 30,
-        text: `[30%] ${getString("startup.begin")}`,
+        text: `[50%] ${getString("startup.begin")}`,
     });
 
     registerMenu();
+
+    // registerRichTextToolbar();
 
     await Zotero.Promise.delay(1000);
     popupWin.changeLine({
@@ -59,10 +62,17 @@ function onShutdown(): void {
 async function onNotify(event: string, type: string, ids: Array<string | number>, extraData: { [key: string]: any }) {
     // You can add your code to the corresponding notify type
     ztoolkit.log("notify", event, type, ids, extraData);
-    if (event == "select" && type == "tab" && extraData[ids[0]].type == "reader") {
-        // BasicExampleFactory.exampleNotifierCallback();
-    } else {
-        return;
+    // if (event == "select" && type == "tab" && extraData[ids[0]].type == "reader") {
+    //     // BasicExampleFactory.exampleNotifierCallback();
+    // } else {
+    //     return;
+    // }
+    if (event == "add" && type == "item") {
+        FormatMetadata.updateOnItemAdd(ids);
+    }
+
+    if (event == "select" && type == "item") {
+        FormatMetadata.richTextToolbar();
     }
 }
 
@@ -85,9 +95,11 @@ async function onPrefsEvent(type: string, data: { [key: string]: any }) {
 function onShortcuts(type: string) {
     switch (type) {
         case "sub":
+        case "subscript":
             FormatMetadata.setHtmlTag("sub");
             break;
         case "sup":
+        case "supscript":
             FormatMetadata.setHtmlTag("sup");
             break;
         case "bold":

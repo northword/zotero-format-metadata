@@ -17,12 +17,30 @@ export default class FormatMetadata {
      * 标准格式化流程
      * @param item
      */
-    static updateStdFlow(item: Zotero.Item) {
-        if (getPref("isEnableLang")) {
-            this.updateLanguage(item);
+    @descriptor
+    public static updateStdFlow(item: Zotero.Item) {
+        getPref("isEnableLang") ? this.updateLanguage(item) : "skip";
+        getPref("isEnableAbbr") ? this.updateJournalAbbr(item) : "skip";
+        getPref("isEnablePlace") ? this.updateUniversityPlace(item) : "skip";
+    }
+
+    @descriptor
+    public static updateOnItemAdd(ids: Array<string | number>) {
+        ztoolkit.log("add.update ", getPref("add.update"));
+        if (getPref("add.update")) {
+            var err = 0;
+            ids.forEach((id) => {
+                try {
+                    const item = Zotero.Items.get(id);
+                    this.updateStdFlow(item);
+                    // ztoolkit.log("Update on item added.");
+                } catch (error) {
+                    ztoolkit.log(error);
+                    err++;
+                }
+            });
+            progressWindow(`Updated ${ids.length} items, ${ids.length - err} success, ${err} failed.`);
         }
-        this.updateJournalAbbr(item);
-        this.updateUniversityPlace(item);
     }
 
     /* 期刊 */
@@ -123,8 +141,8 @@ export default class FormatMetadata {
 
     /**
      *
-     * Get abbreviation from abbreviso API.  
-     * This API infer journal abbreviation from ISSN List of Title Word Abbreviations.  
+     * Get abbreviation from abbreviso API.
+     * This API infer journal abbreviation from ISSN List of Title Word Abbreviations.
      * Until March 31, 2023, this API uses the LTWA released in 2017.
      * @param publicationTitle
      * @returns
@@ -249,8 +267,10 @@ export default class FormatMetadata {
         if (getPref("lang.only.enable")) {
             getPref("lang.only.cmn") ? francOption.only.push("cmn") : "pass";
             getPref("lang.only.eng") ? francOption.only.push("eng") : "pass";
-            const otherLang = getPref("lang.other") as string;
-            otherLang !== "" ? francOption.only.push.apply(otherLang.replace(/ /g, "").split(",")) : "pass";
+            const otherLang = getPref("lang.only.other") as string;
+            otherLang !== "" && otherLang !== undefined
+                ? francOption.only.push.apply(otherLang.replace(/ /g, "").split(","))
+                : "pass";
         }
         ztoolkit.log("[lang] Selected ISO 639-3 code is: ", francOption.only);
         return franc(text, francOption);
@@ -352,5 +372,82 @@ export default class FormatMetadata {
                 editpaneItemBox.value = text;
             }
         }
+    }
+
+    @descriptor
+    public static richTextToolbar() {
+        var richTextToolBarWarper = document.createElement("div");
+        richTextToolBarWarper.id = "format-metadata-richTextToolBar-warper";
+        // richTextToolBarWarper.innerHTML = "===========";
+        richTextToolBarWarper.style.display = "none";
+        richTextToolBarWarper.style.textAlign = "center";
+
+        var imgWarp = document.createElement("img");
+
+        const btnList = ["subscript", "supscript", "bold", "italic"];
+        btnList.forEach((btn) => {
+            var button = document.createElement("button");
+            button.id = `format-metadata-richTextToolBar-${btn}`;
+            button.setAttribute("title", `${btn}`);
+            button.setAttribute("class", "toolbar-button");
+            button.innerHTML = `${btn}`;
+            button.append(imgWarp);
+            button.addEventListener("click", (ev: Event) => {
+                addon.hooks.onShortcuts(`${btn}`);
+            });
+            richTextToolBarWarper.append(button);
+        });
+
+        var row = document.getElementById("dynamic-fields")?.getElementsByTagName("row")["1"];
+        row?.before(richTextToolBarWarper);
+        // ztoolkit.log(row);
+
+        // https://developer.mozilla.org/zh-CN/docs/Web/API/Element/focus_event
+        function showToolbarListener() {
+            // `itembox-field-value-title` 被点击时，显示 toolbar
+            document
+                .getElementById("itembox-field-value-title")
+                ?.addEventListener("click", showToolbarListenerCallback, true);
+        }
+
+        function showToolbarListenerCallback() {
+            richTextToolBarWarper.style.display = "";
+            hiddenToolbarListener();
+            document
+                .getElementById("itembox-field-value-title")
+                ?.removeEventListener("click", showToolbarListenerCallback, true);
+        }
+
+        function hiddenToolbarListener() {
+            // `itembox-field-textbox-title` 失焦时，隐藏 toolbar
+            document
+                .getElementById("itembox-field-textbox-title")
+                ?.addEventListener("blur", hiddenToolbarListenerCallback, true);
+        }
+
+        async function hiddenToolbarListenerCallback() {
+            richTextToolBarWarper.style.display = "none";
+            await Zotero.Promise.delay(500);
+            document
+                .getElementById("itembox-field-textbox-title")
+                ?.removeEventListener("blur", hiddenToolbarListenerCallback, true);
+
+            ztoolkit.log("add show again listener");
+            if (document.getElementById("itembox-field-value-title")) {
+                showToolbarListener();
+                // ztoolkit.log(document.getElementById("itembox-field-value-title"));
+            } else {
+                ztoolkit.log("`itembox-field-value-title` not exist, check `textbox` is exist");
+                if (document.getElementById("itembox-field-textbox-title")) {
+                    richTextToolBarWarper.style.display = "";
+                    hiddenToolbarListener();
+                } else {
+                    ztoolkit.log("`itembox-field-textbox-title` not exist, add show again listener again");
+                    // showToolbarListener();
+                }
+            }
+        }
+
+        showToolbarListener();
     }
 }

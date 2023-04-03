@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 添加条目时自动更新
+
+### Fixed
+
+- 修复限制常用语言无效的问题。fix: restricted language function is not available. [`88048e8`](https://github.com/northword/zotero-format-metadata/commit/88048e8bb3a121cfd6f4d9b6ad77d3cbebae6cff)。
+- 更新一些措辞。
+
 ## [0.0.9] - 2023-03-31
 
 ### Added

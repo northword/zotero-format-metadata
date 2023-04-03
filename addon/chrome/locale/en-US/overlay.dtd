@@ -2,18 +2,18 @@
 <!ENTITY zotero.__addonRef__.pref.add.update "Update when item added">
 
 <!ENTITY zotero.__addonRef__.pref.enable.label "Enable this feature in the standard formatting flow">
-<!ENTITY zotero.__addonRef__.pref.input.label "输入">
+<!ENTITY zotero.__addonRef__.pref.wip.label "Work in progress...">
 
-<!ENTITY zotero.__addonRef__.pref.abbr.type "期刊缩写的类型">
-<!ENTITY zotero.__addonRef__.pref.abbr.infer.label "没有期刊缩写时自动推断缩写">
-<!ENTITY zotero.__addonRef__.pref.abbr.usefull.label "没有期刊缩写时使用全称代替">
+<!ENTITY zotero.__addonRef__.pref.abbr.type "Types of abbreviations">
+<!ENTITY zotero.__addonRef__.pref.abbr.infer.label "Automatically infer abbreviations from LTWA when no journal abbreviation is available">
+<!ENTITY zotero.__addonRef__.pref.abbr.usefull.label "Use full name instead when journal abbreviation is still not available">
 
-<!ENTITY zotero.__addonRef__.pref.lang.allow.label "限制常用语言">
-<!ENTITY zotero.__addonRef__.pref.lang.cmn.label "简体中文">
-<!ENTITY zotero.__addonRef__.pref.lang.eng.label "英文">
-<!ENTITY zotero.__addonRef__.pref.lang.other.label "以及：">
-<!ENTITY zotero.__addonRef__.pref.lang.other.desc "这里需要输入 ISO 639-3 语言代码，以半角逗号分隔，详情见：">
-<!ENTITY zotero.__addonRef__.pref.lang.other.doclink "请参阅本文档。">
+<!ENTITY zotero.__addonRef__.pref.lang.allow.label "Limit common languages to improve recognition accuracy">
+<!ENTITY zotero.__addonRef__.pref.lang.cmn.label "Sample Chinese (cmn)">
+<!ENTITY zotero.__addonRef__.pref.lang.eng.label "English (eng)">
+<!ENTITY zotero.__addonRef__.pref.lang.other.label "and: ">
+<!ENTITY zotero.__addonRef__.pref.lang.other.desc "Here you need to enter the ISO 639-3 language code, separated by a semi-colon comma, as detailed in:">
+<!ENTITY zotero.__addonRef__.pref.lang.other.doclink "Documentation">
 
 <!ENTITY zotero.__addonRef__.help.version.label "__addonName__ VERSION __buildVersion__">
 <!ENTITY zotero.__addonRef__.help.releasetime.label "Build __buildTime__">

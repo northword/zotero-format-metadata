@@ -66,7 +66,7 @@ function disablePrefsLang() {
     addon.data
         .prefs!.window.document.getElementById(`${config.addonRef}-lang-only-eng`)!
         .setAttribute("disabled", String(!state));
-    addon.data
-        .prefs!.window.document.getElementById(`${config.addonRef}-lang-only-other`)!
-        .setAttribute("disabled", String(state));
+    // addon.data
+    //     .prefs!.window.document.getElementById(`${config.addonRef}-lang-only-other`)!
+    //     .setAttribute("disabled", String(!state));
 }

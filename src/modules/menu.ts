@@ -16,7 +16,7 @@ export function registerMenu() {
                 tag: "menuitem",
                 label: "标准格式化", //getString("menuitem.submenulabel"),
                 commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("");
+                    addon.hooks.onUpdateInBatch("std");
                 },
             },
             {

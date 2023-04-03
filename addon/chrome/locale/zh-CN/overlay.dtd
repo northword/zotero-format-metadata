@@ -2,11 +2,11 @@
 <!ENTITY zotero.__addonRef__.pref.add.update "添加时更新">
 
 <!ENTITY zotero.__addonRef__.pref.enable.label "在标准流程中启用此项">
-<!ENTITY zotero.__addonRef__.pref.input.label "输入">
+<!ENTITY zotero.__addonRef__.pref.wip.label "开发中...">
 
 <!ENTITY zotero.__addonRef__.pref.abbr.type "期刊缩写的类型">
 <!ENTITY zotero.__addonRef__.pref.abbr.infer.label "没有期刊缩写时自动推断缩写">
-<!ENTITY zotero.__addonRef__.pref.abbr.usefull.label "没有期刊缩写时使用全称代替">
+<!ENTITY zotero.__addonRef__.pref.abbr.usefull.label "仍没有期刊缩写时使用全称代替">
 
 <!ENTITY zotero.__addonRef__.pref.lang.allow.label "限制识别的语言为">
 <!ENTITY zotero.__addonRef__.pref.lang.cmn.label "简体中文(cmn)">
