@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.10] - 2023-04-03
+
 ### Added
 
 - 添加条目时自动更新
@@ -89,7 +91,8 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/0.0.9...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/0.0.10...HEAD
+[0.0.10]: https://github.com/northword/zotero-format-metadata/compare/0.0.9...0.0.10
 [0.0.9]: https://github.com/northword/zotero-format-metadata/compare/0.0.8...0.0.9
 [0.0.8]: https://github.com/northword/zotero-format-metadata/compare/0.0.7...0.0.8
 [0.0.7]: https://github.com/northword/zotero-format-metadata/compare/0.0.6...0.0.7
