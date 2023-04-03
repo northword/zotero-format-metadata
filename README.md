@@ -6,13 +6,42 @@ An addon for [Zotero](https://www.zotero.org/) to format item metadata.
 
 ## Features
 
-1. Shortcut to set subscripts, bold and italic, etc.
+### Shortcut to set subscripts, bold and italic, etc
 
-    ![Set subscript via shoutcut](./docs/assets/set-sub-via-shoutcut.gif)
+The rich text content in Zotero's reference list requires manual insertion of HTML tags [1], which is cumbersome for those who do not know how to program. Although Zotero's documentation mentions that visual editing of rich text will be supported in future versions, years have passed without any progress on this topic, so this plugin provides a quick way to insert these HTML tags.
 
-2. Fill in the journal abbreviation according to the journal full name.
-3. Fill in the place of the university according to its name.
-4. Fill in the language of the item according to its title.
+[1]: https://www.zotero.org/support/kb/rich_text_bibliography
+
+#### Shortcuts
+
+- Supscript（`Ctrl` + `Shift` + `+`）
+- Subscript（`Ctrl` + `+`）、
+- Bold（`Ctrl` + `B`）、
+- Italic（`Ctrl` + `I`）  
+
+![Set subscript via shoutcut](./docs/assets/set-sub-via-shoutcut.gif)
+
+#### Toolbar
+
+Work in progress.
+
+### Fill in the journal abbreviation according to the journal full name
+
+The plugin has a built-in dataset of about 130,000 journal abbreviations, and the plugin will first look up the journal abbreviations in the local dataset;
+
+If none are available, the abbreviations are inferred from the ISSN List of Title Word Abbreviations (option provided);
+
+If still no abbreviations are found, the full name of the journal is substituted (option provided).
+
+### Fill in the place of the university according to its name
+
+The plug-in has a built-in list of universities in mainland China and their locations. For the thesis items, the location is filled in according to the university of the thesis, which is helpful to meet the requirement of GB/T 7714-2015 for the thesis to show the location.
+
+### Fill in the language of the item according to its title
+
+The plug-in determines the language of an item based on its title.
+
+> The [Jasmine](https://gitee.com/l0o0/jasminum) and [Delitem](https://github.com/redleafnew/delitemwithatt) plugins provide similar functionality, but the language recognition provided by Jasmine is based on `nlp.js` and seems is not pre-processed and does not work well for text with HTML tags or chemical formulas in the title, Delitem only provides direct specification of the two languages. This plug-in has been processed for HTML tags to improve the recognition accuracy.
 
 ## Todo
 
@@ -41,16 +70,15 @@ An addon for [Zotero](https://www.zotero.org/) to format item metadata.
   - [ ] ~~常见错误语言值直接映射为 ISO 值 （总之都要识别，不做了）~~
   - [x] ISO 639 语言代码 转 ISO 3166 国家区域代码（已添加 `zh-CN` 和 `en-US` 的映射，其他语言待办）
   - [ ] 手动设置条目语言，选择后弹窗， `zh-CN` 和 `en-US` 单选框和 1 个输入框，常用的中英文也可以放进子菜单
-- [ ] 添加时自动应用
+- [x] 添加时自动应用
 
 ## Install
 
 1. Go to the [release page](https://github.com/northword/zotero-format-metadata/releases/) to download [the latest .xpi file](https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-format-metadata.xpi).  
 If you are in mainland China or cannot access GitHub easily, you can go to the following mirror site to download.
     - [GitHub Proxy](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fnorthword%2Fzotero-format-metadata%2Freleases%2Flatest%2Fdownload%2Fzotero-format-metadata.xpi)
-    - JsDeliver
-    - Gitee
-2. Drag it into the Zotero add-on manager. See [how to install a Zotero addon](https://zotero.yuque.com/staff-gkhviy/zotero/addons#B2kU3).
+    - [Gitee](https://zotero-chinese.gitee.io/zotero-plugins/#/)
+1. Drag it into the Zotero add-on manager. See [how to install a Zotero addon](https://zotero.yuque.com/staff-gkhviy/zotero/addons#B2kU3).
 
 ## Changelog
 
@@ -69,6 +97,7 @@ The code of the following plug-ins was referenced during the development of this
 - [redleafnew/zotero-updateifsE](https://github.com/redleafnew/zotero-updateifsE)
 - [zoushucai/zotero-journalabbr](https://github.com/zoushucai/zotero-journalabbr)
 - [windingwind/zotero-pdf-translate](https://github.com/windingwind/zotero-pdf-translate)
+- [windingwind/zotero-pdf-preview/](https://github.com/windingwind/zotero-pdf-preview)
 
 The following data sets were used:
 
