@@ -8,16 +8,16 @@ An addon for [Zotero](https://www.zotero.org/) to format item metadata.
 
 ### Shortcut to set subscripts, bold and italic, etc
 
-The rich text content in Zotero's reference list requires manual insertion of HTML tags [1], which is cumbersome for those who do not know how to program. Although Zotero's documentation mentions that visual editing of rich text will be supported in future versions, years have passed without any progress on this topic, so this plugin provides a quick way to insert these HTML tags.
+The rich text content in Zotero's reference list requires manual insertion of HTML tags (See [^1]), which is difficult for the common user. Although Zotero's documentation mentions that visual editing of rich text will be supported in future versions, years have passed without any progress on this issue, so this plugin provides a quick way to insert these HTML tags.
 
-[1]: https://www.zotero.org/support/kb/rich_text_bibliography
+[^1]: https://www.zotero.org/support/kb/rich_text_bibliography
 
 #### Shortcuts
 
-- Supscript（`Ctrl` + `Shift` + `+`）
-- Subscript（`Ctrl` + `+`）、
-- Bold（`Ctrl` + `B`）、
-- Italic（`Ctrl` + `I`）  
+- Supscript: `Ctrl` + `Shift` + `+`
+- Subscript: `Ctrl` + `+`
+- Bold: `Ctrl` + `B`
+- Italic: `Ctrl` + `I`
 
 ![Set subscript via shoutcut](./docs/assets/set-sub-via-shoutcut.gif)
 
@@ -25,7 +25,7 @@ The rich text content in Zotero's reference list requires manual insertion of HT
 
 Work in progress.
 
-### Fill in the journal abbreviation according to the journal full name
+### Look up the journal abbreviation according to the journal full name
 
 The plugin has a built-in dataset of about 130,000 journal abbreviations, and the plugin will first look up the journal abbreviations in the local dataset;
 
@@ -33,15 +33,13 @@ If none are available, the abbreviations are inferred from the ISSN List of Titl
 
 If still no abbreviations are found, the full name of the journal is substituted (option provided).
 
-### Fill in the place of the university according to its name
+### Look up the place of the university according to its name
 
 The plug-in has a built-in list of universities in mainland China and their locations. For the thesis items, the location is filled in according to the university of the thesis, which is helpful to meet the requirement of GB/T 7714-2015 for the thesis to show the location.
 
 ### Fill in the language of the item according to its title
 
 The plug-in determines the language of an item based on its title.
-
-> The [Jasmine](https://gitee.com/l0o0/jasminum) and [Delitem](https://github.com/redleafnew/delitemwithatt) plugins provide similar functionality, but the language recognition provided by Jasmine is based on `nlp.js` and seems is not pre-processed and does not work well for text with HTML tags or chemical formulas in the title, Delitem only provides direct specification of the two languages. This plug-in has been processed for HTML tags to improve the recognition accuracy.
 
 ## Todo
 
@@ -88,6 +86,27 @@ See [CHANGELOG.md](./CHANGELOG.md).
 
 GNU Affero General Public License v3.0
 
+## Alternatives
+
+### Journal abbreviation
+
+Both [zotero-journalabbr] and [zotero-updateifsE] plugins provide similar function.
+
+where zotero-journalabbr's local dataset is essentially the same as this plugin, both being JabRef abbreviated data, while zotero-journalabbr uses [journal abbreviated data provided by Columbia University Library](https://woodward.library.ubc.ca/woodward/research-help/journal-abbreviations/), so if you only need journal abbreviation functionality, then this plugin is a good choice!
+
+zotero-updateifsE is a plugin to update data such as impact factor, partition rank, etc. for journals. For journal abbreviations, its readme file mentions that it contains only about 5000 journal abbreviations and does not support Columbia University Library data and ISSN LTWA inferences. Its journal abbreviation function is more suitable for light use.
+
+This plug-in adds the ability to infer abbreviations from ISSN LTWA to JabRef data, which basically covers most journals.
+
+[zotero-journalabbr]: https://github.com/zoushucai/zotero-journalabbr
+[zotero-updateifsE]: https://github.com/redleafnew/zotero-updateifsE
+
+### Language
+
+The [Jasminum](https://gitee.com/l0o0/jasminum) and [Delitem](https://github.com/redleafnew/delitemwithatt) plugins provide similar functionality, but the language recognition provided by Jasminum is based on `nlp.js` and seems is not pre-processed and does not work well for text with HTML tags or chemical formulas in the title, Delitem only provides direct specification of the two languages. This plugin based `franc` and has been processed for HTML tags to improve the recognition accuracy.  
+
+However, if you have no demand for the other features provided by this plugin and are a Jasminum user, then using the Jasminum plugin is already fully satisfying and there is no need to load tens of extra megabytes of plugins for this slight increase in accuracy.
+
 ## Acknowledgements
 
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
@@ -97,7 +116,7 @@ The code of the following plug-ins was referenced during the development of this
 - [redleafnew/zotero-updateifsE](https://github.com/redleafnew/zotero-updateifsE)
 - [zoushucai/zotero-journalabbr](https://github.com/zoushucai/zotero-journalabbr)
 - [windingwind/zotero-pdf-translate](https://github.com/windingwind/zotero-pdf-translate)
-- [windingwind/zotero-pdf-preview/](https://github.com/windingwind/zotero-pdf-preview)
+- [windingwind/zotero-pdf-preview](https://github.com/windingwind/zotero-pdf-preview)
 
 The following data sets were used:
 

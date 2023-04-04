@@ -6,16 +6,16 @@
 
 ### 快速设置上下标、粗体和斜体
 
-Zotero 的参考文献表中的富文本内容需要手动插入 HTML 标签来实现 [1]，这对于不爱折腾的人来说非常麻烦，虽然 Zotero 的文档上提及将在后续版本支持富文本可视化编辑，然而数年过去了，该议题没有任何进展，故本插件提供了快捷插入这些 HTML 标签的途径。
+Zotero 的参考文献表中的富文本内容需要手动插入 HTML 标签来实现 （详见 [^1]），这对于不爱折腾的人来说非常麻烦，虽然 Zotero 的文档上提及将在后续版本支持富文本可视化编辑，然而数年过去了，该议题没有任何进展，故本插件提供了快捷插入这些 HTML 标签的途径。
 
-[1]: https://www.zotero.org/support/kb/rich_text_bibliography
+[^1]: https://www.zotero.org/support/kb/rich_text_bibliography
 
 #### 快捷键
 
-- 上标（`Ctrl` + `Shift` + `+`）
-- 下标（`Ctrl` + `+`）
-- 粗体（`Ctrl` + `B`）
-- 斜体（`Ctrl` + `I`）  
+- 上标：`Ctrl` + `Shift` + `+`
+- 下标：`Ctrl` + `+`
+- 粗体：`Ctrl` + `B`
+- 斜体：`Ctrl` + `I`
 
 ![Set subscript via shoutcut](./assets/set-sub-via-shoutcut.gif)
 
@@ -27,7 +27,7 @@ WIP
 
 插件内置了一个包含约13万条期刊缩写的数据集，插件将首先在本地数据集里查询期刊缩写；
 
-若无则根据 ISSN List of Title Word Abbreviations 推断其缩写（提供选项）；
+若无则根据 [ISSN List of Title Word Abbreviations](https://www.issn.org/services/online-services/access-to-the-ltwa/) 推断其缩写（提供选项）；
 
 若仍没有找到缩写，则以期刊全称代替（提供选项）。
 
@@ -37,9 +37,7 @@ WIP
 
 ### 自动填写条目语言
 
-插件根据条目的标题判断其语言。
-
-> [茉莉花](https://gitee.com/l0o0/jasminum) 和 [Delitem](https://github.com/redleafnew/delitemwithatt) 插件也提供了类似的功能，但茉莉花提供的语言识别基于 `nlp.js`，且似是未经预处理的原因，对于标题内含有 HTML 标签或化学式的文本识别效果不佳， Delitem 仅提供了两种语言的直接指定。本插件针对 HTML 标签进行了处理，提高了识别准确率。
+插件根据条目的标题判断其语言，满足参考文献表双语排版的需要（et al 与 等 混排）。
 
 ## 安装
 
@@ -47,15 +45,36 @@ WIP
 如果你无法顺利的访问 GitHub，可以前往以下几个镜像站下载本插件。
     - [GitHub Proxy](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fnorthword%2Fzotero-format-metadata%2Freleases%2Flatest%2Fdownload%2Fzotero-format-metadata.xpi)
     - [Zotero 插件下载](https://zotero-chinese.gitee.io/zotero-plugins/#/)
-1. 将下载的 xpi 文件拖入 Zotero 插件管理器页面。参阅 [如何安装 Zotero 插件](https://zotero.yuque.com/staff-gkhviy/zotero/addons#B2kU3).
+1. 将下载的 xpi 文件拖入 Zotero 插件管理器页面。参阅 [如何安装 Zotero 插件](https://zotero.yuque.com/staff-gkhviy/zotero/addons#B2kU3)。
 
 ## 变更日志
 
-本插件的主要变更历史列于 [CHANGELOG.md](./CHANGELOG.md) 中。
+本插件的主要变更历史列于 [CHANGELOG.md](../CHANGELOG.md) 中。
 
 ## 开源协议
 
 GNU Affero General Public License v3.0
+
+## 替代品
+
+### 期刊缩写
+
+[zotero-journalabbr] 和 [zotero-updateifsE] 插件也都提供了类似的功能。
+
+其中 zotero-journalabbr 的本地数据集与本插件的本地数据集基本相同，均为 JabRef 的缩写数据，同时它使用了 [哥伦比亚大学图书馆提供的期刊缩写数据](https://woodward.library.ubc.ca/woodward/research-help/journal-abbreviations/) ，如果你仅需要期刊缩写功能，那么这个插件是一个不错的选择！
+
+zotero-updateifsE 是一个更新期刊影响因子、分区等级等数据的插件，其自述文件上提及其仅包含约 5000 条期刊缩写数据，且不支持哥伦比亚大学图书馆数据和 ISSN LTWA 推断。
+
+本插件在 JabRef 数据基础上增加了通过 ISSN LTWA 推断缩写的功能，基本可以覆盖绝大部分期刊。
+
+[zotero-journalabbr]: https://github.com/zoushucai/zotero-journalabbr
+[zotero-updateifsE]: https://github.com/redleafnew/zotero-updateifsE
+
+## 语言识别
+
+[茉莉花](https://gitee.com/l0o0/jasminum) 和 [Delitem](https://github.com/redleafnew/delitemwithatt) 插件也提供了类似的功能，但茉莉花提供的语言识别基于 `nlp.js`，且似是未经预处理的原因，对于标题内含有 HTML 标签或化学式的文本识别效果不佳， Delitem 仅提供了两种语言的直接指定。
+
+本插件基于 franc 库，并针对 HTML 标签进行了处理，提高了识别准确率。然而，如果您对本插件提供的其他功能没有需求，且是茉莉花用户，那么使用茉莉花插件已经可以完全满足，没有必要为了这一丝准确度的提高而额外加载数十兆的本插件。
 
 ## 致谢
 
@@ -66,7 +85,7 @@ GNU Affero General Public License v3.0
 - [redleafnew/zotero-updateifsE](https://github.com/redleafnew/zotero-updateifsE)
 - [zoushucai/zotero-journalabbr](https://github.com/zoushucai/zotero-journalabbr)
 - [windingwind/zotero-pdf-translate](https://github.com/windingwind/zotero-pdf-translate)
-- [windingwind/zotero-pdf-preview/](https://github.com/windingwind/zotero-pdf-preview)
+- [windingwind/zotero-pdf-preview](https://github.com/windingwind/zotero-pdf-preview)
 
 开发过程中使用了如下项目的数据：
 
