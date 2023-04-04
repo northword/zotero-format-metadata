@@ -328,49 +328,27 @@ export default class FormatMetadata {
     /* 上下标 */
     /**
      * Get the selected text and replace it with text with or without HTML tags depending on the operation.
-     * @param mode sub | sup | bold | italic
+     * @param tag sub | sup | b | i
      * @returns
      *
      * @see https://stackoverflow.com/questions/31036076/how-to-replace-selected-text-in-a-textarea-with-javascript
      */
     @descriptor
-    public static setHtmlTag(mode?: string) {
+    public static setHtmlTag(tag: string) {
         const editpaneItemBox = document.activeElement as HTMLInputElement | null;
-        if (editpaneItemBox) {
-            if (typeof editpaneItemBox.selectionStart == "number" && typeof editpaneItemBox.selectionEnd == "number") {
-                var start = editpaneItemBox.selectionStart;
-                var end = editpaneItemBox.selectionEnd;
-                var selectedText = editpaneItemBox.value.slice(start, end);
-                var before = editpaneItemBox.value.slice(0, start);
-                var after = editpaneItemBox.value.slice(end);
-                // console.log(start, end, selectedText, before, after);
-                switch (mode) {
-                    case "sub":
-                        selectedText = selectedText.startsWith("<sub>")
-                            ? this.removeHtmlTag(selectedText)
-                            : "<sub>" + selectedText + "</sub>";
-                        break;
-                    case "sup":
-                        selectedText = selectedText.startsWith("<sup>")
-                            ? this.removeHtmlTag(selectedText)
-                            : "<sup>" + selectedText + "</sup>";
-                        break;
-                    case "bold":
-                        selectedText = selectedText.startsWith("<b>")
-                            ? this.removeHtmlTag(selectedText)
-                            : "<b>" + selectedText + "</b>";
-                        break;
-                    case "italic":
-                        selectedText = selectedText.startsWith("<i>")
-                            ? this.removeHtmlTag(selectedText)
-                            : "<i>" + selectedText + "</i>";
-                        break;
-                    default:
-                        break;
-                }
-                var text = before + selectedText + after;
-                editpaneItemBox.value = text;
-            }
+        if (
+            editpaneItemBox !== null &&
+            typeof editpaneItemBox.selectionStart == "number" &&
+            typeof editpaneItemBox.selectionEnd == "number"
+        ) {
+            var start = editpaneItemBox.selectionStart;
+            var end = editpaneItemBox.selectionEnd;
+            var selectedText = editpaneItemBox.value.slice(start, end);
+            selectedText = selectedText.startsWith(`<${tag}>`)
+                ? this.removeHtmlTag(selectedText)
+                : `<${tag}>` + selectedText + `</${tag}>`;
+            var text = editpaneItemBox.value.slice(0, start) + selectedText + editpaneItemBox.value.slice(end);
+            editpaneItemBox.value = text;
         }
     }
 

@@ -62,11 +62,6 @@ function onShutdown(): void {
 async function onNotify(event: string, type: string, ids: Array<string | number>, extraData: { [key: string]: any }) {
     // You can add your code to the corresponding notify type
     ztoolkit.log("notify", event, type, ids, extraData);
-    // if (event == "select" && type == "tab" && extraData[ids[0]].type == "reader") {
-    //     // BasicExampleFactory.exampleNotifierCallback();
-    // } else {
-    //     return;
-    // }
     if (event == "add" && type == "item") {
         FormatMetadata.updateOnItemAdd(ids);
     }
@@ -94,19 +89,17 @@ async function onPrefsEvent(type: string, data: { [key: string]: any }) {
 
 function onShortcuts(type: string) {
     switch (type) {
-        case "sub":
         case "subscript":
             FormatMetadata.setHtmlTag("sub");
             break;
-        case "sup":
         case "supscript":
             FormatMetadata.setHtmlTag("sup");
             break;
         case "bold":
-            FormatMetadata.setHtmlTag("bold");
+            FormatMetadata.setHtmlTag("b");
             break;
         case "italic":
-            FormatMetadata.setHtmlTag("italic");
+            FormatMetadata.setHtmlTag("i");
             break;
         case "confliction":
             break;

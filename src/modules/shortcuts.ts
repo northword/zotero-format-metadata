@@ -7,7 +7,7 @@ export function registerShortcuts() {
         key: "=",
         modifiers: "control",
         callback: (keyOptions) => {
-            addon.hooks.onShortcuts("sub");
+            addon.hooks.onShortcuts("subscript");
         },
     });
 
@@ -17,7 +17,7 @@ export function registerShortcuts() {
         key: "+",
         modifiers: "control,shift",
         callback: (keyOptions) => {
-            addon.hooks.onShortcuts("sup");
+            addon.hooks.onShortcuts("supscript");
         },
     });
 
