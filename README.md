@@ -8,14 +8,14 @@ An addon for [Zotero](https://www.zotero.org/) to format item metadata.
 
 ### Shortcut to set subscripts, bold and italic, etc
 
-The rich text content in Zotero's reference list requires manual insertion of HTML tags (See [^1]), which is difficult for the common user. Although Zotero's documentation mentions that visual editing of rich text will be supported in future versions, years have passed without any progress on this issue, so this plugin provides a quick way to insert these HTML tags.
+The rich text content in Zotero's reference list requires manual insertion of HTML tags (See [^rich_text_bibliography]), which is difficult for the common user. Although Zotero's documentation mentions that visual editing of rich text will be supported in future versions, years have passed without any progress on this issue, so this plugin provides a quick way to insert these HTML tags.
 
-[^1]: https://www.zotero.org/support/kb/rich_text_bibliography
+[^rich_text_bibliography]: https://www.zotero.org/support/kb/rich_text_bibliography
 
 #### Shortcuts
 
 - Supscript: `Ctrl` + `Shift` + `+`
-- Subscript: `Ctrl` + `+`
+- Subscript: `Ctrl` + `=`
 - Bold: `Ctrl` + `B`
 - Italic: `Ctrl` + `I`
 
@@ -23,23 +23,27 @@ The rich text content in Zotero's reference list requires manual insertion of HT
 
 #### Toolbar
 
-Work in progress.
+Working in progress.
 
 ### Look up the journal abbreviation according to the journal full name
 
 The plugin has a built-in dataset of about 130,000 journal abbreviations, and the plugin will first look up the journal abbreviations in the local dataset;
 
-If none are available, the abbreviations are inferred from the ISSN List of Title Word Abbreviations (option provided);
+If none are available, the abbreviations are inferred from the [ISSN List of Title Word Abbreviations](https://www.issn.org/services/online-services/access-to-the-ltwa/) (optional);
 
-If still no abbreviations are found, the full name of the journal is substituted (option provided).
+If still no abbreviations are found, the full name of the journal is substituted (optional).
 
 ### Look up the place of the university according to its name
 
-The plug-in has a built-in list of universities in mainland China and their locations. For the thesis items, the location is filled in according to the university of the thesis, which is helpful to meet the requirement of GB/T 7714-2015 for the thesis to show the location.
+The plug-in has a built-in list of universities in mainland China and their locations. For the thesis items, the location is filled in according to the university of the thesis, which is helpful to meet the requirement of GB/T 7714-2015 for the thesis to show the location [^gb7714].
+
+[^gb7714]: Chinese GB/T 7714-2015: http://www.cessp.org.cn/a258.html
 
 ### Fill in the language of the item according to its title
 
-The plug-in determines the language of an item based on its title.
+The plug-in determines the language of an item based on its title. Mixing "et al" and "等" in CSL by setting the Language field [^csl-etal] .
+
+[^csl-etal]: https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8
 
 ## Todo
 
@@ -85,6 +89,8 @@ See [CHANGELOG.md](./CHANGELOG.md).
 ## Licence
 
 GNU Affero General Public License v3.0
+
+Permissions of this strongest copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. When a modified version is used to provide a service over a network, the complete source code of the modified version must be made available.
 
 ## Alternatives
 
