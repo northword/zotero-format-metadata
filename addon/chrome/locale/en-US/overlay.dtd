@@ -4,10 +4,20 @@
 <!ENTITY zotero.__addonRef__.pref.enable.label "Enable this feature in the standard formatting flow">
 <!ENTITY zotero.__addonRef__.pref.wip.label "Work in progress...">
 
+<!ENTITY zotero.__addonRef__.pref.richtext.label "Rich Text Edit">
+
+<!ENTITY zotero.__addonRef__.pref.abbr.label "Journal Abbreviations">
 <!ENTITY zotero.__addonRef__.pref.abbr.type "Types of abbreviations">
 <!ENTITY zotero.__addonRef__.pref.abbr.infer.label "Automatically infer abbreviations from LTWA when no journal abbreviation is available">
 <!ENTITY zotero.__addonRef__.pref.abbr.usefull.label "Use full name instead when journal abbreviation is still not available">
 
+<!ENTITY zotero.__addonRef__.pref.place.label "University Place">
+
+<!ENTITY zotero.__addonRef__.pref.doi.label "DOI">
+
+<!ENTITY zotero.__addonRef__.pref.date.label "Date">
+
+<!ENTITY zotero.__addonRef__.pref.lang.label "language">
 <!ENTITY zotero.__addonRef__.pref.lang.allow.label "Limit common languages to improve recognition accuracy">
 <!ENTITY zotero.__addonRef__.pref.lang.cmn.label "Sample Chinese (cmn)">
 <!ENTITY zotero.__addonRef__.pref.lang.eng.label "English (eng)">

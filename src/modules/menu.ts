@@ -14,7 +14,7 @@ export function registerMenu() {
         children: [
             {
                 tag: "menuitem",
-                label: "标准格式化", //getString("menuitem.submenulabel"),
+                label: getString("menuitem.stdFormatFlow"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("std");
                 },
@@ -24,21 +24,21 @@ export function registerMenu() {
             },
             {
                 tag: "menuitem",
-                label: "期刊缩写", //getString("menuitem.submenulabel"),
+                label: getString("menuitem.setJournalAbbr"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("abbr");
                 },
             },
             {
                 tag: "menuitem",
-                label: "学校地点", //getString("menuitem.submenulabel"),
+                label: getString("menuitem.setPlace"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("place");
                 },
             },
             {
                 tag: "menuitem",
-                label: "DOI 统一", //getString("menuitem.submenulabel"),
+                label: getString("menuitem.setDoi"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("");
                 },
@@ -46,7 +46,7 @@ export function registerMenu() {
             },
             {
                 tag: "menuitem",
-                label: "日期统一为 ISO 格式", //getString("menuitem.submenulabel"),
+                label: getString("menuitem.setDate"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("");
                 },
@@ -54,15 +54,14 @@ export function registerMenu() {
             },
             {
                 tag: "menuitem",
-                label: "自动设置语言", //getString("menuitem.submenulabel"),
+                label: getString("menuitem.autoSetLang"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("lang");
                 },
-                disabled: true,
             },
             {
                 tag: "menuitem",
-                label: "设置为指定语言", //getString("menuitem.submenulabel"),
+                label: getString("menuitem.ManuallySetLang"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("");
                 },
