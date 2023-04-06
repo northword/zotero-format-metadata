@@ -113,6 +113,10 @@ The [Jasminum](https://gitee.com/l0o0/jasminum) and [Delitem](https://github.com
 
 However, if you have no demand for the other features provided by this plugin and are a Jasminum user, then using the Jasminum plugin is already fully satisfying and there is no need to load tens of extra megabytes of plugins for this slight increase in accuracy.
 
+### Place
+
+A quicker action is available: [填充城市](https://getquicker.net/Sharedaction?code=b5506c59-6116-4111-a65e-08db363ab19b)
+
 ## Acknowledgements
 
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
