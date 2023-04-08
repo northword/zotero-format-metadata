@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 富文本工具框记住位置，自动在上一次关闭的位置显示，便于操作。
+
 ## [0.0.12] - 2023-04-08
 
 ### Added

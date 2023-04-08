@@ -20,7 +20,7 @@ class Addon {
             tabOptionId: string;
             activePanels: HTMLElement[];
             toolBarPanel: any;
-            toolBatPanelWindow: Window | null;
+            toolBarPanelWindow: Window | null;
         };
     };
     // Lifecycle hooks
@@ -34,7 +34,7 @@ class Addon {
             env: __env__,
             // ztoolkit: new MyToolkit(),
             ztoolkit: new ZoteroToolkit(),
-            panel: { tabOptionId: "", activePanels: [], toolBatPanelWindow: null, toolBarPanel: null },
+            panel: { tabOptionId: "", activePanels: [], toolBarPanelWindow: null, toolBarPanel: null },
         };
         this.hooks = hooks;
         this.api = {};

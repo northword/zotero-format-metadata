@@ -1,4 +1,4 @@
-import { getPref } from "./preference";
+import { getPref, setPref } from "./preference";
 import { config } from "../../package.json";
 
 export class richTextToolBar {
@@ -12,6 +12,19 @@ export class richTextToolBar {
                 },
                 unloadCallback: () => {
                     ztoolkit.log(dialogData, "Dialog closed!");
+                    // console.log(addon.data.panel.toolBarPanel.window);
+                    setPref(
+                        "richText.toolbarPosition.left",
+                        addon.data.panel.toolBarPanelWindow?.screenX ??
+                            addon.data.panel.toolBarPanelWindow?.screenX ??
+                            "0"
+                    );
+                    setPref(
+                        "richText.toolbarPosition.top",
+                        addon.data.panel.toolBarPanelWindow?.screenY ??
+                            addon.data.panel.toolBarPanelWindow?.screenY ??
+                            "0"
+                    );
                 },
             };
             addon.data.panel.toolBarPanel = new ztoolkit.Dialog(1, 4)
@@ -157,7 +170,6 @@ export class richTextToolBar {
         this.creatRichTextDialog();
         // ztoolkit.log("addon.data.panel", addon.data.panel);
         // ztoolkit.log("addon.data.panel.toolBarPanel", addon.data.panel.toolBarPanel);
-        // TODO: 记住位置
         var windowFuture: {
             left?: number;
             top?: number;
@@ -187,14 +199,13 @@ export class richTextToolBar {
         addon.data.panel.toolBarPanel !== null
             ? addon.data.panel.toolBarPanel.open("Zotero Formet Metadata Rich Text Tool Bar", windowFuture)
             : console.warn("addon.data.panel.toolBarPanel is null");
-        addon.data.panel.toolBatPanelWindow = addon.data.panel.toolBarPanel.window;
+        addon.data.panel.toolBarPanelWindow = addon.data.panel.toolBarPanel.window;
     }
 
     static closeToolBar() {
         // ztoolkit.log("close tool bar");
-        addon.data.panel.toolBatPanelWindow !== null
-            ? addon.data.panel.toolBatPanelWindow.close()
+        addon.data.panel.toolBarPanelWindow !== null
+            ? addon.data.panel.toolBarPanelWindow.close()
             : console.warn("addon.data.panel.toolBarPanelWindow is null");
-        // TODO：记住位置
     }
 }
