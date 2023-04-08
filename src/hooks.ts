@@ -1,12 +1,13 @@
 import { config } from "../package.json";
 import { getString, initLocale } from "./modules/locale";
-import { registerPrefs, registerPrefsScripts } from "./modules/preference";
+import { getPref, registerPrefs, registerPrefsScripts } from "./modules/preference";
 import { registerMenu } from "./modules/menu";
 import { registerShortcuts } from "./modules/shortcuts";
-import { registerNotifier } from "./modules/notifier";
-import { registerPrompt } from "./modules/prompt";
+import { registerMutationObserver, registerNotifier } from "./modules/notifier";
+// import { registerPrompt } from "./modules/prompt";
 import { progressWindow } from "./modules/untils";
 import FormatMetadata from "./modules/formatMetadata";
+import { richTextToolBar } from "./modules/dialog";
 
 async function onStartup() {
     await Promise.all([Zotero.initializationPromise, Zotero.unlockPromise, Zotero.uiReadyPromise]);
@@ -27,6 +28,7 @@ async function onStartup() {
     registerPrefs();
 
     registerNotifier();
+    registerMutationObserver();
 
     registerShortcuts();
 
@@ -38,7 +40,7 @@ async function onStartup() {
 
     registerMenu();
 
-    // registerRichTextToolbar();
+    // richTextToolBar.creatRichTextDialog();
 
     await Zotero.Promise.delay(1000);
     popupWin.changeLine({
@@ -66,8 +68,36 @@ async function onNotify(event: string, type: string, ids: Array<string | number>
         FormatMetadata.updateOnItemAdd(ids);
     }
 
-    if (event == "select" && type == "item") {
-        FormatMetadata.richTextToolbar();
+    // if (event == "select" && type == "item") {
+    //     FormatMetadata.richTextToolbar();
+    // }
+}
+
+function onMutationObserver(record: MutationRecord, observer: MutationObserver) {
+    switch (record.type) {
+        case "attributes":
+            switch (record.attributeName) {
+                case "control":
+                    if (getPref("richtext.isEnableToolBar")) {
+                        // @ts-ignore
+                        if (record.target.attributes.control.nodeValue == "itembox-field-textbox-title") {
+                            richTextToolBar.showToolBar();
+                        }
+                        // @ts-ignore
+                        if (record.target.attributes.control.nodeValue == "itembox-field-value-title") {
+                            richTextToolBar.closeToolBar();
+                        }
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+            break;
+        case "childList":
+            break;
+        default:
+            break;
     }
 }
 
@@ -150,6 +180,7 @@ export default {
     onStartup,
     onShutdown,
     onNotify,
+    onMutationObserver,
     onPrefsEvent,
     onShortcuts,
     onUpdateInBatch,

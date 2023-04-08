@@ -5,6 +5,8 @@
 <!ENTITY zotero.__addonRef__.pref.wip.label "Work in progress...">
 
 <!ENTITY zotero.__addonRef__.pref.richtext.label "Rich Text Edit">
+<!ENTITY zotero.__addonRef__.pref.richText.isEnableToolbar "Enable Rich Text Toolbar">
+
 
 <!ENTITY zotero.__addonRef__.pref.abbr.label "Journal Abbreviations">
 <!ENTITY zotero.__addonRef__.pref.abbr.type "Types of abbreviations">

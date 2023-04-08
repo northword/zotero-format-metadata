@@ -11,3 +11,5 @@ pref("__prefsPrefix__.lang.only.enable", true);
 pref("__prefsPrefix__.lang.only.cmn", true);
 pref("__prefsPrefix__.lang.only.eng", true);
 pref("__prefsPrefix__.lang.only.other", "");
+pref("__prefsPrefix__.richtext.isEnableToolBar", true);
+pref("__prefsPrefix__.richtext.isEnableChem", true);

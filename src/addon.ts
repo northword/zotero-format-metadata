@@ -1,35 +1,44 @@
-import ZoteroToolkit from "zotero-plugin-toolkit/dist/index";
+// import ZoteroToolkit from "zotero-plugin-toolkit/dist/index";
+// 由于 https://github.com/windingwind/zotero-plugin-toolkit/pull/21 尚未合并，临时使用本地 toolkit .
+import ZoteroToolkit from "../../zotero-cn/zotero-plugin-toolkit/dist/index";
 import hooks from "./hooks";
 
 class Addon {
-  public data: {
-    alive: boolean;
-    // Env type, see build.js
-    env: "development" | "production";
-    // ztoolkit: MyToolkit;
-    ztoolkit: ZoteroToolkit;
-    locale?: {
-      stringBundle: any;
+    public data: {
+        alive: boolean;
+        // Env type, see build.js
+        env: "development" | "production";
+        // ztoolkit: MyToolkit;
+        ztoolkit: ZoteroToolkit;
+        locale?: {
+            stringBundle: any;
+        };
+        prefs?: {
+            window: Window;
+        };
+        panel: {
+            tabOptionId: string;
+            activePanels: HTMLElement[];
+            toolBarPanel: any;
+            toolBatPanelWindow: Window | null;
+        };
     };
-    prefs?: {
-      window: Window;
-    };
-  };
-  // Lifecycle hooks
-  public hooks: typeof hooks;
-  // APIs
-  public api: {};
+    // Lifecycle hooks
+    public hooks: typeof hooks;
+    // APIs
+    public api: {};
 
-  constructor() {
-    this.data = {
-      alive: true,
-      env: __env__,
-      // ztoolkit: new MyToolkit(),
-      ztoolkit: new ZoteroToolkit(),
-    };
-    this.hooks = hooks;
-    this.api = {};
-  }
+    constructor() {
+        this.data = {
+            alive: true,
+            env: __env__,
+            // ztoolkit: new MyToolkit(),
+            ztoolkit: new ZoteroToolkit(),
+            panel: { tabOptionId: "", activePanels: [], toolBatPanelWindow: null, toolBarPanel: null },
+        };
+        this.hooks = hooks;
+        this.api = {};
+    }
 }
 
 /**

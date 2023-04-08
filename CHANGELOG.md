@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 对于标题字段可以弹出富文本编辑工具框辅助插入上下标等 HTML 标签。暂未实现记忆工具框位置，每次弹出都在屏幕中央。
+
 ## [0.0.11] - 2023-04-07
 
 ### Fixed

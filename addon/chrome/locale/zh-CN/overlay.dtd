@@ -5,6 +5,8 @@
 <!ENTITY zotero.__addonRef__.pref.wip.label "开发中...">
 
 <!ENTITY zotero.__addonRef__.pref.richtext.label "标题富文本编辑">
+<!ENTITY zotero.__addonRef__.pref.richText.isEnableToolbar "启用富文本工具条">
+
 
 <!ENTITY zotero.__addonRef__.pref.abbr.label "期刊缩写">
 <!ENTITY zotero.__addonRef__.pref.abbr.type "期刊缩写的类型">
