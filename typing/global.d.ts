@@ -10,7 +10,8 @@ declare const _globalThis: {
 };
 
 // declare const ztoolkit: import("../src/addon").MyToolkit;
-declare const ztoolkit: import("zotero-plugin-toolkit").ZoteroToolkit;
+// declare const ztoolkit: import("zotero-plugin-toolkit").ZoteroToolkit;
+declare const ztoolkit: import("../../zotero-cn/zotero-plugin-toolkit/dist/index").ZoteroToolkit;
 
 declare const rootURI: string;
 
