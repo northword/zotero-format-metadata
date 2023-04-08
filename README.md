@@ -97,6 +97,15 @@ Permissions of this strongest copyleft license are conditioned on making availab
 
 ## Alternatives
 
+### Rich Text HTML Tags
+
+Some quicker actions are available:
+
+- [Supscript](https://getquicker.net/Sharedaction?code=dee60abc-d1f5-40ad-99c3-08d9c6b06ad1)
+- [Subscript](https://getquicker.net/Sharedaction?code=b44c0592-89fa-41c2-99c4-08d9c6b06ad1)
+- [Bold](https://getquicker.net/Sharedaction?code=dc815b9a-f463-4233-99c5-08d9c6b06ad1)
+- [Italic](https://getquicker.net/Sharedaction?code=98c3d460-22b5-49ab-99c2-08d9c6b06ad1)
+
 ### Journal abbreviation
 
 Both [zotero-journalabbr] and [zotero-updateifsE] plugins provide similar function.
@@ -110,15 +119,15 @@ This plug-in adds the ability to infer abbreviations from ISSN LTWA to JabRef da
 [zotero-journalabbr]: https://github.com/zoushucai/zotero-journalabbr
 [zotero-updateifsE]: https://github.com/redleafnew/zotero-updateifsE
 
+### Place
+
+A quicker action is available: [填充城市](https://getquicker.net/Sharedaction?code=b5506c59-6116-4111-a65e-08db363ab19b)
+
 ### Language
 
 The [Jasminum](https://gitee.com/l0o0/jasminum) and [Delitem](https://github.com/redleafnew/delitemwithatt) plugins provide similar functionality, but the language recognition provided by Jasminum is based on `nlp.js` and seems is not pre-processed and does not work well for text with HTML tags or chemical formulas in the title, Delitem only provides direct specification of the two languages. This plugin based `franc` and has been processed for HTML tags to improve the recognition accuracy.  
 
 However, if you have no demand for the other features provided by this plugin and are a Jasminum user, then using the Jasminum plugin is already fully satisfying and there is no need to load tens of extra megabytes of plugins for this slight increase in accuracy.
-
-### Place
-
-A quicker action is available: [填充城市](https://getquicker.net/Sharedaction?code=b5506c59-6116-4111-a65e-08db363ab19b)
 
 ## Acknowledgements
 
