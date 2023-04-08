@@ -23,7 +23,7 @@ The rich text content in Zotero's reference list requires manual insertion of HT
 
 #### Toolbar
 
-Working in progress.
+![Set subscript via toolbar](./docs/assets/set-sub-via-toolbar.gif)
 
 ### Look up the journal abbreviation according to the journal full name
 
@@ -49,7 +49,10 @@ The plug-in determines the language of an item based on its title. Mixing "et al
 
 - [ ] 标题 HTML 标签
   - [x] 快捷键应用上下标、粗体斜体等
-  - [ ] 选中文本后弹出迷你菜单提供上下标按钮
+  - [x] 选中文本后弹出迷你菜单提供上下标按钮
+    - [ ] 记忆工具条位置
+    - [ ] 工具条按钮描述改为图形
+    - [ ] 提供选项：修改后的标题实时可视化
   - [ ] 建立常见化学式的映射以批量自动替换
 - [ ] 期刊：刊名与缩写
   - [ ] 期刊全称消歧：例如 `Applied Catalysis B-environmental` 与 `Applied Catalysis B: environmental` 为相同期刊
