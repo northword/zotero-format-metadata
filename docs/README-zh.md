@@ -21,7 +21,7 @@ Zotero 的参考文献表中的富文本内容需要手动插入 HTML 标签来�
 
 #### 工具条
 
-![Set subscript via toolbar](./docs/assets/set-sub-via-toolbar.gif)
+![Set subscript via toolbar](./assets/set-sub-via-toolbar.gif)
 
 ### 根据期刊全称填充期刊缩写
 
