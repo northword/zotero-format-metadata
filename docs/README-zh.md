@@ -1,5 +1,12 @@
 # Zotero Format Metadada
 
+[![zotero target version](https://img.shields.io/badge/Zotero-6.x-critical?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
+[![version](https://img.shields.io/github/package-json/v/northword/zotero-format-metadata?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)
+[![download number](https://img.shields.io/github/downloads/northword/zotero-format-metadata/latest/zotero-format-metadata.xpi?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)  
+![code size](https://img.shields.io/github/languages/code-size/northword/zotero-format-metadata?style=flat-square)
+[![license](https://img.shields.io/github/license/northword/zotero-format-metadata?style=flat-square)](#开源协议)
+[![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
+
 我是一个 [Zotero](https://www.zotero.org/) 插件，可以规范化/格式化条目的元数据。
 
 ## 特性
