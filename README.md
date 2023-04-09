@@ -1,4 +1,4 @@
-# Zotero Format Metadada
+# Zotero Format Metadata
 
 [![zotero target version](https://img.shields.io/badge/Zotero-6.x-critical?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![version](https://img.shields.io/github/package-json/v/northword/zotero-format-metadata?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)
@@ -42,13 +42,13 @@ If still no abbreviations are found, the full name of the journal is substituted
 
 ### Look up the place of the university according to its name
 
-The plug-in has a built-in list of universities in mainland China and their locations. For the thesis items, the location is filled in according to the university of the thesis, which is helpful to meet the requirement of GB/T 7714-2015 for the thesis to show the location [^gb7714].
+The plugin has a built-in list of universities in mainland China and their locations. For the thesis items, the location is filled in according to the university of the thesis, which is helpful to meet the requirement of GB/T 7714-2015 for the thesis to show the location [^gb7714].
 
 [^gb7714]: Chinese GB/T 7714-2015: http://www.cessp.org.cn/a258.html
 
 ### Fill in the language of the item according to its title
 
-The plug-in determines the language of an item based on its title. Mixing "et al" and "等" in CSL by setting the Language field [^csl-etal] .
+The plugin determines the language of an item based on its title. Mixing "et al" and "等" in CSL by setting the Language field [^csl-etal] .
 
 [^csl-etal]: https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8
 
@@ -86,11 +86,11 @@ The plug-in determines the language of an item based on its title. Mixing "et al
 
 ## Install
 
-1. Go to the [release page](https://github.com/northword/zotero-format-metadata/releases/) to download [the latest .xpi file](https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-format-metadata.xpi).  
-If you are in mainland China or cannot access GitHub easily, you can go to the following mirror site to download.
+1. Go to the [release page](https://github.com/northword/zotero-format-metadata/releases/) to download [the latest `.xpi` file](https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-format-metadata.xpi).  
+If you are in mainland China or cannot access GitHub easily, please download the plugin via the following mirror sites.
     - [GitHub Proxy](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fnorthword%2Fzotero-format-metadata%2Freleases%2Flatest%2Fdownload%2Fzotero-format-metadata.xpi)
     - [Gitee](https://zotero-chinese.gitee.io/zotero-plugins/#/)
-1. Drag it into the Zotero add-on manager. See [how to install a Zotero addon](https://zotero.yuque.com/staff-gkhviy/zotero/addons#B2kU3).
+2. Then, in Zotero, click `Tools` -> `Add-ons` and drag the `.xpi` onto the Add-ons window. See [how to install a Zotero addon](https://zotero.yuque.com/staff-gkhviy/zotero/addons#B2kU3).
 
 ## Changelog
 
@@ -132,9 +132,9 @@ A quicker action is available: [填充城市](https://getquicker.net/Sharedactio
 
 ### Language
 
-The [Jasminum](https://gitee.com/l0o0/jasminum) and [Delitem](https://github.com/redleafnew/delitemwithatt) plugins provide similar functionality, but the language recognition provided by Jasminum is based on `nlp.js` and seems is not pre-processed and does not work well for text with HTML tags or chemical formulas in the title, Delitem only provides direct specification of the two languages. This plugin based `franc` and has been processed for HTML tags to improve the recognition accuracy.  
+The [Jasminum](https://gitee.com/l0o0/jasminum) and [Delitem](https://github.com/redleafnew/delitemwithatt) plugins provide similar functionality, but the language recognition provided by Jasminum is based on `nlp.js` and seems is not pre-processed and does not work well for text with HTML tags or chemical formulas in the title, Delitem only provides direct specification of the two languages.
 
-However, if you have no demand for the other features provided by this plugin and are a Jasminum user, then using the Jasminum plugin is already fully satisfying and there is no need to load tens of extra megabytes of plugins for this slight increase in accuracy.
+This plugin based `franc` and has been processed for HTML tags to improve the recognition accuracy. However, if you have no demand for the other features provided by this plugin and are a Jasminum user, then using the Jasminum plugin is already fully satisfying and there is no need to load tens of extra megabytes of plugins for this slight increase in accuracy.
 
 ## Acknowledgements
 
