@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复上游期刊缩写数据中 Nature 错误的问题，全称“Nature”缩写应为“Nature”。
+
 ## [0.0.13] - 2023-04-08
 
 ### Added
