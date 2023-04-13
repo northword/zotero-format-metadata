@@ -45,7 +45,7 @@ for in_file in import_order:
     count = 0
     f = open(in_file, "r")
     for line in f:
-        if ";" in line and line[0] != "#":
+        if ";" in line and line[0] != "#" and line[0][0].isalpha():
             count += 1
             parts = line.partition(";")
             journal_dict[parts[0].strip().lower()] = parts[2].partition(";")[0].strip()
@@ -57,9 +57,5 @@ print(f"Combined key count: {len(journal_dict)}")
 
 f = open(out_file, "w")
 f.write("export default ")
-f.write(str(json.dumps(journal_dict, indent=4)))
-# for key in sorted(journal_dict.keys()):
-#     # print(key, "====",journal_dict[key])
-#     f.write(journal_dict[key]+"\n")
-#     # f.write(str(journal_dict))
+f.write(str(json.dumps(dict(sorted(journal_dict.items())), indent=4)))
 f.close()
