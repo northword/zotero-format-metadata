@@ -1,0 +1,3 @@
+[submodule "src/data/journal-abbr/abbrv.jabref.org"]
+	path = src/data/journal-abbr/jabref-abbr/abbrv.jabref.org
+	url = https://github.com/JabRef/abbrv.jabref.org.git

@@ -32,7 +32,7 @@ Zotero 的参考文献表中的富文本内容需要手动插入 HTML 标签来�
 
 ### 根据期刊全称填充期刊缩写
 
-插件内置了一个包含约13万条期刊缩写的数据集，插件将首先在本地数据集里查询期刊缩写；
+插件内置了一个包含约 10 万条期刊缩写的数据集，插件将首先在本地数据集里查询期刊缩写；
 
 若无则根据 [ISSN List of Title Word Abbreviations](https://www.issn.org/services/online-services/access-to-the-ltwa/) 推断其缩写（提供选项是否启用）；
 

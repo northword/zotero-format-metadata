@@ -34,7 +34,7 @@ The rich text content in Zotero's reference list requires manual insertion of HT
 
 ### Look up the journal abbreviation according to the journal full name
 
-The plugin has a built-in dataset of about 130,000 journal abbreviations, and the plugin will first look up the journal abbreviations in the local dataset;
+The plugin has a built-in dataset of about 96,000 journal abbreviations, and the plugin will first look up the journal abbreviations in the local dataset;
 
 If none are available, the abbreviations are inferred from the [ISSN List of Title Word Abbreviations](https://www.issn.org/services/online-services/access-to-the-ltwa/) (optional);
 

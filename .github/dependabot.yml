@@ -9,3 +9,7 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "monthly"
+  - package-ecosystem: "gitsubmodule" 
+    directory: "/" 
+    schedule:
+      interval: "weekly"
