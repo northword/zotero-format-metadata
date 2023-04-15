@@ -2,6 +2,8 @@ import { journalAbbrlocalData, universityPlaceLocalData, iso6393To6391Data } fro
 import { franc } from "franc";
 import { getPref } from "./preference";
 import { descriptor, progressWindow } from "./untils";
+import { getString } from "./locale";
+import { config } from "../../package.json";
 // import { richTextDialog } from "./dialog";
 // import { getAbbrFromLtwaLocally } from "./abbrevIso";
 
@@ -12,6 +14,55 @@ export default class FormatMetadata {
     public static unimplemented() {
         ztoolkit.log("此功能尚未实现。");
         window.alert("此功能尚未实现。");
+    }
+
+    @descriptor
+    public static async updateInBatch(fn: any) {
+        const items = Zotero.getActiveZoteroPane().getSelectedItems();
+        const total = items.length;
+        const popupWin = new ztoolkit.ProgressWindow(config.addonName, {
+            closeOnClick: true,
+            closeTime: 2000,
+        })
+            .createLine({
+                text: getString("Progressing... Please wait."),
+                type: "default",
+                progress: 0,
+            })
+            .show();
+
+        var num = 1,
+            err = 0;
+        for (var item of items) {
+            await fn.call(this, item);
+            popupWin.changeLine({
+                progress: num / total,
+                text: `[${num}/${total}] Progressing`,
+            });
+            console.log(new Date());
+            num++;
+        }
+        popupWin.changeLine({ type: "default", text: "Done!", progress: 100 });
+        console.log("done");
+
+        // Promise.all(
+        //     items.map(async (item) => {
+        //         await fn.call(this, item);
+        //         popupWin.changeLine({
+        //             progress: num / total,
+        //             text: `[${num}/${total}] Progressing`,
+        //         });
+        //         console.log(new Date());
+        //         num++;
+        //     })
+        // ).then(() => {
+        //     popupWin.changeLine({ type: "default", text: "Done!", progress: 100 });
+        //     console.log("done");
+        // });
+        // .catch((reason)=>{
+        //     err++;
+        //     popupWin.changeLine({ type: "default", text: `${total-err} done, ${err} error`, progress: 100 });
+        // })
     }
 
     /**
@@ -27,7 +78,6 @@ export default class FormatMetadata {
 
     @descriptor
     public static updateOnItemAdd(ids: Array<string | number>) {
-        ztoolkit.log("add.update ", getPref("add.update"));
         if (getPref("add.update")) {
             var err = 0;
             ids.forEach((id) => {

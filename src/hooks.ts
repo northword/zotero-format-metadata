@@ -5,7 +5,6 @@ import { registerMenu } from "./modules/menu";
 import { registerShortcuts } from "./modules/shortcuts";
 import { registerMutationObserver, registerNotifier } from "./modules/notifier";
 // import { registerPrompt } from "./modules/prompt";
-import { progressWindow } from "./modules/untils";
 import FormatMetadata from "./modules/formatMetadata";
 import { richTextToolBar } from "./modules/dialog";
 
@@ -143,28 +142,18 @@ function onShortcuts(type: string) {
 // Otherwise the code would be hard to read and maintian.
 
 function onUpdateInBatch(mode: string) {
-    const items = Zotero.getActiveZoteroPane().getSelectedItems();
-    progressWindow(`Progressing...\nPlease wait.`, "info", 0);
     switch (mode) {
         case "std":
-            items.forEach((item) => {
-                FormatMetadata.updateStdFlow(item);
-            }, FormatMetadata);
+            FormatMetadata.updateInBatch(FormatMetadata.updateStdFlow);
             break;
         case "abbr":
-            items.forEach((item) => {
-                FormatMetadata.updateJournalAbbr(item);
-            }, FormatMetadata);
+            FormatMetadata.updateInBatch(FormatMetadata.updateJournalAbbr);
             break;
         case "lang":
-            items.forEach((item) => {
-                FormatMetadata.updateLanguage(item);
-            }, FormatMetadata);
+            FormatMetadata.updateInBatch(FormatMetadata.updateLanguage);
             break;
         case "place":
-            items.forEach((item) => {
-                FormatMetadata.updateUniversityPlace(item);
-            }, FormatMetadata);
+            FormatMetadata.updateInBatch(FormatMetadata.updateUniversityPlace);
             break;
         case "doi":
         case "date":
@@ -173,7 +162,6 @@ function onUpdateInBatch(mode: string) {
             FormatMetadata.unimplemented();
             break;
     }
-    progressWindow(`Done!`, "success", 100);
 }
 
 export default {
