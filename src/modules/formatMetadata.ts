@@ -173,16 +173,15 @@ export default class FormatMetadata {
     private static getAbbrIso4Locally(publicationTitle: string, dataBase = journalAbbrlocalData): string | false {
         // 处理传入文本
         publicationTitle = publicationTitle.toLowerCase().trim();
-        publicationTitle.startsWith("the ") ? publicationTitle.replace("the", "") : "pass";
+        publicationTitle.startsWith("the ") ? publicationTitle.replace("the ", "").trim() : "pass";
         // 在本地数据里查找
         var journalAbbr = dataBase[publicationTitle];
         if (journalAbbr == "" || journalAbbr == null || journalAbbr == undefined) {
-            ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} do not exist in local dataset`);
+            ztoolkit.log(`[Abbr] The abbr. of "${publicationTitle}" not exist in local dateset.`);
             return false;
-        } else {
+        }
             return journalAbbr;
         }
-    }
 
     /**
      *

@@ -52,7 +52,7 @@ for in_file in import_order:
         if ";" in line and line[0] != "#" and line[0][0].isalpha():
             count += 1
             parts = line.partition(";")
-            key = parts[0].strip().lower()
+            key = parts[0].strip().lower().replace("the ", "")
             current_abbr = parts[2].partition(";")[0].strip()
             # 排除过长的和过短的期刊
             if (len(key) <= 80 or len(key) >= 3):
