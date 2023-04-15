@@ -103,67 +103,61 @@ export default class FormatMetadata {
      */
     @descriptor
     public static async updateJournalAbbr(item: Zotero.Item) {
-        if (item.itemType == "journalArticle" || item.itemType == "conferencePaper") {
-            if (item.getField("language") !== "zh") {
-                // 英文期刊，获取缩写
-                try {
-                    var publicationTitle = item.getField("publicationTitle") as string;
-                    var journalAbbr = await this.getJournalAbbr(publicationTitle);
-                    item.setField("journalAbbreviation", journalAbbr);
-                    await item.saveTx();
-                } catch (error) {
-                    ztoolkit.log("[Abbr] Failed to update abbr, error is: ", error);
-                }
-            } else {
-                // 中文期刊，是否以全称填充
-            }
-        } else {
+        // 非 journalArticle 和 conferencePaper 直接跳过
+        if (item.itemType !== "journalArticle" && item.itemType !== "conferencePaper") {
             ztoolkit.log(`[Abbr] Item type ${item.itemType} is not journalArticle or conferencePaper, skip it.`);
+            return;
         }
-    }
-
-    /**
-     * 获取指定期刊的缩写
-     *
-     * @param publicationTitle -  期刊全称
-     * @returns
-     * - String of Abbr. in `ISO 4 dot`, `ISO 4 dotless`, or `JCR` format when exist abbr
-     * - String of its `full name` when no abbr and allow to use its full name
-     * - `""` when no abbr and do not use its full name
-     */
-    @descriptor
-    private static async getJournalAbbr(publicationTitle: string): Promise<string> {
+        var publicationTitle = item.getField("publicationTitle") as string;
+        if (publicationTitle == "") return;
+        var journalAbbr = "";
+        if (!["zh", "zh-CN"].includes(item.getField("language") as string)) {
+            // 英文期刊，获取缩写
         // 1. 从本地数据集获取缩写
         var journalAbbrISO4 = this.getAbbrIso4Locally(publicationTitle, journalAbbrlocalData);
         // 2. 本地无缩写，是否从 ISSN LTWA 推断完整期刊缩写
-        if (!journalAbbrISO4) {
-            if (getPref("abbr.infer")) {
-                ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} inferring from LTWA`);
+            if (!journalAbbrISO4 && getPref("abbr.infer")) {
                 journalAbbrISO4 = await this.getAbbrFromLTWAOnline(publicationTitle);
                 // journalAbbrISO4 = getAbbrFromLtwaLocally(publicationTitle);
             }
-        }
+            if (journalAbbrISO4) {
         // 有缩写的，是否处理为 ISO dotless 或 JCR 格式
-        if (journalAbbrISO4) {
             switch (getPref("abbr.type")) {
                 case "ISO4dot":
-                    return journalAbbrISO4;
+                        journalAbbr = journalAbbrISO4;
+                        break;
                 case "ISO4dotless":
-                    return this.removeDot(journalAbbrISO4);
+                        journalAbbr = this.removeDot(journalAbbrISO4);
                 case "JCR":
-                    return this.toJCR(journalAbbrISO4);
+                        journalAbbr = this.toJCR(journalAbbrISO4);
                 default:
-                    return journalAbbrISO4;
+                        journalAbbr = journalAbbrISO4;
             }
         } else {
-            // 无缩写的，是否以全称替代
+                // 无缩写
             if (getPref("abbr.usefull")) {
+                    // 无缩写的，是否以全称替代
                 ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
-                return publicationTitle;
+                    journalAbbr = publicationTitle;
+                } else {
+                    // 无缩写且不以全称替代，返回空值
+                    journalAbbr = "";
             }
+            }
+        } else {
+            // 中文期刊，是否以全称填充
+            // 无缩写
+            if (getPref("abbr.usefullZh")) {
+                // 无缩写的，是否以全称替代
+                ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
+                journalAbbr = publicationTitle;
+            } else {
             // 无缩写且不以全称替代，返回空值
-            return "";
+                journalAbbr = "";
         }
+        }
+        item.setField("journalAbbreviation", journalAbbr);
+        await item.saveTx();
     }
 
     /**
