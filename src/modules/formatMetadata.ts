@@ -113,36 +113,36 @@ export default class FormatMetadata {
         var journalAbbr = "";
         if (!["zh", "zh-CN"].includes(item.getField("language") as string)) {
             // 英文期刊，获取缩写
-        // 1. 从本地数据集获取缩写
-        var journalAbbrISO4 = this.getAbbrIso4Locally(publicationTitle, journalAbbrlocalData);
-        // 2. 本地无缩写，是否从 ISSN LTWA 推断完整期刊缩写
+            // 1. 从本地数据集获取缩写
+            var journalAbbrISO4 = this.getAbbrIso4Locally(publicationTitle, journalAbbrlocalData);
+            // 2. 本地无缩写，是否从 ISSN LTWA 推断完整期刊缩写
             if (!journalAbbrISO4 && getPref("abbr.infer")) {
                 journalAbbrISO4 = await this.getAbbrFromLTWAOnline(publicationTitle);
                 // journalAbbrISO4 = getAbbrFromLtwaLocally(publicationTitle);
             }
             if (journalAbbrISO4) {
-        // 有缩写的，是否处理为 ISO dotless 或 JCR 格式
-            switch (getPref("abbr.type")) {
-                case "ISO4dot":
+                // 有缩写的，是否处理为 ISO dotless 或 JCR 格式
+                switch (getPref("abbr.type")) {
+                    case "ISO4dot":
                         journalAbbr = journalAbbrISO4;
                         break;
-                case "ISO4dotless":
+                    case "ISO4dotless":
                         journalAbbr = this.removeDot(journalAbbrISO4);
-                case "JCR":
+                    case "JCR":
                         journalAbbr = this.toJCR(journalAbbrISO4);
-                default:
+                    default:
                         journalAbbr = journalAbbrISO4;
-            }
-        } else {
+                }
+            } else {
                 // 无缩写
-            if (getPref("abbr.usefull")) {
+                if (getPref("abbr.usefull")) {
                     // 无缩写的，是否以全称替代
-                ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
+                    ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
                     journalAbbr = publicationTitle;
                 } else {
                     // 无缩写且不以全称替代，返回空值
                     journalAbbr = "";
-            }
+                }
             }
         } else {
             // 中文期刊，是否以全称填充
@@ -152,9 +152,9 @@ export default class FormatMetadata {
                 ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
                 journalAbbr = publicationTitle;
             } else {
-            // 无缩写且不以全称替代，返回空值
+                // 无缩写且不以全称替代，返回空值
                 journalAbbr = "";
-        }
+            }
         }
         item.setField("journalAbbreviation", journalAbbr);
         await item.saveTx();
@@ -180,8 +180,8 @@ export default class FormatMetadata {
             ztoolkit.log(`[Abbr] The abbr. of "${publicationTitle}" not exist in local dateset.`);
             return false;
         }
-            return journalAbbr;
-        }
+        return journalAbbr;
+    }
 
     /**
      *
@@ -263,22 +263,26 @@ export default class FormatMetadata {
 
     @descriptor
     public static async updateLanguage(item: Zotero.Item) {
-        // WIP: 已有合法 ISO 3166 代码的，不予处理
+        // WIP: 已有合法 ISO 639 - ISO 3166 代码的，不予处理
         if (this.verifyIso3166(item.getField("language") as string) && getPref("lang.verifyBefore")) {
-            ztoolkit.log("[lang] The item has been skipped due to the presence of valid ISO 3166 code.");
+            ztoolkit.log("[lang] The item has been skipped due to the presence of valid ISO 639 - ISO 3166 code.");
             return;
         }
         const title = item.getField("title") as string;
         const languageISO639_3 = this.getTextLanguage(title);
         if (languageISO639_3 !== "und") {
-            // ISO 639-1 或 639-3 语言代码 转 ISO 3166 国家区域代码
+            // 根据 ISO 639-1 或 639-3 语言代码匹配 ISO 3166 国家区域代码
             // TODO: 添加更多映射
-            var language = this.toIso3166(languageISO639_3);
+            var language = this.getIso3166(languageISO639_3);
             if (!language) {
                 language = this.toIso639_1(languageISO639_3);
             }
-            item.setField("language", language);
-            await item.saveTx();
+            if (!language) {
+                progressWindow(`${title} error, franc return ${languageISO639_3}, to ${language}`, "failed");
+            } else {
+                item.setField("language", language);
+                await item.saveTx();
+            }
         } else {
             progressWindow(`Failed to identify the language of text “${title}”`, "failed");
         }
@@ -336,9 +340,8 @@ export default class FormatMetadata {
      * @returns ISO 3166 code
      */
     @descriptor
-    private static toIso3166(lang: string) {
+    private static getIso3166(lang: string) {
         switch (lang) {
-            case "zh":
             case "cmn":
                 return "zh-CN";
             case "en":
@@ -356,7 +359,7 @@ export default class FormatMetadata {
      */
     @descriptor
     private static toIso639_1(iso639_3: string) {
-        return iso6393To6391Data[iso639_3];
+        return iso6393To6391Data[iso639_3] ?? false;
     }
 
     /**
@@ -482,7 +485,7 @@ export default class FormatMetadata {
     /**
      * 富文本工具条的实现，旧版
      * 在上一版本监听事件基础上打开 dialog 来避免文本框失焦
-     * 然而 dialog 弹出的时候依然会触发 textbox 的 blur  
+     * 然而 dialog 弹出的时候依然会触发 textbox 的 blur
      * 放弃，转用 MutationObserver
      *
      */

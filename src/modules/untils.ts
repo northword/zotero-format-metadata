@@ -14,8 +14,10 @@ export function descriptor(target: any, propertyKey: string | symbol, descriptor
     return descriptor;
 }
 
-export function progressWindow(text: string, type: string = "success", progress: number = 100) {
-    new ztoolkit.ProgressWindow(config.addonName)
+export function progressWindow(text: string, type: string = "default", progress: number = 100) {
+    new ztoolkit.ProgressWindow(config.addonName, {
+        closeOnClick: true,
+    })
         .createLine({
             text: text,
             type: type,
