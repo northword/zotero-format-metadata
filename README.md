@@ -80,9 +80,10 @@ The plugin determines the language of an item based on its title. Mixing "et al"
   - [x] 设置常用语言偏好
   - [ ] ~~期刊与语言的映射（似乎识别标题已经满足需求，无需建立该映射）~~
   - [ ] ~~常见错误语言值直接映射为 ISO 值 （总之都要识别，不做了）~~
-  - [x] ISO 639 语言代码 转 ISO 3166 国家区域代码（已添加 `zh-CN` 和 `en-US` 的映射，其他语言待办）
+  - [x] ~~ISO 639 语言代码 转 ISO 3166 国家区域代码（已添加 `zh-CN` 和 `en-US` 的映射，其他语言待办）（咨询后决定不做 <https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl/issues/160> ）~~
   - [ ] 手动设置条目语言，选择后弹窗， `zh-CN` 和 `en-US` 单选框和 1 个输入框，常用的中英文也可以放进子菜单
 - [x] 添加时自动应用
+- [ ] 添加时自动检测是否存在重复条目
 
 ## Install
 
