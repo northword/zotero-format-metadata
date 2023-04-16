@@ -77,20 +77,18 @@ export default class FormatMetadata {
     }
 
     @descriptor
-    public static updateOnItemAdd(ids: Array<string | number>) {
+    public static updateOnItemAdd(items: Zotero.Item[]) {
         if (getPref("add.update")) {
             var err = 0;
-            ids.forEach((id) => {
+            items.forEach((item) => {
                 try {
-                    const item = Zotero.Items.get(id);
                     this.updateStdFlow(item);
-                    // ztoolkit.log("Update on item added.");
                 } catch (error) {
                     ztoolkit.log(error);
                     err++;
                 }
             });
-            progressWindow(`Updated ${ids.length} items, ${ids.length - err} success, ${err} failed.`);
+            progressWindow(`Updated ${items.length} items, ${items.length - err} success, ${err} failed.`);
         }
     }
 

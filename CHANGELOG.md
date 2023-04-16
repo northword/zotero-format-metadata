@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - 重新生成期刊缩写数据，减少部分不必要数据，减小文件体积。
+- 修复部分以 `The` 开头的期刊未能成功匹配的问题。
+- 修复 `franc` 识别到的 ISO 639-3 如 `sco` 在本地 3 to 1 映射里不存在时报错。
+- 修复当 feed 和批注添加时标准格式化流程被执行的问题，现在仅当常规条目添加时才会触发标准格式化流程。
 
 ## [0.0.14] - 2023-04-11
 
