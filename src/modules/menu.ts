@@ -70,3 +70,11 @@ export function registerMenu() {
         ],
     });
 }
+
+export function disableItemMenu() {
+    const items = ZoteroPane.getSelectedItems(),
+        isRegularItem = items.some((item) => item.isRegularItem()),
+        itemMenuUpdateMetadata = document.getElementById(`zotero-itemmenu-formatmetadata-menu-item`);
+
+    itemMenuUpdateMetadata?.setAttribute("disabled", `${!isRegularItem}`);
+}

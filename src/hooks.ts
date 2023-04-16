@@ -1,7 +1,7 @@
 import { config } from "../package.json";
 import { getString, initLocale } from "./modules/locale";
 import { getPref, registerPrefs, registerPrefsScripts } from "./modules/preference";
-import { registerMenu } from "./modules/menu";
+import { disableItemMenu, registerMenu } from "./modules/menu";
 import { registerShortcuts } from "./modules/shortcuts";
 import { registerMutationObserver, registerNotifier } from "./modules/notifier";
 // import { registerPrompt } from "./modules/prompt";
@@ -38,6 +38,7 @@ async function onStartup() {
     });
 
     registerMenu();
+    ZoteroPane.itemsView.onSelect.addListener(disableItemMenu); //监听 select 并判断条目类型以判断是否禁用菜单
 
     // richTextToolBar.creatRichTextDialog();
 
