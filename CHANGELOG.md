@@ -7,13 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Fixed
+### Added
 
 - 当选中条目不是常规条目是禁用右键菜单。
+- 增加 Collection 右键菜单
 
 ## [0.0.15] - 2023-04-16
 
-### Added
+### Fixed
 
 - 重新生成期刊缩写数据，减少部分不必要数据，减小文件体积。
 - 修复部分以 `The` 开头的期刊未能成功匹配的问题。

@@ -156,19 +156,40 @@ function onShortcuts(type: string) {
 // Keep in mind hooks only do dispatch. Don't add code that does real jobs in hooks.
 // Otherwise the code would be hard to read and maintian.
 
-function onUpdateInBatch(mode: string) {
+/**
+ * 分发批量执行某函数的任务
+ * @param mode 批量处理任务的类别，决定调用的函数
+ * @param position 触发批量任务的位置，决定 Zotero Item 的获取方式。 "item" | "collection" | XUL.MenuPopup | "menuFile" | "menuEdit" | "menuView" | "menuGo" | "menuTools" | "menuHelp"
+ */
+function onUpdateInBatch(mode: string, position: string) {
+    var items: Zotero.Item[] = [];
+    switch (position) {
+        case "item":
+            items = Zotero.getActiveZoteroPane().getSelectedItems();
+            break;
+        case "collection":
+            items = ZoteroPane.getSelectedCollection()?.getChildItems() ?? [];
+            break;
+        default:
+            items = Zotero.getActiveZoteroPane().getSelectedItems();
+            break;
+    }
+    if (items.length == 0) return;
     switch (mode) {
         case "std":
-            FormatMetadata.updateInBatch(FormatMetadata.updateStdFlow);
+            FormatMetadata.updateInBatch(FormatMetadata.updateStdFlow, items);
             break;
         case "abbr":
-            FormatMetadata.updateInBatch(FormatMetadata.updateJournalAbbr);
-            break;
-        case "lang":
-            FormatMetadata.updateInBatch(FormatMetadata.updateLanguage);
+            FormatMetadata.updateInBatch(FormatMetadata.updateJournalAbbr, items);
             break;
         case "place":
-            FormatMetadata.updateInBatch(FormatMetadata.updateUniversityPlace);
+            FormatMetadata.updateInBatch(FormatMetadata.updateUniversityPlace, items);
+            break;
+        case "lang":
+            FormatMetadata.updateInBatch(FormatMetadata.updateLanguage, items);
+            break;
+        case "lang-manual":
+            FormatMetadata.setLanguageManual();
             break;
         case "doi":
         case "date":

@@ -16,9 +16,13 @@ export default class FormatMetadata {
         window.alert("此功能尚未实现。");
     }
 
+    /**
+     * 装饰器：批量执行某函数
+     * @param fn 需要批量执行的函数
+     * @param items 需要批量处理的 Zotero.Item 列表
+     */
     @descriptor
-    public static async updateInBatch(fn: any) {
-        const items = Zotero.getActiveZoteroPane().getSelectedItems();
+    public static async updateInBatch(fn: any, items: Zotero.Item[]) {
         const total = items.length;
         const popupWin = new ztoolkit.ProgressWindow(config.addonName, {
             closeOnClick: true,
