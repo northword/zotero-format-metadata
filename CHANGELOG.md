@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0] - 2023-04-20
+
 ### Added
 
 - 当选中条目不是常规条目时禁用右键菜单。
@@ -136,7 +138,8 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/0.0.15...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/0.1.0...HEAD
+[0.1.0]: https://github.com/northword/zotero-format-metadata/compare/0.0.15...0.1.0
 [0.0.15]: https://github.com/northword/zotero-format-metadata/compare/0.0.14...0.0.15
 [0.0.14]: https://github.com/northword/zotero-format-metadata/compare/0.0.13...0.0.14
 [0.0.13]: https://github.com/northword/zotero-format-metadata/compare/0.0.12...0.0.13
