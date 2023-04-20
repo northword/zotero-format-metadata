@@ -55,7 +55,7 @@ export function registerMenu() {
             },
             {
                 tag: "menuitem",
-                label: getString("menuitem.ManuallySetLang"),
+                label: getString("menuitem.manuallySetLang"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("lang-manual", menuPopup);
                 },

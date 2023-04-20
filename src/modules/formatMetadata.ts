@@ -29,7 +29,7 @@ export default class FormatMetadata {
             closeTime: 2000,
         })
             .createLine({
-                text: getString("Progressing... Please wait."),
+                text: getString("info.batchBegin"),
                 type: "default",
                 progress: 0,
             })
@@ -43,11 +43,10 @@ export default class FormatMetadata {
                 progress: num / total,
                 text: `[${num}/${total}] Progressing`,
             });
-            console.log(new Date());
             num++;
         }
-        popupWin.changeLine({ type: "default", text: "Done!", progress: 100 });
-        console.log("done");
+        popupWin.changeLine({ type: "default", text: getString("info.batchFinish"), progress: 100 });
+        ztoolkit.log("batch tasks done");
 
         // Promise.all(
         //     items.map(async (item) => {
