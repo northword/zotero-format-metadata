@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2023-04-20
+
 ### Fixed
 
 - 临时关闭添加条目时更新期卷页等，因为添加期卷页会临时创建新条目，这再一次触发添加条目更新，递归无底洞，害怕.jpg。
@@ -142,7 +144,8 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/0.1.0...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/0.1.1...HEAD
+[0.1.1]: https://github.com/northword/zotero-format-metadata/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/northword/zotero-format-metadata/compare/0.0.15...0.1.0
 [0.0.15]: https://github.com/northword/zotero-format-metadata/compare/0.0.14...0.0.15
 [0.0.14]: https://github.com/northword/zotero-format-metadata/compare/0.0.13...0.0.14
