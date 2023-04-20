@@ -46,6 +46,10 @@ The plugin has a built-in list of universities in mainland China and their locat
 
 [^gb7714]: Chinese GB/T 7714-2015: http://www.cessp.org.cn/a258.html
 
+### Lookup the date, volume, issue, pages, etc according to DOI
+
+Some items in the Zotero library may be added with incomplete information such as issue volume pages because the converter is not available, or the official publication is not in the journal at the time of record, etc. The plugin provides the ability to complete these fields based on the DOI.
+
 ### Fill in the language of the item according to its title
 
 The plugin determines the language of an item based on its title. Mixing "et al" and "等" in CSL by setting the Language field [^csl-etal] .
@@ -60,7 +64,7 @@ The plugin determines the language of an item based on its title. Mixing "et al"
     - [x] 记忆工具条位置
     - [ ] 工具条按钮描述改为图形
     - [ ] 提供选项：修改后的标题实时可视化
-  - [ ] 建立常见化学式的映射以批量自动替换
+  - [ ] 建立常见化学式的映射或化学式正则模式匹配以批量自动替换
 - [ ] 期刊：刊名与缩写
   - [ ] 期刊全称消歧：例如 `Applied Catalysis B-environmental` 与 `Applied Catalysis B: environmental` 为相同期刊
   - [ ] 根据期刊名填充期刊缩写
@@ -70,8 +74,8 @@ The plugin determines the language of an item based on its title. Mixing "et al"
     - [x] 无缩写时通过 ISSN LTWA 推断缩写
     - [ ] 无缩写时分别是否以全称填充（英文已可以设置，中文缩写是什么？）
 - [ ] 期刊：DOI 格式化
-- [ ] 期刊：期卷页
-  - [ ] 如果没有期卷页，根据 DOI 获取补全
+- [x] 期刊：期卷页
+  - [x] 如果没有期卷页，根据 DOI 获取补全
 - [x] 学位论文：地点
   - [x] 根据学校名填充地点
 - [ ] 日期格式化为 ISO 格式

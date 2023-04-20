@@ -10,11 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - 当选中条目不是常规条目时禁用右键菜单。
-- 增加 Collection 右键菜单
+- 增加 Collection 右键菜单。
+- 根据 DOI 更新条目的年、期卷页、链接等字段。
 
 ### Fixed
 
 - 修复 feed item 添加时，addOnItemAdd 被触发的问题。
+- 更新一些文本翻译。
 
 ## [0.0.15] - 2023-04-16
 
