@@ -66,7 +66,10 @@ async function onNotify(event: string, type: string, ids: Array<string | number>
     ztoolkit.log("notify", event, type, ids, extraData);
 
     if (event == "add" && type == "item") {
-        const regularItems = Zotero.Items.get(ids as number[]).filter((item) => item.isRegularItem());
+        const regularItems = Zotero.Items.get(ids as number[]).filter(
+            // @ts-ignore
+            (item) => item.isRegularItem() && !item.isFeedItem
+        );
         if (regularItems.length !== 0) {
             FormatMetadata.updateOnItemAdd(regularItems);
             return;
