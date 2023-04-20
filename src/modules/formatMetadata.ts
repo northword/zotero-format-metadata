@@ -73,10 +73,11 @@ export default class FormatMetadata {
      * @param item
      */
     @descriptor
-    public static updateStdFlow(item: Zotero.Item) {
-        getPref("isEnableLang") ? this.updateLanguage(item) : "skip";
-        getPref("isEnableAbbr") ? this.updateJournalAbbr(item) : "skip";
-        getPref("isEnablePlace") ? this.updateUniversityPlace(item) : "skip";
+    public static async updateStdFlow(item: Zotero.Item) {
+        getPref("isEnableLang") ? await this.updateLanguage(item) : "skip";
+        getPref("isEnableAbbr") ? await this.updateJournalAbbr(item) : "skip";
+        getPref("isEnablePlace") ? await this.updateUniversityPlace(item) : "skip";
+        getPref("isEnableOtherFields") ? await this.updateMetadataByIdentifier(item) : "skip";
     }
 
     @descriptor
@@ -373,6 +374,92 @@ export default class FormatMetadata {
         return false;
     }
 
+    public static async setLanguageManual() {
+        var allowLangs = ["cmn", "eng"];
+        if (getPref("lang.only.enable")) {
+            const otherLang = getPref("lang.only.other") as string;
+            otherLang !== "" && otherLang !== undefined
+                ? allowLangs.push.apply(otherLang.replace(/ /g, "").split(","))
+                : "pass";
+        }
+        var row = allowLangs.length > 2 ? allowLangs.length : 3;
+
+        const dialog = new ztoolkit.Dialog(row, 2);
+        const dialogData: { [key: string | number]: any } = {
+            checkboxValue: "",
+            loadCallback: () => {
+                ztoolkit.log(dialogData, "Dialog Opened!");
+            },
+            unloadCallback: () => {
+                ztoolkit.log(dialogData, "Dialog closed!");
+            },
+        };
+
+        allowLangs.forEach((lang, index) => {
+            dialog.addCell(index, 0, {
+                tag: "div",
+                namespace: "html",
+                id: `dialog-checkboxgroup`,
+                attributes: {},
+                children: [
+                    {
+                        tag: "label",
+                        namespace: "html",
+                        attributes: {
+                            for: `dialog-checkbox-${lang}`,
+                        },
+                        properties: { innerHTML: `${this.toIso639_1(lang) ?? lang}` },
+                    },
+                    {
+                        tag: "input",
+                        namespace: "html",
+                        id: `dialog-checkbox-${lang}`,
+                        attributes: {
+                            "data-bind": "checkboxValue",
+                            "data-prop": "zh", //this.toIso639_1(lang) ?? lang,
+                            "type": "radio",
+                        },
+                        properties: { label: "Cell 1,0" },
+                    },
+                ],
+            });
+            // .addCell(index, 0, {
+            //     tag: "label",
+            //     namespace: "html",
+            //     attributes: {
+            //         for: `dialog-checkbox-${lang}`,
+            //     },
+            //     properties: { innerHTML: `${this.toIso639_1(lang) ?? lang}` },
+            // })
+            // .addCell(
+            //     index,
+            //     1,
+            //     {
+            //         tag: "input",
+            //         namespace: "html",
+            //         id: `dialog-checkbox-${lang}`,
+            //         attributes: {
+            //             "data-bind": "checkboxValue",
+            //             "data-prop": this.toIso639_1(lang) ?? lang,
+            //             "type": "radio",
+            //         },
+            //         properties: { label: "Cell 1,0" },
+            //     },
+            //     false
+            // );
+        });
+        dialog
+            .addButton("Confirm", "confirm")
+            .addButton("Cancel", "cancel")
+            .setDialogData(dialogData)
+            .open("Dialog Example");
+        await dialogData.unloadLock.promise;
+        ztoolkit.getGlobal("alert")(
+            `Close dialog with ${dialogData._lastButtonId}.\nCheckbox: ${dialogData.checkboxValue}\nInput: ${dialogData.inputValue}.`
+        );
+        ztoolkit.log(dialogData);
+    }
+
     /* 上下标 */
     /**
      * Get the selected text and replace it with text with or without HTML tags depending on the operation.
@@ -400,6 +487,75 @@ export default class FormatMetadata {
         }
     }
 
+    /**
+     * Updates metadata by identifier
+     * 根据 DOI 更新年期卷页链接等字段
+     * @param item
+     * @returns
+     */
+    public static async updateMetadataByIdentifier(item: Zotero.Item) {
+        let identifier = {
+            itemType: "journalArticle",
+            DOI: item.getField("DOI"),
+        };
+
+        // 不存在 DOI 直接结束
+        if (!identifier.DOI) {
+            progressWindow(getString("info.noDOI"), "fail");
+            return;
+        }
+
+        let translate = new Zotero.Translate.Search();
+        translate.setIdentifier(identifier);
+        let translators = await translate.getTranslators();
+        translate.setTranslator(translators);
+
+        let newItems: Zotero.Item[] = await translate.translate();
+        let newItem = newItems[0];
+
+        item.setCreators(newItem.getCreators());
+
+        let fields: Zotero.Item.ItemField[] = [
+            // "title",
+            // "publicationTitle",
+            // "journalAbbreviation",
+            "volume",
+            "issue",
+            "date",
+            "pages",
+            "issue",
+            "ISSN",
+            "url",
+            "abstractNote",
+        ];
+
+        for (let field of fields) {
+            let newFieldValue = newItem.getField(field),
+                oldFieldValue = item.getField(field);
+
+            if (!newFieldValue) continue;
+            switch (field) {
+                case "url":
+                    // 旧的 url 为空、为 WOS 链接时，更新 url
+                    if (
+                        oldFieldValue == "" ||
+                        (typeof oldFieldValue == "string" && oldFieldValue.includes("webofscience"))
+                    ) {
+                        item.setField(field, newItem.getField(field));
+                    }
+                    break;
+
+                default:
+                    item.setField(field, newItem.getField(field));
+                    break;
+            }
+        }
+
+        newItem.deleted = true;
+        await item.saveTx();
+        newItem.saveTx();
+        await Zotero.Promise.delay(5000);
+    }
     /**
      * 富文本工具条的实现，旧版
      * 该版本监听标题值标签和文本框的点击与失焦事件

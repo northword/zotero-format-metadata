@@ -191,8 +191,11 @@ function onUpdateInBatch(mode: string, position: string) {
         case "lang":
             FormatMetadata.updateInBatch(FormatMetadata.updateLanguage, items);
             break;
-        case "lang-manual":
-            FormatMetadata.setLanguageManual();
+        // case "lang-manual":
+        //     FormatMetadata.setLanguageManual();
+        //     break;
+        case "other-field":
+            FormatMetadata.updateInBatch(FormatMetadata.updateMetadataByIdentifier, items);
             break;
         case "doi":
         case "date":

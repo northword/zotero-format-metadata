@@ -32,6 +32,13 @@ export function registerMenu() {
             },
             {
                 tag: "menuitem",
+                label: getString("menuitem.getOtherFields"),
+                commandListener: (ev) => {
+                    addon.hooks.onUpdateInBatch("other-field", menuPopup);
+                },
+            },
+            {
+                tag: "menuitem",
                 label: getString("menuitem.setDoi"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("", menuPopup);

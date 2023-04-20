@@ -15,6 +15,8 @@
 
 <!ENTITY zotero.__addonRef__.pref.place.label "University Place">
 
+<!ENTITY zotero.__addonRef__.pref.otherFields.label "Date, Issue, Volume, Pages, etc.">
+
 <!ENTITY zotero.__addonRef__.pref.doi.label "DOI">
 
 <!ENTITY zotero.__addonRef__.pref.date.label "Date">

@@ -15,6 +15,8 @@
 
 <!ENTITY zotero.__addonRef__.pref.place.label "高校地点">
 
+<!ENTITY zotero.__addonRef__.pref.otherFields.label "根据 DOI 更新年期卷页等字段">
+
 <!ENTITY zotero.__addonRef__.pref.doi.label "DOI">
 
 <!ENTITY zotero.__addonRef__.pref.date.label "日期">
