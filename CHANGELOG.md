@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 临时关闭添加条目时更新期卷页等，因为添加期卷页会临时创建新条目，这再一次触发添加条目更新，递归无底洞，害怕.jpg。
+
 ## [0.1.0] - 2023-04-20
 
 ### Added

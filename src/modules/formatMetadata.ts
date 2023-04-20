@@ -77,7 +77,7 @@ export default class FormatMetadata {
         getPref("isEnableLang") ? await this.updateLanguage(item) : "skip";
         getPref("isEnableAbbr") ? await this.updateJournalAbbr(item) : "skip";
         getPref("isEnablePlace") ? await this.updateUniversityPlace(item) : "skip";
-        getPref("isEnableOtherFields") ? await this.updateMetadataByIdentifier(item) : "skip";
+        // getPref("isEnableOtherFields") ? await this.updateMetadataByIdentifier(item) : "skip";
     }
 
     @descriptor
