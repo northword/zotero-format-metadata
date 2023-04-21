@@ -24,34 +24,38 @@ export default class FormatMetadata {
     @descriptor
     public static async updateInBatch(fn: any, items: Zotero.Item[]) {
         const total = items.length;
+        var num = 0,
+            errNum = 0;
         const popupWin = new ztoolkit.ProgressWindow(config.addonName, {
             closeOnClick: true,
             closeTime: -1,
         })
             .createLine({
-                text: getString("info.batchBegin"),
                 type: "default",
+                text: `[${num}/${total}] ${getString("info.batchBegin")}`,
                 progress: 0,
             })
             .show();
 
-        var num = 1,
-            errNum = 0;
         for (var item of items) {
             try {
                 await fn.call(this, item);
-                popupWin.changeLine({
-                    progress: (num / total) * 100,
-                    text: `[${num}/${total}] Progressing`,
-                });
                 num++;
+                popupWin.changeLine({
+                    text: `[${num}/${total}] ${getString("info.batchBegin")}`,
+                    progress: (num / total) * 100,
+                });
             } catch (err) {
                 ztoolkit.log(err);
                 errNum++;
             }
         }
-        popupWin.changeLine({ type: "success", text: getString("info.batchFinish"), progress: 100 });
-        popupWin.startCloseTimer(2000);
+        popupWin.changeLine({
+            // type: "default",
+            text: `[✔️${num}, ❌${errNum}] ${getString("info.batchFinish")}`,
+            progress: 100,
+        });
+        popupWin.startCloseTimer(5000);
         ztoolkit.log("batch tasks done");
 
         // Promise.all(
