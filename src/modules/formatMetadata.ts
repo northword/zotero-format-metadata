@@ -549,6 +549,8 @@ export default class FormatMetadata {
             let newFieldValue = newItem[field],
                 oldFieldValue = item.getField(field);
 
+            // 当新条目该字段未空时，结束本次循环
+            // 存疑：当新条目该字段为空时，可能是该字段确实为空，用户已有条目字段可能是假值。
             if (!newFieldValue) continue;
             switch (field) {
                 // case "publicationTitle":
@@ -576,6 +578,10 @@ export default class FormatMetadata {
 
         await item.saveTx();
         await Zotero.Promise.delay(5000);
+    }
+
+    public static updateDate(item: Zotero.Item) {
+        // 等待 zotero-types 库 PR 后再写
     }
 
     /**
