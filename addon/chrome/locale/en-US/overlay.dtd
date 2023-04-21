@@ -11,7 +11,8 @@
 <!ENTITY zotero.__addonRef__.pref.abbr.label "Journal Abbreviations">
 <!ENTITY zotero.__addonRef__.pref.abbr.type "Types of abbreviations">
 <!ENTITY zotero.__addonRef__.pref.abbr.infer.label "Automatically infer abbreviations from LTWA when no journal abbreviation is available">
-<!ENTITY zotero.__addonRef__.pref.abbr.usefull.label "Use full name instead when journal abbreviation is still not available">
+<!ENTITY zotero.__addonRef__.pref.abbr.usefull.label "Use full name instead when journal abbreviation is still not available for English journal">
+<!ENTITY zotero.__addonRef__.pref.abbr.usefullZh.label "Use full name instead when journal abbreviation is still not available for Chinese journal">
 
 <!ENTITY zotero.__addonRef__.pref.place.label "University Place">
 

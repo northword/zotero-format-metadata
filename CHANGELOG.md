@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - 将日期格式化为 ISO 格式。
 - 清理 DOI 中的域名部分。
+- 期刊缩写分中英文，可选中文直接填入全称。
 
 ## [0.1.2] - 2023-04-21
 

@@ -72,13 +72,13 @@ The plugin determines the language of an item based on its title. Mixing "et al"
     - [ ] ~~API，~~ 用户自定义术语表
     - [x] 提供 ISO 4 with dot, ISO 4 without dot, 和 JCR 缩写的偏好选项
     - [x] 无缩写时通过 ISSN LTWA 推断缩写
-    - [ ] 无缩写时分别是否以全称填充（英文已可以设置，中文缩写是什么？）
-- [ ] 期刊：DOI 格式化
+    - [x] 无缩写时分别是否以全称填充（英文已可以设置，中文缩写是什么？）
+- [x] 期刊：DOI 格式化
 - [x] 期刊：期卷页
   - [x] 如果没有期卷页，根据 DOI 获取补全
 - [x] 学位论文：地点
   - [x] 根据学校名填充地点
-- [ ] 日期格式化为 ISO 格式
+- [x] 日期格式化为 ISO 格式
 - [ ] 语言
   - [x] 通过语言识别库识别（通过 franc 识别标题的语言，转为 ISO 639-1 语言代码）
   - [x] 设置常用语言偏好

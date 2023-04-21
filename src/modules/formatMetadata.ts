@@ -91,7 +91,6 @@ export default class FormatMetadata {
         getPref("isEnablePlace") ? await this.updateUniversityPlace(item) : "skip";
         getPref("isEnableDateISO") && !getPref("isEnableOtherFields") ? await this.updateDate(item) : "skip";
         getPref("isEnableDOI") ? await this.updateUniversityPlace(item) : "skip";
-
     }
 
     @descriptor
@@ -124,34 +123,18 @@ export default class FormatMetadata {
             ztoolkit.log(`[Abbr] Item type ${item.itemType} is not journalArticle or conferencePaper, skip it.`);
             return;
         }
+        // 无期刊全称直接跳过
         var publicationTitle = item.getField("publicationTitle") as string;
         if (publicationTitle == "") return;
         var journalAbbr = "";
-        if (!["zh", "zh-CN"].includes(item.getField("language") as string)) {
-            // 英文期刊，获取缩写
-            // 1. 从本地数据集获取缩写
-            var journalAbbrISO4 = this.getAbbrIso4Locally(publicationTitle, journalAbbrlocalData);
-            // 2. 本地无缩写，是否从 ISSN LTWA 推断完整期刊缩写
-            if (!journalAbbrISO4 && getPref("abbr.infer")) {
-                journalAbbrISO4 = await this.getAbbrFromLTWAOnline(publicationTitle);
-                // journalAbbrISO4 = getAbbrFromLtwaLocally(publicationTitle);
-            }
-            if (journalAbbrISO4) {
-                // 有缩写的，是否处理为 ISO dotless 或 JCR 格式
-                switch (getPref("abbr.type")) {
-                    case "ISO4dot":
-                        journalAbbr = journalAbbrISO4;
-                        break;
-                    case "ISO4dotless":
-                        journalAbbr = this.removeDot(journalAbbrISO4);
-                    case "JCR":
-                        journalAbbr = this.toJCR(journalAbbrISO4);
-                    default:
-                        journalAbbr = journalAbbrISO4;
-                }
-            } else {
+        // 获取条目语言，若无则根据期刊全称判断语言
+        var itemLanguage = item.getField("language") ?? this.getTextLanguage(publicationTitle);
+        switch (itemLanguage) {
+            case "zh":
+            case "zh-CN":
+                // 中文期刊，是否以全称填充
                 // 无缩写
-                if (getPref("abbr.usefull")) {
+                if (getPref("abbr.usefullZh")) {
                     // 无缩写的，是否以全称替代
                     ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
                     journalAbbr = publicationTitle;
@@ -159,19 +142,45 @@ export default class FormatMetadata {
                     // 无缩写且不以全称替代，返回空值
                     journalAbbr = "";
                 }
-            }
-        } else {
-            // 中文期刊，是否以全称填充
-            // 无缩写
-            if (getPref("abbr.usefullZh")) {
-                // 无缩写的，是否以全称替代
-                ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
-                journalAbbr = publicationTitle;
-            } else {
-                // 无缩写且不以全称替代，返回空值
-                journalAbbr = "";
-            }
+                break;
+
+            default:
+                // 英文期刊，获取缩写
+                // 1. 从本地数据集获取缩写
+                var journalAbbrISO4 = this.getAbbrIso4Locally(publicationTitle, journalAbbrlocalData);
+                // 2. 本地无缩写，是否从 ISSN LTWA 推断完整期刊缩写
+                if (!journalAbbrISO4 && getPref("abbr.infer")) {
+                    journalAbbrISO4 = await this.getAbbrFromLTWAOnline(publicationTitle);
+                    // journalAbbrISO4 = getAbbrFromLtwaLocally(publicationTitle);
+                }
+                if (journalAbbrISO4) {
+                    // 有缩写的，是否处理为 ISO dotless 或 JCR 格式
+                    switch (getPref("abbr.type")) {
+                        case "ISO4dot":
+                            journalAbbr = journalAbbrISO4;
+                            break;
+                        case "ISO4dotless":
+                            journalAbbr = this.removeDot(journalAbbrISO4);
+                        case "JCR":
+                            journalAbbr = this.toJCR(journalAbbrISO4);
+                        default:
+                            journalAbbr = journalAbbrISO4;
+                    }
+                } else {
+                    // 无缩写
+                    if (getPref("abbr.usefull")) {
+                        // 无缩写的，是否以全称替代
+                        ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
+                        journalAbbr = publicationTitle;
+                    } else {
+                        // 无缩写且不以全称替代，返回空值
+                        journalAbbr = "";
+                    }
+                }
+
+                break;
         }
+
         item.setField("journalAbbreviation", journalAbbr);
         await item.saveTx();
     }
