@@ -26,7 +26,7 @@ export default class FormatMetadata {
         const total = items.length;
         const popupWin = new ztoolkit.ProgressWindow(config.addonName, {
             closeOnClick: true,
-            closeTime: 2000,
+            closeTime: -1,
         })
             .createLine({
                 text: getString("info.batchBegin"),
@@ -36,16 +36,22 @@ export default class FormatMetadata {
             .show();
 
         var num = 1,
-            err = 0;
+            errNum = 0;
         for (var item of items) {
-            await fn.call(this, item);
-            popupWin.changeLine({
-                progress: num / total,
-                text: `[${num}/${total}] Progressing`,
-            });
-            num++;
+            try {
+                await fn.call(this, item);
+                popupWin.changeLine({
+                    progress: (num / total) * 100,
+                    text: `[${num}/${total}] Progressing`,
+                });
+                num++;
+            } catch (err) {
+                ztoolkit.log(err);
+                errNum++;
+            }
         }
-        popupWin.changeLine({ type: "default", text: getString("info.batchFinish"), progress: 100 });
+        popupWin.changeLine({ type: "success", text: getString("info.batchFinish"), progress: 100 });
+        popupWin.startCloseTimer(2000);
         ztoolkit.log("batch tasks done");
 
         // Promise.all(
@@ -77,7 +83,7 @@ export default class FormatMetadata {
         getPref("isEnableLang") ? await this.updateLanguage(item) : "skip";
         getPref("isEnableAbbr") ? await this.updateJournalAbbr(item) : "skip";
         getPref("isEnablePlace") ? await this.updateUniversityPlace(item) : "skip";
-        // getPref("isEnableOtherFields") ? await this.updateMetadataByIdentifier(item) : "skip";
+        getPref("isEnableOtherFields") ? await this.updateMetadataByIdentifier(item) : "skip";
     }
 
     @descriptor
@@ -197,6 +203,8 @@ export default class FormatMetadata {
      */
     @descriptor
     private static async getAbbrFromLTWAOnline(publicationTitle: string) {
+        // 防止 API 被滥用，先延迟一手
+        await Zotero.Promise.delay(3000);
         publicationTitle = encodeURI(publicationTitle);
         var url = `https://abbreviso.toolforge.org/abbreviso/a/${publicationTitle}`;
         const res = await Zotero.HTTP.request("GET", url);
