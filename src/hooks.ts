@@ -198,7 +198,7 @@ function onUpdateInBatch(mode: string, position: string) {
             FormatMetadata.updateInBatch(FormatMetadata.updateMetadataByIdentifier, items);
             break;
         case "doi":
-            FormatMetadata.unimplemented();
+            FormatMetadata.updateInBatch(FormatMetadata.updateDOI, items);
             break;
         case "date":
             FormatMetadata.updateInBatch(FormatMetadata.updateDate, items);

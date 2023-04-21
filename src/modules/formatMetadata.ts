@@ -90,6 +90,8 @@ export default class FormatMetadata {
         getPref("isEnableAbbr") ? await this.updateJournalAbbr(item) : "skip";
         getPref("isEnablePlace") ? await this.updateUniversityPlace(item) : "skip";
         getPref("isEnableDateISO") && !getPref("isEnableOtherFields") ? await this.updateDate(item) : "skip";
+        getPref("isEnableDOI") ? await this.updateUniversityPlace(item) : "skip";
+
     }
 
     @descriptor
@@ -596,6 +598,15 @@ export default class FormatMetadata {
         let oldDate = item.getField("date"),
             newDate = Zotero.Date.strToISO(oldDate);
         item.setField("date", newDate);
+        await item.saveTx();
+    }
+
+    public static async updateDOI(item: Zotero.Item) {
+        var doi = item.getField("DOI");
+        if (doi && typeof doi == "string") {
+            var doiCleand = Zotero.Utilities.cleanDOI(doi);
+            doiCleand ? item.setField("DOI", doiCleand) : "pass";
+        }
         await item.saveTx();
     }
 

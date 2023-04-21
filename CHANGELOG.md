@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - 将日期格式化为 ISO 格式。
+- 清理 DOI 中的域名部分。
 
 ## [0.1.2] - 2023-04-21
 

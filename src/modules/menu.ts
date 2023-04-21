@@ -41,7 +41,7 @@ export function registerMenu() {
                 tag: "menuitem",
                 label: getString("menuitem.setDoi"),
                 commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("", menuPopup);
+                    addon.hooks.onUpdateInBatch("doi", menuPopup);
                 },
                 disabled: true,
             },
