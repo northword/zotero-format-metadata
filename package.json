@@ -24,7 +24,7 @@
     "restart-dev": "npm run build-dev && npm run stop && npm run start",
     "restart-prod": "npm run build-prod && npm run stop && npm run start",
     "restart": "npm run restart-dev",
-    "update-date": "bash scripts/update-date.sh",
+    "update-data": "bash scripts/update-data.sh",
     "release": "release-it",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
