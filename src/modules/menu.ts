@@ -49,9 +49,8 @@ export function registerMenu() {
                 tag: "menuitem",
                 label: getString("menuitem.setDate"),
                 commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("", menuPopup);
+                    addon.hooks.onUpdateInBatch("date", menuPopup);
                 },
-                disabled: true,
             },
             {
                 tag: "menuitem",

@@ -80,10 +80,12 @@ export default class FormatMetadata {
      */
     @descriptor
     public static async updateStdFlow(item: Zotero.Item) {
+        // 作者、期刊、年、期、卷、页 -> 判断语言 -> 匹配缩写 -> 匹配地点 -> 格式化日期 -> 格式化DOI
+        getPref("isEnableOtherFields") ? await this.updateMetadataByIdentifier(item) : "skip";
         getPref("isEnableLang") ? await this.updateLanguage(item) : "skip";
         getPref("isEnableAbbr") ? await this.updateJournalAbbr(item) : "skip";
         getPref("isEnablePlace") ? await this.updateUniversityPlace(item) : "skip";
-        getPref("isEnableOtherFields") ? await this.updateMetadataByIdentifier(item) : "skip";
+        getPref("isEnableDateISO") && !getPref("isEnableOtherFields") ? await this.updateDate(item) : "skip";
     }
 
     @descriptor
@@ -501,6 +503,7 @@ export default class FormatMetadata {
      * @param item
      * @returns
      */
+    @descriptor
     public static async updateMetadataByIdentifier(item: Zotero.Item) {
         let identifier = {
             itemType: "journalArticle",
@@ -570,6 +573,10 @@ export default class FormatMetadata {
                     }
                     break;
 
+                case "date":
+                    item.setField(field, Zotero.Date.strToISO(newFieldValue));
+                    break;
+
                 default:
                     item.setField(field, newFieldValue);
                     break;
@@ -577,11 +584,15 @@ export default class FormatMetadata {
         }
 
         await item.saveTx();
-        await Zotero.Promise.delay(5000);
+        await Zotero.Promise.delay(3000);
     }
 
-    public static updateDate(item: Zotero.Item) {
-        // 等待 zotero-types 库 PR 后再写
+    @descriptor
+    public static async updateDate(item: Zotero.Item) {
+        let oldDate = item.getField("date"),
+            newDate = Zotero.Date.strToISO(oldDate);
+        item.setField("date", newDate);
+        await item.saveTx();
     }
 
     /**

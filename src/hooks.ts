@@ -198,7 +198,11 @@ function onUpdateInBatch(mode: string, position: string) {
             FormatMetadata.updateInBatch(FormatMetadata.updateMetadataByIdentifier, items);
             break;
         case "doi":
+            FormatMetadata.unimplemented();
+            break;
         case "date":
+            FormatMetadata.updateInBatch(FormatMetadata.updateDate, items);
+            break;
         case "chem":
         default:
             FormatMetadata.unimplemented();
