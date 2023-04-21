@@ -1,6 +1,6 @@
 // import ZoteroToolkit from "zotero-plugin-toolkit/dist/index";
 // 由于 https://github.com/windingwind/zotero-plugin-toolkit/pull/21 尚未合并，临时使用本地 toolkit .
-import ZoteroToolkit from "../../zotero-cn/zotero-plugin-toolkit/dist/index";
+import ZoteroToolkit from "../../zotero-plugin-toolkit/dist/index";
 import hooks from "./hooks";
 
 class Addon {
