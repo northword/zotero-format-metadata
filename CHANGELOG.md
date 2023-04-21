@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复新增条目触发转换器导致递归新增的问题。
 ## [0.1.1] - 2023-04-20
 
 ### Fixed

@@ -510,14 +510,22 @@ export default class FormatMetadata {
         let translators = await translate.getTranslators();
         translate.setTranslator(translators);
 
-        let newItems: Zotero.Item[] = await translate.translate();
+        // {libraryID: options} 避免条目保存
+        // https://github.com/zotero/translate/blob/05755f5051a77737c56458440c79964c7a8874cf/src/translation/translate.js#L1208-L1210
+        // 配置这一项后返回的不再是 Zotero.Item[]，而是一个包含字段信息的 Object[]
+        let newItems = await translate.translate({ libraryID: false });
         let newItem = newItems[0];
 
-        item.setCreators(newItem.getCreators());
+        // 更改 ItemType
+        newItem["itemTypeID"] = Zotero.ItemTypes.getID(newItem["itemType"]);
+        newItem["itemType"] !== item.itemType ? item.setType(newItem["itemTypeID"]) : "pass";
+
+        // 更新 creators
+        item.setCreators(newItem["creators"]);
 
         let fields: Zotero.Item.ItemField[] = [
             // "title",
-            // "publicationTitle",
+            "publicationTitle",
             // "journalAbbreviation",
             "volume",
             "issue",
@@ -530,32 +538,38 @@ export default class FormatMetadata {
         ];
 
         for (let field of fields) {
-            let newFieldValue = newItem.getField(field),
+            let newFieldValue = newItem[field],
                 oldFieldValue = item.getField(field);
 
             if (!newFieldValue) continue;
             switch (field) {
+                // case "publicationTitle":
+                //     // 当原条目存在期刊名时，不替换
+                //     if (oldFieldValue == "") {
+                //         item.setField(field, newFieldValue);
+                //     }
+                //     break;
+
                 case "url":
                     // 旧的 url 为空、为 WOS 链接时，更新 url
                     if (
                         oldFieldValue == "" ||
                         (typeof oldFieldValue == "string" && oldFieldValue.includes("webofscience"))
                     ) {
-                        item.setField(field, newItem.getField(field));
+                        item.setField(field, newFieldValue);
                     }
                     break;
 
                 default:
-                    item.setField(field, newItem.getField(field));
+                    item.setField(field, newFieldValue);
                     break;
             }
         }
 
-        newItem.deleted = true;
         await item.saveTx();
-        newItem.saveTx();
         await Zotero.Promise.delay(5000);
     }
+
     /**
      * 富文本工具条的实现，旧版
      * 该版本监听标题值标签和文本框的点击与失焦事件
