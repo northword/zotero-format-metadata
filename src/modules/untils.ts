@@ -4,10 +4,10 @@ export function descriptor(target: any, propertyKey: string | symbol, descriptor
     const original = descriptor.value;
     descriptor.value = function (...args: any) {
         try {
-            ztoolkit.log(`Calling ${target.name}.${String(propertyKey)}`);
+            ztoolkit.log(`Calling ${target.name}.${String(propertyKey)} at ${new Date()}`);
             return original.apply(this, args);
         } catch (e) {
-            ztoolkit.log(`Error in ${target.name}.${String(propertyKey)}`, e);
+            ztoolkit.log(`Error in ${target.name}.${String(propertyKey)} at ${new Date()}`, e);
             throw e;
         }
     };
