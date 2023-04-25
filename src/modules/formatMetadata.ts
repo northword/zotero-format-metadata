@@ -604,9 +604,9 @@ export default class FormatMetadata {
 
     @descriptor
     public static async updateDate(item: Zotero.Item) {
-        let oldDate = item.getField("date"),
+        let oldDate = item.getField("date") as string,
             newDate = Zotero.Date.strToISO(oldDate);
-        item.setField("date", newDate);
+        newDate ? item.setField("date", newDate) : "";
         await item.saveTx();
     }
 
