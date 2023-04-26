@@ -52,7 +52,7 @@ export default class FormatMetadata {
         }
         popupWin.changeLine({
             // type: "default",
-            text: `[✔️${num}, ❌${errNum}] ${getString("info.batchFinish")}`,
+            text: `[✔️${num} ${errNum ? ", ❌" + errNum : ""}] ${getString("info.batchFinish")}`,
             progress: 100,
         });
         popupWin.startCloseTimer(5000);
