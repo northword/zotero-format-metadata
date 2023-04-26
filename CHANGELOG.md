@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 更新依赖：zotero-plugin-toolkit, zotero-types。
+- 依赖恢复使用 npm 包，不使用本地 fork。
+- 更新批量处理的结果显示：无错误时不显示错误 icon 和数量。
+
 ## [0.2.0] - 2023-04-21
 
 ### Added
