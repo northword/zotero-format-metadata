@@ -4,7 +4,7 @@ import { getString } from "./locale";
 
 export function registerMenu() {
     const menuIcon = `chrome://${config.addonRef}/content/icons/favicon@0.5x.png`;
-    function getMenuItem(menuPopup: string){
+    function getMenuItem(menuPopup: string) {
         const menuItem: MenuitemOptions[] = [
             {
                 tag: "menuitem",
@@ -68,7 +68,7 @@ export function registerMenu() {
                 disabled: true,
             },
         ];
-        return menuItem
+        return menuItem;
     }
     ztoolkit.Menu.register("item", {
         tag: "menuseparator",
@@ -89,7 +89,7 @@ export function registerMenu() {
         id: "",
         icon: menuIcon,
         children: getMenuItem("collection"),
-    })
+    });
 }
 
 export function disableItemMenu() {

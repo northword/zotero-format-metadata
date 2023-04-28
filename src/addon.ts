@@ -34,7 +34,12 @@ class Addon {
             env: __env__,
             // ztoolkit: new MyToolkit(),
             ztoolkit: new ZoteroToolkit(),
-            panel: { tabOptionId: "", activePanels: [], toolBarPanel: null, toolBarPanelWindow: null },
+            panel: {
+                tabOptionId: "",
+                activePanels: [],
+                toolBarPanel: null,
+                toolBarPanelWindow: null,
+            },
         };
         this.hooks = hooks;
         this.api = {};

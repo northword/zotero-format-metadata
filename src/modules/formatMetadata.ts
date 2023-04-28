@@ -345,9 +345,7 @@ export default class FormatMetadata {
             getPref("lang.only.cmn") ? francOption.only.push("cmn") : "pass";
             getPref("lang.only.eng") ? francOption.only.push("eng") : "pass";
             const otherLang = getPref("lang.only.other") as string;
-            otherLang !== "" && otherLang !== undefined
-                ? francOption.only.push.apply(otherLang.replace(/ /g, "").split(","))
-                : "pass";
+            otherLang !== "" && otherLang !== undefined ? francOption.only.push.apply(otherLang.replace(/ /g, "").split(",")) : "pass";
         }
         ztoolkit.log("[lang] Selected ISO 639-3 code is: ", francOption.only);
         return franc(text, francOption);
@@ -405,9 +403,7 @@ export default class FormatMetadata {
         const allowLangs = ["cmn", "eng"];
         if (getPref("lang.only.enable")) {
             const otherLang = getPref("lang.only.other") as string;
-            otherLang !== "" && otherLang !== undefined
-                ? allowLangs.push.apply(otherLang.replace(/ /g, "").split(","))
-                : "pass";
+            otherLang !== "" && otherLang !== undefined ? allowLangs.push.apply(otherLang.replace(/ /g, "").split(",")) : "pass";
         }
         const row = allowLangs.length > 2 ? allowLangs.length : 3;
 
@@ -435,7 +431,9 @@ export default class FormatMetadata {
                         attributes: {
                             for: `dialog-checkbox-${lang}`,
                         },
-                        properties: { innerHTML: `${this.toIso639_1(lang) ?? lang}` },
+                        properties: {
+                            innerHTML: `${this.toIso639_1(lang) ?? lang}`,
+                        },
                     },
                     {
                         tag: "input",
@@ -444,7 +442,7 @@ export default class FormatMetadata {
                         attributes: {
                             "data-bind": "checkboxValue",
                             "data-prop": "zh", //this.toIso639_1(lang) ?? lang,
-                            "type": "radio",
+                            type: "radio",
                         },
                         properties: { label: "Cell 1,0" },
                     },
@@ -475,11 +473,7 @@ export default class FormatMetadata {
             //     false
             // );
         });
-        dialog
-            .addButton("Confirm", "confirm")
-            .addButton("Cancel", "cancel")
-            .setDialogData(dialogData)
-            .open("Dialog Example");
+        dialog.addButton("Confirm", "confirm").addButton("Cancel", "cancel").setDialogData(dialogData).open("Dialog Example");
         ztoolkit.getGlobal("alert")(
             `Close dialog with ${dialogData._lastButtonId}.\nCheckbox: ${dialogData.checkboxValue}\nInput: ${dialogData.inputValue}.`
         );
@@ -505,9 +499,7 @@ export default class FormatMetadata {
             const start = editpaneItemBox.selectionStart;
             const end = editpaneItemBox.selectionEnd;
             let selectedText = editpaneItemBox.value.slice(start, end);
-            selectedText = selectedText.startsWith(`<${tag}>`)
-                ? this.removeHtmlTag(selectedText)
-                : `<${tag}>` + selectedText + `</${tag}>`;
+            selectedText = selectedText.startsWith(`<${tag}>`) ? this.removeHtmlTag(selectedText) : `<${tag}>` + selectedText + `</${tag}>`;
             const text = editpaneItemBox.value.slice(0, start) + selectedText + editpaneItemBox.value.slice(end);
             editpaneItemBox.value = text;
         }
@@ -581,10 +573,7 @@ export default class FormatMetadata {
 
                 case "url":
                     // 旧的 url 为空、为 WOS 链接时，更新 url
-                    if (
-                        oldFieldValue == "" ||
-                        (typeof oldFieldValue == "string" && oldFieldValue.includes("webofscience"))
-                    ) {
+                    if (oldFieldValue == "" || (typeof oldFieldValue == "string" && oldFieldValue.includes("webofscience"))) {
                         item.setField(field, newFieldValue);
                     }
                     break;
