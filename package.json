@@ -1,82 +1,88 @@
 {
-  "name": "zotero-format-metadata",
-  "version": "0.2.1",
-  "description": "An addon for Zotero to format item metadata",
-  "config": {
-    "addonName": "Zotero Format Metadata",
-    "addonID": "zotero-format-metadata@northword.cn",
-    "addonRef": "formatmetadata",
-    "addonInstance": "FormatMetadata",
-    "prefsPrefix": "extensions.zotero.formatmetadata",
-    "releasepage": "https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-format-metadata.xpi",
-    "updaterdf": "https://github.com/northword/zotero-format-metadata/releases/latest/download/update.json"
-  },
-  "main": "src/index.ts",
-  "scripts": {
-    "build-dev": "cross-env NODE_ENV=development node scripts/build.js",
-    "build-prod": "cross-env NODE_ENV=production node scripts/build.js",
-    "build": "concurrently -c auto npm:build-prod npm:tsc",
-    "tsc": "tsc --noEmit",
-    "start-z6": "node scripts/start.js --z 6",
-    "start-z7": "node scripts/start.js --z 7",
-    "start": "node scripts/start.js",
-    "stop": "node scripts/stop.js",
-    "restart-dev": "npm run build-dev && npm run stop && npm run start",
-    "restart-prod": "npm run build-prod && npm run stop && npm run start",
-    "restart": "npm run restart-dev",
-    "update-data": "bash scripts/update-data.sh",
-    "release": "release-it",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/northword/zotero-format-metadata.git"
-  },
-  "author": "northword",
-  "license": "AGPL-3.0-or-later",
-  "bugs": {
-    "url": "https://github.com/northword/zotero-format-metadata/issues"
-  },
-  "homepage": "https://github.com/northword/zotero-format-metadata#readme",
-  "dependencies": {
-    "franc": "^6.1.0",
-    "iso-locales": "^1.1.1",
-    "zotero-plugin-toolkit": "^2.1.3"
-  },
-  "devDependencies": {
-    "@release-it/keep-a-changelog": "^3.1.0",
-    "@types/node": "^18.16.1",
-    "compressing": "^1.9.0",
-    "concurrently": "^8.0.1",
-    "cross-env": "^7.0.3",
-    "esbuild": "^0.17.18",
-    "minimist": "^1.2.8",
-    "release-it": "^15.10.1",
-    "replace-in-file": "^6.3.5",
-    "typescript": "^5.0.4",
-    "zotero-types": "^1.0.13"
-  },
-  "release-it": {
-    "npm": {
-      "publish": false
+    "name": "zotero-format-metadata",
+    "version": "0.2.1",
+    "description": "An addon for Zotero to format item metadata",
+    "config": {
+        "addonName": "Zotero Format Metadata",
+        "addonID": "zotero-format-metadata@northword.cn",
+        "addonRef": "formatmetadata",
+        "addonInstance": "FormatMetadata",
+        "prefsPrefix": "extensions.zotero.formatmetadata",
+        "releasepage": "https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-format-metadata.xpi",
+        "updaterdf": "https://github.com/northword/zotero-format-metadata/releases/latest/download/update.json"
     },
-    "github": {
-      "release": true,
-      "assets": [
-        "builds/*.xpi",
-        "builds/update.json"
-      ]
+    "main": "src/index.ts",
+    "scripts": {
+        "build-dev": "cross-env NODE_ENV=development node scripts/build.js",
+        "build-prod": "cross-env NODE_ENV=production node scripts/build.js",
+        "build": "concurrently -c auto npm:build-prod npm:tsc npm:lint",
+        "tsc": "tsc --noEmit",
+        "start-z6": "node scripts/start.js --z 6",
+        "start-z7": "node scripts/start.js --z 7",
+        "start": "node scripts/start.js",
+        "stop": "node scripts/stop.js",
+        "restart-dev": "npm run build-dev && npm run stop && npm run start",
+        "restart-prod": "npm run build-prod && npm run stop && npm run start",
+        "restart": "npm run restart-dev",
+        "update-data": "bash scripts/update-data.sh",
+        "lint": "eslint . --ext .ts --fix",
+        "release": "release-it",
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "hooks": {
-      "after:bump": "npm run build",
-      "after:release": "echo Successfully released ${name} v${version} to ${repo.repository}."
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/northword/zotero-format-metadata.git"
     },
-    "plugins": {
-      "@release-it/keep-a-changelog": {
-        "filename": "CHANGELOG.md",
-        "addUnreleased": true,
-        "addVersionUrl": true
-      }
+    "author": "northword",
+    "license": "AGPL-3.0-or-later",
+    "bugs": {
+        "url": "https://github.com/northword/zotero-format-metadata/issues"
+    },
+    "homepage": "https://github.com/northword/zotero-format-metadata#readme",
+    "dependencies": {
+        "franc": "^6.1.0",
+        "iso-locales": "^1.1.1",
+        "zotero-plugin-toolkit": "^2.1.3"
+    },
+    "devDependencies": {
+        "@release-it/keep-a-changelog": "^3.1.0",
+        "@types/node": "^18.16.1",
+        "@typescript-eslint/eslint-plugin": "^5.59.1",
+        "@typescript-eslint/parser": "^5.59.1",
+        "compressing": "^1.9.0",
+        "concurrently": "^8.0.1",
+        "cross-env": "^7.0.3",
+        "esbuild": "^0.17.18",
+        "eslint": "^8.39.0",
+        "eslint-config-prettier": "^8.8.0",
+        "minimist": "^1.2.8",
+        "prettier": "2.8.8",
+        "release-it": "^15.10.1",
+        "replace-in-file": "^6.3.5",
+        "typescript": "^5.0.4",
+        "zotero-types": "^1.0.13"
+    },
+    "release-it": {
+        "npm": {
+            "publish": false
+        },
+        "github": {
+            "release": true,
+            "assets": [
+                "builds/*.xpi",
+                "builds/update.json"
+            ]
+        },
+        "hooks": {
+            "after:bump": "npm run build",
+            "after:release": "echo Successfully released ${name} v${version} to ${repo.repository}."
+        },
+        "plugins": {
+            "@release-it/keep-a-changelog": {
+                "filename": "CHANGELOG.md",
+                "addUnreleased": true,
+                "addVersionUrl": true
+            }
+        }
     }
-  }
 }

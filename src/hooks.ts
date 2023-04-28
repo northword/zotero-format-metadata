@@ -61,13 +61,13 @@ function onShutdown(): void {
  * This function is just an example of dispatcher for Notify events.
  * Any operations should be placed in a function to keep this funcion clear.
  */
-async function onNotify(event: string, type: string, ids: Array<string | number>, extraData: { [key: string]: any }) {
+async function onNotify(event: string, type: string, ids: Array<string | number>, extraData: { [key: string]: unknown }) {
     // You can add your code to the corresponding notify type
     ztoolkit.log("notify", event, type, ids, extraData);
 
     if (event == "add" && type == "item") {
         const regularItems = Zotero.Items.get(ids as number[]).filter(
-            // @ts-ignore
+            // @ts-ignore item has no isFeedItem
             (item) => item.isRegularItem() && !item.isFeedItem
         );
         if (regularItems.length !== 0) {
@@ -124,7 +124,7 @@ function onMutationObserver(record: MutationRecord, observer: MutationObserver) 
  * @param type event type
  * @param data event data
  */
-async function onPrefsEvent(type: string, data: { [key: string]: any }) {
+async function onPrefsEvent(type: string, data: { [key: string]: never }) {
     switch (type) {
         case "load":
             registerPrefsScripts(data.window);
@@ -165,7 +165,7 @@ function onShortcuts(type: string) {
  * @param position 触发批量任务的位置，决定 Zotero Item 的获取方式。 "item" | "collection" | XUL.MenuPopup | "menuFile" | "menuEdit" | "menuView" | "menuGo" | "menuTools" | "menuHelp"
  */
 function onUpdateInBatch(mode: string, position: string) {
-    var items: Zotero.Item[] = [];
+    let items: Zotero.Item[] = [];
     switch (position) {
         case "item":
             items = Zotero.getActiveZoteroPane().getSelectedItems();

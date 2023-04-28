@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复设置缩写类别无效的问题。
+
+### Chore
+
+- 项目增加 ESLint
+
 ## [0.2.1] - 2023-04-26
 
 ### Fixed

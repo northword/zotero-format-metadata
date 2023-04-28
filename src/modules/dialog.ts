@@ -1,10 +1,9 @@
 import { getPref, setPref } from "./preference";
-import { config } from "../../package.json";
 
-export class richTextToolBar {
+export class richTextToolBar{
     static async creatRichTextDialog() {
         if (getPref("richtext.isEnableToolBar")) {
-            const dialogData: { [key: string | number]: any } = {
+            const dialogData: { [key: string | number]: unknown } = {
                 //   inputValue: "test",
                 //   checkboxValue: true,
                 loadCallback: () => {
@@ -40,7 +39,7 @@ export class richTextToolBar {
                         listeners: [
                             {
                                 type: "click",
-                                listener: (e: Event) => {
+                                listener: () => {
                                     addon.hooks.onShortcuts("subscript");
                                 },
                             },
@@ -71,7 +70,7 @@ export class richTextToolBar {
                         listeners: [
                             {
                                 type: "click",
-                                listener: (e: Event) => {
+                                listener: () => {
                                     addon.hooks.onShortcuts("supscript");
                                 },
                             },
@@ -102,7 +101,7 @@ export class richTextToolBar {
                         listeners: [
                             {
                                 type: "click",
-                                listener: (e: Event) => {
+                                listener: () => {
                                     addon.hooks.onShortcuts("bold");
                                 },
                             },
@@ -133,7 +132,7 @@ export class richTextToolBar {
                         listeners: [
                             {
                                 type: "click",
-                                listener: (e: Event) => {
+                                listener: () => {
                                     addon.hooks.onShortcuts("italic");
                                 },
                             },
@@ -170,7 +169,7 @@ export class richTextToolBar {
         this.creatRichTextDialog();
         // ztoolkit.log("addon.data.panel", addon.data.panel);
         // ztoolkit.log("addon.data.panel.toolBarPanel", addon.data.panel.toolBarPanel);
-        var windowFuture: {
+        const windowFuture: {
             left?: number;
             top?: number;
             centerscreen?: boolean;
@@ -196,7 +195,7 @@ export class richTextToolBar {
             delete windowFuture.centerscreen;
         }
 
-        addon.data.panel.toolBarPanel !== null
+        addon.data.panel.toolBarPanel !== null && addon.data.panel.toolBarPanel !== undefined
             ? addon.data.panel.toolBarPanel.open("Zotero Formet Metadata Rich Text Tool Bar", windowFuture)
             : console.warn("addon.data.panel.toolBarPanel is null");
         addon.data.panel.toolBarPanelWindow = addon.data.panel.toolBarPanel.window;

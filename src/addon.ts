@@ -26,7 +26,7 @@ class Addon {
     // Lifecycle hooks
     public hooks: typeof hooks;
     // APIs
-    public api: {};
+    public api: object = {};
 
     constructor() {
         this.data = {
@@ -34,7 +34,7 @@ class Addon {
             env: __env__,
             // ztoolkit: new MyToolkit(),
             ztoolkit: new ZoteroToolkit(),
-            panel: { tabOptionId: "", activePanels: [], toolBarPanelWindow: null, toolBarPanel: null },
+            panel: { tabOptionId: "", activePanels: [], toolBarPanel: null, toolBarPanelWindow: null },
         };
         this.hooks = hooks;
         this.api = {};

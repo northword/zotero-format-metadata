@@ -1,12 +1,12 @@
 declare const _globalThis: {
-  [key: string]: any;
-  Zotero: _ZoteroTypes.Zotero;
-  ZoteroPane: _ZoteroTypes.ZoteroPane;
-  Zotero_Tabs: typeof Zotero_Tabs;
-  window: Window;
-  document: Document;
-  ztoolkit: typeof ztoolkit;
-  addon: typeof addon;
+    [key: string]: unknown;
+    Zotero: _ZoteroTypes.Zotero;
+    ZoteroPane: _ZoteroTypes.ZoteroPane;
+    Zotero_Tabs: typeof Zotero_Tabs;
+    window: Window;
+    document: Document;
+    ztoolkit: typeof ztoolkit;
+    addon: typeof addon;
 };
 
 // declare const ztoolkit: import("../src/addon").MyToolkit;

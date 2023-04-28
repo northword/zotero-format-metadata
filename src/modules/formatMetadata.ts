@@ -8,8 +8,6 @@ import { config } from "../../package.json";
 // import { getAbbrFromLtwaLocally } from "./abbrevIso";
 
 export default class FormatMetadata {
-    constructor() {}
-
     @descriptor
     public static unimplemented() {
         ztoolkit.log("此功能尚未实现。");
@@ -22,9 +20,9 @@ export default class FormatMetadata {
      * @param items 需要批量处理的 Zotero.Item 列表
      */
     @descriptor
-    public static async updateInBatch(fn: any, items: Zotero.Item[]) {
+    public static async updateInBatch(fn: (item: Zotero.Item) => Promise<void>, items: Zotero.Item[]) {
         const total = items.length;
-        var num = 0,
+        let num = 0,
             errNum = 0;
         const popupWin = new ztoolkit.ProgressWindow(config.addonName, {
             closeOnClick: true,
@@ -37,7 +35,7 @@ export default class FormatMetadata {
             })
             .show();
 
-        for (var item of items) {
+        for (const item of items) {
             try {
                 await fn.call(this, item);
                 num++;
@@ -96,7 +94,7 @@ export default class FormatMetadata {
     @descriptor
     public static updateOnItemAdd(items: Zotero.Item[]) {
         if (getPref("add.update")) {
-            var err = 0;
+            let err = 0;
             items.forEach((item) => {
                 try {
                     this.updateStdFlow(item);
@@ -124,11 +122,11 @@ export default class FormatMetadata {
             return;
         }
         // 无期刊全称直接跳过
-        var publicationTitle = item.getField("publicationTitle") as string;
+        const publicationTitle = item.getField("publicationTitle") as string;
         if (publicationTitle == "") return;
-        var journalAbbr = "";
+        let journalAbbr = "";
         // 获取条目语言，若无则根据期刊全称判断语言
-        var itemLanguage = item.getField("language") ?? this.getTextLanguage(publicationTitle);
+        const itemLanguage = item.getField("language") ?? this.getTextLanguage(publicationTitle);
         switch (itemLanguage) {
             case "zh":
             case "zh-CN":
@@ -144,10 +142,10 @@ export default class FormatMetadata {
                 }
                 break;
 
-            default:
+            default: {
                 // 英文期刊，获取缩写
                 // 1. 从本地数据集获取缩写
-                var journalAbbrISO4 = this.getAbbrIso4Locally(publicationTitle, journalAbbrlocalData);
+                let journalAbbrISO4 = this.getAbbrIso4Locally(publicationTitle, journalAbbrlocalData);
                 // 2. 本地无缩写，是否从 ISSN LTWA 推断完整期刊缩写
                 if (!journalAbbrISO4 && getPref("abbr.infer")) {
                     journalAbbrISO4 = await this.getAbbrFromLTWAOnline(publicationTitle);
@@ -161,10 +159,13 @@ export default class FormatMetadata {
                             break;
                         case "ISO4dotless":
                             journalAbbr = this.removeDot(journalAbbrISO4);
+                            break;
                         case "JCR":
                             journalAbbr = this.toJCR(journalAbbrISO4);
+                            break;
                         default:
                             journalAbbr = journalAbbrISO4;
+                            break;
                     }
                 } else {
                     // 无缩写
@@ -179,6 +180,7 @@ export default class FormatMetadata {
                 }
 
                 break;
+            }
         }
 
         item.setField("journalAbbreviation", journalAbbr);
@@ -200,7 +202,7 @@ export default class FormatMetadata {
         publicationTitle = publicationTitle.toLowerCase().trim();
         publicationTitle.startsWith("the ") ? publicationTitle.replace("the ", "").trim() : "pass";
         // 在本地数据里查找
-        var journalAbbr = dataBase[publicationTitle];
+        const journalAbbr = dataBase[publicationTitle];
         if (journalAbbr == "" || journalAbbr == null || journalAbbr == undefined) {
             ztoolkit.log(`[Abbr] The abbr. of "${publicationTitle}" not exist in local dateset.`);
             return false;
@@ -223,7 +225,7 @@ export default class FormatMetadata {
         // 防止 API 被滥用，先延迟一手
         await Zotero.Promise.delay(3000);
         publicationTitle = encodeURI(publicationTitle);
-        var url = `https://abbreviso.toolforge.org/abbreviso/a/${publicationTitle}`;
+        const url = `https://abbreviso.toolforge.org/abbreviso/a/${publicationTitle}`;
         const res = await Zotero.HTTP.request("GET", url);
         const result = res.response as string;
         if (result == "" || result == null || result == undefined) {
@@ -254,7 +256,7 @@ export default class FormatMetadata {
     public static async updateUniversityPlace(item: Zotero.Item) {
         if (item.itemType == "thesis") {
             try {
-                var university = item.getField("university") as string;
+                const university = item.getField("university") as string;
                 const place = this.getUniversityPlace(university);
                 item.setField("place", place);
                 await item.saveTx();
@@ -277,7 +279,7 @@ export default class FormatMetadata {
      */
     @descriptor
     private static getUniversityPlace(university: string, dataBase = universityPlaceLocalData) {
-        var place = dataBase[university];
+        const place = dataBase[university];
         if (place == "" || place == null || place == undefined) {
             ztoolkit.log(`[Place] ${university} do not have place in local data set`);
             return "";
@@ -300,7 +302,7 @@ export default class FormatMetadata {
         if (languageISO639_3 !== "und") {
             // 根据 ISO 639-1 或 639-3 语言代码匹配 ISO 3166 国家区域代码
             // TODO: 添加更多映射
-            var language = this.getIso3166(languageISO639_3);
+            let language = this.getIso3166(languageISO639_3);
             if (!language) {
                 language = this.toIso639_1(languageISO639_3);
             }
@@ -326,7 +328,7 @@ export default class FormatMetadata {
         text = this.removeHtmlTag(text);
 
         const francOption = {
-            only: Array(),
+            only: [] as string[],
             minLength: 10,
         };
         // 文本是否少于 10 字符
@@ -400,17 +402,17 @@ export default class FormatMetadata {
     }
 
     public static async setLanguageManual() {
-        var allowLangs = ["cmn", "eng"];
+        const allowLangs = ["cmn", "eng"];
         if (getPref("lang.only.enable")) {
             const otherLang = getPref("lang.only.other") as string;
             otherLang !== "" && otherLang !== undefined
                 ? allowLangs.push.apply(otherLang.replace(/ /g, "").split(","))
                 : "pass";
         }
-        var row = allowLangs.length > 2 ? allowLangs.length : 3;
+        const row = allowLangs.length > 2 ? allowLangs.length : 3;
 
         const dialog = new ztoolkit.Dialog(row, 2);
-        const dialogData: { [key: string | number]: any } = {
+        const dialogData: { [key: string | number]: unknown } = {
             checkboxValue: "",
             loadCallback: () => {
                 ztoolkit.log(dialogData, "Dialog Opened!");
@@ -478,7 +480,6 @@ export default class FormatMetadata {
             .addButton("Cancel", "cancel")
             .setDialogData(dialogData)
             .open("Dialog Example");
-        await dialogData.unloadLock.promise;
         ztoolkit.getGlobal("alert")(
             `Close dialog with ${dialogData._lastButtonId}.\nCheckbox: ${dialogData.checkboxValue}\nInput: ${dialogData.inputValue}.`
         );
@@ -501,13 +502,13 @@ export default class FormatMetadata {
             typeof editpaneItemBox.selectionStart == "number" &&
             typeof editpaneItemBox.selectionEnd == "number"
         ) {
-            var start = editpaneItemBox.selectionStart;
-            var end = editpaneItemBox.selectionEnd;
-            var selectedText = editpaneItemBox.value.slice(start, end);
+            const start = editpaneItemBox.selectionStart;
+            const end = editpaneItemBox.selectionEnd;
+            let selectedText = editpaneItemBox.value.slice(start, end);
             selectedText = selectedText.startsWith(`<${tag}>`)
                 ? this.removeHtmlTag(selectedText)
                 : `<${tag}>` + selectedText + `</${tag}>`;
-            var text = editpaneItemBox.value.slice(0, start) + selectedText + editpaneItemBox.value.slice(end);
+            const text = editpaneItemBox.value.slice(0, start) + selectedText + editpaneItemBox.value.slice(end);
             editpaneItemBox.value = text;
         }
     }
@@ -520,7 +521,7 @@ export default class FormatMetadata {
      */
     @descriptor
     public static async updateMetadataByIdentifier(item: Zotero.Item) {
-        let identifier = {
+        const identifier = {
             itemType: "journalArticle",
             DOI: item.getField("DOI"),
         };
@@ -531,16 +532,16 @@ export default class FormatMetadata {
             return;
         }
 
-        let translate = new Zotero.Translate.Search();
+        const translate = new Zotero.Translate.Search();
         translate.setIdentifier(identifier);
-        let translators = await translate.getTranslators();
+        const translators = await translate.getTranslators();
         translate.setTranslator(translators);
 
         // {libraryID: options} 避免条目保存
         // https://github.com/zotero/translate/blob/05755f5051a77737c56458440c79964c7a8874cf/src/translation/translate.js#L1208-L1210
         // 配置这一项后返回的不再是 Zotero.Item[]，而是一个包含字段信息的 Object[]
-        let newItems = await translate.translate({ libraryID: false });
-        let newItem = newItems[0];
+        const newItems = await translate.translate({ libraryID: false });
+        const newItem = newItems[0];
 
         // 更改 ItemType
         newItem["itemTypeID"] = Zotero.ItemTypes.getID(newItem["itemType"]);
@@ -549,7 +550,7 @@ export default class FormatMetadata {
         // 更新 creators
         item.setCreators(newItem["creators"]);
 
-        let fields: Zotero.Item.ItemField[] = [
+        const fields: Zotero.Item.ItemField[] = [
             // "title",
             "publicationTitle",
             // "journalAbbreviation",
@@ -563,8 +564,8 @@ export default class FormatMetadata {
             "abstractNote",
         ];
 
-        for (let field of fields) {
-            let newFieldValue = newItem[field],
+        for (const field of fields) {
+            const newFieldValue = newItem[field],
                 oldFieldValue = item.getField(field);
 
             // 当新条目该字段未空时，结束本次循环
@@ -604,16 +605,16 @@ export default class FormatMetadata {
 
     @descriptor
     public static async updateDate(item: Zotero.Item) {
-        let oldDate = item.getField("date") as string,
+        const oldDate = item.getField("date") as string,
             newDate = Zotero.Date.strToISO(oldDate);
         newDate ? item.setField("date", newDate) : "";
         await item.saveTx();
     }
 
     public static async updateDOI(item: Zotero.Item) {
-        var doi = item.getField("DOI");
+        const doi = item.getField("DOI");
         if (doi && typeof doi == "string") {
-            var doiCleand = Zotero.Utilities.cleanDOI(doi);
+            const doiCleand = Zotero.Utilities.cleanDOI(doi);
             doiCleand ? item.setField("DOI", doiCleand) : "pass";
         }
         await item.saveTx();

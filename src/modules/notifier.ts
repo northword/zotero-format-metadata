@@ -1,6 +1,6 @@
 export function registerNotifier() {
     const callback = {
-        notify: async (event: string, type: string, ids: number[] | string[], extraData: { [key: string]: any }) => {
+        notify: async (event: string, type: string, ids: number[] | string[], extraData: { [key: string]: unknown }) => {
             if (!addon?.data.alive) {
                 unregisterNotifier(notifierID);
                 return;
@@ -36,8 +36,8 @@ function unregisterNotifier(notifierID: string) {
 }
 
 export function registerMutationObserver() {
-    var targetNode = document.getElementById("dynamic-fields") as HTMLElement;
-    var observerOptions = {
+    const targetNode = document.getElementById("dynamic-fields") as HTMLElement;
+    const observerOptions = {
         // childList: true, // 观察目标子节点的变化，是否有添加或者删除
         attributes: true, // 观察属性变动
         attributeFilter: ["control"],
@@ -55,7 +55,7 @@ export function registerMutationObserver() {
         });
     }
 
-    var observer = new window.MutationObserver(callback);
+    const observer = new window.MutationObserver(callback);
     observer.observe(targetNode, observerOptions);
 
     window.addEventListener(
