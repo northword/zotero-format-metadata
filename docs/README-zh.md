@@ -3,11 +3,13 @@
 [![zotero target version](https://img.shields.io/badge/Zotero-6.x-critical?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![version](https://img.shields.io/github/package-json/v/northword/zotero-format-metadata?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)
 [![download number](https://img.shields.io/github/downloads/northword/zotero-format-metadata/latest/zotero-format-metadata.xpi?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)  
-![code size](https://img.shields.io/github/languages/code-size/northword/zotero-format-metadata?style=flat-square)
+[![code size](https://img.shields.io/github/languages/code-size/northword/zotero-format-metadata?style=flat-square)](#zotero-format-metadata)
 [![license](https://img.shields.io/github/license/northword/zotero-format-metadata?style=flat-square)](#开源协议)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
 
-我是一个 [Zotero](https://www.zotero.org/) 插件，可以规范化/格式化条目的元数据。
+我是一个 [Zotero](https://www.zotero.org/) 插件，可以规范化/格式化条目的元数据（字段数据）。
+
+简体中文  |  [English](../README.md)
 
 ## 特性
 
@@ -19,24 +21,30 @@ Zotero 的参考文献表中的富文本内容需要手动插入 HTML 标签来�
 
 #### 快捷键
 
+选中文本后，按下以下快捷键快速应用相应样式：
+
 - 上标：`Ctrl` + `Shift` + `+`
 - 下标：`Ctrl` + `=`
 - 粗体：`Ctrl` + `B`
 - 斜体：`Ctrl` + `I`
 
+注：这些快捷键与 Word 中相应快捷键一致。
+
 ![Set subscript via shoutcut](./assets/set-sub-via-shoutcut.gif)
 
 #### 工具条
+
+编辑“标题”字段时，弹出工具条，编辑完成后单击空白处可以自动关闭工具条。该工具条可以在首选项中彻底关闭。
 
 ![Set subscript via toolbar](./assets/set-sub-via-toolbar.gif)
 
 ### 根据期刊全称填充期刊缩写
 
-插件内置了一个包含约 10 万条期刊缩写的数据集，插件将首先在本地数据集里查询期刊缩写；
+插件内置了一个包含约 10 万条期刊缩写的数据集（来自 JabRef ），插件将首先在本地数据集里查询期刊缩写；
 
-若无则根据 [ISSN List of Title Word Abbreviations](https://www.issn.org/services/online-services/access-to-the-ltwa/) 推断其缩写（提供选项是否启用）；
+若无则根据 [ISSN List of Title Word Abbreviations](https://www.issn.org/services/online-services/access-to-the-ltwa/) 推断其缩写（可在首选项中关闭此行为）；
 
-若仍没有找到缩写，则以期刊全称代替（提供选项是否启用）。
+若仍没有找到缩写，则以期刊全称代替（可在首选项中关闭此行为）。
 
 ### 根据高校名称填写高校所在地
 
@@ -44,23 +52,25 @@ Zotero 的参考文献表中的富文本内容需要手动插入 HTML 标签来�
 
 [^gb7714]: http://www.cessp.org.cn/a258.html
 
-### 根据 DOI 补全条目的期卷页等信息
+### 根据 DOI 补全条目的期、卷、页等信息
 
 部分条目在添加时可能因为转换器未获取到、录入时未正式见刊等原因，导致期卷页等信息不完整，插件提供了根据 DOI 补全这些字段的功能。
 
 ### 自动填写条目语言
 
-插件根据条目的标题判断其语言，满足参考文献表双语排版的需要（et al 与 等 混排）[^csl-etal]。
+插件根据条目的标题判断其语言，并将识别结果填入“语言字段”，这对于 CSL 完成参考文献表双语排版（如 et al 与 等 混排）非常重要。[^csl-etal]。
+
+默认的，插件被限制仅识别简体中文和英文，你可以在首选项中关闭语言限制或添加其他常用语言的 [ISO 639-3 代码]。
 
 [^csl-etal]: https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8
 
+[ISO 639-3 代码]: https://iso639-3.sil.org/code_tables/639/data
+
 ### 其他格式化选项
 
-~~DOI 去前缀、日期修改为 ISO 格式，清空 Extra 字段等。~~
+DOI 去前缀、日期修改为 ISO 格式等。
 
-见 [TODO](../README.md#todo)。
-
-这些功能目前来看没有实际应用意义，仅为满足强迫症。
+这些功能目前来看没有实际应用意义，仅为满足强迫症需要。
 
 ## 安装
 
@@ -80,7 +90,7 @@ GNU Affero General Public License v3.0
 
 > Permissions of this strongest copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. When a modified version is used to provide a service over a network, the complete source code of the modified version must be made available.
 
-本插件继承 Zotero 插件开发模板的 AGPL v3.0 协议，该协议基于 GPL v3.0 协议，为传染性开源协议。简单的说，你可以商用、修改、分发、专利使用及个人使用本插件。当修改版本重新分发或用于提供网络服务时，必须注明协议，声明所做出的修改，保持开源且使用相同的协议。
+本插件继承 Zotero 插件开发模板的 AGPL v3.0 协议，为传染性开源协议。简单的说，你可以商用、修改、分发、专利使用及个人使用本插件。但当修改版本重新分发或用于提供网络服务时，必须注明协议，声明所做出的修改，保持开源且使用相同的协议。
 
 ## 替代品
 

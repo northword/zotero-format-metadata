@@ -3,13 +3,13 @@
 [![zotero target version](https://img.shields.io/badge/Zotero-6.x-critical?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![version](https://img.shields.io/github/package-json/v/northword/zotero-format-metadata?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)
 [![download number](https://img.shields.io/github/downloads/northword/zotero-format-metadata/latest/zotero-format-metadata.xpi?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)  
-![code size](https://img.shields.io/github/languages/code-size/northword/zotero-format-metadata?style=flat-square)
+[![code size](https://img.shields.io/github/languages/code-size/northword/zotero-format-metadata?style=flat-square)](#zotero-format-metadata)
 [![license](https://img.shields.io/github/license/northword/zotero-format-metadata?style=flat-square)](#licence)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
 
 An addon for [Zotero](https://www.zotero.org/) to format item metadata.
 
-[简体中文](./docs/README-zh.md)
+[简体中文](./docs/README-zh.md)  |  English
 
 ## Features
 
@@ -21,20 +21,26 @@ The rich text content in Zotero's reference list requires manual insertion of HT
 
 #### Shortcuts
 
+Once the text is selected, press the following shortcut keys to quickly apply the corresponding style:
+
 - Supscript: `Ctrl` + `Shift` + `+`
 - Subscript: `Ctrl` + `=`
 - Bold: `Ctrl` + `B`
 - Italic: `Ctrl` + `I`
 
+BTW: These shortcuts are the same as the ones in Microsoft Word.
+
 ![Set subscript via shoutcut](./docs/assets/set-sub-via-shoutcut.gif)
 
 #### Toolbar
+
+When editing the "Title" field, a toolbar pops up and can be closed automatically by clicking on the blank space when editing is complete. The toolbar can be closed completely in the preferences.
 
 ![Set subscript via toolbar](./docs/assets/set-sub-via-toolbar.gif)
 
 ### Look up the journal abbreviation according to the journal full name
 
-The plugin has a built-in dataset of about 96,000 journal abbreviations, and the plugin will first look up the journal abbreviations in the local dataset;
+The plugin has a built-in dataset of about 96,000 journal abbreviations (from JabRef), and the plugin will first look up the journal abbreviations in the local dataset;
 
 If none are available, the abbreviations are inferred from the [ISSN List of Title Word Abbreviations](https://www.issn.org/services/online-services/access-to-the-ltwa/) (optional);
 
@@ -48,46 +54,23 @@ The plugin has a built-in list of universities in mainland China and their locat
 
 ### Lookup the date, volume, issue, pages, etc according to DOI
 
-Some items in the Zotero library may be added with incomplete information such as issue volume pages because the converter is not available, or the official publication is not in the journal at the time of record, etc. The plugin provides the ability to complete these fields based on the DOI.
+Some items in the Zotero library may be added with incomplete information such as issue volume pages because the translator is not available, or the official publication is not in the journal at the time of record, etc. The plugin provides the ability to complete these fields based on the DOI.
 
 ### Fill in the language of the item according to its title
 
-The plugin determines the language of an item based on its title. Mixing "et al" and "等" in CSL by setting the Language field [^csl-etal] .
+The plugin determines the language of an item based on its title and fills in the "Language" field, which is important for CSL to perform bilingual layout of the bibliography (e.g., et al and 等 mixed). [^csl-etal] .
+
+By default, the plugin is restricted to recognize only Simplified Chinese and English. You can turn off the language restriction in the preferences or add [ISO 639-3 codes] for other common languages.
 
 [^csl-etal]: https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8
 
-## Todo
+[ISO 639-3 codes]: https://iso639-3.sil.org/code_tables/639/data
 
-- [ ] 标题 HTML 标签
-  - [x] 快捷键应用上下标、粗体斜体等
-  - [x] 选中文本后弹出迷你菜单提供上下标按钮
-    - [x] 记忆工具条位置
-    - [ ] 工具条按钮描述改为图形
-    - [ ] 提供选项：修改后的标题实时可视化
-  - [ ] 建立常见化学式的映射或化学式正则模式匹配以批量自动替换
-- [ ] 期刊：刊名与缩写
-  - [ ] 期刊全称消歧：例如 `Applied Catalysis B-environmental` 与 `Applied Catalysis B: environmental` 为相同期刊
-  - [ ] 根据期刊名填充期刊缩写
-    - [x] 本地术语表
-    - [ ] ~~API，~~ 用户自定义术语表
-    - [x] 提供 ISO 4 with dot, ISO 4 without dot, 和 JCR 缩写的偏好选项
-    - [x] 无缩写时通过 ISSN LTWA 推断缩写
-    - [x] 无缩写时分别是否以全称填充（英文已可以设置，中文缩写是什么？）
-- [x] 期刊：DOI 格式化
-- [x] 期刊：期卷页
-  - [x] 如果没有期卷页，根据 DOI 获取补全
-- [x] 学位论文：地点
-  - [x] 根据学校名填充地点
-- [x] 日期格式化为 ISO 格式
-- [ ] 语言
-  - [x] 通过语言识别库识别（通过 franc 识别标题的语言，转为 ISO 639-1 语言代码）
-  - [x] 设置常用语言偏好
-  - [ ] ~~期刊与语言的映射（似乎识别标题已经满足需求，无需建立该映射）~~
-  - [ ] ~~常见错误语言值直接映射为 ISO 值 （总之都要识别，不做了）~~
-  - [x] ~~ISO 639 语言代码 转 ISO 3166 国家区域代码（已添加 `zh-CN` 和 `en-US` 的映射，其他语言待办）（咨询后决定不做 <https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl/issues/160> ）~~
-  - [ ] 手动设置条目语言，选择后弹窗， `zh-CN` 和 `en-US` 单选框和 1 个输入框，常用的中英文也可以放进子菜单
-- [x] 添加时自动应用
-- [ ] 添加时自动检测是否存在重复条目
+### Others
+
+- Remove the URL prefix of DOI
+- Convert Date to ISO format
+- etc...
 
 ## Install
 
@@ -100,6 +83,10 @@ If you are in mainland China or cannot access GitHub easily, please download the
 ## Changelog
 
 See [CHANGELOG.md](./CHANGELOG.md).
+
+## Todo
+
+See [#7](https://github.com/northword/zotero-format-metadata/issues/7) .
 
 ## Licence
 
