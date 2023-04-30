@@ -1,6 +1,6 @@
+import iso6393To6391 from "../data/iso-693-3-to-1";
 import journalAbbrISO4 from "../data/journal-abbr/jabref-abbr/journal-list-dots";
 import universityPlace from "../data/university-list/university-place";
-import iso6393To6391 from "../data/iso-693-3-to-1";
 
 export interface dict {
     [key: string]: string;

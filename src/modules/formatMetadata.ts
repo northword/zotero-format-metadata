@@ -1,9 +1,9 @@
-import { journalAbbrlocalData, universityPlaceLocalData, iso6393To6391Data } from "../data/helper";
+import { descriptor, progressWindow } from "./untils";
+import { iso6393To6391Data, journalAbbrlocalData, universityPlaceLocalData } from "../data/helper";
+import { config } from "../../package.json";
 import { franc } from "franc";
 import { getPref } from "./preference";
-import { descriptor, progressWindow } from "./untils";
 import { getString } from "./locale";
-import { config } from "../../package.json";
 import { setLanguageManualDialog } from "./views/setLanguageManualDialog";
 // import { getAbbrFromLtwaLocally } from "./abbrevIso";
 

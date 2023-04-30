@@ -1,7 +1,7 @@
+import hooks from "./hooks";
 import ZoteroToolkit from "zotero-plugin-toolkit/dist/index";
 // 临时使用本地 toolkit .
 // import ZoteroToolkit from "../../zotero-plugin-toolkit/dist/index";
-import hooks from "./hooks";
 
 class Addon {
     public data: {

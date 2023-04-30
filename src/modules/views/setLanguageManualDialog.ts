@@ -1,6 +1,7 @@
-import { TagElementProps } from "zotero-plugin-toolkit/dist/tools/ui";
-import { getPref } from "../preference";
 import FormatMetadata from "../formatMetadata";
+import { getPref } from "../preference";
+import { getString } from "../locale";
+import { TagElementProps } from "zotero-plugin-toolkit/dist/tools/ui";
 
 /**
  * 手动设置条目语言_选择语言的弹窗

@@ -1,11 +1,11 @@
-import { config } from "../package.json";
-import { getString, initLocale } from "./modules/locale";
-import { getPref, registerPrefs, registerPrefsScripts } from "./modules/preference";
 import { disableItemMenu, registerMenu } from "./modules/menu";
-import { registerShortcuts } from "./modules/shortcuts";
+import { getPref, registerPrefs, registerPrefsScripts } from "./modules/preference";
+import { getString, initLocale } from "./modules/locale";
 import { registerMutationObserver, registerNotifier } from "./modules/notifier";
-// import { registerPrompt } from "./modules/prompt";
+import { config } from "../package.json";
 import FormatMetadata from "./modules/formatMetadata";
+import { registerShortcuts } from "./modules/shortcuts";
+// import { registerPrompt } from "./modules/prompt";
 import { richTextToolBar } from "./modules/views/richTextToolBar";
 
 async function onStartup() {
