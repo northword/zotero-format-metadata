@@ -2,6 +2,10 @@ import { TagElementProps } from "zotero-plugin-toolkit/dist/tools/ui";
 import { getPref } from "../preference";
 import FormatMetadata from "../formatMetadata";
 
+/**
+ * 手动设置条目语言_选择语言的弹窗
+ * @returns string | false
+ */
 export async function setLanguageManualDialog() {
     const dialogData: { [key: string | number]: any } = {
         selectedLang: "",
@@ -67,6 +71,9 @@ export async function setLanguageManualDialog() {
         .setDialogData(dialogData)
         .open("Dialog Example");
     await dialogData.unloadLock.promise;
+
+    // 如果取消/直接关闭弹窗，则返回 false
+    // 如果 text input 存在值，则返回，否则返回 radio 的值
     if (dialogData._lastButtonId == "confirm") {
         if (dialogData.inputLang !== "" && dialogData.inputLang !== undefined) {
             return dialogData.inputLang;

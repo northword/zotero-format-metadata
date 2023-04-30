@@ -5,7 +5,6 @@ import { descriptor, progressWindow } from "./untils";
 import { getString } from "./locale";
 import { config } from "../../package.json";
 import { setLanguageManualDialog } from "./views/setLanguageManualDialog";
-// import { richTextDialog } from "./dialog";
 // import { getAbbrFromLtwaLocally } from "./abbrevIso";
 
 export default class FormatMetadata {
@@ -407,14 +406,24 @@ export default class FormatMetadata {
     private static verifyIso3166(locale: string) {
         return false;
     }
-
+    /**
+     * 手动设置语言
+     * @param items
+     * @returns
+     */
     public static async setLanguageManual(items: Zotero.Item[]) {
+        // 弹出选择语言弹窗
         const lang = await setLanguageManualDialog();
         if (!lang) return;
         this.updateInBatch(this.setFieldValue, items, "language", lang);
-        return;
     }
 
+    /**
+     * 设置某字段的值
+     * @param item 待处理的条目
+     * @param field 待处理的条目字段
+     * @param value 待处理的条目字段值
+     */
     public static async setFieldValue(item: Zotero.Item, field: Zotero.Item.ItemField, value: any) {
         item.setField(field, value);
         await item.saveTx();
