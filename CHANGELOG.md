@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- 手动设置条目语言。
+- 手动设置条目语言，#13 。
+- 富文本工具条，按钮改为图标，#8 。
 
 ### Fixed
 
