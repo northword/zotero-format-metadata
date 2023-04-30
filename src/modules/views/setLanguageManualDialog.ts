@@ -66,10 +66,10 @@ export async function setLanguageManualDialog() {
         });
 
     dialog
-        .addButton("Confirm", "confirm")
-        .addButton("Cancel", "cancel")
+        .addButton(getString("confirm"), "confirm")
+        .addButton(getString("cancel"), "cancel")
         .setDialogData(dialogData)
-        .open("Dialog Example");
+        .open(getString("dialog.selectLanguage"));
     await dialogData.unloadLock.promise;
 
     // 如果取消/直接关闭弹窗，则返回 false
