@@ -50,16 +50,22 @@ async function updatePrefsUI() {
 }
 
 function bindPrefEvents() {
-    addon.data.prefs?.window.document.querySelector(`#${config.addonRef}-lang-only-enable`)?.addEventListener("command", (e) => {
-        ztoolkit.log(e);
-        disablePrefsLang();
-    });
+    addon.data.prefs?.window.document
+        .querySelector(`#${config.addonRef}-lang-only-enable`)
+        ?.addEventListener("command", (e) => {
+            ztoolkit.log(e);
+            disablePrefsLang();
+        });
 }
 
 function disablePrefsLang() {
     const state = getPref("lang.only.enable");
-    addon.data.prefs?.window.document.getElementById(`${config.addonRef}-lang-only-cmn`)?.setAttribute("disabled", String(!state));
-    addon.data.prefs?.window.document.getElementById(`${config.addonRef}-lang-only-eng`)?.setAttribute("disabled", String(!state));
+    addon.data.prefs?.window.document
+        .getElementById(`${config.addonRef}-lang-only-cmn`)
+        ?.setAttribute("disabled", String(!state));
+    addon.data.prefs?.window.document
+        .getElementById(`${config.addonRef}-lang-only-eng`)
+        ?.setAttribute("disabled", String(!state));
     // addon.data
     //     .prefs!.window.document.getElementById(`${config.addonRef}-lang-only-other`)!
     //     .setAttribute("disabled", String(!state));

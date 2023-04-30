@@ -1,6 +1,11 @@
 export function registerNotifier() {
     const callback = {
-        notify: async (event: string, type: string, ids: number[] | string[], extraData: { [key: string]: unknown }) => {
+        notify: async (
+            event: string,
+            type: string,
+            ids: number[] | string[],
+            extraData: { [key: string]: unknown }
+        ) => {
             if (!addon?.data.alive) {
                 unregisterNotifier(notifierID);
                 return;

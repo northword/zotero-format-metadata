@@ -64,7 +64,7 @@
     },
     "prettier": {
         "tabWidth": 4,
-        "printWidth": 140
+        "printWidth": 120
     },
     "release-it": {
         "npm": {

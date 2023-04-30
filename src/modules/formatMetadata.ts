@@ -22,7 +22,11 @@ export default class FormatMetadata {
      * @param ...args fn 的参数，Zotero.item 将始终作为第0个参数传入
      */
     @descriptor
-    public static async updateInBatch(fn: (item: Zotero.Item, ...args: any) => Promise<void>, items: Zotero.Item[], ...args: any) {
+    public static async updateInBatch(
+        fn: (item: Zotero.Item, ...args: any) => Promise<void>,
+        items: Zotero.Item[],
+        ...args: any
+    ) {
         const total = items.length;
         let num = 0,
             errNum = 0;
@@ -348,7 +352,9 @@ export default class FormatMetadata {
             getPref("lang.only.cmn") ? francOption.only.push("cmn") : "pass";
             getPref("lang.only.eng") ? francOption.only.push("eng") : "pass";
             const otherLang = getPref("lang.only.other") as string;
-            otherLang !== "" && otherLang !== undefined ? francOption.only.push.apply(otherLang.replace(/ /g, "").split(",")) : "pass";
+            otherLang !== "" && otherLang !== undefined
+                ? francOption.only.push.apply(otherLang.replace(/ /g, "").split(","))
+                : "pass";
         }
         ztoolkit.log("[lang] Selected ISO 639-3 code is: ", francOption.only);
         return franc(text, francOption);
@@ -433,7 +439,9 @@ export default class FormatMetadata {
             const start = editpaneItemBox.selectionStart;
             const end = editpaneItemBox.selectionEnd;
             let selectedText = editpaneItemBox.value.slice(start, end);
-            selectedText = selectedText.startsWith(`<${tag}>`) ? this.removeHtmlTag(selectedText) : `<${tag}>` + selectedText + `</${tag}>`;
+            selectedText = selectedText.startsWith(`<${tag}>`)
+                ? this.removeHtmlTag(selectedText)
+                : `<${tag}>` + selectedText + `</${tag}>`;
             const text = editpaneItemBox.value.slice(0, start) + selectedText + editpaneItemBox.value.slice(end);
             editpaneItemBox.value = text;
         }
@@ -507,7 +515,10 @@ export default class FormatMetadata {
 
                 case "url":
                     // 旧的 url 为空、为 WOS 链接时，更新 url
-                    if (oldFieldValue == "" || (typeof oldFieldValue == "string" && oldFieldValue.includes("webofscience"))) {
+                    if (
+                        oldFieldValue == "" ||
+                        (typeof oldFieldValue == "string" && oldFieldValue.includes("webofscience"))
+                    ) {
                         item.setField(field, newFieldValue);
                     }
                     break;

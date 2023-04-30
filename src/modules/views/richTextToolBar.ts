@@ -14,11 +14,15 @@ export class richTextToolBar {
                     // console.log(addon.data.panel.toolBarPanel.window);
                     setPref(
                         "richText.toolbarPosition.left",
-                        addon.data.panel.toolBarPanelWindow?.screenX ?? addon.data.panel.toolBarPanelWindow?.screenX ?? "0"
+                        addon.data.panel.toolBarPanelWindow?.screenX ??
+                            addon.data.panel.toolBarPanelWindow?.screenX ??
+                            "0"
                     );
                     setPref(
                         "richText.toolbarPosition.top",
-                        addon.data.panel.toolBarPanelWindow?.screenY ?? addon.data.panel.toolBarPanelWindow?.screenY ?? "0"
+                        addon.data.panel.toolBarPanelWindow?.screenY ??
+                            addon.data.panel.toolBarPanelWindow?.screenY ??
+                            "0"
                     );
                 },
             };
@@ -177,7 +181,10 @@ export class richTextToolBar {
             fitContent: true,
             alwaysRaised: true,
         };
-        if (getPref("richText.toolbarPosition.top") == undefined || getPref("richText.toolbarPosition.left") == undefined) {
+        if (
+            getPref("richText.toolbarPosition.top") == undefined ||
+            getPref("richText.toolbarPosition.left") == undefined
+        ) {
             windowFuture.centerscreen = true;
             // Object.defineProperty(windowFuture, "centerscreen", true);
             delete windowFuture.left;
