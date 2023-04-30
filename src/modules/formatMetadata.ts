@@ -451,8 +451,9 @@ export default class FormatMetadata {
             selectedText = selectedText.startsWith(`<${tag}>`)
                 ? this.removeHtmlTag(selectedText)
                 : `<${tag}>` + selectedText + `</${tag}>`;
-            const text = editpaneItemBox.value.slice(0, start) + selectedText + editpaneItemBox.value.slice(end);
-            editpaneItemBox.value = text;
+            // const text = editpaneItemBox.value.slice(0, start) + selectedText + editpaneItemBox.value.slice(end);
+            // editpaneItemBox.value = text;
+            editpaneItemBox.setRangeText(selectedText);
         }
     }
 

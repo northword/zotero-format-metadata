@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 行为优化：替换富文本标签后自动选中替换后的文本。原行为为光标置于最后。
+
 ## [0.3.0] - 2023-04-30
 
 ### Added
