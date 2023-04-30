@@ -6,7 +6,7 @@ import { registerShortcuts } from "./modules/shortcuts";
 import { registerMutationObserver, registerNotifier } from "./modules/notifier";
 // import { registerPrompt } from "./modules/prompt";
 import FormatMetadata from "./modules/formatMetadata";
-import { richTextToolBar } from "./modules/dialog";
+import { richTextToolBar } from "./modules/views/richTextToolBar";
 
 async function onStartup() {
     await Promise.all([Zotero.initializationPromise, Zotero.unlockPromise, Zotero.uiReadyPromise]);
@@ -191,9 +191,9 @@ function onUpdateInBatch(mode: string, position: string) {
         case "lang":
             FormatMetadata.updateInBatch(FormatMetadata.updateLanguage, items);
             break;
-        // case "lang-manual":
-        //     FormatMetadata.setLanguageManual();
-        //     break;
+        case "lang-manual":
+            FormatMetadata.setLanguageManual(items);
+            break;
         case "other-field":
             FormatMetadata.updateInBatch(FormatMetadata.updateMetadataByIdentifier, items);
             break;

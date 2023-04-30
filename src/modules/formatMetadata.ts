@@ -4,6 +4,7 @@ import { getPref } from "./preference";
 import { descriptor, progressWindow } from "./untils";
 import { getString } from "./locale";
 import { config } from "../../package.json";
+import { setLanguageManualDialog } from "./views/setLanguageManualDialog";
 // import { richTextDialog } from "./dialog";
 // import { getAbbrFromLtwaLocally } from "./abbrevIso";
 
@@ -18,9 +19,10 @@ export default class FormatMetadata {
      * 装饰器：批量执行某函数
      * @param fn 需要批量执行的函数
      * @param items 需要批量处理的 Zotero.Item 列表
+     * @param ...args fn 的参数，Zotero.item 将始终作为第0个参数传入
      */
     @descriptor
-    public static async updateInBatch(fn: (item: Zotero.Item) => Promise<void>, items: Zotero.Item[]) {
+    public static async updateInBatch(fn: (item: Zotero.Item, ...args: any) => Promise<void>, items: Zotero.Item[], ...args: any) {
         const total = items.length;
         let num = 0,
             errNum = 0;
@@ -37,7 +39,8 @@ export default class FormatMetadata {
 
         for (const item of items) {
             try {
-                await fn.call(this, item);
+                args.unshift(item);
+                await fn.apply(this, args);
                 num++;
                 popupWin.changeLine({
                     text: `[${num}/${total}] ${getString("info.batchBegin")}`,
@@ -385,7 +388,7 @@ export default class FormatMetadata {
      * @returns  ISO 639-1 code
      */
     @descriptor
-    private static toIso639_1(iso639_3: string) {
+    public static toIso639_1(iso639_3: string) {
         return iso6393To6391Data[iso639_3] ?? false;
     }
 
@@ -399,85 +402,16 @@ export default class FormatMetadata {
         return false;
     }
 
-    public static async setLanguageManual() {
-        const allowLangs = ["cmn", "eng"];
-        if (getPref("lang.only.enable")) {
-            const otherLang = getPref("lang.only.other") as string;
-            otherLang !== "" && otherLang !== undefined ? allowLangs.push.apply(otherLang.replace(/ /g, "").split(",")) : "pass";
-        }
-        const row = allowLangs.length > 2 ? allowLangs.length : 3;
+    public static async setLanguageManual(items: Zotero.Item[]) {
+        const lang = await setLanguageManualDialog();
+        if (!lang) return;
+        this.updateInBatch(this.setFieldValue, items, "language", lang);
+        return;
+    }
 
-        const dialog = new ztoolkit.Dialog(row, 2);
-        const dialogData: { [key: string | number]: unknown } = {
-            checkboxValue: "",
-            loadCallback: () => {
-                ztoolkit.log(dialogData, "Dialog Opened!");
-            },
-            unloadCallback: () => {
-                ztoolkit.log(dialogData, "Dialog closed!");
-            },
-        };
-
-        allowLangs.forEach((lang, index) => {
-            dialog.addCell(index, 0, {
-                tag: "div",
-                namespace: "html",
-                id: `dialog-checkboxgroup`,
-                attributes: {},
-                children: [
-                    {
-                        tag: "label",
-                        namespace: "html",
-                        attributes: {
-                            for: `dialog-checkbox-${lang}`,
-                        },
-                        properties: {
-                            innerHTML: `${this.toIso639_1(lang) ?? lang}`,
-                        },
-                    },
-                    {
-                        tag: "input",
-                        namespace: "html",
-                        id: `dialog-checkbox-${lang}`,
-                        attributes: {
-                            "data-bind": "checkboxValue",
-                            "data-prop": "zh", //this.toIso639_1(lang) ?? lang,
-                            type: "radio",
-                        },
-                        properties: { label: "Cell 1,0" },
-                    },
-                ],
-            });
-            // .addCell(index, 0, {
-            //     tag: "label",
-            //     namespace: "html",
-            //     attributes: {
-            //         for: `dialog-checkbox-${lang}`,
-            //     },
-            //     properties: { innerHTML: `${this.toIso639_1(lang) ?? lang}` },
-            // })
-            // .addCell(
-            //     index,
-            //     1,
-            //     {
-            //         tag: "input",
-            //         namespace: "html",
-            //         id: `dialog-checkbox-${lang}`,
-            //         attributes: {
-            //             "data-bind": "checkboxValue",
-            //             "data-prop": this.toIso639_1(lang) ?? lang,
-            //             "type": "radio",
-            //         },
-            //         properties: { label: "Cell 1,0" },
-            //     },
-            //     false
-            // );
-        });
-        dialog.addButton("Confirm", "confirm").addButton("Cancel", "cancel").setDialogData(dialogData).open("Dialog Example");
-        ztoolkit.getGlobal("alert")(
-            `Close dialog with ${dialogData._lastButtonId}.\nCheckbox: ${dialogData.checkboxValue}\nInput: ${dialogData.inputValue}.`
-        );
-        ztoolkit.log(dialogData);
+    public static async setFieldValue(item: Zotero.Item, field: Zotero.Item.ItemField, value: any) {
+        item.setField(field, value);
+        await item.saveTx();
     }
 
     /* 上下标 */
@@ -608,316 +542,4 @@ export default class FormatMetadata {
         }
         await item.saveTx();
     }
-
-    /**
-     * 富文本工具条的实现，旧版
-     * 该版本监听标题值标签和文本框的点击与失焦事件
-     * 但无法解决点击工具条后文本框失焦的问题
-     *
-     */
-    // @descriptor
-    // public static richTextToolbar() {
-    //     var richTextToolBarWarper = document.createElement("div");
-    //     richTextToolBarWarper.id = "format-metadata-richTextToolBar-warper";
-    //     // richTextToolBarWarper.innerHTML = "===========";
-    //     richTextToolBarWarper.style.display = "none";
-    //     richTextToolBarWarper.style.textAlign = "center";
-
-    //     var imgWarp = document.createElement("img");
-
-    //     const btnList = ["subscript", "supscript", "bold", "italic"];
-    //     btnList.forEach((btn) => {
-    //         var button = document.createElement("button");
-    //         button.id = `format-metadata-richTextToolBar-${btn}`;
-    //         button.setAttribute("title", `${btn}`);
-    //         button.setAttribute("class", "toolbar-button");
-    //         button.innerHTML = `${btn}`;
-    //         button.append(imgWarp);
-    //         button.addEventListener("click", (ev: Event) => {
-    //             addon.hooks.onShortcuts(`${btn}`);
-    //         });
-    //         richTextToolBarWarper.append(button);
-    //     });
-
-    //     var row = document.getElementById("dynamic-fields")?.getElementsByTagName("row")["1"];
-    //     row?.before(richTextToolBarWarper);
-    //     // ztoolkit.log(row);
-
-    //     // https://developer.mozilla.org/zh-CN/docs/Web/API/Element/focus_event
-    //     function showToolbarListener() {
-    //         // `itembox-field-value-title` 被点击时，显示 toolbar
-    //         document
-    //             .getElementById("itembox-field-value-title")
-    //             ?.addEventListener("click", showToolbarListenerCallback, true);
-    //     }
-
-    //     function showToolbarListenerCallback() {
-    //         richTextToolBarWarper.style.display = "";
-    //         hiddenToolbarListener();
-    //         document
-    //             .getElementById("itembox-field-value-title")
-    //             ?.removeEventListener("click", showToolbarListenerCallback, true);
-    //     }
-
-    //     function hiddenToolbarListener() {
-    //         // `itembox-field-textbox-title` 失焦时，隐藏 toolbar
-    //         document
-    //             .getElementById("itembox-field-textbox-title")
-    //             ?.addEventListener("blur", hiddenToolbarListenerCallback, true);
-    //     }
-
-    //     async function hiddenToolbarListenerCallback() {
-    //         richTextToolBarWarper.style.display = "none";
-    //         await Zotero.Promise.delay(500);
-    //         document
-    //             .getElementById("itembox-field-textbox-title")
-    //             ?.removeEventListener("blur", hiddenToolbarListenerCallback, true);
-
-    //         ztoolkit.log("add show again listener");
-    //         if (document.getElementById("itembox-field-value-title")) {
-    //             showToolbarListener();
-    //             // ztoolkit.log(document.getElementById("itembox-field-value-title"));
-    //         } else {
-    //             ztoolkit.log("`itembox-field-value-title` not exist, check `textbox` is exist");
-    //             if (document.getElementById("itembox-field-textbox-title")) {
-    //                 richTextToolBarWarper.style.display = "";
-    //                 hiddenToolbarListener();
-    //             } else {
-    //                 ztoolkit.log("`itembox-field-textbox-title` not exist, add show again listener again");
-    //                 // showToolbarListener();
-    //             }
-    //         }
-    //     }
-
-    //     showToolbarListener();
-    // }
-
-    /**
-     * 富文本工具条的实现，旧版
-     * 在上一版本监听事件基础上打开 dialog 来避免文本框失焦
-     * 然而 dialog 弹出的时候依然会触发 textbox 的 blur
-     * 放弃，转用 MutationObserver
-     *
-     */
-    // @descriptor
-    // public static async richTextToolbar() {
-    //     document.getElementById("itembox-field-value-title")?.addEventListener(
-    //         "click",
-    //         async () => {
-    //             ztoolkit.log("value label click");
-    //             const dialogData: { [key: string | number]: any } = {
-    //                 //   inputValue: "test",
-    //                 //   checkboxValue: true,
-    //                 loadCallback: () => {
-    //                     ztoolkit.log(dialogData, "Dialog Opened!");
-    //                 },
-    //                 unloadCallback: () => {
-    //                     ztoolkit.log(dialogData, "Dialog closed!");
-    //                 },
-    //             };
-    //             const dialogHelper = new ztoolkit.Dialog(3, 5)
-    //                 .addCell(
-    //                     0,
-    //                     0,
-    //                     {
-    //                         tag: "button",
-    //                         namespace: "html",
-    //                         attributes: {
-    //                             type: "button",
-    //                         },
-    //                         listeners: [
-    //                             {
-    //                                 type: "click",
-    //                                 listener: (e: Event) => {
-    //                                     addon.hooks.onShortcuts("subscript");
-    //                                 },
-    //                             },
-    //                         ],
-    //                         children: [
-    //                             {
-    //                                 tag: "div",
-    //                                 styles: {
-    //                                     padding: "2.5px 15px",
-    //                                 },
-    //                                 properties: {
-    //                                     innerHTML: "Subscript",
-    //                                 },
-    //                             },
-    //                         ],
-    //                     },
-    //                     true
-    //                 )
-    //                 .addCell(
-    //                     0,
-    //                     1,
-    //                     {
-    //                         tag: "button",
-    //                         namespace: "html",
-    //                         attributes: {
-    //                             type: "button",
-    //                         },
-    //                         listeners: [
-    //                             {
-    //                                 type: "click",
-    //                                 listener: (e: Event) => {
-    //                                     addon.hooks.onShortcuts("supscript");
-    //                                 },
-    //                             },
-    //                         ],
-    //                         children: [
-    //                             {
-    //                                 tag: "div",
-    //                                 styles: {
-    //                                     padding: "2.5px 15px",
-    //                                 },
-    //                                 properties: {
-    //                                     innerHTML: "Supscript",
-    //                                 },
-    //                             },
-    //                         ],
-    //                     },
-    //                     true
-    //                 )
-    //                 .addCell(
-    //                     0,
-    //                     2,
-    //                     {
-    //                         tag: "button",
-    //                         namespace: "html",
-    //                         attributes: {
-    //                             type: "button",
-    //                         },
-    //                         listeners: [
-    //                             {
-    //                                 type: "click",
-    //                                 listener: (e: Event) => {
-    //                                     addon.hooks.onShortcuts("bold");
-    //                                 },
-    //                             },
-    //                         ],
-    //                         children: [
-    //                             {
-    //                                 tag: "div",
-    //                                 styles: {
-    //                                     padding: "2.5px 15px",
-    //                                 },
-    //                                 properties: {
-    //                                     innerHTML: "Bold",
-    //                                 },
-    //                             },
-    //                         ],
-    //                     },
-    //                     false
-    //                 )
-    //                 .addCell(
-    //                     0,
-    //                     3,
-    //                     {
-    //                         tag: "button",
-    //                         namespace: "html",
-    //                         attributes: {
-    //                             type: "button",
-    //                         },
-    //                         listeners: [
-    //                             {
-    //                                 type: "click",
-    //                                 listener: (e: Event) => {
-    //                                     addon.hooks.onShortcuts("italic");
-    //                                 },
-    //                             },
-    //                         ],
-    //                         children: [
-    //                             {
-    //                                 tag: "div",
-    //                                 styles: {
-    //                                     padding: "2.5px 15px",
-    //                                 },
-    //                                 properties: {
-    //                                     innerHTML: "Italic",
-    //                                 },
-    //                             },
-    //                         ],
-    //                     },
-    //                     false
-    //                 )
-    //                 .open("Zotero Formet Metadata Rich Text Tool Bar");
-    //             ztoolkit.log(dialogData);
-    //             await Zotero.Promise.delay(2000);
-
-    //             // document
-    //             //     .getElementById("itembox-field-value-title")
-    //             //     ?.removeEventListener("click", showToolbarListenerCallback, true);
-    //             // hiddenToolbarListener();
-    //             document.getElementById("itembox-field-textbox-title")?.addEventListener(
-    //                 "change",
-    //                 async () => {
-    //                     ztoolkit.log("textarea blur");
-    //                     dialogHelper.window.close();
-    //                     await Zotero.Promise.delay(2000);
-    //                     this.richTextToolbar();
-    //                     //     document
-    //                     //         .getElementById("itembox-field-textbox-title")
-    //                     //         ?.removeEventListener("blur", hiddenToolbarListenerCallback, true);
-    //                 },
-    //                 {
-    //                     once: true,
-    //                 }
-    //             );
-    //         },
-    //         {
-    //             once: true,
-    //         }
-    //     );
-
-    //     // https://developer.mozilla.org/zh-CN/docs/Web/API/Element/focus_event
-    //     // function showToolbarListener() {
-    //     //     // `itembox-field-value-title` 被点击时，显示 toolbar
-    //     //     document
-    //     //         .getElementById("itembox-field-value-title")
-    //     //         ?.addEventListener("click", showToolbarListenerCallback, true);
-    //     // }
-
-    //     // function showToolbarListenerCallback() {
-    //     //     // richTextToolBarWarper.style.display = "";
-    //     //     // richTextDialog();
-
-    //     //     document
-    //     //         .getElementById("itembox-field-value-title")
-    //     //         ?.removeEventListener("click", showToolbarListenerCallback, true);
-    //     //     hiddenToolbarListener();
-    //     // }
-
-    //     // function hiddenToolbarListener() {
-    //     //     // `itembox-field-textbox-title` 失焦时，隐藏 toolbar
-    //     //     document
-    //     //         .getElementById("itembox-field-textbox-title")
-    //     //         ?.addEventListener("blur", hiddenToolbarListenerCallback, true);
-    //     // }
-
-    //     // async function hiddenToolbarListenerCallback() {
-    //     //     // richTextToolBarWarper.style.display = "none";
-    //     //     dialogHelper.window.close();
-    //     //     await Zotero.Promise.delay(1000);
-    //     //     document
-    //     //         .getElementById("itembox-field-textbox-title")
-    //     //         ?.removeEventListener("blur", hiddenToolbarListenerCallback, true);
-
-    //     //     ztoolkit.log("add show again listener");
-    //     //     if (document.getElementById("itembox-field-value-title")) {
-    //     //         showToolbarListener();
-    //     //         // ztoolkit.log(document.getElementById("itembox-field-value-title"));
-    //     //     } else {
-    //     //         ztoolkit.log("`itembox-field-value-title` not exist, check `textbox` is exist");
-    //     //         if (document.getElementById("itembox-field-textbox-title")) {
-    //     //             // richTextToolBarWarper.style.display = "";
-    //     //             hiddenToolbarListener();
-    //     //         } else {
-    //     //             ztoolkit.log("`itembox-field-textbox-title` not exist, add show again listener again");
-    //     //             // showToolbarListener();
-    //     //         }
-    //     //     }
-    //     // }
-
-    //     // showToolbarListener();
-    // }
 }
