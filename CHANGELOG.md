@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.1] - 2023-05-01
+
 ### Fixed
 
 - 行为优化：替换富文本标签后自动选中替换后的文本。原行为为光标置于最后。
@@ -186,7 +188,8 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/0.3.0...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/0.3.1...HEAD
+[0.3.1]: https://github.com/northword/zotero-format-metadata/compare/0.3.0...0.3.1
 [0.3.0]: https://github.com/northword/zotero-format-metadata/compare/0.2.1...0.3.0
 [0.2.1]: https://github.com/northword/zotero-format-metadata/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/northword/zotero-format-metadata/compare/0.1.2...0.2.0
