@@ -1,19 +1,12 @@
 import { getPref, setPref } from "../preference";
 
 export class richTextToolBar {
-    static async creatRichTextDialog() {
-        if (!getPref("richtext.isEnableToolBar")) {
-            addon.data.panel.toolBarPanel = null;
-            return;
-        }
-
+    static creatRichTextDialog() {
         const dialogData: { [key: string | number]: unknown } = {
             loadCallback: () => {
                 // ztoolkit.log(dialogData, "Dialog Opened!");
             },
             unloadCallback: () => {
-                // ztoolkit.log(dialogData, "Dialog closed!");
-                // console.log(addon.data.panel.toolBarPanel.window);
                 setPref(
                     "richText.toolbarPosition.left",
                     addon.data.panel.toolBarPanelWindow?.screenX ?? addon.data.panel.toolBarPanelWindow?.screenX ?? "0"
@@ -48,9 +41,9 @@ export class richTextToolBar {
             },
         ];
 
-        addon.data.panel.toolBarPanel = new ztoolkit.Dialog(1, 4);
+        const toolBarPanel = new ztoolkit.Dialog(1, 4);
         buttons.forEach((button, index) => {
-            addon.data.panel.toolBarPanel.addCell(
+            toolBarPanel.addCell(
                 0,
                 index,
                 {
@@ -83,7 +76,8 @@ export class richTextToolBar {
                 true
             );
         });
-        addon.data.panel.toolBarPanel.setDialogData(dialogData);
+        toolBarPanel.setDialogData(dialogData);
+        return toolBarPanel;
 
         // addon.data.panel.toolBarPanel = ztoolkit.getGlobal("openDialog")(
         //     `chrome://${config.addonRef}/content/standalone.xhtml`,
@@ -94,10 +88,7 @@ export class richTextToolBar {
     }
 
     static showToolBar() {
-        // ztoolkit.log("show tool bar");
-        this.creatRichTextDialog();
-        // ztoolkit.log("addon.data.panel", addon.data.panel);
-        // ztoolkit.log("addon.data.panel.toolBarPanel", addon.data.panel.toolBarPanel);
+        const toolBarPanel = this.creatRichTextDialog();
         const windowFuture: {
             left?: number;
             top?: number;
@@ -124,10 +115,10 @@ export class richTextToolBar {
             delete windowFuture.centerscreen;
         }
 
-        addon.data.panel.toolBarPanel !== null && addon.data.panel.toolBarPanel !== undefined
-            ? addon.data.panel.toolBarPanel.open("Zotero Formet Metadata Rich Text Tool Bar", windowFuture)
+        toolBarPanel !== null && toolBarPanel !== undefined
+            ? toolBarPanel.open("Zotero Format Metadata Rich Text Tool Bar", windowFuture)
             : console.warn("addon.data.panel.toolBarPanel is null");
-        addon.data.panel.toolBarPanelWindow = addon.data.panel.toolBarPanel.window;
+        addon.data.panel.toolBarPanelWindow = toolBarPanel.window;
     }
 
     static closeToolBar() {

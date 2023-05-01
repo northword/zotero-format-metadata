@@ -19,7 +19,6 @@ class Addon {
         panel: {
             tabOptionId: string;
             activePanels: HTMLElement[];
-            toolBarPanel: any;
             toolBarPanelWindow: Window | null;
         };
     };
@@ -37,7 +36,6 @@ class Addon {
             panel: {
                 tabOptionId: "",
                 activePanels: [],
-                toolBarPanel: null,
                 toolBarPanelWindow: null,
             },
         };
