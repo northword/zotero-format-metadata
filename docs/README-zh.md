@@ -27,6 +27,7 @@ Zotero 的参考文献表中的富文本内容需要手动插入 HTML 标签来�
 - 下标：`Ctrl` + `=`
 - 粗体：`Ctrl` + `B`
 - 斜体：`Ctrl` + `I`
+- 阻止大写：设置 `class="nocase"` 阻止某些专有名词在 CSL title case 时被大写 (#17)
 
 注：这些快捷键与 Word 中相应快捷键一致。
 

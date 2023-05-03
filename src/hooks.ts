@@ -153,6 +153,9 @@ function onShortcuts(type: string) {
         case "italic":
             FormatMetadata.setHtmlTag("i");
             break;
+        case "nocase":
+            FormatMetadata.setHtmlTag("span", "class", "nocase");
+            break;
         case "confliction":
             break;
         default:

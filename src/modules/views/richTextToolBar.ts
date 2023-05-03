@@ -39,9 +39,14 @@ export class richTextToolBar {
                 hookName: "italic",
                 icon: `<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-darkreader-inline-fill="" width="16" height="16"><path d="M764 200a4 4 0 0 0 4-4v-64a4 4 0 0 0-4-4H452a4 4 0 0 0-4 4v64a4 4 0 0 0 4 4h98.4L408.2 824H292a4 4 0 0 0-4 4v64a4 4 0 0 0 4 4h312a4 4 0 0 0 4-4v-64a4 4 0 0 0-4-4H488.2l142.2-624z"></path></svg>`,
             },
+            {
+                name: "No Case",
+                hookName: "nocase",
+                icon: `No Case`,
+            },
         ];
 
-        const toolBarPanel = new ztoolkit.Dialog(1, 4);
+        const toolBarPanel = new ztoolkit.Dialog(1, buttons.length);
         buttons.forEach((button, index) => {
             toolBarPanel.addCell(
                 0,

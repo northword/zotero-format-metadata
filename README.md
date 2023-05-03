@@ -27,6 +27,7 @@ Once the text is selected, press the following shortcut keys to quickly apply th
 - Subscript: `Ctrl` + `=`
 - Bold: `Ctrl` + `B`
 - Italic: `Ctrl` + `I`
+- No case: `Ctrl` + `N` (Setting `class="nocase"` to prevent certain special names from being capitalized in CSL title cases mode, #17 )
 
 BTW: These shortcuts are the same as the ones in Microsoft Word.
 

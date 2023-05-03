@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 支持设置 `class="nocase"` 阻止某些专有名词在 CSL title case 时被大写 (#17)。  
+Support for setting `class="nocase"` to prevent certain special names from being capitalized in CSL title cases (#17).
+
 ## [0.3.1] - 2023-05-01
 
 ### Fixed

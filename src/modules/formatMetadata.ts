@@ -438,7 +438,7 @@ export default class FormatMetadata {
      * @see https://stackoverflow.com/questions/31036076/how-to-replace-selected-text-in-a-textarea-with-javascript
      */
     @descriptor
-    public static setHtmlTag(tag: string) {
+    public static setHtmlTag(tag: string, attribute?: string, value?: string) {
         const editpaneItemBox = document.activeElement as HTMLInputElement | null;
         if (
             editpaneItemBox !== null &&
@@ -448,12 +448,14 @@ export default class FormatMetadata {
             const start = editpaneItemBox.selectionStart;
             const end = editpaneItemBox.selectionEnd;
             let selectedText = editpaneItemBox.value.slice(start, end);
-            selectedText = selectedText.startsWith(`<${tag}>`)
+            const attributeText = attribute !== undefined ? ` ${attribute}="${value}"` : "";
+            selectedText = selectedText.startsWith(`<${tag}`)
                 ? this.removeHtmlTag(selectedText)
-                : `<${tag}>` + selectedText + `</${tag}>`;
+                : `<${tag}${attributeText}>` + selectedText + `</${tag}>`;
             // const text = editpaneItemBox.value.slice(0, start) + selectedText + editpaneItemBox.value.slice(end);
             // editpaneItemBox.value = text;
             editpaneItemBox.setRangeText(selectedText);
+            editpaneItemBox.focus();
         }
     }
 
