@@ -7,9 +7,9 @@
 [![license](https://img.shields.io/github/license/northword/zotero-format-metadata?style=flat-square)](#开源协议)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
 
-我是一个 [Zotero](https://www.zotero.org/) 插件，可以规范化/格式化条目的元数据（字段数据）。
+简体中文 | [English](../README.md)
 
-简体中文  |  [English](../README.md)
+我是一个 [Zotero](https://www.zotero.org/) 插件，可以规范化/格式化条目的元数据（字段数据）。
 
 ## 特性
 
@@ -38,6 +38,12 @@ Zotero 的参考文献表中的富文本内容需要手动插入 HTML 标签来�
 编辑“标题”字段时，弹出工具条，编辑完成后单击空白处可以自动关闭工具条。该工具条可以在首选项中彻底关闭。
 
 ![Set subscript via toolbar](./assets/set-sub-via-toolbar.gif)
+
+### 将标题转为“句首大写”
+
+Zotero 文档建议将标题存储为“句子式大写”的格式，这将有利于 CSL 对其执行“title case”变换 [^sentenceCase]。虽然 Zotero 程序中内置了将标题转为“句子式大写”的功能，但是该功能仅能识别虚词，不能识别到诸如化学式等的专有名词，本插件提供了类似的功能，但可以避免将一些本该大写的词转为小写。
+
+[^sentenceCase]: https://www.zotero.org/support/kb/sentence_casing
 
 ### 根据期刊全称填充期刊缩写
 
@@ -134,7 +140,6 @@ zotero-updateifsE 是一个更新期刊影响因子、分区等级等数据的�
 插件开发过程中参考了如下项目的代码：
 
 - [redleafnew/zotero-updateifsE](https://github.com/redleafnew/zotero-updateifsE)
-- [zoushucai/zotero-journalabbr](https://github.com/zoushucai/zotero-journalabbr)
 - [windingwind/zotero-pdf-translate](https://github.com/windingwind/zotero-pdf-translate)
 - [windingwind/zotero-pdf-preview](https://github.com/windingwind/zotero-pdf-preview)
 

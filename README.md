@@ -7,9 +7,9 @@
 [![license](https://img.shields.io/github/license/northword/zotero-format-metadata?style=flat-square)](#licence)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
 
-An addon for [Zotero](https://www.zotero.org/) to format item metadata.
+[简体中文](./docs/README-zh.md) | English
 
-[简体中文](./docs/README-zh.md)  |  English
+An addon for [Zotero](https://www.zotero.org/) to format item metadata.
 
 ## Features
 
@@ -38,6 +38,12 @@ BTW: These shortcuts are the same as the ones in Microsoft Word.
 When editing the "Title" field, a toolbar pops up and can be closed automatically by clicking on the blank space when editing is complete. The toolbar can be closed completely in the preferences.
 
 ![Set subscript via toolbar](./docs/assets/set-sub-via-toolbar.gif)
+
+### Convert title from "heading case" to "sentence case"
+
+The Zotero documentation recommends storing titles in "sentence case" format, which will allow CSL to perform a "title case" transformation on them [^sentenceCase]. Although Zotero has a built-in function to convert titles to "sentence case", this function only recognizes dummy words, not proper nouns such as chemical formulas, etc. This plugin provides a similar function, but avoids converting words that should be capitalized to lower case.
+
+[^sentenceCase]: https://www.zotero.org/support/kb/sentence_casing
 
 ### Look up the journal abbreviation according to the journal full name
 
@@ -133,10 +139,9 @@ This plugin based `franc` and has been processed for HTML tags to improve the re
 
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
 
-The code of the following plug-ins was referenced during the development of this plug-in:  
+The code of the following plug-ins was referenced during the development of this plug-in:
 
 - [redleafnew/zotero-updateifsE](https://github.com/redleafnew/zotero-updateifsE)
-- [zoushucai/zotero-journalabbr](https://github.com/zoushucai/zotero-journalabbr)
 - [windingwind/zotero-pdf-translate](https://github.com/windingwind/zotero-pdf-translate)
 - [windingwind/zotero-pdf-preview](https://github.com/windingwind/zotero-pdf-preview)
 
