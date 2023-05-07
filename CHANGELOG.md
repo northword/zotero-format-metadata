@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2023-05-07
+
 ### Added
 
 - 将标题从“标题式大写”转为“句子式大写”  /  Convert title from "headline capitalization" to "sentence capitalization"
@@ -200,7 +202,8 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/0.3.2...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/0.4.0...HEAD
+[0.4.0]: https://github.com/northword/zotero-format-metadata/compare/0.3.2...0.4.0
 [0.3.2]: https://github.com/northword/zotero-format-metadata/compare/0.3.1...0.3.2
 [0.3.1]: https://github.com/northword/zotero-format-metadata/compare/0.3.0...0.3.1
 [0.3.0]: https://github.com/northword/zotero-format-metadata/compare/0.2.1...0.3.0
