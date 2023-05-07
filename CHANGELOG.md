@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - 将标题从“标题式大写”转为“句子式大写”  /  Convert title from "headline capitalization" to "sentence capitalization"
+- 为富文本工具条“NoCase”按钮添加图标 / Add icon for "No Case" button in rich text tool bar
 
 ## [0.3.2] - 2023-05-03
 

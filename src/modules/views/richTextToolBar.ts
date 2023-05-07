@@ -42,8 +42,13 @@ export class richTextToolBar {
             {
                 name: "No Case",
                 hookName: "nocase",
-                icon: `No Case`,
+                icon: `<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M361.411765 356.894118h60.235294v120.470588H361.411765v-60.235294H240.941176v481.882353h60.235295v60.235294H120.470588v-60.235294h60.235294v-481.882353H60.235294v60.235294H0v-120.470588h361.411765zM963.764706 120.470588H361.411765v155.226353h60.235294V180.705882h240.941176v722.82353h-60.235294v60.235294h180.705883v-60.235294h-60.235295V180.705882h240.941177v94.991059h60.235294V120.470588h-60.235294z"></path></svg>`,
             },
+            // {
+            //     name: "small-caps",
+            //     hookName: "small-caps",
+            //     icon: `small-caps`,
+            // },
         ];
 
         const toolBarPanel = new ztoolkit.Dialog(1, buttons.length);
@@ -70,7 +75,7 @@ export class richTextToolBar {
                         {
                             tag: "div",
                             styles: {
-                                padding: "2.5px 15px",
+                                padding: "2.5px 10px",
                             },
                             properties: {
                                 innerHTML: button.icon,
