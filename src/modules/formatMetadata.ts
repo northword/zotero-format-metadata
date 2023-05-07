@@ -1,10 +1,11 @@
-import { descriptor, progressWindow } from "./untils";
+import { descriptor, progressWindow } from "./untils/untils";
 import { iso6393To6391Data, journalAbbrlocalData, universityPlaceLocalData } from "../data/helper";
 import { config } from "../../package.json";
 import { franc } from "franc";
 import { getPref } from "./preference";
 import { getString } from "./locale";
 import { setLanguageManualDialog } from "./views/setLanguageManualDialog";
+import { toSentenceCase } from "./untils/str";
 // import { getAbbrFromLtwaLocally } from "./abbrevIso";
 
 export default class FormatMetadata {
@@ -557,12 +558,21 @@ export default class FormatMetadata {
         await item.saveTx();
     }
 
+    @descriptor
     public static async updateDOI(item: Zotero.Item) {
         const doi = item.getField("DOI");
         if (doi && typeof doi == "string") {
             const doiCleand = Zotero.Utilities.cleanDOI(doi);
             doiCleand ? item.setField("DOI", doiCleand) : "pass";
         }
+        await item.saveTx();
+    }
+
+    @descriptor
+    public static async titleCase2SentenceCase(item: Zotero.Item) {
+        const title = item.getField("title") as string;
+        const newTitle = toSentenceCase(title);
+        item.setField("title", newTitle);
         await item.saveTx();
     }
 }

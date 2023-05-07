@@ -1,4 +1,4 @@
-import { config } from "../../package.json";
+import { config } from "../../../package.json";
 
 export function descriptor(target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) {
     const original = descriptor.value;

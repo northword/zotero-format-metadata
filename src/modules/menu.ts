@@ -67,6 +67,14 @@ export function registerMenu() {
                 },
                 disabled: true,
             },
+            {
+                tag: "menuitem",
+                label: getString("menuitem.toSentenceCase"),
+                commandListener: (ev) => {
+                    addon.hooks.onUpdateInBatch("toSentenceCase", menuPopup);
+                },
+                disabled: true,
+            },
         ];
         return menuItem;
     }

@@ -211,6 +211,9 @@ function onUpdateInBatch(mode: string, position: string) {
         case "date":
             FormatMetadata.updateInBatch(FormatMetadata.updateDate, items);
             break;
+        case "toSentenceCase":
+            FormatMetadata.updateInBatch(FormatMetadata.titleCase2SentenceCase, items);
+            break;
         case "chem":
         default:
             FormatMetadata.unimplemented();

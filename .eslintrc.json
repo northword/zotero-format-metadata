@@ -24,7 +24,7 @@
         "@typescript-eslint/no-explicit-any": "off"
     },
     "ignorePatterns": [
-        "**/dist/**",
+        "**/builds/**",
         "**/node_modules/**",
         "**/abbrevIso*",
         "**/example*",

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 将标题从“标题式大写”转为“句子式大写”  /  Convert title from "headline capitalization" to "sentence capitalization"
+
 ## [0.3.2] - 2023-05-03
 
 ### Added
