@@ -41,7 +41,9 @@ Zotero 的参考文献表中的富文本内容需要手动插入 HTML 标签来�
 
 ### 将标题转为“句首大写”
 
-Zotero 文档建议将标题存储为“句子式大写”的格式，这将有利于 CSL 对其执行“title case”变换 [^sentenceCase]。虽然 Zotero 程序中内置了将标题转为“句子式大写”的功能，但是该功能仅能识别虚词，不能识别到诸如化学式等的专有名词，本插件提供了类似的功能，但可以避免将一些本该大写的词转为小写。
+Zotero 文档建议将标题存储为“句子式大写”的格式，这将有利于 CSL 对其执行“title case”变换 [^sentenceCase]。虽然 Zotero 程序中内置了将标题转为“句子式大写”的功能，但是该功能仅能识别虚词，不能识别到诸如化学式等的专有名词。
+
+本插件提供了类似的功能，但可以避免将一些本该大写的词转为小写。
 
 [^sentenceCase]: https://www.zotero.org/support/kb/sentence_casing
 
@@ -82,14 +84,19 @@ DOI 去前缀、日期修改为 ISO 格式等。
 ## 安装
 
 1. 前往 [发布页](https://github.com/northword/zotero-format-metadata/releases/) 下载 [最新的 `.xpi` 文件](https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-format-metadata.xpi).  
-如果你无法顺利的访问 GitHub，可以前往以下几个镜像站下载本插件。
-    - [GitHub Proxy](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fnorthword%2Fzotero-format-metadata%2Freleases%2Flatest%2Fdownload%2Fzotero-format-metadata.xpi)
-    - [Zotero 插件下载](https://zotero-chinese.gitee.io/zotero-plugins/#/)
+    - 如果你无法顺利的访问 GitHub，可以前往以下几个镜像站下载本插件。
+      - [GitHub Proxy](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fnorthword%2Fzotero-format-metadata%2Freleases%2Flatest%2Fdownload%2Fzotero-format-metadata.xpi)
+      - [Zotero 插件镜像下载（Gitee）](https://zotero-chinese.gitee.io/zotero-plugins/#/)
+    - 如果你使用 FireFox ，请在 XPI 文件的链接上右击，选择“另存为...”。
 2. 在 Zotero 中，点击菜单 `工具` -> `附加组件`，将下载的 `.xpi` 文件拖入 Zotero 插件管理器页面。参阅 [如何安装 Zotero 插件](https://zotero.yuque.com/staff-gkhviy/zotero/addons#B2kU3)。
 
 ## 变更日志
 
 本插件的主要变更历史列于 [CHANGELOG.md](../CHANGELOG.md) 中。
+
+## Todo
+
+参阅 [Project #1](https://github.com/users/northword/projects/1)。
 
 ## 开源协议
 

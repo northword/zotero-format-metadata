@@ -41,7 +41,9 @@ When editing the "Title" field, a toolbar pops up and can be closed automaticall
 
 ### Convert title from "heading case" to "sentence case"
 
-The Zotero documentation recommends storing titles in "sentence case" format, which will allow CSL to perform a "title case" transformation on them [^sentenceCase]. Although Zotero has a built-in function to convert titles to "sentence case", this function only recognizes dummy words, not proper nouns such as chemical formulas, etc. This plugin provides a similar function, but avoids converting words that should be capitalized to lower case.
+The Zotero's documentation recommends storing titles in "sentence case" format, which will allow CSL to perform a "title case" transformation on them [^sentenceCase]. Although Zotero has a built-in function to convert titles to "sentence case", this function only recognizes function words, not proper nouns such as chemical formulas, etc.
+
+This plugin provides a similar function, but avoids converting words that should be capitalized to lower case.
 
 [^sentenceCase]: https://www.zotero.org/support/kb/sentence_casing
 
@@ -82,9 +84,10 @@ By default, the plugin is restricted to recognize only Simplified Chinese and En
 ## Install
 
 1. Go to the [release page](https://github.com/northword/zotero-format-metadata/releases/) to download [the latest `.xpi` file](https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-format-metadata.xpi).  
-If you are in mainland China or cannot access GitHub easily, please download the plugin via the following mirror sites.
-    - [GitHub Proxy](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fnorthword%2Fzotero-format-metadata%2Freleases%2Flatest%2Fdownload%2Fzotero-format-metadata.xpi)
-    - [Gitee](https://zotero-chinese.gitee.io/zotero-plugins/#/)
+   - If you are in mainland China or cannot access GitHub easily, please download the plugin via the following mirror sites.
+     - [GitHub Proxy](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fnorthword%2Fzotero-format-metadata%2Freleases%2Flatest%2Fdownload%2Fzotero-format-metadata.xpi)
+     - [Gitee](https://zotero-chinese.gitee.io/zotero-plugins/#/)
+   - If you are using FireFox, right click on the link of the XPI file and select "Save As...".
 2. Then, in Zotero, click `Tools` -> `Add-ons` and drag the `.xpi` onto the Add-ons window. See [how to install a Zotero addon](https://zotero.yuque.com/staff-gkhviy/zotero/addons#B2kU3).
 
 ## Changelog
@@ -93,7 +96,7 @@ See [CHANGELOG.md](./CHANGELOG.md).
 
 ## Todo
 
-See [#7](https://github.com/northword/zotero-format-metadata/issues/7) .
+See [Project #1](https://github.com/users/northword/projects/1) .
 
 ## Licence
 
