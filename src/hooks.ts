@@ -72,8 +72,12 @@ async function onNotify(
 
     if (event == "add" && type == "item") {
         const regularItems = Zotero.Items.get(ids as number[]).filter(
-            // @ts-ignore item has no isFeedItem
-            (item) => item.isRegularItem() && !item.isFeedItem
+            (item) =>
+                item.isRegularItem() &&
+                // @ts-ignore item has no isFeedItem
+                !item.isFeedItem &&
+                // @ts-ignore libraryID is got from item, so get() will never return false
+                (getPref("updateOnAddedForGroup") ? true : Zotero.Libraries.get(item.libraryID)._libraryType == "user")
         );
         if (regularItems.length !== 0) {
             FormatMetadata.updateOnItemAdd(regularItems);
