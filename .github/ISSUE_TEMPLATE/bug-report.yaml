@@ -1,0 +1,53 @@
+name: 🐞 Bug
+description: File a bug / issue
+title: "[BUG] "
+labels:
+    - bug
+    # - Needs Triage
+assignees: northword
+body:
+    - type: checkboxes
+      id: checklist
+      attributes:
+          label: Is there an existing issue for this?
+          description: Please search to see if an issue already exists for the bug you encountered.
+          options:
+              - label: I have searched the existing issues
+                required: true
+
+    - type: textarea
+      attributes:
+          label: Environment
+          description: |
+              examples:
+                - **OS**: Windows 11 22H2
+                - **Zotero Version**: 6.0.0
+                - **Addon Version**: 0.6.6
+          value: |
+              - OS:
+              - Zotero Version:
+              - Addon Version:
+          render: markdown
+      validations:
+          required: false
+
+    - type: textarea
+      id: description
+      attributes:
+          label: Describe the bug
+          description: |
+              A clear and concise description of what the bug is.
+              > If applicable, add screenshots and log to help explain your problem.
+      validations:
+          required: true
+
+    - type: textarea
+      id: additional-context
+      attributes:
+          label: Anything else?
+          description: |
+              Links? References? Anything that will give us more context about the issue you are encountering!
+
+              Tip: You can attach images or log files by clicking this area to highlight it and then dragging files in.
+      validations:
+          required: false
