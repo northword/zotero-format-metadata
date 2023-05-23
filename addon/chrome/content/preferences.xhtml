@@ -1,39 +1,51 @@
 <vbox id="__addonRef__" onload="Zotero.__addonInstance__.hooks.onPrefsEvent('load', {window})">
     <!--常规设置-->
     <groupbox>
-        <caption label="&zotero.__addonRef__.pref.title;" />
+        <label><html:h2>&zotero.__addonRef__.pref.title;</html:h2></label>
         <!--添加时自动执行格式化-->
-        <checkbox
-            id="__addonRef__-add-update"
-            label="&zotero.__addonRef__.pref.add.update;"
-            preference="__prefsPrefix__.add.update"
-        />
+        <html:div class="pref-row">
+            <checkbox
+                id="__addonRef__-add-update"
+                label="&zotero.__addonRef__.pref.add.update;"
+                preference="__prefsPrefix__.add.update"
+                native="true"
+            ></checkbox>
+        </html:div>
     </groupbox>
 
     <!--标题-->
     <groupbox>
-        <caption label="&zotero.__addonRef__.pref.richtext.label;" />
-        <checkbox
-            id="__addonRef__-enable"
-            label="&zotero.__addonRef__.pref.enable.label;"
-            preference="__prefsPrefix__.enable"
-            disabled="true"
-        />
-        <checkbox
-            id="__addonRef__-enable-toolbar"
-            label="&zotero.__addonRef__.pref.richText.isEnableToolbar;"
-            preference="__prefsPrefix__.richtext.isEnableToolBar"
-        />
+        <label><html:h2>&zotero.__addonRef__.pref.richtext.label;</html:h2></label>
+        <html:div class="pref-row">
+            <checkbox
+                id="__addonRef__-enable"
+                label="&zotero.__addonRef__.pref.enable.label;"
+                preference="__prefsPrefix__.enable"
+                disabled="true"
+                native="true"
+            ></checkbox>
+        </html:div>
+        <html:div class="pref-row">
+            <checkbox
+                id="__addonRef__-enable-toolbar"
+                label="&zotero.__addonRef__.pref.richText.isEnableToolbar;"
+                preference="__prefsPrefix__.richtext.isEnableToolBar"
+                native="true"
+            ></checkbox>
+        </html:div>
     </groupbox>
 
     <!--期刊缩写-->
     <groupbox>
-        <caption label="&zotero.__addonRef__.pref.abbr.label;" />
-        <checkbox
-            id="__addonRef__-enable"
-            label="&zotero.__addonRef__.pref.enable.label;"
-            preference="__prefsPrefix__.isEnableAbbr"
-        />
+        <label><html:h2>&zotero.__addonRef__.pref.abbr.label;</html:h2></label>
+        <html:div class="pref-row">
+            <checkbox
+                id="__addonRef__-enable"
+                label="&zotero.__addonRef__.pref.enable.label;"
+                preference="__prefsPrefix__.isEnableAbbr"
+                native="true"
+            ></checkbox>
+        </html:div>
         <hbox align="center">
             <label value="&zotero.__addonRef__.pref.abbr.type;" />
             <radiogroup id="__addonRef__-abbr-type" preference="__prefsPrefix__.abbr.type" orient="horizontal">
@@ -42,88 +54,121 @@
                 <radio label="JCR" value="JCR" />
             </radiogroup>
         </hbox>
-        <checkbox
-            id="__addonRef__-abbr-infer"
-            label="&zotero.__addonRef__.pref.abbr.infer.label;"
-            preference="__prefsPrefix__.abbr.infer"
-        />
-        <checkbox
-            id="__addonRef__-abbr-usefull"
-            label="&zotero.__addonRef__.pref.abbr.usefull.label;"
-            preference="__prefsPrefix__.abbr.usefull"
-        />
-        <checkbox
-            id="__addonRef__-abbr-usefull"
-            label="&zotero.__addonRef__.pref.abbr.usefullZh.label;"
-            preference="__prefsPrefix__.abbr.usefullZh"
-        />
+        <html:div class="pref-row">
+            <checkbox
+                id="__addonRef__-abbr-infer"
+                label="&zotero.__addonRef__.pref.abbr.infer.label;"
+                preference="__prefsPrefix__.abbr.infer"
+                native="true"
+            ></checkbox>
+        </html:div>
+        <html:div class="pref-row">
+            <checkbox
+                id="__addonRef__-abbr-usefull"
+                label="&zotero.__addonRef__.pref.abbr.usefull.label;"
+                preference="__prefsPrefix__.abbr.usefull"
+                native="true"
+            ></checkbox>
+        </html:div>
+        <html:div class="pref-row">
+            <checkbox
+                id="__addonRef__-abbr-usefull"
+                label="&zotero.__addonRef__.pref.abbr.usefullZh.label;"
+                preference="__prefsPrefix__.abbr.usefullZh"
+                native="true"
+            ></checkbox>
+        </html:div>
     </groupbox>
 
     <!--Place-->
     <groupbox>
-        <caption label="&zotero.__addonRef__.pref.place.label;" />
-        <checkbox
-            id="__addonRef__-enable"
-            label="&zotero.__addonRef__.pref.enable.label;"
-            preference="__prefsPrefix__.isEnablePlace"
-        />
+        <label><html:h2>&zotero.__addonRef__.pref.place.label;</html:h2></label>
+        <html:div class="pref-row">
+            <checkbox
+                id="__addonRef__-enable"
+                label="&zotero.__addonRef__.pref.enable.label;"
+                preference="__prefsPrefix__.isEnablePlace"
+                native="true"
+            ></checkbox>
+        </html:div>
     </groupbox>
 
     <!--根据 DOI 更新其他字段-->
     <groupbox>
-        <caption label="&zotero.__addonRef__.pref.otherFields.label;" />
-        <checkbox
-            id="__addonRef__-enable"
-            label="&zotero.__addonRef__.pref.enable.label;"
-            preference="__prefsPrefix__.isEnableOtherFields"
-        />
+        <label><html:h2>&zotero.__addonRef__.pref.otherFields.label;</html:h2></label>
+        <html:div class="pref-row">
+            <checkbox
+                id="__addonRef__-enable"
+                label="&zotero.__addonRef__.pref.enable.label;"
+                preference="__prefsPrefix__.isEnableOtherFields"
+                native="true"
+            ></checkbox>
+        </html:div>
     </groupbox>
 
     <!--DOI-->
     <groupbox>
-        <caption label="&zotero.__addonRef__.pref.doi.label;" />
-        <checkbox
-            id="__addonRef__-enable"
-            label="&zotero.__addonRef__.pref.enable.label;"
-            preference="__prefsPrefix__.isEnableDOI"
-        />
+        <label><html:h2>&zotero.__addonRef__.pref.doi.label;</html:h2></label>
+        <html:div class="pref-row">
+            <checkbox
+                id="__addonRef__-enable"
+                label="&zotero.__addonRef__.pref.enable.label;"
+                preference="__prefsPrefix__.isEnableDOI"
+                native="true"
+            ></checkbox>
+        </html:div>
     </groupbox>
 
     <!--日期-->
     <groupbox>
-        <caption label="&zotero.__addonRef__.pref.date.label;" />
-        <checkbox
-            id="__addonRef__-enable"
-            label="&zotero.__addonRef__.pref.enable.label;"
-            preference="__prefsPrefix__.isEnableDateISO"
-        />
+        <label><html:h2>&zotero.__addonRef__.pref.date.label;</html:h2></label>
+        <html:div class="pref-row">
+            <checkbox
+                id="__addonRef__-enable"
+                label="&zotero.__addonRef__.pref.enable.label;"
+                preference="__prefsPrefix__.isEnableDateISO"
+                native="true"
+            ></checkbox>
+        </html:div>
     </groupbox>
 
     <!--语言-->
     <groupbox>
-        <caption label="&zotero.__addonRef__.pref.lang.label;" />
-        <checkbox
-            id="__addonRef__-lang-enable"
-            label="&zotero.__addonRef__.pref.enable.label;"
-            preference="__prefsPrefix__.isEnableAbbr"
-        />
-        <checkbox
-            id="__addonRef__-lang-only-enable"
-            label="&zotero.__addonRef__.pref.lang.allow.label;"
-            preference="__prefsPrefix__.lang.only.enable"
-        />
+        <label><html:h2>&zotero.__addonRef__.pref.lang.label;</html:h2></label>
+        <html:div class="pref-row">
+            <checkbox
+                id="__addonRef__-lang-enable"
+                label="&zotero.__addonRef__.pref.enable.label;"
+                preference="__prefsPrefix__.isEnableAbbr"
+                native="true"
+            ></checkbox>
+        </html:div>
+        <html:div class="pref-row">
+            <checkbox
+                id="__addonRef__-lang-only-enable"
+                label="&zotero.__addonRef__.pref.lang.allow.label;"
+                preference="__prefsPrefix__.lang.only.enable"
+                native="true"
+            ></checkbox>
+        </html:div>
         <vbox class="indented-pref">
             <hbox align="center">
-                <checkbox
-                    id="__addonRef__-lang-only-cmn"
-                    label="&zotero.__addonRef__.pref.lang.cmn.label;"
-                    preference="__prefsPrefix__.lang.only.cmn"
-                />
-                <checkbox
-                    id="__addonRef__-lang-only-eng"
-                    label="&zotero.__addonRef__.pref.lang.eng.label;"
-                    preference="__prefsPrefix__.lang.only.eng"
-                />
+                <html:div class="pref-row">
+                    <checkbox
+                        id="__addonRef__-lang-only-cmn"
+                        label="&zotero.__addonRef__.pref.lang.cmn.label;"
+                        preference="__prefsPrefix__.lang.only.cmn"
+                        native="true"
+                    ></checkbox>
+                </html:div>
+                <html:div class="pref-row">
+                    <checkbox
+                        id="__addonRef__-lang-only-eng"
+                        label="&zotero.__addonRef__.pref.lang.eng.label;"
+                        preference="__prefsPrefix__.lang.only.eng"
+                        native="true"
+                    ></checkbox>
+                </html:div>
                 <label value="&zotero.__addonRef__.pref.lang.other.label;" />
                 <html:input
                     type="text"
@@ -144,7 +189,7 @@
 </vbox>
 
 <groupbox>
-    <caption label="About" />
+    <label><html:h2>About</html:h2></label>
     <label value="&zotero.__addonRef__.help.version.label;" />
     <label value="&zotero.__addonRef__.help.releasetime.label;" />
     <label value="GitHub" class="zotero-text-link" href="https://github.com/northword/zotero-format-metadata" />
