@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - 仅在用户文库新增条目时更新，Group 和 Feed 不更新。/ Updates only when new items are added to the user's library; Groups and Feeds are not updated. Fixed #24.
+- 修复富文本工具条在 Zotero 7 上不可用的问题。
 
 ## [0.4.0] - 2023-05-07
 

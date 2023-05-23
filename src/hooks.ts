@@ -100,6 +100,7 @@ async function onNotify(
 }
 
 function onMutationObserver(record: MutationRecord, observer: MutationObserver) {
+    ztoolkit.log("MutationObserver", record, observer);
     switch (record.type) {
         case "attributes":
             switch (record.attributeName) {

@@ -21,7 +21,8 @@
         ],
         "@typescript-eslint/ban-ts-comment": ["error", "allow-with-description"],
         "@typescript-eslint/no-unused-vars": "off",
-        "@typescript-eslint/no-explicit-any": "off"
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-non-null-assertion": "off"
     },
     "ignorePatterns": [
         "**/builds/**",

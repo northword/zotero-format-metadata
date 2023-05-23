@@ -41,7 +41,13 @@ function unregisterNotifier(notifierID: string) {
 }
 
 export function registerMutationObserver() {
-    const targetNode = document.getElementById("dynamic-fields") as HTMLElement;
+    let targetNode: HTMLElement;
+    if (ztoolkit.isZotero7()) {
+        targetNode = document.getElementById("zotero-item-pane-content")!;
+    } else {
+        targetNode = document.getElementById("dynamic-fields")!;
+    }
+    // ztoolkit.log(targetNode);
     const observerOptions = {
         // childList: true, // 观察目标子节点的变化，是否有添加或者删除
         attributes: true, // 观察属性变动
@@ -50,7 +56,6 @@ export function registerMutationObserver() {
     };
 
     function callback(records: MutationRecord[], observer: MutationObserver) {
-        // console.log("records is", records);
         records.forEach((record) => {
             if (!addon?.data.alive) {
                 observer.disconnect();
