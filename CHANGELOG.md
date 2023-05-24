@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复转为句子式大小写在 Zotero 7 中无法使用的问题。 / Fix conversion to sentence case not working in Zotero 7.
+
 ## [0.4.1] - 2023-05-24
 
 ### Fixed

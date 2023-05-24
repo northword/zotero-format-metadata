@@ -69,14 +69,14 @@ function toSentenceCase(text: string) {
 
     // 转为 HTML 片段，以便于排除 HTML 标签
     const documentFragment = parseHTML(text);
-    console.log(documentFragment);
+    ztoolkit.log(documentFragment);
 
     let newStr = "";
     const childNodes = Array.prototype.slice.call(documentFragment.childNodes) as Array<ChildNode>; //[...documentFragment.childNodes];
 
     for (let i = 0; i < childNodes.length; i++) {
         const childNode = childNodes[i];
-        console.log(childNode);
+        ztoolkit.log(childNode);
         // 非文本节点，保持原样
         if (childNode.nodeType !== 3) {
             newStr += (childNode as HTMLElement).outerHTML;
@@ -204,7 +204,7 @@ function toSentenceCase(text: string) {
             }
         });
 
-        console.log("words", words, "\n", "newWords", newWords);
+        ztoolkit.log("words", words, "\n", "newWords", newWords);
         newStr += newWords.join(" ");
     }
 
