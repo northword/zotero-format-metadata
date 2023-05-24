@@ -10,7 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - 仅在用户文库新增条目时更新，Group 和 Feed 不更新。/ Updates only when new items are added to the user's library; Groups and Feeds are not updated. Fixed #24.
-- 修复富文本工具条在 Zotero 7 上不可用的问题。
+- 修复富文本工具条在 Zotero 7 上不可用的问题。 / Fix rich text toolbar not working on Zotero 7.
+- 修复首选项小标题在 Zotero 7 上不显示的问题。 / Fix preference subheading not showing on Zotero 7.
 
 ## [0.4.0] - 2023-05-07
 
