@@ -1,6 +1,6 @@
 # Zotero Format Metadata
 
-[![zotero target version](https://img.shields.io/badge/Zotero-6.x-critical?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
+[![zotero target version](https://img.shields.io/badge/Zotero-7.0.*-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![version](https://img.shields.io/github/package-json/v/northword/zotero-format-metadata?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)
 [![download number](https://img.shields.io/github/downloads/northword/zotero-format-metadata/latest/zotero-format-metadata.xpi?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)  
 [![code size](https://img.shields.io/github/languages/code-size/northword/zotero-format-metadata?style=flat-square)](#zotero-format-metadata)
@@ -17,7 +17,7 @@
 
 Zotero 的参考文献表中的富文本内容需要手动插入 HTML 标签来实现 （详见 [^rich_text_bibliography]），这对于不爱折腾的人来说非常麻烦，虽然 Zotero 的文档上提及将在后续版本支持富文本可视化编辑，然而数年过去了，该议题没有任何进展，故本插件提供了快捷插入这些 HTML 标签的途径。
 
-[^rich_text_bibliography]: https://www.zotero.org/support/kb/rich_text_bibliography
+[^rich_text_bibliography]: <https://www.zotero.org/support/kb/rich_text_bibliography>
 
 #### 快捷键
 
@@ -45,7 +45,7 @@ Zotero 文档建议将标题存储为“句子式大写”的格式，这将有�
 
 本插件提供了类似的功能，但可以避免将一些本该大写的词转为小写。
 
-[^sentenceCase]: https://www.zotero.org/support/kb/sentence_casing
+[^sentenceCase]: <https://www.zotero.org/support/kb/sentence_casing>
 
 ### 根据期刊全称填充期刊缩写
 
@@ -59,7 +59,7 @@ Zotero 文档建议将标题存储为“句子式大写”的格式，这将有�
 
 插件内置了国内高校的名单及其所在地，对于学位论文条目，根据论文的高校填写其所在地，这有利于满足 GB/T 7714-2015 中需要显示出版地的要求 [^gb7714]。
 
-[^gb7714]: http://www.cessp.org.cn/a258.html
+[^gb7714]: <http://www.cessp.org.cn/a258.html>
 
 ### 根据 DOI 补全条目的期、卷、页等信息
 
@@ -71,7 +71,7 @@ Zotero 文档建议将标题存储为“句子式大写”的格式，这将有�
 
 默认的，插件被限制仅识别简体中文和英文，你可以在首选项中关闭语言限制或添加其他常用语言的 [ISO 639-3 代码]。
 
-[^csl-etal]: https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8
+[^csl-etal]: <https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8>
 
 [ISO 639-3 代码]: https://iso639-3.sil.org/code_tables/639/data
 

@@ -1,6 +1,6 @@
 # Zotero Format Metadata
 
-[![zotero target version](https://img.shields.io/badge/Zotero-6.x-critical?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
+[![zotero target version](https://img.shields.io/badge/Zotero-7.0.*-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![version](https://img.shields.io/github/package-json/v/northword/zotero-format-metadata?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)
 [![download number](https://img.shields.io/github/downloads/northword/zotero-format-metadata/latest/zotero-format-metadata.xpi?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)  
 [![code size](https://img.shields.io/github/languages/code-size/northword/zotero-format-metadata?style=flat-square)](#zotero-format-metadata)
@@ -17,7 +17,7 @@ An addon for [Zotero](https://www.zotero.org/) to format item metadata.
 
 The rich text content in Zotero's reference list requires manual insertion of HTML tags (See [^rich_text_bibliography]), which is difficult for the common user. Although Zotero's documentation mentions that visual editing of rich text will be supported in future versions, years have passed without any progress on this issue, so this plugin provides a quick way to insert these HTML tags.
 
-[^rich_text_bibliography]: https://www.zotero.org/support/kb/rich_text_bibliography
+[^rich_text_bibliography]: <https://www.zotero.org/support/kb/rich_text_bibliography>
 
 #### Shortcuts
 
@@ -45,7 +45,7 @@ The Zotero's documentation recommends storing titles in "sentence case" format, 
 
 This plugin provides a similar function, but avoids converting words that should be capitalized to lower case.
 
-[^sentenceCase]: https://www.zotero.org/support/kb/sentence_casing
+[^sentenceCase]: <https://www.zotero.org/support/kb/sentence_casing>
 
 ### Look up the journal abbreviation according to the journal full name
 
@@ -59,7 +59,7 @@ If still no abbreviations are found, the full name of the journal is substituted
 
 The plugin has a built-in list of universities in mainland China and their locations. For the thesis items, the location is filled in according to the university of the thesis, which is helpful to meet the requirement of GB/T 7714-2015 for the thesis to show the location [^gb7714].
 
-[^gb7714]: Chinese GB/T 7714-2015: http://www.cessp.org.cn/a258.html
+[^gb7714]: Chinese GB/T 7714-2015: <http://www.cessp.org.cn/a258.html>
 
 ### Lookup the date, volume, issue, pages, etc according to DOI
 
@@ -71,7 +71,7 @@ The plugin determines the language of an item based on its title and fills in th
 
 By default, the plugin is restricted to recognize only Simplified Chinese and English. You can turn off the language restriction in the preferences or add [ISO 639-3 codes] for other common languages.
 
-[^csl-etal]: https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8
+[^csl-etal]: <https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8>
 
 [ISO 639-3 codes]: https://iso639-3.sil.org/code_tables/639/data
 
