@@ -27,6 +27,7 @@
     "ignorePatterns": [
         "**/builds/**",
         "**/node_modules/**",
+        "**/**/*.js",
         "**/abbrevIso*",
         "**/example*",
         "**/*.bak",
