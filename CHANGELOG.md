@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 为富文本工具条中按钮的提示文本增加中文翻译。 / Add Chinese translation for the prompt text of the buttons in the rich text toolbar.
+
 ## [0.4.2] - 2023-05-24
 
 ### Fixed
