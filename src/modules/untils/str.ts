@@ -50,11 +50,14 @@ function parseHTML(html: string) {
     // const t = document.createElement("template");
     // t.innerHTML = html;
     // return t.content;
-
-    // Zotero 插件中用：适配 Zotero 6
-    const doc = ztoolkit.getDOMParser().parseFromString(html, "text/html");
-    // 调试用
-    // const doc = new DOMParser().parseFromString(html, "text/html");
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    // if (isZotero) {
+    //     // Zotero 插件中用：适配 Zotero 6
+    //     doc = ztoolkit.getDOMParser().parseFromString(html, "text/html");
+    // } else {
+    //     // 调试用
+    //     doc = new DOMParser().parseFromString(html, "text/html");
+    // }
     return doc.body;
 }
 
@@ -69,14 +72,14 @@ function toSentenceCase(text: string) {
 
     // 转为 HTML 片段，以便于排除 HTML 标签
     const documentFragment = parseHTML(text);
-    ztoolkit.log(documentFragment);
+    console.log(documentFragment);
 
     let newStr = "";
     const childNodes = Array.prototype.slice.call(documentFragment.childNodes) as Array<ChildNode>; //[...documentFragment.childNodes];
 
     for (let i = 0; i < childNodes.length; i++) {
         const childNode = childNodes[i];
-        ztoolkit.log(childNode);
+        // console.log(childNode);
         // 非文本节点，保持原样
         if (childNode.nodeType !== 3) {
             newStr += (childNode as HTMLElement).outerHTML;
@@ -204,7 +207,7 @@ function toSentenceCase(text: string) {
             }
         });
 
-        ztoolkit.log("words", words, "\n", "newWords", newWords);
+        console.log("words", words, "\n", "newWords", newWords);
         newStr += newWords.join(" ");
     }
 

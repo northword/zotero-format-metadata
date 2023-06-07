@@ -27,7 +27,7 @@
         "update-data": "bash scripts/update-data.sh",
         "lint": "prettier --write src && eslint . --ext .ts --fix",
         "release": "release-it",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "jest"
     },
     "repository": {
         "type": "git",
@@ -46,6 +46,7 @@
     },
     "devDependencies": {
         "@release-it/keep-a-changelog": "^3.1.0",
+        "@types/jest": "^29.5.2",
         "@types/node": "^20.2.5",
         "@typescript-eslint/eslint-plugin": "^5.59.1",
         "@typescript-eslint/parser": "^5.59.1",
@@ -55,10 +56,13 @@
         "esbuild": "^0.17.18",
         "eslint": "^8.39.0",
         "eslint-config-prettier": "^8.8.0",
+        "jest": "^29.5.0",
+        "jest-environment-jsdom": "^29.5.0",
         "minimist": "^1.2.8",
         "prettier": "2.8.8",
         "release-it": "^15.10.1",
         "replace-in-file": "^6.3.5",
+        "ts-jest": "^29.1.0",
         "typescript": "^5.0.4",
         "zotero-types": "^1.0.13"
     },

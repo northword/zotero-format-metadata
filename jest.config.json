@@ -1,0 +1,6 @@
+{
+    "verbose": true,
+    "preset": "ts-jest",
+    "testEnvironment": "jsdom",
+    "testPathIgnorePatterns": ["<rootDir>/build/", "<rootDir>/node_modules/", "<rootDir>/src/"]
+}
