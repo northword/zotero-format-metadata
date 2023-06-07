@@ -45,6 +45,8 @@ The Zotero's documentation recommends storing titles in "sentence case" format, 
 
 This plugin provides a similar function, but avoids converting words that should be capitalized to lower case.
 
+Detailed test results are available at [test/toSentenceCase.test.ts](./test/toSentenseCase.test.ts).
+
 [^sentenceCase]: <https://www.zotero.org/support/kb/sentence_casing>
 
 ### Look up the journal abbreviation according to the journal full name

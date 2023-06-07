@@ -1,5 +1,11 @@
 import { toSentenceCase } from "../src/modules/untils/str";
 
+/**
+ * Test item / 测试项目信息
+ * @property name - 条目名称
+ * @property original - The input original text / 输入的原始文本
+ * @property expected - The expected text       / 期望得到的文本
+ */
 interface testItem {
     name: string;
     original: string;
@@ -7,6 +13,16 @@ interface testItem {
 }
 
 const testItems: testItem[] = [
+    {
+        name: "常规转为句首大写",
+        original: `Heterogeneous Catalytic Decomposition of Nitrous Oxides`,
+        expected: `Heterogeneous catalytic decomposition of nitrous oxides`,
+    },
+    {
+        name: "虚词应始终保持小写",
+        original: `Heterogeneous Catalytic Decomposition Of Nitrous Oxides`,
+        expected: `Heterogeneous catalytic decomposition of nitrous oxides`,
+    },
     {
         name: "带有上下标的部分保持大小写",
         original: `Catalytic Decomposition of N<sub>2</sub>O on Ordered Crystalline Metal Oxides`,
