@@ -41,7 +41,7 @@ export function registerShortcuts() {
         },
     });
 
-    // `Ctrl` + `I` -> apply italic
+    // `Ctrl` + `N` -> apply No Case
     ztoolkit.Shortcut.register("event", {
         id: `${config.addonRef}-key-nocase`,
         key: "n",
@@ -60,14 +60,17 @@ export function registerShortcuts() {
     //         addon.hooks.onShortcuts("confliction");
     //     },
     // });
+    // checkShortcutConflictingCallback();
 }
 
 function checkShortcutConflictingCallback() {
     const conflictingGroups = ztoolkit.Shortcut.checkAllKeyConflicting();
-    new ztoolkit.ProgressWindow("Check Key Conflicting")
-        .createLine({
-            text: `${conflictingGroups.length} groups of conflicting keys found. Details are in the debug output/console.`,
-        })
-        .show(-1);
-    ztoolkit.log("Conflicting:", conflictingGroups, "All keys:", ztoolkit.Shortcut.getAll());
+    if (conflictingGroups.length !== 0) {
+        new ztoolkit.ProgressWindow("Check Key Conflicting")
+            .createLine({
+                text: `${conflictingGroups.length} groups of conflicting keys found. Details are in the debug output/console.`,
+            })
+            .show(-1);
+        ztoolkit.log("Conflicting:", conflictingGroups, "All keys:", ztoolkit.Shortcut.getAll());
+    }
 }
