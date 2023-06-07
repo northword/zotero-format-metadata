@@ -45,7 +45,7 @@ Zotero 文档建议将标题存储为“句子式大写”的格式，这将有�
 
 本插件提供了类似的功能，但可以避免将一些本该大写的词转为小写。
 
-详细的测试结果可以参考 [test/toSentenceCase.test.ts](./test/toSentenseCase.test.ts)。
+详细的测试结果可以参考 [test/toSentenceCase.test.ts](../test/toSentenseCase.test.ts)。
 
 [^sentenceCase]: <https://www.zotero.org/support/kb/sentence_casing>
 
