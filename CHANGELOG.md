@@ -7,9 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0-0] - 2023-06-08
+
 ### Fixed
 
 - 为富文本工具条中按钮的提示文本增加中文翻译。 / Add Chinese translation for the prompt text of the buttons in the rich text toolbar.
+- 句首大写转换不再支持 Zotero 6。 / Sentence-style case transformation is no longer supported for Zotero 6.
+- 更新期刊缩写数据。 / Update journal abbreviation data.
 
 ## [0.4.2] - 2023-05-24
 
@@ -220,7 +224,8 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/0.4.2...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/0.5.0-0...HEAD
+[0.5.0-0]: https://github.com/northword/zotero-format-metadata/compare/0.4.2...0.5.0-0
 [0.4.2]: https://github.com/northword/zotero-format-metadata/compare/0.4.1...0.4.2
 [0.4.1]: https://github.com/northword/zotero-format-metadata/compare/0.4.0...0.4.1
 [0.4.0]: https://github.com/northword/zotero-format-metadata/compare/0.3.2...0.4.0
