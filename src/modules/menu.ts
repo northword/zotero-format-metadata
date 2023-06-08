@@ -80,6 +80,7 @@ export function registerMenu() {
     }
     ztoolkit.Menu.register("item", {
         tag: "menuseparator",
+        getVisibility: (elem, ev) => isRegularItem(),
     });
     ztoolkit.Menu.register("item", {
         tag: "menu",
@@ -87,6 +88,7 @@ export function registerMenu() {
         id: "zotero-itemmenu-formatmetadata-menu-item",
         icon: menuIcon,
         children: getMenuItem("item"),
+        getVisibility: (elem, ev) => isRegularItem(),
     });
     ztoolkit.Menu.register("collection", {
         tag: "menuseparator",
@@ -100,10 +102,16 @@ export function registerMenu() {
     });
 }
 
-export function disableItemMenu() {
-    const items = ZoteroPane.getSelectedItems(),
-        isRegularItem = items.some((item) => item.isRegularItem()),
-        itemMenuUpdateMetadata = document.getElementById(`zotero-itemmenu-formatmetadata-menu-item`);
+// export function disableItemMenu() {
+//     const items = ZoteroPane.getSelectedItems(),
+//         isRegularItem = items.some((item) => item.isRegularItem()),
+//         itemMenuUpdateMetadata = document.getElementById(`zotero-itemmenu-formatmetadata-menu-item`);
 
-    itemMenuUpdateMetadata?.setAttribute("disabled", `${!isRegularItem}`);
+//     itemMenuUpdateMetadata?.setAttribute("disabled", `${!isRegularItem}`);
+// }
+
+export function isRegularItem() {
+    const items = ZoteroPane.getSelectedItems(),
+        isRegularItem = items.some((item) => item.isRegularItem());
+    return isRegularItem;
 }
