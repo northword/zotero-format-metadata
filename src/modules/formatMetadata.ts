@@ -491,8 +491,8 @@ export default class FormatMetadata {
         const newItem = newItems[0];
 
         // 更改 ItemType
-        newItem["itemTypeID"] = Zotero.ItemTypes.getID(newItem["itemType"]);
-        newItem["itemType"] !== item.itemType ? item.setType(newItem["itemTypeID"]) : "pass";
+        // newItem["itemTypeID"] = Zotero.ItemTypes.getID(newItem["itemType"]);
+        // newItem["itemType"] !== item.itemType ? item.setType(newItem["itemTypeID"]) : "pass";
 
         // 更新 creators
         item.setCreators(newItem["creators"]);
