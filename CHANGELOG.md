@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 临时禁止通过 DOI 更新字段时更改期刊类型。 / Temporarily disables change of item type by doi.
+- 临时恢复使用 ztoolkit.getDOMParser() 以适配 Zotero 6。 / Revert to use ztoolkit.getDOMParser().
+
 ## [0.5.0-0] - 2023-06-08
 
 ### Fixed
