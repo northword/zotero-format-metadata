@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.3] - 2023-06-10
+
 ### Fixed
 
 - 临时禁止通过 DOI 更新字段时更改期刊类型。 / Temporarily disables change of item type by doi.
@@ -229,7 +231,8 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/0.5.0-0...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/0.4.3...HEAD
+[0.4.3]: https://github.com/northword/zotero-format-metadata/compare/0.5.0-0...0.4.3
 [0.5.0-0]: https://github.com/northword/zotero-format-metadata/compare/0.4.2...0.5.0-0
 [0.4.2]: https://github.com/northword/zotero-format-metadata/compare/0.4.1...0.4.2
 [0.4.1]: https://github.com/northword/zotero-format-metadata/compare/0.4.0...0.4.1
