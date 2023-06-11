@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 更新 zotero-plugin-toolkit ，修复菜单没有 icon 的问题。[windingwind/zotero-plugin-toolkit#24](https://github.com/windingwind/zotero-plugin-toolkit/pull/24) / fix: menu icon do not show.
+
 ## [0.4.3] - 2023-06-10
 
 ### Fixed
