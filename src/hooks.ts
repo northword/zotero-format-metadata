@@ -14,17 +14,6 @@ async function onStartup() {
     initLocale();
     ztoolkit.ProgressWindow.setIconURI("default", `chrome://${config.addonRef}/content/icons/favicon.png`);
 
-    const popupWin = new ztoolkit.ProgressWindow(config.addonName, {
-        closeOnClick: true,
-        closeTime: -1,
-    })
-        .createLine({
-            text: getString("startup.begin"),
-            type: "default",
-            progress: 0,
-        })
-        .show();
-
     registerPrefs();
 
     registerNotifier();
@@ -32,22 +21,7 @@ async function onStartup() {
 
     registerShortcuts();
 
-    // await Zotero.Promise.delay(1000);
-    popupWin.changeLine({
-        progress: 30,
-        text: `[50%] ${getString("startup.begin")}`,
-    });
-
     registerMenu();
-
-    // richTextToolBar.creatRichTextDialog();
-
-    await Zotero.Promise.delay(1000);
-    popupWin.changeLine({
-        progress: 100,
-        text: `[100%] ${getString("startup.finish")}`,
-    });
-    popupWin.startCloseTimer(5000);
 }
 
 function onShutdown(): void {
