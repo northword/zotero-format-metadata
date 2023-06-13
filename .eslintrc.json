@@ -27,14 +27,12 @@
     "ignorePatterns": [
         "**/builds/**",
         "**/node_modules/**",
+        "scripts/**",
+        "dist/**",
         "**/**/*.js",
         "**/abbrevIso*",
         "**/example*",
         "**/*.bak",
-        "coverage/**",
-        "docs-shared/lib/**",
-        "packages/*/assets/**",
-        "packages/*/lib/**",
         "!.vuepress/**",
         "**/.vuepress/.cache/**",
         "**/.vuepress/.temp/**"
