@@ -1,4 +1,4 @@
-import { descriptor, progressWindow } from "../utils/untils";
+import { callingLogger, progressWindow } from "../utils/logger";
 import { iso6393To6391Data, journalAbbrlocalData, universityPlaceLocalData } from "../data/helper";
 import { config } from "../../package.json";
 import { franc } from "franc";
@@ -9,10 +9,9 @@ import { toSentenceCase } from "../utils/str";
 // import { getAbbrFromLtwaLocally } from "./abbrevIso";
 
 export default class FormatMetadata {
-    @descriptor
+    @callingLogger
     public static unimplemented() {
-        ztoolkit.log("此功能尚未实现。");
-        window.alert("此功能尚未实现。");
+        window.alert(getString("unimplemented"));
     }
 
     /**
@@ -21,7 +20,7 @@ export default class FormatMetadata {
      * @param items 需要批量处理的 Zotero.Item 列表
      * @param ...args fn 的参数，Zotero.item 将始终作为第0个参数传入
      */
-    @descriptor
+    @callingLogger
     public static async updateInBatch(
         fn: (item: Zotero.Item, ...args: any) => Promise<void>,
         items: Zotero.Item[],
@@ -87,7 +86,7 @@ export default class FormatMetadata {
      * 标准格式化流程
      * @param item
      */
-    @descriptor
+    @callingLogger
     public static async updateStdFlow(item: Zotero.Item) {
         // 作者、期刊、年、期、卷、页 -> 判断语言 -> 匹配缩写 -> 匹配地点 -> 格式化日期 -> 格式化DOI
         getPref("isEnableOtherFields") ? await this.updateMetadataByIdentifier(item) : "skip";
@@ -98,7 +97,7 @@ export default class FormatMetadata {
         getPref("isEnableDOI") ? await this.updateUniversityPlace(item) : "skip";
     }
 
-    @descriptor
+    @callingLogger
     public static updateOnItemAdd(items: Zotero.Item[]) {
         if (getPref("add.update")) {
             let err = 0;
@@ -121,7 +120,7 @@ export default class FormatMetadata {
      *
      * @param item
      */
-    @descriptor
+    @callingLogger
     public static async updateJournalAbbr(item: Zotero.Item) {
         // 非 journalArticle 和 conferencePaper 直接跳过
         if (item.itemType !== "journalArticle" && item.itemType !== "conferencePaper") {
@@ -203,7 +202,7 @@ export default class FormatMetadata {
      * - String of `ISO 4 with dot abbr` when when it exist in the local dataset
      * - `false` when abbr does not exist in local dataset
      */
-    @descriptor
+    @callingLogger
     private static getAbbrIso4Locally(publicationTitle: string, dataBase = journalAbbrlocalData): string | false {
         // 处理传入文本
         publicationTitle = publicationTitle.toLowerCase().trim();
@@ -227,7 +226,7 @@ export default class FormatMetadata {
      * - String of `ISO 4 with dot abbr` when API returns a valid response
      * - `false` when API returns an invalid response
      */
-    @descriptor
+    @callingLogger
     private static async getAbbrFromLTWAOnline(publicationTitle: string) {
         // 防止 API 被滥用，先延迟一手
         await Zotero.Promise.delay(3000);
@@ -242,7 +241,7 @@ export default class FormatMetadata {
         return result;
     }
 
-    @descriptor
+    @callingLogger
     private static removeDot(text: string) {
         return text.replace(/\./g, "");
     }
@@ -252,14 +251,14 @@ export default class FormatMetadata {
      * @param text
      * @returns String with dots removed and capitalized
      */
-    @descriptor
+    @callingLogger
     private static toJCR(text: string) {
         return this.removeDot(text).toUpperCase();
     }
 
     /* 学校地点 */
 
-    @descriptor
+    @callingLogger
     public static async updateUniversityPlace(item: Zotero.Item) {
         if (item.itemType == "thesis") {
             try {
@@ -284,7 +283,7 @@ export default class FormatMetadata {
      * - String of `place` when when this university exist in the local dataset
      * - `false` when this university does not exist in local dataset
      */
-    @descriptor
+    @callingLogger
     private static getUniversityPlace(university: string, dataBase = universityPlaceLocalData) {
         const place = dataBase[university];
         if (place == "" || place == null || place == undefined) {
@@ -297,7 +296,7 @@ export default class FormatMetadata {
 
     /* 条目语言 */
 
-    @descriptor
+    @callingLogger
     public static async updateLanguage(item: Zotero.Item) {
         // WIP: 已有合法 ISO 639 - ISO 3166 代码的，不予处理
         if (this.verifyIso3166(item.getField("language") as string) && getPref("lang.verifyBefore")) {
@@ -329,7 +328,7 @@ export default class FormatMetadata {
      * @param text
      * @returns  ISO 639-3 code
      */
-    @descriptor
+    @callingLogger
     private static getTextLanguage(text: string) {
         // 替换 title 中的 HTML 标签以降低 franc 识别错误
         text = this.removeHtmlTag(text);
@@ -365,7 +364,7 @@ export default class FormatMetadata {
      * @param str
      * @returns
      */
-    @descriptor
+    @callingLogger
     private static removeHtmlTag(str: string) {
         return str.replace(/<[^>]+>/g, "");
     }
@@ -375,7 +374,7 @@ export default class FormatMetadata {
      * @param lang - ISO 639
      * @returns ISO 3166 code
      */
-    @descriptor
+    @callingLogger
     private static getIso3166(lang: string) {
         switch (lang) {
             case "cmn":
@@ -393,7 +392,7 @@ export default class FormatMetadata {
      * @param iso639_3  - ISO 639-3 code
      * @returns  ISO 639-1 code
      */
-    @descriptor
+    @callingLogger
     public static toIso639_1(iso639_3: string) {
         return iso6393To6391Data[iso639_3] ?? false;
     }
@@ -438,7 +437,7 @@ export default class FormatMetadata {
      *
      * @see https://stackoverflow.com/questions/31036076/how-to-replace-selected-text-in-a-textarea-with-javascript
      */
-    @descriptor
+    @callingLogger
     public static setHtmlTag(tag: string, attribute?: string, value?: string) {
         const editpaneItemBox = document.activeElement as HTMLInputElement | null;
         if (
@@ -466,7 +465,7 @@ export default class FormatMetadata {
      * @param item
      * @returns
      */
-    @descriptor
+    @callingLogger
     public static async updateMetadataByIdentifier(item: Zotero.Item) {
         const identifier = {
             itemType: "journalArticle",
@@ -550,7 +549,7 @@ export default class FormatMetadata {
         await Zotero.Promise.delay(3000);
     }
 
-    @descriptor
+    @callingLogger
     public static async updateDate(item: Zotero.Item) {
         const oldDate = item.getField("date") as string,
             newDate = Zotero.Date.strToISO(oldDate);
@@ -558,7 +557,7 @@ export default class FormatMetadata {
         await item.saveTx();
     }
 
-    @descriptor
+    @callingLogger
     public static async updateDOI(item: Zotero.Item) {
         const doi = item.getField("DOI");
         if (doi && typeof doi == "string") {
@@ -568,7 +567,7 @@ export default class FormatMetadata {
         await item.saveTx();
     }
 
-    @descriptor
+    @callingLogger
     public static async titleCase2SentenceCase(item: Zotero.Item) {
         const title = item.getField("title") as string;
         const newTitle = toSentenceCase(title);
