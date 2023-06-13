@@ -15,7 +15,7 @@
     "scripts": {
         "build-dev": "cross-env NODE_ENV=development node scripts/build.mjs",
         "build-prod": "cross-env NODE_ENV=production node scripts/build.mjs",
-        "build": "concurrently -c auto npm:build-prod npm:tsc",
+        "build": "concurrently -c auto npm:build-prod npm:tsc npm:lint",
         "tsc": "tsc --noEmit",
         "start": "node scripts/start.mjs",
         "start-watch": "concurrently -c auto npm:start npm:watch",
