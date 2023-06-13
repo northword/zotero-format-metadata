@@ -1,5 +1,6 @@
-import { getPref, registerPrefs, registerPrefsScripts } from "./modules/preference";
-import { getString, initLocale } from "./modules/locale";
+import { registerPrefs, registerPrefsScripts } from "./modules/preference";
+import { getPref } from "./utils/prefs";
+import { getString, initLocale } from "./utils/locale";
 import { registerMutationObserver, registerNotifier } from "./modules/notifier";
 import { config } from "../package.json";
 import FormatMetadata from "./modules/formatMetadata";

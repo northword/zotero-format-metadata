@@ -1,6 +1,6 @@
 import FormatMetadata from "../formatMetadata";
-import { getPref } from "../preference";
-import { getString } from "../locale";
+import { getPref } from "../../utils/prefs";
+import { getString } from "../../utils/locale";
 import { TagElementProps } from "zotero-plugin-toolkit/dist/tools/ui";
 
 /**

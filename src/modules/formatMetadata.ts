@@ -1,11 +1,11 @@
-import { descriptor, progressWindow } from "./untils/untils";
+import { descriptor, progressWindow } from "../utils/untils";
 import { iso6393To6391Data, journalAbbrlocalData, universityPlaceLocalData } from "../data/helper";
 import { config } from "../../package.json";
 import { franc } from "franc";
-import { getPref } from "./preference";
-import { getString } from "./locale";
+import { getPref } from "../utils/prefs";
+import { getString } from "../utils/locale";
 import { setLanguageManualDialog } from "./views/setLanguageManualDialog";
-import { toSentenceCase } from "./untils/str";
+import { toSentenceCase } from "../utils/str";
 // import { getAbbrFromLtwaLocally } from "./abbrevIso";
 
 export default class FormatMetadata {

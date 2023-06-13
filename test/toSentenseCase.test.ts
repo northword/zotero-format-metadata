@@ -1,4 +1,4 @@
-import { toSentenceCase } from "../src/modules/untils/str";
+import { toSentenceCase } from "../src/utils/str";
 
 /**
  * Test item / 测试项目信息

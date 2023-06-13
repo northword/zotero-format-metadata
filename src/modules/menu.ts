@@ -1,5 +1,5 @@
 import { config } from "../../package.json";
-import { getString } from "./locale";
+import { getString } from "../utils/locale";
 import { MenuitemOptions } from "zotero-plugin-toolkit/dist/managers/menu";
 
 export function registerMenu() {

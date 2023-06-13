@@ -14,7 +14,7 @@
     "plugins": ["@typescript-eslint"],
     "rules": {
         "sort-imports": [
-            "error",
+            "off",
             {
                 "ignoreCase": true
             }

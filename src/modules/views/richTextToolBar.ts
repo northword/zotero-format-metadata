@@ -1,5 +1,5 @@
-import { getPref, setPref } from "../preference";
-import { getString } from "../locale";
+import { getPref, setPref } from "../../utils/prefs";
+import { getString } from "../../utils/locale";
 
 export class richTextToolBar {
     static creatRichTextDialog() {
