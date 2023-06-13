@@ -3,7 +3,7 @@ import { getString } from "../utils/locale";
 import { MenuitemOptions } from "zotero-plugin-toolkit/dist/managers/menu";
 
 export function registerMenu() {
-    const menuIcon = `chrome://${config.addonRef}/content/icons/favicon@0.5x.png`;
+    const menuIcon = `chrome://${config.addonRef}/content/icons/favicon.png`;
     function getMenuItem(menuPopup: string) {
         const menuItem: MenuitemOptions[] = [
             {
