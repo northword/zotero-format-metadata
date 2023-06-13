@@ -12,12 +12,11 @@ const args = minimist(argv.slice(2));
 
 const zoteroPath = exec[args.zotero || args.z || Object.keys(exec)[0]];
 const profile = args.profile || args.p;
-const startZotero = `${zoteroPath} --debugger --purgecaches ${
-  profile ? `-p ${profile}` : ""
-}`;
+const startZotero = `${zoteroPath} --debugger --purgecaches ${profile ? `-p ${profile}` : ""}`;
 
 const script = `
 (async () => {
+  Services.obs.notifyObservers(null, "startupcache-invalidate", null);
   const { AddonManager } = ChromeUtils.import("resource://gre/modules/AddonManager.jsm");
   const addon = await AddonManager.getAddonByID("${addonID}");
   await addon.reload();

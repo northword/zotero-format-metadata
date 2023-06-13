@@ -103,8 +103,13 @@ function shutdown({ id, version, resourceURI, rootURI }, reason) {
     if (reason === APP_SHUTDOWN) {
         return;
     }
+    if (reason == ADDON_DISABLE) {
+        Services.obs.notifyObservers(null, "startupcache-invalidate", null);
+    }
     if (typeof Zotero === "undefined") {
-        Zotero = Components.classes["@zotero.org/Zotero;1"].getService(Components.interfaces.nsISupports).wrappedJSObject;
+        Zotero = Components.classes["@zotero.org/Zotero;1"].getService(
+            Components.interfaces.nsISupports
+        ).wrappedJSObject;
     }
     Zotero.__addonInstance__.hooks.onShutdown();
 
