@@ -12,6 +12,13 @@
             "runtimeArgs": ["run", "start-watch"]
         },
         {
+            "command": "npm test",
+            "name": "Run npm test",
+            "request": "launch",
+            "type": "node-terminal",
+            "skipFiles": ["<node_internals>/**", "**/node_modules/**"]
+        },
+        {
             "type": "node",
             "request": "launch",
             "name": "Restart",
