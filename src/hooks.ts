@@ -4,7 +4,7 @@ import { getString, initLocale } from "./utils/locale";
 import { registerMutationObserver, registerNotifier } from "./modules/notifier";
 import { config } from "../package.json";
 import FormatMetadata from "./modules/formatMetadata";
-import { registerMenu } from "./modules/menu";
+import { registerMenu, registerTextTransformMenu } from "./modules/menu";
 import { registerShortcuts } from "./modules/shortcuts";
 // import { registerPrompt } from "./modules/prompt";
 import { richTextToolBar } from "./modules/views/richTextToolBar";
@@ -22,6 +22,7 @@ async function onStartup() {
     registerShortcuts();
 
     registerMenu();
+    registerTextTransformMenu();
 }
 
 function onShutdown(): void {

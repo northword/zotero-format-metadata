@@ -115,3 +115,19 @@ export function isRegularItem() {
         isRegularItem = items.some((item) => item.isRegularItem());
     return isRegularItem;
 }
+
+export function registerTextTransformMenu() {
+    const zoteroFieldTransformMenu = document.getElementById("zotero-field-transform-menu");
+    const toSentenceCaseExtMenu = ztoolkit.UI.createElement(document, "menuitem", {
+        id: "creator-transform-sentence-case-ext",
+        skipIfExists: true,
+        classList: ["menuitem-non-iconic"],
+        attributes: {
+            label: getString("menufield.toSentenceCase"),
+        },
+        listeners: [{ type: "click", listener: (e) => addon.hooks.onUpdateInBatch("toSentenceCase", "item") }],
+    });
+    zoteroFieldTransformMenu?.append(toSentenceCaseExtMenu);
+    // todo: 支持与 Zotero 本身菜单一样的禁用
+    // @see https://github.com/zotero/zotero/blob/2639981ddab4c353c7c864fc8b979dae9926f967/chrome/content/zotero/elements/itemBox.js#L2103-L2123
+}

@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 在标题、期刊字段右击的菜单里添加“句首大写（扩展）”。 / Add "Sentence case (Extended)" to the right-click menu in the Title and Journal fields.
+
+### Fixed
+
+- 提高菜单图标的清晰度。 / Improve the resolution of menu icons.
+
 ## [0.4.4] - 2023-06-11
 
 ### Fixed
