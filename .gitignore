@@ -3,12 +3,15 @@ node_modules
 package-lock.json
 zotero-cmd.json
 
+# libs
+**/libs/**
+**/abbrevIso*
+
 # tmp
 **/*.bak
 **/*.new
 **/examples.ts
-**/abbrevIso*
-**/test.js
+# **/test.js
 
 # ts 编译的 js
 src/**/*.js

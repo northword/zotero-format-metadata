@@ -3,6 +3,9 @@ node_modules
 package-lock.json
 zotero-cmd.json
 
+# libs
+src/libs/**
+
 # tmp
 **/*.bak
 **/*.new

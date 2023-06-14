@@ -29,6 +29,7 @@
         "**/node_modules/**",
         "scripts/**",
         "dist/**",
+        "src/libs/**",
         "**/**/*.js",
         "**/abbrevIso*",
         "**/example*",
