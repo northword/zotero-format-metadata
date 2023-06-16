@@ -50,8 +50,8 @@ function parseHTML(html: string) {
     // const t = document.createElement("template");
     // t.innerHTML = html;
     // return t.content;
-    // const doc = new DOMParser().parseFromString(html, "text/html");
-    const doc = ztoolkit.getDOMParser().parseFromString(html, "text/html");
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    // const doc = ztoolkit.getDOMParser().parseFromString(html, "text/html");
     // if (isZotero) {
     //     // Zotero 插件中用：适配 Zotero 6
     //     doc = ztoolkit.getDOMParser().parseFromString(html, "text/html");

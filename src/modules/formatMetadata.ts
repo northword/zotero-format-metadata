@@ -466,17 +466,11 @@ export default class FormatMetadata {
      * @returns
      */
     @callingLogger
-    public static async updateMetadataByIdentifier(item: Zotero.Item) {
+    private static async translateByDOI(doi: string) {
         const identifier = {
             itemType: "journalArticle",
-            DOI: item.getField("DOI"),
+            DOI: doi,
         };
-
-        // 不存在 DOI 直接结束
-        if (!identifier.DOI) {
-            progressWindow(getString("info.noDOI"), "fail");
-            return;
-        }
 
         const translate = new Zotero.Translate.Search();
         translate.setIdentifier(identifier);
@@ -488,18 +482,27 @@ export default class FormatMetadata {
         // 配置这一项后返回的不再是 Zotero.Item[]，而是一个包含字段信息的 Object[]
         const newItems = await translate.translate({ libraryID: false });
         const newItem = newItems[0];
+        return newItem;
+    }
 
-        // 更改 ItemType
-        // newItem["itemTypeID"] = Zotero.ItemTypes.getID(newItem["itemType"]);
-        // newItem["itemType"] !== item.itemType ? item.setType(newItem["itemTypeID"]) : "pass";
+    public static async updateMetadataByIdentifier(item: Zotero.Item, mode?: "selected" | "blank" | "all") {
+        const doi = item.getField("DOI") as string;
+        // 不存在 DOI 直接结束
+        if (!doi) {
+            progressWindow(getString("info.noDOI"), "fail");
+            return;
+        }
+        const newItem = await this.translateByDOI(doi);
 
-        // 更新 creators
-        item.setCreators(newItem["creators"]);
+        function getBlankField(item: Zotero.Item) {
+            const field: Zotero.Item.ItemField[] = [];
+            return field;
+        }
 
-        const fields: Zotero.Item.ItemField[] = [
-            // "title",
+        let fields: Zotero.Item.ItemField[] = [
+            "title",
             "publicationTitle",
-            // "journalAbbreviation",
+            "journalAbbreviation",
             "volume",
             "issue",
             "date",
@@ -509,6 +512,30 @@ export default class FormatMetadata {
             "url",
             "abstractNote",
         ];
+
+        switch (mode) {
+            case "selected":
+                fields = [];
+                break;
+            case "blank":
+                fields = getBlankField(item);
+                break;
+            case "all":
+                break;
+            default:
+                break;
+        }
+
+        // 更改 ItemType
+        if (getPref("updateByDOI.itemType")) {
+            // newItem["itemTypeID"] = Zotero.ItemTypes.getID(newItem["itemType"]);
+            // newItem["itemType"] !== item.itemType ? item.setType(newItem["itemTypeID"]) : "pass";
+        }
+
+        // 更新 creators
+        if (getPref("updateByDOI.creators")) {
+            item.setCreators(newItem["creators"]);
+        }
 
         for (const field of fields) {
             const newFieldValue = newItem[field],
@@ -573,5 +600,36 @@ export default class FormatMetadata {
         const newTitle = toSentenceCase(title);
         item.setField("title", newTitle);
         await item.saveTx();
+    }
+
+    private static async isDuplicate(item: Zotero.Item) {
+        // const item = Zotero.getActiveZoteroPane().getSelectedItems()[0];
+        const itemID = item.id;
+
+        const duplicates = new Zotero.Duplicates("1");
+        // console.log("Zotero.Duplicates", duplicates);
+
+        const search = (await duplicates.getSearchObject()) as Zotero.Search;
+        // console.log("d.getSearchObject", search);
+
+        const searchResult = await search.search();
+        // console.log(searchResult);
+
+        if (searchResult.includes(itemID)) {
+            console.log("有重复条目");
+            return true;
+        } else {
+            console.log("未发现重复条目");
+            return false;
+        }
+    }
+
+    public static async duplication(item: Zotero.Item) {
+        const isDuplicate = await this.isDuplicate(item);
+        if (isDuplicate) {
+            // show duplication dialog
+        } else {
+            // skip
+        }
     }
 }

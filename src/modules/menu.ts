@@ -18,6 +18,40 @@ export function registerMenu() {
             },
             {
                 tag: "menuitem",
+                label: getString("menuitem.自动识别标题中的上下标"),
+                commandListener: (ev) => {
+                    addon.hooks.onUpdateInBatch("todo", menuPopup);
+                },
+            },
+            {
+                tag: "menuitem",
+                label: getString("menuitem.toSentenceCase"),
+                commandListener: (ev) => {
+                    addon.hooks.onUpdateInBatch("toSentenceCase", menuPopup);
+                },
+            },
+            {
+                tag: "menuseparator",
+            },
+            {
+                tag: "menuitem",
+                label: getString("menuitem.autoSetLang"),
+                commandListener: (ev) => {
+                    addon.hooks.onUpdateInBatch("lang", menuPopup);
+                },
+            },
+            {
+                tag: "menuitem",
+                label: getString("menuitem.manuallySetLang"),
+                commandListener: (ev) => {
+                    addon.hooks.onUpdateInBatch("lang-manual", menuPopup);
+                },
+            },
+            {
+                tag: "menuseparator",
+            },
+            {
+                tag: "menuitem",
                 label: getString("menuitem.setJournalAbbr"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("abbr", menuPopup);
@@ -31,11 +65,31 @@ export function registerMenu() {
                 },
             },
             {
+                tag: "menuseparator",
+            },
+            {
                 tag: "menuitem",
-                label: getString("menuitem.getOtherFields"),
+                label: getString("menuitem.getFieldsByDOIForBlack"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("other-field", menuPopup);
                 },
+            },
+            {
+                tag: "menuitem",
+                label: getString("menuitem.getFieldsByDOIForSelected"),
+                commandListener: (ev) => {
+                    addon.hooks.onUpdateInBatch("todo", menuPopup);
+                },
+            },
+            {
+                tag: "menuitem",
+                label: getString("menuitem.getFieldsByDOIForAll"),
+                commandListener: (ev) => {
+                    addon.hooks.onUpdateInBatch("todo", menuPopup);
+                },
+            },
+            {
+                tag: "menuseparator",
             },
             {
                 tag: "menuitem",
@@ -54,26 +108,10 @@ export function registerMenu() {
             },
             {
                 tag: "menuitem",
-                label: getString("menuitem.autoSetLang"),
+                label: getString("menuitem.去除期卷页中多余的0"),
                 commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("lang", menuPopup);
+                    addon.hooks.onUpdateInBatch("todo", menuPopup);
                 },
-            },
-            {
-                tag: "menuitem",
-                label: getString("menuitem.manuallySetLang"),
-                commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("lang-manual", menuPopup);
-                },
-                disabled: true,
-            },
-            {
-                tag: "menuitem",
-                label: getString("menuitem.toSentenceCase"),
-                commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("toSentenceCase", menuPopup);
-                },
-                disabled: true,
             },
         ];
         return menuItem;
