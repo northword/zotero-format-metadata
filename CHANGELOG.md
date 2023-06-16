@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## Breaking Changes
+
+- 不再支持 Zotero 6。由于本地化系统迁移至 fluent，同时兼容 Zotero 6 可能较大增加维护负担，故提前结束 Zotero 6 支持，最高兼容 Zotero 6 的插件版本为 0.4.4，下一版本（Semantic Versioning）起仅支持 Zotero 7。 / Drop support for Zotero 6.
+
 ### Added
 
 - 在标题、期刊字段右击的菜单里添加“句首大写（扩展）”。 / Add "Sentence case (Extended)" to the right-click menu in the Title and Journal fields.
