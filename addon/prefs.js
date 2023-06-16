@@ -6,7 +6,7 @@ pref("__prefsPrefix__.abbr.infer", true);
 pref("__prefsPrefix__.abbr.usefull", false);
 pref("__prefsPrefix__.abbr.usefullZh", false);
 pref("__prefsPrefix__.isEnablePlace", true);
-pref("__prefsPrefix__.isEnableOtherFields", true);
+pref("__prefsPrefix__.isEnableOtherFields", false);
 pref("__prefsPrefix__.isEnableLang", true);
 pref("__prefsPrefix__.lang.enable", true);
 pref("__prefsPrefix__.lang.only.enable", true);
