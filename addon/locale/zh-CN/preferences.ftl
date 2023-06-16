@@ -17,7 +17,7 @@ pref-abbr-type =
     .label = 期刊缩写的类型
 pref-abbr-infer = 
     .label = 没有期刊缩写时自动推断缩写
-pref-abbr-usefull
+pref-abbr-usefull = 
     .label = 对于英文期刊，仍没有期刊缩写时使用全称代替
 pref-abbr-usefullZh = 
     .label = 对于中文期刊，仍没有期刊缩写时使用全称代替
