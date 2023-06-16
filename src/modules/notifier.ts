@@ -41,12 +41,8 @@ function unregisterNotifier(notifierID: string) {
 }
 
 export function registerMutationObserver() {
-    let targetNode: HTMLElement;
-    if (ztoolkit.isZotero7()) {
-        targetNode = document.getElementById("zotero-item-pane-content")!;
-    } else {
-        targetNode = document.getElementById("dynamic-fields")!;
-    }
+    const targetNode = document.getElementById("zotero-item-pane-content") as HTMLElement;
+
     // ztoolkit.log(targetNode);
     const observerOptions = {
         // childList: true, // 观察目标子节点的变化，是否有添加或者删除
