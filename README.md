@@ -92,6 +92,8 @@ By default, the plugin is restricted to recognize only Simplified Chinese and En
    - If you are using FireFox, right click on the link of the XPI file and select "Save As...".
 2. Then, in Zotero, click `Tools` -> `Add-ons` and drag the `.xpi` onto the Add-ons window. See [how to install a Zotero addon](https://zotero.yuque.com/staff-gkhviy/zotero/addons#B2kU3).
 
+Note: The latest version is only supported for Zotero 7. If you are using Zotero 6, please download version 0.4.4.
+
 ## Changelog
 
 See [CHANGELOG.md](./CHANGELOG.md).
