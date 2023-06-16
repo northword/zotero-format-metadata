@@ -6,9 +6,8 @@ export function registerPrefs() {
     const prefOptions = {
         pluginID: config.addonID,
         src: rootURI + "chrome/content/preferences.xhtml",
-        label: getString("prefs.title"),
+        label: getString("prefs-title"),
         image: `chrome://${config.addonRef}/content/icons/favicon.png`,
-        extraDTD: [`chrome://${config.addonRef}/locale/overlay.dtd`],
         defaultXUL: true,
     };
     ztoolkit.PreferencePane.register(prefOptions);

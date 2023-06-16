@@ -8,7 +8,7 @@ export function registerMenu() {
         const menuItem: MenuitemOptions[] = [
             {
                 tag: "menuitem",
-                label: getString("menuitem.stdFormatFlow"),
+                label: getString("menuitem-stdFormatFlow"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("std", menuPopup);
                 },
@@ -18,14 +18,14 @@ export function registerMenu() {
             },
             {
                 tag: "menuitem",
-                label: getString("menuitem.自动识别标题中的上下标"),
+                label: getString("menuitem-自动识别标题中的上下标"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("todo", menuPopup);
                 },
             },
             {
                 tag: "menuitem",
-                label: getString("menuitem.toSentenceCase"),
+                label: getString("menuitem-toSentenceCase"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("toSentenceCase", menuPopup);
                 },
@@ -35,14 +35,14 @@ export function registerMenu() {
             },
             {
                 tag: "menuitem",
-                label: getString("menuitem.autoSetLang"),
+                label: getString("menuitem-autoSetLang"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("lang", menuPopup);
                 },
             },
             {
                 tag: "menuitem",
-                label: getString("menuitem.manuallySetLang"),
+                label: getString("menuitem-manuallySetLang"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("lang-manual", menuPopup);
                 },
@@ -52,14 +52,14 @@ export function registerMenu() {
             },
             {
                 tag: "menuitem",
-                label: getString("menuitem.setJournalAbbr"),
+                label: getString("menuitem-setJournalAbbr"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("abbr", menuPopup);
                 },
             },
             {
                 tag: "menuitem",
-                label: getString("menuitem.setPlace"),
+                label: getString("menuitem-setPlace"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("place", menuPopup);
                 },
@@ -69,21 +69,21 @@ export function registerMenu() {
             },
             {
                 tag: "menuitem",
-                label: getString("menuitem.getFieldsByDOIForBlack"),
+                label: getString("menuitem-getFieldsByDOIForBlack"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("other-field", menuPopup);
                 },
             },
             {
                 tag: "menuitem",
-                label: getString("menuitem.getFieldsByDOIForSelected"),
+                label: getString("menuitem-getFieldsByDOIForSelected"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("todo", menuPopup);
                 },
             },
             {
                 tag: "menuitem",
-                label: getString("menuitem.getFieldsByDOIForAll"),
+                label: getString("menuitem-getFieldsByDOIForAll"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("todo", menuPopup);
                 },
@@ -93,7 +93,7 @@ export function registerMenu() {
             },
             {
                 tag: "menuitem",
-                label: getString("menuitem.setDoi"),
+                label: getString("menuitem-setDoi"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("doi", menuPopup);
                 },
@@ -101,14 +101,14 @@ export function registerMenu() {
             },
             {
                 tag: "menuitem",
-                label: getString("menuitem.setDate"),
+                label: getString("menuitem-setDate"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("date", menuPopup);
                 },
             },
             {
                 tag: "menuitem",
-                label: getString("menuitem.去除期卷页中多余的0"),
+                label: getString("menuitem-去除期卷页中多余的0"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("todo", menuPopup);
                 },
@@ -122,7 +122,7 @@ export function registerMenu() {
     });
     ztoolkit.Menu.register("item", {
         tag: "menu",
-        label: getString("menuitem.label"), // 格式化条目元数据
+        label: getString("menuitem-label"), // 格式化条目元数据
         id: "zotero-itemmenu-formatmetadata-menu-item",
         icon: menuIcon,
         children: getMenuItem("item"),
@@ -133,7 +133,7 @@ export function registerMenu() {
     });
     ztoolkit.Menu.register("collection", {
         tag: "menu",
-        label: getString("menuitem.label"),
+        label: getString("menuitem-label"),
         id: "",
         icon: menuIcon,
         children: getMenuItem("collection"),
@@ -161,7 +161,7 @@ export function registerTextTransformMenu() {
         skipIfExists: true,
         classList: ["menuitem-non-iconic"],
         attributes: {
-            label: getString("menufield.toSentenceCase"),
+            label: getString("menufield-toSentenceCase"),
         },
         listeners: [{ type: "click", listener: (e) => addon.hooks.onUpdateInBatch("toSentenceCase", "item") }],
     });

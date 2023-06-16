@@ -35,7 +35,7 @@ export default class FormatMetadata {
         })
             .createLine({
                 type: "default",
-                text: `[${num}/${total}] ${getString("info.batchBegin")}`,
+                text: `[${num}/${total}] ${getString("info-batchBegin")}`,
                 progress: 0,
             })
             .show();
@@ -46,7 +46,7 @@ export default class FormatMetadata {
                 await fn.apply(this, args);
                 num++;
                 popupWin.changeLine({
-                    text: `[${num}/${total}] ${getString("info.batchBegin")}`,
+                    text: `[${num}/${total}] ${getString("info-batchBegin")}`,
                     progress: (num / total) * 100,
                 });
             } catch (err) {
@@ -56,7 +56,7 @@ export default class FormatMetadata {
         }
         popupWin.changeLine({
             // type: "default",
-            text: `[✔️${num} ${errNum ? ", ❌" + errNum : ""}] ${getString("info.batchFinish")}`,
+            text: `[✔️${num} ${errNum ? ", ❌" + errNum : ""}] ${getString("info-batchFinish")}`,
             progress: 100,
         });
         popupWin.startCloseTimer(5000);
@@ -489,7 +489,7 @@ export default class FormatMetadata {
         const doi = item.getField("DOI") as string;
         // 不存在 DOI 直接结束
         if (!doi) {
-            progressWindow(getString("info.noDOI"), "fail");
+            progressWindow(getString("info-noDOI"), "fail");
             return;
         }
         const newItem = await this.translateByDOI(doi);
