@@ -182,7 +182,7 @@ function onUpdateInBatch(mode: string, position: string) {
         case "lang-manual":
             FormatMetadata.setLanguageManual(items);
             break;
-        case "other-field":
+        case "getAllFieldViaDOI":
             FormatMetadata.updateInBatch(FormatMetadata.updateMetadataByIdentifier, items);
             break;
         case "doi":
