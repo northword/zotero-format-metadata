@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2023-06-16
+
 ## Breaking Changes
 
 - 不再支持 Zotero 6。由于本地化系统迁移至 fluent，同时兼容 Zotero 6 可能较大增加维护负担，故提前结束 Zotero 6 支持，最高兼容 Zotero 6 的插件版本为 0.4.4，下一版本（Semantic Versioning）起仅支持 Zotero 7。 / Drop support for Zotero 6.
@@ -249,7 +251,8 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/0.4.4...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/1.0.0...HEAD
+[1.0.0]: https://github.com/northword/zotero-format-metadata/compare/0.4.4...1.0.0
 [0.4.4]: https://github.com/northword/zotero-format-metadata/compare/0.4.3...0.4.4
 [0.4.3]: https://github.com/northword/zotero-format-metadata/compare/0.5.0-0...0.4.3
 [0.5.0-0]: https://github.com/northword/zotero-format-metadata/compare/0.4.2...0.5.0-0
