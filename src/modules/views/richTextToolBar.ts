@@ -87,7 +87,8 @@ export class richTextToolBar {
                 const win = addon.data.dialogs?.richTextToolBar?.window as Window;
                 setPref("richText.toolbarPosition.left", win.screenX ?? win.screenX ?? "0");
                 setPref("richText.toolbarPosition.top", win.screenY ?? win.screenY ?? "0");
-                addon.data.dialogs.richTextToolBar = undefined;
+                // addon.data.dialogs.richTextToolBar = undefined;
+                delete addon.data.dialogs.richTextToolBar;
             },
         };
 

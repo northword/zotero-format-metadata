@@ -25,8 +25,9 @@ export async function setLanguageManualDialog() {
             // }
             // console.log(formData.get("selectedLang"));
             dialogData.selectedLang = dialogData.formData.get("selectedLang");
-            // console.log(dialogData);
-            addon.data.dialogs.selectLang = undefined;
+            console.log(dialogData);
+            // addon.data.dialogs.selectLang = undefined;
+            delete addon.data.dialogs.selectLang;
         },
     };
 

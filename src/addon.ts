@@ -18,8 +18,8 @@ class Addon {
             window: Window;
         };
         dialogs: {
-            richTextToolBar?: DialogHelper;
-            selectLang?: DialogHelper;
+            richTextToolBar?: DialogHelper | undefined;
+            selectLang?: DialogHelper | undefined;
         };
     };
     // Lifecycle hooks

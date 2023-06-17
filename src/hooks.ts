@@ -25,11 +25,12 @@ async function onStartup() {
     registerTextTransformMenu();
 }
 
-function onShutdown(): void {
+function onShutdown() {
     ztoolkit.unregisterAll();
     Object.values(addon.data.dialogs).forEach((dialog) => {
-        dialog.window.close();
+        dialog === undefined ? "" : dialog?.window.close();
     });
+    // addon.data.dialogs = {};
     // Remove addon object
     addon.data.alive = false;
     delete Zotero[config.addonInstance];
