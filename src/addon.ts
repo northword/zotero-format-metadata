@@ -1,3 +1,4 @@
+import { DialogHelper } from "zotero-plugin-toolkit/dist/helpers/dialog";
 import hooks from "./hooks";
 import ZoteroToolkit from "zotero-plugin-toolkit/dist/index";
 // 临时使用本地 toolkit .
@@ -16,10 +17,9 @@ class Addon {
         prefs?: {
             window: Window;
         };
-        panel: {
-            tabOptionId: string;
-            activePanels: HTMLElement[];
-            toolBarPanelWindow: Window | null;
+        dialogs: {
+            richTextToolBar?: DialogHelper;
+            selectLang?: DialogHelper;
         };
     };
     // Lifecycle hooks
@@ -33,11 +33,7 @@ class Addon {
             env: __env__,
             // ztoolkit: new MyToolkit(),
             ztoolkit: new ZoteroToolkit(),
-            panel: {
-                tabOptionId: "",
-                activePanels: [],
-                toolBarPanelWindow: null,
-            },
+            dialogs: {},
         };
         this.hooks = hooks;
         this.api = {};

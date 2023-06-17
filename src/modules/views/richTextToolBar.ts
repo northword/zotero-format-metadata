@@ -1,24 +1,9 @@
 import { getPref, setPref } from "../../utils/prefs";
 import { getString } from "../../utils/locale";
+import { DialogHelper } from "zotero-plugin-toolkit/dist/helpers/dialog";
 
 export class richTextToolBar {
     static creatRichTextDialog() {
-        const dialogData: { [key: string | number]: unknown } = {
-            loadCallback: () => {
-                // ztoolkit.log(dialogData, "Dialog Opened!");
-            },
-            unloadCallback: () => {
-                setPref(
-                    "richText.toolbarPosition.left",
-                    addon.data.panel.toolBarPanelWindow?.screenX ?? addon.data.panel.toolBarPanelWindow?.screenX ?? "0"
-                );
-                setPref(
-                    "richText.toolbarPosition.top",
-                    addon.data.panel.toolBarPanelWindow?.screenY ?? addon.data.panel.toolBarPanelWindow?.screenY ?? "0"
-                );
-            },
-        };
-
         const buttons = [
             {
                 name: "Subscript",
@@ -92,6 +77,20 @@ export class richTextToolBar {
                 true
             );
         });
+
+        const dialogData: { [key: string | number]: unknown } = {
+            loadCallback: () => {
+                // ztoolkit.log(dialogData, "Dialog Opened!");
+                addon.data.dialogs.richTextToolBar = toolBarPanel;
+            },
+            unloadCallback: () => {
+                const win = addon.data.dialogs?.richTextToolBar?.window as Window;
+                setPref("richText.toolbarPosition.left", win.screenX ?? win.screenX ?? "0");
+                setPref("richText.toolbarPosition.top", win.screenY ?? win.screenY ?? "0");
+                addon.data.dialogs.richTextToolBar = undefined;
+            },
+        };
+
         toolBarPanel.setDialogData(dialogData);
         return toolBarPanel;
 
@@ -104,7 +103,7 @@ export class richTextToolBar {
     }
 
     static showToolBar() {
-        const toolBarPanel = this.creatRichTextDialog();
+        // 准备窗口特性参数：位置、置顶
         const windowFuture: {
             left?: number;
             top?: number;
@@ -131,17 +130,19 @@ export class richTextToolBar {
             delete windowFuture.centerscreen;
         }
 
-        toolBarPanel !== null && toolBarPanel !== undefined
-            ? toolBarPanel.open("Zotero Format Metadata Rich Text Tool Bar", windowFuture)
-            : console.warn("addon.data.panel.toolBarPanel is null");
-        addon.data.panel.toolBarPanelWindow = toolBarPanel.window;
+        // 确认窗口存在，若无->创建，存在->open
+        // let addon.data.dialog.richTextToolBar: DialogHelper;
+        if (addon.data.dialogs.richTextToolBar == undefined) {
+            addon.data.dialogs.richTextToolBar = this.creatRichTextDialog();
+        }
+        addon.data.dialogs.richTextToolBar.open("Zotero Format Metadata Rich Text Tool Bar", windowFuture);
     }
 
     static closeToolBar() {
         // ztoolkit.log("close tool bar");
-        addon.data.panel.toolBarPanelWindow !== null
-            ? addon.data.panel.toolBarPanelWindow.close()
-            : console.warn("addon.data.panel.toolBarPanelWindow is null");
+        addon.data.dialogs.richTextToolBar !== undefined
+            ? addon.data.dialogs.richTextToolBar.window.close()
+            : console.warn("addon.data.dialog.richTextToolBar is undefined");
     }
 }
 

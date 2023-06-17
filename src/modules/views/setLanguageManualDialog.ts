@@ -14,6 +14,7 @@ export async function setLanguageManualDialog() {
         formData: "",
         loadCallback: () => {
             // ztoolkit.log(dialogData, "Dialog Opened!");
+            addon.data.dialogs.selectLang = dialog;
         },
         unloadCallback: () => {
             const form = dialog.window.document.querySelector("form") as HTMLFormElement;
@@ -25,6 +26,7 @@ export async function setLanguageManualDialog() {
             // console.log(formData.get("selectedLang"));
             dialogData.selectedLang = dialogData.formData.get("selectedLang");
             // console.log(dialogData);
+            addon.data.dialogs.selectLang = undefined;
         },
     };
 

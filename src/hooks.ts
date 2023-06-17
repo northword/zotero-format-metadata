@@ -27,6 +27,9 @@ async function onStartup() {
 
 function onShutdown(): void {
     ztoolkit.unregisterAll();
+    Object.values(addon.data.dialogs).forEach((dialog) => {
+        dialog.window.close();
+    });
     // Remove addon object
     addon.data.alive = false;
     delete Zotero[config.addonInstance];
