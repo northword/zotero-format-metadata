@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复手动选择语言对话框不可用的问题。/ Fix the problem that the manual language selection dialog is not available.
+- 当禁用插件时，关闭所有本插件的对话框。/ Close all dialogs for this plugin when the plugin is disabled.
+
 ## [1.0.0] - 2023-06-16
 
 ### Breaking Changes

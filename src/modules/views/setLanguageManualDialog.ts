@@ -122,7 +122,7 @@ export async function setLanguageManualDialog() {
     // 如果取消/直接关闭弹窗，则返回 false
     // 如果 text input 存在值，则返回，否则返回 radio 的值
     if (dialogData._lastButtonId == "confirm") {
-        if (dialogData.inputLang !== "other") {
+        if (dialogData.selectedLang !== "other") {
             return dialogData.selectedLang;
         } else if (dialogData.inputLang !== undefined) {
             return dialogData.inputLang;
