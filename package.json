@@ -1,6 +1,6 @@
 {
     "name": "zotero-format-metadata",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "An addon for Zotero to format item metadata",
     "config": {
         "addonName": "Zotero Format Metadata",
