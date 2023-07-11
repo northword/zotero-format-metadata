@@ -72,6 +72,19 @@ function dateFormat(fmt, date) {
     return fmt;
 }
 
+function addAddonRefToFlt(fltContent) {
+    const lines = fltContent.split("\n");
+    const prefixedLines = lines.map((line) => {
+        if (line.match(/^(?<message>[a-zA-Z]\S*)([ ]*=[ ]*)(?<pattern>.*)$/gm)) {
+            // https://regex101.com/r/lQ9x5p/1
+            return `${config.addonRef}-${line}`;
+        } else {
+            return line;
+        }
+    });
+    return prefixedLines.join("\n");
+}
+
 async function main() {
     const t = new Date();
     const buildTime = dateFormat("YYYY-mm-dd HH:MM:SS", t);
@@ -84,7 +97,6 @@ async function main() {
     copyFolderRecursiveSync("addon", buildDir);
 
     copyFileSync("update-template.json", join(buildDir, "update.json"));
-    // copyFileSync("update-template.rdf", "update.rdf");
 
     await build({
         entryPoints: ["src/index.ts"],
@@ -92,6 +104,7 @@ async function main() {
             __env__: `"${env.NODE_ENV}"`,
         },
         bundle: true,
+        target: "firefox102",
         outfile: join(buildDir, "addon/chrome/content/scripts/index.js"),
         // Don't turn minify on
         // minify: true,
@@ -100,21 +113,19 @@ async function main() {
     console.log("[Build] Run esbuild OK");
 
     const replaceFrom = [/__author__/g, /__description__/g, /__homepage__/g, /__buildVersion__/g, /__buildTime__/g];
-
     const replaceTo = [author, description, homepage, version, buildTime];
 
     replaceFrom.push(...Object.keys(config).map((k) => new RegExp(`__${k}__`, "g")));
     replaceTo.push(...Object.values(config));
 
+    replaceFrom.push(/(data-l10n-id=")(\S*")/gm);
+    replaceTo.push(`$1${config.addonRef}-$2`);
+
     const optionsAddon = {
         files: [
-            join(buildDir, "**/*.rdf"),
-            join(buildDir, "**/*.dtd"),
-            join(buildDir, "**/*.xul"),
             join(buildDir, "**/*.xhtml"),
             join(buildDir, "**/*.json"),
             join(buildDir, "addon/prefs.js"),
-            join(buildDir, "addon/chrome.manifest"),
             join(buildDir, "addon/manifest.json"),
             join(buildDir, "addon/bootstrap.js"),
             join(buildDir, "update.json"),
@@ -125,9 +136,16 @@ async function main() {
     };
 
     const replaceResult = sync(optionsAddon);
+
+    const replaceResultFlt = sync({
+        files: [join(buildDir, "addon/**/*.ftl")],
+        processor: [addAddonRefToFlt],
+    });
+
     console.log(
         "[Build] Run replace in ",
-        replaceResult.filter((f) => f.hasChanged).map((f) => `${f.file} : ${f.numReplacements} / ${f.numMatches}`)
+        replaceResult.filter((f) => f.hasChanged).map((f) => `${f.file} : ${f.numReplacements} / ${f.numMatches}`),
+        replaceResultFlt.filter((f) => f.hasChanged).map((f) => `${f.file} : OK`)
     );
 
     console.log("[Build] Replace OK");

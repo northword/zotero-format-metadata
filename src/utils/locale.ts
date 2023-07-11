@@ -59,14 +59,15 @@ function _getString(
     localString: string,
     options: { branch?: string | undefined; args?: Record<string, unknown> } = {}
 ): string {
+    const localStringWithPrefix = `${config.addonRef}-${localString}`;
     const { branch, args } = options;
-    const pattern = addon.data.locale?.current.formatMessagesSync([{ id: localString, args }])[0];
+    const pattern = addon.data.locale?.current.formatMessagesSync([{ id: localStringWithPrefix, args }])[0];
     if (!pattern) {
-        return localString;
+        return localStringWithPrefix;
     }
     if (branch && pattern.attributes) {
-        return pattern.attributes[branch] || localString;
+        return pattern.attributes[branch] || localStringWithPrefix;
     } else {
-        return pattern.value || localString;
+        return pattern.value || localStringWithPrefix;
     }
 }
