@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- 修复本地化文本与其他插件的冲突。/ Fix localized text conflicts with other plugins.
+
 ## [1.0.1] - 2023-06-17
 
 ### Fixed
