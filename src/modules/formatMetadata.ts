@@ -15,15 +15,15 @@ export default class FormatMetadata {
     }
 
     /**
-     * 装饰器：批量执行某函数
-     * @param fn 需要批量执行的函数
+     * 装饰器：对某些 Items 分别执行某函数
      * @param items 需要批量处理的 Zotero.Item 列表
+     * @param fn 需要批量执行的函数
      * @param ...args fn 的参数，Zotero.item 将始终作为第0个参数传入
      */
     @callingLogger
     public static async updateInBatch(
-        fn: (item: Zotero.Item, ...args: any) => Promise<void>,
         items: Zotero.Item[],
+        fn: (item: Zotero.Item, ...args: any) => Promise<void> | void,
         ...args: any
     ) {
         const total = items.length;
@@ -415,7 +415,7 @@ export default class FormatMetadata {
         // 弹出选择语言弹窗
         const lang = await setLanguageManualDialog();
         if (!lang) return;
-        this.updateInBatch(this.setFieldValue, items, "language", lang);
+        this.updateInBatch(items, this.setFieldValue, "language", lang);
     }
 
     /**

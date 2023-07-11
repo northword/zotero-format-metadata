@@ -172,31 +172,31 @@ function onUpdateInBatch(mode: string, position: string) {
     if (items.length == 0) return;
     switch (mode) {
         case "std":
-            FormatMetadata.updateInBatch(FormatMetadata.updateStdFlow, items);
+            FormatMetadata.updateInBatch(items, FormatMetadata.updateStdFlow);
             break;
         case "abbr":
-            FormatMetadata.updateInBatch(FormatMetadata.updateJournalAbbr, items);
+            FormatMetadata.updateInBatch(items, FormatMetadata.updateJournalAbbr);
             break;
         case "place":
-            FormatMetadata.updateInBatch(FormatMetadata.updateUniversityPlace, items);
+            FormatMetadata.updateInBatch(items, FormatMetadata.updateUniversityPlace);
             break;
         case "lang":
-            FormatMetadata.updateInBatch(FormatMetadata.updateLanguage, items);
+            FormatMetadata.updateInBatch(items, FormatMetadata.updateLanguage);
             break;
         case "lang-manual":
             FormatMetadata.setLanguageManual(items);
             break;
         case "getAllFieldViaDOI":
-            FormatMetadata.updateInBatch(FormatMetadata.updateMetadataByIdentifier, items);
+            FormatMetadata.updateInBatch(items, FormatMetadata.updateMetadataByIdentifier);
             break;
         case "doi":
-            FormatMetadata.updateInBatch(FormatMetadata.updateDOI, items);
+            FormatMetadata.updateInBatch(items, FormatMetadata.updateDOI);
             break;
         case "date":
-            FormatMetadata.updateInBatch(FormatMetadata.updateDate, items);
+            FormatMetadata.updateInBatch(items, FormatMetadata.updateDate);
             break;
         case "toSentenceCase":
-            FormatMetadata.updateInBatch(FormatMetadata.titleCase2SentenceCase, items);
+            FormatMetadata.updateInBatch(items, FormatMetadata.titleCase2SentenceCase);
             break;
         case "chem":
         default:
