@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- 更新期刊缩写数据。/ Update journal abbr data.
+
 ## [1.0.2] - 2023-07-11
 
 - 修复本地化文本与其他插件的冲突。/ Fix localized text conflicts with other plugins.
