@@ -4,7 +4,7 @@ export function registerNotifier() {
             event: string,
             type: string,
             ids: number[] | string[],
-            extraData: { [key: string]: unknown }
+            extraData: { [key: string]: unknown },
         ) => {
             if (!addon?.data.alive) {
                 unregisterNotifier(notifierID);
@@ -23,7 +23,7 @@ export function registerNotifier() {
         (e: Event) => {
             unregisterNotifier(notifierID);
         },
-        false
+        false,
     );
 
     /**
@@ -69,6 +69,6 @@ export function registerMutationObserver() {
         (e: Event) => {
             observer.disconnect();
         },
-        false
+        false,
     );
 }

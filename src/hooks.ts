@@ -44,7 +44,7 @@ async function onNotify(
     event: string,
     type: string,
     ids: Array<string | number>,
-    extraData: { [key: string]: unknown }
+    extraData: { [key: string]: unknown },
 ) {
     // You can add your code to the corresponding notify type
     ztoolkit.log("notify", event, type, ids, extraData);
@@ -56,7 +56,7 @@ async function onNotify(
                 // @ts-ignore item has no isFeedItem
                 !item.isFeedItem &&
                 // @ts-ignore libraryID is got from item, so get() will never return false
-                (getPref("updateOnAddedForGroup") ? true : Zotero.Libraries.get(item.libraryID)._libraryType == "user")
+                (getPref("updateOnAddedForGroup") ? true : Zotero.Libraries.get(item.libraryID)._libraryType == "user"),
         );
         if (regularItems.length !== 0) {
             FormatMetadata.updateOnItemAdd(regularItems);

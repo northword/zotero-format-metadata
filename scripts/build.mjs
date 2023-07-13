@@ -94,7 +94,7 @@ function renameLocaleFiles() {
             if (localeSubFile.endsWith(".ftl")) {
                 renameSync(
                     path.join(localeSubDir, localeSubFile),
-                    path.join(localeSubDir, `${config.addonRef}-${localeSubFile}`)
+                    path.join(localeSubDir, `${config.addonRef}-${localeSubFile}`),
                 );
             }
         }
@@ -164,12 +164,12 @@ function replaceString() {
         "[Build] Run replace in ",
         replaceResult.filter((f) => f.hasChanged).map((f) => `${f.file} : ${f.numReplacements} / ${f.numMatches}`),
         replaceResultFlt.filter((f) => f.hasChanged).map((f) => `${f.file} : OK`),
-        replaceResultXhtml.filter((f) => f.hasChanged).map((f) => `${f.file} : OK`)
+        replaceResultXhtml.filter((f) => f.hasChanged).map((f) => `${f.file} : OK`),
     );
 
     if (localeMessageMiss.size !== 0) {
         console.warn(
-            `[Build] [Warn] Fluent message [${new Array(...localeMessageMiss)}] do not exsit in addon's locale files.`
+            `[Build] [Warn] Fluent message [${new Array(...localeMessageMiss)}] do not exsit in addon's locale files.`,
         );
     }
 }

@@ -63,7 +63,7 @@ export async function setLanguageManualDialog() {
                     for: `dialog-checkbox-${lang}`,
                 },
                 properties: { innerHTML: FormatMetadata.toIso639_1(lang) ?? lang },
-            }
+            },
         );
     });
     // 添加一个“其他”输入框
@@ -96,7 +96,7 @@ export async function setLanguageManualDialog() {
                         type: "input",
                         listener: () => {
                             const radioOther = dialog.window.document.getElementById(
-                                "dialog-checkbox-other"
+                                "dialog-checkbox-other",
                             ) as HTMLInputElement;
                             radioOther.checked = true;
                         },

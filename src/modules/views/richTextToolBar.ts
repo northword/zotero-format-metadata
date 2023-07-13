@@ -74,7 +74,7 @@ export class richTextToolBar {
                         },
                     ],
                 },
-                true
+                true,
             );
         });
 

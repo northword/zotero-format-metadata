@@ -21,7 +21,7 @@ export function registerPrompt() {
                 ztoolkit.getGlobal("alert")(
                     `You select ${items.length} items!\n\n${items
                         .map((item, index) => String(index + 1) + ". " + item.getDisplayTitle())
-                        .join("\n")}`
+                        .join("\n")}`,
                 );
             },
         },

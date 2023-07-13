@@ -21,7 +21,7 @@ if (existsSync(profilePath)) {
         console.log(
             `[info] Addon proxy file has been updated. \n
       File path: ${addonProxyFilePath} \n
-      Addon path: ${buildPath} \n`
+      Addon path: ${buildPath} \n`,
         );
     }
 
