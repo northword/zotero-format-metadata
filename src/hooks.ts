@@ -85,11 +85,11 @@ function onMutationObserver(record: MutationRecord, observer: MutationObserver) 
             switch (record.attributeName) {
                 case "control":
                     if (getPref("richtext.isEnableToolBar")) {
-                        // @ts-ignore
+                        // @ts-ignore 存在 attributes
                         if (record.target.attributes.control.nodeValue == "itembox-field-textbox-title") {
                             richTextToolBar.showToolBar();
                         }
-                        // @ts-ignore
+                        // @ts-ignore 存在 attributes
                         if (record.target.attributes.control.nodeValue == "itembox-field-value-title") {
                             richTextToolBar.closeToolBar();
                         }

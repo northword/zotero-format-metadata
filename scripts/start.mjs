@@ -1,7 +1,7 @@
 import { execSync } from "child_process";
 import { exit } from "process";
 import { existsSync, writeFileSync, readFileSync } from "fs";
-import { join, resolve } from "path";
+import path from "path";
 import details from "../package.json" assert { type: "json" };
 import cmd from "./zotero-cmd.json" assert { type: "json" };
 
@@ -13,8 +13,8 @@ if (!existsSync(zoteroBinPath)) {
 }
 
 if (existsSync(profilePath)) {
-    const addonProxyFilePath = join(profilePath, `extensions/${addonID}`);
-    const buildPath = resolve("build/addon");
+    const addonProxyFilePath = path.join(profilePath, `extensions/${addonID}`);
+    const buildPath = path.resolve("build/addon");
 
     function writeAddonProxyFile() {
         writeFileSync(addonProxyFilePath, buildPath);
@@ -33,7 +33,7 @@ if (existsSync(profilePath)) {
         writeAddonProxyFile();
     }
 
-    const prefsPath = join(profilePath, "prefs.js");
+    const prefsPath = path.join(profilePath, "prefs.js");
     if (existsSync(prefsPath)) {
         const PrefsLines = readFileSync(prefsPath, "utf-8").split("\n");
         const filteredLines = PrefsLines.map((line) => {
@@ -49,9 +49,11 @@ if (existsSync(profilePath)) {
         writeFileSync(prefsPath, updatedPrefs, "utf-8");
         console.log("[info] The <profile>/prefs.js has been modified.");
     }
+} else {
+    throw new Error("The given Zotero profile does not exist.");
 }
 
-const startZotero = `"${zoteroBinPath}" --debugger --purgecaches -profile ${profilePath}`;
+const startZotero = `"${zoteroBinPath}" --debugger --purgecaches -profile "${profilePath}"`;
 
 execSync(startZotero);
 exit(0);
