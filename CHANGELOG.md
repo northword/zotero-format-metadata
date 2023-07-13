@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- 变更插件更新清单文件路径。/ Change URI of `update.json`.
+
 ## [1.0.3] - 2023-07-11
 
 - 更新期刊缩写数据。/ Update journal abbr data.
