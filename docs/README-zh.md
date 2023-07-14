@@ -102,6 +102,10 @@ DOI 去前缀、日期修改为 ISO 格式等。
 
 参阅 [Project #1](https://github.com/users/northword/projects/1)。
 
+## Contribution
+
+参阅 [贡献指南](./CONTRIBUTING.md).
+
 ## 开源协议
 
 GNU Affero General Public License v3.0

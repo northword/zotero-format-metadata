@@ -102,6 +102,10 @@ See [CHANGELOG.md](./CHANGELOG.md).
 
 See [Project #1](https://github.com/users/northword/projects/1) .
 
+## Contribution
+
+See [CONTRIBUTING.md](./docs/CONTRIBUTING.md).
+
 ## Licence
 
 GNU Affero General Public License v3.0
