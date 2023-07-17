@@ -9,7 +9,7 @@ const { addonID } = details.config;
 const { zoteroBinPath, profilePath, dataDir } = cmd.exec;
 
 if (!existsSync(zoteroBinPath)) {
-    throw new Error("Zotero bin do no exist.");
+    throw new Error("Zotero binary does not exist.");
 }
 
 if (existsSync(profilePath)) {
@@ -19,9 +19,9 @@ if (existsSync(profilePath)) {
     function writeAddonProxyFile() {
         writeFileSync(addonProxyFilePath, buildPath);
         console.log(
-            `[info] Addon proxy file has been updated. \n
-      File path: ${addonProxyFilePath} \n
-      Addon path: ${buildPath} \n`,
+            `[info] Addon proxy file has been updated. 
+      File path: ${addonProxyFilePath} 
+      Addon path: ${buildPath} `,
         );
     }
 

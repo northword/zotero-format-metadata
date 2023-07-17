@@ -51,7 +51,7 @@ async function waitForZotero() {
                                 resolve();
                             }
                         },
-                        false
+                        false,
                     );
                 },
             };
@@ -72,14 +72,10 @@ async function startup({ id, version, resourceURI, rootURI }, reason) {
     }
 
     var aomStartup = Components.classes["@mozilla.org/addons/addon-manager-startup;1"].getService(
-        Components.interfaces.amIAddonManagerStartup
+        Components.interfaces.amIAddonManagerStartup,
     );
     var manifestURI = Services.io.newURI(rootURI + "manifest.json");
-    chromeHandle = aomStartup.registerChrome(manifestURI, [
-        ["content", "__addonRef__", rootURI + "chrome/content/"],
-        ["locale", "__addonRef__", "en-US", rootURI + "chrome/locale/en-US/"],
-        ["locale", "__addonRef__", "zh-CN", rootURI + "chrome/locale/zh-CN/"],
-    ]);
+    chromeHandle = aomStartup.registerChrome(manifestURI, [["content", "__addonRef__", rootURI + "chrome/content/"]]);
 
     /**
      * Global variables for plugin code.
@@ -92,7 +88,7 @@ async function startup({ id, version, resourceURI, rootURI }, reason) {
     };
     ctx._globalThis = ctx;
 
-    Services.scriptloader.loadSubScript(`${rootURI}/chrome/content/scripts/index.js`, ctx);
+    Services.scriptloader.loadSubScript(`${rootURI}/chrome/content/scripts/__addonRef__.js`, ctx);
 }
 
 function shutdown({ id, version, resourceURI, rootURI }, reason) {
@@ -104,14 +100,14 @@ function shutdown({ id, version, resourceURI, rootURI }, reason) {
     }
     if (typeof Zotero === "undefined") {
         Zotero = Components.classes["@zotero.org/Zotero;1"].getService(
-            Components.interfaces.nsISupports
+            Components.interfaces.nsISupports,
         ).wrappedJSObject;
     }
     Zotero.__addonInstance__.hooks.onShutdown();
 
     Cc["@mozilla.org/intl/stringbundle;1"].getService(Components.interfaces.nsIStringBundleService).flushBundles();
 
-    Cu.unload(`${rootURI}/chrome/content/scripts/index.js`);
+    Cu.unload(`${rootURI}/chrome/content/scripts/__addonRef__.js`);
 
     if (chromeHandle) {
         chromeHandle.destruct();
