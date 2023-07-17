@@ -31,17 +31,18 @@ export default class FormatMetadata {
 
     @callingLogger
     public static updateOnItemAdd(items: Zotero.Item[]) {
-        if (getPref("add.update")) {
-            let err = 0;
-            items.forEach((item) => {
-                try {
-                    this.updateStdFlow(item);
-                } catch (error) {
-                    ztoolkit.log(error);
-                    err++;
-                }
-            });
-            progressWindow(`Updated ${items.length} items, ${items.length - err} success, ${err} failed.`);
+        const regularItems = items.filter(
+            (item) =>
+                item.isRegularItem() &&
+                // @ts-ignore item has no isFeedItem
+                !item.isFeedItem &&
+                // @ts-ignore libraryID is got from item, so get() will never return false
+                (getPref("updateOnAddedForGroup") ? true : Zotero.Libraries.get(item.libraryID)._libraryType == "user"),
+        );
+        if (regularItems.length !== 0 && getPref("add.update")) {
+            // FormatMetadata.updateOnItemAdd(regularItems);
+            addon.hooks.onUpdateInBatch("std", regularItems);
+            return;
         }
     }
 

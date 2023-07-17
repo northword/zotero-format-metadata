@@ -47,36 +47,11 @@ async function onNotify(
     ids: Array<string | number>,
     extraData: { [key: string]: unknown },
 ) {
-    // You can add your code to the corresponding notify type
     ztoolkit.log("notify", event, type, ids, extraData);
 
     if (event == "add" && type == "item") {
-        const regularItems = Zotero.Items.get(ids as number[]).filter(
-            (item) =>
-                item.isRegularItem() &&
-                // @ts-ignore item has no isFeedItem
-                !item.isFeedItem &&
-                // @ts-ignore libraryID is got from item, so get() will never return false
-                (getPref("updateOnAddedForGroup") ? true : Zotero.Libraries.get(item.libraryID)._libraryType == "user"),
-        );
-        if (regularItems.length !== 0) {
-            FormatMetadata.updateOnItemAdd(regularItems);
-            return;
-        }
+        FormatMetadata.updateOnItemAdd(Zotero.Items.get(ids as number[]));
     }
-
-    // 另一种方法
-    // ids.forEach((id) => {
-    //     const item = Zotero.Items.get(id);
-    //     if (event == "add" && type == "item" && item.isRegularItem()) {
-    //         FormatMetadata.updateOnItemAdd(item);
-    //     }
-    // });
-
-    // 弃用的旧版工具条显示 hook，监听 select 条目变换，见 ./module/notify.ts/ZoteroPane.itemsView.onSelect.addListener
-    // if (event == "select" && type == "item") {
-    //     FormatMetadata.richTextToolbar();
-    // }
 }
 
 function onMutationObserver(record: MutationRecord, observer: MutationObserver) {
