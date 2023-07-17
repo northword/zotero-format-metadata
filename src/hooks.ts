@@ -8,6 +8,7 @@ import { registerMenu, registerTextTransformMenu } from "./modules/menu";
 import { registerShortcuts } from "./modules/shortcuts";
 // import { registerPrompt } from "./modules/prompt";
 import { richTextToolBar } from "./modules/views/richTextToolBar";
+import { setLanguageManualDialog } from "./modules/views/setLanguageManualDialog";
 
 async function onStartup() {
     await Promise.all([Zotero.initializationPromise, Zotero.unlockPromise, Zotero.uiReadyPromise]);
@@ -154,55 +155,106 @@ function onShortcuts(type: string) {
 /**
  * 分发批量执行某函数的任务
  * @param mode 批量处理任务的类别，决定调用的函数
- * @param position 触发批量任务的位置，决定 Zotero Item 的获取方式。 "item" | "collection" | XUL.MenuPopup | "menuFile" | "menuEdit" | "menuView" | "menuGo" | "menuTools" | "menuHelp"
+ * @param items 需要批量处理的 Zotero.Item[]，或通过触发批量任务的位置决定 Zotero Item 的获取方式。 "item" | "collection" | XUL.MenuPopup | "menuFile" | "menuEdit" | "menuView" | "menuGo" | "menuTools" | "menuHelp"
  */
-function onUpdateInBatch(mode: string, position: string) {
-    let items: Zotero.Item[] = [];
-    switch (position) {
-        case "item":
-            items = Zotero.getActiveZoteroPane().getSelectedItems();
-            break;
-        case "collection":
-            items = ZoteroPane.getSelectedCollection()?.getChildItems() ?? [];
-            break;
-        default:
-            items = Zotero.getActiveZoteroPane().getSelectedItems();
-            break;
+async function onUpdateInBatch(mode: string, items: Zotero.Item[] | "item" | "collection" | string) {
+    if (typeof items == "string") {
+        switch (items) {
+            case "item":
+                items = Zotero.getActiveZoteroPane().getSelectedItems();
+                break;
+            case "collection":
+                items = ZoteroPane.getSelectedCollection()?.getChildItems() ?? [];
+                break;
+            default:
+                items = Zotero.getActiveZoteroPane().getSelectedItems();
+                break;
+        }
     }
     if (items.length == 0) return;
+
+    const task: {
+        processor?: (...args: any[]) => Promise<void> | void;
+        args: any[];
+        // this?: any;
+    } = {
+        args: [],
+        // this: FormatMetadata,
+    };
+
     switch (mode) {
         case "std":
-            FormatMetadata.updateInBatch(items, FormatMetadata.updateStdFlow);
+            task.processor = FormatMetadata.updateStdFlow.bind(FormatMetadata);
             break;
         case "abbr":
-            FormatMetadata.updateInBatch(items, FormatMetadata.updateJournalAbbr);
+            task.processor = FormatMetadata.updateJournalAbbr.bind(FormatMetadata);
             break;
         case "place":
-            FormatMetadata.updateInBatch(items, FormatMetadata.updateUniversityPlace);
+            task.processor = FormatMetadata.updateUniversityPlace.bind(FormatMetadata);
             break;
         case "lang":
-            FormatMetadata.updateInBatch(items, FormatMetadata.updateLanguage);
+            task.processor = FormatMetadata.updateLanguage.bind(FormatMetadata);
             break;
         case "lang-manual":
-            FormatMetadata.setLanguageManual(items);
+            task.args = ["language", await setLanguageManualDialog()];
+            task.processor = FormatMetadata.setFieldValue.bind(FormatMetadata);
             break;
         case "getAllFieldViaDOI":
-            FormatMetadata.updateInBatch(items, FormatMetadata.updateMetadataByIdentifier);
+            task.processor = FormatMetadata.updateMetadataByIdentifier.bind(FormatMetadata);
             break;
         case "doi":
-            FormatMetadata.updateInBatch(items, FormatMetadata.updateDOI);
+            task.processor = FormatMetadata.updateDOI.bind(FormatMetadata);
             break;
         case "date":
-            FormatMetadata.updateInBatch(items, FormatMetadata.updateDate);
+            task.processor = FormatMetadata.updateDate.bind(FormatMetadata);
             break;
         case "toSentenceCase":
-            FormatMetadata.updateInBatch(items, FormatMetadata.titleCase2SentenceCase);
+            task.processor = FormatMetadata.titleCase2SentenceCase.bind(FormatMetadata);
             break;
         case "chem":
         default:
             FormatMetadata.unimplemented();
-            break;
+            return;
     }
+
+    if (typeof task.processor == "undefined") return;
+
+    const total = items.length;
+    let current = 0,
+        errNum = 0;
+    const popupWin = new ztoolkit.ProgressWindow(config.addonName, {
+        closeOnClick: true,
+        closeTime: -1,
+    })
+        .createLine({
+            type: "default",
+            text: `[${current}/${total}] ${getString("info-batchBegin")}`,
+            progress: 0,
+        })
+        .show();
+
+    for (const item of items) {
+        try {
+            const args = [item, ...task.args];
+            // await task.processor.apply(task.this, args);
+            await task.processor(...args);
+            current++;
+            popupWin.changeLine({
+                text: `[${current}/${total}] ${getString("info-batchBegin")}`,
+                progress: (current / total) * 100,
+            });
+        } catch (err) {
+            ztoolkit.log(err);
+            errNum++;
+        }
+    }
+    popupWin.changeLine({
+        // type: "default",
+        text: `[✔️${current} ${errNum ? ", ❌" + errNum : ""}] ${getString("info-batchFinish")}`,
+        progress: 100,
+    });
+    popupWin.startCloseTimer(5000);
+    ztoolkit.log("batch tasks done");
 }
 
 export default {

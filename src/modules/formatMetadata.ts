@@ -15,74 +15,6 @@ export default class FormatMetadata {
     }
 
     /**
-     * 装饰器：对某些 Items 分别执行某函数
-     * @param items 需要批量处理的 Zotero.Item 列表
-     * @param fn 需要批量执行的函数
-     * @param ...args fn 的参数，Zotero.item 将始终作为第0个参数传入
-     */
-    @callingLogger
-    public static async updateInBatch(
-        items: Zotero.Item[],
-        fn: (item: Zotero.Item, ...args: any) => Promise<void> | void,
-        ...args: any
-    ) {
-        const total = items.length;
-        let num = 0,
-            errNum = 0;
-        const popupWin = new ztoolkit.ProgressWindow(config.addonName, {
-            closeOnClick: true,
-            closeTime: -1,
-        })
-            .createLine({
-                type: "default",
-                text: `[${num}/${total}] ${getString("info-batchBegin")}`,
-                progress: 0,
-            })
-            .show();
-
-        for (const item of items) {
-            try {
-                args.unshift(item);
-                await fn.apply(this, args);
-                num++;
-                popupWin.changeLine({
-                    text: `[${num}/${total}] ${getString("info-batchBegin")}`,
-                    progress: (num / total) * 100,
-                });
-            } catch (err) {
-                ztoolkit.log(err);
-                errNum++;
-            }
-        }
-        popupWin.changeLine({
-            // type: "default",
-            text: `[✔️${num} ${errNum ? ", ❌" + errNum : ""}] ${getString("info-batchFinish")}`,
-            progress: 100,
-        });
-        popupWin.startCloseTimer(5000);
-        ztoolkit.log("batch tasks done");
-
-        // Promise.all(
-        //     items.map(async (item) => {
-        //         await fn.call(this, item);
-        //         popupWin.changeLine({
-        //             progress: num / total,
-        //             text: `[${num}/${total}] Progressing`,
-        //         });
-        //         console.log(new Date());
-        //         num++;
-        //     })
-        // ).then(() => {
-        //     popupWin.changeLine({ type: "default", text: "Done!", progress: 100 });
-        //     console.log("done");
-        // });
-        // .catch((reason)=>{
-        //     err++;
-        //     popupWin.changeLine({ type: "default", text: `${total-err} done, ${err} error`, progress: 100 });
-        // })
-    }
-
-    /**
      * 标准格式化流程
      * @param item
      */
@@ -406,17 +338,6 @@ export default class FormatMetadata {
     private static verifyIso3166(locale: string) {
         return false;
     }
-    /**
-     * 手动设置语言
-     * @param items
-     * @returns
-     */
-    public static async setLanguageManual(items: Zotero.Item[]) {
-        // 弹出选择语言弹窗
-        const lang = await setLanguageManualDialog();
-        if (!lang) return;
-        this.updateInBatch(items, this.setFieldValue, "language", lang);
-    }
 
     /**
      * 设置某字段的值
@@ -425,8 +346,12 @@ export default class FormatMetadata {
      * @param value 待处理的条目字段值
      */
     public static async setFieldValue(item: Zotero.Item, field: Zotero.Item.ItemField, value: any) {
-        item.setField(field, value);
-        await item.saveTx();
+        if (value == undefined) {
+            return;
+        } else {
+            item.setField(field, value);
+            await item.saveTx();
+        }
     }
 
     /* 上下标 */

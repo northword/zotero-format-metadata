@@ -7,7 +7,7 @@ import { TagElementProps } from "zotero-plugin-toolkit/dist/tools/ui";
  * 手动设置条目语言_选择语言的弹窗
  * @returns string | false
  */
-export async function setLanguageManualDialog() {
+export async function setLanguageManualDialog(): Promise<string | undefined> {
     const dialogData: { [key: string | number]: any } = {
         selectedLang: "",
         inputLang: "",
@@ -127,7 +127,8 @@ export async function setLanguageManualDialog() {
         } else if (dialogData.inputLang !== undefined) {
             return dialogData.inputLang;
         } else {
-            return false;
+            return undefined;
         }
     }
+    return undefined;
 }
