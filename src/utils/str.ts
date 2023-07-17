@@ -40,6 +40,14 @@ function isFullUpperCase(text: string) {
     }
 }
 
+export function removeDot(text: string) {
+    return text.replace(/\./g, "");
+}
+
+export function removeHtmlTag(str: string) {
+    return str.replace(/<[^>]+>/g, "");
+}
+
 /**
  * 将给定字符串转为 HTML
  * @param html 待转换的字符串
@@ -67,7 +75,7 @@ function parseHTML(html: string) {
  * @param text
  * @returns
  */
-function toSentenceCase(text: string) {
+export function toSentenceCase(text: string) {
     // 传入文本预处理
     text = text.replace("/ : /g", ": ");
 
@@ -224,4 +232,4 @@ function toSentenceCase(text: string) {
 // const newStr = toSentenceCase(text);
 // console.log("newString", newStr);
 
-export { toSentenceCase };
+export * as StringUtil from "./str";

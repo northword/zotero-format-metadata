@@ -1,6 +1,7 @@
 import { config } from "../../package.json";
 import { getString } from "../utils/locale";
 import { MenuitemOptions } from "zotero-plugin-toolkit/dist/managers/menu";
+import { isRegularItem } from "../utils/zotero";
 
 export function registerMenu() {
     const menuIcon = `chrome://${config.addonRef}/content/icons/favicon.png`;
@@ -116,6 +117,7 @@ export function registerMenu() {
         ];
         return menuItem;
     }
+
     ztoolkit.Menu.register("item", {
         tag: "menuseparator",
         getVisibility: (elem, ev) => isRegularItem(),
@@ -128,6 +130,7 @@ export function registerMenu() {
         children: getMenuItem("item"),
         getVisibility: (elem, ev) => isRegularItem(),
     });
+
     ztoolkit.Menu.register("collection", {
         tag: "menuseparator",
     });
@@ -138,20 +141,6 @@ export function registerMenu() {
         icon: menuIcon,
         children: getMenuItem("collection"),
     });
-}
-
-// export function disableItemMenu() {
-//     const items = ZoteroPane.getSelectedItems(),
-//         isRegularItem = items.some((item) => item.isRegularItem()),
-//         itemMenuUpdateMetadata = document.getElementById(`zotero-itemmenu-formatmetadata-menu-item`);
-
-//     itemMenuUpdateMetadata?.setAttribute("disabled", `${!isRegularItem}`);
-// }
-
-export function isRegularItem() {
-    const items = ZoteroPane.getSelectedItems(),
-        isRegularItem = items.some((item) => item.isRegularItem());
-    return isRegularItem;
 }
 
 export function registerTextTransformMenu() {

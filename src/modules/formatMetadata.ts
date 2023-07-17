@@ -4,8 +4,7 @@ import { config } from "../../package.json";
 import { franc } from "franc";
 import { getPref } from "../utils/prefs";
 import { getString } from "../utils/locale";
-import { setLanguageManualDialog } from "./views/setLanguageManualDialog";
-import { toSentenceCase } from "../utils/str";
+import { removeDot, removeHtmlTag, toSentenceCase } from "../utils/str";
 // import { getAbbrFromLtwaLocally } from "./abbrevIso";
 
 export default class FormatMetadata {
@@ -97,7 +96,7 @@ export default class FormatMetadata {
                             journalAbbr = journalAbbrISO4;
                             break;
                         case "ISO4dotless":
-                            journalAbbr = this.removeDot(journalAbbrISO4);
+                            journalAbbr = removeDot(journalAbbrISO4);
                             break;
                         case "JCR":
                             journalAbbr = this.toJCR(journalAbbrISO4);
@@ -174,11 +173,6 @@ export default class FormatMetadata {
         return result;
     }
 
-    @callingLogger
-    private static removeDot(text: string) {
-        return text.replace(/\./g, "");
-    }
-
     /**
      * Convert ISO 4 with dot format to JCR format.
      * @param text
@@ -186,7 +180,7 @@ export default class FormatMetadata {
      */
     @callingLogger
     private static toJCR(text: string) {
-        return this.removeDot(text).toUpperCase();
+        return removeDot(text).toUpperCase();
     }
 
     /* 学校地点 */
@@ -264,7 +258,7 @@ export default class FormatMetadata {
     @callingLogger
     private static getTextLanguage(text: string) {
         // 替换 title 中的 HTML 标签以降低 franc 识别错误
-        text = this.removeHtmlTag(text);
+        text = removeHtmlTag(text);
 
         const francOption = {
             only: [] as string[],
@@ -290,16 +284,6 @@ export default class FormatMetadata {
         }
         ztoolkit.log("[lang] Selected ISO 639-3 code is: ", francOption.only);
         return franc(text, francOption);
-    }
-
-    /**
-     * Removes html tag
-     * @param str
-     * @returns
-     */
-    @callingLogger
-    private static removeHtmlTag(str: string) {
-        return str.replace(/<[^>]+>/g, "");
     }
 
     /**
@@ -376,7 +360,7 @@ export default class FormatMetadata {
             let selectedText = editpaneItemBox.value.slice(start, end);
             const attributeText = attribute !== undefined ? ` ${attribute}="${value}"` : "";
             selectedText = selectedText.startsWith(`<${tag}`)
-                ? this.removeHtmlTag(selectedText)
+                ? removeHtmlTag(selectedText)
                 : `<${tag}${attributeText}>` + selectedText + `</${tag}>`;
             // const text = editpaneItemBox.value.slice(0, start) + selectedText + editpaneItemBox.value.slice(end);
             // editpaneItemBox.value = text;
