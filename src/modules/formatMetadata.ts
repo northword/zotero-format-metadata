@@ -395,21 +395,19 @@ export default class FormatMetadata {
         return newItem;
     }
 
-    public static async updateMetadataByIdentifier(item: Zotero.Item, mode?: "selected" | "blank" | "all") {
+    public static async updateMetadataByIdentifier(item: Zotero.Item, mode: "selected" | "blank" | "all" = "blank") {
         const doi = item.getField("DOI") as string;
         // 不存在 DOI 直接结束
+        // todo: 若有附件，尝试从附件获取?
+        // todo: 弹出 DOI 输入对话框?
         if (!doi) {
             progressWindow(getString("info-noDOI"), "fail");
             return;
         }
         const newItem = await this.translateByDOI(doi);
+        ztoolkit.log("Item retrieved from DOI: ", newItem);
 
-        function getBlankField(item: Zotero.Item) {
-            const field: Zotero.Item.ItemField[] = [];
-            return field;
-        }
-
-        let fields: Zotero.Item.ItemField[] = [
+        const fields: Zotero.Item.ItemField[] = [
             "title",
             "publicationTitle",
             "journalAbbreviation",
@@ -423,37 +421,36 @@ export default class FormatMetadata {
             "abstractNote",
         ];
 
-        switch (mode) {
-            case "selected":
-                fields = [];
-                break;
-            case "blank":
-                fields = getBlankField(item);
-                break;
-            case "all":
-                break;
-            default:
-                break;
-        }
+        // mode == all: 强制更新，无论原值是否为空：mode == "all" ||
+        // 对于一个字段，若 mode == "all"，更新
+        //              若 mode == "blank"，且 旧值为空，更新
+        //              若 mode == "blank"，且 旧值非空，保持
+        //              若 mode == "blank"，且 新值为空，？？
 
         // 更改 ItemType
-        if (getPref("updateByDOI.itemType")) {
-            // newItem["itemTypeID"] = Zotero.ItemTypes.getID(newItem["itemType"]);
-            // newItem["itemType"] !== item.itemType ? item.setType(newItem["itemTypeID"]) : "pass";
+        if (mode === "all") {
+            ztoolkit.log("Update ItemType");
+            newItem["itemTypeID"] = Zotero.ItemTypes.getID(newItem["itemType"]);
+            newItem["itemType"] !== item.itemType ? item.setType(newItem["itemTypeID"]) : "pass";
         }
 
         // 更新 creators
-        if (getPref("updateByDOI.creators")) {
+        if (mode === "all" || item.getCreators().length == 0) {
+            ztoolkit.log("Update creators");
             item.setCreators(newItem["creators"]);
         }
 
         for (const field of fields) {
-            const newFieldValue = newItem[field],
+            const newFieldValue = newItem[field] ?? "",
                 oldFieldValue = item.getField(field);
 
             // 当新条目该字段未空时，结束本次循环
             // 存疑：当新条目该字段为空时，可能是该字段确实为空，用户已有条目字段可能是假值。
-            if (!newFieldValue) continue;
+            // if (!newFieldValue) continue;
+
+            if (!(mode === "all" || !oldFieldValue)) continue;
+            ztoolkit.log("update", field);
+
             switch (field) {
                 // case "publicationTitle":
                 //     // 当原条目存在期刊名时，不替换
@@ -462,6 +459,12 @@ export default class FormatMetadata {
                 //     }
                 //     break;
 
+                // case "journalAbbreviation":
+                //     if (newFieldValue.length == oldFieldValue.toString().length){
+                //         //
+                //     }
+
+                //     break;
                 case "url":
                     // 旧的 url 为空、为 WOS 链接时，更新 url
                     if (

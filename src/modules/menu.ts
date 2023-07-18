@@ -72,16 +72,16 @@ export function registerMenu() {
                 tag: "menuitem",
                 label: getString("menuitem-getFieldsByDOIForBlack"),
                 commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("todo", menuPopup);
+                    addon.hooks.onUpdateInBatch("getBlankFieldViaDOI", menuPopup);
                 },
             },
-            {
-                tag: "menuitem",
-                label: getString("menuitem-getFieldsByDOIForSelected"),
-                commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("todo", menuPopup);
-                },
-            },
+            // {
+            //     tag: "menuitem",
+            //     label: getString("menuitem-getFieldsByDOIForSelected"),
+            //     commandListener: (ev) => {
+            //         addon.hooks.onUpdateInBatch("todo", menuPopup);
+            //     },
+            // },
             {
                 tag: "menuitem",
                 label: getString("menuitem-getFieldsByDOIForAll"),

@@ -7,15 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 允许从 DOI 更新字段时仅更新为空的字段。/ Allows only empty fields to be updated when retrieving fields from the DOI.
+
 ## [1.0.4] - 2023-07-13
+
+### Chore
 
 - 变更插件更新清单文件路径。/ Change URI of `update.json`.
 
 ## [1.0.3] - 2023-07-11
 
+### Fixed
+
 - 更新期刊缩写数据。/ Update journal abbr data.
 
 ## [1.0.2] - 2023-07-11
+
+### Fixed
 
 - 修复本地化文本与其他插件的冲突。/ Fix localized text conflicts with other plugins.
 

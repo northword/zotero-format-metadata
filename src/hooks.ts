@@ -176,6 +176,11 @@ async function onUpdateInBatch(mode: string, items: Zotero.Item[] | "item" | "co
             break;
         case "getAllFieldViaDOI":
             task.processor = FormatMetadata.updateMetadataByIdentifier.bind(FormatMetadata);
+            task.args = ["all"];
+            break;
+        case "getBlankFieldViaDOI":
+            task.processor = FormatMetadata.updateMetadataByIdentifier.bind(FormatMetadata);
+            task.args = ["blank"];
             break;
         case "doi":
             task.processor = FormatMetadata.updateDOI.bind(FormatMetadata);
