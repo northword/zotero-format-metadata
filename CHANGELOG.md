@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.5] - 2023-07-19
+
 ### Added
 
 - 允许从 DOI 更新字段时仅更新为空的字段。/ Allows only empty fields to be updated when retrieving fields from the DOI.
@@ -281,7 +283,8 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/1.0.4...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/1.0.5...HEAD
+[1.0.5]: https://github.com/northword/zotero-format-metadata/compare/1.0.4...1.0.5
 [1.0.4]: https://github.com/northword/zotero-format-metadata/compare/1.0.3...1.0.4
 [1.0.3]: https://github.com/northword/zotero-format-metadata/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/northword/zotero-format-metadata/compare/1.0.1...1.0.2
