@@ -14,6 +14,7 @@ pref("__prefsPrefix__.lang.only.cmn", true);
 pref("__prefsPrefix__.lang.only.eng", true);
 pref("__prefsPrefix__.lang.only.other", "");
 pref("__prefsPrefix__.richtext.isEnableToolBar", true);
+pref("__prefsPrefix__.richtext.isEnableRichTextHotKey", true);
 pref("__prefsPrefix__.richtext.isEnableChem", true);
 pref("__prefsPrefix__.isEnableDateISO", true);
 pref("__prefsPrefix__.isEnableDOI", true);

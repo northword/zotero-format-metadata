@@ -2,188 +2,137 @@
     <html:link rel="localization" href="__addonRef__-preferences.ftl" />
 </linkset>
 <vbox id="__addonRef__" onload="Zotero.__addonInstance__.hooks.onPrefsEvent('load', {window})">
-    <!--常规设置-->
+    <label><html:h1 data-l10n-id="pref-title-label"></html:h1></label>
     <groupbox>
-        <label><html:h2 data-l10n-id="pref-title"></html:h2></label>
-        <!--添加时自动执行格式化-->
-        <html:div class="pref-row">
-            <checkbox
-                id="__addonRef__-add-update"
-                preference="__prefsPrefix__.add.update"
-                data-l10n-id="pref-add-update"
-                native="true"
-            />
-        </html:div>
+        <!-- 一般设置 -->
+        <label><html:h2 data-l10n-id="pref-general-settings-label"></html:h2></label>
+        <!-- 添加时自动执行格式化 -->
+        <checkbox
+            id="__addonRef__-add-update"
+            data-l10n-id="pref-general-add-update"
+            preference="__prefsPrefix__.add.update"
+            native="true"
+        />
+        <!-- 是否启用富文本工具框 -->
+        <checkbox
+            id="__addonRef__-enable-toolbar"
+            data-l10n-id="pref-general-isEnableToolbar"
+            preference="__prefsPrefix__.richtext.isEnableToolBar"
+            native="true"
+        />
+        <checkbox
+            data-l10n-id="pref-general-isEnableRichTextHotKey"
+            preference="__prefsPrefix__.richtext.isEnableRichTextHotKey"
+            native="true"
+            disabled="true"
+        />
     </groupbox>
 
-    <!--标题-->
     <groupbox>
-        <label><html:h2 data-l10n-id="pref-richtext"></html:h2></label>
-        <html:div class="pref-row">
-            <checkbox
-                id="__addonRef__-enable"
-                data-l10n-id="pref-enable"
-                preference="__prefsPrefix__.enable"
-                disabled="true"
-                native="true"
-            />
-        </html:div>
-        <html:div class="pref-row">
-            <checkbox
-                id="__addonRef__-enable-toolbar"
-                data-l10n-id="pref-richText-isEnableToolbar"
-                preference="__prefsPrefix__.richtext.isEnableToolBar"
-                native="true"
-            />
-        </html:div>
+        <!--标准格式化流程中的启用项-->
+        <label><html:h2 data-l10n-id="pref-std-label"></html:h2></label>
+        <!-- <description></description> -->
+        <!-- 清理被不合理占用的字段 -->
+        <checkbox
+            data-l10n-id="pref-std-clean-fileld"
+            preference="__prefsPrefix__.isEnableCleanFields"
+            native="true"
+            disabled="true"
+        />
+        <!-- 补全条目空白字段 -->
+        <checkbox
+            data-l10n-id="pref-std-update-field-by-doi"
+            preference="__prefsPrefix__.isEnableOtherFields"
+            native="true"
+        />
+        <!-- <description data-l10n-id="pref-std-update-field-by-doi-desc" style="width: 45em" class="indented-pref" /> -->
+        <!-- 根据标题识别条目语言 -->
+        <checkbox data-l10n-id="pref-std-lang" preference="__prefsPrefix__.isEnableLang" native="true" />
+        <!-- 更新期刊缩写 -->
+        <checkbox data-l10n-id="pref-std-abbr" preference="__prefsPrefix__.isEnableAbbr" native="true" />
+        <!-- 更新日期格式 -->
+        <checkbox data-l10n-id="pref-std-date" preference="__prefsPrefix__.isEnableDateISO" native="true" />
+        <!-- 更新DOI格式 -->
+        <checkbox data-l10n-id="pref-std-doi" preference="__prefsPrefix__.isEnableDOI" native="true" />
+        <!-- 更新地点字段 -->
+        <checkbox data-l10n-id="pref-std-place" preference="__prefsPrefix__.isEnablePlace" native="true" />
     </groupbox>
 
-    <!--期刊缩写-->
+    <!-- 期刊缩写 -->
     <groupbox>
-        <label><html:h2 data-l10n-id="pref-abbr"></html:h2></label>
-        <html:div class="pref-row">
-            <checkbox
-                id="__addonRef__-enable"
-                data-l10n-id="pref-enable"
-                preference="__prefsPrefix__.isEnableAbbr"
-                native="true"
-            />
-        </html:div>
+        <label><html:h2 data-l10n-id="pref-abbr-label"></html:h2></label>
+
         <hbox align="center">
-            <label data-l10n-id="pref-abbr-type" />
+            <label data-l10n-id="pref-abbr-type-label" />
             <radiogroup id="__addonRef__-abbr-type" preference="__prefsPrefix__.abbr.type" orient="horizontal">
-                <radio label="ISO 4 with dot" value="ISO4dot" />
-                <radio label="ISO 4 without dot" value="ISO4dotless" />
-                <radio label="JCR" value="JCR" />
+                <radio data-l10n-id="pref-abbr-type-iso4" value="ISO4dot" />
+                <radio data-l10n-id="pref-abbr-type-iso4dotless" value="ISO4dotless" />
+                <radio data-l10n-id="pref-abbr-type-jcr" value="JCR" />
             </radiogroup>
         </hbox>
-        <html:div class="pref-row">
-            <checkbox
-                id="__addonRef__-abbr-infer"
-                data-l10n-id="pref-abbr-infer"
-                preference="__prefsPrefix__.abbr.infer"
-                native="true"
-            />
-        </html:div>
-        <html:div class="pref-row">
-            <checkbox
-                id="__addonRef__-abbr-usefull"
-                data-l10n-id="pref-abbr-usefull"
-                preference="__prefsPrefix__.abbr.usefull"
-                native="true"
-            />
-        </html:div>
-        <html:div class="pref-row">
-            <checkbox
-                id="__addonRef__-abbr-usefull"
-                data-l10n-id="pref-abbr-usefullZh"
-                preference="__prefsPrefix__.abbr.usefullZh"
-                native="true"
-            />
-        </html:div>
+
+        <checkbox
+            id="__addonRef__-abbr-infer"
+            data-l10n-id="pref-abbr-infer"
+            preference="__prefsPrefix__.abbr.infer"
+            native="true"
+        />
+
+        <checkbox
+            id="__addonRef__-abbr-usefull"
+            data-l10n-id="pref-abbr-usefull"
+            preference="__prefsPrefix__.abbr.usefull"
+            native="true"
+        />
+
+        <checkbox
+            id="__addonRef__-abbr-usefull"
+            data-l10n-id="pref-abbr-usefullZh"
+            preference="__prefsPrefix__.abbr.usefullZh"
+            native="true"
+        />
     </groupbox>
 
-    <!--Place-->
+    <!-- 语言 -->
     <groupbox>
-        <label><html:h2 data-l10n-id="pref-place"></html:h2></label>
-        <html:div class="pref-row">
-            <checkbox
-                id="__addonRef__-enable"
-                data-l10n-id="pref-enable"
-                preference="__prefsPrefix__.isEnablePlace"
-                native="true"
-            />
-        </html:div>
-    </groupbox>
+        <label><html:h2 data-l10n-id="pref-lang-label"></html:h2></label>
 
-    <!--根据 DOI 更新其他字段-->
-    <groupbox>
-        <label><html:h2 data-l10n-id="pref-otherFields"></html:h2></label>
-        <html:div class="pref-row">
-            <checkbox
-                id="__addonRef__-enable"
-                data-l10n-id="pref-enable"
-                preference="__prefsPrefix__.isEnableOtherFields"
-                native="true"
-            />
-        </html:div>
-    </groupbox>
+        <checkbox
+            id="__addonRef__-lang-only"
+            data-l10n-id="pref-lang-allow"
+            preference="__prefsPrefix__.lang.only.enable"
+            native="true"
+        />
 
-    <!--DOI-->
-    <groupbox>
-        <label><html:h2 data-l10n-id="pref-doi"></html:h2></label>
-        <html:div class="pref-row">
-            <checkbox
-                id="__addonRef__-enable"
-                data-l10n-id="pref-enable"
-                preference="__prefsPrefix__.isEnableDOI"
-                native="true"
-            />
-        </html:div>
-    </groupbox>
-
-    <!--日期-->
-    <groupbox>
-        <label><html:h2 data-l10n-id="pref-date"></html:h2></label>
-        <html:div class="pref-row">
-            <checkbox
-                id="__addonRef__-enable"
-                data-l10n-id="pref-enable"
-                preference="__prefsPrefix__.isEnableDateISO"
-                native="true"
-            />
-        </html:div>
-    </groupbox>
-
-    <!--语言-->
-    <groupbox>
-        <label><html:h2 data-l10n-id="pref-lang"></html:h2></label>
-        <html:div class="pref-row">
-            <checkbox
-                id="__addonRef__-lang-enable"
-                data-l10n-id="pref-enable"
-                preference="__prefsPrefix__.isEnableAbbr"
-                native="true"
-            />
-        </html:div>
-        <html:div class="pref-row">
-            <checkbox
-                id="__addonRef__-lang-only"
-                data-l10n-id="pref-lang-allow"
-                preference="__prefsPrefix__.lang.only.enable"
-                native="true"
-            />
-        </html:div>
         <vbox class="indented-pref">
             <hbox align="center">
-                <html:div class="pref-row">
-                    <checkbox
-                        id="__addonRef__-lang-only-cmn"
-                        data-l10n-id="pref-lang-cmn"
-                        preference="__prefsPrefix__.lang.only.cmn"
-                        native="true"
-                    />
-                    <checkbox
-                        id="__addonRef__-lang-only-eng"
-                        data-l10n-id="pref-lang-eng"
-                        preference="__prefsPrefix__.lang.only.eng"
-                        native="true"
-                    />
-                    <label data-l10n-id="pref-lang-other" />
-                    <html:input
-                        type="text"
-                        id="__addonRef__-lang-only-other"
-                        preference="__prefsPrefix__.lang.only.other"
-                    />
-                    <html:a
-                        data-l10n-id="pref-lang-other-doc"
-                        class="zotero-text-link"
-                        href="https://github.com/northword/zotero-format-metadata#readme"
-                    />
-                </html:div>
+                <checkbox
+                    id="__addonRef__-lang-only-cmn"
+                    data-l10n-id="pref-lang-cmn"
+                    preference="__prefsPrefix__.lang.only.cmn"
+                    native="true"
+                />
+                <checkbox
+                    id="__addonRef__-lang-only-eng"
+                    data-l10n-id="pref-lang-eng"
+                    preference="__prefsPrefix__.lang.only.eng"
+                    native="true"
+                />
+                <label data-l10n-id="pref-lang-other" />
+                <html:input
+                    type="text"
+                    id="__addonRef__-lang-only-other"
+                    preference="__prefsPrefix__.lang.only.other"
+                />
+                <label
+                    data-l10n-id="pref-lang-other-doc"
+                    is="zotero-text-link"
+                    class="zotero-text-link"
+                    href="https://github.com/northword/zotero-format-metadata#readme"
+                />
             </hbox>
 
-            <!-- <description data-l10n-id="pref-lang-other-desc" style="width: 45em" /> -->
+            <description data-l10n-id="pref-lang-other-desc" style="width: 45em" />
         </vbox>
     </groupbox>
 
@@ -193,6 +142,12 @@
             data-l10n-id="help-version"
             data-l10n-args='{"time": "__buildTime__","name": "__addonName__","version":"__buildVersion__"}'
         />
-        <label class="zotero-text-link" href="https://github.com/northword/zotero-format-metadata">GitHub</label>
+        <label
+            is="zotero-text-link"
+            class="zotero-text-link"
+            href="https://github.com/northword/zotero-format-metadata"
+        >
+            GitHub
+        </label>
     </groupbox>
 </vbox>

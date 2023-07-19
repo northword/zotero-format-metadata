@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - 允许从 DOI 更新字段时仅更新为空的字段。/ Allows only empty fields to be updated when retrieving fields from the DOI.
+- 重新组织首选项页面。/ Redesign of the preferences.
 
 ## [1.0.4] - 2023-07-13
 
