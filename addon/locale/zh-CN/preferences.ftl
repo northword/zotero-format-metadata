@@ -13,7 +13,6 @@ pref-wip =
 
 ## 标准格式化流程
 pref-std-label = 标准格式化流程
-
 pref-std-clean-fileld = 
     .label = 清理被不合理占用的字段
 pref-std-update-field-by-doi = 

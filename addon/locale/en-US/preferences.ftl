@@ -13,21 +13,20 @@ pref-wip =
 
 ## 标准格式化流程
 pref-std-label = Standard Formatting Flow
-
 pref-std-clean-fileld = 
-    .label = 清理被不合理占用的字段
+    .label = Clean up the fields that are unreasonably used
 pref-std-update-field-by-doi = 
-    .label = 根据 DOI 更新空白字段
+    .label = Update blank fields based on DOI
 pref-std-lang = 
-    .label = 根据条目标题自动更新语言字段
+    .label = Automatically update Language field based on item title
 pref-std-abbr = 
-    .label = 查找期刊缩写
+    .label = Look up journal abbreviation
 pref-std-date = 
-    .label = 将日期格式化为 ISO YYYY-MM-DD 格式
+    .label = Convert the date format to ISO YYYY-MM-DD
 pref-std-doi = 
-    .label = 清除 DOI 的网址前缀
+    .label = Remove DOI URL prefix
 pref-std-place = 
-    .label = 更新条目的地点字段
+    .label = Update the Place field
 
 ## 期刊缩写
 pref-abbr-label = Journal Abbreviations
