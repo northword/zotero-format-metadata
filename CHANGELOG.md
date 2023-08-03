@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 尝试修复 MAC 上关闭主界面不退出进程重新打开后插件部分功能失效的问题。/ Try to fix the issue that some functions of the plugin do not work after reopening the main window on MAC.  
+  - <https://github.com/windingwind/zotero-plugin-template/pull/67>
+  - <https://groups.google.com/g/zotero-dev/c/zVn4k9dLoak>
+- 更新依赖，避免插件间冲突。/ Update dependencies to avoid conflicts between plugins.  
+    <https://github.com/windingwind/zotero-pdf-translate/issues/526>
+
 ## [1.0.5] - 2023-07-19
 
 ### Added
