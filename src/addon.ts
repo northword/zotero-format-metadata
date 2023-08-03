@@ -1,8 +1,6 @@
 import { DialogHelper } from "zotero-plugin-toolkit/dist/helpers/dialog";
 import hooks from "./hooks";
-import ZoteroToolkit from "zotero-plugin-toolkit/dist/index";
-// 临时使用本地 toolkit .
-// import ZoteroToolkit from "../../zotero-plugin-toolkit/dist/index";
+import { createZToolkit } from "./utils/ztoolkit";
 
 class Addon {
     public data: {
@@ -10,7 +8,7 @@ class Addon {
         // Env type, see build.js
         env: "development" | "production";
         // ztoolkit: MyToolkit;
-        ztoolkit: ZoteroToolkit;
+        ztoolkit: ZToolkit;
         locale?: {
             current: any;
         };
@@ -32,7 +30,7 @@ class Addon {
             alive: true,
             env: __env__,
             // ztoolkit: new MyToolkit(),
-            ztoolkit: new ZoteroToolkit(),
+            ztoolkit: createZToolkit(),
             dialogs: {},
         };
         this.hooks = hooks;

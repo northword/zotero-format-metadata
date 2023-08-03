@@ -9,28 +9,34 @@ import { registerShortcuts } from "./modules/shortcuts";
 // import { registerPrompt } from "./modules/prompt";
 import { richTextToolBar } from "./modules/views/richTextToolBar";
 import { setLanguageManualDialog } from "./modules/views/setLanguageManualDialog";
+import { createZToolkit } from "./utils/ztoolkit";
 
 async function onStartup() {
     await Promise.all([Zotero.initializationPromise, Zotero.unlockPromise, Zotero.uiReadyPromise]);
     initLocale();
-    ztoolkit.ProgressWindow.setIconURI("default", `chrome://${config.addonRef}/content/icons/favicon.png`);
-
     registerPrefs();
-
     registerNotifier();
+    await onMainWindowLoad(window);
+}
+
+async function onMainWindowLoad(win: Window): Promise<void> {
+    // Create ztoolkit for every window
+    addon.data.ztoolkit = createZToolkit();
     registerMutationObserver();
-
     registerShortcuts();
-
     registerMenu();
     registerTextTransformMenu();
 }
 
-function onShutdown() {
+async function onMainWindowUnload(win: Window): Promise<void> {
     ztoolkit.unregisterAll();
     Object.values(addon.data.dialogs).forEach((dialog) => {
         dialog === undefined ? "" : dialog?.window.close();
     });
+}
+
+function onShutdown() {
+    onMainWindowUnload(window);
     // addon.data.dialogs = {};
     // Remove addon object
     addon.data.alive = false;
