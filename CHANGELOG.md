@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 将更新清单文件链接从 JsDelivr 变更回 GitHub，不再掩耳盗铃，毕竟访问不了 `raw.githubusercontent.com` 的用户八成也访问不了 release page。
+
 ## [1.0.6] - 2023-08-04
 
 ### Fixed

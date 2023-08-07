@@ -9,7 +9,7 @@
         "addonInstance": "FormatMetadata",
         "prefsPrefix": "extensions.zotero.formatmetadata",
         "releasepage": "https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-format-metadata.xpi",
-        "updaterdf": "https://cdn.jsdelivr.net/gh/northword/zotero-format-metadata@main/update.json"
+        "updaterdf": "https://raw.githubusercontent.com/northword/zotero-format-metadata/main/update.json"
     },
     "main": "src/index.ts",
     "scripts": {
