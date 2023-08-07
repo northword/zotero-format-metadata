@@ -1,5 +1,5 @@
 import ZoteroToolkit from "zotero-plugin-toolkit";
-// import ZoteroToolkit from "../../zotero-plugin-toolkit/dist/index";
+// import ZoteroToolkit from "../../../zotero-plugin-toolkit/dist/index";
 
 import { config } from "../../package.json";
 
