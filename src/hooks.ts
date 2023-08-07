@@ -10,6 +10,7 @@ import { registerShortcuts } from "./modules/shortcuts";
 import { richTextToolBar } from "./modules/views/richTextToolBar";
 import { setLanguageManualDialog } from "./modules/views/setLanguageManualDialog";
 import { createZToolkit } from "./utils/ztoolkit";
+import { waitUtilAsync } from "./utils/wait";
 
 async function onStartup() {
     await Promise.all([Zotero.initializationPromise, Zotero.unlockPromise, Zotero.uiReadyPromise]);
@@ -139,6 +140,31 @@ function onShortcuts(type: string) {
  * @param items 需要批量处理的 Zotero.Item[]，或通过触发批量任务的位置决定 Zotero Item 的获取方式。 "item" | "collection" | XUL.MenuPopup | "menuFile" | "menuEdit" | "menuView" | "menuGo" | "menuTools" | "menuHelp"
  */
 async function onUpdateInBatch(mode: string, items: Zotero.Item[] | "item" | "collection" | string) {
+    const progress = new ztoolkit.ProgressWindow(config.addonName, {
+        closeOnClick: false,
+        closeTime: -1,
+    })
+        .createLine({
+            type: "default",
+            text: getString("info-batch-init"),
+            progress: 0,
+            idx: 0,
+        })
+        .createLine({ text: getString("info-batch-break"), idx: 1 })
+        .show();
+
+    await waitUtilAsync(() =>
+        // @ts-ignore lines可以被访问到
+        Boolean(progress.lines && progress.lines[1]._itemText),
+    );
+    // @ts-ignore lines可以被访问到
+    progress.lines[1]._hbox.addEventListener("click", async (ev: MouseEvent) => {
+        ev.stopPropagation();
+        ev.preventDefault();
+        state = false;
+        progress.changeLine({ text: getString("info-batch-stop-next"), idx: 1 });
+    });
+
     if (typeof items == "string") {
         switch (items) {
             case "item":
@@ -152,7 +178,13 @@ async function onUpdateInBatch(mode: string, items: Zotero.Item[] | "item" | "co
                 break;
         }
     }
-    if (items.length == 0) return;
+    if (items.length == 0) {
+        progress.createLine({
+            type: "fail",
+            text: getString("info-batch-no-selected"),
+        });
+        return;
+    }
 
     const task: {
         processor?: (...args: any[]) => Promise<void> | void;
@@ -207,39 +239,44 @@ async function onUpdateInBatch(mode: string, items: Zotero.Item[] | "item" | "co
 
     const total = items.length;
     let current = 0,
-        errNum = 0;
-    const popupWin = new ztoolkit.ProgressWindow(config.addonName, {
-        closeOnClick: true,
-        closeTime: -1,
-    })
-        .createLine({
-            type: "default",
-            text: `[${current}/${total}] ${getString("info-batchBegin")}`,
-            progress: 0,
-        })
-        .show();
+        errNum = 0,
+        state = true;
+    progress.changeLine({
+        type: "default",
+        text: `[${current}/${total}] ${getString("info-batch-running")}`,
+        progress: 0,
+        idx: 0,
+    });
 
     for (const item of items) {
+        if (!state) break;
         try {
             const args = [item, ...task.args];
             // await task.processor.apply(task.this, args);
             await task.processor(...args);
+            // await Zotero.Promise.delay(3000);
             current++;
-            popupWin.changeLine({
-                text: `[${current}/${total}] ${getString("info-batchBegin")}`,
+            progress.changeLine({
+                text: `[${current}/${total}] ${getString("info-batch-running")}`,
                 progress: (current / total) * 100,
+                idx: 0,
             });
         } catch (err) {
-            ztoolkit.log(err);
+            progress.createLine({
+                type: "fail",
+                text: getString("info-batch-has-error"),
+            });
+            ztoolkit.log(err, item);
             errNum++;
         }
     }
-    popupWin.changeLine({
+    progress.changeLine({
         // type: "default",
-        text: `[✔️${current} ${errNum ? ", ❌" + errNum : ""}] ${getString("info-batchFinish")}`,
+        text: `[✔️${current} ${errNum ? ", ❌" + errNum : ""}] ${getString("info-batch-finish")}`,
         progress: 100,
+        idx: 0,
     });
-    popupWin.startCloseTimer(5000);
+    progress.startCloseTimer(5000);
     ztoolkit.log("batch tasks done");
 }
 

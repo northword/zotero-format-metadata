@@ -1,5 +1,7 @@
 startup-begin = Addon is loading
 startup-finish = Addon is ready
+
+## menu
 menuitem-label = Format Item MetaData
 menuitem-stdFormatFlow = Standard Format Flow
 menuitem-setJournalAbbr = Look up Journal Abbreviations
@@ -14,9 +16,19 @@ menuitem-manuallySetLang = Manually Set Item Language
 menuitem-toSentenceCase = Convert Title to Sentence Case
 menufield-toSentenceCase = Sentence case (Extended)
 prefs-title = Format MetaData
-info-batchBegin = Progressing... Please wait.
-info-batchFinish = Finished
+
+## batch
+info-batch-init = Initialization
+info-batch-no-selected = No selected items
+info-batch-running = Progressing... Please wait.
+info-batch-finish = Finished
+info-batch-break = Click here to stop this process
+info-batch-stop-next = Will stop when current item is complete
+info-batch-has-error = Error exists, please check in the console
+
 info-noDOI = No DOI found, cannot update fields
+
+## dialog
 dialog-selectLanguage = Select Language
 confirm = Confirm
 cancel = Cancel
