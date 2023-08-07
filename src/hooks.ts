@@ -282,6 +282,8 @@ async function onUpdateInBatch(mode: string, items: Zotero.Item[] | "item" | "co
 
 export default {
     onStartup,
+    onMainWindowLoad,
+    onMainWindowUnload,
     onShutdown,
     onNotify,
     onMutationObserver,
