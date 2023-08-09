@@ -3,14 +3,13 @@ import { getString } from "../utils/locale";
 import { getPref } from "../utils/prefs";
 
 export function registerPrefs() {
-    const prefOptions = {
+    ztoolkit.PreferencePane.register({
         pluginID: config.addonID,
         src: rootURI + "chrome/content/preferences.xhtml",
         label: getString("prefs-title"),
         image: `chrome://${config.addonRef}/content/icons/favicon.png`,
         defaultXUL: true,
-    };
-    ztoolkit.PreferencePane.register(prefOptions);
+    });
 }
 
 export function registerPrefsScripts(_window: Window) {
