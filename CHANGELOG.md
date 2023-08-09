@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - 菜单中的大小写。/ Fix typo.
+- 继续尝试修复 [1.0.6 尝试修复的 main window load 问题](#106---2023-08-04)。
 
 ## [1.0.7] - 2023-08-07
 
