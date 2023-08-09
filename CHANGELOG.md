@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- 依照 Zotero 官方团队建议，修改插件名为 `Format Metadata for Zotero`。/ Change addon name to `Format Metadata for Zotero`.
 - 修复作者的大小写。 / Fix case of creators.
 
 ### Fixed
