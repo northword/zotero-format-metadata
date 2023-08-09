@@ -1,5 +1,5 @@
 // prettier-ignore
-const skipWords = ["but", "or", "yet", "so", "for", "and", "nor", "a", "an",
+const functionWords = ["but", "or", "yet", "so", "for", "and", "nor", "a", "an",
     "the", "at", "by", "from", "in", "into", "of", "on", "to", "with", "up",
     "down", "as"];
 // prettier-ignore
@@ -47,9 +47,18 @@ export function removeDot(text: string) {
 export function removeHtmlTag(str: string) {
     return str.replace(/<[^>]+>/g, "");
 }
-
+/**
+ * To sentence case
+ * The code is modified from Zotero.Utilities.sentenceCase.
+ * AGPL v3.0 license.
+ * @see https://github.com/zotero/utilities/pull/26
+ * @see https://github.com/zotero/utilities/pull/27
+ * @param text
+ * @returns
+ */
 export function toSentenceCase(text: string) {
     const preserve = [] as any[]; // northword: add for tsc
+    const allcaps = text === text.toUpperCase();
 
     // sub-sentence start
     text.replace(/([.?!][\s]+)(<[^>]+>)?([\p{Lu}])/gu, (match, end, markup, char, i) => {
@@ -85,6 +94,8 @@ export function toSentenceCase(text: string) {
         .replace(/[–—]\uFFFD*\s*\uFFFD*A\s/g, (match) => match.toLowerCase())
         // words, compound words, and acronyms (latter also catches U.S.A.)
         .replace(/([\u{FFFD}\p{L}\p{N}\p{No}]+([\u{FFFD}\p{L}\p{N}\p{No}\p{Pc}]*))|(\s(\p{Lu}+[.]){2,})?/gu, (word) => {
+            if (allcaps) return word.toLowerCase();
+
             const unmasked = word.replace(/\uFFFD/g, "");
 
             if (unmasked.length === 1) {
@@ -265,7 +276,7 @@ export function toSentenceCase_Bak(text: string) {
                 } else if (index !== 0 && words[index - 1].endsWith(":")) {
                     // 前一词以冒号结尾，（且当前词不是第一个词），首字母大写
                     return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-                } else if (skipWords.includes(word.toLowerCase())) {
+                } else if (functionWords.includes(word.toLowerCase())) {
                     // 是虚词，小写
                     return word.toLowerCase();
                 } else if (word.match(/[-]/)) {
