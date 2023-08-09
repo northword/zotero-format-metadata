@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复部分标题句子式大写转换问题。Zotero 更新了其内置的转换方法，在其基础上扩展支持化学元素。/ fix: to sentence case
+close #35, #27, #18
+    related: <https://github.com/zotero/utilities/pull/26>
+
 ## [1.1.0] - 2023-08-09
 
 ### Added

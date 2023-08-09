@@ -38,6 +38,16 @@ const testItems: testItem[] = [
         original: `Accelerating VASP Electronic Structure Calculations Using Graphic Processing Units`,
         expected: `Accelerating VASP electronic structure calculations using graphic processing units`,
     },
+    {
+        name: "化学元素后跟逗号",
+        original: `Taming the redox property of A<sub>0.5</sub>Co<sub>2.5</sub>O<sub>4</sub> (a = Mg, Ca, Sr, Ba) toward high catalytic activity for N<sub>2</sub>O decomposition`,
+        expected: `Taming the redox property of A<sub>0.5</sub>Co<sub>2.5</sub>O<sub>4</sub> (a = Mg, Ca, Sr, Ba) toward high catalytic activity for N<sub>2</sub>O decomposition`,
+    },
+    {
+        name: "化学元素加括号",
+        original: `(N<sub>2</sub>O)`,
+        expected: `(N<sub>2</sub>O)`,
+    },
 ];
 
 testItems.forEach((testItem, index) => {

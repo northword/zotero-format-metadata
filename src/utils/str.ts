@@ -48,6 +48,77 @@ export function removeHtmlTag(str: string) {
     return str.replace(/<[^>]+>/g, "");
 }
 
+export function toSentenceCase(text: string) {
+    const preserve = [] as any[]; // northword: add for tsc
+
+    // sub-sentence start
+    text.replace(/([.?!][\s]+)(<[^>]+>)?([\p{Lu}])/gu, (match, end, markup, char, i) => {
+        markup = markup || "";
+        if (!text.substring(0, i + 1).match(/(\p{Lu}[.]){2,}$/u)) {
+            // prevent "U.S. Taxes" from starting a new sub-sentence
+            preserve.push({ start: i + end.length + markup.length, end: i + end.length + markup.length + char.length });
+        }
+        return match; // northword patch: add for ts lint, 避免类型检查报错
+    });
+
+    // protect leading capital
+    text.replace(/^(<[^>]+>)?([\p{Lu}])/u, (match, markup, char) => {
+        markup = markup || "";
+        preserve.push({ start: markup.length, end: markup.length + char.length });
+        return match; // northword patch: add for ts lint, 避免类型检查报错
+    });
+
+    // protect nocase
+    text.replace(/<span class="nocase">.*?<\/span>|<nc>.*?<\/nc>/gi, (match, i) => {
+        preserve.push({ start: i, end: i + match.length, description: "nocase" });
+        return match; // northword patch: add for ts lint, 避免类型检查报错
+    });
+
+    // mask html tags with characters so the sentence-casing can deal with them as simple words
+    let masked = text.replace(/<[^>]+>/g, (match, i) => {
+        preserve.push({ start: i, end: i + match.length, description: "markup" });
+        return "\uFFFD".repeat(match.length);
+    });
+
+    masked = masked
+        .replace(/[;:]\uFFFD*\s+\uFFFD*A\s/g, (match) => match.toLowerCase())
+        .replace(/[–—]\uFFFD*\s*\uFFFD*A\s/g, (match) => match.toLowerCase())
+        // words, compound words, and acronyms (latter also catches U.S.A.)
+        .replace(/([\u{FFFD}\p{L}\p{N}\p{No}]+([\u{FFFD}\p{L}\p{N}\p{No}\p{Pc}]*))|(\s(\p{Lu}+[.]){2,})?/gu, (word) => {
+            const unmasked = word.replace(/\uFFFD/g, "");
+
+            if (unmasked.length === 1) {
+                return unmasked === "A" ? word.toLowerCase() : word;
+            }
+
+            // inner capital somewhere
+            if (unmasked.match(/.\p{Lu}/u)) {
+                return word;
+            }
+
+            // identifiers or allcaps
+            if (
+                unmasked.match(/^\p{L}\p{L}*[\p{N}\p{No}][\p{L}\p{N}\p{No}]*$/u) ||
+                unmasked.match(/^[\p{Lu}\p{N}\p{No}]+$/u)
+            ) {
+                return word;
+            }
+
+            // northword patch: 支持化学元素识别
+            if (chemElements.includes(word)) {
+                return word;
+            }
+
+            return word.toLowerCase();
+        });
+
+    for (const { start, end } of preserve) {
+        masked = masked.substring(0, start) + text.substring(start, end) + masked.substring(end);
+    }
+
+    return masked;
+}
+
 /**
  * 将给定字符串转为 HTML
  * @param html 待转换的字符串
@@ -72,10 +143,12 @@ function parseHTML(html: string) {
 
 /**
  * 将给定字符串转为句子式大小写
+ * @deprecated use toSentenceCase() instead. 转为 patch Zotero.Utilities.sentenceCase
+ *
  * @param text
  * @returns
  */
-export function toSentenceCase(text: string) {
+export function toSentenceCase_Bak(text: string) {
     // 传入文本预处理
     text = text.replace("/ : /g", ": ");
 
@@ -225,8 +298,6 @@ export function toSentenceCase(text: string) {
     return newStr;
 }
 
-// // 调试：取消注释下三行，注释 export，更换 parseHTML() 中 ztoolkit.getDOMParser() 语句
-// // tsc 编译，str.js 复制 Zotero 运行
 // const text =
 //     'Aaa Bbb ccc dDD Co<sub>3</sub>O<sub>4</sub> NH3 NH<sub>3</sub> <i><span class="nocase">No Case</span></i> a <b>bold</b> in Sentence and <i>italic</i> Test: A Review, Low-Temperature NH<sub>3</sub>-SCR Abatement of nitrogen oxides α-MnO2 via selective catalytic reduction over Ce1–W1 Atom-Pair sites Co-Mn-Al ';
 // const newStr = toSentenceCase(text);
