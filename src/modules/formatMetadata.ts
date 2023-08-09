@@ -19,9 +19,10 @@ export default class FormatMetadata {
      */
     @callingLogger
     public static async updateStdFlow(item: Zotero.Item) {
-        // 作者、期刊、年、期、卷、页 -> 判断语言 -> 匹配缩写 -> 匹配地点 -> 格式化日期 -> 格式化DOI
+        // 作者、期刊、年、期、卷、页 -> 判断语言 -> 作者大小写 -> 匹配缩写 -> 匹配地点 -> 格式化日期 -> 格式化DOI
         getPref("isEnableOtherFields") ? await this.updateMetadataByIdentifier(item) : "skip";
         getPref("isEnableLang") ? await this.updateLanguage(item) : "skip";
+        getPref("isEnableCreators") ? await this.capitalizeName(item) : "skip";
         getPref("isEnableAbbr") ? await this.updateJournalAbbr(item) : "skip";
         getPref("isEnablePlace") ? await this.updateUniversityPlace(item) : "skip";
         getPref("isEnableDateISO") && !getPref("isEnableOtherFields") ? await this.updateDate(item) : "skip";
@@ -512,6 +513,20 @@ export default class FormatMetadata {
         const title = item.getField("title") as string;
         const newTitle = toSentenceCase(title);
         item.setField("title", newTitle);
+        await item.saveTx();
+    }
+
+    @callingLogger
+    public static async capitalizeName(item: Zotero.Item) {
+        const creators = item.getCreators();
+
+        const newCreators = [];
+        for (const creator of creators) {
+            creator.firstName = Zotero.Utilities.capitalizeName(creator.firstName!.trim());
+            creator.lastName = Zotero.Utilities.capitalizeName(creator.lastName!.trim());
+            newCreators.push(creator);
+        }
+        item.setCreators(newCreators);
         await item.saveTx();
     }
 

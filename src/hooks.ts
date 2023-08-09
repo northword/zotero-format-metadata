@@ -229,6 +229,9 @@ async function onUpdateInBatch(mode: string, items: Zotero.Item[] | "item" | "co
         case "toSentenceCase":
             task.processor = FormatMetadata.titleCase2SentenceCase.bind(FormatMetadata);
             break;
+        case "capitalizeName":
+            task.processor = FormatMetadata.capitalizeName.bind(FormatMetadata);
+            break;
         case "chem":
         default:
             FormatMetadata.unimplemented();

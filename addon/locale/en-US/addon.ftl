@@ -14,6 +14,7 @@ menuitem-setDate = Uniform Date format to ISO
 menuitem-autoSetLang = Auto Set Item Language
 menuitem-manuallySetLang = Manually Set Item Language
 menuitem-toSentenceCase = Convert Title to Sentence Case
+menuitem-capitalizeName = Fix Case of Creators
 menufield-toSentenceCase = Sentence case (Extended)
 prefs-title = Format MetaData
 

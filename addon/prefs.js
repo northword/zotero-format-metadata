@@ -18,3 +18,4 @@ pref("__prefsPrefix__.richtext.isEnableRichTextHotKey", true);
 pref("__prefsPrefix__.richtext.isEnableChem", true);
 pref("__prefsPrefix__.isEnableDateISO", true);
 pref("__prefsPrefix__.isEnableDOI", true);
+pref("__prefsPrefix__.isEnableCreators", true);

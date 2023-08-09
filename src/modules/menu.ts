@@ -32,6 +32,13 @@ export function registerMenu() {
                 },
             },
             {
+                tag: "menuitem",
+                label: getString("menuitem-capitalizeName"),
+                commandListener: (ev) => {
+                    addon.hooks.onUpdateInBatch("capitalizeName", menuPopup);
+                },
+            },
+            {
                 tag: "menuseparator",
             },
             {

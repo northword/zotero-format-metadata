@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 修复作者的大小写。 / Fix case of creators.
+
 ## [1.0.7] - 2023-08-07
 
 ### Added

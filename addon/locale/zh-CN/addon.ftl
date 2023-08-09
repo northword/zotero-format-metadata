@@ -14,6 +14,7 @@ menuitem-setDate = 统一日期格式为 ISO 格式
 menuitem-autoSetLang = 自动识别条目语言
 menuitem-manuallySetLang = 手动设置条目语言
 menuitem-toSentenceCase = 将标题改为句首大写
+menuitem-capitalizeName = 修正作者的大小写
 menufield-toSentenceCase = 句首大写（扩展）
 prefs-title = 格式化条目元数据
 
