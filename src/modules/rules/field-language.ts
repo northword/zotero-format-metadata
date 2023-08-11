@@ -6,7 +6,7 @@ import { iso6393To6391Data } from "../../data";
 
 /* 条目语言 */
 
-export { updateLanguage, getTextLanguage };
+export { updateLanguage, getTextLanguage, toIso639_1 };
 
 async function updateLanguage(item: Zotero.Item) {
     // WIP: 已有合法 ISO 639 - ISO 3166 代码的，不予处理
