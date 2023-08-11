@@ -1,4 +1,4 @@
-import { journalAbbrlocalData } from "../../data/helper";
+import { journalAbbrlocalData } from "../../data";
 import { getPref } from "../../utils/prefs";
 import { removeDot } from "../../utils/str";
 import { getTextLanguage } from "./field-language";

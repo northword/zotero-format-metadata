@@ -2,7 +2,7 @@ import { franc } from "franc";
 import { progressWindow } from "../../utils/logger";
 import { getPref } from "../../utils/prefs";
 import { removeHtmlTag } from "../../utils/str";
-import { iso6393To6391Data } from "../../data/helper";
+import { iso6393To6391Data } from "../../data";
 
 /* 条目语言 */
 

@@ -1,4 +1,4 @@
-import { universityPlaceLocalData } from "../../data/helper";
+import { universityPlaceLocalData } from "../../data";
 
 /* 学校地点 */
 
