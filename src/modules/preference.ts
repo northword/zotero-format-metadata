@@ -1,4 +1,4 @@
-import { config } from "../../package.json";
+import { config, homepage } from "../../package.json";
 import { getString } from "../utils/locale";
 import { getPref } from "../utils/prefs";
 
@@ -8,6 +8,7 @@ export function registerPrefs() {
         src: rootURI + "chrome/content/preferences.xhtml",
         label: getString("prefs-title"),
         image: `chrome://${config.addonRef}/content/icons/favicon.png`,
+        helpURL: homepage,
         defaultXUL: true,
     });
 }

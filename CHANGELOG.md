@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 首选项窗格增加“帮助”按钮，目前指向仓库主页 README 文档。
+
 ## [1.2.0] - 2023-08-11
 
 ### Added
