@@ -161,6 +161,9 @@ async function onUpdateInBatch(mode: string, items: Zotero.Item[] | "item" | "co
         case "std":
             processor = FormatMetadata.updateStdFlow.bind(FormatMetadata);
             break;
+        case "checkDuplication":
+            processor = FormatMetadata.checkDuplication.bind(FormatMetadata);
+            break;
         case "abbr":
             processor = FormatMetadata.updateJournalAbbr.bind(FormatMetadata);
             break;

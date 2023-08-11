@@ -18,6 +18,7 @@ class Addon {
         dialogs: {
             richTextToolBar?: DialogHelper | undefined;
             selectLang?: DialogHelper | undefined;
+            duplicationDialog?: DialogHelper | undefined;
         };
     };
     // Lifecycle hooks

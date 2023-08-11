@@ -39,3 +39,8 @@ bold = Bold
 italic = Italic
 no-case = Maintain case
 unimplemented = This feature is unimplemented.
+
+## 重复条目弹窗
+dialog-dup-title = Duplicates found
+dialog-dup-desc = The currently imported item is a duplicate of the item in the library
+dialog-dup-button-merge = Go to merge

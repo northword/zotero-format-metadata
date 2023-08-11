@@ -39,3 +39,8 @@ bold = 粗体
 italic = 斜体
 no-case = 保持大小写
 unimplemented = 此功能尚未实现。
+
+## 重复条目弹窗
+dialog-dup-title = 发现重复条目
+dialog-dup-desc = 以下条目与已有条目重复
+dialog-dup-button-merge = 前往合并条目窗格

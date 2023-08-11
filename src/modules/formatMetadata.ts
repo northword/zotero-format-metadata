@@ -11,6 +11,7 @@ import { updateUniversityPlace } from "./rules/field-place";
 import { updateDOI } from "./rules/field-misc";
 import { setHtmlTag, titleCase2SentenceCase } from "./rules/field-title";
 import { waitUtilAsync } from "../utils/wait";
+import { isDuplicate } from "./rules/item-no-duplicate";
 
 export { FormatMetadata, updateOnItemAdd, runInBatch };
 
@@ -29,6 +30,8 @@ export default class FormatMetadata {
     static updateDOI = updateDOI;
     static titleCase2SentenceCase = titleCase2SentenceCase;
     static setHtmlTag = setHtmlTag;
+
+    static checkDuplication = isDuplicate;
 
     /**
      * 标准格式化流程
@@ -71,9 +74,9 @@ function updateOnItemAdd(items: Zotero.Item[]) {
             // @ts-ignore libraryID is got from item, so get() will never return false
             (getPref("updateOnAddedForGroup") ? true : Zotero.Libraries.get(item.libraryID)._libraryType == "user"),
     );
-    if (regularItems.length !== 0 && getPref("add.update")) {
-        // FormatMetadata.updateOnItemAdd(regularItems);
-        addon.hooks.onUpdateInBatch("std", regularItems);
+    if (regularItems.length !== 0) {
+        addon.hooks.onUpdateInBatch("checkDuplication", regularItems);
+        getPref("add.update") ? addon.hooks.onUpdateInBatch("std", regularItems) : "";
         return;
     }
 }

@@ -1,4 +1,6 @@
-async function isDuplicate(item: Zotero.Item) {
+import { duplicationDialog } from "../views/duplicationDialog";
+
+export async function isDuplicate(item: Zotero.Item) {
     // const item = Zotero.getActiveZoteroPane().getSelectedItems()[0];
     const itemID = item.id;
 
@@ -12,18 +14,9 @@ async function isDuplicate(item: Zotero.Item) {
     // console.log(searchResult);
 
     if (searchResult.includes(itemID)) {
-        console.log("有重复条目");
-        return true;
+        ztoolkit.log("当前条目存在重复条目", item);
+        await duplicationDialog.showDialog(item);
     } else {
-        console.log("未发现重复条目");
-        return false;
-    }
-}
-
-export async function duplication(item: Zotero.Item) {
-    if (await isDuplicate(item)) {
-        // show duplication dialog
-    } else {
-        // skip
+        console.log("当前条目未发现重复条目");
     }
 }

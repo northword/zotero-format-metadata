@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 新增条目时检查其是否存在重复条目。/ Check for duplicate items when new items are added.
+
+### Fixed
+
+- 修复由于之前重构导致的手动设置条目语言失效的问题。
+
 ## [1.1.1] - 2023-08-09
 
 ### Fixed

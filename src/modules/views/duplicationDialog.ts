@@ -2,26 +2,67 @@ import { getPref, setPref } from "../../utils/prefs";
 import { getString } from "../../utils/locale";
 
 export class duplicationDialog {
-    static creatDialog() {
-        const dialogData: { [key: string | number]: unknown } = {
+    static async creatDialog(item: Zotero.Item) {
+        const dialogData: { [key: string | number]: any } = {
             loadCallback: () => {
-                // ztoolkit.log(dialogData, "Dialog Opened!");
+                ztoolkit.log(dialogData, "Dialog Opened!");
+                addon.data.dialogs.duplicationDialog = dialog;
+                // this.updateDialog(item);
             },
             unloadCallback: () => {
-                //
+                addon.data.dialogs.duplicationDialog = undefined;
             },
         };
 
-        const toolBarPanel = new ztoolkit.Dialog(1, 1);
-        toolBarPanel.setDialogData(dialogData);
-        return toolBarPanel;
+        const dialog = new ztoolkit.Dialog(2, 1)
+            .addCell(0, 0, {
+                tag: "h3",
+                properties: { innerHTML: getString("dialog-dup-desc") },
+            })
+            .addCell(1, 0, {
+                tag: "div",
+                id: "formetmetadata-duplication-details",
+                children: [{ tag: "li", properties: { innerHTML: item.getField("title") } }],
+            })
+            .addButton(getString("dialog-dup-button-merge"), "ok", {
+                callback: () => {
+                    // 聚焦
+                    ZoteroPane.setVirtual("1", "duplicates", true, true);
+                },
+            });
+
+        dialog.setDialogData(dialogData);
+        return dialog;
     }
 
-    static showToolBar() {
-        //
+    static async showDialog(item: Zotero.Item) {
+        if (addon.data.dialogs.duplicationDialog == undefined) {
+            addon.data.dialogs.duplicationDialog = await this.creatDialog(item);
+            addon.data.dialogs.duplicationDialog.open(getString("dialog-dup-title"), {
+                fitContent: true,
+                resizable: true,
+                centerscreen: true,
+                alwaysRaised: true,
+            });
+            await addon.data.dialogs.duplicationDialog.dialogData.loadLock?.promise;
+        } else {
+            // 已存在窗口
+            this.updateDialog(item);
+        }
     }
 
-    static closeToolBar() {
+    static updateDialog(item: Zotero.Item) {
+        console.log("adding item to dialog");
+        const newItem = document.createElement("li");
+        newItem.textContent = item.getField("title") as string;
+        addon.data.dialogs
+            .duplicationDialog!.window.document.getElementById("formetmetadata-duplication-details")
+            ?.appendChild(newItem);
+        // @ts-ignore window has sizeToContent() for firefox
+        addon.data.dialogs.duplicationDialog!.window.sizeToContent();
+    }
+
+    static closeDialog() {
         //
     }
 }
