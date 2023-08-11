@@ -39,6 +39,16 @@ function isFullUpperCase(text: string) {
         return false;
     }
 }
+/**
+ * 判断给定字符串是否包含给定数组中的字符串
+ * @param string
+ * @param array
+ * @returns
+ */
+export function isStringMatchStringInArray(string: string, array: string[]) {
+    const pattern = new RegExp(`(${array.join("|")})`);
+    return pattern.test(string);
+}
 
 export function removeDot(text: string) {
     return text.replace(/\./g, "");

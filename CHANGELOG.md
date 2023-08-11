@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - 首选项窗格增加“帮助”按钮，目前指向仓库主页 README 文档。
+- 新增条目时，如果是网页条目，且其网址包含主要学术出版商的域名，则提示用户是否导入了错误的条目类型。/ When adding an item, if its item type is a web page and its URL contains the domain of the major scholarly publisher, prompt the user to ask if they have imported the wrong type of item.
 
 ## [1.2.0] - 2023-08-11
 

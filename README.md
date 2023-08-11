@@ -43,6 +43,10 @@ When editing the "Title" field, a toolbar pops up and can be closed automaticall
 
 Check for duplicate items when new items are added.
 
+### Item type check
+
+When adding an item, if its item type is a web page and its URL contains the domain of the major scholarly publisher, prompt the user to ask if they have imported the wrong type of item.
+
 ### Convert title from "heading case" to "sentence case"
 
 The Zotero's documentation recommends storing titles in "sentence case" format, which will allow CSL to perform a "title case" transformation on them [^sentenceCase]. Although Zotero has a built-in function to convert titles to "sentence case", this function only recognizes function words, not proper nouns such as chemical formulas, etc.

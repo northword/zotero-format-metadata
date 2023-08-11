@@ -12,6 +12,7 @@ import { updateDOI } from "./rules/field-misc";
 import { setHtmlTag, titleCase2SentenceCase } from "./rules/field-title";
 import { waitUtilAsync } from "../utils/wait";
 import { isDuplicate } from "./rules/item-no-duplicate";
+import { checkWebpage } from "./rules/item-webpage";
 
 export { FormatMetadata, updateOnItemAdd, runInBatch };
 
@@ -32,6 +33,7 @@ export default class FormatMetadata {
     static setHtmlTag = setHtmlTag;
 
     static checkDuplication = isDuplicate;
+    static checkWebpage = checkWebpage;
 
     /**
      * 标准格式化流程
@@ -75,6 +77,7 @@ function updateOnItemAdd(items: Zotero.Item[]) {
             (getPref("updateOnAddedForGroup") ? true : Zotero.Libraries.get(item.libraryID)._libraryType == "user"),
     );
     if (regularItems.length !== 0) {
+        addon.hooks.onUpdateInBatch("checkWebpage", regularItems);
         addon.hooks.onUpdateInBatch("checkDuplication", regularItems);
         getPref("add.update") ? addon.hooks.onUpdateInBatch("std", regularItems) : "";
         return;

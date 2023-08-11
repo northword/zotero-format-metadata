@@ -148,6 +148,18 @@ export function registerMenu() {
         icon: menuIcon,
         children: getMenuItem("collection"),
     });
+
+    // 为开发环境编译的插件增加 测试 菜单，以便调试
+    if (addon.data.env == "development") {
+        ztoolkit.Menu.register("item", {
+            tag: "menuitem",
+            label: "测试",
+            icon: menuIcon,
+            commandListener: (ev) => {
+                addon.hooks.onUpdateInBatch("test", "item");
+            },
+        });
+    }
 }
 
 export function registerTextTransformMenu() {

@@ -154,7 +154,7 @@ async function onUpdateInBatch(mode: string, items: Zotero.Item[] | "item" | "co
         }
     }
 
-    let processor: (...args: any[]) => Promise<void> | void,
+    let processor: ((...args: any[]) => Promise<void> | void) | undefined = undefined,
         args: any[] = [];
 
     switch (mode) {
@@ -163,6 +163,10 @@ async function onUpdateInBatch(mode: string, items: Zotero.Item[] | "item" | "co
             break;
         case "checkDuplication":
             processor = FormatMetadata.checkDuplication.bind(FormatMetadata);
+            break;
+        case "checkWebpage":
+            // 该项仅为调试便利，在此添加待调试功能，通过“测试”菜单触发
+            processor = FormatMetadata.checkWebpage.bind(FormatMetadata);
             break;
         case "abbr":
             processor = FormatMetadata.updateJournalAbbr.bind(FormatMetadata);
@@ -196,6 +200,10 @@ async function onUpdateInBatch(mode: string, items: Zotero.Item[] | "item" | "co
             break;
         case "capitalizeName":
             processor = FormatMetadata.capitalizeName.bind(FormatMetadata);
+            break;
+        case "test":
+            // 该项仅为调试便利，在此添加待调试功能，通过“测试”菜单触发
+            processor = FormatMetadata.checkWebpage.bind(FormatMetadata);
             break;
         case "chem":
         default:
