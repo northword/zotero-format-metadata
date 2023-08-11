@@ -1,4 +1,4 @@
-# Zotero Format Metadata
+# Linter for Zotero
 
 [![zotero target version](https://img.shields.io/badge/Zotero-7.0.*-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![version](https://img.shields.io/github/package-json/v/northword/zotero-format-metadata?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)
@@ -38,6 +38,10 @@ BTW: These shortcuts are the same as the ones in Microsoft Word.
 When editing the "Title" field, a toolbar pops up and can be closed automatically by clicking on the blank space when editing is complete. The toolbar can be closed completely in the preferences.
 
 ![Set subscript via toolbar](./docs/assets/set-sub-via-toolbar.gif)
+
+### Duplication check
+
+Check for duplicate items when new items are added.
 
 ### Convert title from "heading case" to "sentence case"
 

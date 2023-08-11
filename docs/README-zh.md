@@ -1,4 +1,4 @@
-# Zotero Format Metadata
+# Linter for Zotero
 
 [![zotero target version](https://img.shields.io/badge/Zotero-7.0.*-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![version](https://img.shields.io/github/package-json/v/northword/zotero-format-metadata?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)
@@ -38,6 +38,10 @@ Zotero 的参考文献表中的富文本内容需要手动插入 HTML 标签来�
 编辑“标题”字段时，弹出工具条，编辑完成后单击空白处可以自动关闭工具条。该工具条可以在首选项中彻底关闭。
 
 ![Set subscript via toolbar](./assets/set-sub-via-toolbar.gif)
+
+### 重复条目检查
+
+当新增条目时，插件自动检查该条目是否与库中已有条目重复，若有重复，则提示用户确认。
 
 ### 将标题转为“句首大写”
 

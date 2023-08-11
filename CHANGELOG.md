@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- 变更插件名为 `Linter for Zotero`。/ Change addon name to `Linter for Zotero`.
 - 新增条目时检查其是否存在重复条目。/ Check for duplicate items when new items are added.
 
 ### Fixed
