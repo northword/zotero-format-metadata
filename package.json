@@ -42,7 +42,7 @@
     "dependencies": {
         "franc": "^6.1.0",
         "iso-locales": "^1.1.1",
-        "zotero-plugin-toolkit": "^2.2.4"
+        "zotero-plugin-toolkit": "^2.2.6"
     },
     "devDependencies": {
         "@release-it/keep-a-changelog": "^3.1.0",
