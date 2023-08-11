@@ -8,6 +8,7 @@ export function registerPrefs() {
         src: rootURI + "chrome/content/preferences.xhtml",
         label: getString("prefs-title"),
         image: `chrome://${config.addonRef}/content/icons/favicon.png`,
+        // @ts-ignore 临时忽略，系上游依赖未更新
         helpURL: homepage,
         defaultXUL: true,
     });
