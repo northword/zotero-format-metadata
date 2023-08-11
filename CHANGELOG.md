@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2023-08-11
+
 ### Added
 
 - 首选项窗格增加“帮助”按钮，目前指向仓库主页 README 文档。
@@ -339,7 +341,8 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/1.2.0...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/1.3.0...HEAD
+[1.3.0]: https://github.com/northword/zotero-format-metadata/compare/1.2.0...1.3.0
 [1.2.0]: https://github.com/northword/zotero-format-metadata/compare/1.1.1...1.2.0
 [1.1.1]: https://github.com/northword/zotero-format-metadata/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/northword/zotero-format-metadata/compare/1.0.7...1.1.0
