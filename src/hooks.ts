@@ -3,7 +3,7 @@ import { getPref } from "./utils/prefs";
 import { getString, initLocale } from "./utils/locale";
 import { registerMutationObserver, registerNotifier } from "./modules/notifier";
 import { config } from "../package.json";
-import FormatMetadata from "./modules/formatMetadata";
+import { FormatMetadata, runInBatch, updateOnItemAdd } from "./modules/formatMetadata";
 import { registerMenu, registerTextTransformMenu } from "./modules/menu";
 import { registerShortcuts } from "./modules/shortcuts";
 // import { registerPrompt } from "./modules/prompt";
@@ -57,7 +57,7 @@ async function onNotify(
     ztoolkit.log("notify", event, type, ids, extraData);
 
     if (event == "add" && type == "item") {
-        FormatMetadata.updateOnItemAdd(Zotero.Items.get(ids as number[]));
+        updateOnItemAdd(Zotero.Items.get(ids as number[]));
     }
 }
 
@@ -140,31 +140,6 @@ function onShortcuts(type: string) {
  * @param items 需要批量处理的 Zotero.Item[]，或通过触发批量任务的位置决定 Zotero Item 的获取方式。 "item" | "collection" | XUL.MenuPopup | "menuFile" | "menuEdit" | "menuView" | "menuGo" | "menuTools" | "menuHelp"
  */
 async function onUpdateInBatch(mode: string, items: Zotero.Item[] | "item" | "collection" | string) {
-    const progress = new ztoolkit.ProgressWindow(config.addonName, {
-        closeOnClick: false,
-        closeTime: -1,
-    })
-        .createLine({
-            type: "default",
-            text: getString("info-batch-init"),
-            progress: 0,
-            idx: 0,
-        })
-        .createLine({ text: getString("info-batch-break"), idx: 1 })
-        .show();
-
-    await waitUtilAsync(() =>
-        // @ts-ignore lines可以被访问到
-        Boolean(progress.lines && progress.lines[1]._itemText),
-    );
-    // @ts-ignore lines可以被访问到
-    progress.lines[1]._hbox.addEventListener("click", async (ev: MouseEvent) => {
-        ev.stopPropagation();
-        ev.preventDefault();
-        state = false;
-        progress.changeLine({ text: getString("info-batch-stop-next"), idx: 1 });
-    });
-
     if (typeof items == "string") {
         switch (items) {
             case "item":
@@ -178,59 +153,46 @@ async function onUpdateInBatch(mode: string, items: Zotero.Item[] | "item" | "co
                 break;
         }
     }
-    if (items.length == 0) {
-        progress.createLine({
-            type: "fail",
-            text: getString("info-batch-no-selected"),
-        });
-        return;
-    }
 
-    const task: {
-        processor?: (...args: any[]) => Promise<void> | void;
-        args: any[];
-        // this?: any;
-    } = {
-        args: [],
-        // this: FormatMetadata,
-    };
+    let processor: (...args: any[]) => Promise<void> | void,
+        args: any[] = [];
 
     switch (mode) {
         case "std":
-            task.processor = FormatMetadata.updateStdFlow.bind(FormatMetadata);
+            processor = FormatMetadata.updateStdFlow.bind(FormatMetadata);
             break;
         case "abbr":
-            task.processor = FormatMetadata.updateJournalAbbr.bind(FormatMetadata);
+            processor = FormatMetadata.updateJournalAbbr.bind(FormatMetadata);
             break;
         case "place":
-            task.processor = FormatMetadata.updateUniversityPlace.bind(FormatMetadata);
+            processor = FormatMetadata.updateUniversityPlace.bind(FormatMetadata);
             break;
         case "lang":
-            task.processor = FormatMetadata.updateLanguage.bind(FormatMetadata);
+            processor = FormatMetadata.updateLanguage.bind(FormatMetadata);
             break;
         case "lang-manual":
-            task.args = ["language", await setLanguageManualDialog()];
-            task.processor = FormatMetadata.setFieldValue.bind(FormatMetadata);
+            args = ["language", await setLanguageManualDialog()];
+            processor = FormatMetadata.setFieldValue.bind(FormatMetadata);
             break;
         case "getAllFieldViaDOI":
-            task.processor = FormatMetadata.updateMetadataByIdentifier.bind(FormatMetadata);
-            task.args = ["all"];
+            processor = FormatMetadata.updateMetadataByIdentifier.bind(FormatMetadata);
+            args = ["all"];
             break;
         case "getBlankFieldViaDOI":
-            task.processor = FormatMetadata.updateMetadataByIdentifier.bind(FormatMetadata);
-            task.args = ["blank"];
+            processor = FormatMetadata.updateMetadataByIdentifier.bind(FormatMetadata);
+            args = ["blank"];
             break;
         case "doi":
-            task.processor = FormatMetadata.updateDOI.bind(FormatMetadata);
+            processor = FormatMetadata.updateDOI.bind(FormatMetadata);
             break;
         case "date":
-            task.processor = FormatMetadata.updateDate.bind(FormatMetadata);
+            processor = FormatMetadata.updateDate.bind(FormatMetadata);
             break;
         case "toSentenceCase":
-            task.processor = FormatMetadata.titleCase2SentenceCase.bind(FormatMetadata);
+            processor = FormatMetadata.titleCase2SentenceCase.bind(FormatMetadata);
             break;
         case "capitalizeName":
-            task.processor = FormatMetadata.capitalizeName.bind(FormatMetadata);
+            processor = FormatMetadata.capitalizeName.bind(FormatMetadata);
             break;
         case "chem":
         default:
@@ -238,49 +200,9 @@ async function onUpdateInBatch(mode: string, items: Zotero.Item[] | "item" | "co
             return;
     }
 
-    if (typeof task.processor == "undefined") return;
+    if (typeof processor == "undefined") return;
 
-    const total = items.length;
-    let current = 0,
-        errNum = 0,
-        state = true;
-    progress.changeLine({
-        type: "default",
-        text: `[${current}/${total}] ${getString("info-batch-running")}`,
-        progress: 0,
-        idx: 0,
-    });
-
-    for (const item of items) {
-        if (!state) break;
-        try {
-            const args = [item, ...task.args];
-            // await task.processor.apply(task.this, args);
-            await task.processor(...args);
-            // await Zotero.Promise.delay(3000);
-            current++;
-            progress.changeLine({
-                text: `[${current}/${total}] ${getString("info-batch-running")}`,
-                progress: (current / total) * 100,
-                idx: 0,
-            });
-        } catch (err) {
-            progress.createLine({
-                type: "fail",
-                text: getString("info-batch-has-error"),
-            });
-            ztoolkit.log(err, item);
-            errNum++;
-        }
-    }
-    progress.changeLine({
-        // type: "default",
-        text: `[✔️${current} ${errNum ? ", ❌" + errNum : ""}] ${getString("info-batch-finish")}`,
-        progress: 100,
-        idx: 0,
-    });
-    progress.startCloseTimer(5000);
-    ztoolkit.log("batch tasks done");
+    runInBatch(items, { processor: processor, args: args });
 }
 
 export default {
