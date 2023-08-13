@@ -22,61 +22,56 @@ async function updateJournalAbbr(item: Zotero.Item) {
     const publicationTitle = item.getField("publicationTitle") as string;
     if (publicationTitle == "") return;
     let journalAbbr = "";
-    // 获取条目语言，若无则根据期刊全称判断语言
-    const itemLanguage = item.getField("language") ?? getTextLanguage(publicationTitle);
-    switch (itemLanguage) {
-        case "zh":
-        case "zh-CN":
-            // 中文期刊，是否以全称填充
-            // 无缩写
-            if (getPref("abbr.usefullZh")) {
-                // 无缩写的，是否以全称替代
-                ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
-                journalAbbr = publicationTitle;
-            } else {
-                // 无缩写且不以全称替代，返回空值
-                journalAbbr = "";
-            }
-            break;
 
-        default: {
-            // 英文期刊，获取缩写
-            // 1. 从本地数据集获取缩写
-            let journalAbbrISO4 = getAbbrIso4Locally(publicationTitle, journalAbbrlocalData);
-            // 2. 本地无缩写，是否从 ISSN LTWA 推断完整期刊缩写
-            if (!journalAbbrISO4 && getPref("abbr.infer")) {
-                journalAbbrISO4 = await getAbbrFromLTWAOnline(publicationTitle);
-                // journalAbbrISO4 = getAbbrFromLtwaLocally(publicationTitle);
-            }
-            if (journalAbbrISO4) {
-                // 有缩写的，是否处理为 ISO dotless 或 JCR 格式
-                switch (getPref("abbr.type")) {
-                    case "ISO4dot":
-                        journalAbbr = journalAbbrISO4;
-                        break;
-                    case "ISO4dotless":
-                        journalAbbr = removeDot(journalAbbrISO4);
-                        break;
-                    case "JCR":
-                        journalAbbr = toJCR(journalAbbrISO4);
-                        break;
-                    default:
-                        journalAbbr = journalAbbrISO4;
-                        break;
-                }
-            } else {
-                // 无缩写
-                if (getPref("abbr.usefull")) {
-                    // 无缩写的，是否以全称替代
-                    ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
-                    journalAbbr = publicationTitle;
-                } else {
-                    // 无缩写且不以全称替代，返回空值
-                    journalAbbr = "";
-                }
-            }
+    // 从自定义数据集获取
+    const journalAbbrCustom = await getAbbrFromCustom(publicationTitle);
+    if (journalAbbrCustom) {
+        journalAbbr = journalAbbrCustom;
+    } else {
+        // 从本地数据集获取缩写
+        let journalAbbrISO4 = getAbbrIso4Locally(publicationTitle, journalAbbrlocalData);
 
-            break;
+        // 从 ISSN LTWA 推断完整期刊缩写
+        if (!journalAbbrISO4 && getPref("abbr.infer")) {
+            journalAbbrISO4 = await getAbbrFromLTWAOnline(publicationTitle);
+            // journalAbbrISO4 = getAbbrFromLtwaLocally(publicationTitle);
+        }
+
+        if (journalAbbrISO4) {
+            // 有缩写的，是否处理为 ISO dotless 或 JCR 格式
+            switch (getPref("abbr.type")) {
+                case "ISO4dot":
+                    journalAbbr = journalAbbrISO4;
+                    break;
+                case "ISO4dotless":
+                    journalAbbr = removeDot(journalAbbrISO4);
+                    break;
+                case "JCR":
+                    journalAbbr = toJCR(journalAbbrISO4);
+                    break;
+                default:
+                    journalAbbr = journalAbbrISO4;
+                    break;
+            }
+        }
+    }
+
+    // 以期刊全称填充
+    if (journalAbbr !== "") {
+        // 获取条目语言，若无则根据期刊全称判断语言
+        const itemLanguage = (item.getField("language") as string) ?? getTextLanguage(publicationTitle);
+        const isChinese = ["zh", "zh-CN"].includes(itemLanguage);
+        if (isChinese && getPref("abbr.usefullZh")) {
+            // 中文，无缩写的，是否以全称替代
+            ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
+            journalAbbr = publicationTitle;
+        } else if (!isChinese && getPref("abbr.usefull")) {
+            // 非中文，无缩写的，是否以全称替代
+            ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
+            journalAbbr = publicationTitle;
+        } else {
+            // 无缩写且不以全称替代，返回空值
+            journalAbbr = "";
         }
     }
 
@@ -137,4 +132,15 @@ async function getAbbrFromLTWAOnline(publicationTitle: string) {
  */
 function toJCR(text: string) {
     return removeDot(text).toUpperCase();
+}
+
+async function getAbbrFromCustom(publicationTitle: string) {
+    const customAbbrDataPath = getPref("abbr.customDataPath") as string;
+    if (customAbbrDataPath !== "" && (await IOUtils.exists(customAbbrDataPath))) {
+        const customAbbrData = await Zotero.File.getContentsAsync(customAbbrDataPath);
+        if (typeof customAbbrData == "string") {
+            return (JSON.parse(customAbbrData)[publicationTitle] as string) ?? false;
+        }
+    }
+    return false;
 }

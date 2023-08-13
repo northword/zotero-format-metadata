@@ -5,6 +5,7 @@ pref("__prefsPrefix__.abbr.type", "ISO4dot");
 pref("__prefsPrefix__.abbr.infer", true);
 pref("__prefsPrefix__.abbr.usefull", false);
 pref("__prefsPrefix__.abbr.usefullZh", false);
+pref("__prefsPrefix__.abbr.customDataPath", "");
 pref("__prefsPrefix__.isEnablePlace", true);
 pref("__prefsPrefix__.isEnableOtherFields", false);
 pref("__prefsPrefix__.isEnableLang", true);

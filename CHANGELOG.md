@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 查询期刊缩写时允许使用本地自定义期刊缩写数据文件。/ Custom abbr. data
+
 ## [1.3.0] - 2023-08-11
 
 ### Added

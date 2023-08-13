@@ -45,6 +45,11 @@ pref-abbr-usefull =
     .label = Use full name instead when journal abbreviation is still not available for English journal
 pref-abbr-usefullZh = 
     .label = Use full name instead when journal abbreviation is still not available for Chinese journal
+pref-abbr-custom-data-label = Custom abbreviations data file:
+pref-choose-custom-abbr-data-button = 
+    .label = Choose
+pref-choose-custom-abbr-data-input = 
+    .placeholder = A JSON file with "publicationTitle": "ISO 4 abbreviation"
 
 ## 语言
 pref-lang-label = Language

@@ -1,6 +1,6 @@
 import { config, homepage } from "../../package.json";
 import { getString } from "../utils/locale";
-import { getPref } from "../utils/prefs";
+import { getPref, setPref } from "../utils/prefs";
 
 export function registerPrefs() {
     ztoolkit.PreferencePane.register({
@@ -34,6 +34,25 @@ async function updatePrefsUI() {
     // with addon.data.prefs.window.document
     // Or bind some events to the elements
     disablePrefsLang();
+
+    addon.data.prefs?.window.document
+        .querySelector(`#${config.addonRef}-abbr-choose-custom-data-button`)
+        ?.addEventListener("command", async () => {
+            const filename = await new ztoolkit.FilePicker(
+                "Select File",
+                "open",
+                [
+                    ["JSON File(*.json)", "*.json"],
+                    ["Any", "*.*"],
+                ],
+                "zotero-format-metadata-custom-abbr-data.json",
+            ).open();
+            if (filename) {
+                setPref("abbr.customDataPath", filename);
+            } else {
+                setPref("abbr.customDataPath", "");
+            }
+        });
 }
 
 function bindPrefEvents() {

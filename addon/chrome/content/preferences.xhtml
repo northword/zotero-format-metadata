@@ -72,7 +72,23 @@
                 <radio data-l10n-id="pref-abbr-type-jcr" value="JCR" />
             </radiogroup>
         </hbox>
-
+        <hbox align="center">
+            <label data-l10n-id="pref-abbr-custom-data-label"></label>
+            <html:input
+                style="flex: 1"
+                type="text"
+                readonly="true"
+                size="50"
+                id="__addonRef__-abbr-custom-path"
+                data-l10n-id="pref-choose-custom-abbr-data-input"
+                preference="__prefsPrefix__.abbr.customDataPath"
+            ></html:input>
+            <button
+                data-l10n-id="pref-choose-custom-abbr-data-button"
+                id="__addonRef__-abbr-choose-custom-data-button"
+                native="true"
+            />
+        </hbox>
         <checkbox
             id="__addonRef__-abbr-infer"
             data-l10n-id="pref-abbr-infer"

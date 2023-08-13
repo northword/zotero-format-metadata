@@ -45,6 +45,11 @@ pref-abbr-usefull =
     .label = 对于英文期刊，仍没有期刊缩写时使用全称代替
 pref-abbr-usefullZh = 
     .label = 对于中文期刊，仍没有期刊缩写时使用全称代替
+pref-abbr-custom-data-label = 自定义数据文件：
+pref-choose-custom-abbr-data-button = 
+    .label = 选择
+pref-choose-custom-abbr-data-input = 
+    .placeholder = `"publicationTitle": "ISO 4 缩写"` 格式的 JSON 文件
 
 ## 语言
 pref-lang-label = 语言
