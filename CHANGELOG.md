@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 捕获自定义期刊缩写文件的语法错误。/ Catch custom abbr data json syntax error.
+
 ## [1.4.3] - 2023-08-14
 
 ### Added

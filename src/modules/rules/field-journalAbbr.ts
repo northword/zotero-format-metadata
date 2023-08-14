@@ -1,4 +1,5 @@
 import { journalAbbrlocalData } from "../../data";
+import { progressWindow } from "../../utils/logger";
 import { getPref } from "../../utils/prefs";
 import { removeDot } from "../../utils/str";
 import { getTextLanguage } from "./field-language";
@@ -139,7 +140,15 @@ async function getAbbrFromCustom(publicationTitle: string) {
     if (customAbbrDataPath !== "" && (await IOUtils.exists(customAbbrDataPath))) {
         const customAbbrData = await Zotero.File.getContentsAsync(customAbbrDataPath);
         if (typeof customAbbrData == "string") {
-            return (JSON.parse(customAbbrData)[publicationTitle] as string) ?? false;
+            try {
+                const data = JSON.parse(customAbbrData);
+                const abbr = (data[publicationTitle] as string) ?? false;
+                if (!abbr) ztoolkit.log("[Abbr] 自定义缩写未匹配");
+                return abbr;
+            } catch (e) {
+                progressWindow(`JSON Syntax Error, ${e}`, "fail");
+                throw new Error(`JSON Syntax Error, ${e}`);
+            }
         }
     }
     ztoolkit.log("[Abbr] 自定义缩写数据文件不存在");
