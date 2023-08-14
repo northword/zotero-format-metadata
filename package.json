@@ -42,12 +42,12 @@
     "dependencies": {
         "franc": "^6.1.0",
         "iso-locales": "^1.1.1",
-        "zotero-plugin-toolkit": "^2.2.6"
+        "zotero-plugin-toolkit": "^2.2.7"
     },
     "devDependencies": {
         "@release-it/keep-a-changelog": "^3.1.0",
         "@types/jest": "^29.5.3",
-        "@types/node": "^20.4.10",
+        "@types/node": "^20.5.0",
         "@typescript-eslint/eslint-plugin": "^6.3.0",
         "@typescript-eslint/parser": "^6.3.0",
         "chokidar-cli": "^3.0.0",

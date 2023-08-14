@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "StartDev",
             "runtimeExecutable": "npm",
-            "runtimeArgs": ["run", "start-watch"]
+            "runtimeArgs": ["run", "dev"]
         },
         {
             "command": "npm test",
