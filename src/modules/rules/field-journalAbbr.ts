@@ -57,7 +57,7 @@ async function updateJournalAbbr(item: Zotero.Item) {
     }
 
     // 以期刊全称填充
-    if (journalAbbr !== "") {
+    if (journalAbbr == "") {
         // 获取条目语言，若无则根据期刊全称判断语言
         const itemLanguage = (item.getField("language") as string) ?? getTextLanguage(publicationTitle);
         const isChinese = ["zh", "zh-CN"].includes(itemLanguage);
@@ -142,5 +142,6 @@ async function getAbbrFromCustom(publicationTitle: string) {
             return (JSON.parse(customAbbrData)[publicationTitle] as string) ?? false;
         }
     }
+    ztoolkit.log("[Abbr] 自定义缩写数据文件不存在");
     return false;
 }

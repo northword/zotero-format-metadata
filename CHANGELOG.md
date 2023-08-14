@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复查询期刊缩写不生效（不论有无缩写，都以全称或空白填充）的问题。
+
 ## [1.4.0] - 2023-08-13
 
 ### Added
