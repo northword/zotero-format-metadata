@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.3] - 2023-08-14
+
 ### Added
 
 - 使用新的插件图标。/ New icon for addon.
@@ -364,7 +366,8 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/1.4.2...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/1.4.3...HEAD
+[1.4.3]: https://github.com/northword/zotero-format-metadata/compare/1.4.2...1.4.3
 [1.4.2]: https://github.com/northword/zotero-format-metadata/compare/1.4.1...1.4.2
 [1.4.1]: https://github.com/northword/zotero-format-metadata/compare/1.4.0...1.4.1
 [1.4.0]: https://github.com/northword/zotero-format-metadata/compare/1.3.0...1.4.0
