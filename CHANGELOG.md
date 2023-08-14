@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 使用新的插件图标。/ New icon for addon.
+
 ## [1.4.2] - 2023-08-14
 
 ### Fixed
