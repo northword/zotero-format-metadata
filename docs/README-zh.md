@@ -1,6 +1,6 @@
-![Linter for Zotero](./slogan-for-readme.jpg)
+<div align="center">
 
-<center>
+![Linter for Zotero](./slogan-for-readme.jpg)
 
 [![zotero target version](https://img.shields.io/badge/Zotero-7.0.*-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![version](https://img.shields.io/github/package-json/v/northword/zotero-format-metadata?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)
@@ -13,9 +13,7 @@
 
 我是一个 [Zotero](https://www.zotero.org/) 插件，可以规范化/格式化条目的元数据（字段数据）。
 
-</center>
-
----
+</div></br>
 
 ## 特性
 
