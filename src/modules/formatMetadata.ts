@@ -1,4 +1,4 @@
-import { callingLoggerForMethod, progressWindow } from "../utils/logger";
+import { callingLoggerForMethod, logError, progressWindow } from "../utils/logger";
 import { config } from "../../package.json";
 import { getPref } from "../utils/prefs";
 import { getString } from "../utils/locale";
@@ -165,7 +165,8 @@ async function runInBatch(
                 type: "fail",
                 text: getString("info-batch-has-error"),
             });
-            ztoolkit.log(err, item);
+            logError(err, item);
+            // ztoolkit.log(err, item);
             errNum++;
         }
     }
