@@ -1,4 +1,6 @@
-# Linter for Zotero
+![Linter for Zotero](./docs/slogan-for-readme.jpg)
+
+<center>
 
 [![zotero target version](https://img.shields.io/badge/Zotero-7.0.*-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![version](https://img.shields.io/github/package-json/v/northword/zotero-format-metadata?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)
@@ -7,9 +9,13 @@
 [![license](https://img.shields.io/github/license/northword/zotero-format-metadata?style=flat-square)](#licence)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
 
-[简体中文](./docs/README-zh.md) | English
+This README is also available in: [:cn: 简体中文](./docs/README-zh.md) | :gb:  English
 
 An addon for [Zotero](https://www.zotero.org/) to format item metadata.
+
+</center>
+
+---
 
 ## Features
 

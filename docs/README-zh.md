@@ -1,4 +1,6 @@
-# Linter for Zotero
+![Linter for Zotero](./slogan-for-readme.jpg)
+
+<center>
 
 [![zotero target version](https://img.shields.io/badge/Zotero-7.0.*-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![version](https://img.shields.io/github/package-json/v/northword/zotero-format-metadata?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)
@@ -7,9 +9,13 @@
 [![license](https://img.shields.io/github/license/northword/zotero-format-metadata?style=flat-square)](#开源协议)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
 
-简体中文 | [English](../README.md)
+本 README 还适用于以下语言：简体中文 | [English](../README.md)
 
 我是一个 [Zotero](https://www.zotero.org/) 插件，可以规范化/格式化条目的元数据（字段数据）。
+
+</center>
+
+---
 
 ## 特性
 
