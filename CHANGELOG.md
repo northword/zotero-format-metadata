@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.1] - 2023-08-14
+
 ### Fixed
 
 - 修复查询期刊缩写不生效（不论有无缩写，都以全称或空白填充）的问题。
@@ -352,7 +354,8 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/1.4.0...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/1.4.1...HEAD
+[1.4.1]: https://github.com/northword/zotero-format-metadata/compare/1.4.0...1.4.1
 [1.4.0]: https://github.com/northword/zotero-format-metadata/compare/1.3.0...1.4.0
 [1.3.0]: https://github.com/northword/zotero-format-metadata/compare/1.2.0...1.3.0
 [1.2.0]: https://github.com/northword/zotero-format-metadata/compare/1.1.1...1.2.0
