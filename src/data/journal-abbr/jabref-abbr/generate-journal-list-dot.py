@@ -60,7 +60,9 @@ for in_file in import_order:
                 if (key not in journal_dict):
                     journal_dict[key] = current_abbr
                 else:
-                    pass
+                    # pass
+                    journal_dict[key] = current_abbr
+
                     # if len(journal_dict[key]) == len(current_abbr):
                     #     pass
                     # else:
