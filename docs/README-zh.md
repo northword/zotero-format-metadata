@@ -1,6 +1,6 @@
 <div align="center">
 
-![Linter for Zotero](./slogan-for-readme.jpg)
+![Linter for Zotero](./assets/slogan-for-readme.jpg)
 
 [![zotero target version](https://img.shields.io/badge/Zotero-7.0.*-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![version](https://img.shields.io/github/package-json/v/northword/zotero-format-metadata?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)

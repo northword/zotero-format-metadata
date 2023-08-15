@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 更新内置期刊缩写数据的获取规则，现与 JabRef 仓库脚本保持一致，使用最后匹配到的。已发现了一些错误，正在向上游仓库反馈。see: feb3402f1fe1abc326c1c64d346ee26ca77b2d22
+  后续拟通过其他方式获取缩写，不再将 JabRef 作为首选。
+
 ## [1.4.4] - 2023-08-14
 
 ### Fixed
