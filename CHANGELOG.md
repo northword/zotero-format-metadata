@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.5] - 2023-08-15
+
 ### Fixed
 
 - 更新内置期刊缩写数据的获取规则，现与 JabRef 仓库脚本保持一致，使用最后匹配到的。已发现了一些错误，正在向上游仓库反馈。see: feb3402f1fe1abc326c1c64d346ee26ca77b2d22
@@ -377,7 +379,8 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/1.4.4...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/1.4.5...HEAD
+[1.4.5]: https://github.com/northword/zotero-format-metadata/compare/1.4.4...1.4.5
 [1.4.4]: https://github.com/northword/zotero-format-metadata/compare/1.4.3...1.4.4
 [1.4.3]: https://github.com/northword/zotero-format-metadata/compare/1.4.2...1.4.3
 [1.4.2]: https://github.com/northword/zotero-format-metadata/compare/1.4.1...1.4.2
