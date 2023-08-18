@@ -17,6 +17,6 @@ export async function isDuplicate(item: Zotero.Item) {
         ztoolkit.log("当前条目存在重复条目", item);
         await duplicationDialog.showDialog(item);
     } else {
-        console.log("当前条目未发现重复条目");
+        ztoolkit.log("当前条目未发现重复条目");
     }
 }

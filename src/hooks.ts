@@ -10,7 +10,6 @@ import { registerShortcuts } from "./modules/shortcuts";
 import { richTextToolBar } from "./modules/views/richTextToolBar";
 import { setLanguageManualDialog } from "./modules/views/setLanguageManualDialog";
 import { createZToolkit } from "./utils/ztoolkit";
-import { waitUtilAsync } from "./utils/wait";
 
 async function onStartup() {
     await Promise.all([Zotero.initializationPromise, Zotero.unlockPromise, Zotero.uiReadyPromise]);
@@ -160,6 +159,9 @@ async function onUpdateInBatch(mode: string, items: Zotero.Item[] | "item" | "co
     switch (mode) {
         case "std":
             processor = FormatMetadata.updateStdFlow.bind(FormatMetadata);
+            break;
+        case "newItem":
+            processor = FormatMetadata.updateNewItem.bind(FormatMetadata);
             break;
         case "checkDuplication":
             processor = FormatMetadata.checkDuplication.bind(FormatMetadata);

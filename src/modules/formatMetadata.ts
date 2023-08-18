@@ -51,6 +51,13 @@ export default class FormatMetadata {
         getPref("isEnableDOI") ? await this.updateUniversityPlace(item) : "skip";
     }
 
+    @callingLoggerForMethod
+    static async updateNewItem(item: Zotero.Item) {
+        this.checkWebpage(item);
+        this.checkDuplication(item);
+        getPref("add.update") ? await this.updateStdFlow(item) : "";
+    }
+
     /**
      * 设置某字段的值
      * @param item 待处理的条目
@@ -77,9 +84,7 @@ function updateOnItemAdd(items: Zotero.Item[]) {
             (getPref("updateOnAddedForGroup") ? true : Zotero.Libraries.get(item.libraryID)._libraryType == "user"),
     );
     if (regularItems.length !== 0) {
-        addon.hooks.onUpdateInBatch("checkWebpage", regularItems);
-        addon.hooks.onUpdateInBatch("checkDuplication", regularItems);
-        getPref("add.update") ? addon.hooks.onUpdateInBatch("std", regularItems) : "";
+        addon.hooks.onUpdateInBatch("newItem", regularItems);
         return;
     }
 }
