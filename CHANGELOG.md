@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 新增条目时出现三个提示的问题。/ Three prompts appear when adding an item.
+- 标准格式化流程未修改 DOI 的问题。/ The standard formatting process did not modify the DOI issue.
+
 ## [1.4.5] - 2023-08-15
 
 ### Fixed
