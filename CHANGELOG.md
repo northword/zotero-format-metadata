@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.6] - 2023-08-18
+
 ### Fixed
 
 - 新增条目时出现三个提示的问题。/ Three prompts appear when adding an item.
@@ -384,7 +386,8 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/1.4.5...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/1.4.6...HEAD
+[1.4.6]: https://github.com/northword/zotero-format-metadata/compare/1.4.5...1.4.6
 [1.4.5]: https://github.com/northword/zotero-format-metadata/compare/1.4.4...1.4.5
 [1.4.4]: https://github.com/northword/zotero-format-metadata/compare/1.4.3...1.4.4
 [1.4.3]: https://github.com/northword/zotero-format-metadata/compare/1.4.2...1.4.3
