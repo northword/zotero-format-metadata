@@ -1,14 +1,14 @@
-import { registerPrefs, registerPrefsScripts } from "./modules/preference";
-import { getPref } from "./utils/prefs";
-import { getString, initLocale } from "./utils/locale";
-import { registerMutationObserver, registerNotifier } from "./modules/notifier";
 import { config } from "../package.json";
 import { FormatMetadata, runInBatch, updateOnItemAdd } from "./modules/formatMetadata";
 import { registerMenu, registerTextTransformMenu } from "./modules/menu";
+import { registerMutationObserver, registerNotifier } from "./modules/notifier";
+import { registerPrefs, registerPrefsScripts } from "./modules/preference";
 import { registerShortcuts } from "./modules/shortcuts";
 // import { registerPrompt } from "./modules/prompt";
 import { richTextToolBar } from "./modules/views/richTextToolBar";
 import { setLanguageManualDialog } from "./modules/views/setLanguageManualDialog";
+import { getString, initLocale } from "./utils/locale";
+import { getPref } from "./utils/prefs";
 import { createZToolkit } from "./utils/ztoolkit";
 
 async function onStartup() {

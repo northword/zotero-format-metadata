@@ -1,8 +1,8 @@
-import { franc } from "franc";
+import { iso6393To6391Data } from "../../data";
 import { progressWindow } from "../../utils/logger";
 import { getPref } from "../../utils/prefs";
 import { removeHtmlTag } from "../../utils/str";
-import { iso6393To6391Data } from "../../data";
+import { franc } from "franc";
 
 /* 条目语言 */
 

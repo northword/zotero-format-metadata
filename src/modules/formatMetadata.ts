@@ -1,16 +1,16 @@
-import { callingLoggerForMethod, logError, progressWindow } from "../utils/logger";
 import { config } from "../../package.json";
-import { getPref } from "../utils/prefs";
 import { getString } from "../utils/locale";
-import { updateJournalAbbr } from "./rules/field-journalAbbr";
-import { updateDate } from "./rules/field-date";
-import { updateMetadataByIdentifier } from "./rules/field-retrive";
-import { updateLanguage } from "./rules/field-language";
-import { capitalizeName } from "./rules/field-creators";
-import { updateUniversityPlace } from "./rules/field-place";
-import { updateDOI } from "./rules/field-misc";
-import { setHtmlTag, titleCase2SentenceCase } from "./rules/field-title";
+import { callingLoggerForMethod, logError, progressWindow } from "../utils/logger";
+import { getPref } from "../utils/prefs";
 import { waitUtilAsync } from "../utils/wait";
+import { capitalizeName } from "./rules/field-creators";
+import { updateDate } from "./rules/field-date";
+import { updateJournalAbbr } from "./rules/field-journalAbbr";
+import { updateLanguage } from "./rules/field-language";
+import { updateDOI } from "./rules/field-misc";
+import { updateUniversityPlace } from "./rules/field-place";
+import { updateMetadataByIdentifier } from "./rules/field-retrive";
+import { setHtmlTag, titleCase2SentenceCase } from "./rules/field-title";
 import { isDuplicate } from "./rules/item-no-duplicate";
 import { checkWebpage } from "./rules/item-webpage";
 

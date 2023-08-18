@@ -1,5 +1,5 @@
-import { getPref, setPref } from "../../utils/prefs";
 import { getString } from "../../utils/locale";
+import { getPref, setPref } from "../../utils/prefs";
 import { DialogHelper } from "zotero-plugin-toolkit/dist/helpers/dialog";
 
 export class richTextToolBar {

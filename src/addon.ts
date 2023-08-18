@@ -1,6 +1,6 @@
-import { DialogHelper } from "zotero-plugin-toolkit/dist/helpers/dialog";
 import hooks from "./hooks";
 import { createZToolkit } from "./utils/ztoolkit";
+import { DialogHelper } from "zotero-plugin-toolkit/dist/helpers/dialog";
 
 class Addon {
     public data: {

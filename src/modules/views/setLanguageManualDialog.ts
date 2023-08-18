@@ -1,8 +1,8 @@
-import FormatMetadata from "../formatMetadata";
-import { getPref } from "../../utils/prefs";
 import { getString } from "../../utils/locale";
-import { TagElementProps } from "zotero-plugin-toolkit/dist/tools/ui";
+import { getPref } from "../../utils/prefs";
+import FormatMetadata from "../formatMetadata";
 import { toIso639_1 } from "../rules/field-language";
+import { TagElementProps } from "zotero-plugin-toolkit/dist/tools/ui";
 
 /**
  * 手动设置条目语言_选择语言的弹窗

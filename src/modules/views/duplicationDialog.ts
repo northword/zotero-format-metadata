@@ -1,5 +1,5 @@
-import { getPref, setPref } from "../../utils/prefs";
 import { getString } from "../../utils/locale";
+import { getPref, setPref } from "../../utils/prefs";
 
 export class duplicationDialog {
     static async creatDialog(item: Zotero.Item) {
