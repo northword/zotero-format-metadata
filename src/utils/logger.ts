@@ -4,10 +4,10 @@ export function callingLoggerForMethod(target: any, propertyKey: string | symbol
     const original = descriptor.value;
     descriptor.value = function (...args: never) {
         try {
-            ztoolkit.log(`Calling ${target.name}.${String(propertyKey)} at ${new Date()}`);
+            ztoolkit.log(`Calling ${target.name}.${String(propertyKey)} at ${new Date().toLocaleString()}`);
             return original.apply(this, args);
         } catch (e) {
-            ztoolkit.log(`Error in ${target.name}.${String(propertyKey)} at ${new Date()}`, e);
+            ztoolkit.log(`Error in ${target.name}.${String(propertyKey)} at ${new Date().toLocaleString()}`, e);
             throw e;
         }
     };

@@ -48,7 +48,7 @@ export default class FormatMetadata {
         getPref("isEnableAbbr") ? await this.updateJournalAbbr(item) : "skip";
         getPref("isEnablePlace") ? await this.updateUniversityPlace(item) : "skip";
         getPref("isEnableDateISO") && !getPref("isEnableOtherFields") ? await this.updateDate(item) : "skip";
-        getPref("isEnableDOI") ? await this.updateUniversityPlace(item) : "skip";
+        getPref("isEnableDOI") ? await this.updateDOI(item) : "skip";
     }
 
     @callingLoggerForMethod
