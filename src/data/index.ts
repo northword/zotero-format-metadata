@@ -1,5 +1,6 @@
 import iso6393To6391 from "./iso-693-3-to-1";
-import journalAbbrISO4 from "./journal-abbr/jabref-abbr/journal-list-dots";
+import journalAbbrISO4JabRef from "./journal-abbr/jabref-abbr/journal-list-dots";
+import journalAbbrISO4Ubc from "./journal-abbr/library-ubc-ca/journalAbbrData"
 import universityPlace from "./university-list/university-place";
 
 export interface dict {
@@ -12,7 +13,8 @@ export interface dict {
  * Key: 全称  
  * Value: ISO 4 with dot 缩写 
  */
-export const journalAbbrlocalData: dict = journalAbbrISO4;
+// export const journalAbbrlocalData: dict = journalAbbrISO4JabRef;
+export const journalAbbrlocalData: dict = journalAbbrISO4Ubc;
 
 /**  
  * 高校所在地数据  

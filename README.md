@@ -139,12 +139,6 @@ Some quicker actions are available:
 
 Both [zotero-journalabbr] and [zotero-updateifsE] plugins provide similar function.
 
-where zotero-journalabbr's local dataset is essentially the same as this plugin, both being JabRef abbreviated data, while zotero-journalabbr uses [journal abbreviated data provided by Columbia University Library](https://woodward.library.ubc.ca/woodward/research-help/journal-abbreviations/), so if you only need journal abbreviation functionality, then this plugin is a good choice!
-
-zotero-updateifsE is a plugin to update data such as impact factor, partition rank, etc. for journals. For journal abbreviations, its readme file mentions that it contains only about 5000 journal abbreviations and does not support Columbia University Library data and ISSN LTWA inferences. Its journal abbreviation function is more suitable for light use.
-
-This plug-in adds the ability to infer abbreviations from ISSN LTWA to JabRef data, which basically covers most journals.
-
 [zotero-journalabbr]: https://github.com/zoushucai/zotero-journalabbr
 [zotero-updateifsE]: https://github.com/redleafnew/zotero-updateifsE
 

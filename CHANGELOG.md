@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 更换期刊缩写数据库，当前数据库来自 University of British Columbia，包含理工类英文期刊，其他领域待数据库整理好后再加。
+
 ## [1.4.6] - 2023-08-18
 
 ### Fixed

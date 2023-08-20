@@ -143,12 +143,6 @@ GNU Affero General Public License v3.0
 
 [zotero-journalabbr] 和 [zotero-updateifsE] 插件也都提供了类似的功能。
 
-其中 zotero-journalabbr 的本地数据集与本插件的本地数据集基本相同，均为 JabRef 的缩写数据，同时它使用了 [哥伦比亚大学图书馆提供的期刊缩写数据](https://woodward.library.ubc.ca/woodward/research-help/journal-abbreviations/) ，如果你仅需要期刊缩写功能，那么这个插件是一个不错的选择！
-
-zotero-updateifsE 是一个更新期刊影响因子、分区等级等数据的插件，其自述文件上提及其仅包含约 5000 条期刊缩写数据，且不支持哥伦比亚大学图书馆数据和 ISSN LTWA 推断。
-
-本插件在 JabRef 数据基础上增加了通过 ISSN LTWA 推断缩写的功能，基本可以覆盖绝大部分期刊。
-
 [zotero-journalabbr]: https://github.com/zoushucai/zotero-journalabbr
 [zotero-updateifsE]: https://github.com/redleafnew/zotero-updateifsE
 

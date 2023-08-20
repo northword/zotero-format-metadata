@@ -90,16 +90,24 @@ async function updateJournalAbbr(item: Zotero.Item) {
  * - `false` when abbr does not exist in local dataset
  */
 function getAbbrIso4Locally(publicationTitle: string, dataBase = journalAbbrlocalData): string | false {
-    // 处理传入文本
-    publicationTitle = publicationTitle.toLowerCase().trim();
-    publicationTitle.startsWith("the ") ? publicationTitle.replace("the ", "").trim() : "pass";
-    // 在本地数据里查找
-    const journalAbbr = dataBase[publicationTitle];
-    if (journalAbbr == "" || journalAbbr == null || journalAbbr == undefined) {
-        ztoolkit.log(`[Abbr] The abbr. of "${publicationTitle}" not exist in local dateset.`);
-        return false;
+    const normalizedInputKey = normalizeKey(publicationTitle);
+
+    for (const originalKey of Object.keys(dataBase)) {
+        const normalizedOriginalKey = normalizeKey(originalKey);
+
+        if (normalizedInputKey === normalizedOriginalKey) {
+            return dataBase[originalKey];
+        }
     }
-    return journalAbbr;
+    ztoolkit.log(`[Abbr] The abbr. of "${publicationTitle}" (${normalizedInputKey}) not exist in local dateset.`);
+    return false;
+}
+
+function normalizeKey(key: string): string {
+    return key
+        .toLowerCase()
+        .trim()
+        .replace(/the |&|and|-|:| |\(|\)/g, "");
 }
 
 /**
