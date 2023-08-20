@@ -32,12 +32,13 @@ function countSpecialLetter(text: string, letter: string) {
     return text.match(regexpVowels)?.length ?? 0;
 }
 
-function isFullUpperCase(text: string) {
-    if (countUpperCaseLetter(text) >= countLowerCaseLetter(text)) {
-        return true;
-    } else {
-        return false;
-    }
+export function isFullUpperCase(text: string) {
+    // if (countUpperCaseLetter(text) >= countLowerCaseLetter(text)) {
+    //     return true;
+    // } else {
+    //     return false;
+    // }
+    return text === text.toUpperCase();
 }
 /**
  * 判断给定字符串是否包含给定数组中的字符串
