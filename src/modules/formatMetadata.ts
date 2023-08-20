@@ -97,6 +97,7 @@ async function run(
         // this?: any;)
     },
 ) {
+    // todo: 将所有格式化字段函数都返回 item，统一保存一次，避免多次 SQL，提高效率。
     const args = [item, ...task.args];
     // await task.processor.apply(task.this, args);
     await task.processor(...args);
