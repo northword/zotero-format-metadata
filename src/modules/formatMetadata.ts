@@ -9,6 +9,7 @@ import { updateJournalAbbr } from "./rules/field-journalAbbr";
 import { updateLanguage } from "./rules/field-language";
 import { updateDOI } from "./rules/field-misc";
 import { updateUniversityPlace } from "./rules/field-place";
+import { updatePublicationTitle } from "./rules/field-publication";
 import { updateMetadataByIdentifier } from "./rules/field-retrive";
 import { setHtmlTag, titleCase2SentenceCase } from "./rules/field-title";
 import { isDuplicate } from "./rules/item-no-duplicate";
@@ -25,6 +26,7 @@ export default class FormatMetadata {
     static updateMetadataByIdentifier = updateMetadataByIdentifier;
     static updateLanguage = updateLanguage;
     static capitalizeName = capitalizeName;
+    static updatePublicationTitle = updatePublicationTitle;
     static updateJournalAbbr = updateJournalAbbr;
     static updateUniversityPlace = updateUniversityPlace;
     static updateDate = updateDate;
@@ -45,6 +47,7 @@ export default class FormatMetadata {
         getPref("isEnableOtherFields") ? await this.updateMetadataByIdentifier(item) : "skip";
         getPref("isEnableLang") ? await this.updateLanguage(item) : "skip";
         getPref("isEnableCreators") ? await this.capitalizeName(item) : "skip";
+        await this.updatePublicationTitle(item);
         getPref("isEnableAbbr") ? await this.updateJournalAbbr(item) : "skip";
         getPref("isEnablePlace") ? await this.updateUniversityPlace(item) : "skip";
         getPref("isEnableDateISO") && !getPref("isEnableOtherFields") ? await this.updateDate(item) : "skip";

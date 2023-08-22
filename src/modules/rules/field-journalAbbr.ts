@@ -2,6 +2,7 @@ import { journalAbbrlocalData } from "../../data";
 import { progressWindow } from "../../utils/logger";
 import { getPref } from "../../utils/prefs";
 import { removeDot } from "../../utils/str";
+import { normalizeKey } from "../../utils/str";
 import { getTextLanguage } from "./field-language";
 
 /* 期刊 */
@@ -101,13 +102,6 @@ function getAbbrIso4Locally(publicationTitle: string, dataBase = journalAbbrloca
     }
     ztoolkit.log(`[Abbr] The abbr. of "${publicationTitle}" (${normalizedInputKey}) not exist in local dateset.`);
     return false;
-}
-
-function normalizeKey(key: string): string {
-    return key
-        .toLowerCase()
-        .trim()
-        .replace(/the |&|and|-|:| |\(|\)/g, "");
 }
 
 /**

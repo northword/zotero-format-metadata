@@ -58,6 +58,20 @@ export function removeDot(text: string) {
 export function removeHtmlTag(str: string) {
     return str.replace(/<[^>]+>/g, "");
 }
+
+/**
+ * 统一 Key
+ * 用于期刊缩写数据中，期刊全称消岐
+ * @param key
+ * @returns key
+ */
+export function normalizeKey(key: string): string {
+    return key
+        .toLowerCase()
+        .trim()
+        .replace(/the |&|and|-|:| |\(|\)/g, "");
+}
+
 /**
  * To sentence case
  * The code is modified from Zotero.Utilities.sentenceCase.

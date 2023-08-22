@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 支持期刊全称消岐。/ fix publicationTitle disambiguation. [#11](https://github.com/northword/zotero-format-metadata/issues/11)
+
 ## [1.5.0] - 2023-08-20
 
 ### Fixed
