@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.0] - 2023-08-22
+
 ### Added
 
 - 支持期刊全称消岐。/ fix publicationTitle disambiguation. [#11](https://github.com/northword/zotero-format-metadata/issues/11)
@@ -397,7 +399,8 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/1.5.0...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/1.6.0...HEAD
+[1.6.0]: https://github.com/northword/zotero-format-metadata/compare/1.5.0...1.6.0
 [1.5.0]: https://github.com/northword/zotero-format-metadata/compare/1.4.6...1.5.0
 [1.4.6]: https://github.com/northword/zotero-format-metadata/compare/1.4.5...1.4.6
 [1.4.5]: https://github.com/northword/zotero-format-metadata/compare/1.4.4...1.4.5
