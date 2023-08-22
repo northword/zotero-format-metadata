@@ -29,7 +29,7 @@ async function translateByDOI(doi: string) {
 }
 
 async function updateMetadataByIdentifier(item: Zotero.Item, mode: "selected" | "blank" | "all" = "blank") {
-    const doi = item.getField("DOI") as string;
+    let doi = item.getField("DOI") as string;
     // 不存在 DOI 直接结束
     // todo: 若有附件，尝试从附件获取?
     // todo: 弹出 DOI 输入对话框?
@@ -37,6 +37,13 @@ async function updateMetadataByIdentifier(item: Zotero.Item, mode: "selected" | 
         progressWindow(getString("info-noDOI"), "fail");
         return;
     }
+
+    if (doi.match(/arxiv/gi)) {
+        const arxivID = doi.replace(/10.48550\/arXiv\./gi, "");
+        const tmpDOI = await getDOIFromArxiv(arxivID);
+        doi = tmpDOI !== false ? tmpDOI : doi;
+    }
+
     const newItem = await translateByDOI(doi);
     ztoolkit.log("Item retrieved from DOI: ", newItem);
 
@@ -51,6 +58,7 @@ async function updateMetadataByIdentifier(item: Zotero.Item, mode: "selected" | 
         "issue",
         "ISSN",
         "url",
+        "DOI",
         "abstractNote",
     ];
 
@@ -64,7 +72,9 @@ async function updateMetadataByIdentifier(item: Zotero.Item, mode: "selected" | 
     if (mode === "all") {
         ztoolkit.log("Update ItemType");
         newItem["itemTypeID"] = Zotero.ItemTypes.getID(newItem["itemType"]);
-        newItem["itemType"] !== item.itemType ? item.setType(newItem["itemTypeID"]) : "pass";
+        if (newItem["itemType"] !== item.itemType && !doi.match(/arxiv/gi)) {
+            item.setType(newItem["itemTypeID"]);
+        }
     }
 
     // 更新 creators
@@ -120,4 +130,23 @@ async function updateMetadataByIdentifier(item: Zotero.Item, mode: "selected" | 
 
     await item.saveTx();
     await Zotero.Promise.delay(3000);
+}
+
+async function getDOIFromArxiv(arxivID: string) {
+    const id = arxivID.replace(/arxiv:/gi, arxivID).trim();
+    const url = `https://export.arxiv.org/api/query?id_list=${id}`;
+
+    const res = await Zotero.HTTP.request("GET", url);
+    const result = res.response as string;
+    if (result == "" || result == null || result == undefined) {
+        ztoolkit.log("从 Arxiv API 请求失败");
+        return false;
+    }
+    const doc = new DOMParser().parseFromString(result, "text/xml");
+    const refDoi = doc.querySelector("doi");
+    if (refDoi) {
+        return refDoi.innerHTML;
+    } else {
+        return false;
+    }
 }

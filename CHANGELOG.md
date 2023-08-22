@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - 支持期刊全称消岐。/ fix publicationTitle disambiguation. [#11](https://github.com/northword/zotero-format-metadata/issues/11)
+- 支持将 Arxiv 预印本的元数据更新到正式发表的版本。/ Support for updating metadata from Arxiv preprints to official publications. [#57](https://github.com/northword/zotero-format-metadata/issues/57)
 
 ## [1.5.0] - 2023-08-20
 

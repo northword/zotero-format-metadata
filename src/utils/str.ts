@@ -177,6 +177,11 @@ function parseHTML(html: string) {
     return doc.body;
 }
 
+export function parseXML(xml: string) {
+    const doc = new DOMParser().parseFromString(xml, "text/xml");
+    return doc.body;
+}
+
 /**
  * 将给定字符串转为句子式大小写
  * @deprecated use toSentenceCase() instead. 转为 patch Zotero.Utilities.sentenceCase
