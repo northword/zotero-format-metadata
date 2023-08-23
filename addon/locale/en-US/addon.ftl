@@ -4,6 +4,7 @@ startup-finish = Addon is ready
 ## menu
 menuitem-label = Format Item MetaData
 menuitem-stdFormatFlow = Standard Format Flow
+menuitem-setPublicationTitle = Update Publication Title
 menuitem-setJournalAbbr = Look up Journal Abbreviations
 menuitem-setPlace = Look up University Places
 menuitem-getFieldsByDOIForBlack = Retrieve Black Fields via DOI

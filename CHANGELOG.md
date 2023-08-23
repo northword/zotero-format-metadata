@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 添加菜单：更新期刊标题（当前仅支持消岐）。/ Add menu for setPublicationTitle.
+
 ## [1.6.0] - 2023-08-22
 
 ### Added

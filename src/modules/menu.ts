@@ -60,6 +60,13 @@ export function registerMenu() {
             },
             {
                 tag: "menuitem",
+                label: getString("menuitem-setPublicationTitle"),
+                commandListener: (ev) => {
+                    addon.hooks.onUpdateInBatch("publicationTitle", menuPopup);
+                },
+            },
+            {
+                tag: "menuitem",
                 label: getString("menuitem-setJournalAbbr"),
                 commandListener: (ev) => {
                     addon.hooks.onUpdateInBatch("abbr", menuPopup);

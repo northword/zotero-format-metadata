@@ -169,6 +169,9 @@ async function onUpdateInBatch(mode: string, items: Zotero.Item[] | "item" | "co
         case "checkWebpage":
             processor = FormatMetadata.checkWebpage.bind(FormatMetadata);
             break;
+        case "publicationTitle":
+            processor = FormatMetadata.updatePublicationTitle.bind(FormatMetadata);
+            break;
         case "abbr":
             processor = FormatMetadata.updateJournalAbbr.bind(FormatMetadata);
             break;
@@ -204,7 +207,7 @@ async function onUpdateInBatch(mode: string, items: Zotero.Item[] | "item" | "co
             break;
         case "test":
             // 该项仅为调试便利，在此添加待调试功能，通过“测试”菜单触发
-            processor = FormatMetadata.checkWebpage.bind(FormatMetadata);
+            processor = FormatMetadata.updatePublicationTitle.bind(FormatMetadata);
             break;
         case "chem":
         default:
