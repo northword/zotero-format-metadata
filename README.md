@@ -5,7 +5,7 @@
 [![zotero target version](https://img.shields.io/badge/Zotero-7.0.*-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![version](https://img.shields.io/github/package-json/v/northword/zotero-format-metadata?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)
 [![download number](https://img.shields.io/github/downloads/northword/zotero-format-metadata/latest/zotero-format-metadata.xpi?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)  
-[![code size](https://img.shields.io/github/languages/code-size/northword/zotero-format-metadata?style=flat-square)](#zotero-format-metadata)
+[![download number for 0.4.4](https://img.shields.io/github/downloads/northword/zotero-format-metadata/0.4.4/total?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/tag/0.4.4)
 [![license](https://img.shields.io/github/license/northword/zotero-format-metadata?style=flat-square)](#licence)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
 
@@ -53,9 +53,7 @@ When adding an item, if its item type is a web page and its URL contains the dom
 
 ### Convert title from "heading case" to "sentence case"
 
-The Zotero's documentation recommends storing titles in "sentence case" format, which will allow CSL to perform a "title case" transformation on them [^sentenceCase]. Although Zotero has a built-in function to convert titles to "sentence case", this function only recognizes function words, not proper nouns such as chemical formulas, etc.
-
-This plugin provides a similar function, but avoids converting words that should be capitalized to lower case.
+The Zotero's documentation recommends storing titles in "sentence case" format, which will allow CSL to perform a "title case" transformation on them [^sentenceCase]. Zotero 7 has a built-in function to convert titles to "sentence capitalization", and some special case detection is preset, and this plugin expands on that by adding recognition of proper nouns, such as chemical formulas.
 
 Detailed test results are available at [test/toSentenceCase.test.ts](./test/toSentenseCase.test.ts).
 
@@ -63,7 +61,7 @@ Detailed test results are available at [test/toSentenceCase.test.ts](./test/toSe
 
 ### Look up the journal abbreviation according to the journal full name
 
-The plugin has a built-in dataset of about 96,000 journal abbreviations (from JabRef), and the plugin will first look up the journal abbreviations in the local dataset;
+The plugin has a built-in dataset of about 96,000 journal abbreviations (from JabRef and Woodward Library), and the plugin will first look up the journal abbreviations in the local dataset;
 
 If none are available, the abbreviations are inferred from the [ISSN List of Title Word Abbreviations](https://www.issn.org/services/online-services/access-to-the-ltwa/) (optional);
 
@@ -104,7 +102,7 @@ By default, the plugin is restricted to recognize only Simplified Chinese and En
    - If you are using FireFox, right click on the link of the XPI file and select "Save As...".
 2. Then, in Zotero, click `Tools` -> `Add-ons` and drag the `.xpi` onto the Add-ons window. See [how to install a Zotero addon](https://zotero.yuque.com/staff-gkhviy/zotero/addons#B2kU3).
 
-Note: The latest version is only supported for Zotero 7. If you are using Zotero 6, please download version 0.4.4.
+Note: The latest version is only supported for Zotero 7. If you are using Zotero 6, please download [version 0.4.4](https://github.com/northword/zotero-format-metadata/releases/tag/0.4.4).
 
 ## Changelog
 

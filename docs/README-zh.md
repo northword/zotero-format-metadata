@@ -5,11 +5,11 @@
 [![zotero target version](https://img.shields.io/badge/Zotero-7.0.*-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![version](https://img.shields.io/github/package-json/v/northword/zotero-format-metadata?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)
 [![download number](https://img.shields.io/github/downloads/northword/zotero-format-metadata/latest/zotero-format-metadata.xpi?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)  
-[![code size](https://img.shields.io/github/languages/code-size/northword/zotero-format-metadata?style=flat-square)](#zotero-format-metadata)
+[![download number for 0.4.4](https://img.shields.io/github/downloads/northword/zotero-format-metadata/0.4.4/total?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/tag/0.4.4)
 [![license](https://img.shields.io/github/license/northword/zotero-format-metadata?style=flat-square)](#开源协议)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
 
-本 README 还适用于以下语言：简体中文 | [English](../README.md)
+本 README 还适用于以下语言：:cn: 简体中文 | [:gb: English](../README.md)
 
 我是一个 [Zotero](https://www.zotero.org/) 插件，可以规范化/格式化条目的元数据（字段数据）。
 
@@ -55,17 +55,17 @@ todo: 根据网址得到条目标识符并强制更新。
 
 ### 将标题转为“句首大写”
 
-Zotero 文档建议将标题存储为“句子式大写”的格式，这将有利于 CSL 对其执行“title case”变换 [^sentenceCase]。虽然 Zotero 程序中内置了将标题转为“句子式大写”的功能，但是该功能仅能识别虚词，不能识别到诸如化学式等的专有名词。
-
-本插件提供了类似的功能，但可以避免将一些本该大写的词转为小写。
+Zotero 文档建议将标题存储为“句子式大写”的格式，这将有利于 CSL 对其执行“title case”变换 [^sentenceCase]。Zotero 7 内置了将标题转为“句子式大写”的功能，预置了一些特例识别，本插件在其基础上，增加了针对化学式等的专有名词识别。
 
 详细的测试结果可以参考 [test/toSentenceCase.test.ts](../test/toSentenseCase.test.ts)。
 
 [^sentenceCase]: <https://www.zotero.org/support/kb/sentence_casing>
 
-### 根据期刊全称填充期刊缩写
+### 期刊及其期刊缩写
 
-插件内置了一个包含约 10 万条期刊缩写的数据集（来自 JabRef ），插件将首先在本地数据集里查询期刊缩写；
+对于期刊标题，插件将使相同的期刊统一。
+
+插件内置了一个包含约 10 万条期刊缩写的数据集（来自 JabRef 和 Woodward Library ），插件将首先在本地数据集里查询期刊缩写；
 
 若无则根据 [ISSN List of Title Word Abbreviations](https://www.issn.org/services/online-services/access-to-the-ltwa/) 推断其缩写（可在首选项中关闭此行为）；
 
@@ -106,7 +106,7 @@ DOI 去前缀、日期修改为 ISO 格式等。
     - 如果你使用 FireFox ，请在 XPI 文件的链接上右击，选择“另存为...”。
 2. 在 Zotero 中，点击菜单 `工具` -> `附加组件`，将下载的 `.xpi` 文件拖入 Zotero 插件管理器页面。参阅 [如何安装 Zotero 插件](https://zotero.yuque.com/staff-gkhviy/zotero/addons#B2kU3)。
 
-注意：最新版本仅支持 Zotero 7，如果您正在使用 Zotero 6，请下载 0.4.4 版本。
+注意：最新版本仅支持 Zotero 7，如果您正在使用 Zotero 6，请下载 [0.4.4 版本](https://github.com/northword/zotero-format-metadata/releases/tag/0.4.4)。
 
 ## 变更日志
 
