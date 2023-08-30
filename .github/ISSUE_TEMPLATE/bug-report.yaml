@@ -27,7 +27,7 @@ body:
               - OS:
               - Zotero Version:
               - Addon Version:
-          render: markdown
+          render: Markdown
       validations:
           required: false
 
