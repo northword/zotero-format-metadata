@@ -21,13 +21,12 @@ body:
           description: |
               examples:
                 - **OS**: Windows 11 22H2
-                - **Zotero Version**: 6.0.0
-                - **Addon Version**: 0.6.6
+                - **Zotero Version**: 7.0.0
+                - **Addon Version**: 1.0.0
           value: |
-              - OS:
-              - Zotero Version:
-              - Addon Version:
-          render: Markdown
+              - OS: 
+              - Zotero Version: 
+              - Addon Version: 
       validations:
           required: false
 
