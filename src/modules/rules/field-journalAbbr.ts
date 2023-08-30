@@ -141,7 +141,7 @@ async function getAbbrFromCustom(publicationTitle: string) {
     const customAbbrDataPath = getPref("abbr.customDataPath") as string;
     if (customAbbrDataPath !== "" && (await IOUtils.exists(customAbbrDataPath))) {
         const customAbbrData = await Zotero.File.getContentsAsync(customAbbrDataPath);
-        if (typeof customAbbrData == "string") {
+        if (customAbbrData !== "" && typeof customAbbrData == "string") {
             try {
                 const data = JSON.parse(customAbbrData);
                 const abbr = (data[publicationTitle] as string) ?? false;
