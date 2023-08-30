@@ -1,5 +1,5 @@
 // prettier-ignore
-const functionWords = ["but", "or", "yet", "so", "for", "and", "nor", "a", "an",
+export const functionWords = ["but", "or", "yet", "so", "for", "and", "nor", "a", "an",
     "the", "at", "by", "from", "in", "into", "of", "on", "to", "with", "up",
     "down", "as"];
 // prettier-ignore

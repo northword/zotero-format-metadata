@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 将全大写的期刊标题转为词首大写。/ Convert all-caps publicationTitle to word uppercase. [#66](https://github.com/northword/zotero-format-metadata/issues/66)
+
 ## [1.6.1] - 2023-08-23
 
 ### Fixed
