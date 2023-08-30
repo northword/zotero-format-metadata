@@ -93,7 +93,7 @@ By default, the plugin is restricted to recognize only Simplified Chinese and En
 - Convert Date to ISO format
 - etc...
 
-See [futures.md](./docs/features.md)
+See [Features (in Chinese)](./docs/features.md).
 
 ## Install
 
