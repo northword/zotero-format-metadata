@@ -93,6 +93,8 @@ By default, the plugin is restricted to recognize only Simplified Chinese and En
 - Convert Date to ISO format
 - etc...
 
+See [futures.md](./docs/features.md)
+
 ## Install
 
 1. Go to the [release page](https://github.com/northword/zotero-format-metadata/releases/) to download [the latest `.xpi` file](https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-format-metadata.xpi).  
