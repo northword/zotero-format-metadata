@@ -1,4 +1,7 @@
 {
+    "git": {
+        "commitMessage": "chore(publish): release v${version}"
+    },
     "npm": {
         "publish": false
     },
