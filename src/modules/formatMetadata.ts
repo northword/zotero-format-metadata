@@ -172,7 +172,7 @@ async function runInBatch(
         } catch (err) {
             progress.createLine({
                 type: "fail",
-                text: getString("info-batch-has-error"),
+                text: `${getString("info-batch-has-error")}, ${err}`,
             });
             logError(err, item);
             // ztoolkit.log(err, item);

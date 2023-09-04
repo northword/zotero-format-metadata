@@ -148,7 +148,7 @@ async function getAbbrFromCustom(publicationTitle: string) {
                 if (!abbr) ztoolkit.log("[Abbr] 自定义缩写未匹配");
                 return abbr;
             } catch (e) {
-                progressWindow(`JSON Syntax Error, ${e}`, "fail");
+                // progressWindow(`JSON Syntax Error, ${e}`, "fail");
                 throw new Error(`JSON Syntax Error, ${e}`);
             }
         }
