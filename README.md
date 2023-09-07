@@ -2,6 +2,7 @@
 
 ![Linter for Zotero](./docs/assets/slogan-for-readme.jpg)
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/01a45a3ef8144dc690cf1e17d8b388f0)](https://app.codacy.com/gh/northword/zotero-format-metadata?utm_source=github.com&utm_medium=referral&utm_content=northword/zotero-format-metadata&utm_campaign=Badge_Grade)
 [![zotero target version](https://img.shields.io/badge/Zotero-7.0.*-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![version](https://img.shields.io/github/package-json/v/northword/zotero-format-metadata?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)
 [![download number](https://img.shields.io/github/downloads/northword/zotero-format-metadata/latest/zotero-format-metadata.xpi?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)  
