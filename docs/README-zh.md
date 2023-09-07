@@ -2,12 +2,13 @@
 
 ![Linter for Zotero](./assets/slogan-for-readme.jpg)
 
-[![zotero target version](https://img.shields.io/badge/Zotero-7.0.*-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
-[![version](https://img.shields.io/github/package-json/v/northword/zotero-format-metadata?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)
-[![download number](https://img.shields.io/github/downloads/northword/zotero-format-metadata/latest/zotero-format-metadata.xpi?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/)  
-[![download number for 0.4.4](https://img.shields.io/github/downloads/northword/zotero-format-metadata/0.4.4/total?style=flat-square)](https://github.com/northword/zotero-format-metadata/releases/tag/0.4.4)
-[![license](https://img.shields.io/github/license/northword/zotero-format-metadata?style=flat-square)](#开源协议)
-[![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
+[![zotero target version](https://img.shields.io/badge/Zotero-7.0.*-green?&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
+[![version](https://img.shields.io/github/package-json/v/northword/zotero-format-metadata)](https://github.com/northword/zotero-format-metadata/releases/)
+[![download number](https://img.shields.io/github/downloads/northword/zotero-format-metadata/latest/zotero-format-metadata.xpi)](https://github.com/northword/zotero-format-metadata/releases/)  
+[![download number for 0.4.4](https://img.shields.io/github/downloads/northword/zotero-format-metadata/0.4.4/total)](https://github.com/northword/zotero-format-metadata/releases/tag/0.4.4)
+[![license](https://img.shields.io/github/license/northword/zotero-format-metadata)](#licence)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/b851796e53724d7aa7c00923955e0f56)](https://app.codacy.com/gh/northword/zotero-format-metadata/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?&logo=github)](https://github.com/windingwind/zotero-plugin-template)
 
 本 README 还适用于以下语言：:cn: 简体中文 | [:gb: English](../README.md)
 
