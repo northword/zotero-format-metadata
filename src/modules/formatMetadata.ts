@@ -97,7 +97,7 @@ function updateOnItemAdd(items: Zotero.Item[]) {
             // @ts-ignore item has no isFeedItem
             !item.isFeedItem &&
             // @ts-ignore libraryID is got from item, so get() will never return false
-            (getPref("updateOnAddedForGroup") ? true : Zotero.Libraries.get(item.libraryID)._libraryType == "user"),
+            (getPref("add.updateOnAddedForGroup") ? true : Zotero.Libraries.get(item.libraryID)._libraryType == "user"),
     );
     if (regularItems.length !== 0) {
         addon.hooks.onUpdateInBatch("newItem", regularItems);

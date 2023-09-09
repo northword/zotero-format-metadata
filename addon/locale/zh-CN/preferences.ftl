@@ -3,7 +3,9 @@ pref-title-label = 格式化条目元数据
 ## 常规设置
 pref-general-settings-label = 常规设置
 pref-general-add-update =
-    .label =  添加条目时自动运行标准格式化流程
+    .label = 添加条目时自动运行标准格式化流程
+pref-general-add-update-for-group = 
+    .label = 添加群组条目时自动运行标准格式化流程
 pref-general-isEnableToolbar = 
     .label = 启用富文本工具条
 pref-general-isEnableRichTextHotKey = 

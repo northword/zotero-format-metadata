@@ -1,5 +1,6 @@
 pref("__prefsPrefix__.enable", true);
 pref("__prefsPrefix__.add.update", true);
+pref("__prefsPrefix__.add.updateOnAddedForGroup", false);
 pref("__prefsPrefix__.isEnableAbbr", true);
 pref("__prefsPrefix__.abbr.type", "ISO4dot");
 pref("__prefsPrefix__.abbr.infer", true);
