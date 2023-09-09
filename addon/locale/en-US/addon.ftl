@@ -5,7 +5,7 @@ prefs-title = Format MetaData
 ## menu
 menuitem-label = Format Item MetaData
 menuitem-stdFormatFlow = Standard Format Flow
-menuitem-setPublicationTitle = Update Publication Title
+menuitem-setPublicationTitle = Fix Alias and Capitalization of publicationTitle
 menuitem-setJournalAbbr = Look up Journal Abbreviations
 menuitem-setPlace = Look up University Places
 menuitem-getFieldsByDOIForBlack = Retrieve Black Fields via DOI

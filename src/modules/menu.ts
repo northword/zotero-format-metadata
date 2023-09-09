@@ -17,13 +17,13 @@ export function registerMenu() {
             {
                 tag: "menuseparator",
             },
-            {
-                tag: "menuitem",
-                label: getString("menuitem-自动识别标题中的上下标"),
-                commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("todo", menuPopup);
-                },
-            },
+            // {
+            //     tag: "menuitem",
+            //     label: getString("menuitem-自动识别标题中的上下标"),
+            //     commandListener: (ev) => {
+            //         addon.hooks.onUpdateInBatch("todo", menuPopup);
+            //     },
+            // },
             {
                 tag: "menuitem",
                 label: getString("menuitem-toSentenceCase"),
@@ -103,23 +103,23 @@ export function registerMenu() {
                     addon.hooks.onUpdateInBatch("getAllFieldViaDOI", menuPopup);
                 },
             },
-            {
-                tag: "menuseparator",
-            },
-            {
-                tag: "menuitem",
-                label: getString("menuitem-去除期卷页中多余的0"),
-                commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("todo", menuPopup);
-                },
-            },
-            {
-                tag: "menuitem",
-                label: getString("menuitem-清理非法占用的字段"),
-                commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("todo", menuPopup);
-                },
-            },
+            // {
+            //     tag: "menuseparator",
+            // },
+            // {
+            //     tag: "menuitem",
+            //     label: getString("menuitem-去除期卷页中多余的0"),
+            //     commandListener: (ev) => {
+            //         addon.hooks.onUpdateInBatch("todo", menuPopup);
+            //     },
+            // },
+            // {
+            //     tag: "menuitem",
+            //     label: getString("menuitem-清理非法占用的字段"),
+            //     commandListener: (ev) => {
+            //         addon.hooks.onUpdateInBatch("todo", menuPopup);
+            //     },
+            // },
             {
                 tag: "menuseparator",
             },

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 隐藏未实现功能的菜单。/ Hidden menu which unimplemented.
+- 修改“格式化期刊标题”为“修正期刊标题的别称和大小写”
+
 ## [1.6.3] - 2023-09-09
 
 ### Added

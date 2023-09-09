@@ -5,7 +5,7 @@ prefs-title = 格式化条目元数据
 ## menu
 menuitem-label = 格式化条目元数据
 menuitem-stdFormatFlow = 标准格式化流程
-menuitem-setPublicationTitle = 格式化期刊标题
+menuitem-setPublicationTitle = 修正期刊标题的别称和大小写
 menuitem-setJournalAbbr = 自动填充期刊缩写
 menuitem-setPlace = 填充高校所在地
 menuitem-getFieldsByDOIForBlack = 根据 DOI 更新字段（空白的）
