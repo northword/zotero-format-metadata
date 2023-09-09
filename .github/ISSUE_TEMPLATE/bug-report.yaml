@@ -1,6 +1,6 @@
 name: Bug report
 description: File a bug / issue
-title: "[BUG] "
+title: "[Bug] "
 labels:
     - bug
     # - Needs Triage
