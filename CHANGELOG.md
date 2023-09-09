@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 转换标题中的书名号 `《》` 与 `〈〉`。/ Convert Chinese guillemet  `《》` 与 `〈〉`. [#72](https://github.com/northword/zotero-format-metadata/issues/72), ref [redleafnew/Chinese-STD-GB-T-7714-related-csl#204](https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl/issues/204)
+
 ## [1.6.2] - 2023-08-30
 
 ### Added

@@ -11,7 +11,12 @@ import { updateDOI } from "./rules/field-misc";
 import { updateUniversityPlace } from "./rules/field-place";
 import { updatePublicationTitle } from "./rules/field-publication";
 import { updateMetadataByIdentifier } from "./rules/field-retrive";
-import { setHtmlTag, titleCase2SentenceCase } from "./rules/field-title";
+import {
+    replaceBracketsToGuillemet,
+    replaceGuillemetToBrackets,
+    setHtmlTag,
+    titleCase2SentenceCase,
+} from "./rules/field-title";
 import { isDuplicate } from "./rules/item-no-duplicate";
 import { checkWebpage } from "./rules/item-webpage";
 
@@ -23,6 +28,7 @@ export default class FormatMetadata {
         window.alert(getString("unimplemented"));
     }
 
+    // Field Checker
     static updateMetadataByIdentifier = updateMetadataByIdentifier;
     static updateLanguage = updateLanguage;
     static capitalizeName = capitalizeName;
@@ -34,8 +40,15 @@ export default class FormatMetadata {
     static titleCase2SentenceCase = titleCase2SentenceCase;
     static setHtmlTag = setHtmlTag;
 
+    // Item Checker
     static checkDuplication = isDuplicate;
     static checkWebpage = checkWebpage;
+
+    // Tools
+    static replaceBracketsToGuillemet = replaceBracketsToGuillemet;
+    static replaceGuillemetToBrackets = replaceGuillemetToBrackets;
+
+    // General
 
     /**
      * 标准格式化流程

@@ -205,6 +205,12 @@ async function onUpdateInBatch(mode: string, items: Zotero.Item[] | "item" | "co
         case "capitalizeName":
             processor = FormatMetadata.capitalizeName.bind(FormatMetadata);
             break;
+        case "titleBracketsToGuillemet":
+            processor = FormatMetadata.replaceBracketsToGuillemet.bind(FormatMetadata);
+            break;
+        case "titleGuillemetToBrackets":
+            processor = FormatMetadata.replaceGuillemetToBrackets.bind(FormatMetadata);
+            break;
         case "test":
             // 该项仅为调试便利，在此添加待调试功能，通过“测试”菜单触发
             processor = FormatMetadata.updatePublicationTitle.bind(FormatMetadata);
