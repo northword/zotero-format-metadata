@@ -101,7 +101,7 @@ See [Features (in Chinese)](./docs/features.md).
 1. Go to the [release page](https://github.com/northword/zotero-format-metadata/releases/) to download [the latest `.xpi` file](https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-format-metadata.xpi).  
    - If you are in mainland China or cannot access GitHub easily, please download the plugin via the following mirror sites.
      - [GitHub Proxy](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fnorthword%2Fzotero-format-metadata%2Freleases%2Flatest%2Fdownload%2Fzotero-format-metadata.xpi)
-     - [Gitee](https://zotero-chinese.gitee.io/zotero-plugins/#/)
+     - [Zotero Chinese](https://plugins.zotero-chinese.com/)
    - If you are using FireFox, right click on the link of the XPI file and select "Save As...".
 2. Then, in Zotero, click `Tools` -> `Add-ons` and drag the `.xpi` onto the Add-ons window. See [how to install a Zotero addon](https://zotero.yuque.com/staff-gkhviy/zotero/addons#B2kU3).
 
