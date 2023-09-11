@@ -32,7 +32,7 @@ function setHtmlTag(tag: string, attribute?: string, value?: string) {
 }
 
 async function titleCase2SentenceCase(item: Zotero.Item) {
-    const title = item.getField("title") as string;
+    const title = item.getField("title", false, true) as string;
     const newTitle = toSentenceCase(title);
     item.setField("title", newTitle);
     await item.saveTx();
@@ -43,7 +43,7 @@ async function titleCase2SentenceCase(item: Zotero.Item) {
  * @see https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl/issues/204
  */
 async function replaceGuillemetToBrackets(item: Zotero.Item) {
-    const title = item.getField("title") as string;
+    const title = item.getField("title", false, true) as string;
     const newTitle = title.replace(/《/g, "〈").replace(/》/g, "〉");
     item.setField("title", newTitle);
     await item.saveTx();
@@ -54,7 +54,7 @@ async function replaceGuillemetToBrackets(item: Zotero.Item) {
  * @see https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl/issues/204
  */
 async function replaceBracketsToGuillemet(item: Zotero.Item) {
-    const title = item.getField("title") as string;
+    const title = item.getField("title", false, true) as string;
     // const newTitle = title.replace(/<(?!\/|sub|sup|b|i)/g, "《").replace(/(?<!\/|sub|sup|b|i)>/g, "》");
     const newTitle = title.replace(/〈/g, "《").replace(/〉/g, "》");
     item.setField("title", newTitle);

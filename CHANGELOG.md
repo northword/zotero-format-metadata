@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复法律（立法和案例）条目处理时标题消失的 bug。/ Fixed an issue where processing legal items (Legislation and Cases) caused their titles to disappear. [#75](https://github.com/northword/zotero-format-metadata/issues/75), [#77](https://github.com/northword/zotero-format-metadata/issues/77)
+
 ## [1.6.5] - 2023-09-11
 
 ### Fixed
