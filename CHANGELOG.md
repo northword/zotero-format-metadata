@@ -7,11 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- `《》` 与 `〈〉`转换问题。/ Bug of  `《》` <-> `〈〉`. [#76](https://github.com/northword/zotero-format-metadata/issues/76)
+
 ## [1.6.4] - 2023-09-09
 
 ### Added
 
-允许在首选项中配置添加条目时自动处理排除群组文库。/ Allows to avoid automatic processing of items added to group libraries. [#24](https://github.com/northword/zotero-format-metadata/issues/24)
+- 允许在首选项中配置添加条目时自动处理排除群组文库。/ Allows to avoid automatic processing of items added to group libraries. [#24](https://github.com/northword/zotero-format-metadata/issues/24)
 
 ### Fixed
 

@@ -19,8 +19,8 @@ menuitem-toSentenceCase = Convert Title to Sentence Case
 menuitem-capitalizeName = Fix Case of Creators
 menufield-toSentenceCase = Sentence case (Extended)
 menuTools-label = Other Tools
-menuitem-titleBracketsToGuillemet = Convert《》to〈〉in title
-menuitem-titleGuillemetToBrackets = Convert〈〉to《》in title
+menuitem-titleBracketsToGuillemet = Convert〈〉to《》in title
+menuitem-titleGuillemetToBrackets = Convert《》to〈〉in title
 
 ## batch
 info-batch-init = Initialization

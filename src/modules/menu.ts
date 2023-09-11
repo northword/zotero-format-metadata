@@ -144,16 +144,16 @@ export function registerMenu() {
                     // },
                     {
                         tag: "menuitem",
-                        label: getString("menuitem-titleBracketsToGuillemet"),
+                        label: getString("menuitem-titleGuillemetToBrackets"),
                         commandListener: (ev) => {
-                            addon.hooks.onUpdateInBatch("titleBracketsToGuillemet", "item");
+                            addon.hooks.onUpdateInBatch("titleGuillemetToBrackets", "item");
                         },
                     },
                     {
                         tag: "menuitem",
-                        label: getString("menuitem-titleGuillemetToBrackets"),
+                        label: getString("menuitem-titleBracketsToGuillemet"),
                         commandListener: (ev) => {
-                            addon.hooks.onUpdateInBatch("titleGuillemetToBrackets", "item");
+                            addon.hooks.onUpdateInBatch("titleBracketsToGuillemet", "item");
                         },
                     },
                     {

@@ -19,8 +19,8 @@ menuitem-toSentenceCase = 将标题改为句首大写
 menuitem-capitalizeName = 修正作者的大小写
 menufield-toSentenceCase = 句首大写（扩展）
 menuTools-label = Linter 其他小工具
-menuitem-titleBracketsToGuillemet = 将标题中《》转为〈〉
-menuitem-titleGuillemetToBrackets = 将标题中〈〉转为《》
+menuitem-titleBracketsToGuillemet = 将标题中〈〉转为《》
+menuitem-titleGuillemetToBrackets = 将标题中《》转为〈〉
 
 ## batch
 info-batch-init = 初始化
