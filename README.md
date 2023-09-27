@@ -9,6 +9,7 @@
 [![license](https://img.shields.io/github/license/northword/zotero-format-metadata)](#licence)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/b851796e53724d7aa7c00923955e0f56)](https://app.codacy.com/gh/northword/zotero-format-metadata/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?&logo=github)](https://github.com/windingwind/zotero-plugin-template)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnorthword%2Fzotero-format-metadata.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnorthword%2Fzotero-format-metadata?ref=badge_shield)
 
 This README is also available in: [:cn: 简体中文](./docs/README-zh.md) | :gb:  English
 
@@ -124,6 +125,9 @@ See [CONTRIBUTING.md](./docs/CONTRIBUTING.md).
 GNU Affero General Public License v3.0
 
 Permissions of this strongest copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. When a modified version is used to provide a service over a network, the complete source code of the modified version must be made available.
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnorthword%2Fzotero-format-metadata.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnorthword%2Fzotero-format-metadata?ref=badge_large)
 
 ## Alternatives
 
