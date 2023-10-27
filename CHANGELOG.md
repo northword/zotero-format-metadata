@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.7] - 2023-10-27
+
 ### Added
 
 - 为部分已有功能添加选项：重复条目检测、修正期刊标题大小写。/ Add options to some existing features: duplicate item detection, fix case of journal titles. [#84](https://github.com/northword/zotero-format-metadata/issues/84)
@@ -453,7 +455,8 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/1.6.6...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/1.6.7...HEAD
+[1.6.7]: https://github.com/northword/zotero-format-metadata/compare/1.6.6...1.6.7
 [1.6.6]: https://github.com/northword/zotero-format-metadata/compare/1.6.5...1.6.6
 [1.6.5]: https://github.com/northword/zotero-format-metadata/compare/1.6.4...1.6.5
 [1.6.4]: https://github.com/northword/zotero-format-metadata/compare/1.6.3...1.6.4
