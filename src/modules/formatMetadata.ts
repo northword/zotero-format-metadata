@@ -60,6 +60,7 @@ export default class FormatMetadata {
         getPref("isEnableOtherFields") ? await this.updateMetadataByIdentifier(item) : "skip";
         getPref("isEnableLang") ? await this.updateLanguage(item) : "skip";
         getPref("isEnableCreators") ? await this.capitalizeName(item) : "skip";
+        getPref("isEnableTitleCase") ? await this.titleCase2SentenceCase(item) : "skip";
         await this.updatePublicationTitle(item);
         getPref("isEnableAbbr") ? await this.updateJournalAbbr(item) : "skip";
         getPref("isEnablePlace") ? await this.updateUniversityPlace(item) : "skip";
