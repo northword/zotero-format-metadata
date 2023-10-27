@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 为部分已有功能添加选项：重复条目检测、修正期刊标题大小写。/ Add options to some existing features: duplicate item detection, fix case of journal titles. [#84](https://github.com/northword/zotero-format-metadata/issues/84)
+- 将`标题转为句子式大写`加入标准格式化流程。/ Add `Convert Title to Sentence Capitalization` to the standard formatting flow. [#86](https://github.com/northword/zotero-format-metadata/issues/86)
+
 ## [1.6.6] - 2023-09-11
 
 ### Fixed
