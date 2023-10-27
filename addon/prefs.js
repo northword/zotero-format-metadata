@@ -24,3 +24,4 @@ pref("__prefsPrefix__.isEnableCreators", true);
 pref("__prefsPrefix__.isEnableTitleCase", true);
 pref("__prefsPrefix__.isEnableCheckDuplication", true);
 // pref("__prefsPrefix__.lintAfterRetriveByDOI", true);
+pref("__prefsPrefix__.isEnablePublicationTitle", true);
