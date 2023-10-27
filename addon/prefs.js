@@ -23,3 +23,4 @@ pref("__prefsPrefix__.isEnableDOI", true);
 pref("__prefsPrefix__.isEnableCreators", true);
 pref("__prefsPrefix__.isEnableTitleCase", true);
 pref("__prefsPrefix__.isEnableCheckDuplication", true);
+// pref("__prefsPrefix__.lintAfterRetriveByDOI", true);

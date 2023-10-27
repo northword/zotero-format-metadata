@@ -1,5 +1,6 @@
 import { getString } from "../../utils/locale";
 import { progressWindow } from "../../utils/logger";
+import { getPref } from "../../utils/prefs";
 
 export { updateMetadataByIdentifier };
 
@@ -28,7 +29,11 @@ async function translateByDOI(doi: string) {
     return newItem;
 }
 
-async function updateMetadataByIdentifier(item: Zotero.Item, mode: "selected" | "blank" | "all" = "blank") {
+async function updateMetadataByIdentifier(
+    item: Zotero.Item,
+    mode: "selected" | "blank" | "all" = "blank",
+    needLint: boolean = false,
+) {
     let doi = item.getField("DOI") as string;
     // 不存在 DOI 直接结束
     // todo: 若有附件，尝试从附件获取?
@@ -127,9 +132,11 @@ async function updateMetadataByIdentifier(item: Zotero.Item, mode: "selected" | 
                 break;
         }
     }
-
+    // todo: 处理与标准格式化流程中空白字段填充的死循环
+    // needLint = (getPref("lintAfterRetriveByDOI") as boolean) ?? false;
+    // needLint ? await addon.hooks.onUpdateInBatch("std", [item]) : "skip";
     await item.saveTx();
-    await Zotero.Promise.delay(3000);
+    await Zotero.Promise.delay(1000);
 }
 
 async function getDOIFromArxiv(arxivID: string) {
