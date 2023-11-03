@@ -7,15 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复文本拼写错误。
+
 ## [1.6.9] - 2023-11-03
 
-### Fix
+### Fixed
 
 - 修复上一版本引入 JabRef 数据导致期刊全称修正失效的问题。
 
 ## [1.6.8] - 2023-11-03
 
-### Fix
+### Fixed
 
 - 重新添加 JabRef 期刊缩写数据，数据会首选 library.ubc.ca ，次选 JabRef。[#5](https://github.com/northword/zotero-format-metadata/issues/5#issuecomment-1790844575)
 
