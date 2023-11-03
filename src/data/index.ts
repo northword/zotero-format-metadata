@@ -14,7 +14,7 @@ export interface dict {
  * Value: ISO 4 with dot 缩写 
  */
 // export const journalAbbrlocalData: dict = journalAbbrISO4JabRef;
-export const journalAbbrlocalData: dict = journalAbbrISO4Ubc;
+export const journalAbbrlocalData: dict = {...journalAbbrISO4JabRef, ...journalAbbrISO4Ubc};
 
 /**  
  * 高校所在地数据  
