@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fix
+
+- 修复上一版本引入 JabRef 数据导致期刊全称修正失效的问题。
+
 ## [1.6.8] - 2023-11-03
 
 ### Fix

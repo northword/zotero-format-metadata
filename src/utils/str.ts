@@ -69,7 +69,7 @@ export function normalizeKey(key: string): string {
     return key
         .toLowerCase()
         .trim()
-        .replace(/the |&|and|-|:| |\(|\)/g, "");
+        .replace(/the |&|and|-|:|,| |\(|\)/g, "");
 }
 
 /**
