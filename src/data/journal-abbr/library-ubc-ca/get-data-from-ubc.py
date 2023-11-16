@@ -38,7 +38,7 @@ def parse_html(html_content):
             if len(columns) == 2:
                 journal_abbreviation = columns[0].get_text().strip()
                 journal_full_name = columns[1].get_text().strip()
-                if journal_abbreviation and journal_full_name:
+                if (journal_abbreviation and journal_full_name) and journal_full_name not in journal_dict:
                     journal_dict[journal_full_name] = journal_abbreviation
 
         sorted_data = {k: v for k, v in sorted(journal_dict.items())}  # 对键进行排序
