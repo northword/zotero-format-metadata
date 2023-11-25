@@ -1,6 +1,7 @@
 **/build
 node_modules
 package-lock.json
+pnpm-lock.yaml
 zotero-cmd.json
 
 # libs
