@@ -10,5 +10,5 @@
     },
     "include": ["src", "typings", "node_modules/zotero-types"],
     // "include": ["src", "typings", "../zotero-types"],
-    "exclude": ["build", "addon"]
+    "exclude": ["build", "addon", "**/temp**"]
 }
