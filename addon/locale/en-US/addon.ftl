@@ -1,13 +1,14 @@
 startup-begin = Addon is loading
 startup-finish = Addon is ready
+prefs-title = Format MetaData
 
 ## menu
 menuitem-label = Format Item MetaData
 menuitem-stdFormatFlow = Standard Format Flow
-menuitem-setPublicationTitle = Update Publication Title
+menuitem-setPublicationTitle = Fix Alias and Capitalization of publicationTitle
 menuitem-setJournalAbbr = Look up Journal Abbreviations
 menuitem-setPlace = Look up University Places
-menuitem-getFieldsByDOIForBlack = Retrieve Black Fields via DOI
+menuitem-getFieldsByDOIForBlack = Retrieve Blank Fields via DOI
 menuitem-getFieldsByDOIForSelected = Retrieve Selected Fields via DOI
 menuitem-getFieldsByDOIForAll = Retrieve All Fields via DOI
 menuitem-setDoi = Uniform DOI Format
@@ -17,7 +18,9 @@ menuitem-manuallySetLang = Manually Set Item Language
 menuitem-toSentenceCase = Convert Title to Sentence Case
 menuitem-capitalizeName = Fix Case of Creators
 menufield-toSentenceCase = Sentence case (Extended)
-prefs-title = Format MetaData
+menuTools-label = Other Tools
+menuitem-titleBracketsToGuillemet = Convert〈〉to《》in title
+menuitem-titleGuillemetToBrackets = Convert《》to〈〉in title
 
 ## batch
 info-batch-init = Initialization

@@ -17,13 +17,13 @@ export function registerMenu() {
             {
                 tag: "menuseparator",
             },
-            {
-                tag: "menuitem",
-                label: getString("menuitem-自动识别标题中的上下标"),
-                commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("todo", menuPopup);
-                },
-            },
+            // {
+            //     tag: "menuitem",
+            //     label: getString("menuitem-自动识别标题中的上下标"),
+            //     commandListener: (ev) => {
+            //         addon.hooks.onUpdateInBatch("todo", menuPopup);
+            //     },
+            // },
             {
                 tag: "menuitem",
                 label: getString("menuitem-toSentenceCase"),
@@ -103,30 +103,78 @@ export function registerMenu() {
                     addon.hooks.onUpdateInBatch("getAllFieldViaDOI", menuPopup);
                 },
             },
+            // {
+            //     tag: "menuseparator",
+            // },
+            // {
+            //     tag: "menuitem",
+            //     label: getString("menuitem-去除期卷页中多余的0"),
+            //     commandListener: (ev) => {
+            //         addon.hooks.onUpdateInBatch("todo", menuPopup);
+            //     },
+            // },
+            // {
+            //     tag: "menuitem",
+            //     label: getString("menuitem-清理非法占用的字段"),
+            //     commandListener: (ev) => {
+            //         addon.hooks.onUpdateInBatch("todo", menuPopup);
+            //     },
+            // },
             {
                 tag: "menuseparator",
             },
             {
-                tag: "menuitem",
-                label: getString("menuitem-setDoi"),
-                commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("doi", menuPopup);
-                },
-                disabled: true,
-            },
-            {
-                tag: "menuitem",
-                label: getString("menuitem-setDate"),
-                commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("date", menuPopup);
-                },
-            },
-            {
-                tag: "menuitem",
-                label: getString("menuitem-去除期卷页中多余的0"),
-                commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("todo", menuPopup);
-                },
+                tag: "menu",
+                label: "其他小工具",
+                icon: menuIcon,
+                children: [
+                    // {
+                    //     tag: "menuitem",
+                    //     label: getString("menuitem-titleDoubleQuoteToSingleQuote"),
+                    //     commandListener: (ev) => {
+                    //         addon.hooks.onUpdateInBatch("titleDoubleQuoteToSingleQuote", "item");
+                    //     },
+                    // },
+                    // {
+                    //     tag: "menuitem",
+                    //     label: getString("menuitem-titleSingleQuoteToDoubleQuote"),
+                    //     commandListener: (ev) => {
+                    //         addon.hooks.onUpdateInBatch("titleSingleQuoteToDoubleQuote", "item");
+                    //     },
+                    // },
+                    {
+                        tag: "menuitem",
+                        label: getString("menuitem-titleGuillemetToBrackets"),
+                        commandListener: (ev) => {
+                            addon.hooks.onUpdateInBatch("titleGuillemetToBrackets", "item");
+                        },
+                    },
+                    {
+                        tag: "menuitem",
+                        label: getString("menuitem-titleBracketsToGuillemet"),
+                        commandListener: (ev) => {
+                            addon.hooks.onUpdateInBatch("titleBracketsToGuillemet", "item");
+                        },
+                    },
+                    {
+                        tag: "menuseparator",
+                    },
+                    {
+                        tag: "menuitem",
+                        label: getString("menuitem-setDoi"),
+                        commandListener: (ev) => {
+                            addon.hooks.onUpdateInBatch("doi", menuPopup);
+                        },
+                        disabled: true,
+                    },
+                    {
+                        tag: "menuitem",
+                        label: getString("menuitem-setDate"),
+                        commandListener: (ev) => {
+                            addon.hooks.onUpdateInBatch("date", menuPopup);
+                        },
+                    },
+                ],
             },
         ];
         return menuItem;
@@ -167,6 +215,29 @@ export function registerMenu() {
             },
         });
     }
+
+    // ztoolkit.Menu.register("menuTools", {
+    //     tag: "menu",
+    //     label: getString("menuTools-label"),
+    //     id: `${config.addonRef}-menuTools`,
+    //     icon: menuIcon,
+    //     children: [
+    //         {
+    //             tag: "menuitem",
+    //             label: getString("menuitem-titleBracketsToGuillemet"),
+    //             commandListener: (ev) => {
+    //                 addon.hooks.onUpdateInBatch("titleBracketsToGuillemet", "item");
+    //             },
+    //         },
+    //         {
+    //             tag: "menuitem",
+    //             label: getString("menuitem-titleGuillemetToBrackets"),
+    //             commandListener: (ev) => {
+    //                 addon.hooks.onUpdateInBatch("titleGuillemetToBrackets", "item");
+    //             },
+    //         },
+    //     ],
+    // });
 }
 
 export function registerTextTransformMenu() {

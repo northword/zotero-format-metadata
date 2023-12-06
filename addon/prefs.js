@@ -1,5 +1,6 @@
 pref("__prefsPrefix__.enable", true);
 pref("__prefsPrefix__.add.update", true);
+pref("__prefsPrefix__.add.updateOnAddedForGroup", false);
 pref("__prefsPrefix__.isEnableAbbr", true);
 pref("__prefsPrefix__.abbr.type", "ISO4dot");
 pref("__prefsPrefix__.abbr.infer", true);
@@ -20,3 +21,7 @@ pref("__prefsPrefix__.richtext.isEnableChem", true);
 pref("__prefsPrefix__.isEnableDateISO", true);
 pref("__prefsPrefix__.isEnableDOI", true);
 pref("__prefsPrefix__.isEnableCreators", true);
+pref("__prefsPrefix__.isEnableTitleCase", true);
+pref("__prefsPrefix__.isEnableCheckDuplication", true);
+// pref("__prefsPrefix__.lintAfterRetriveByDOI", true);
+pref("__prefsPrefix__.isEnablePublicationTitle", true);

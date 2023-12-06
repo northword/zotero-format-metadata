@@ -13,6 +13,19 @@
             preference="__prefsPrefix__.add.update"
             native="true"
         />
+        <!-- 添加时自动执行格式化（群组条目） -->
+        <checkbox
+            id="__addonRef__-add-update-for-group"
+            data-l10n-id="pref-general-add-update-for-group"
+            preference="__prefsPrefix__.add.updateOnAddedForGroup"
+            native="true"
+        />
+        <!-- 添加时检测是否存在重复条目 -->
+        <checkbox
+            data-l10n-id="pref-general-add-check-duplication"
+            preference="__prefsPrefix__.isEnableCheckDuplication"
+            native="true"
+        />
         <!-- 是否启用富文本工具框 -->
         <checkbox
             id="__addonRef__-enable-toolbar"
@@ -48,8 +61,16 @@
         <!-- <description data-l10n-id="pref-std-update-field-by-doi-desc" style="width: 45em" class="indented-pref" /> -->
         <!-- 根据标题识别条目语言 -->
         <checkbox data-l10n-id="pref-std-lang" preference="__prefsPrefix__.isEnableLang" native="true" />
-        <!-- 根据标题识别条目语言 -->
+        <!-- 修改作者大小写 -->
         <checkbox data-l10n-id="pref-std-creators" preference="__prefsPrefix__.isEnableCreators" native="true" />
+        <!-- 修改标题大小写 -->
+        <checkbox data-l10n-id="pref-std-title" preference="__prefsPrefix__.isEnableTitleCase" native="true" />
+        <!-- 修正期刊名大小写 -->
+        <checkbox
+            data-l10n-id="pref-std-publicationTitle"
+            preference="__prefsPrefix__.isEnablePublicationTitle"
+            native="true"
+        />
         <!-- 更新期刊缩写 -->
         <checkbox data-l10n-id="pref-std-abbr" preference="__prefsPrefix__.isEnableAbbr" native="true" />
         <!-- 更新日期格式 -->

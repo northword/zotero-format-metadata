@@ -103,9 +103,9 @@ DOI 去前缀、日期修改为 ISO 格式等。
 1. 前往 [发布页](https://github.com/northword/zotero-format-metadata/releases/) 下载 [最新的 `.xpi` 文件](https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-format-metadata.xpi).  
     - 如果你无法顺利的访问 GitHub，可以前往以下几个镜像站下载本插件。
       - [GitHub Proxy](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fnorthword%2Fzotero-format-metadata%2Freleases%2Flatest%2Fdownload%2Fzotero-format-metadata.xpi)
-      - [Zotero 插件镜像下载（Gitee）](https://zotero-chinese.gitee.io/zotero-plugins/#/)
+      - [Zotero 插件镜像下载 - Zotero 中文社区](https://plugins.zotero-chinese.com/)
     - 如果你使用 FireFox ，请在 XPI 文件的链接上右击，选择“另存为...”。
-2. 在 Zotero 中，点击菜单 `工具` -> `附加组件`，将下载的 `.xpi` 文件拖入 Zotero 插件管理器页面。参阅 [如何安装 Zotero 插件](https://zotero.yuque.com/staff-gkhviy/zotero/addons#B2kU3)。
+2. 在 Zotero 中，点击菜单 `工具` -> `附加组件`，将下载的 `.xpi` 文件拖入 Zotero 插件管理器页面。参阅 [如何安装 Zotero 插件](https://zotero-chinese.com/user-guide/plugins/about-plugin.html)。
 
 注意：最新版本仅支持 Zotero 7，如果您正在使用 Zotero 6，请下载 [0.4.4 版本](https://github.com/northword/zotero-format-metadata/releases/tag/0.4.4)。
 

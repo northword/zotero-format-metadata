@@ -1,23 +1,26 @@
 startup-begin = 插件加载中
 startup-finish = 插件已就绪
+prefs-title = 格式化条目元数据
 
 ## menu
 menuitem-label = 格式化条目元数据
 menuitem-stdFormatFlow = 标准格式化流程
-menuitem-setPublicationTitle = 格式化期刊标题
+menuitem-setPublicationTitle = 修正期刊标题的别称和大小写
 menuitem-setJournalAbbr = 自动填充期刊缩写
 menuitem-setPlace = 填充高校所在地
 menuitem-getFieldsByDOIForBlack = 根据 DOI 更新字段（空白的）
 menuitem-getFieldsByDOIForSelected = 通过 DOI 更新字段（选定）
 menuitem-getFieldsByDOIForAll = 通过 DOI 更新字段（所有）
-menuitem-setDoi = 统一 DOI 格式
+menuitem-setDoi = 去除 DOI 网址前缀
 menuitem-setDate = 统一日期格式为 ISO 格式
 menuitem-autoSetLang = 自动识别条目语言
 menuitem-manuallySetLang = 手动设置条目语言
 menuitem-toSentenceCase = 将标题改为句首大写
 menuitem-capitalizeName = 修正作者的大小写
 menufield-toSentenceCase = 句首大写（扩展）
-prefs-title = 格式化条目元数据
+menuTools-label = Linter 其他小工具
+menuitem-titleBracketsToGuillemet = 将标题中〈〉转为《》
+menuitem-titleGuillemetToBrackets = 将标题中《》转为〈〉
 
 ## batch
 info-batch-init = 初始化

@@ -7,6 +7,70 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.11] - 2023-11-16
+
+### fixed
+
+- 更新期刊缩写数据集，修复 <https://github.com/northword/zotero-format-metadata/issues/5#issuecomment-1814430857>。
+
+## [1.6.10] - 2023-11-03
+
+### Fixed
+
+- 修复文本拼写错误。
+
+## [1.6.9] - 2023-11-03
+
+### Fixed
+
+- 修复上一版本引入 JabRef 数据导致期刊全称修正失效的问题。
+
+## [1.6.8] - 2023-11-03
+
+### Fixed
+
+- 重新添加 JabRef 期刊缩写数据，数据会首选 library.ubc.ca ，次选 JabRef。[#5](https://github.com/northword/zotero-format-metadata/issues/5#issuecomment-1790844575)
+
+## [1.6.7] - 2023-10-27
+
+### Added
+
+- 为部分已有功能添加选项：重复条目检测、修正期刊标题大小写。/ Add options to some existing features: duplicate item detection, fix case of journal titles. [#84](https://github.com/northword/zotero-format-metadata/issues/84)
+- 将`标题转为句子式大写`加入标准格式化流程。/ Add `Convert Title to Sentence Capitalization` to the standard formatting flow. [#86](https://github.com/northword/zotero-format-metadata/issues/86)
+
+## [1.6.6] - 2023-09-11
+
+### Fixed
+
+- 修复法律（立法和案例）条目处理时标题消失的 bug。/ Fixed an issue where processing legal items (Legislation and Cases) caused their titles to disappear. [#75](https://github.com/northword/zotero-format-metadata/issues/75), [#77](https://github.com/northword/zotero-format-metadata/issues/77)
+
+## [1.6.5] - 2023-09-11
+
+### Fixed
+
+- `《》` 与 `〈〉`转换问题。/ Bug of  `《》` <-> `〈〉`. [#76](https://github.com/northword/zotero-format-metadata/issues/76)
+
+## [1.6.4] - 2023-09-09
+
+### Added
+
+- 允许在首选项中配置添加条目时自动处理排除群组文库。/ Allows to avoid automatic processing of items added to group libraries. [#24](https://github.com/northword/zotero-format-metadata/issues/24)
+
+### Fixed
+
+- 隐藏未实现功能的菜单。/ Hidden menu which unimplemented.
+- 修改“格式化期刊标题”为“修正期刊标题的别称和大小写”
+
+## [1.6.3] - 2023-09-09
+
+### Added
+
+- 转换标题中的书名号 `《》` 与 `〈〉`。/ Convert Chinese guillemet  `《》` 与 `〈〉`. [#72](https://github.com/northword/zotero-format-metadata/issues/72), ref [redleafnew/Chinese-STD-GB-T-7714-related-csl#204](https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl/issues/204)
+
+### Fixed
+
+- 将报错信息同步显示到进度提示框（控制台仍然输出）。/ Show error info to progress window.
+
 ## [1.6.2] - 2023-08-30
 
 ### Added
@@ -415,7 +479,16 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/1.6.2...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/1.6.11...HEAD
+[1.6.11]: https://github.com/northword/zotero-format-metadata/compare/1.6.10...1.6.11
+[1.6.10]: https://github.com/northword/zotero-format-metadata/compare/1.6.9...1.6.10
+[1.6.9]: https://github.com/northword/zotero-format-metadata/compare/1.6.8...1.6.9
+[1.6.8]: https://github.com/northword/zotero-format-metadata/compare/1.6.7...1.6.8
+[1.6.7]: https://github.com/northword/zotero-format-metadata/compare/1.6.6...1.6.7
+[1.6.6]: https://github.com/northword/zotero-format-metadata/compare/1.6.5...1.6.6
+[1.6.5]: https://github.com/northword/zotero-format-metadata/compare/1.6.4...1.6.5
+[1.6.4]: https://github.com/northword/zotero-format-metadata/compare/1.6.3...1.6.4
+[1.6.3]: https://github.com/northword/zotero-format-metadata/compare/1.6.2...1.6.3
 [1.6.2]: https://github.com/northword/zotero-format-metadata/compare/1.6.1...1.6.2
 [1.6.1]: https://github.com/northword/zotero-format-metadata/compare/1.6.0...1.6.1
 [1.6.0]: https://github.com/northword/zotero-format-metadata/compare/1.5.0...1.6.0
