@@ -15,76 +15,72 @@ const { zoteroBinPath, profilePath } = cmd.exec;
 const startZoteroCmd = `"${zoteroBinPath}" --debugger --purgecaches -profile "${profilePath}"`;
 
 async function watch() {
-  const watcher = chokidar.watch(["src/**", "addon/**"], {
-    ignored: /(^|[\/\\])\../, // ignore dotfiles
-    persistent: true,
-  });
-
-  let esbuildCTX = await context(esbuildOptions);
-
-  watcher
-    .on("ready", () => {
-      Logger.info("Server Ready! \n");
-    })
-    .on("change", async (path) => {
-      Logger.info(`${path} changed.`);
-      if (path.startsWith("src")) {
-        await esbuildCTX.rebuild();
-      } else if (path.startsWith("addon")) {
-        await build()
-          // Do not abort the watcher when errors occur in builds triggered by the watcher.
-          .catch((err) => {
-            Logger.error(err);
-          });
-      }
-      // reload
-      reload();
-    })
-    .on("error", (err) => {
-      Logger.error("Server start failed!", err);
+    const watcher = chokidar.watch(["src/**", "addon/**"], {
+        ignored: /(^|[\/\\])\../, // ignore dotfiles
+        persistent: true,
     });
+
+    let esbuildCTX = await context(esbuildOptions);
+
+    watcher
+        .on("ready", () => {
+            Logger.info("Server Ready! \n");
+        })
+        .on("change", async (path) => {
+            Logger.info(`${path} changed.`);
+            if (path.startsWith("src")) {
+                await esbuildCTX.rebuild();
+            } else if (path.startsWith("addon")) {
+                await build()
+                    // Do not abort the watcher when errors occur in builds triggered by the watcher.
+                    .catch((err) => {
+                        Logger.error(err);
+                    });
+            }
+            // reload
+            reload();
+        })
+        .on("error", (err) => {
+            Logger.error("Server start failed!", err);
+        });
 }
 
 function reload() {
-  Logger.debug("Reloading...");
-  const url = `zotero://ztoolkit-debug/?run=${encodeURIComponent(
-    reloadScript,
-  )}`;
-  const command = `${startZoteroCmd} -url "${url}"`;
-  execSync(command);
+    Logger.debug("Reloading...");
+    const url = `zotero://ztoolkit-debug/?run=${encodeURIComponent(reloadScript)}`;
+    const command = `${startZoteroCmd} -url "${url}"`;
+    execSync(command);
 }
 
 function openDevTool() {
-  Logger.debug("Open dev tools...");
-  const url = `zotero://ztoolkit-debug/?run=${encodeURIComponent(
-    openDevToolScript,
-  )}`;
-  const command = `${startZoteroCmd} -url "${url}"`;
-  execSync(command);
+    Logger.debug("Open dev tools...");
+    const url = `zotero://ztoolkit-debug/?run=${encodeURIComponent(openDevToolScript)}`;
+    const command = `${startZoteroCmd} -url "${url}"`;
+    execSync(command);
 }
 
 async function main() {
-  // build
-  await build();
+    // build
+    await build();
 
-  // start Zotero
-  startZotero();
-  setTimeout(() => {
-    openDevTool();
-  }, 2000);
+    // start Zotero
+    startZotero();
+    setTimeout(() => {
+        openDevTool();
+    }, 2000);
 
-  // watch
-  await watch();
+    // watch
+    await watch();
 }
 
 main().catch((err) => {
-  Logger.error(err);
-  // execSync("node scripts/stop.mjs");
-  exit(1);
+    Logger.error(err);
+    // execSync("node scripts/stop.mjs");
+    exit(1);
 });
 
 process.on("SIGINT", (code) => {
-  execSync("node scripts/stop.mjs");
-  Logger.info(`Server terminated with signal ${code}.`);
-  exit(0);
+    execSync("node scripts/stop.mjs");
+    Logger.info(`Server terminated with signal ${code}.`);
+    exit(0);
 });

@@ -10,7 +10,7 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/b851796e53724d7aa7c00923955e0f56)](https://app.codacy.com/gh/northword/zotero-format-metadata/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?&logo=github)](https://github.com/windingwind/zotero-plugin-template)
 
-This README is also available in: [:cn: 简体中文](./docs/README-zh.md) | :gb:  English
+This README is also available in: [:cn: 简体中文](./docs/README-zh.md) | :gb: English
 
 An addon for [Zotero](https://www.zotero.org/) to format item metadata.
 
@@ -98,7 +98,7 @@ See [Features (in Chinese)](./docs/features.md).
 
 ## Install
 
-1. Go to the [release page](https://github.com/northword/zotero-format-metadata/releases/) to download [the latest `.xpi` file](https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-format-metadata.xpi).  
+1. Go to the [release page](https://github.com/northword/zotero-format-metadata/releases/) to download [the latest `.xpi` file](https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-format-metadata.xpi).
    - If you are in mainland China or cannot access GitHub easily, please download the plugin via the following mirror sites.
      - [GitHub Proxy](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fnorthword%2Fzotero-format-metadata%2Freleases%2Flatest%2Fdownload%2Fzotero-format-metadata.xpi)
      - [Zotero Chinese](https://plugins.zotero-chinese.com/)

@@ -1,8 +1,8 @@
 {
-    "editor.formatOnType": false,
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "explicit"
-    },
-    "markdownlint.ignore": ["**/README*.md"]
+  "editor.formatOnType": false,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "markdownlint.ignore": ["**/README*.md"]
 }

@@ -6,21 +6,21 @@ import process from "process";
 const { killZoteroWindows, killZoteroUnix } = cmd;
 
 isRunning("zotero", (status) => {
-  if (status) {
-    killZotero();
-  } else {
-    Logger.warn("No Zotero running.");
-  }
+    if (status) {
+        killZotero();
+    } else {
+        Logger.warn("No Zotero running.");
+    }
 });
 
 function killZotero() {
-  try {
-    if (process.platform === "win32") {
-      execSync(killZoteroWindows);
-    } else {
-      execSync(killZoteroUnix);
+    try {
+        if (process.platform === "win32") {
+            execSync(killZoteroWindows);
+        } else {
+            execSync(killZoteroUnix);
+        }
+    } catch (e) {
+        Logger.error(e);
     }
-  } catch (e) {
-    Logger.error(e);
-  }
 }

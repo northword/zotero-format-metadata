@@ -21,20 +21,20 @@ vi zotero-cmd.json
 
 ```json5
 {
-    "usage": "Copy and rename this file to zotero-cmd.json. Edit the cmd.",
-    "killZoteroWindows": "taskkill /f /im zotero.exe",
-    "killZoteroUnix": "kill -9 $(ps -x | grep zotero)",
-    "exec": {
-        // 在这里输入 Zotero 可执行文件的路径。对于 Windows 用户，`\` 需要转义为 `\\`。
-        "zoteroBinPath": "/path/to/zotero.exe",
+  usage: "Copy and rename this file to zotero-cmd.json. Edit the cmd.",
+  killZoteroWindows: "taskkill /f /im zotero.exe",
+  killZoteroUnix: "kill -9 $(ps -x | grep zotero)",
+  exec: {
+    // 在这里输入 Zotero 可执行文件的路径。对于 Windows 用户，`\` 需要转义为 `\\`。
+    zoteroBinPath: "/path/to/zotero.exe",
 
-        // 在这里输入用于开发的 Profile 的路径。
-        // `/path/to/zotero.exe -p` 可以启动 Profile 管理器，以创建新的 Profile。
-        "profilePath": "/path/to/profile",
+    // 在这里输入用于开发的 Profile 的路径。
+    // `/path/to/zotero.exe -p` 可以启动 Profile 管理器，以创建新的 Profile。
+    profilePath: "/path/to/profile",
 
-        // 可选的修改项，请跟随 zotero-cmd-default.json 中的注释修改。
-        "dataDir": ""
-    }
+    // 可选的修改项，请跟随 zotero-cmd-default.json 中的注释修改。
+    dataDir: "",
+  },
 }
 ```
 

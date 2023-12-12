@@ -1,26 +1,26 @@
 {
-    "addons": {
-        "zotero-format-metadata@northword.cn": {
-            "updates": [
-                {
-                    "version": "0.4.4",
-                    "update_link": "https://github.com/northword/zotero-format-metadata/releases/download/0.4.4/zotero-format-metadata.xpi",
-                    "applications": {
-                        "gecko": {
-                            "strict_min_version": "60.0"
-                        }
-                    }
-                },
-                {
-                    "version": "1.6.11",
-                    "update_link": "https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-format-metadata.xpi",
-                    "applications": {
-                        "zotero": {
-                            "strict_min_version": "6.999"
-                        }
-                    }
-                }
-            ]
+  "addons": {
+    "zotero-format-metadata@northword.cn": {
+      "updates": [
+        {
+          "version": "0.4.4",
+          "update_link": "https://github.com/northword/zotero-format-metadata/releases/download/0.4.4/zotero-format-metadata.xpi",
+          "applications": {
+            "gecko": {
+              "strict_min_version": "60.0"
+            }
+          }
+        },
+        {
+          "version": "1.6.11",
+          "update_link": "https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-format-metadata.xpi",
+          "applications": {
+            "zotero": {
+              "strict_min_version": "6.999"
+            }
+          }
         }
+      ]
     }
+  }
 }
