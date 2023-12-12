@@ -32,6 +32,7 @@
     "url": "https://github.com/northword/zotero-format-metadata/issues"
   },
   "homepage": "https://github.com/northword/zotero-format-metadata#readme",
+  "packageManager": "pnpm@8.11.0",
   "dependencies": {
     "franc": "^6.1.0",
     "iso-locales": "^1.1.1",
