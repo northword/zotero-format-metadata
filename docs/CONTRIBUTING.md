@@ -2,11 +2,11 @@
 
 ## 开发和构建指南
 
-在开始前，请确认 [Node.js](https://nodejs.org/) v18 及以上版本和 `npm` 已安装。同时，你还需要安装 [Git](https://git-scm.com/) 程序。
+在开始前，请确认 [Node.js](https://nodejs.org/) v18 及以上版本已安装。同时，你还需要安装 [Git](https://git-scm.com/) 程序。
 
 ```bash
 # Clone 本仓库到本地
-# 若希望向本仓库提交代码，请 Fork 本仓库，并将 Fork repo clone到本地。
+# 若希望向本仓库提交代码，请 fork 本仓库，并将 forked repo clone 到本地。
 git clone https://github.com/northword/zotero-format-metadata.git
 cd zotero-format-metadata/
 
@@ -41,16 +41,12 @@ vi zotero-cmd.json
 至此，开发环境配置完毕，你可以通过以下脚本开始开发：
 
 ```bash
+# 启动开发服务器
+npm start
+
 # 构建
 # 构建后的插件位于 build/ 目录
-npm build
-
-# 启动 Zotero 并监听文件更改
-# 当文件更改时，自动完成构建并在 Zotero 里重载为新版本插件
-npm start-watch
-
-# 仅启动 Zotero
-npm start
+npm run build
 ```
 
 本插件以 [windingwind/zotero-plugin-template](https://github.com/windingwind/zotero-plugin-template) 为模板，使用了 [zotero-plugin-toolkit](https://github.com/windingwind/zotero-plugin-toolkit) 封装的诸多功能，更多信息请前往对应仓库查阅文档。
