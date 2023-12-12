@@ -7,11 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- test
+管道测试，无内容更新和修复。/ Pipeline testing, no updates or fixes.
 
 ## [1.6.11] - 2023-11-16
 
-### fixed
+### Fixed
 
 - 更新期刊缩写数据集，修复 <https://github.com/northword/zotero-format-metadata/issues/5#issuecomment-1814430857>。
 
