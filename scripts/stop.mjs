@@ -1,14 +1,26 @@
-import process from "process";
-import { execSync } from "child_process";
+import { Logger, isRunning } from "./utils.mjs";
 import cmd from "./zotero-cmd.json" assert { type: "json" };
+import { execSync } from "child_process";
+import process from "process";
+
 const { killZoteroWindows, killZoteroUnix } = cmd;
 
-try {
+isRunning("zotero", (status) => {
+  if (status) {
+    killZotero();
+  } else {
+    Logger.warn("No Zotero running.");
+  }
+});
+
+function killZotero() {
+  try {
     if (process.platform === "win32") {
-        execSync(killZoteroWindows);
+      execSync(killZoteroWindows);
     } else {
-        execSync(killZoteroUnix);
+      execSync(killZoteroUnix);
     }
-} catch (e) {
-    console.error(e);
+  } catch (e) {
+    Logger.error(e);
+  }
 }

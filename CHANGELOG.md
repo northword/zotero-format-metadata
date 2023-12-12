@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- test
+
 ## [1.6.11] - 2023-11-16
 
 ### fixed
@@ -48,7 +50,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- `《》` 与 `〈〉`转换问题。/ Bug of  `《》` <-> `〈〉`. [#76](https://github.com/northword/zotero-format-metadata/issues/76)
+- `《》` 与 `〈〉`转换问题。/ Bug of `《》` <-> `〈〉`. [#76](https://github.com/northword/zotero-format-metadata/issues/76)
 
 ## [1.6.4] - 2023-09-09
 
@@ -65,7 +67,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- 转换标题中的书名号 `《》` 与 `〈〉`。/ Convert Chinese guillemet  `《》` 与 `〈〉`. [#72](https://github.com/northword/zotero-format-metadata/issues/72), ref [redleafnew/Chinese-STD-GB-T-7714-related-csl#204](https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl/issues/204)
+- 转换标题中的书名号 `《》` 与 `〈〉`。/ Convert Chinese guillemet `《》` 与 `〈〉`. [#72](https://github.com/northword/zotero-format-metadata/issues/72), ref [redleafnew/Chinese-STD-GB-T-7714-related-csl#204](https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl/issues/204)
 
 ### Fixed
 
@@ -112,7 +114,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - 更新内置期刊缩写数据的获取规则，现与 JabRef 仓库脚本保持一致，使用最后匹配到的。已发现了一些错误，正在向上游仓库反馈。see: feb3402f1fe1abc326c1c64d346ee26ca77b2d22
-  后续拟通过其他方式获取缩写，不再将 JabRef 作为首选。
+    后续拟通过其他方式获取缩写，不再将 JabRef 作为首选。
 
 ## [1.4.4] - 2023-08-14
 
@@ -168,7 +170,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - 修复部分标题句子式大写转换问题。Zotero 更新了其内置的转换方法，在其基础上扩展支持化学元素。/ fix: to sentence case
-close #35, #27, #18
+    close #35, #27, #18
     related: <https://github.com/zotero/utilities/pull/26>
 
 ## [1.1.0] - 2023-08-09
@@ -197,11 +199,11 @@ close #35, #27, #18
 
 ### Fixed
 
-- 尝试修复 MAC 上关闭主界面不退出进程重新打开后插件部分功能失效的问题。/ Try to fix the issue that some functions of the plugin do not work after reopening the main window on MAC.  
+- 尝试修复 MAC 上关闭主界面不退出进程重新打开后插件部分功能失效的问题。/ Try to fix the issue that some functions of the plugin do not work after reopening the main window on MAC.
   - <https://github.com/windingwind/zotero-plugin-template/pull/67>
   - <https://groups.google.com/g/zotero-dev/c/zVn4k9dLoak>
 - 更新依赖，避免插件间冲突。/ Update dependencies to avoid conflicts between plugins.  
-    <https://github.com/windingwind/zotero-pdf-translate/issues/526>
+     <https://github.com/windingwind/zotero-pdf-translate/issues/526>
 
 ## [1.0.5] - 2023-07-19
 
@@ -288,7 +290,7 @@ close #35, #27, #18
 
 ### Added
 
-- 将标题从“标题式大写”转为“句子式大写”  /  Convert title from "headline capitalization" to "sentence capitalization"
+- 将标题从“标题式大写”转为“句子式大写” / Convert title from "headline capitalization" to "sentence capitalization"
 - 为富文本工具条“NoCase”按钮添加图标 / Add icon for "No Case" button in rich text tool bar
 
 ## [0.3.2] - 2023-05-03
@@ -296,7 +298,7 @@ close #35, #27, #18
 ### Added
 
 - 支持设置 `class="nocase"` 阻止某些专有名词在 CSL title case 时被大写 (#17)。  
-Support for setting `class="nocase"` to prevent certain special names from being capitalized in CSL title cases (#17).
+    Support for setting `class="nocase"` to prevent certain special names from being capitalized in CSL title cases (#17).
 
 ## [0.3.1] - 2023-05-01
 
@@ -436,9 +438,9 @@ Support for setting `class="nocase"` to prevent certain special names from being
 ### Added
 
 - 允许选择期刊缩写的类型。  
-    Choose which journal abbreviation to use: ISO4 with dot (default), ISO without dot, JCR.
+     Choose which journal abbreviation to use: ISO4 with dot (default), ISO without dot, JCR.
 - 允许用户设置常用语言，以提高识别的准确度。  
-    Allowing restrictions on commonly used languages when recognising languages to improve recognition accuracy.
+     Allowing restrictions on commonly used languages when recognising languages to improve recognition accuracy.
 
 ## [0.0.5] - 2023-03-23
 

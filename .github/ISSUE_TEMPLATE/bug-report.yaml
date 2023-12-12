@@ -26,7 +26,7 @@ body:
           value: |
               - OS: 
               - Zotero Version: 
-              - Addon Version: 
+              - Addon Version:
       validations:
           required: false
 

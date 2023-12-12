@@ -1,12 +1,13 @@
 {
     "git": {
-        "commitMessage": "chore(publish): release v${version}"
+        "commitMessage": "chore(publish): release v${version}",
+        "tagName": "v${version}"
     },
     "npm": {
         "publish": false
     },
     "github": {
-        "release": true,
+        "release": false,
         "assets": ["build/*.xpi", "update.json"]
     },
     "hooks": {
