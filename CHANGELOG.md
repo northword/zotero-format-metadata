@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+管道测试，无内容更新和修复。/ Pipeline testing, no updates or fixes.
+
 ## [1.6.12] - 2023-12-12
 
 管道测试，无内容更新和修复。/ Pipeline testing, no updates or fixes.
