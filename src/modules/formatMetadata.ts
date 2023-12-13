@@ -89,6 +89,10 @@ export default class FormatMetadata {
             await item.saveTx();
         }
     }
+
+    static test(item: Zotero.Item) {
+        ztoolkit.log(item.getField("proceedingsTitle"));
+    }
 }
 
 function updateOnItemAdd(items: Zotero.Item[]) {

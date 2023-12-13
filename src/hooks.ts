@@ -213,7 +213,7 @@ async function onUpdateInBatch(mode: string, items: Zotero.Item[] | "item" | "co
             break;
         case "test":
             // 该项仅为调试便利，在此添加待调试功能，通过“测试”菜单触发
-            processor = FormatMetadata.updatePublicationTitle.bind(FormatMetadata);
+            processor = FormatMetadata.test.bind(FormatMetadata);
             break;
         case "chem":
         default:

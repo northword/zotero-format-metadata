@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复会议论文执行更新期刊名错误导致其 `proceedingsTitle` 被清空的问题。/ Fix an issue that causes `proceedingsTitle` are cleared when updating `publicationTitle`.
+
 ## [1.6.14] - 2023-12-12
 
 管道测试，无内容更新和修复。/ Pipeline testing, no updates or fixes.

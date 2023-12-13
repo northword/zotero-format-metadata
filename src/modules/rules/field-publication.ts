@@ -5,7 +5,7 @@ import { isFullUpperCase, normalizeKey } from "../../utils/str";
 export { updatePublicationTitle };
 
 async function updatePublicationTitle(item: Zotero.Item) {
-    const publicationTitle = item.getField("publicationTitle") as string;
+    const publicationTitle = item.getField("publicationTitle", false, true) as string;
     let newPublicationTitle = "";
     const publicationTitleDisambiguation = getPublicationTitleDisambiguation(publicationTitle);
     if (publicationTitleDisambiguation) {
