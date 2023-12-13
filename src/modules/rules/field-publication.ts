@@ -17,7 +17,8 @@ async function updatePublicationTitle(item: Zotero.Item) {
         newPublicationTitle = publicationTitle;
     }
     item.setField("publicationTitle", newPublicationTitle);
-    await item.saveTx();
+    return item;
+    // await item.saveTx();
 }
 
 const skipWordsForPublicationTitle = [

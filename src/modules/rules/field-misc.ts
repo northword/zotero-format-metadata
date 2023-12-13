@@ -1,8 +1,9 @@
 export async function updateDOI(item: Zotero.Item) {
     const doi = item.getField("DOI");
     if (doi && typeof doi == "string") {
-        const doiCleand = Zotero.Utilities.cleanDOI(doi);
-        doiCleand ? item.setField("DOI", doiCleand) : "pass";
+        const cleandDOI = Zotero.Utilities.cleanDOI(doi);
+        cleandDOI ? item.setField("DOI", cleandDOI) : "pass";
     }
-    await item.saveTx();
+    return item;
+    // await item.saveTx();
 }

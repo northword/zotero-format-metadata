@@ -6,17 +6,14 @@ export { updateUniversityPlace };
 
 async function updateUniversityPlace(item: Zotero.Item) {
     if (item.itemType == "thesis") {
-        try {
-            const university = item.getField("university") as string;
-            const place = getUniversityPlace(university);
-            item.setField("place", place);
-            await item.saveTx();
-        } catch (error) {
-            ztoolkit.log("失败", error);
-        }
+        const university = item.getField("university") as string;
+        const place = getUniversityPlace(university);
+        item.setField("place", place);
+        // await item.saveTx();
     } else {
         ztoolkit.log(`[Place] Item type ${item.itemType} is not thesis, skip it.`);
     }
+    return item;
 }
 
 /**

@@ -14,7 +14,8 @@ async function capitalizeName(item: Zotero.Item) {
         newCreators.push(creator);
     }
     item.setCreators(newCreators);
-    await item.saveTx();
+    return item;
+    // await item.saveTx();
 }
 
 // todo: 期刊文章必须含有作者

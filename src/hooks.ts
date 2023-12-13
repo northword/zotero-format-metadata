@@ -153,7 +153,7 @@ async function onUpdateInBatch(mode: string, items: Zotero.Item[] | "item" | "co
         }
     }
 
-    let processor: ((...args: any[]) => Promise<void> | void) | undefined = undefined,
+    let processor: ((...args: any[]) => Promise<Zotero.Item | void> | Zotero.Item | void) | undefined = undefined,
         args: any[] = [];
 
     switch (mode) {

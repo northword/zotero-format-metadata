@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Performance
+
+- 对一个条目执行更新时，一次性保存所有字段，而不是每个字段分别保存一次。/ When updating an item, save all fields at once instead of saving each field separately.
+
 ## [1.6.15] - 2023-12-13
 
 ### Fixed

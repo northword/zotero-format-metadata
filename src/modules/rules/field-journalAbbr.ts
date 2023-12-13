@@ -14,15 +14,15 @@ export { updateJournalAbbr };
  *
  * @param item
  */
-async function updateJournalAbbr(item: Zotero.Item) {
+async function updateJournalAbbr(item: Zotero.Item): Promise<Zotero.Item> {
     // 非 journalArticle 和 conferencePaper 直接跳过
     if (item.itemType !== "journalArticle" && item.itemType !== "conferencePaper") {
         ztoolkit.log(`[Abbr] Item type ${item.itemType} is not journalArticle or conferencePaper, skip it.`);
-        return;
+        return item;
     }
     // 无期刊全称直接跳过
     const publicationTitle = item.getField("publicationTitle") as string;
-    if (publicationTitle == "") return;
+    if (publicationTitle == "") return item;
     let journalAbbr = "";
 
     // 从自定义数据集获取
@@ -78,7 +78,8 @@ async function updateJournalAbbr(item: Zotero.Item) {
     }
 
     item.setField("journalAbbreviation", journalAbbr);
-    await item.saveTx();
+    return item;
+    // await item.saveTx();
 }
 
 /**

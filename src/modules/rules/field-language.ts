@@ -12,7 +12,7 @@ async function updateLanguage(item: Zotero.Item) {
     // WIP: 已有合法 ISO 639 - ISO 3166 代码的，不予处理
     if (verifyIso3166(item.getField("language") as string) && getPref("lang.verifyBefore")) {
         ztoolkit.log("[lang] The item has been skipped due to the presence of valid ISO 639 - ISO 3166 code.");
-        return;
+        return item;
     }
     const title = item.getField("title") as string;
     const languageISO639_3 = getTextLanguage(title);
@@ -27,11 +27,12 @@ async function updateLanguage(item: Zotero.Item) {
             progressWindow(`${title} error, franc return ${languageISO639_3}, to ${language}`, "failed");
         } else {
             item.setField("language", language);
-            await item.saveTx();
+            // await item.saveTx();
         }
     } else {
         progressWindow(`Failed to identify the language of text “${title}”`, "failed");
     }
+    return item;
 }
 
 /**

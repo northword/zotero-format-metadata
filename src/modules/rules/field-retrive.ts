@@ -40,7 +40,7 @@ async function updateMetadataByIdentifier(
     // todo: 弹出 DOI 输入对话框?
     if (!doi) {
         progressWindow(getString("info-noDOI"), "fail");
-        return;
+        return item;
     }
 
     if (doi.match(/arxiv/gi)) {
@@ -135,8 +135,9 @@ async function updateMetadataByIdentifier(
     // todo: 处理与标准格式化流程中空白字段填充的死循环
     // needLint = (getPref("lintAfterRetriveByDOI") as boolean) ?? false;
     // needLint ? await addon.hooks.onUpdateInBatch("std", [item]) : "skip";
-    await item.saveTx();
-    await Zotero.Promise.delay(1000);
+    return item;
+    // await item.saveTx();
+    // await Zotero.Promise.delay(1000);
 }
 
 async function getDOIFromArxiv(arxivID: string) {

@@ -57,22 +57,24 @@ export default class FormatMetadata {
     @callingLoggerForMethod
     static async updateStdFlow(item: Zotero.Item) {
         // 作者、期刊、年、期、卷、页 -> 判断语言 -> 作者大小写 -> 匹配缩写 -> 匹配地点 -> 格式化日期 -> 格式化DOI
-        getPref("isEnableOtherFields") ? await this.updateMetadataByIdentifier(item) : "skip";
-        getPref("isEnableLang") ? await this.updateLanguage(item) : "skip";
-        getPref("isEnableCreators") ? await this.capitalizeName(item) : "skip";
-        getPref("isEnableTitleCase") ? await this.titleCase2SentenceCase(item) : "skip";
-        getPref("isEnablePublicationTitle") ? await this.updatePublicationTitle(item) : "skip";
-        getPref("isEnableAbbr") ? await this.updateJournalAbbr(item) : "skip";
-        getPref("isEnablePlace") ? await this.updateUniversityPlace(item) : "skip";
-        getPref("isEnableDateISO") && !getPref("isEnableOtherFields") ? await this.updateDate(item) : "skip";
-        getPref("isEnableDOI") ? await this.updateDOI(item) : "skip";
+        item = getPref("isEnableOtherFields") ? await this.updateMetadataByIdentifier(item) : item;
+        item = getPref("isEnableLang") ? await this.updateLanguage(item) : item;
+        item = getPref("isEnableCreators") ? await this.capitalizeName(item) : item;
+        item = getPref("isEnableTitleCase") ? await this.titleCase2SentenceCase(item) : item;
+        item = getPref("isEnablePublicationTitle") ? await this.updatePublicationTitle(item) : item;
+        item = getPref("isEnableAbbr") ? await this.updateJournalAbbr(item) : item;
+        item = getPref("isEnablePlace") ? await this.updateUniversityPlace(item) : item;
+        item = getPref("isEnableDateISO") && !getPref("isEnableOtherFields") ? await this.updateDate(item) : item;
+        item = getPref("isEnableDOI") ? await this.updateDOI(item) : item;
+        return item;
     }
 
     @callingLoggerForMethod
     static async updateNewItem(item: Zotero.Item) {
         this.checkWebpage(item);
         getPref("isEnableCheckDuplication") ? this.checkDuplication(item) : "skip";
-        getPref("add.update") ? await this.updateStdFlow(item) : "";
+        item = getPref("add.update") ? await this.updateStdFlow(item) : item;
+        return item;
     }
 
     /**
@@ -83,11 +85,12 @@ export default class FormatMetadata {
      */
     public static async setFieldValue(item: Zotero.Item, field: Zotero.Item.ItemField, value: any) {
         if (value == undefined) {
-            return;
+            return item;
         } else {
             item.setField(field, value);
-            await item.saveTx();
+            // await item.saveTx();
         }
+        return item;
     }
 
     static test(item: Zotero.Item) {
@@ -113,7 +116,7 @@ function updateOnItemAdd(items: Zotero.Item[]) {
 async function run(
     item: Zotero.Item,
     task: {
-        processor: (...args: any[]) => Promise<void> | void;
+        processor: (...args: any[]) => Promise<Zotero.Item | void> | Zotero.Item | void;
         args: any[];
         // this?: any;)
     },
@@ -121,13 +124,14 @@ async function run(
     // todo: 将所有格式化字段函数都返回 item，统一保存一次，避免多次 SQL，提高效率。
     const args = [item, ...task.args];
     // await task.processor.apply(task.this, args);
-    await task.processor(...args);
+    item = (await task.processor(...args)) ?? item;
+    item.saveTx();
 }
 
 async function runInBatch(
     items: Zotero.Item[],
     task: {
-        processor: (...args: any[]) => Promise<void> | void;
+        processor: (...args: any[]) => Promise<Zotero.Item | void> | Zotero.Item | void;
         args: any[];
     },
 ) {
