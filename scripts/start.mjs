@@ -72,13 +72,13 @@ export function main() {
 
     const zoteroProcess = spawn(zoteroBinPath, ["--debugger", "--purgecaches", "-profile", profilePath]);
 
-    zoteroProcess.stdout.on("data", (data) => {
+    zoteroProcess.stdout.setEncoding("utf8").on("data", (data) => {
         writeFileSync(logFilePath, data, {
             flag: "a",
         });
     });
 
-    zoteroProcess.stderr.on("data", (data) => {
+    zoteroProcess.stderr.setEncoding("utf8").on("data", (data) => {
         writeFileSync(logFilePath, data, {
             flag: "a",
         });
