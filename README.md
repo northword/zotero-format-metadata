@@ -94,6 +94,9 @@ By default, the plugin is restricted to recognize only Simplified Chinese and En
 - Convert Date to ISO format
 - etc...
 
+> [!tip]
+> The above functions involving item field processing provide both an option to run them automatically and an item context menu for manual (and batch) triggering by the user.
+
 See [Features (in Chinese)](./docs/features.md).
 
 ## Install

@@ -6,6 +6,9 @@
 
 限于技术水平，插件程序终不如人工识别，使用本插件修改后仍需仔细检查各字段数据的准确性。
 
+> [!tip]
+> The following functions involving item field processing provide both an option to run them automatically and an item context menu for manual (and batch) triggering by the user.
+
 ## 条目
 
 ### 条目不应有重复

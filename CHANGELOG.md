@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- 管道测试，仅更新自述文档，无修复和更新。
+
 ## [1.6.16] - 2023-12-21
 
 ### Added
