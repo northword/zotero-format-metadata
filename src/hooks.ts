@@ -43,10 +43,6 @@ function onShutdown() {
     delete Zotero[config.addonInstance];
 }
 
-/**
- * This function is just an example of dispatcher for Notify events.
- * Any operations should be placed in a function to keep this funcion clear.
- */
 async function onNotify(
     event: string,
     type: string,
@@ -62,30 +58,18 @@ async function onNotify(
 
 function onMutationObserver(record: MutationRecord, observer: MutationObserver) {
     ztoolkit.log("MutationObserver", record, observer);
-    switch (record.type) {
-        case "attributes":
-            switch (record.attributeName) {
-                case "control":
-                    if (getPref("richtext.isEnableToolBar")) {
-                        // @ts-ignore 存在 attributes
-                        if (record.target.attributes.control.nodeValue == "itembox-field-textbox-title") {
-                            richTextToolBar.showToolBar();
-                        }
-                        // @ts-ignore 存在 attributes
-                        if (record.target.attributes.control.nodeValue == "itembox-field-value-title") {
-                            richTextToolBar.closeToolBar();
-                        }
-                    }
-                    break;
 
-                default:
-                    break;
+    if (record.type == "attributes" && record.attributeName == "control") {
+        if (getPref("richtext.isEnableToolBar")) {
+            // @ts-ignore 存在 attributes
+            if (record.target.attributes.control.nodeValue == "itembox-field-textbox-title") {
+                richTextToolBar.showToolBar();
             }
-            break;
-        case "childList":
-            break;
-        default:
-            break;
+            // @ts-ignore 存在 attributes
+            if (record.target.attributes.control.nodeValue == "itembox-field-value-title") {
+                richTextToolBar.closeToolBar();
+            }
+        }
     }
 }
 
