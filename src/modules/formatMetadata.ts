@@ -71,7 +71,7 @@ export default class FormatMetadata {
 
     @callingLoggerForMethod
     static async updateNewItem(item: Zotero.Item) {
-        this.checkWebpage(item);
+        getPref("isEnableCheckWebpage") ? this.checkWebpage(item) : "skip";
         getPref("isEnableCheckDuplication") ? this.checkDuplication(item) : "skip";
         item = getPref("add.update") ? await this.updateStdFlow(item) : item;
         return item;

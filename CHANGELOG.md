@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 允许用户选择是否启用 `检测新增的网页条目是否正确`。/ Allows the user to enable or disable `Detecting the mistakes of added web page items`. [#102](https://github.com/northword/zotero-format-metadata/issues/102)
+
 ### Performance
 
 - 对一个条目执行更新时，一次性保存所有字段，而不是每个字段分别保存一次。/ When updating an item, save all fields at once instead of saving each field separately.
@@ -15,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- 修复会议论文执行更新期刊名错误导致其 `proceedingsTitle` 被清空的问题。/ Fix an issue that causes `proceedingsTitle` are cleared when updating `publicationTitle`.
+- 修复会议论文执行更新期刊名错误导致其 `proceedingsTitle` 被清空的问题。/ Fix an issue that causes `proceedingsTitle` are cleared when updating `publicationTitle`. [#94](https://github.com/northword/zotero-format-metadata/issues/94)
 
 ## [1.6.14] - 2023-12-12
 
@@ -39,7 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- 修复文本拼写错误。
+- 修复文本拼写错误。[#87](https://github.com/northword/zotero-format-metadata/issues/87)
 
 ## [1.6.9] - 2023-11-03
 
