@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 更新期刊缩写。/ Update journal abbrev. close: #105
+
 ## [1.6.17] - 2023-12-21
 
 - 管道测试，仅更新自述文档，无修复和更新。
