@@ -19,8 +19,8 @@
     "lint": "prettier --write . && eslint . --ext .ts --fix",
     "update-data": "bash scripts/update-data.sh",
     "test": "jest",
-    "release": "release-it",
-    "update-deps": "npm update --save"
+    "release": "release-it --only-version --preReleaseId=beta",
+    "update-deps": "pnpm update"
   },
   "repository": {
     "type": "git",
