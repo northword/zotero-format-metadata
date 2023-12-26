@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.18] - 2023-12-26
+
 ### Fixed
 
 - 更新期刊缩写。/ Update journal abbrev. close: #105
@@ -515,7 +517,7 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/v1.6.17...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/v1.6.18...HEAD
 [1.6.11]: https://github.com/northword/zotero-format-metadata/compare/1.6.10...1.6.11
 [1.6.10]: https://github.com/northword/zotero-format-metadata/compare/1.6.9...1.6.10
 [1.6.9]: https://github.com/northword/zotero-format-metadata/compare/1.6.8...1.6.9
@@ -577,6 +579,7 @@ No changes, test release only.
 [0.0.3]: https://github.com/northword/zotero-format-metadata/compare/0.0.2...0.0.3
 [0.0.2]: https://github.com/northword/zotero-format-metadata/commits/0.0.2
 
+[1.6.18]: https://github.com/northword/zotero-format-metadata/compare/v1.6.17...v1.6.18
 [1.6.17]: https://github.com/northword/zotero-format-metadata/compare/v1.6.16...v1.6.17
 [1.6.16]: https://github.com/northword/zotero-format-metadata/compare/v1.6.15...v1.6.16
 [1.6.15]: https://github.com/northword/zotero-format-metadata/compare/v1.6.14...v1.6.15
