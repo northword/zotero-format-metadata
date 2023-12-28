@@ -26,7 +26,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          # cache: pnpm
 
       - name: Install deps
         run: |
@@ -34,6 +33,14 @@ jobs:
           pnpm install
 
       - name: Release to GitHub
-        if: github.event_name == 'push' && github.ref_type == 'tag' && startsWith(github.ref, 'refs/tags/v')
         run: |
-          pnpm release --no-increment --no-git --github.release --ci --verbose
+          pnpm release --no-increment --no-git --github.release --ci --VV
+          sleep 1s
+
+      - name: Notify release
+        uses: apexskier/github-release-commenter@v1
+        continue-on-error: true
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          comment-template: |
+            :rocket: _This ticket has been resolved in {release_tag}. See {release_link} for release notes._
