@@ -1,4 +1,5 @@
 import { config } from "../package.json";
+import { BibliographyPreview } from "./modules/bibliographyPreview";
 import { FormatMetadata, runInBatch, updateOnItemAdd } from "./modules/formatMetadata";
 import { registerMenu, registerTextTransformMenu } from "./modules/menu";
 import { registerMutationObserver, registerNotifier } from "./modules/notifier";
@@ -26,6 +27,8 @@ async function onMainWindowLoad(win: Window): Promise<void> {
     registerShortcuts();
     registerMenu();
     registerTextTransformMenu();
+
+    new BibliographyPreview().init();
 }
 
 async function onMainWindowUnload(win: Window): Promise<void> {
@@ -33,6 +36,7 @@ async function onMainWindowUnload(win: Window): Promise<void> {
     Object.values(addon.data.dialogs).forEach((dialog) => {
         dialog === undefined ? "" : dialog?.window.close();
     });
+    // ZoteroPane.itemsView.onSelect.removeEventListener();
 }
 
 function onShutdown() {
