@@ -27,18 +27,24 @@ async function watch() {
             Logger.info("Server Ready! \n");
         })
         .on("change", async (path) => {
-            Logger.info(`${path} changed.`);
-            if (path.startsWith("src")) {
-                await esbuildCTX.rebuild();
-            } else if (path.startsWith("addon")) {
-                await build()
-                    // Do not abort the watcher when errors occur in builds triggered by the watcher.
-                    .catch((err) => {
-                        Logger.error(err);
-                    });
+            Logger.info(`${path} changed at ${new Date().toLocaleTimeString()}`);
+
+            async function rebuild() {
+                if (path.startsWith("src")) {
+                    await esbuildCTX.rebuild();
+                } else if (path.startsWith("addon")) {
+                    await build();
+                }
             }
-            // reload
-            reload();
+
+            await rebuild()
+                .then(() => {
+                    reload();
+                })
+                // Do not abort the watcher when errors occur in builds triggered by the watcher.
+                .catch((err) => {
+                    Logger.error(err);
+                });
         })
         .on("error", (err) => {
             Logger.error("Server start failed!", err);
