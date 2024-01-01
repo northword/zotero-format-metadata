@@ -205,6 +205,13 @@ export function registerMenu() {
                         },
                     },
                     {
+                        tag: "menuitem",
+                        label: getString("menuitem-remove-zeros"),
+                        commandListener: (ev) => {
+                            addon.hooks.onUpdateInBatch("removeZeros", menuPopup);
+                        },
+                    },
+                    {
                         tag: "menuseparator",
                     },
                     {

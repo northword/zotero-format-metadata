@@ -16,6 +16,7 @@ function getStdLintRules() {
     getPref("isEnablePlace") ? rules.push(new Rules.UpdateUniversityPlace({})) : "";
     getPref("isEnableDateISO") && !getPref("isEnableOtherFields") ? rules.push(new Rules.DateISO({})) : "";
     getPref("isEnableDOI") ? rules.push(new Rules.RemoveDOIPrefix({})) : "";
+    getPref("NoExtraZeros") ? rules.push(new Rules.NoExtraZeros({})) : "";
     return rules;
 }
 

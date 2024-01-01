@@ -196,6 +196,9 @@ async function onLintInBatch(mode: string, items: Zotero.Item[] | "item" | "coll
         case "date":
             rules = new Rules.DateISO({});
             break;
+        case "removeZeros":
+            rules = new Rules.NoExtraZeros({});
+            break;
         case "toSentenceCase":
             rules = new Rules.TitleSentenceCase({});
             break;

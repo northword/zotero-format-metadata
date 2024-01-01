@@ -63,6 +63,10 @@ export function removeHtmlTag(str: string) {
     return str.replace(/<[^>]+>/g, "");
 }
 
+export function removeLeadingZeros(input: string): string {
+    return input.replace(/\b0+(\d+)/g, "$1");
+}
+
 /**
  * 统一 Key
  * 用于期刊缩写数据中，期刊全称消岐

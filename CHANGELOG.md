@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - 通过 DOI 更新字段数据后执行 Lint。/ Lint after retrive fields via doi. close: [#104](https://github.com/northword/zotero-format-metadata/issues/104)
+- 去掉期卷页中多余的 `0`。/ Remove leading `0` in volume, issue, pages. close: [#20](https://github.com/northword/zotero-format-metadata/issues/20)
 
 ### Refactor
 

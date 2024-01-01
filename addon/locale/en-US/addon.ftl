@@ -17,6 +17,7 @@ menuitem-getFieldsByDOIForSelectedAndLint = Retrieve Selected Fields and Lint
 menuitem-getFieldsByDOIForAllAndLint = Retrieve All Fields and Lint
 menuitem-setDoi = Remove DOI Prefix
 menuitem-setDate = Uniform Date Format to ISO
+menuitem-remove-zeros = Removing leading zeros from issue, volume, and pages
 menuitem-autoSetLang = Auto Set Item Language
 menuitem-manuallySetLang = Manually Set Item Language
 menuitem-toSentenceCase = Convert Title to Sentence Case

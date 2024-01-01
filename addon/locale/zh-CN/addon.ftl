@@ -17,6 +17,7 @@ menuitem-getFieldsByDOIForSelectedAndLint = 更新字段并 Lint（选定）
 menuitem-getFieldsByDOIForAllAndLint = 仅更新字段并 Lint（所有）
 menuitem-setDoi = 去除 DOI 网址前缀
 menuitem-setDate = 统一日期格式为 ISO 格式
+menuitem-remove-zeros = 去除期卷页中的前导 0
 menuitem-autoSetLang = 自动识别条目语言
 menuitem-manuallySetLang = 手动设置条目语言
 menuitem-toSentenceCase = 将标题改为句首大写
