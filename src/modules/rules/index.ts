@@ -6,11 +6,11 @@ import UpdateJournalAbbr from "./field-journalAbbr";
 import UpdateItemLanguage from "./field-language";
 import UpdateUniversityPlace from "./field-place";
 import UpdatePublicationTitle from "./field-publication";
-import UpdateMetadata from "./field-retrive";
 import TitleGuillemet from "./field-title-guillemet";
 import TitleSentenceCase from "./field-title-sentence-case";
-import NoDuplicatItem from "./item-no-duplicate";
-import NoWebPageItem from "./item-webpage";
+import NoDuplicatItem from "./no-duplicate-item";
+import NoWebPageItem from "./no-webpage-item";
+import UpdateMetadata from "./retrive-metadata";
 import SetFieldValue from "./set-field-value";
 
 export {

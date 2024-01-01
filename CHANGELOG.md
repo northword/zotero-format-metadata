@@ -591,7 +591,6 @@ No changes, test release only.
 [0.0.4]: https://github.com/northword/zotero-format-metadata/compare/0.0.3...0.0.4
 [0.0.3]: https://github.com/northword/zotero-format-metadata/compare/0.0.2...0.0.3
 [0.0.2]: https://github.com/northword/zotero-format-metadata/commits/0.0.2
-
 [1.6.18]: https://github.com/northword/zotero-format-metadata/compare/v1.6.17...v1.6.18
 [1.6.17]: https://github.com/northword/zotero-format-metadata/compare/v1.6.16...v1.6.17
 [1.6.16]: https://github.com/northword/zotero-format-metadata/compare/v1.6.15...v1.6.16
