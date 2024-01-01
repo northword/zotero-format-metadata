@@ -9,7 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Breaking Changes
 
-- 语言限制现在使用 ISO 639-1 代码而不是 ISO 639-3 代码。ref: [#99](https://github.com/northword/zotero-format-metadata/issues/99)
+- 语言识别限制现在使用 ISO 639-1 代码而不是 ISO 639-3 代码。/ Language recognition restrictions now use ISO 639-1 codes instead of ISO 639-3 codes. ref: [#99](https://github.com/northword/zotero-format-metadata/issues/99)
+
+### Added
+
+- 通过 DOI 更新字段数据后执行 Lint。/ Lint after retrive fields via doi. close: [#104](https://github.com/northword/zotero-format-metadata/issues/104)
 
 ### Refactor
 

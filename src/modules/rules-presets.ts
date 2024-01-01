@@ -7,7 +7,7 @@ export { getStdLintRules, getNewItemLintRules };
 function getStdLintRules() {
     // 作者、期刊、年、期、卷、页 -> 判断语言 -> 作者大小写 -> 匹配缩写 -> 匹配地点 -> 格式化日期 -> 格式化DOI
     const rules = [];
-    getPref("isEnableOtherFields") ? rules.push(new Rules.UpdateMetadata({ mode: "blank" })) : "";
+    // getPref("isEnableOtherFields") ? rules.push(new Rules.UpdateMetadata({ mode: "blank" })) : "";
     getPref("isEnableLang") ? rules.push(new Rules.UpdateItemLanguage({})) : "";
     getPref("isEnableCreators") ? rules.push(new Rules.CapitalizeCreators({})) : "";
     getPref("isEnableTitleCase") ? rules.push(new Rules.TitleSentenceCase({})) : "";

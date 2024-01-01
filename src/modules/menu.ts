@@ -83,25 +83,55 @@ export function registerMenu() {
                 tag: "menuseparator",
             },
             {
-                tag: "menuitem",
-                label: getString("menuitem-getFieldsByDOIForBlack"),
-                commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("getBlankFieldViaDOI", menuPopup);
-                },
-            },
-            // {
-            //     tag: "menuitem",
-            //     label: getString("menuitem-getFieldsByDOIForSelected"),
-            //     commandListener: (ev) => {
-            //         addon.hooks.onUpdateInBatch("todo", menuPopup);
-            //     },
-            // },
-            {
-                tag: "menuitem",
-                label: getString("menuitem-getFieldsByDOIForAll"),
-                commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("getAllFieldViaDOI", menuPopup);
-                },
+                tag: "menu",
+                label: getString("menuitem-retriveFields"),
+                children: [
+                    {
+                        tag: "menuitem",
+                        label: getString("menuitem-getFieldsByDOIForBlack"),
+                        commandListener: (ev) => {
+                            addon.hooks.onUpdateInBatch("getBlankFieldViaDOI", menuPopup);
+                        },
+                    },
+                    // {
+                    //     tag: "menuitem",
+                    //     label: getString("menuitem-getFieldsByDOIForSelected"),
+                    //     commandListener: (ev) => {
+                    //         addon.hooks.onUpdateInBatch("todo", menuPopup);
+                    //     },
+                    // },
+                    {
+                        tag: "menuitem",
+                        label: getString("menuitem-getFieldsByDOIForAll"),
+                        commandListener: (ev) => {
+                            addon.hooks.onUpdateInBatch("getAllFieldViaDOI", menuPopup);
+                        },
+                    },
+                    {
+                        tag: "menuseparator",
+                    },
+                    {
+                        tag: "menuitem",
+                        label: getString("menuitem-getFieldsByDOIForBlackAndLint"),
+                        commandListener: (ev) => {
+                            addon.hooks.onUpdateInBatch("getBlankFieldViaDOIAndLint", menuPopup);
+                        },
+                    },
+                    // {
+                    //     tag: "menuitem",
+                    //     label: getString("menuitem-getFieldsByDOIForSelected"),
+                    //     commandListener: (ev) => {
+                    //         addon.hooks.onUpdateInBatch("todo", menuPopup);
+                    //     },
+                    // },
+                    {
+                        tag: "menuitem",
+                        label: getString("menuitem-getFieldsByDOIForAllAndLint"),
+                        commandListener: (ev) => {
+                            addon.hooks.onUpdateInBatch("getAllFieldViaDOIAndLint", menuPopup);
+                        },
+                    },
+                ],
             },
             // {
             //     tag: "menuseparator",
@@ -125,7 +155,7 @@ export function registerMenu() {
             },
             {
                 tag: "menu",
-                label: "其他小工具",
+                label: getString("menuTools-label"),
                 icon: menuIcon,
                 children: [
                     // {

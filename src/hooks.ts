@@ -184,6 +184,12 @@ async function onLintInBatch(mode: string, items: Zotero.Item[] | "item" | "coll
         case "getBlankFieldViaDOI":
             rules = new Rules.UpdateMetadata({ mode: "blank" });
             break;
+        case "getAllFieldViaDOIAndLint":
+            rules = [new Rules.UpdateMetadata({ mode: "all" }), ...getStdLintRules()];
+            break;
+        case "getBlankFieldViaDOIAndLint":
+            rules = [new Rules.UpdateMetadata({ mode: "blank" }), ...getStdLintRules()];
+            break;
         case "doi":
             rules = new Rules.RemoveDOIPrefix({});
             break;
@@ -208,7 +214,7 @@ async function onLintInBatch(mode: string, items: Zotero.Item[] | "item" | "coll
         case "test":
             // 该项仅为调试便利，在此添加待调试功能，通过“测试”菜单触发
             // processor = FormatMetadata.test.bind(FormatMetadata);
-            rules = new Rules.UpdateMetadata({ mode: "all" });
+            // rules = new Rules.UpdateMetadata({ mode: "all" });
             return;
         case "chem":
         default:
