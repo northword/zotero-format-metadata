@@ -7,15 +7,16 @@ module.exports = {
         publish: false,
     },
     github: {
-        release: true,
+        release: false,
         assets: ["build/*.xpi", "update.json"],
         releaseNotes(context) {
             // console.log(context);
-            let notes = `${context.changelog}  \n\n`;
-            notes += `### Notes  \n\n`;
-            notes += `The current version is only compatible with Zotero 7. If your are using Zotero 6, please download the [version 0.4.4](https://github.com/northword/zotero-format-metadata/releases/tag/0.4.4)  \n\n`;
-            notes += `Full Changelog: [${context.secondLatestTag}...${context.latestTag}](https://github.com/northword/zotero-format-metadata/compare/${context.secondLatestTag}...${context.latestTag})  \n\n`;
-            notes += `Historical Changelog: [CHANGELOG.md](https://github.com/northword/zotero-format-metadata/blob/main/CHANGELOG.md)  \n\n`;
+            let notes = `## What's changes`;
+            notes += `${context.changelog}  \n\n`;
+            notes += `## Notes  \n\n`;
+            notes += `The current version is only compatible with Zotero 7. If your are using Zotero 6, please download the [version 0.4.4](https://github.com/northword/zotero-format-metadata/releases/tag/0.4.4).  \n\n`;
+            notes += `Full Changelog: [${context.secondLatestTag}...${context.latestTag}](https://github.com/northword/zotero-format-metadata/compare/${context.secondLatestTag}...${context.latestTag}).  \n\n`;
+            notes += `Historical Changelog: [CHANGELOG.md](https://github.com/northword/zotero-format-metadata/blob/main/CHANGELOG.md).  \n\n`;
             notes += `![GitHub release (by tag)](https://img.shields.io/github/downloads/${context.repo.repository}/${context.tagName}/total)  \n\n`;
             return notes;
         },
