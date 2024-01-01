@@ -1,3 +1,7 @@
+import { getPref } from "./prefs";
+// import { franc } from "franc";
+import { detect } from "tinyld";
+
 // prettier-ignore
 export const functionWords = ["but", "or", "yet", "so", "for", "and", "nor", "a", "an",
     "the", "at", "by", "from", "in", "into", "of", "on", "to", "with", "up",
@@ -337,6 +341,43 @@ export function toSentenceCase_Bak(text: string) {
     // 句首字母大写
     newStr = newStr.charAt(0).toUpperCase() + newStr.slice(1);
     return newStr;
+}
+
+/**
+ * Gets text language
+ * @param text
+ * @returns  ISO 639-3 code
+ */
+export function getTextLanguage(text: string) {
+    // 替换 title 中的 HTML 标签以降低 franc 识别错误
+    text = removeHtmlTag(text);
+
+    const options = {
+        only: [] as string[],
+        // minLength: 10,
+    };
+
+    // 文本是否少于 10 字符
+    // if (text.length < 10) {
+    //     options.minLength = 2;
+    //     // 对于短字符串内容，如果不全为英文，则替换掉英文字母以提高识别准确度
+    //     const textReplaceEN = text.replace(/[a-z]*[A-Z]*/g, "");
+    //     if (textReplaceEN.length > 1) {
+    //         text = textReplaceEN;
+    //     }
+    // }
+
+    // 限制常用语言
+    if (getPref("lang.only.enable")) {
+        getPref("lang.only.cmn") ? options.only.push("zh") : "pass";
+        getPref("lang.only.eng") ? options.only.push("en") : "pass";
+        const otherLang = getPref("lang.only.other") as string;
+        otherLang !== "" && otherLang !== undefined
+            ? options.only.push.apply(otherLang.replace(/ /g, "").split(","))
+            : "pass";
+    }
+    ztoolkit.log("[lang] Selected ISO 639-1 code is: ", options.only);
+    return detect(text, options);
 }
 
 // const text =

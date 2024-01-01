@@ -1,14 +1,16 @@
 import { config } from "../package.json";
-import { FormatMetadata, runInBatch, updateOnItemAdd } from "./modules/formatMetadata";
 import { registerMenu, registerTextTransformMenu } from "./modules/menu";
 import { registerMutationObserver, registerNotifier } from "./modules/notifier";
 import { registerPrefs, registerPrefsScripts } from "./modules/preference";
+import { getNewItemLintRules, getStdLintRules, setHtmlTag } from "./modules/rules-presets";
+import { LintRunner } from "./modules/rules-runner";
+import * as Rules from "./modules/rules/index";
 import { registerShortcuts } from "./modules/shortcuts";
-// import { registerPrompt } from "./modules/prompt";
 import { richTextToolBar } from "./modules/views/richTextToolBar";
 import { setLanguageManualDialog } from "./modules/views/setLanguageManualDialog";
 import { getString, initLocale } from "./utils/locale";
 import { getPref } from "./utils/prefs";
+import { RuleBase } from "./utils/rule-base";
 import { createZToolkit } from "./utils/ztoolkit";
 
 async function onStartup() {
@@ -52,7 +54,19 @@ async function onNotify(
     ztoolkit.log("notify", event, type, ids, extraData);
 
     if (event == "add" && type == "item") {
-        updateOnItemAdd(Zotero.Items.get(ids as number[]));
+        const items = Zotero.Items.get(ids as number[]).filter(
+            (item) =>
+                item.isRegularItem() &&
+                // @ts-ignore item has no isFeedItem
+                !item.isFeedItem &&
+                (getPref("add.updateOnAddedForGroup")
+                    ? true
+                    : // @ts-ignore libraryID is got from item, so get() will never return false
+                      Zotero.Libraries.get(item.libraryID)._libraryType == "user"),
+        );
+        if (items.length !== 0) {
+            addon.hooks.onUpdateInBatch("newItem", items);
+        }
     }
 }
 
@@ -92,19 +106,19 @@ async function onPrefsEvent(type: string, data: { [key: string]: never }) {
 function onShortcuts(type: string) {
     switch (type) {
         case "subscript":
-            FormatMetadata.setHtmlTag("sub");
+            setHtmlTag("sub");
             break;
         case "supscript":
-            FormatMetadata.setHtmlTag("sup");
+            setHtmlTag("sup");
             break;
         case "bold":
-            FormatMetadata.setHtmlTag("b");
+            setHtmlTag("b");
             break;
         case "italic":
-            FormatMetadata.setHtmlTag("i");
+            setHtmlTag("i");
             break;
         case "nocase":
-            FormatMetadata.setHtmlTag("span", "class", "nocase");
+            setHtmlTag("span", "class", "nocase");
             break;
         case "confliction":
             break;
@@ -122,7 +136,7 @@ function onShortcuts(type: string) {
  * @param mode 批量处理任务的类别，决定调用的函数
  * @param items 需要批量处理的 Zotero.Item[]，或通过触发批量任务的位置决定 Zotero Item 的获取方式。 "item" | "collection" | XUL.MenuPopup | "menuFile" | "menuEdit" | "menuView" | "menuGo" | "menuTools" | "menuHelp"
  */
-async function onUpdateInBatch(mode: string, items: Zotero.Item[] | "item" | "collection" | string) {
+async function onLintInBatch(mode: string, items: Zotero.Item[] | "item" | "collection" | string) {
     if (typeof items == "string") {
         switch (items) {
             case "item":
@@ -137,77 +151,74 @@ async function onUpdateInBatch(mode: string, items: Zotero.Item[] | "item" | "co
         }
     }
 
-    let processor: ((...args: any[]) => Promise<Zotero.Item | void> | Zotero.Item | void) | undefined = undefined,
-        args: any[] = [];
+    let rules: RuleBase<any> | RuleBase<any>[] | undefined = undefined;
 
     switch (mode) {
         case "std":
-            processor = FormatMetadata.updateStdFlow.bind(FormatMetadata);
+            rules = getStdLintRules();
             break;
         case "newItem":
-            processor = FormatMetadata.updateNewItem.bind(FormatMetadata);
-            break;
-        case "checkDuplication":
-            processor = FormatMetadata.checkDuplication.bind(FormatMetadata);
-            break;
-        case "checkWebpage":
-            processor = FormatMetadata.checkWebpage.bind(FormatMetadata);
+            rules = getNewItemLintRules();
             break;
         case "publicationTitle":
-            processor = FormatMetadata.updatePublicationTitle.bind(FormatMetadata);
+            rules = new Rules.UpdatePublicationTitle({});
             break;
         case "abbr":
-            processor = FormatMetadata.updateJournalAbbr.bind(FormatMetadata);
+            rules = new Rules.UpdateJournalAbbr({});
             break;
         case "place":
-            processor = FormatMetadata.updateUniversityPlace.bind(FormatMetadata);
+            rules = new Rules.UpdateUniversityPlace({});
             break;
         case "lang":
-            processor = FormatMetadata.updateLanguage.bind(FormatMetadata);
+            rules = new Rules.UpdateItemLanguage({});
             break;
         case "lang-manual":
-            args = ["language", await setLanguageManualDialog()];
-            processor = FormatMetadata.setFieldValue.bind(FormatMetadata);
+            rules = new Rules.SetFieldValue({
+                field: "language",
+                value: await setLanguageManualDialog(),
+            });
             break;
         case "getAllFieldViaDOI":
-            processor = FormatMetadata.updateMetadataByIdentifier.bind(FormatMetadata);
-            args = ["all"];
+            rules = new Rules.UpdateMetadata({ mode: "all" });
             break;
         case "getBlankFieldViaDOI":
-            processor = FormatMetadata.updateMetadataByIdentifier.bind(FormatMetadata);
-            args = ["blank"];
+            rules = new Rules.UpdateMetadata({ mode: "blank" });
             break;
         case "doi":
-            processor = FormatMetadata.updateDOI.bind(FormatMetadata);
+            rules = new Rules.RemoveDOIPrefix({});
             break;
         case "date":
-            processor = FormatMetadata.updateDate.bind(FormatMetadata);
+            rules = new Rules.DateISO({});
             break;
         case "toSentenceCase":
-            processor = FormatMetadata.titleCase2SentenceCase.bind(FormatMetadata);
+            rules = new Rules.TitleSentenceCase({});
             break;
         case "capitalizeName":
-            processor = FormatMetadata.capitalizeName.bind(FormatMetadata);
+            rules = new Rules.CapitalizeCreators({});
             break;
         case "titleBracketsToGuillemet":
-            processor = FormatMetadata.replaceBracketsToGuillemet.bind(FormatMetadata);
+            rules = new Rules.TitleGuillemet({ target: "double" });
             break;
         case "titleGuillemetToBrackets":
-            processor = FormatMetadata.replaceGuillemetToBrackets.bind(FormatMetadata);
+            rules = new Rules.TitleGuillemet({ target: "single" });
+            break;
+        case "creatorExt":
+            // rules = Rules.creatorExt.bind(Rules);
             break;
         case "test":
             // 该项仅为调试便利，在此添加待调试功能，通过“测试”菜单触发
-            processor = FormatMetadata.test.bind(FormatMetadata);
-            break;
+            // processor = FormatMetadata.test.bind(FormatMetadata);
+            rules = new Rules.UpdateMetadata({ mode: "all" });
+            return;
         case "chem":
         default:
-            FormatMetadata.unimplemented();
+            window.alert(getString("unimplemented"));
             return;
     }
 
-    if (typeof processor == "undefined") return;
+    if (typeof rules == "undefined") return;
 
-    runInBatch(items, { processor: processor, args: args });
+    new LintRunner(items, rules).runInBatch();
 }
 
 export default {
@@ -219,5 +230,5 @@ export default {
     onMutationObserver,
     onPrefsEvent,
     onShortcuts,
-    onUpdateInBatch,
+    onUpdateInBatch: onLintInBatch,
 };

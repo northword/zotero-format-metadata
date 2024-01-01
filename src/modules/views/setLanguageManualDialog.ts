@@ -1,12 +1,10 @@
 import { getString } from "../../utils/locale";
 import { getPref } from "../../utils/prefs";
-import FormatMetadata from "../formatMetadata";
-import { toIso639_1 } from "../rules/field-language";
+// import { toIso639_1 } from "../rules/field-language";
 import { TagElementProps } from "zotero-plugin-toolkit/dist/tools/ui";
 
 /**
  * 手动设置条目语言_选择语言的弹窗
- * @returns string | false
  */
 export async function setLanguageManualDialog(): Promise<string | undefined> {
     const dialogData: { [key: string | number]: any } = {
@@ -53,7 +51,7 @@ export async function setLanguageManualDialog(): Promise<string | undefined> {
                 attributes: {
                     type: "radio",
                     name: "selectedLang",
-                    value: toIso639_1(lang) ?? lang,
+                    value: lang,
                     // label: FormatMetadata.toIso639_1(lang) ?? lang,
                     // "data-bind": "selectedLang",
                 },
@@ -63,7 +61,7 @@ export async function setLanguageManualDialog(): Promise<string | undefined> {
                 attributes: {
                     for: `dialog-checkbox-${lang}`,
                 },
-                properties: { innerHTML: toIso639_1(lang) ?? lang },
+                properties: { innerHTML: lang },
             },
         );
     });

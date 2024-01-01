@@ -1,22 +1,33 @@
+import { RuleBase, RuleBaseOptions } from "../../utils/rule-base";
 import { duplicationDialog } from "../views/duplicationDialog";
 
-export async function isDuplicate(item: Zotero.Item) {
-    // const item = Zotero.getActiveZoteroPane().getSelectedItems()[0];
-    const itemID = item.id;
+class NoDuplicatItemOptions implements RuleBaseOptions {}
 
-    const duplicates = new Zotero.Duplicates("1");
-    // console.log("Zotero.Duplicates", duplicates);
+export default class NoDuplicatItem extends RuleBase<NoDuplicatItemOptions> {
+    constructor(options: NoDuplicatItemOptions) {
+        super(options);
+    }
 
-    const search = (await duplicates.getSearchObject()) as Zotero.Search;
-    // console.log("d.getSearchObject", search);
+    async apply(item: Zotero.Item): Promise<Zotero.Item> {
+        // const item = Zotero.getActiveZoteroPane().getSelectedItems()[0];
+        const itemID = item.id;
 
-    const searchResult = await search.search();
-    // console.log(searchResult);
+        const duplicates = new Zotero.Duplicates("1");
+        // console.log("Zotero.Duplicates", duplicates);
 
-    if (searchResult.includes(itemID)) {
-        ztoolkit.log("当前条目存在重复条目", item);
-        await duplicationDialog.showDialog(item);
-    } else {
-        ztoolkit.log("当前条目未发现重复条目");
+        const search = (await duplicates.getSearchObject()) as Zotero.Search;
+        // console.log("d.getSearchObject", search);
+
+        const searchResult = await search.search();
+        // console.log(searchResult);
+
+        if (searchResult.includes(itemID)) {
+            ztoolkit.log("当前条目存在重复条目", item);
+            await duplicationDialog.showDialog(item);
+        } else {
+            ztoolkit.log("当前条目未发现重复条目");
+        }
+
+        return item;
     }
 }

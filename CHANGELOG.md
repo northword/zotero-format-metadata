@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Breaking Changes
+
+- 语言限制现在使用 ISO 639-1 代码而不是 ISO 639-3 代码。ref: [#99](https://github.com/northword/zotero-format-metadata/issues/99)
+
+### Refactor
+
+- 语言识别库切换至 TinyLD。close: [#99](https://github.com/northword/zotero-format-metadata/issues/99)
+- 重构代码。close: [#107](https://github.com/northword/zotero-format-metadata/issues/107)
+
 ## [1.6.18] - 2023-12-26
 
 ### Fixed

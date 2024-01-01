@@ -1,74 +1,49 @@
 import { iso6393To6391Data } from "../../data";
-import { progressWindow } from "../../utils/logger";
 import { getPref } from "../../utils/prefs";
-import { removeHtmlTag } from "../../utils/str";
-import { franc } from "franc";
+import { RuleBase, RuleBaseOptions } from "../../utils/rule-base";
+import { getTextLanguage } from "../../utils/str";
+
+class UpdateItemLanguageOptions implements RuleBaseOptions {}
+
+export default class UpdateItemLanguage extends RuleBase<UpdateItemLanguageOptions> {
+    constructor(options: UpdateItemLanguageOptions) {
+        super(options);
+    }
+
+    apply(item: Zotero.Item): Zotero.Item {
+        // WIP: 已有合法 ISO 639 - ISO 3166 代码的，不予处理
+        if (verifyIso3166(item.getField("language") as string) && getPref("lang.verifyBefore")) {
+            ztoolkit.log("[lang] The item has been skipped due to the presence of valid ISO 639 - ISO 3166 code.");
+            return item;
+        }
+        const title = item.getField("title") as string;
+        const language = getTextLanguage(title);
+        item.setField("language", language);
+
+        // const languageISO639_3 = getTextLanguage(title);
+        // if (languageISO639_3 !== "und") {
+        //     // 根据 ISO 639-1 或 639-3 语言代码匹配 ISO 3166 国家区域代码
+        //     // TODO: 添加更多映射
+        //     let language = getIso3166(languageISO639_3);
+        //     if (!language) {
+        //         language = toIso639_1(languageISO639_3);
+        //     }
+        //     if (!language) {
+        //         progressWindow(`${title} error, franc return ${languageISO639_3}, to ${language}`, "failed");
+        //     } else {
+        //         item.setField("language", language);
+        //         // await item.saveTx();
+        //     }
+        // } else {
+        //     progressWindow(`Failed to identify the language of text “${title}”`, "failed");
+        // }
+        return item;
+    }
+}
 
 /* 条目语言 */
 
-export { updateLanguage, getTextLanguage, toIso639_1 };
-
-async function updateLanguage(item: Zotero.Item) {
-    // WIP: 已有合法 ISO 639 - ISO 3166 代码的，不予处理
-    if (verifyIso3166(item.getField("language") as string) && getPref("lang.verifyBefore")) {
-        ztoolkit.log("[lang] The item has been skipped due to the presence of valid ISO 639 - ISO 3166 code.");
-        return item;
-    }
-    const title = item.getField("title") as string;
-    const languageISO639_3 = getTextLanguage(title);
-    if (languageISO639_3 !== "und") {
-        // 根据 ISO 639-1 或 639-3 语言代码匹配 ISO 3166 国家区域代码
-        // TODO: 添加更多映射
-        let language = getIso3166(languageISO639_3);
-        if (!language) {
-            language = toIso639_1(languageISO639_3);
-        }
-        if (!language) {
-            progressWindow(`${title} error, franc return ${languageISO639_3}, to ${language}`, "failed");
-        } else {
-            item.setField("language", language);
-            // await item.saveTx();
-        }
-    } else {
-        progressWindow(`Failed to identify the language of text “${title}”`, "failed");
-    }
-    return item;
-}
-
-/**
- * Gets text language
- * @param text
- * @returns  ISO 639-3 code
- */
-function getTextLanguage(text: string) {
-    // 替换 title 中的 HTML 标签以降低 franc 识别错误
-    text = removeHtmlTag(text);
-
-    const francOption = {
-        only: [] as string[],
-        minLength: 10,
-    };
-    // 文本是否少于 10 字符
-    if (text.length < 10) {
-        francOption.minLength = 2;
-        // 对于短字符串内容，如果不全为英文，则替换掉英文字母以提高识别准确度
-        const textReplaceEN = text.replace(/[a-z]*[A-Z]*/g, "");
-        if (textReplaceEN.length > 1) {
-            text = textReplaceEN;
-        }
-    }
-    // 限制常用语言
-    if (getPref("lang.only.enable")) {
-        getPref("lang.only.cmn") ? francOption.only.push("cmn") : "pass";
-        getPref("lang.only.eng") ? francOption.only.push("eng") : "pass";
-        const otherLang = getPref("lang.only.other") as string;
-        otherLang !== "" && otherLang !== undefined
-            ? francOption.only.push.apply(otherLang.replace(/ /g, "").split(","))
-            : "pass";
-    }
-    ztoolkit.log("[lang] Selected ISO 639-3 code is: ", francOption.only);
-    return franc(text, francOption);
-}
+// export { updateLanguage, toIso639_1 };
 
 /**
  * Convert ISO 639 code to ISO 3166 code.

@@ -174,6 +174,16 @@ export function registerMenu() {
                             addon.hooks.onUpdateInBatch("date", menuPopup);
                         },
                     },
+                    {
+                        tag: "menuseparator",
+                    },
+                    {
+                        tag: "menuitem",
+                        label: getString("menuitem-setCreatorExt"),
+                        commandListener: (ev) => {
+                            addon.hooks.onUpdateInBatch("creatorExt", menuPopup);
+                        },
+                    },
                 ],
             },
         ];
