@@ -82,11 +82,11 @@ Some items in the Zotero library may be added with incomplete information such a
 
 The plugin determines the language of an item based on its title and fills in the "Language" field, which is important for CSL to perform bilingual layout of the bibliography (e.g., et al and 等 mixed). [^csl-etal] .
 
-By default, the plugin is restricted to recognize only Simplified Chinese and English. You can turn off the language restriction in the preferences or add [ISO 639-3 codes] for other common languages.
+By default, the plugin is restricted to recognize only Simplified Chinese and English. You can turn off the language restriction in the preferences or add [ISO 639-1 codes] for other common languages.
 
 [^csl-etal]: <https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8>
 
-[ISO 639-3 codes]: https://iso639-3.sil.org/code_tables/639/data
+[ISO 639-1 codes]: https://github.com/komodojp/tinyld/blob/develop/docs/langs.md
 
 ### Others
 
