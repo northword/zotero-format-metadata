@@ -1,7 +1,7 @@
 import { journalAbbrlocalData } from "../../data";
 import { getPref } from "../../utils/prefs";
 import { RuleBase, RuleBaseOptions } from "../../utils/rule-base";
-import { getTextLanguage, normalizeKey, removeDot } from "../../utils/str";
+import { getTextLanguage, normalizeKey } from "../../utils/str";
 
 class UpdateJournalAbbrOptions implements RuleBaseOptions {}
 
@@ -90,7 +90,7 @@ export default class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions
      * @param dataBase - local dataset, default journalAbbrlocalData
      * @returns
      * - String of `ISO 4 with dot abbr` when when it exist in the local dataset
-     * - `false` when abbr does not exist in local dataset
+     * - `undefined` when abbr does not exist in local dataset
      */
     getAbbrIso4Locally(publicationTitle: string, dataBase = journalAbbrlocalData): string | undefined {
         const normalizedInputKey = normalizeKey(publicationTitle);
@@ -115,7 +115,7 @@ export default class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions
      * @param publicationTitle
      * @returns
      * - String of `ISO 4 with dot abbr` when API returns a valid response
-     * - `false` when API returns an invalid response
+     * - `undefined` when API returns an invalid response
      */
     async getAbbrFromLTWAOnline(publicationTitle: string): Promise<string | undefined> {
         publicationTitle = encodeURI(publicationTitle);
@@ -127,15 +127,6 @@ export default class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions
             return undefined;
         }
         return result;
-    }
-
-    /**
-     * Convert ISO 4 with dot format to JCR format.
-     * @param text
-     * @returns String with dots removed and capitalized
-     */
-    toJCR(text: string) {
-        return removeDot(text).toUpperCase();
     }
 
     async getAbbrFromCustom(publicationTitle: string, customAbbrDataPath: string): Promise<string | undefined> {

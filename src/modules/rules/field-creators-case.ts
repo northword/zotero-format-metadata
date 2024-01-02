@@ -30,3 +30,5 @@ export default class CapitalizeCreators extends RuleBase<CapitalizeCreatorsOptio
         return item;
     }
 }
+
+// todo: 期刊文章必须含有作者
