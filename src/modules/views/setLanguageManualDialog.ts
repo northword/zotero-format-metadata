@@ -1,6 +1,6 @@
 import { getString } from "../../utils/locale";
 import { getPref } from "../../utils/prefs";
-// import { toIso639_1 } from "../rules/field-language";
+import { langName, toISO3 } from "tinyld";
 import { TagElementProps } from "zotero-plugin-toolkit/dist/tools/ui";
 
 /**
@@ -12,25 +12,18 @@ export async function setLanguageManualDialog(): Promise<string | undefined> {
         inputLang: "",
         formData: "",
         loadCallback: () => {
-            // ztoolkit.log(dialogData, "Dialog Opened!");
             addon.data.dialogs.selectLang = dialog;
         },
         unloadCallback: () => {
             const form = dialog.window.document.querySelector("form") as HTMLFormElement;
             dialogData.formData = new window.FormData(form);
-            // for (const entry of dialogData.formData) {
-            //     // dialogData.selectedLang = entry[1];
-            //     console.log(entry[0], entry[1]);
-            // }
-            // console.log(formData.get("selectedLang"));
             dialogData.selectedLang = dialogData.formData.get("selectedLang");
             console.log(dialogData);
-            // addon.data.dialogs.selectLang = undefined;
             delete addon.data.dialogs.selectLang;
         },
     };
 
-    const allowLangs = ["cmn", "eng"];
+    const allowLangs = ["zh", "en"];
     if (getPref("lang.only.enable")) {
         const otherLang = getPref("lang.only.other") as string;
         otherLang !== "" && otherLang !== undefined
@@ -52,7 +45,7 @@ export async function setLanguageManualDialog(): Promise<string | undefined> {
                     type: "radio",
                     name: "selectedLang",
                     value: lang,
-                    // label: FormatMetadata.toIso639_1(lang) ?? lang,
+                    // label: langName(lang),
                     // "data-bind": "selectedLang",
                 },
             },
@@ -61,7 +54,7 @@ export async function setLanguageManualDialog(): Promise<string | undefined> {
                 attributes: {
                     for: `dialog-checkbox-${lang}`,
                 },
-                properties: { innerHTML: lang },
+                properties: { innerHTML: `${lang} (${langName(toISO3(lang))})` },
             },
         );
     });
@@ -120,14 +113,11 @@ export async function setLanguageManualDialog(): Promise<string | undefined> {
 
     // 如果取消/直接关闭弹窗，则返回 false
     // 如果 text input 存在值，则返回，否则返回 radio 的值
-    if (dialogData._lastButtonId == "confirm") {
-        if (dialogData.selectedLang !== "other") {
-            return dialogData.selectedLang;
-        } else if (dialogData.inputLang !== undefined) {
-            return dialogData.inputLang;
-        } else {
-            return undefined;
-        }
+    if (dialogData._lastButtonId !== "confirm") {
+        return undefined;
     }
-    return undefined;
+    if (dialogData.selectedLang == "other" && dialogData.inputLang !== undefined) {
+        return dialogData.inputLang;
+    }
+    return dialogData.selectedLang;
 }

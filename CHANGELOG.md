@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复 1.7.0 重构导致的手动设置条目语言弹窗返回的为 ISO 639-3 而不是 ISO 639-1 的问题。/ Fix manually set language dialog returns ISO 639-3 instead of ISO 639-1.
+
 ## [1.8.0] - 2024-01-02
 
 ### Breaking Changes
