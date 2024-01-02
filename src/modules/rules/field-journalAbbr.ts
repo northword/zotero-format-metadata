@@ -16,46 +16,49 @@ export default class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions
             ztoolkit.log(`[Abbr] Item type ${item.itemType} is not journalArticle or conferencePaper, skip it.`);
             return item;
         }
+
         // 无期刊全称直接跳过
         const publicationTitle = item.getField("publicationTitle") as string;
+
         if (publicationTitle == "") return item;
-        let journalAbbr = "";
+
+        let journalAbbr: string | undefined;
 
         // 从自定义数据集获取
-        const journalAbbrCustom = await this.getAbbrFromCustom(publicationTitle);
-        if (journalAbbrCustom) {
-            journalAbbr = journalAbbrCustom;
-        } else {
-            // 从本地数据集获取缩写
-            let journalAbbrISO4 = this.getAbbrIso4Locally(publicationTitle, journalAbbrlocalData);
-
-            // 从 ISSN LTWA 推断完整期刊缩写
-            if (!journalAbbrISO4 && getPref("abbr.infer")) {
-                journalAbbrISO4 = await this.getAbbrFromLTWAOnline(publicationTitle);
-                // journalAbbrISO4 = getAbbrFromLtwaLocally(publicationTitle);
-            }
-
-            if (journalAbbrISO4) {
-                // 有缩写的，是否处理为 ISO dotless 或 JCR 格式
-                switch (getPref("abbr.type")) {
-                    case "ISO4dot":
-                        journalAbbr = journalAbbrISO4;
-                        break;
-                    case "ISO4dotless":
-                        journalAbbr = removeDot(journalAbbrISO4);
-                        break;
-                    case "JCR":
-                        journalAbbr = this.toJCR(journalAbbrISO4);
-                        break;
-                    default:
-                        journalAbbr = journalAbbrISO4;
-                        break;
-                }
-            }
+        const customAbbrDataPath = getPref("abbr.customDataPath") as string;
+        if (customAbbrDataPath !== "") {
+            journalAbbr = await this.getAbbrFromCustom(publicationTitle, customAbbrDataPath);
         }
 
+        // 从本地数据集获取缩写
+        if (!journalAbbr) {
+            journalAbbr = this.getAbbrIso4Locally(publicationTitle, journalAbbrlocalData);
+        }
+
+        // 从 ISSN LTWA 推断完整期刊缩写
+        if (!journalAbbr && getPref("abbr.infer")) {
+            journalAbbr = await this.getAbbrFromLTWAOnline(publicationTitle);
+            // journalAbbrISO4 = getAbbrFromLtwaLocally(publicationTitle);
+        }
+
+        // if (journalAbbr) {
+        //     // 有缩写的，是否处理为 ISO dotless 或 JCR 格式
+        //     switch (getPref("abbr.type")) {
+        //         case "ISO4dot":
+        //             break;
+        //         case "ISO4dotless":
+        //             journalAbbr = removeDot(journalAbbr);
+        //             break;
+        //         case "JCR":
+        //             journalAbbr = this.toJCR(journalAbbr);
+        //             break;
+        //         default:
+        //             break;
+        //     }
+        // }
+
         // 以期刊全称填充
-        if (journalAbbr == "") {
+        if (!journalAbbr) {
             // 获取条目语言，若无则根据期刊全称判断语言
             const itemLanguage = (item.getField("language") as string) ?? getTextLanguage(publicationTitle);
             const isChinese = ["zh", "zh-CN"].includes(itemLanguage);
@@ -67,10 +70,12 @@ export default class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions
                 // 非中文，无缩写的，是否以全称替代
                 ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
                 journalAbbr = publicationTitle;
-            } else {
-                // 无缩写且不以全称替代，返回空值
-                journalAbbr = "";
             }
+        }
+
+        // 无缩写且不以全称替代，返回空值
+        if (!journalAbbr) {
+            journalAbbr = "";
         }
 
         item.setField("journalAbbreviation", journalAbbr);
@@ -87,7 +92,7 @@ export default class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions
      * - String of `ISO 4 with dot abbr` when when it exist in the local dataset
      * - `false` when abbr does not exist in local dataset
      */
-    getAbbrIso4Locally(publicationTitle: string, dataBase = journalAbbrlocalData): string | false {
+    getAbbrIso4Locally(publicationTitle: string, dataBase = journalAbbrlocalData): string | undefined {
         const normalizedInputKey = normalizeKey(publicationTitle);
 
         for (const originalKey of Object.keys(dataBase)) {
@@ -97,8 +102,9 @@ export default class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions
                 return dataBase[originalKey];
             }
         }
+
         ztoolkit.log(`[Abbr] The abbr. of "${publicationTitle}" (${normalizedInputKey}) not exist in local dateset.`);
-        return false;
+        return undefined;
     }
 
     /**
@@ -111,16 +117,14 @@ export default class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions
      * - String of `ISO 4 with dot abbr` when API returns a valid response
      * - `false` when API returns an invalid response
      */
-    async getAbbrFromLTWAOnline(publicationTitle: string) {
-        // 防止 API 被滥用，先延迟一手
-        await Zotero.Promise.delay(3000);
+    async getAbbrFromLTWAOnline(publicationTitle: string): Promise<string | undefined> {
         publicationTitle = encodeURI(publicationTitle);
         const url = `https://abbreviso.toolforge.org/abbreviso/a/${publicationTitle}`;
         const res = await Zotero.HTTP.request("GET", url);
         const result = res.response as string;
         if (result == "" || result == null || result == undefined) {
             ztoolkit.log("[Abbr] Failed to infer the abbr. from LTWA");
-            return false;
+            return undefined;
         }
         return result;
     }
@@ -134,23 +138,27 @@ export default class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions
         return removeDot(text).toUpperCase();
     }
 
-    async getAbbrFromCustom(publicationTitle: string) {
-        const customAbbrDataPath = getPref("abbr.customDataPath") as string;
-        if (customAbbrDataPath !== "" && (await IOUtils.exists(customAbbrDataPath))) {
-            const customAbbrData = await Zotero.File.getContentsAsync(customAbbrDataPath);
-            if (customAbbrData !== "" && typeof customAbbrData == "string") {
-                try {
-                    const data = JSON.parse(customAbbrData);
-                    const abbr = (data[publicationTitle] as string) ?? false;
-                    if (!abbr) ztoolkit.log("[Abbr] 自定义缩写未匹配");
-                    return abbr;
-                } catch (e) {
-                    // progressWindow(`JSON Syntax Error, ${e}`, "fail");
-                    throw new Error(`JSON Syntax Error, ${e}`);
-                }
-            }
+    async getAbbrFromCustom(publicationTitle: string, customAbbrDataPath: string): Promise<string | undefined> {
+        if (!(await IOUtils.exists(customAbbrDataPath))) {
+            throw new Error("The custom journalAbbr file not exist.");
         }
-        ztoolkit.log("[Abbr] 自定义缩写数据文件不存在");
-        return false;
+
+        if (!customAbbrDataPath.endsWith(".json")) {
+            throw new Error("The custom journalAbbr data file format error.");
+        }
+
+        const customAbbrData = await Zotero.File.getContentsAsync(customAbbrDataPath);
+        if (typeof customAbbrData !== "string" || customAbbrData == "") {
+            throw new Error("The custom journalAbbr data file format error.");
+        }
+
+        try {
+            const data = JSON.parse(customAbbrData);
+            const abbr = (data[publicationTitle] as string) ?? undefined;
+            if (!abbr) ztoolkit.log("[Abbr] 自定义缩写未匹配");
+            return abbr;
+        } catch (e) {
+            throw new Error(`JSON Syntax Error, ${e}`);
+        }
     }
 }

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Breaking Changes
+
+- 现在不再提供期刊缩写类型（ISO 4 with dot，ISO 4 without dot，JCR）的选项，默认使用 ISO 4 with dot。/ The option for the type of journal abbreviation (ISO 4 with dot, ISO 4 without dot, JCR) is no longer available, and ISO 4 with dot is used by default. close: [#110](https://github.com/northword/zotero-format-metadata/issues/110)
+
 ### Fixed
 
 - 仅当作者姓或名全大写或全小写时才转换作者大小写。/ Capitalize author only if the author's last name or first name is in all caps or all lower case. close: [#111](https://github.com/northword/zotero-format-metadata/issues/111)
