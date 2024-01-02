@@ -44,6 +44,16 @@ export function isFullUpperCase(text: string) {
     // }
     return text === text.toUpperCase();
 }
+
+export function isFullLowerCase(text: string) {
+    // if (countUpperCaseLetter(text) >= countLowerCaseLetter(text)) {
+    //     return true;
+    // } else {
+    //     return false;
+    // }
+    return text === text.toLowerCase();
+}
+
 /**
  * 判断给定字符串是否包含给定数组中的字符串
  * @param string

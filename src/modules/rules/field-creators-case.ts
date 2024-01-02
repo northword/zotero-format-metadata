@@ -1,4 +1,5 @@
 import { RuleBase, RuleBaseOptions } from "../../utils/rule-base";
+import { isFullLowerCase, isFullUpperCase } from "../../utils/str";
 
 class CapitalizeCreatorsOptions implements RuleBaseOptions {}
 
@@ -15,13 +16,17 @@ export default class CapitalizeCreators extends RuleBase<CapitalizeCreatorsOptio
     apply(item: Zotero.Item): Zotero.Item | Promise<Zotero.Item> {
         const creators = item.getCreators();
 
-        const newCreators = [];
         for (const creator of creators) {
-            creator.firstName = Zotero.Utilities.capitalizeName(creator.firstName!.trim());
-            creator.lastName = Zotero.Utilities.capitalizeName(creator.lastName!.trim());
-            newCreators.push(creator);
+            creator.firstName =
+                isFullUpperCase(creator.firstName!) || isFullLowerCase(creator.firstName!)
+                    ? Zotero.Utilities.capitalizeName(creator.firstName!.trim())
+                    : creator.firstName;
+            creator.lastName =
+                isFullUpperCase(creator.lastName!) || isFullLowerCase(creator.lastName!)
+                    ? Zotero.Utilities.capitalizeName(creator.lastName!.trim())
+                    : creator.lastName;
         }
-        item.setCreators(newCreators);
+        item.setCreators(creators);
         return item;
     }
 }

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 仅当作者姓或名全大写或全小写时才转换作者大小写。/ Capitalize author only if the author's last name or first name is in all caps or all lower case. close: [#111](https://github.com/northword/zotero-format-metadata/issues/111)
+
 ## [1.7.0] - 2024-01-01
 
 ### Breaking Changes
