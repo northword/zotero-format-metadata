@@ -11,7 +11,7 @@ module.exports = {
         assets: ["build/*.xpi", "update.json"],
         releaseNotes(context) {
             // console.log(context);
-            let notes = `## What's changes`;
+            let notes = `## What's changed  \n\n`;
             notes += `${context.changelog}  \n\n`;
             notes += `## Notes  \n\n`;
             notes += `The current version is only compatible with Zotero 7. If your are using Zotero 6, please download the [version 0.4.4](https://github.com/northword/zotero-format-metadata/releases/tag/0.4.4).  \n\n`;
