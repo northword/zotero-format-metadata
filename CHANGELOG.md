@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.0] - 2024-01-02
+
 ### Breaking Changes
 
 - 现在不再提供期刊缩写类型（ISO 4 with dot，ISO 4 without dot，JCR）的选项，默认使用 ISO 4 with dot。/ The option for the type of journal abbreviation (ISO 4 with dot, ISO 4 without dot, JCR) is no longer available, and ISO 4 with dot is used by default. close: [#110](https://github.com/northword/zotero-format-metadata/issues/110)
@@ -541,7 +543,7 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/v1.7.0...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/v1.8.0...HEAD
 [1.6.11]: https://github.com/northword/zotero-format-metadata/compare/1.6.10...1.6.11
 [1.6.10]: https://github.com/northword/zotero-format-metadata/compare/1.6.9...1.6.10
 [1.6.9]: https://github.com/northword/zotero-format-metadata/compare/1.6.8...1.6.9
@@ -602,6 +604,7 @@ No changes, test release only.
 [0.0.4]: https://github.com/northword/zotero-format-metadata/compare/0.0.3...0.0.4
 [0.0.3]: https://github.com/northword/zotero-format-metadata/compare/0.0.2...0.0.3
 [0.0.2]: https://github.com/northword/zotero-format-metadata/commits/0.0.2
+[1.8.0]: https://github.com/northword/zotero-format-metadata/compare/v1.7.0...v1.8.0
 [1.7.0]: https://github.com/northword/zotero-format-metadata/compare/v1.6.18...v1.7.0
 [1.6.18]: https://github.com/northword/zotero-format-metadata/compare/v1.6.17...v1.6.18
 [1.6.17]: https://github.com/northword/zotero-format-metadata/compare/v1.6.16...v1.6.17
