@@ -1,4 +1,4 @@
-pref-title-label = 格式化条目元数据
+pref-title-label = Linter
 
 ## 常规设置
 pref-general-settings-label = 常规设置
@@ -39,6 +39,8 @@ pref-std-doi =
     .label = 清除 DOI 的网址前缀
 pref-std-place = 
     .label = 更新条目的地点字段
+pref-std-remove-zeros = 
+    .label = 去除期卷页中的前导0
 
 ## 期刊缩写
 pref-abbr-label = 期刊缩写
@@ -70,8 +72,8 @@ pref-lang-cmn =
 pref-lang-eng = 
     .label = 英文(eng)
 pref-lang-other = 和
-pref-lang-other-desc = 如需添加其他语言，请在空白处输入 ISO 693-3 语言代码，英文逗号','分隔。
-pref-lang-other-doc = ISO 639-3 代码
+pref-lang-other-desc = 如需添加其他语言，请在空白处输入 ISO 693-1 语言代码，英文逗号','分隔。
+pref-lang-other-doc = ISO 639-1 代码
     .href = https://github.com/northword/zotero-format-metadata#readme
 
 ## 关于

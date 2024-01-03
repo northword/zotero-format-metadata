@@ -1,6 +1,6 @@
 startup-begin = 插件加载中
 startup-finish = 插件已就绪
-prefs-title = 格式化条目元数据
+prefs-title = Linter
 
 ## menu
 menuitem-label = 格式化条目元数据

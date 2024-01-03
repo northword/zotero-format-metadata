@@ -26,3 +26,4 @@ pref("__prefsPrefix__.isEnableCheckDuplication", true);
 pref("__prefsPrefix__.isEnableCheckWebpage", true);
 // pref("__prefsPrefix__.lintAfterRetriveByDOI", true);
 pref("__prefsPrefix__.isEnablePublicationTitle", true);
+pref("__prefsPrefix__.NoExtraZeros", true);

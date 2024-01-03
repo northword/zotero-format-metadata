@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复首选项中的部分错别字。/ Fix typo in preference.
+- 添加首选项：去除期卷页。/ Add option in preference for removing leading 0 in issue, volumn, pages.
+
 ## [1.8.1] - 2024-01-02
 
 ### Fixed

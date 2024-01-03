@@ -1,4 +1,4 @@
-pref-title-label = Format MetaData
+pref-title-label = Linter
 
 ## General settings
 pref-general-settings-label = General Settings
@@ -39,6 +39,8 @@ pref-std-doi =
     .label = Remove DOI URL prefix
 pref-std-place = 
     .label = Update the Place field
+pref-std-remove-zeros = 
+    .label = Remove the leading "0" in issue, volumn, and pages
 
 ## 期刊缩写
 pref-abbr-label = Journal Abbreviations
@@ -70,8 +72,8 @@ pref-lang-cmn =
 pref-lang-eng = 
     .label = English (eng)
 pref-lang-other = and: 
-pref-lang-other-desc = Here you need to enter the ISO 639-3 language code, separated by a semi-colon comma, as detailed in: <a href=\"https://github.com/northword/zotero-format-metadata#readme\">{pref-lang-other-doc}</a>.
-pref-lang-other-doc = ISO 639-3 Code
+pref-lang-other-desc = Here you need to enter the ISO 639-1 language code, separated by a semi-colon comma.
+pref-lang-other-doc = ISO 639-1 Code
     .href = https://github.com/northword/zotero-format-metadata#readme
 
 ## 关于
