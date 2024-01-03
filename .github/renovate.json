@@ -11,10 +11,10 @@
   "packageRules": [
     {
       "matchPackageNames": ["zotero-plugin-toolkit", "zotero-types"],
-      "automerge": true,
       "schedule": ["at any time"]
     }
   ],
+  "lockFileMaintenance": { "enabled": true, "platformAutomerge": true },
   "git-submodules": {
     "enabled": true
   }
