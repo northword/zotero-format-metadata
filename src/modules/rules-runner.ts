@@ -22,7 +22,8 @@ export class LintRunner {
     }
 
     async runInBatch(): Promise<void> {
-        ztoolkit.log("[Runner] The batch task begin");
+        const startTime = new Date();
+        ztoolkit.log("[Runner] The batch task begin", startTime.toLocaleString());
         const progress = new ztoolkit.ProgressWindow(config.addonName, {
             closeOnClick: false,
             closeTime: -1,
@@ -95,6 +96,7 @@ export class LintRunner {
             idx: 0,
         });
         progress.startCloseTimer(5000);
-        ztoolkit.log("[Runner] The batch tasks done");
+        const endTime = new Date();
+        ztoolkit.log(`[Runner] The batch tasks done in ${(endTime.getTime() - startTime.getTime()) / 1000}s`);
     }
 }

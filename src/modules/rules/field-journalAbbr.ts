@@ -38,7 +38,7 @@ export default class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions
         // 从 ISSN LTWA 推断完整期刊缩写
         if (!journalAbbr && getPref("abbr.infer")) {
             journalAbbr = await this.getAbbrFromLTWAOnline(publicationTitle);
-            // journalAbbrISO4 = getAbbrFromLtwaLocally(publicationTitle);
+            // journalAbbr = await this.getAbbrFromLTWALocally(publicationTitle);
         }
 
         // if (journalAbbr) {
@@ -127,6 +127,18 @@ export default class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions
             return undefined;
         }
         return result;
+    }
+
+    async getAbbrFromLTWALocally(publicationTitle: string): Promise<string | undefined> {
+        const shortwords = await Zotero.File.getContentsAsync(`${rootURI}/chrome/content/abbreviso/shortwords.txt`);
+        const ltwa = await Zotero.File.getContentsAsync(
+            `${rootURI}/chrome/content/abbreviso/LTWA_20210702-modified.csv`,
+        );
+        Services.scriptloader.loadSubScript(`${rootURI}/chrome/content/abbreviso/browserBundle.js`);
+        // @ts-ignore AbbrevIso 来自引入的脚本
+        const abbrevIso = new AbbrevIso.AbbrevIso(ltwa, shortwords);
+        const abbr = abbrevIso.makeAbbreviation(publicationTitle);
+        return abbr;
     }
 
     async getAbbrFromCustom(publicationTitle: string, customAbbrDataPath: string): Promise<string | undefined> {
