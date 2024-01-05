@@ -20,7 +20,8 @@ async function watch() {
         persistent: true,
     });
 
-    let esbuildCTX = await context(esbuildOptions);
+    const esbuildCTX = await context(esbuildOptions);
+    let currentTimeout = null;
 
     watcher
         .on("ready", () => {
@@ -37,14 +38,18 @@ async function watch() {
                 }
             }
 
-            await rebuild()
-                .then(() => {
-                    reload();
-                })
-                // Do not abort the watcher when errors occur in builds triggered by the watcher.
-                .catch((err) => {
-                    Logger.error(err);
-                });
+            // debounced, see https://github.com/samhuk/chokidar-debounced/blob/master/index.ts
+            clearTimeout(currentTimeout);
+            currentTimeout = setTimeout(async () => {
+                await rebuild()
+                    .then(() => {
+                        reload();
+                    })
+                    // Do not abort the watcher when errors occur in builds triggered by the watcher.
+                    .catch((err) => {
+                        Logger.error(err);
+                    });
+            }, 1000);
         })
         .on("error", (err) => {
             Logger.error("Server start failed!", err);
@@ -55,7 +60,7 @@ function reload() {
     Logger.debug("Reloading...");
     const url = `zotero://ztoolkit-debug/?run=${encodeURIComponent(reloadScript)}`;
     const command = `${startZoteroCmd} -url "${url}"`;
-    execSync(command);
+    execSync(command, { timeout: 8000 });
 }
 
 function openDevTool() {
@@ -73,7 +78,7 @@ async function main() {
     startZotero();
     setTimeout(() => {
         openDevTool();
-    }, 5000);
+    }, 3000);
 
     // watch
     await watch();
