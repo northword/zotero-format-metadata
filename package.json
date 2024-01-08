@@ -36,7 +36,7 @@
   "dependencies": {
     "iso-locales": "1.1.1",
     "tinyld": "1.3.4",
-    "zotero-plugin-toolkit": "2.3.15"
+    "zotero-plugin-toolkit": "2.3.16"
   },
   "devDependencies": {
     "@release-it/keep-a-changelog": "5.0.0",
