@@ -24,8 +24,8 @@ function getNewItemLintRules() {
     const rules = [];
     getPref("isEnableCheckWebpage") ? rules.push(new Rules.NoWebPageItem({})) : "skip";
     getPref("isEnableCheckDuplication") ? rules.push(new Rules.NoDuplicatItem({})) : "skip";
-    getPref("add.update") ? rules.concat(getStdLintRules()) : "";
-    return rules;
+    getPref("add.update") ? rules.push(getStdLintRules()) : "";
+    return rules.flat();
 }
 
 /* 上下标 */

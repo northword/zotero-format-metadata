@@ -10,7 +10,7 @@ export class LintRunner {
     popWin: any;
     constructor(items: Zotero.Item[], rules: RuleBase<any> | RuleBase<any>[]) {
         this.items = items;
-        this.rules = Array.isArray(rules) ? rules : [rules];
+        this.rules = Array.isArray(rules) ? rules.flat() : [rules];
     }
 
     async run(item: Zotero.Item) {

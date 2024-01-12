@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复新增条目字段格式化失效的问题。/ Fix bug in lint new item.
+
 ## [1.8.2] - 2024-01-03
 
 ### Fixed
