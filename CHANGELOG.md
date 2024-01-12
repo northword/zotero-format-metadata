@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 兼容性优化：清除无用的首选项。/ Clear unused prefs.
+- 禁用生产模式 `enableElementRecord`。/ Disable element record in prod mode. close: [#56](https://github.com/northword/zotero-format-metadata/issues/56)
+- 清理代码，减少依赖项打包内容。
+
 ## [1.8.3] - 2024-01-12
 
 ### Fixed

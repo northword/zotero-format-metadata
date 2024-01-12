@@ -1,4 +1,3 @@
-pref("__prefsPrefix__.enable", true);
 pref("__prefsPrefix__.add.update", true);
 pref("__prefsPrefix__.add.updateOnAddedForGroup", false);
 pref("__prefsPrefix__.isEnableAbbr", true);

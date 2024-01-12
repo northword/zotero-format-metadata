@@ -1,4 +1,5 @@
 import { config } from "../package.json";
+import { checkCompat } from "./modules/compat";
 import { registerMenu, registerTextTransformMenu } from "./modules/menu";
 import { registerMutationObserver, registerNotifier } from "./modules/notifier";
 import { registerPrefs, registerPrefsScripts } from "./modules/preference";
@@ -19,6 +20,7 @@ async function onStartup() {
     registerPrefs();
     registerNotifier();
     await onMainWindowLoad(window);
+    checkCompat();
 }
 
 async function onMainWindowLoad(win: Window): Promise<void> {
@@ -87,12 +89,6 @@ function onMutationObserver(record: MutationRecord, observer: MutationObserver) 
     }
 }
 
-/**
- * This function is just an example of dispatcher for Preference UI events.
- * Any operations should be placed in a function to keep this funcion clear.
- * @param type event type
- * @param data event data
- */
 async function onPrefsEvent(type: string, data: { [key: string]: never }) {
     switch (type) {
         case "load":
@@ -126,10 +122,6 @@ function onShortcuts(type: string) {
             break;
     }
 }
-
-// Add your hooks here. For element click, etc.
-// Keep in mind hooks only do dispatch. Don't add code that does real jobs in hooks.
-// Otherwise the code would be hard to read and maintian.
 
 /**
  * 分发批量执行某函数的任务
