@@ -69,7 +69,6 @@ export async function getCreatorsExtOptionDialog(): Promise<any | undefined> {
     );
 
     const dialog = new ztoolkit.Dialog(1, 1)
-        .setHelperOptions(ztoolkit)
         .addCell(0, 0, {
             tag: "form",
             // id: `dialog-checkboxgroup`,

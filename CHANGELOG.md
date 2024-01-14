@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - 适配 `extra.creatorsExt` 创作者拓展信息。目前仅适配国籍，暂未适配交换中英文名。/ Support `extra.creatorsExt` ref: [#106](https://github.com/northword/zotero-format-metadata/issues/106)
 
+### Fixed
+
+- 更新依赖，修复生产模式下 dialogHelper 打印日志的 bug。/ Update deps, fix useless console log in prod mode. close: [#56](https://github.com/northword/zotero-format-metadata/issues/56)
+
 ## [1.8.4] - 2024-01-12
 
 ### Fixed

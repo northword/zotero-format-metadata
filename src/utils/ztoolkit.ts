@@ -1,7 +1,7 @@
 // import ZoteroToolkit from "../../../zotero-plugin-toolkit/dist/index";
 import { config } from "../../package.json";
 // import ZoteroToolkit from "zotero-plugin-toolkit";
-import { BasicTool, unregister } from "zotero-plugin-toolkit/dist/basic";
+import { BasicTool, makeHelperTool, unregister } from "zotero-plugin-toolkit/dist/basic";
 import { DialogHelper } from "zotero-plugin-toolkit/dist/helpers/dialog";
 import { FilePickerHelper } from "zotero-plugin-toolkit/dist/helpers/filePicker";
 import { ProgressWindowHelper } from "zotero-plugin-toolkit/dist/helpers/progressWindow";
@@ -51,11 +51,11 @@ class MyToolkit extends BasicTool {
         this.UI = new UITool(this);
         this.Menu = new MenuManager(this);
         this.Shortcut = new ShortcutManager(this);
-        this.ProgressWindow = ProgressWindowHelper;
-        this.VirtualizedTable = VirtualizedTableHelper;
-        this.Dialog = DialogHelper;
-        this.FilePicker = FilePickerHelper;
         this.ExtraField = new ExtraFieldTool(this);
+        this.Dialog = makeHelperTool(DialogHelper, this);
+        this.FilePicker = makeHelperTool(FilePickerHelper, this);
+        this.ProgressWindow = makeHelperTool(ProgressWindowHelper, this);
+        this.VirtualizedTable = makeHelperTool(VirtualizedTableHelper, this);
     }
 
     unregisterAll() {
