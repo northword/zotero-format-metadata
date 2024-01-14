@@ -130,11 +130,9 @@ export default class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions
     }
 
     async getAbbrFromLTWALocally(publicationTitle: string): Promise<string | undefined> {
-        const shortwords = await Zotero.File.getContentsAsync(`${rootURI}/chrome/content/abbreviso/shortwords.txt`);
-        const ltwa = await Zotero.File.getContentsAsync(
-            `${rootURI}/chrome/content/abbreviso/LTWA_20210702-modified.csv`,
-        );
-        Services.scriptloader.loadSubScript(`${rootURI}/chrome/content/abbreviso/browserBundle.js`);
+        const shortwords = await Zotero.File.getContentsAsync(`${rootURI}/lib/abbreviso/shortwords.txt`);
+        const ltwa = await Zotero.File.getContentsAsync(`${rootURI}/lib/abbreviso/LTWA_20210702-modified.csv`);
+        Services.scriptloader.loadSubScript(`${rootURI}/lib/abbreviso/browserBundle.js`);
         // @ts-ignore AbbrevIso 来自引入的脚本
         const abbrevIso = new AbbrevIso.AbbrevIso(ltwa, shortwords);
         const abbr = abbrevIso.makeAbbreviation(publicationTitle);
