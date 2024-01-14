@@ -3,12 +3,11 @@ import { checkCompat } from "./modules/compat";
 import { registerMenu, registerTextTransformMenu } from "./modules/menu";
 import { registerMutationObserver, registerNotifier } from "./modules/notifier";
 import { registerPrefs, registerPrefsScripts } from "./modules/preference";
+import * as Rules from "./modules/rules";
 import { getNewItemLintRules, getStdLintRules, setHtmlTag } from "./modules/rules-presets";
 import { LintRunner } from "./modules/rules-runner";
-import * as Rules from "./modules/rules/index";
 import { registerShortcuts } from "./modules/shortcuts";
-import { richTextToolBar } from "./modules/views/richTextToolBar";
-import { setLanguageManualDialog } from "./modules/views/setLanguageManualDialog";
+import * as Views from "./modules/views";
 import { getString, initLocale } from "./utils/locale";
 import { getPref } from "./utils/prefs";
 import { RuleBase } from "./utils/rule-base";
@@ -79,11 +78,11 @@ function onMutationObserver(record: MutationRecord, observer: MutationObserver) 
         if (getPref("richtext.isEnableToolBar")) {
             // @ts-ignore 存在 attributes
             if (record.target.attributes.control.nodeValue == "itembox-field-textbox-title") {
-                richTextToolBar.showToolBar();
+                Views.richTextToolBar.showToolBar();
             }
             // @ts-ignore 存在 attributes
             if (record.target.attributes.control.nodeValue == "itembox-field-value-title") {
-                richTextToolBar.closeToolBar();
+                Views.richTextToolBar.closeToolBar();
             }
         }
     }
@@ -167,7 +166,7 @@ async function onLintInBatch(mode: string, items: Zotero.Item[] | "item" | "coll
         case "lang-manual":
             rules = new Rules.SetFieldValue({
                 field: "language",
-                value: await setLanguageManualDialog(),
+                value: await Views.setLanguageManualDialog(),
             });
             break;
         case "getAllFieldViaDOI":
@@ -204,12 +203,11 @@ async function onLintInBatch(mode: string, items: Zotero.Item[] | "item" | "coll
             rules = new Rules.TitleGuillemet({ target: "single" });
             break;
         case "creatorExt":
-            // rules = Rules.creatorExt.bind(Rules);
+            rules = new Rules.UseCreatorsExt(await Views.getCreatorsExtOptionDialog());
             break;
         case "test":
             // 该项仅为调试便利，在此添加待调试功能，通过“测试”菜单触发
-            // processor = FormatMetadata.test.bind(FormatMetadata);
-            // rules = new Rules.UpdateMetadata({ mode: "all" });
+            Views.getCreatorsExtOptionDialog();
             return;
         case "chem":
         default:

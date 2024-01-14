@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 适配 `extra.creatorsExt` 创作者拓展信息。目前仅适配国籍，暂未适配交换中英文名。/ Support `extra.creatorsExt` ref: [#106](https://github.com/northword/zotero-format-metadata/issues/106)
+
 ## [1.8.4] - 2024-01-12
 
 ### Fixed

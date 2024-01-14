@@ -26,6 +26,7 @@ menufield-toSentenceCase = 句首大写（扩展）
 menuTools-label = Linter 其他小工具
 menuitem-titleBracketsToGuillemet = 将标题中〈〉转为《》
 menuitem-titleGuillemetToBrackets = 将标题中《》转为〈〉
+menuitem-setCreatorExt = 应用作者扩展信息
 
 ## batch
 info-batch-init = 初始化

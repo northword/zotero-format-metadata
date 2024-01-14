@@ -1,5 +1,5 @@
 import CapitalizeCreators from "./field-creators-case";
-// import CreatorExt  from "./field-creators-ext";
+import UseCreatorsExt from "./field-creators-ext";
 import DateISO from "./field-date-iso";
 import RemoveDOIPrefix from "./field-doi-no-prefix";
 import UpdateJournalAbbr from "./field-journalAbbr";
@@ -16,6 +16,7 @@ import SetFieldValue from "./set-field-value";
 
 export {
     CapitalizeCreators,
+    UseCreatorsExt,
     DateISO,
     RemoveDOIPrefix,
     UpdateJournalAbbr,

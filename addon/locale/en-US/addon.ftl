@@ -17,15 +17,16 @@ menuitem-getFieldsByDOIForSelectedAndLint = Retrieve Selected Fields and Lint
 menuitem-getFieldsByDOIForAllAndLint = Retrieve All Fields and Lint
 menuitem-setDoi = Remove DOI Prefix
 menuitem-setDate = Uniform Date Format to ISO
-menuitem-remove-zeros = Removing leading zeros from issue, volume, and pages
+menuitem-remove-zeros = Removing Leading Zeros from Issue, Volume, and Pages
 menuitem-autoSetLang = Auto Set Item Language
 menuitem-manuallySetLang = Manually Set Item Language
 menuitem-toSentenceCase = Convert Title to Sentence Case
 menuitem-capitalizeName = Fix Case of Creators
 menufield-toSentenceCase = Sentence case (Extended)
 menuTools-label = Other Tools
-menuitem-titleBracketsToGuillemet = Convert〈〉to《》in title
-menuitem-titleGuillemetToBrackets = Convert《》to〈〉in title
+menuitem-titleBracketsToGuillemet = Convert〈〉to《》in Title
+menuitem-titleGuillemetToBrackets = Convert《》to〈〉in Title
+menuitem-setCreatorExt = Apply Creators Extended
 
 ## batch
 info-batch-init = Initialization

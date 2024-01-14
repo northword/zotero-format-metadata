@@ -1,42 +1,61 @@
 import { RuleBase, RuleBaseOptions } from "../../utils/rule-base";
 
-// 交换作者拓展信息
-
-interface CreatorExt extends Zotero.Item.CreatorJSON {
-    country: string;
-    fieldMode: number;
-    original: string;
+interface CreatorExt extends Zotero.Item.Creator {
+    country?: string;
+    original?: string;
 }
 
 class UseCreatorsExtOptions implements RuleBaseOptions {
     mark: {
-        open: string;
-        close: string;
-    } = { open: "[", close: "]" };
+        open?: string;
+        close?: string;
+    } = { open: "", close: "" };
+    country?: string;
 }
 
+// 交换作者拓展信息
 export default class UseCreatorsExt extends RuleBase<UseCreatorsExtOptions> {
     constructor(options: UseCreatorsExtOptions) {
         super(options);
     }
 
     apply(item: Zotero.Item): Zotero.Item | Promise<Zotero.Item> {
-        // const creatorsExt = item.getExtraField("creatorsExt");
-        const creatorsExtRaw = ztoolkit.ExtraField.getExtraField(item, "creatorsExt");
-        if (!creatorsExtRaw) return item;
-
-        const creatorsExt = JSON.parse(creatorsExtRaw) as CreatorExt[];
-        if (!creatorsExt) return item;
+        if (!this.options) {
+            ztoolkit.log("参数未定义，可能是弹窗未确认，结束应用规则。");
+            return item;
+        }
+        const creators = item.getCreators(),
+            creatorsExtRaw = ztoolkit.ExtraField.getExtraField(item, "creatorsExt");
+        let creatorsExt: CreatorExt[];
+        if (creatorsExtRaw) {
+            creatorsExt = (JSON.parse(creatorsExtRaw) as CreatorExt[]).map((creator, index) => {
+                creator.country = creator.country || this.options.country || "";
+                return creator;
+            });
+        } else {
+            creatorsExt = creators.map((creator, index) => {
+                return {
+                    firstName: creator.firstName,
+                    lastName: creator.lastName,
+                    fieldMode: creator.fieldMode,
+                    creatorTypeID: creator.creatorTypeID,
+                    country: this.options.country || "",
+                    original: "",
+                };
+            });
+            ztoolkit.log("可能修改 creators 字段，备份当前 creators 至 extra.creatorsExt.");
+            ztoolkit.ExtraField.setExtraField(item, "creatorsExt", JSON.stringify(creators));
+        }
 
         creatorsExt.forEach((creatorExt, index) => {
-            let newCreator: Zotero.Item.Creator;
-            if (creatorExt.country) {
-                creatorExt.lastName = `${this.options.mark.open + creatorExt.country + this.options.mark.close} ${
-                    creatorExt.lastName
-                }`;
+            if (this.options.mark.open && creatorExt.country) {
+                creatorExt.lastName = `${
+                    (this.options.mark.open ?? "") + creatorExt.country + (this.options.mark.close ?? "")
+                } ${creatorExt.lastName}`.trim();
             }
             item.setCreator(index, creatorExt);
         });
+
         return item;
     }
 }
