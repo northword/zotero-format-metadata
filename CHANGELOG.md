@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 尝试修复富文本标题框部分情况下无法正确新建的问题。/ Fix the rich text toolbar not being properly opened in some cases. fix: [#130](https://github.com/northword/zotero-format-metadata/issues/130), ref:[#78](https://github.com/northword/zotero-format-metadata/issues/78)
+
 ## [1.9.0] - 2024-01-14
 
 ### Added

@@ -81,7 +81,7 @@ export class richTextToolBar {
         const dialogData: { [key: string | number]: unknown } = {
             loadCallback: () => {
                 // ztoolkit.log(dialogData, "Dialog Opened!");
-                addon.data.dialogs.richTextToolBar = toolBarPanel;
+                addon.data.dialogs.richTextToolBar ??= toolBarPanel;
             },
             unloadCallback: () => {
                 const win = addon.data.dialogs?.richTextToolBar?.window as Window;
@@ -135,7 +135,11 @@ export class richTextToolBar {
         // let addon.data.dialog.richTextToolBar: DialogHelper;
         if (addon.data.dialogs.richTextToolBar == undefined) {
             addon.data.dialogs.richTextToolBar = this.creatRichTextDialog();
+        } else {
+            ztoolkit.log("addon.data.dialogs.richTextToolBar 已存在，不再打开");
+            return;
         }
+
         addon.data.dialogs.richTextToolBar.open("Zotero Format Metadata Rich Text Tool Bar", windowFuture);
     }
 
