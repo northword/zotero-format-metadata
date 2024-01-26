@@ -42,47 +42,38 @@ export class richTextToolBar {
         // },
     ];
 
-    static init() {
-        if (!getPref("richtext.isEnableToolBar")) return;
+    // static init() {
+    //     if (!getPref("richtext.isEnableToolBar")) return;
 
-        const targetNode = document.getElementById("zotero-item-pane-header")?.getElementsByTagName("editable-text")[0];
-        if (!targetNode) return;
-        console.log(targetNode);
-        targetNode.addEventListener("focus", this.showToolBar);
-        targetNode.addEventListener("blur", this.closeToolBar);
+    //     const targetNode = document.getElementById("zotero-item-pane-header")?.getElementsByTagName("editable-text")[0];
+    //     if (!targetNode) return;
+    //     console.log(targetNode);
+    //     targetNode.addEventListener("focus", this.showToolBar);
+    //     targetNode.addEventListener("blur", this.closeToolBar);
 
-        // Unregister callback when the window closes (important to avoid a memory leak)
-        window.addEventListener(
-            "unload",
-            (e: Event) => {
-                targetNode.removeEventListener("focus", this.showToolBar);
-                targetNode.removeEventListener("blur", this.closeToolBar);
-            },
-            false,
-        );
-    }
+    //     // Unregister callback when the window closes (important to avoid a memory leak)
+    //     window.addEventListener(
+    //         "unload",
+    //         (e: Event) => {
+    //             targetNode.removeEventListener("focus", this.showToolBar);
+    //             targetNode.removeEventListener("blur", this.closeToolBar);
+    //         },
+    //         false,
+    //     );
+    // }
 
     static showToolBar() {
-        const titleDiv = document.getElementById("zotero-item-pane-header")?.querySelector(".title") as HTMLDivElement;
-
         const toolbarDiv = document.createElement("div");
-        toolbarDiv.id = "linter-richtext-toolbar";
+        toolbarDiv.className = "linter-richtext-toolbar";
         toolbarDiv.style.display = "flex";
-
-        // toolbarDiv.innerHTML = this.buttons
-        //     .map((btn, index) => {
-        //         return `<toolbarbutton id="linter-richtext-${btn.hookName}-btn" class="zotero-tb-button">${btn.icon}</toolbarbutton>`;
-        //     })
-        //     .join("");
-        // toolbarDiv.style;
 
         this.buttons.forEach((btn, index) => {
             const toolbarbutton = document.createElement("toolbarbutton");
             toolbarbutton.id = `linter-richtext-${btn.hookName}-btn`;
             toolbarbutton.className = "zotero-tb-button";
             // toolbarbutton.style.listStyleImage = `url("chrome://${config.addonRef}/content/subscript.svg")`;
-            // toolbarbutton.style.fill = "currentColor";
-            // toolbarbutton.style.stroke = "currentColor";
+            toolbarbutton.style.fill = "currentColor";
+            toolbarbutton.style.stroke = "currentColor";
             toolbarbutton.style.display = "flex";
             toolbarbutton.style.alignItems = "center";
             toolbarbutton.style.justifyContent = "center";
@@ -105,15 +96,25 @@ export class richTextToolBar {
             });
             toolbarDiv.appendChild(toolbarbutton);
         });
-        titleDiv.insertBefore(toolbarDiv, titleDiv.firstChild);
+
+        const titleDivInItemPane = document
+            .getElementById("zotero-item-pane-header")
+            ?.querySelector(".title") as HTMLDivElement;
+        titleDivInItemPane.insertBefore(toolbarDiv, titleDivInItemPane.firstChild);
+
+        const titleDivInContextPane = document
+            .getElementById("zotero-context-pane-inner")
+            ?.querySelector(".title") as HTMLDivElement;
+        titleDivInContextPane.insertBefore(toolbarDiv.cloneNode(true), titleDivInContextPane.firstChild);
     }
 
     static closeToolBar() {
-        const richtoolbar = document.getElementById("linter-richtext-toolbar");
-        richtoolbar?.parentNode?.removeChild(richtoolbar);
-        if (document.getElementById("linter-richtext-toolbar")) {
-            this.closeToolBar();
-        }
+        document.querySelectorAll(".linter-richtext-toolbar").forEach((richtoolbar) => {
+            richtoolbar?.parentNode?.removeChild(richtoolbar);
+        });
+        // if (document.getElementById("linter-richtext-toolbar")) {
+        //     this.closeToolBar();
+        // }
     }
 }
 

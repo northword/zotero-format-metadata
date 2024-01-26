@@ -41,7 +41,8 @@ function unregisterNotifier(notifierID: string) {
 }
 
 export function registerMutationObserver() {
-    const targetNode = document.getElementById("zotero-item-pane-header") as HTMLElement;
+    const itemPane = document.getElementById("zotero-item-pane-header") as HTMLElement;
+    const contextPane = document.getElementById("zotero-context-pane-inner") as HTMLElement;
 
     // ztoolkit.log(targetNode);
     const observerOptions = {
@@ -62,7 +63,8 @@ export function registerMutationObserver() {
     }
 
     const observer = new window.MutationObserver(callback);
-    observer.observe(targetNode, observerOptions);
+    observer.observe(itemPane, observerOptions);
+    observer.observe(contextPane, observerOptions);
 
     window.addEventListener(
         "unload",
