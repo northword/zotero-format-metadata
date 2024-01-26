@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - 修复 Zotero 7 beta 55 UI 更新导致富文本工具条失效的问题。/ fix: [#133](https://github.com/northword/zotero-format-metadata/issues/133)
+- 移除首选项窗格中的一级标题，因为 Zotero 7 beta 55 起自动为插件生成一级标题。/ fix: [#133](https://github.com/northword/zotero-format-metadata/issues/133)
 
 ## [1.9.1] - 2024-01-24
 
