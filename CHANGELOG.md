@@ -7,11 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Breaking Changes
+
+- 此版本起，不再支持 Zotero 7 beta 54 及以下版本。（其实只是标题富文本工具框不支持了，其他的都支持）。/ Since this release, Zotero 7 beta 54 and below are no longer supported.
+
 ### Fixed
 
-- 修复 Zotero 7 beta 55 UI 更新导致富文本工具条失效的问题。/ fix: [#133](https://github.com/northword/zotero-format-metadata/issues/133)
-- 富文本工具条适配阅读器侧边栏。
-- 移除首选项窗格中的一级标题，因为 Zotero 7 beta 55 起自动为插件生成一级标题。/ fix: [#133](https://github.com/northword/zotero-format-metadata/issues/133)
+- 修复 Zotero 7 beta 55 UI 更新导致富文本工具条失效的问题。/ Fix Zotero 7 beta 55 UI update causing rich text toolbar not working. fix: [#133](https://github.com/northword/zotero-format-metadata/issues/133)
+- 富文本工具条适配阅读器侧边栏。/ Rich text toolbar adapted to reader sidebar.
+- 移除首选项窗格中的一级标题，因为 Zotero 7 beta 55 起自动为插件生成一级标题。/ Removed the h1 title in the Preferences pane, as Zotero 7 beta 55 onwards automatically generates a h1 title for the plugin. fix: [#133](https://github.com/northword/zotero-format-metadata/issues/133)
+- 修复标题大小写转换错误将中文条目中的英文专有名词小写的问题。当前中文条目不再应用标题句子式大写这一规则。/ Fix a problem where title sentence capitalization incorrectly lowercased English proper nouns in Chinese items. The rule of sentence capitalization of titles is no longer applied to current Chinese items. close: [#128](https://github.com/northword/zotero-format-metadata/issues/128)
 
 ## [1.9.1] - 2024-01-24
 
