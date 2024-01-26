@@ -13,10 +13,20 @@
         },
         {
           "version": "1.9.1",
+          "update_link": "https://github.com/northword/zotero-format-metadata/releases/download/v1.9.1/zotero-format-metadata.xpi",
+          "applications": {
+            "zotero": {
+              "strict_min_version": "6.999",
+              "strict_max_version": "7.0.0-beta.54"
+            }
+          }
+        },
+        {
+          "version": "1.10.0",
           "update_link": "https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-format-metadata.xpi",
           "applications": {
             "zotero": {
-              "strict_min_version": "6.999"
+              "strict_min_version": "7.0.0-beta.55"
             }
           }
         }

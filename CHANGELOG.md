@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.10.0] - 2024-01-26
+
 ### Breaking Changes
 
 - 此版本起，不再支持 Zotero 7 beta 54 及以下版本。（其实只是标题富文本工具框不支持了，其他的都支持）。/ Since this release, Zotero 7 beta 54 and below are no longer supported.
@@ -604,7 +606,7 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/v1.9.1...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/v1.10.0...HEAD
 [1.6.11]: https://github.com/northword/zotero-format-metadata/compare/1.6.10...1.6.11
 [1.6.10]: https://github.com/northword/zotero-format-metadata/compare/1.6.9...1.6.10
 [1.6.9]: https://github.com/northword/zotero-format-metadata/compare/1.6.8...1.6.9
@@ -665,6 +667,7 @@ No changes, test release only.
 [0.0.4]: https://github.com/northword/zotero-format-metadata/compare/0.0.3...0.0.4
 [0.0.3]: https://github.com/northword/zotero-format-metadata/compare/0.0.2...0.0.3
 [0.0.2]: https://github.com/northword/zotero-format-metadata/commits/0.0.2
+[1.10.0]: https://github.com/northword/zotero-format-metadata/compare/v1.9.1...v1.10.0
 [1.9.1]: https://github.com/northword/zotero-format-metadata/compare/v1.9.0...v1.9.1
 [1.9.0]: https://github.com/northword/zotero-format-metadata/compare/v1.8.4...v1.9.0
 [1.8.4]: https://github.com/northword/zotero-format-metadata/compare/v1.8.3...v1.8.4
