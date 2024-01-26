@@ -41,13 +41,13 @@ function unregisterNotifier(notifierID: string) {
 }
 
 export function registerMutationObserver() {
-    const targetNode = document.getElementById("zotero-item-pane-content") as HTMLElement;
+    const targetNode = document.getElementById("zotero-item-pane-header") as HTMLElement;
 
     // ztoolkit.log(targetNode);
     const observerOptions = {
         // childList: true, // 观察目标子节点的变化，是否有添加或者删除
         attributes: true, // 观察属性变动
-        attributeFilter: ["control"],
+        attributeFilter: ["class"],
         subtree: true, // 观察后代节点，默认为 false
     };
 

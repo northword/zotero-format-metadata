@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复 Zotero 7 beta 55 UI 更新导致富文本工具条失效的问题。/ fix: [#133](https://github.com/northword/zotero-format-metadata/issues/133)
+
 ## [1.9.1] - 2024-01-24
 
 ### Fixed

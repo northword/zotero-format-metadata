@@ -26,6 +26,7 @@ async function onMainWindowLoad(win: Window): Promise<void> {
     // Create ztoolkit for every window
     addon.data.ztoolkit = createZToolkit();
     registerMutationObserver();
+    // Views.richTextToolBar.init();
     registerShortcuts();
     registerMenu();
     registerTextTransformMenu();
@@ -74,14 +75,14 @@ async function onNotify(
 function onMutationObserver(record: MutationRecord, observer: MutationObserver) {
     ztoolkit.log("MutationObserver", record, observer);
 
-    if (record.type == "attributes" && record.attributeName == "control") {
+    if (record.type == "attributes" && record.attributeName == "class") {
         if (getPref("richtext.isEnableToolBar")) {
             // @ts-ignore 存在 attributes
-            if (record.target.attributes.control.nodeValue == "itembox-field-textbox-title") {
+            if (record.target.className == "focused") {
                 Views.richTextToolBar.showToolBar();
             }
             // @ts-ignore 存在 attributes
-            if (record.target.attributes.control.nodeValue == "itembox-field-value-title") {
+            if (record.target.className == "") {
                 Views.richTextToolBar.closeToolBar();
             }
         }

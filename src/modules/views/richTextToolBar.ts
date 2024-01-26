@@ -1,8 +1,128 @@
+import { config } from "../../../package.json";
 import { getString } from "../../utils/locale";
 import { getPref, setPref } from "../../utils/prefs";
 import { DialogHelper } from "zotero-plugin-toolkit/dist/helpers/dialog";
 
 export class richTextToolBar {
+    static buttons = [
+        {
+            name: "Subscript",
+            i18nName: "subscript",
+            hookName: "subscript",
+            icon: `<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-darkreader-inline-fill="" width="16" height="16"><path d="M755.809524 109.714286V243.809524h-73.142857V182.857143h-207.238096V828.952381H536.380952v24.380952c0 17.773714 4.754286 34.450286 13.068191 48.786286L316.952381 902.095238v-73.142857h85.333333V182.857143h-219.428571V243.809524h-73.142857V109.714286H755.809524zM877.714286 560.761905a48.761905 48.761905 0 0 1 48.761904 48.761905v243.809523a48.761905 48.761905 0 0 1-48.761904 48.761905H633.904762a48.761905 48.761905 0 0 1-48.761905-48.761905V609.52381a48.761905 48.761905 0 0 1 48.761905-48.761905h243.809524z m-24.380953 73.142857h-195.047619v195.047619h195.047619v-195.047619z"></path></svg>`,
+        },
+        {
+            name: "Supscript",
+            i18nName: "supscript",
+            hookName: "supscript",
+            icon: `<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-darkreader-inline-fill="" width="16" height="16"><path d="M755.809524 121.904762v134.095238h-73.142857V195.047619h-207.238096v646.095238H560.761905v73.142857H316.952381v-73.142857h85.333333V195.047619h-219.428571v60.952381h-73.142857V121.904762H755.809524z m121.904762 182.857143a48.761905 48.761905 0 0 1 48.761904 48.761905v243.809523a48.761905 48.761905 0 0 1-48.761904 48.761905H633.904762a48.761905 48.761905 0 0 1-48.761905-48.761905v-243.809523a48.761905 48.761905 0 0 1 48.761905-48.761905h243.809524z m-24.380953 73.142857h-195.047619v195.047619h195.047619v-195.047619z"></path></svg>`,
+        },
+        {
+            name: "Bold",
+            i18nName: "bold",
+            hookName: "bold",
+            icon: `<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-darkreader-inline-fill="" width="16" height="16"><path d="M195.047619 914.285714v-73.142857h73.142857v-658.285714H195.047619v-73.142857h438.857143v1.340952c102.521905 11.337143 182.857143 93.208381 182.857143 193.706667 0 62.902857-31.451429 118.491429-80.11581 154.087619 76.873143 41.910857 128.877714 120.783238 128.877715 211.626666 0 127.24419-102.009905 231.033905-231.594667 242.712381L633.904762 914.285714H195.047619z m414.476191-414.47619H341.333333v341.333333h268.190477c101.424762 0 182.857143-76.897524 182.857142-170.666667s-81.432381-170.666667-182.857142-170.666666z m0-316.952381H341.333333v243.809524h268.190477l5.558857-0.097524c72.021333-2.681905 128.536381-56.783238 128.536381-121.807238 0-66.706286-59.465143-121.904762-134.095238-121.904762z"></path></svg>`,
+        },
+        {
+            name: "Italic",
+            i18nName: "italic",
+            hookName: "italic",
+            icon: `<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-darkreader-inline-fill="" width="16" height="16"><path d="M764 200a4 4 0 0 0 4-4v-64a4 4 0 0 0-4-4H452a4 4 0 0 0-4 4v64a4 4 0 0 0 4 4h98.4L408.2 824H292a4 4 0 0 0-4 4v64a4 4 0 0 0 4 4h312a4 4 0 0 0 4-4v-64a4 4 0 0 0-4-4H488.2l142.2-624z"></path></svg>`,
+        },
+        {
+            name: "No Case",
+            i18nName: "no-case",
+            hookName: "nocase",
+            icon: `<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M361.411765 356.894118h60.235294v120.470588H361.411765v-60.235294H240.941176v481.882353h60.235295v60.235294H120.470588v-60.235294h60.235294v-481.882353H60.235294v60.235294H0v-120.470588h361.411765zM963.764706 120.470588H361.411765v155.226353h60.235294V180.705882h240.941176v722.82353h-60.235294v60.235294h180.705883v-60.235294h-60.235295V180.705882h240.941177v94.991059h60.235294V120.470588h-60.235294z"></path></svg>`,
+        },
+        // {
+        //     name: "small-caps",
+        //     hookName: "small-caps",
+        //     icon: `small-caps`,
+        // },
+    ];
+
+    static init() {
+        if (!getPref("richtext.isEnableToolBar")) return;
+
+        const targetNode = document.getElementById("zotero-item-pane-header")?.getElementsByTagName("editable-text")[0];
+        if (!targetNode) return;
+        console.log(targetNode);
+        targetNode.addEventListener("focus", this.showToolBar);
+        targetNode.addEventListener("blur", this.closeToolBar);
+
+        // Unregister callback when the window closes (important to avoid a memory leak)
+        window.addEventListener(
+            "unload",
+            (e: Event) => {
+                targetNode.removeEventListener("focus", this.showToolBar);
+                targetNode.removeEventListener("blur", this.closeToolBar);
+            },
+            false,
+        );
+    }
+
+    static showToolBar() {
+        const titleDiv = document.getElementById("zotero-item-pane-header")?.querySelector(".title") as HTMLDivElement;
+
+        const toolbarDiv = document.createElement("div");
+        toolbarDiv.id = "linter-richtext-toolbar";
+        toolbarDiv.style.display = "flex";
+
+        // toolbarDiv.innerHTML = this.buttons
+        //     .map((btn, index) => {
+        //         return `<toolbarbutton id="linter-richtext-${btn.hookName}-btn" class="zotero-tb-button">${btn.icon}</toolbarbutton>`;
+        //     })
+        //     .join("");
+        // toolbarDiv.style;
+
+        this.buttons.forEach((btn, index) => {
+            const toolbarbutton = document.createElement("toolbarbutton");
+            toolbarbutton.id = `linter-richtext-${btn.hookName}-btn`;
+            toolbarbutton.className = "zotero-tb-button";
+            // toolbarbutton.style.listStyleImage = `url("chrome://${config.addonRef}/content/subscript.svg")`;
+            // toolbarbutton.style.fill = "currentColor";
+            // toolbarbutton.style.stroke = "currentColor";
+            toolbarbutton.style.display = "flex";
+            toolbarbutton.style.alignItems = "center";
+            toolbarbutton.style.justifyContent = "center";
+            toolbarbutton.setAttribute("title", getString(btn.i18nName));
+
+            const image = document.createElement("image");
+            image.className = "toolbarbutton-icon";
+            image.innerHTML = btn.icon;
+            toolbarbutton.appendChild(image);
+
+            const label = document.createElement("label");
+            label.className = "toolbarbutton-text";
+            toolbarbutton.appendChild(label);
+
+            toolbarbutton.addEventListener("mousedown", (event) => {
+                // 阻止默认行为，避免按钮点击后导致输入框失焦
+                event.preventDefault();
+                addon.hooks.onShortcuts(btn.hookName);
+                event.stopPropagation();
+            });
+            toolbarDiv.appendChild(toolbarbutton);
+        });
+        titleDiv.insertBefore(toolbarDiv, titleDiv.firstChild);
+    }
+
+    static closeToolBar() {
+        const richtoolbar = document.getElementById("linter-richtext-toolbar");
+        richtoolbar?.parentNode?.removeChild(richtoolbar);
+        if (document.getElementById("linter-richtext-toolbar")) {
+            this.closeToolBar();
+        }
+    }
+}
+
+/**
+ * Rich text tool bar bak
+ *
+ * @deprecated 自 Zotero 7 beta 55 更新 UI 以来，此方法已失效，弹窗仍会导致输入框失焦
+ */
+export class richTextToolBar_bak {
     static creatRichTextDialog() {
         const buttons = [
             {
