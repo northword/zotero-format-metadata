@@ -9,14 +9,12 @@ export default class UpdateUniversityPlace extends RuleBase<updateUniversityPlac
     }
 
     apply(item: Zotero.Item): Zotero.Item {
-        if (item.itemType == "thesis") {
-            const university = item.getField("university") as string;
-            const place = this.getUniversityPlace(university);
-            item.setField("place", place);
-            // await item.saveTx();
-        } else {
-            ztoolkit.log(`[Place] Item type ${item.itemType} is not thesis, skip it.`);
-        }
+        if (item.itemType !== "thesis") return item;
+
+        const university = item.getField("university") as string;
+        let place = this.getUniversityPlace(university);
+        if (place == "") place = this.getUniversityPlace(university.replace(/[（(].*[)|）]/, ""));
+        item.setField("place", place);
         return item;
     }
 
