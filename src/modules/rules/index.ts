@@ -6,15 +6,17 @@ import UpdateJournalAbbr from "./field-journalAbbr";
 import UpdateItemLanguage from "./field-language";
 import UpdateUniversityPlace from "./field-place";
 import UpdatePublicationTitle from "./field-publication";
+import ThesisType from "./field-thesisType";
 import TitleGuillemet from "./field-title-guillemet";
 import TitleSentenceCase from "./field-title-sentence-case";
+import University from "./field-university";
 import NoDuplicatItem from "./no-duplicate-item";
 import NoExtraZeros from "./no-extra-zeros";
 import NoWebPageItem from "./no-webpage-item";
 import UpdateMetadata from "./retrive-metadata";
 import SetFieldValue from "./set-field-value";
 
-export {
+export default {
     CapitalizeCreators,
     UseCreatorsExt,
     DateISO,
@@ -30,4 +32,6 @@ export {
     NoDuplicatItem,
     NoExtraZeros,
     NoWebPageItem,
+    ThesisType,
+    University,
 };

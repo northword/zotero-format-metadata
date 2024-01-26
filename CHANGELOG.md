@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - 此版本起，不再支持 Zotero 7 beta 54 及以下版本。（其实只是标题富文本工具框不支持了，其他的都支持）。/ Since this release, Zotero 7 beta 54 and below are no longer supported.
 
+### Added
+
+- 统一学位论文类型。/ resolve: [#132](https://github.com/northword/zotero-format-metadata/issues/132)
+- 中文大学校名中的括号应使用中文下的字符。/ close: [#127](https://github.com/northword/zotero-format-metadata/issues/127)
+- 以上两项暂无首选项。
+
 ### Fixed
 
 - 修复 Zotero 7 beta 55 UI 更新导致富文本工具条失效的问题。/ Fix Zotero 7 beta 55 UI update causing rich text toolbar not working. fix: [#133](https://github.com/northword/zotero-format-metadata/issues/133)

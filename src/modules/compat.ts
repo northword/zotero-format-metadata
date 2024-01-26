@@ -8,6 +8,12 @@ export function checkCompat() {
         return;
     }
 
+    if (compareVersion(version, "1.10.0") == -1) {
+        // 1.10.0
+        clearPref("richText.toolbarPosition.left");
+        clearPref("richText.toolbarPosition.top");
+    }
+
     if (compareVersion(version, "1.8.0") == -1) {
         // 1.8.0 废弃期刊缩写类型
         clearPref("abbr.type");

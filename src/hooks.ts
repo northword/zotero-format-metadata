@@ -3,7 +3,7 @@ import { checkCompat } from "./modules/compat";
 import { registerMenu, registerTextTransformMenu } from "./modules/menu";
 import { registerMutationObserver, registerNotifier } from "./modules/notifier";
 import { registerPrefs, registerPrefsScripts } from "./modules/preference";
-import * as Rules from "./modules/rules";
+import Rules from "./modules/rules";
 import { getNewItemLintRules, getStdLintRules, setHtmlTag } from "./modules/rules-presets";
 import { LintRunner } from "./modules/rules-runner";
 import { registerShortcuts } from "./modules/shortcuts";

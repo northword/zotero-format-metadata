@@ -1,6 +1,6 @@
 import { getPref } from "../utils/prefs";
 import { removeHtmlTag } from "../utils/str";
-import * as Rules from "./rules";
+import Rules from "./rules";
 
 export { getStdLintRules, getNewItemLintRules };
 
@@ -17,6 +17,8 @@ function getStdLintRules() {
     getPref("isEnableDateISO") && !getPref("isEnableOtherFields") ? rules.push(new Rules.DateISO({})) : "";
     getPref("isEnableDOI") ? rules.push(new Rules.RemoveDOIPrefix({})) : "";
     getPref("NoExtraZeros") ? rules.push(new Rules.NoExtraZeros({})) : "";
+    rules.push(new Rules.ThesisType({}));
+    rules.push(new Rules.University({}));
     return rules;
 }
 
