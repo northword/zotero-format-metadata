@@ -8,15 +8,15 @@ function getStdLintRules() {
     // 作者、期刊、年、期、卷、页 -> 判断语言 -> 作者大小写 -> 匹配缩写 -> 匹配地点 -> 格式化日期 -> 格式化DOI
     const rules = [];
     // getPref("isEnableOtherFields") ? rules.push(new Rules.UpdateMetadata({ mode: "blank" })) : "";
-    getPref("isEnableLang") ? rules.push(new Rules.UpdateItemLanguage({})) : "";
-    getPref("isEnableCreators") ? rules.push(new Rules.CapitalizeCreators({})) : "";
-    getPref("isEnableTitleCase") ? rules.push(new Rules.TitleSentenceCase({})) : "";
-    getPref("isEnablePublicationTitle") ? rules.push(new Rules.UpdatePublicationTitle({})) : "";
-    getPref("isEnableAbbr") ? rules.push(new Rules.UpdateJournalAbbr({})) : "";
-    getPref("isEnablePlace") ? rules.push(new Rules.UpdateUniversityPlace({})) : "";
-    getPref("isEnableDateISO") && !getPref("isEnableOtherFields") ? rules.push(new Rules.DateISO({})) : "";
-    getPref("isEnableDOI") ? rules.push(new Rules.RemoveDOIPrefix({})) : "";
-    getPref("NoExtraZeros") ? rules.push(new Rules.NoExtraZeros({})) : "";
+    getPref("lang") ? rules.push(new Rules.UpdateItemLanguage({})) : "";
+    getPref("creatorsCase") ? rules.push(new Rules.CapitalizeCreators({})) : "";
+    getPref("titleSentenceCase") ? rules.push(new Rules.TitleSentenceCase({})) : "";
+    getPref("publicationTitleCase") ? rules.push(new Rules.UpdatePublicationTitle({})) : "";
+    getPref("abbr") ? rules.push(new Rules.UpdateJournalAbbr({})) : "";
+    getPref("universityPlace") ? rules.push(new Rules.UpdateUniversityPlace({})) : "";
+    getPref("dateISO") && !getPref("isEnableOtherFields") ? rules.push(new Rules.DateISO({})) : "";
+    getPref("noDOIPrefix") ? rules.push(new Rules.RemoveDOIPrefix({})) : "";
+    getPref("noExtraZeros") ? rules.push(new Rules.NoExtraZeros({})) : "";
     rules.push(new Rules.ThesisType({}));
     rules.push(new Rules.University({}));
     return rules;
@@ -24,9 +24,9 @@ function getStdLintRules() {
 
 function getNewItemLintRules() {
     const rules = [];
-    getPref("isEnableCheckWebpage") ? rules.push(new Rules.NoWebPageItem({})) : "skip";
-    getPref("isEnableCheckDuplication") ? rules.push(new Rules.NoDuplicatItem({})) : "skip";
-    getPref("add.update") ? rules.push(getStdLintRules()) : "";
+    getPref("checkWebpage") ? rules.push(new Rules.NoWebPageItem({})) : "skip";
+    getPref("noDuplicationItems") ? rules.push(new Rules.NoDuplicatItem({})) : "skip";
+    getPref("lint.onAdded") ? rules.push(getStdLintRules()) : "";
     return rules.flat();
 }
 

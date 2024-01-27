@@ -5,8 +5,8 @@
   "config": {
     "addonName": "Linter for Zotero",
     "addonID": "zotero-format-metadata@northword.cn",
-    "addonRef": "formatmetadata",
-    "addonInstance": "FormatMetadata",
+    "addonRef": "linter",
+    "addonInstance": "Linter",
     "prefsPrefix": "extensions.zotero.formatmetadata",
     "releasePage": "https://github.com/northword/zotero-format-metadata/releases",
     "updateJSON": "https://raw.githubusercontent.com/northword/zotero-format-metadata/main/update.json"

@@ -382,9 +382,9 @@ export function getTextLanguage(text: string) {
     // }
 
     // 限制常用语言
-    if (getPref("lang.only.enable")) {
-        getPref("lang.only.cmn") ? options.only.push("zh") : "pass";
-        getPref("lang.only.eng") ? options.only.push("en") : "pass";
+    if (getPref("lang.only")) {
+        getPref("lang.only.zh") ? options.only.push("zh") : "pass";
+        getPref("lang.only.en") ? options.only.push("en") : "pass";
         const otherLang = getPref("lang.only.other") as string;
         otherLang !== "" && otherLang !== undefined
             ? options.only.push.apply(otherLang.replace(/ /g, "").split(","))

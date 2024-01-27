@@ -14,25 +14,25 @@
     <!-- 添加时自动执行格式化 -->
     <checkbox
       data-l10n-id="lint-on-item-added"
-      preference="__prefsPrefix__.add.update"
+      preference="__prefsPrefix__.lint.onAdded"
       native="true"
     />
     <!-- 添加时自动执行格式化（群组条目） -->
     <checkbox
       data-l10n-id="lint-on-groupItem-added"
-      preference="__prefsPrefix__.add.updateOnAddedForGroup"
+      preference="__prefsPrefix__.add.lint.onGroup"
       native="true"
     />
 
     <!-- 是否启用富文本工具框 -->
     <checkbox
       data-l10n-id="enable-richtext-toolbar"
-      preference="__prefsPrefix__.richtext.isEnableToolBar"
+      preference="__prefsPrefix__.richtext.toolBar"
       native="true"
     />
     <checkbox
       data-l10n-id="enable-richtext-hotkey"
-      preference="__prefsPrefix__.richtext.isEnableRichTextHotKey"
+      preference="__prefsPrefix__.richtext.hotkey"
       native="true"
       disabled="true"
     />
@@ -46,13 +46,13 @@
       <!-- 添加时检测是否存在重复条目 -->
       <checkbox
         data-l10n-id="item-noDuplication"
-        preference="__prefsPrefix__.isEnableCheckDuplication"
+        preference="__prefsPrefix__.noDuplicationItems"
         native="true"
       />
       <!-- 添加时检测网页条目 -->
       <checkbox
         data-l10n-id="item-checkWebpage"
-        preference="__prefsPrefix__.isEnableCheckWebpage"
+        preference="__prefsPrefix__.checkWebpage"
         native="true"
       />
     </groupbox>
@@ -63,7 +63,7 @@
       <!-- 修改标题大小写 -->
       <checkbox
         data-l10n-id="title-sentenceCase"
-        preference="__prefsPrefix__.isEnableTitleCase"
+        preference="__prefsPrefix__.titleSentenceCase"
         native="true"
       />
     </groupbox>
@@ -74,7 +74,7 @@
       <!-- 修改作者大小写 -->
       <checkbox
         data-l10n-id="creators-case"
-        preference="__prefsPrefix__.isEnableCreators"
+        preference="__prefsPrefix__.creatorsCase"
         native="true"
       />
       <!-- 去除国籍 -->
@@ -91,13 +91,13 @@
       <label><html:h2 data-l10n-id="section-language"></html:h2></label>
       <checkbox
         data-l10n-id="language-fill"
-        preference="__prefsPrefix__.isEnableLang"
+        preference="__prefsPrefix__.lang"
         native="true"
       />
       <checkbox
         id="__addonRef__-lang-only"
         data-l10n-id="language-fill-option-only"
-        preference="__prefsPrefix__.lang.only.enable"
+        preference="__prefsPrefix__.lang.only"
         native="true"
       />
       <vbox class="indented-pref">
@@ -140,7 +140,7 @@
       <!-- 更新日期格式 -->
       <checkbox
         data-l10n-id="date-iso"
-        preference="__prefsPrefix__.isEnableDateISO"
+        preference="__prefsPrefix__.dateISO"
         native="true"
       />
     </groupbox>
@@ -151,7 +151,7 @@
       <!-- 修正期刊名大小写 -->
       <checkbox
         data-l10n-id="publicationTitle-case"
-        preference="__prefsPrefix__.isEnablePublicationTitle"
+        preference="__prefsPrefix__.publicationTitleCase"
         native="true"
       />
     </groupbox>
@@ -162,7 +162,7 @@
       <!-- 更新期刊缩写 -->
       <checkbox
         data-l10n-id="abbr-iso"
-        preference="__prefsPrefix__.isEnableAbbr"
+        preference="__prefsPrefix__.abbr"
         native="true"
       />
       <hbox align="center">
@@ -209,7 +209,7 @@
       <!-- 去除期卷页0 -->
       <checkbox
         data-l10n-id="pages-remove-zeros"
-        preference="__prefsPrefix__.NoExtraZeros"
+        preference="__prefsPrefix__.noExtraZeros"
         native="true"
       />
       <!-- 页码连接符 -->
@@ -227,7 +227,7 @@
       <!-- 更新DOI格式 -->
       <checkbox
         data-l10n-id="doi-noPrefix"
-        preference="__prefsPrefix__.isEnableDOI"
+        preference="__prefsPrefix__.noDOIPrefix"
         native="true"
       />
     </groupbox>
@@ -245,7 +245,7 @@
       <!-- 更新地点字段 -->
       <checkbox
         data-l10n-id="university-place"
-        preference="__prefsPrefix__.isEnablePlace"
+        preference="__prefsPrefix__.universityPlace"
         native="true"
       />
     </groupbox>
@@ -256,7 +256,7 @@
       <!-- 清理被不合理占用的字段 -->
       <checkbox
         data-l10n-id="std-clean-fileld"
-        preference="__prefsPrefix__.isEnableCleanFields"
+        preference="__prefsPrefix__.cleanExtra"
         native="true"
         disabled="true"
       />

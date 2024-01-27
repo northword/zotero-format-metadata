@@ -123,154 +123,154 @@ export class richTextToolBar {
  *
  * @deprecated 自 Zotero 7 beta 55 更新 UI 以来，此方法已失效，弹窗仍会导致输入框失焦
  */
-export class richTextToolBar_bak {
-    static creatRichTextDialog() {
-        const buttons = [
-            {
-                name: "Subscript",
-                i18nName: "subscript",
-                hookName: "subscript",
-                icon: `<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-darkreader-inline-fill="" width="16" height="16"><path d="M755.809524 109.714286V243.809524h-73.142857V182.857143h-207.238096V828.952381H536.380952v24.380952c0 17.773714 4.754286 34.450286 13.068191 48.786286L316.952381 902.095238v-73.142857h85.333333V182.857143h-219.428571V243.809524h-73.142857V109.714286H755.809524zM877.714286 560.761905a48.761905 48.761905 0 0 1 48.761904 48.761905v243.809523a48.761905 48.761905 0 0 1-48.761904 48.761905H633.904762a48.761905 48.761905 0 0 1-48.761905-48.761905V609.52381a48.761905 48.761905 0 0 1 48.761905-48.761905h243.809524z m-24.380953 73.142857h-195.047619v195.047619h195.047619v-195.047619z"></path></svg>`,
-            },
-            {
-                name: "Supscript",
-                i18nName: "supscript",
-                hookName: "supscript",
-                icon: `<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-darkreader-inline-fill="" width="16" height="16"><path d="M755.809524 121.904762v134.095238h-73.142857V195.047619h-207.238096v646.095238H560.761905v73.142857H316.952381v-73.142857h85.333333V195.047619h-219.428571v60.952381h-73.142857V121.904762H755.809524z m121.904762 182.857143a48.761905 48.761905 0 0 1 48.761904 48.761905v243.809523a48.761905 48.761905 0 0 1-48.761904 48.761905H633.904762a48.761905 48.761905 0 0 1-48.761905-48.761905v-243.809523a48.761905 48.761905 0 0 1 48.761905-48.761905h243.809524z m-24.380953 73.142857h-195.047619v195.047619h195.047619v-195.047619z"></path></svg>`,
-            },
-            {
-                name: "Bold",
-                i18nName: "bold",
-                hookName: "bold",
-                icon: `<svg class="icon" viewBox="0 0 1024 1024" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16"><path d="M195.047619 914.285714v-73.142857h73.142857v-658.285714H195.047619v-73.142857h438.857143v1.340952c102.521905 11.337143 182.857143 93.208381 182.857143 193.706667 0 62.902857-31.451429 118.491429-80.11581 154.087619 76.873143 41.910857 128.877714 120.783238 128.877715 211.626666 0 127.24419-102.009905 231.033905-231.594667 242.712381L633.904762 914.285714H195.047619z m414.476191-414.47619H341.333333v341.333333h268.190477c101.424762 0 182.857143-76.897524 182.857142-170.666667s-81.432381-170.666667-182.857142-170.666666z m0-316.952381H341.333333v243.809524h268.190477l5.558857-0.097524c72.021333-2.681905 128.536381-56.783238 128.536381-121.807238 0-66.706286-59.465143-121.904762-134.095238-121.904762z"></path></svg>`,
-            },
-            {
-                name: "Italic",
-                i18nName: "italic",
-                hookName: "italic",
-                icon: `<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-darkreader-inline-fill="" width="16" height="16"><path d="M764 200a4 4 0 0 0 4-4v-64a4 4 0 0 0-4-4H452a4 4 0 0 0-4 4v64a4 4 0 0 0 4 4h98.4L408.2 824H292a4 4 0 0 0-4 4v64a4 4 0 0 0 4 4h312a4 4 0 0 0 4-4v-64a4 4 0 0 0-4-4H488.2l142.2-624z"></path></svg>`,
-            },
-            {
-                name: "No Case",
-                i18nName: "no-case",
-                hookName: "nocase",
-                icon: `<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M361.411765 356.894118h60.235294v120.470588H361.411765v-60.235294H240.941176v481.882353h60.235295v60.235294H120.470588v-60.235294h60.235294v-481.882353H60.235294v60.235294H0v-120.470588h361.411765zM963.764706 120.470588H361.411765v155.226353h60.235294V180.705882h240.941176v722.82353h-60.235294v60.235294h180.705883v-60.235294h-60.235295V180.705882h240.941177v94.991059h60.235294V120.470588h-60.235294z"></path></svg>`,
-            },
-            // {
-            //     name: "small-caps",
-            //     hookName: "small-caps",
-            //     icon: `small-caps`,
-            // },
-        ];
+// export class richTextToolBar_bak {
+//     static creatRichTextDialog() {
+//         const buttons = [
+//             {
+//                 name: "Subscript",
+//                 i18nName: "subscript",
+//                 hookName: "subscript",
+//                 icon: `<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-darkreader-inline-fill="" width="16" height="16"><path d="M755.809524 109.714286V243.809524h-73.142857V182.857143h-207.238096V828.952381H536.380952v24.380952c0 17.773714 4.754286 34.450286 13.068191 48.786286L316.952381 902.095238v-73.142857h85.333333V182.857143h-219.428571V243.809524h-73.142857V109.714286H755.809524zM877.714286 560.761905a48.761905 48.761905 0 0 1 48.761904 48.761905v243.809523a48.761905 48.761905 0 0 1-48.761904 48.761905H633.904762a48.761905 48.761905 0 0 1-48.761905-48.761905V609.52381a48.761905 48.761905 0 0 1 48.761905-48.761905h243.809524z m-24.380953 73.142857h-195.047619v195.047619h195.047619v-195.047619z"></path></svg>`,
+//             },
+//             {
+//                 name: "Supscript",
+//                 i18nName: "supscript",
+//                 hookName: "supscript",
+//                 icon: `<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-darkreader-inline-fill="" width="16" height="16"><path d="M755.809524 121.904762v134.095238h-73.142857V195.047619h-207.238096v646.095238H560.761905v73.142857H316.952381v-73.142857h85.333333V195.047619h-219.428571v60.952381h-73.142857V121.904762H755.809524z m121.904762 182.857143a48.761905 48.761905 0 0 1 48.761904 48.761905v243.809523a48.761905 48.761905 0 0 1-48.761904 48.761905H633.904762a48.761905 48.761905 0 0 1-48.761905-48.761905v-243.809523a48.761905 48.761905 0 0 1 48.761905-48.761905h243.809524z m-24.380953 73.142857h-195.047619v195.047619h195.047619v-195.047619z"></path></svg>`,
+//             },
+//             {
+//                 name: "Bold",
+//                 i18nName: "bold",
+//                 hookName: "bold",
+//                 icon: `<svg class="icon" viewBox="0 0 1024 1024" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16"><path d="M195.047619 914.285714v-73.142857h73.142857v-658.285714H195.047619v-73.142857h438.857143v1.340952c102.521905 11.337143 182.857143 93.208381 182.857143 193.706667 0 62.902857-31.451429 118.491429-80.11581 154.087619 76.873143 41.910857 128.877714 120.783238 128.877715 211.626666 0 127.24419-102.009905 231.033905-231.594667 242.712381L633.904762 914.285714H195.047619z m414.476191-414.47619H341.333333v341.333333h268.190477c101.424762 0 182.857143-76.897524 182.857142-170.666667s-81.432381-170.666667-182.857142-170.666666z m0-316.952381H341.333333v243.809524h268.190477l5.558857-0.097524c72.021333-2.681905 128.536381-56.783238 128.536381-121.807238 0-66.706286-59.465143-121.904762-134.095238-121.904762z"></path></svg>`,
+//             },
+//             {
+//                 name: "Italic",
+//                 i18nName: "italic",
+//                 hookName: "italic",
+//                 icon: `<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-darkreader-inline-fill="" width="16" height="16"><path d="M764 200a4 4 0 0 0 4-4v-64a4 4 0 0 0-4-4H452a4 4 0 0 0-4 4v64a4 4 0 0 0 4 4h98.4L408.2 824H292a4 4 0 0 0-4 4v64a4 4 0 0 0 4 4h312a4 4 0 0 0 4-4v-64a4 4 0 0 0-4-4H488.2l142.2-624z"></path></svg>`,
+//             },
+//             {
+//                 name: "No Case",
+//                 i18nName: "no-case",
+//                 hookName: "nocase",
+//                 icon: `<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M361.411765 356.894118h60.235294v120.470588H361.411765v-60.235294H240.941176v481.882353h60.235295v60.235294H120.470588v-60.235294h60.235294v-481.882353H60.235294v60.235294H0v-120.470588h361.411765zM963.764706 120.470588H361.411765v155.226353h60.235294V180.705882h240.941176v722.82353h-60.235294v60.235294h180.705883v-60.235294h-60.235295V180.705882h240.941177v94.991059h60.235294V120.470588h-60.235294z"></path></svg>`,
+//             },
+//             // {
+//             //     name: "small-caps",
+//             //     hookName: "small-caps",
+//             //     icon: `small-caps`,
+//             // },
+//         ];
 
-        const toolBarPanel = new ztoolkit.Dialog(1, buttons.length);
-        buttons.forEach((button, index) => {
-            toolBarPanel.addCell(
-                0,
-                index,
-                {
-                    tag: "button",
-                    namespace: "html",
-                    attributes: {
-                        type: "button",
-                        title: getString(button.i18nName),
-                    },
-                    listeners: [
-                        {
-                            type: "click",
-                            listener: () => {
-                                addon.hooks.onShortcuts(button.hookName);
-                            },
-                        },
-                    ],
-                    children: [
-                        {
-                            tag: "div",
-                            styles: {
-                                padding: "2.5px 10px",
-                            },
-                            properties: {
-                                innerHTML: button.icon,
-                            },
-                        },
-                    ],
-                },
-                true,
-            );
-        });
+//         const toolBarPanel = new ztoolkit.Dialog(1, buttons.length);
+//         buttons.forEach((button, index) => {
+//             toolBarPanel.addCell(
+//                 0,
+//                 index,
+//                 {
+//                     tag: "button",
+//                     namespace: "html",
+//                     attributes: {
+//                         type: "button",
+//                         title: getString(button.i18nName),
+//                     },
+//                     listeners: [
+//                         {
+//                             type: "click",
+//                             listener: () => {
+//                                 addon.hooks.onShortcuts(button.hookName);
+//                             },
+//                         },
+//                     ],
+//                     children: [
+//                         {
+//                             tag: "div",
+//                             styles: {
+//                                 padding: "2.5px 10px",
+//                             },
+//                             properties: {
+//                                 innerHTML: button.icon,
+//                             },
+//                         },
+//                     ],
+//                 },
+//                 true,
+//             );
+//         });
 
-        const dialogData: { [key: string | number]: unknown } = {
-            loadCallback: () => {
-                // ztoolkit.log(dialogData, "Dialog Opened!");
-                addon.data.dialogs.richTextToolBar ??= toolBarPanel;
-            },
-            unloadCallback: () => {
-                const win = addon.data.dialogs?.richTextToolBar?.window as Window;
-                setPref("richText.toolbarPosition.left", win.screenX ?? win.screenX ?? "0");
-                setPref("richText.toolbarPosition.top", win.screenY ?? win.screenY ?? "0");
-                // addon.data.dialogs.richTextToolBar = undefined;
-                delete addon.data.dialogs.richTextToolBar;
-            },
-        };
+//         const dialogData: { [key: string | number]: unknown } = {
+//             loadCallback: () => {
+//                 // ztoolkit.log(dialogData, "Dialog Opened!");
+//                 addon.data.dialogs.richTextToolBar ??= toolBarPanel;
+//             },
+//             unloadCallback: () => {
+//                 const win = addon.data.dialogs?.richTextToolBar?.window as Window;
+//                 setPref("richText.toolbarPosition.left", win.screenX ?? win.screenX ?? "0");
+//                 setPref("richText.toolbarPosition.top", win.screenY ?? win.screenY ?? "0");
+//                 // addon.data.dialogs.richTextToolBar = undefined;
+//                 delete addon.data.dialogs.richTextToolBar;
+//             },
+//         };
 
-        toolBarPanel.setDialogData(dialogData);
-        return toolBarPanel;
+//         toolBarPanel.setDialogData(dialogData);
+//         return toolBarPanel;
 
-        // addon.data.panel.toolBarPanel = ztoolkit.getGlobal("openDialog")(
-        //     `chrome://${config.addonRef}/content/standalone.xhtml`,
-        //     `${config.addonRef}-standalone`,
-        //     `chrome,extrachrome,menubar,resizable=yes,scrollbars,status,dialog=no,alwaysRaised=yes`,
-        //     dialogData
-        // );
-    }
+//         // addon.data.panel.toolBarPanel = ztoolkit.getGlobal("openDialog")(
+//         //     `chrome://${config.addonRef}/content/standalone.xhtml`,
+//         //     `${config.addonRef}-standalone`,
+//         //     `chrome,extrachrome,menubar,resizable=yes,scrollbars,status,dialog=no,alwaysRaised=yes`,
+//         //     dialogData
+//         // );
+//     }
 
-    static showToolBar() {
-        // 准备窗口特性参数：位置、置顶
-        const windowFuture: {
-            left?: number;
-            top?: number;
-            centerscreen?: boolean;
-            resizable: boolean;
-            fitContent: boolean;
-            alwaysRaised: boolean;
-        } = {
-            resizable: false,
-            fitContent: true,
-            alwaysRaised: true,
-        };
-        if (
-            getPref("richText.toolbarPosition.top") == undefined ||
-            getPref("richText.toolbarPosition.left") == undefined
-        ) {
-            windowFuture.centerscreen = true;
-            // Object.defineProperty(windowFuture, "centerscreen", true);
-            delete windowFuture.left;
-            delete windowFuture.top;
-        } else {
-            windowFuture.left = getPref("richText.toolbarPosition.left") as number;
-            windowFuture.top = getPref("richText.toolbarPosition.top") as number;
-            delete windowFuture.centerscreen;
-        }
+//     static showToolBar() {
+//         // 准备窗口特性参数：位置、置顶
+//         const windowFuture: {
+//             left?: number;
+//             top?: number;
+//             centerscreen?: boolean;
+//             resizable: boolean;
+//             fitContent: boolean;
+//             alwaysRaised: boolean;
+//         } = {
+//             resizable: false,
+//             fitContent: true,
+//             alwaysRaised: true,
+//         };
+//         if (
+//             getPref("richText.toolbarPosition.top") == undefined ||
+//             getPref("richText.toolbarPosition.left") == undefined
+//         ) {
+//             windowFuture.centerscreen = true;
+//             // Object.defineProperty(windowFuture, "centerscreen", true);
+//             delete windowFuture.left;
+//             delete windowFuture.top;
+//         } else {
+//             windowFuture.left = getPref("richText.toolbarPosition.left") as number;
+//             windowFuture.top = getPref("richText.toolbarPosition.top") as number;
+//             delete windowFuture.centerscreen;
+//         }
 
-        // 确认窗口存在，若无->创建，存在->open
-        // let addon.data.dialog.richTextToolBar: DialogHelper;
-        if (addon.data.dialogs.richTextToolBar == undefined) {
-            addon.data.dialogs.richTextToolBar = this.creatRichTextDialog();
-        } else {
-            ztoolkit.log("addon.data.dialogs.richTextToolBar 已存在，不再打开");
-            return;
-        }
+//         // 确认窗口存在，若无->创建，存在->open
+//         // let addon.data.dialog.richTextToolBar: DialogHelper;
+//         if (addon.data.dialogs.richTextToolBar == undefined) {
+//             addon.data.dialogs.richTextToolBar = this.creatRichTextDialog();
+//         } else {
+//             ztoolkit.log("addon.data.dialogs.richTextToolBar 已存在，不再打开");
+//             return;
+//         }
 
-        addon.data.dialogs.richTextToolBar.open("Zotero Format Metadata Rich Text Tool Bar", windowFuture);
-    }
+//         addon.data.dialogs.richTextToolBar.open("Zotero Format Metadata Rich Text Tool Bar", windowFuture);
+//     }
 
-    static closeToolBar() {
-        // ztoolkit.log("close tool bar");
-        addon.data.dialogs.richTextToolBar !== undefined
-            ? addon.data.dialogs.richTextToolBar.window.close()
-            : console.warn("addon.data.dialog.richTextToolBar is undefined");
-    }
-}
+//     static closeToolBar() {
+//         // ztoolkit.log("close tool bar");
+//         addon.data.dialogs.richTextToolBar !== undefined
+//             ? addon.data.dialogs.richTextToolBar.window.close()
+//             : console.warn("addon.data.dialog.richTextToolBar is undefined");
+//     }
+// }
 
 /**
  * 富文本工具条的实现，旧版

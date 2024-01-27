@@ -61,7 +61,7 @@ async function onNotify(
                 item.isRegularItem() &&
                 // @ts-ignore item has no isFeedItem
                 !item.isFeedItem &&
-                (getPref("add.updateOnAddedForGroup")
+                (getPref("lint.onGroup")
                     ? true
                     : // @ts-ignore libraryID is got from item, so get() will never return false
                       Zotero.Libraries.get(item.libraryID)._libraryType == "user"),
@@ -76,7 +76,7 @@ function onMutationObserver(record: MutationRecord, observer: MutationObserver) 
     ztoolkit.log("MutationObserver", record, observer);
 
     if (record.type == "attributes" && record.attributeName == "class") {
-        if (getPref("richtext.isEnableToolBar")) {
+        if (getPref("richtext.toolBar")) {
             // @ts-ignore 存在 attributes
             if (record.target.className == "focused") {
                 Views.richTextToolBar.showToolBar();

@@ -234,10 +234,14 @@ export function registerMenu() {
     ztoolkit.Menu.register("item", {
         tag: "menu",
         label: getString("menuitem-label"), // 格式化条目元数据
-        id: "zotero-itemmenu-formatmetadata-menu-item",
+        id: "linter-menu-item",
         icon: menuIcon,
         children: getMenuItem("item"),
         getVisibility: (elem, ev) => isRegularItem(),
+        styles: {
+            fill: "var(--fill-secondary)",
+            stroke: "currentColor",
+        },
     });
 
     ztoolkit.Menu.register("collection", {

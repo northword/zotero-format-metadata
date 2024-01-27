@@ -245,12 +245,7 @@ export default class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
                     break;
             }
         }
-        // todo: 处理与标准格式化流程中空白字段填充的死循环
-        // needLint = (getPref("lintAfterRetriveByDOI") as boolean) ?? false;
-        // needLint ? await addon.hooks.onUpdateInBatch("std", [item]) : "skip";
         return item;
-        // await item.saveTx();
-        // await Zotero.Promise.delay(1000);
     }
 
     async getDOIFromArxiv(arxivID: string) {

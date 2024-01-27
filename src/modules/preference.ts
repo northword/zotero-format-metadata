@@ -63,7 +63,7 @@ function bindPrefEvents() {
 }
 
 function disablePrefsLang() {
-    const state = getPref("lang.only.enable");
+    const state = getPref("lang.only");
     addon.data.prefs?.window.document
         .getElementById(`${config.addonRef}-lang-only-cmn`)
         ?.setAttribute("disabled", String(!state));

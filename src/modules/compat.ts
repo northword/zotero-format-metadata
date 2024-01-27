@@ -8,19 +8,50 @@ export function checkCompat() {
         return;
     }
 
-    if (compareVersion(version, "1.10.0") == -1) {
-        // 1.10.0
-        clearPref("richText.toolbarPosition.left");
-        clearPref("richText.toolbarPosition.top");
-    }
-
     if (compareVersion(version, "1.8.0") == -1) {
         // 1.8.0 废弃期刊缩写类型
         clearPref("abbr.type");
         clearPref("enable");
     }
 
+    if (compareVersion(version, "1.10.0") == -1) {
+        // 1.10.0
+        clearPref("richText.toolbarPosition.left");
+        clearPref("richText.toolbarPosition.top");
+    }
+
+    if (compareVersion(version, "1.11.0") == -1) {
+        mvPref("add.update", "lint.onAdded", true);
+        mvPref("add.updateOnAddedForGroup", "lint.onGroup", true);
+        mvPref("richtext.isEnableToolBar", "richtext.toolBar", true);
+        mvPref("richtext.isEnableRichTextHotKey", "richtext.hotkey", true);
+        mvPref("isEnableCheckDuplication", "noDuplicationItems", true);
+        mvPref("isEnableCheckWebpage", "checkWebpage", true);
+        mvPref("isEnableTitleCase", "titleSentenceCase", true);
+        mvPref("isEnableCreators", "creatorsCase", true);
+        mvPref("isEnableLang", "lang", true);
+        mvPref("lang.only.enable", "lang.only", true);
+        // mvPref("lang.only.cmn", "lang.only.zh", true)
+        // mvPref("lang.only.eng", "lang.only.en", true)
+        // mvPref("lang.only.other", "lang.only.other", "")
+        mvPref("isEnableDateISO", "dateISO", true);
+        mvPref("isEnablePublicationTitle", "publicationTitleCase", true);
+        mvPref("isEnableAbbr", "abbr", true);
+        // mvPref("abbr.customDataPath")
+        mvPref("NoExtraZeros", "noExtraZeros", true);
+        mvPref("isEnableDOI", "noDOIPrefix", true);
+        mvPref("isEnablePlace", "universityPlace", true);
+        mvPref("isEnableCleanFields", "cleanExtra", true);
+        clearPref("richtext.isEnableChem");
+        clearPref("lintAfterRetriveByDOI");
+    }
+
     setPref("version", currentVersion);
+}
+
+function mvPref(source: string, target: string, defaultValue: boolean | string | number) {
+    setPref(target, getPref(source) ?? defaultValue);
+    clearPref(source);
 }
 
 /**
