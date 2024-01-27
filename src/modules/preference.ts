@@ -5,7 +5,7 @@ import { getPref, setPref } from "../utils/prefs";
 export function registerPrefs() {
     Zotero.PreferencePanes.register({
         pluginID: config.addonID,
-        src: rootURI + "chrome/content/preferences.xhtml",
+        src: rootURI + "content/preferences.xhtml",
         label: getString("prefs-title"),
         image: `chrome://${config.addonRef}/content/icons/favicon.png`,
         helpURL: homepage,
@@ -14,7 +14,7 @@ export function registerPrefs() {
 
 export function registerPrefsScripts(_window: Window) {
     // This function is called when the prefs window is opened
-    // See addon/chrome/content/preferences.xul onpaneload
+    // See addon/content/preferences.xul onpaneload
     if (!addon.data.prefs) {
         addon.data.prefs = {
             window: _window,

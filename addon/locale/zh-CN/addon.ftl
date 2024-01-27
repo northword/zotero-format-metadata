@@ -3,8 +3,8 @@ startup-finish = 插件已就绪
 prefs-title = Linter
 
 ## menu
-menuitem-label = 格式化条目元数据
-menuitem-stdFormatFlow = 标准格式化流程
+menuitem-label = Linter
+menuitem-stdFormatFlow = Lint 并修复
 menuitem-setPublicationTitle = 修正期刊标题的别称和大小写
 menuitem-setJournalAbbr = 自动填充期刊缩写
 menuitem-setPlace = 填充高校所在地

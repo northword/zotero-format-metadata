@@ -1,80 +1,107 @@
-pref-title-label = Linter
-
 ## 常规设置
-pref-general-settings-label = 常规设置
-pref-general-add-update =
+section-general = 常规设置
+lint-on-item-added =
     .label = 添加条目时自动运行标准格式化流程
-pref-general-add-update-for-group = 
+lint-on-groupItem-added = 
     .label = 添加群组条目时自动运行标准格式化流程
-pref-general-add-check-duplication = 
-    .label = 添加条目时检测是否存在重复条目
-pref-general-add-check-webpage = 
-    .label = 添加网页条目时检测是否可能存在错误
-pref-general-isEnableToolbar = 
+
+enable-richtext-toolbar = 
     .label = 启用富文本工具条
-pref-general-isEnableRichTextHotKey = 
+enable-richtext-hotkey = 
     .label = 启用富文本编辑快捷键
-pref-wip = 
+wip = 
     .label = 开发中...
 
-## 标准格式化流程
-pref-std-label = 标准格式化流程
-pref-std-clean-fileld = 
-    .label = 清理被不合理占用的字段
-pref-std-update-field-by-doi = 
-    .label = 根据 DOI 更新空白字段
-pref-std-lang = 
-    .label = 根据条目标题自动更新语言字段
-pref-std-creators = 
-    .label = 修正作者的大小写
-pref-std-title = 
-    .label = 将标题修改为句子式大写
-pref-std-publicationTitle = 
-    .label = 修正期刊标题大小写
-pref-std-abbr = 
-    .label = 查找期刊缩写
-pref-std-date = 
-    .label = 将日期格式化为 ISO YYYY-MM-DD 格式
-pref-std-doi = 
-    .label = 清除 DOI 的网址前缀
-pref-std-place = 
-    .label = 更新条目的地点字段
-pref-std-remove-zeros = 
-    .label = 去除期卷页中的前导0
+## 详细设置
 
-## 期刊缩写
-pref-abbr-label = 期刊缩写
-pref-abbr-type-label = 期刊缩写的类型：
-pref-abbr-type-iso4 = 
-    .label = ISO 4 带点
-pref-abbr-type-iso4dotless = 
-    .label = ISO 4 不带点
-pref-abbr-type-jcr = 
-    .label = JCR
-pref-abbr-infer = 
-    .label = 本地数据集没有期刊缩写时自动根据 ISO 4 规则推断缩写
-pref-abbr-usefull = 
-    .label = 对于英文期刊，仍没有期刊缩写时使用全称代替
-pref-abbr-usefullZh = 
-    .label = 对于中文期刊，仍没有期刊缩写时使用全称代替
-pref-abbr-custom-data-label = 自定义数据文件：
-pref-choose-custom-abbr-data-button = 
-    .label = 选择
-pref-choose-custom-abbr-data-input = 
-    .placeholder = `"publicationTitle": "ISO 4 缩写"` 格式的 JSON 文件
+## 条目
+section-item = 条目
+item-noDuplication = 
+    .label = 不应添加重复条目
+item-checkWebpage = 
+    .label = 网页条目不应连接到学术出版社（应为期刊文章或其他类型）
+
+## 标题
+section-title = 标题 Title
+title-sentenceCase = 
+    .label = 标题应以句子式大写存储
+
+## 作者
+section-creators = 创作者 Creators
+creators-case = 
+    .label = 作者应以首字母大写方式存储
+creators-country = 
+    .label = 作者姓名中不应存储国籍
 
 ## 语言
-pref-lang-label = 语言
-pref-lang-allow = 
+section-language = 语言 Language
+language-fill = 
+    .label = 语言字段应填写 ISO 639-1 语言代码
+language-fill-option-only = 
     .label = 限制识别的语言为
-pref-lang-cmn = 
-    .label = 简体中文(cmn)
-pref-lang-eng = 
-    .label = 英文(eng)
-pref-lang-other = 和
-pref-lang-other-desc = 如需添加其他语言，请在空白处输入 ISO 693-1 语言代码，英文逗号','分隔。
-pref-lang-other-doc = ISO 639-1 代码
+language-fill-option-only-cmn = 
+    .label = 简体中文 (zh)
+language-fill-option-only-eng = 
+    .label = 英文 (en)
+language-fill-option-only-other = 和
+language-fill-option-only-other-desc = 如需添加其他语言，请在空白处输入 ISO 693-1 语言代码，英文逗号','分隔。
+language-fill-option-only-other-doc = ISO 639-1 代码
     .href = https://github.com/northword/zotero-format-metadata#readme
+
+## 期刊名
+section-publicationTitle = 期刊名 publicationTitle
+publicationTitle-case = 
+    .label = 期刊标题应词首大写
+
+## 期刊缩写
+section-abbr = 期刊缩写 journalAbbreviation
+abbr-iso = 
+    .label = 期刊缩写不为空且应为 ISO 4 格式
+abbr-type-label = 期刊缩写的类型：
+abbr-type-iso4 = 
+    .label = ISO 4 带点
+abbr-type-iso4dotless = 
+    .label = ISO 4 不带点
+abbr-type-jcr = 
+    .label = JCR
+abbr-custom-data-label = 自定义数据文件：
+abbr-infer = 
+    .label = 本地数据集没有期刊缩写时自动根据 ISO 4 规则推断缩写
+abbr-usefull = 
+    .label = 对于英文期刊，仍没有期刊缩写时使用全称代替
+abbr-usefullZh = 
+    .label = 对于中文期刊，仍没有期刊缩写时使用全称代替
+choose-custom-abbr-data-button = 
+    .label = 选择
+choose-custom-abbr-data-input = 
+    .placeholder = `"publicationTitle": "ISO 4 缩写"` 格式的 JSON 文件
+
+## 日期
+section-date = 日期 Date
+date-iso = 
+    .label = 日期应为 ISO YYYY-MM-DD 格式
+
+## 期卷页
+section-pages = 期卷页 Issue, volume, pages
+pages-remove-zeros = 
+    .label = 期卷页数字不应以 0 起始
+
+## 标识符
+section-identifier = 标识符
+doi-noPrefix = 
+    .label = DOI 无须保留网址前缀
+
+## 学位论文相关
+section-thesis = 学位论文相关
+university-brackets = 
+    .label = 中文大学中的括号应使用中文括号，反之应使用西文括号
+university-place = 
+    .label = 高校所在地不应为空
+
+## 其他
+section-others = 其他
+std-clean-fileld = 
+    .label = 清理被不合理占用的字段
 
 ## 关于
 help-version = { $name }, Build { $version }, { $time }

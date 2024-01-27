@@ -1,0 +1,274 @@
+<linkset>
+  <html:link
+    rel="localization"
+    href="__addonRef__-preferences.ftl"
+  />
+</linkset>
+<vbox
+  id="__addonRef__"
+  onload="Zotero.__addonInstance__.hooks.onPrefsEvent('load', {window})"
+>
+  <!-- 一般设置 -->
+  <groupbox>
+    <label><html:h2 data-l10n-id="section-general"></html:h2></label>
+    <!-- 添加时自动执行格式化 -->
+    <checkbox
+      data-l10n-id="lint-on-item-added"
+      preference="__prefsPrefix__.add.update"
+      native="true"
+    />
+    <!-- 添加时自动执行格式化（群组条目） -->
+    <checkbox
+      data-l10n-id="lint-on-groupItem-added"
+      preference="__prefsPrefix__.add.updateOnAddedForGroup"
+      native="true"
+    />
+
+    <!-- 是否启用富文本工具框 -->
+    <checkbox
+      data-l10n-id="enable-richtext-toolbar"
+      preference="__prefsPrefix__.richtext.isEnableToolBar"
+      native="true"
+    />
+    <checkbox
+      data-l10n-id="enable-richtext-hotkey"
+      preference="__prefsPrefix__.richtext.isEnableRichTextHotKey"
+      native="true"
+      disabled="true"
+    />
+  </groupbox>
+
+  <!-- 详细设置 -->
+  <groupbox>
+    <!-- 条目 -->
+    <groupbox>
+      <label><html:h2 data-l10n-id="section-item"></html:h2></label>
+      <!-- 添加时检测是否存在重复条目 -->
+      <checkbox
+        data-l10n-id="item-noDuplication"
+        preference="__prefsPrefix__.isEnableCheckDuplication"
+        native="true"
+      />
+      <!-- 添加时检测网页条目 -->
+      <checkbox
+        data-l10n-id="item-checkWebpage"
+        preference="__prefsPrefix__.isEnableCheckWebpage"
+        native="true"
+      />
+    </groupbox>
+
+    <!-- 字段：标题 -->
+    <groupbox>
+      <label><html:h2 data-l10n-id="section-title"></html:h2></label>
+      <!-- 修改标题大小写 -->
+      <checkbox
+        data-l10n-id="title-sentenceCase"
+        preference="__prefsPrefix__.isEnableTitleCase"
+        native="true"
+      />
+    </groupbox>
+
+    <!-- 字段：作者 -->
+    <groupbox>
+      <label><html:h2 data-l10n-id="section-creators"></html:h2></label>
+      <!-- 修改作者大小写 -->
+      <checkbox
+        data-l10n-id="creators-case"
+        preference="__prefsPrefix__.isEnableCreators"
+        native="true"
+      />
+      <!-- 去除国籍 -->
+      <checkbox
+        data-l10n-id="creators-country"
+        preference="__prefsPrefix__."
+        native="true"
+        disabled="true"
+      />
+    </groupbox>
+
+    <!-- 字段：语言 -->
+    <groupbox>
+      <label><html:h2 data-l10n-id="section-language"></html:h2></label>
+      <checkbox
+        data-l10n-id="language-fill"
+        preference="__prefsPrefix__.isEnableLang"
+        native="true"
+      />
+      <checkbox
+        id="__addonRef__-lang-only"
+        data-l10n-id="language-fill-option-only"
+        preference="__prefsPrefix__.lang.only.enable"
+        native="true"
+      />
+      <vbox class="indented-pref">
+        <hbox align="center">
+          <checkbox
+            id="__addonRef__-lang-only-cmn"
+            data-l10n-id="language-fill-option-only-cmn"
+            preference="__prefsPrefix__.lang.only.cmn"
+            native="true"
+          />
+          <checkbox
+            id="__addonRef__-lang-only-eng"
+            data-l10n-id="language-fill-option-only-eng"
+            preference="__prefsPrefix__.lang.only.eng"
+            native="true"
+          />
+          <label data-l10n-id="language-fill-option-only-other" />
+          <html:input
+            type="text"
+            id="__addonRef__-lang-only-other"
+            preference="__prefsPrefix__.lang.only.other"
+          />
+          <label
+            data-l10n-id="language-fill-option-only-other-doc"
+            is="zotero-text-link"
+            class="zotero-text-link"
+            href="https://github.com/northword/zotero-format-metadata#readme"
+          />
+        </hbox>
+        <description
+          data-l10n-id="language-fill-option-only-other-desc"
+          style="width: 45em"
+        />
+      </vbox>
+    </groupbox>
+
+    <!-- 字段：日期 -->
+    <groupbox>
+      <label><html:h2 data-l10n-id="section-date"></html:h2></label>
+      <!-- 更新日期格式 -->
+      <checkbox
+        data-l10n-id="date-iso"
+        preference="__prefsPrefix__.isEnableDateISO"
+        native="true"
+      />
+    </groupbox>
+
+    <!-- 字段：期刊名 -->
+    <groupbox>
+      <label><html:h2 data-l10n-id="section-publicationTitle">期刊名</html:h2></label>
+      <!-- 修正期刊名大小写 -->
+      <checkbox
+        data-l10n-id="publicationTitle-case"
+        preference="__prefsPrefix__.isEnablePublicationTitle"
+        native="true"
+      />
+    </groupbox>
+
+    <!-- 字段：期刊缩写 -->
+    <groupbox>
+      <label><html:h2 data-l10n-id="section-abbr"></html:h2></label>
+      <!-- 更新期刊缩写 -->
+      <checkbox
+        data-l10n-id="abbr-iso"
+        preference="__prefsPrefix__.isEnableAbbr"
+        native="true"
+      />
+      <hbox align="center">
+        <label data-l10n-id="abbr-custom-data-label"></label>
+        <html:input
+          style="flex: 1"
+          type="text"
+          readonly="true"
+          size="50"
+          id="__addonRef__-abbr-custom-path"
+          data-l10n-id="choose-custom-abbr-data-input"
+          preference="__prefsPrefix__.abbr.customDataPath"
+        >
+        </html:input>
+        <button
+          data-l10n-id="choose-custom-abbr-data-button"
+          id="__addonRef__-abbr-choose-custom-data-button"
+          native="true"
+        />
+      </hbox>
+      <checkbox
+        id="__addonRef__-abbr-infer"
+        data-l10n-id="abbr-infer"
+        preference="__prefsPrefix__.abbr.infer"
+        native="true"
+      />
+      <checkbox
+        id="__addonRef__-abbr-usefull"
+        data-l10n-id="abbr-usefull"
+        preference="__prefsPrefix__.abbr.usefull"
+        native="true"
+      />
+      <checkbox
+        id="__addonRef__-abbr-usefull"
+        data-l10n-id="abbr-usefullZh"
+        preference="__prefsPrefix__.abbr.usefullZh"
+        native="true"
+      />
+    </groupbox>
+
+    <!-- 期卷页 -->
+    <groupbox>
+      <label><html:h2 data-l10n-id="section-pages"></html:h2></label>
+      <!-- 去除期卷页0 -->
+      <checkbox
+        data-l10n-id="pages-remove-zeros"
+        preference="__prefsPrefix__.NoExtraZeros"
+        native="true"
+      />
+      <!-- 页码连接符 -->
+      <checkbox
+        label="页码连接符格式"
+        preference="__prefsPrefix__."
+        native="true"
+        disabled="true"
+      />
+    </groupbox>
+
+    <!-- 标识符 -->
+    <groupbox>
+      <label><html:h2 data-l10n-id="section-identifier">DOI</html:h2></label>
+      <!-- 更新DOI格式 -->
+      <checkbox
+        data-l10n-id="doi-noPrefix"
+        preference="__prefsPrefix__.isEnableDOI"
+        native="true"
+      />
+    </groupbox>
+
+    <!-- 字段：学位论文相关 -->
+    <groupbox>
+      <label><html:h2 data-l10n-id="section-thesis"></html:h2></label>
+      <!-- 更新大学字段 -->
+      <checkbox
+        data-l10n-id="university-brackets"
+        preference="__prefsPrefix__."
+        native="true"
+        disabled="true"
+      />
+      <!-- 更新地点字段 -->
+      <checkbox
+        data-l10n-id="university-place"
+        preference="__prefsPrefix__.isEnablePlace"
+        native="true"
+      />
+    </groupbox>
+
+    <!-- 其他 -->
+    <groupbox>
+      <label><html:h2 data-l10n-id="section-others"></html:h2></label>
+      <!-- 清理被不合理占用的字段 -->
+      <checkbox
+        data-l10n-id="std-clean-fileld"
+        preference="__prefsPrefix__.isEnableCleanFields"
+        native="true"
+        disabled="true"
+      />
+    </groupbox>
+  </groupbox>
+
+  <!-- 关于 -->
+  <groupbox>
+    <label><html:h2>About</html:h2></label>
+    <label
+      data-l10n-id="help-version"
+      data-l10n-args='{"time": "__buildTime__","name": "__addonName__","version":"__buildVersion__"}'
+    />
+  </groupbox>
+</vbox>

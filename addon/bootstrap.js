@@ -21,7 +21,7 @@ async function startup({ id, version, resourceURI, rootURI }, reason) {
         Components.interfaces.amIAddonManagerStartup,
     );
     var manifestURI = Services.io.newURI(rootURI + "manifest.json");
-    chromeHandle = aomStartup.registerChrome(manifestURI, [["content", "__addonRef__", rootURI + "chrome/content/"]]);
+    chromeHandle = aomStartup.registerChrome(manifestURI, [["content", "__addonRef__", rootURI + "content/"]]);
 
     /**
      * Global variables for plugin code.
@@ -34,7 +34,7 @@ async function startup({ id, version, resourceURI, rootURI }, reason) {
     };
     ctx._globalThis = ctx;
 
-    Services.scriptloader.loadSubScript(`${rootURI}/chrome/content/scripts/__addonRef__.js`, ctx);
+    Services.scriptloader.loadSubScript(`${rootURI}/content/scripts/__addonRef__.js`, ctx);
     Zotero.__addonInstance__.hooks.onStartup();
 }
 
@@ -60,7 +60,7 @@ function shutdown({ id, version, resourceURI, rootURI }, reason) {
 
     Cc["@mozilla.org/intl/stringbundle;1"].getService(Components.interfaces.nsIStringBundleService).flushBundles();
 
-    Cu.unload(`${rootURI}/chrome/content/scripts/__addonRef__.js`);
+    Cu.unload(`${rootURI}/content/scripts/__addonRef__.js`);
 
     if (chromeHandle) {
         chromeHandle.destruct();

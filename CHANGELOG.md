@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 重新组织首选项窗格，按字段划分标题层级。
+
 ## [1.10.0] - 2024-01-26
 
 ### Breaking Changes

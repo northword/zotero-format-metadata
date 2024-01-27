@@ -3,8 +3,8 @@ startup-finish = Addon is ready
 prefs-title = Linter
 
 ## menu
-menuitem-label = Format Item MetaData
-menuitem-stdFormatFlow = Standard Format Flow
+menuitem-label = Linter
+menuitem-stdFormatFlow = Lint and Fix
 menuitem-setPublicationTitle = Fix Alias and Capitalization of publicationTitle
 menuitem-setJournalAbbr = Look up Journal Abbreviations
 menuitem-setPlace = Look up University Places
