@@ -1,14 +1,14 @@
 ## General settings
 section-general = General Settings
 lint-on-item-added = 
-    .label = Update when item added
+    .label = Lint when item added to library 
 lint-on-groupItem-added = 
-    .label = Update when group item added
+    .label = Lint when item added to group
 
 enable-richtext-toolbar = 
     .label = Enable rich text toolbar
 enable-richtext-hotkey = 
-    .label = Enable HotKey for rich text
+    .label = Enable hotkey for rich text
 wip = 
     .label = Work in progress...
 
@@ -58,12 +58,6 @@ section-abbr = Journal Abbreviation
 abbr-iso = 
     .label = Journal abbreviations should be non-empty and in ISO 4 format
 abbr-type-label = Types of abbreviations: 
-abbr-type-iso4 = 
-    .label = ISO 4 with dot
-abbr-type-iso4dotless = 
-    .label = ISO 4 without dot
-abbr-type-jcr = 
-    .label = JCR
 abbr-infer = 
     .label = Automatically infer abbreviations from LTWA when no journal abbreviation is available
 abbr-usefull = 
@@ -93,6 +87,8 @@ doi-noPrefix =
 
 ## 学位论文相关
 section-thesis = Thesis
+university-type = 
+    .label = Thesis type should include the word "dissertation / thesis"
 university-brackets = 
     .label = Brackets in university should be in their language
 university-place = 

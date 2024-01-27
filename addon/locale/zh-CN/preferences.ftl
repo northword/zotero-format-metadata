@@ -1,9 +1,9 @@
 ## 常规设置
 section-general = 常规设置
 lint-on-item-added =
-    .label = 添加条目时自动运行标准格式化流程
+    .label = 添加条目时自动执行 Lint
 lint-on-groupItem-added = 
-    .label = 添加群组条目时自动运行标准格式化流程
+    .label = 添加群组条目时自动执行 Lint
 
 enable-richtext-toolbar = 
     .label = 启用富文本工具条
@@ -56,14 +56,8 @@ publicationTitle-case =
 ## 期刊缩写
 section-abbr = 期刊缩写 journalAbbreviation
 abbr-iso = 
-    .label = 期刊缩写不为空且应为 ISO 4 格式
+    .label = 期刊缩写应不为空且为 ISO 4 格式
 abbr-type-label = 期刊缩写的类型：
-abbr-type-iso4 = 
-    .label = ISO 4 带点
-abbr-type-iso4dotless = 
-    .label = ISO 4 不带点
-abbr-type-jcr = 
-    .label = JCR
 abbr-custom-data-label = 自定义数据文件：
 abbr-infer = 
     .label = 本地数据集没有期刊缩写时自动根据 ISO 4 规则推断缩写
@@ -93,6 +87,8 @@ doi-noPrefix =
 
 ## 学位论文相关
 section-thesis = 学位论文相关
+university-type = 
+    .label = 学位论文类别不可省略“学位论文”字样
 university-brackets = 
     .label = 中文大学中的括号应使用中文括号，反之应使用西文括号
 university-place = 

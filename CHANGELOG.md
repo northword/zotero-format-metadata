@@ -9,7 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- 为修复高校名中符号和学位论文类型提供选项。
 - 重新组织首选项窗格，按字段划分标题层级。
+- 重命名首选项键。
 
 ## [1.10.0] - 2024-01-26
 

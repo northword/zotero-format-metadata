@@ -17,8 +17,8 @@ function getStdLintRules() {
     getPref("dateISO") && !getPref("isEnableOtherFields") ? rules.push(new Rules.DateISO({})) : "";
     getPref("noDOIPrefix") ? rules.push(new Rules.RemoveDOIPrefix({})) : "";
     getPref("noExtraZeros") ? rules.push(new Rules.NoExtraZeros({})) : "";
-    rules.push(new Rules.ThesisType({}));
-    rules.push(new Rules.University({}));
+    getPref("thesisType") ? rules.push(new Rules.ThesisType({})) : "";
+    getPref("university") ? rules.push(new Rules.University({})) : "";
     return rules;
 }
 

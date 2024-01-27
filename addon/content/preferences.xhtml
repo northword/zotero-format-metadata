@@ -235,12 +235,17 @@
     <!-- 字段：学位论文相关 -->
     <groupbox>
       <label><html:h2 data-l10n-id="section-thesis"></html:h2></label>
+      <!-- 纠正学位论文类别 -->
+      <checkbox
+        data-l10n-id="university-type"
+        preference="__prefsPrefix__.thesisType"
+        native="true"
+      />
       <!-- 更新大学字段 -->
       <checkbox
         data-l10n-id="university-brackets"
-        preference="__prefsPrefix__."
+        preference="__prefsPrefix__.university"
         native="true"
-        disabled="true"
       />
       <!-- 更新地点字段 -->
       <checkbox
