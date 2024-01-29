@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复网页条目导入时警告窗阻塞线程导致附件存储失败的问题。[#102](https://github.com/northword/zotero-format-metadata/issues/102#issuecomment-1914045722)
+
 ## [1.11.0] - 2024-01-27
 
 ### Added

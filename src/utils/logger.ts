@@ -40,7 +40,7 @@ export function callingLoggerForMethod(target: any, propertyKey: string | symbol
 // }
 
 export function progressWindow(text: string, type = "default", progress = 100) {
-    new ztoolkit.ProgressWindow(config.addonName, {
+    return new ztoolkit.ProgressWindow(config.addonName, {
         closeOnClick: true,
     })
         .createLine({
