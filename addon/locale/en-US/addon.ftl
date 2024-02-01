@@ -22,6 +22,7 @@ menuitem-autoSetLang = Auto Set Item Language
 menuitem-manuallySetLang = Manually Set Item Language
 menuitem-toSentenceCase = Convert Title to Sentence Case
 menuitem-capitalizeName = Fix Case of Creators
+menuitem-capitalizePinyin = Split Pinyin of Chinese Creators
 menufield-toSentenceCase = Sentence case (Extended)
 menuTools-label = Other Tools
 menuitem-titleBracketsToGuillemet = Convert〈〉to《》in Title

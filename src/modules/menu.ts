@@ -39,6 +39,13 @@ export function registerMenu() {
                 },
             },
             {
+                tag: "menuitem",
+                label: getString("menuitem-capitalizePinyin"),
+                commandListener: (ev) => {
+                    addon.hooks.onUpdateInBatch("creatorsPinyin", menuPopup);
+                },
+            },
+            {
                 tag: "menuseparator",
             },
             {

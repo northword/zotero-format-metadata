@@ -22,6 +22,7 @@ menuitem-autoSetLang = 自动识别条目语言
 menuitem-manuallySetLang = 手动设置条目语言
 menuitem-toSentenceCase = 将标题改为句首大写
 menuitem-capitalizeName = 修正作者的大小写
+menuitem-capitalizePinyin = 拆分作者拼音
 menufield-toSentenceCase = 句首大写（扩展）
 menuTools-label = Linter 其他小工具
 menuitem-titleBracketsToGuillemet = 将标题中〈〉转为《》

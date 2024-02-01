@@ -90,6 +90,10 @@ export function normalizeKey(key: string): string {
         .replace(/the |&|and|-|:|,| |\(|\)/g, "");
 }
 
+export function capitalizeFirstLetter(str: string): string {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 /**
  * To sentence case
  * The code is modified from Zotero.Utilities.sentenceCase.

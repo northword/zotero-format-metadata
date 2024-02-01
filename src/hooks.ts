@@ -206,10 +206,13 @@ async function onLintInBatch(mode: string, items: Zotero.Item[] | "item" | "coll
         case "creatorExt":
             rules = new Rules.UseCreatorsExt(await Views.getCreatorsExtOptionDialog());
             break;
+        case "creatorsPinyin":
+            rules = new Rules.CreatorsPinyin({});
+            break;
         case "test":
             // 该项仅为调试便利，在此添加待调试功能，通过“测试”菜单触发
-            Views.getCreatorsExtOptionDialog();
-            return;
+            rules = new Rules.CreatorsPinyin({});
+            break;
         case "chem":
         default:
             window.alert(getString("unimplemented"));

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 拆分中文作者的拼音以满足 CSL 名缩写。[#139](https://github.com/northword/zotero-format-metadata/issues/139)
+
 ## [1.11.1] - 2024-01-29
 
 ### Fixed
