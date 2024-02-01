@@ -1,6 +1,6 @@
 import { progressWindow } from "../../utils/logger";
-import { RuleBase, RuleBaseOptions } from "../../utils/rule-base";
 import { isStringMatchStringInArray } from "../../utils/str";
+import { RuleBase, RuleBaseOptions } from "./rule-base";
 
 // 当条目为 webpage ，且 url 为各期刊出版社时，警告
 

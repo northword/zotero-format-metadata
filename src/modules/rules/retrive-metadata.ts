@@ -1,7 +1,7 @@
 import { getString } from "../../utils/locale";
 import { progressWindow } from "../../utils/logger";
 import { getPref } from "../../utils/prefs";
-import { RuleBase, RuleBaseOptions } from "../../utils/rule-base";
+import { RuleBase, RuleBaseOptions } from "./rule-base";
 
 class UpdateMetadataOption implements RuleBaseOptions {
     mode: "selected" | "blank" | "all" = "blank";

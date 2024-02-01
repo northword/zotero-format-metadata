@@ -1,8 +1,8 @@
 import { config } from "../../package.json";
 import { getString } from "../utils/locale";
 import { logError } from "../utils/logger";
-import { RuleBase } from "../utils/rule-base";
 import { waitUtilAsync } from "../utils/wait";
+import { RuleBase } from "./rules/rule-base";
 
 export class LintRunner {
     items: Zotero.Item[];

@@ -1,4 +1,4 @@
-import { RuleBase, RuleBaseOptions } from "../../utils/rule-base";
+import { RuleBase, RuleBaseOptions } from "./rule-base";
 
 class TitleGuillemetOptions implements RuleBaseOptions {
     target: "single" | "double" = "double";

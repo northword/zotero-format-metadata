@@ -1,5 +1,5 @@
-import { RuleBase, RuleBaseOptions } from "../../utils/rule-base";
 import { removeLeadingZeros } from "../../utils/str";
+import { RuleBase, RuleBaseOptions } from "./rule-base";
 
 class NoExtraZerosOptions implements RuleBaseOptions {}
 

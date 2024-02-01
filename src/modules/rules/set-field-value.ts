@@ -1,4 +1,4 @@
-import { RuleBase, RuleBaseOptions } from "../../utils/rule-base";
+import { RuleBase, RuleBaseOptions } from "./rule-base";
 
 class SetFieldValueOptions implements RuleBaseOptions {
     field: Zotero.Item.ItemField = "language";

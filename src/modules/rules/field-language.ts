@@ -1,7 +1,7 @@
 import { iso6393To6391Data } from "../../data";
 import { getPref } from "../../utils/prefs";
-import { RuleBase, RuleBaseOptions } from "../../utils/rule-base";
 import { getTextLanguage } from "../../utils/str";
+import { RuleBase, RuleBaseOptions } from "./rule-base";
 
 class UpdateItemLanguageOptions implements RuleBaseOptions {}
 

@@ -1,4 +1,4 @@
-import { RuleBase, RuleBaseOptions } from "../../utils/rule-base";
+import { RuleBase, RuleBaseOptions } from "./rule-base";
 
 class DataISOOptions implements RuleBaseOptions {}
 

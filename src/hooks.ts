@@ -6,11 +6,11 @@ import { registerPrefs, registerPrefsScripts } from "./modules/preference";
 import Rules from "./modules/rules";
 import { getNewItemLintRules, getStdLintRules, setHtmlTag } from "./modules/rules-presets";
 import { LintRunner } from "./modules/rules-runner";
+import { RuleBase } from "./modules/rules/rule-base";
 import { registerShortcuts } from "./modules/shortcuts";
 import * as Views from "./modules/views";
 import { getString, initLocale } from "./utils/locale";
 import { getPref } from "./utils/prefs";
-import { RuleBase } from "./utils/rule-base";
 import { createZToolkit } from "./utils/ztoolkit";
 
 async function onStartup() {

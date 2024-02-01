@@ -1,7 +1,7 @@
 import { journalAbbrlocalData } from "../../data";
 import { getPref } from "../../utils/prefs";
-import { RuleBase, RuleBaseOptions } from "../../utils/rule-base";
 import { getTextLanguage, normalizeKey } from "../../utils/str";
+import { RuleBase, RuleBaseOptions } from "./rule-base";
 
 class UpdateJournalAbbrOptions implements RuleBaseOptions {}
 

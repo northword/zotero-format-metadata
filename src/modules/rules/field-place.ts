@@ -1,5 +1,5 @@
 import { universityPlaceLocalData } from "../../data";
-import { RuleBase, RuleBaseOptions } from "../../utils/rule-base";
+import { RuleBase, RuleBaseOptions } from "./rule-base";
 
 class updateUniversityPlaceOptions implements RuleBaseOptions {}
 

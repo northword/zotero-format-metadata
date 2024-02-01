@@ -1,5 +1,5 @@
-import { RuleBase, RuleBaseOptions } from "../../utils/rule-base";
 import { isFullLowerCase, isFullUpperCase } from "../../utils/str";
+import { RuleBase, RuleBaseOptions } from "./rule-base";
 
 class CapitalizeCreatorsOptions implements RuleBaseOptions {}
 

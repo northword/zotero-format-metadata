@@ -1,5 +1,5 @@
-import { RuleBase, RuleBaseOptions } from "../../utils/rule-base";
 import { duplicationDialog } from "../views/duplicationDialog";
+import { RuleBase, RuleBaseOptions } from "./rule-base";
 
 class NoDuplicatItemOptions implements RuleBaseOptions {}
 
