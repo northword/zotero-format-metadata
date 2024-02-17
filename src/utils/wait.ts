@@ -38,3 +38,18 @@ export function waitUtilAsync(condition: () => boolean, interval = 100, timeout 
         }, interval);
     });
 }
+
+export async function timeoutPromise<T>(promise: Promise<T>, timeoutMs: number): Promise<T> {
+    let timeoutId: NodeJS.Timeout;
+
+    const timeoutPromise = new Promise<T>((resolve, reject) => {
+        timeoutId = setTimeout(() => {
+            reject(new Error("Timeout"));
+        }, timeoutMs);
+    });
+
+    // Race between the original promise and the timeout promise
+    return Promise.race([promise, timeoutPromise]).finally(() => {
+        clearTimeout(timeoutId);
+    });
+}

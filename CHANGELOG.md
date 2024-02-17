@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 批处理时，每个条目最长持续9秒，超时的抛出 timeout 错误。close: [#147](https://github.com/northword/zotero-format-metadata/issues/147)
+- 批处理时，错误的条目自动添加 “linter/error” 标签，重新执行正常退出的自动清除。close: [#147](https://github.com/northword/zotero-format-metadata/issues/147)
+
 ## [1.12.0] - 2024-02-01
 
 ### Added
