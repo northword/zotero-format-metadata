@@ -117,6 +117,21 @@ export default class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
         // await Zotero.Promise.delay(1000);
     }
 
+    async searchByItem(item: Zotero.Item) {
+        const itemTemp = Zotero.Utilities.Internal.itemToExportFormat(item, false);
+        const translate = new Zotero.Translate.Search();
+        translate.setSearch(itemTemp);
+        const translators = translate.getTranslators();
+        translate.setTranslator(translators);
+
+        // {libraryID: options} 避免条目保存
+        // https://github.com/zotero/translate/blob/05755f5051a77737c56458440c79964c7a8874cf/src/translation/translate.js#L1208-L1210
+        // 配置这一项后返回的不再是 Zotero.Item[]，而是一个包含字段信息的 Object[]
+        const newItems = await translate.translate({ libraryID: false });
+        const newItem = newItems[0];
+        return newItem;
+    }
+
     /**
      * Updates metadata by identifier
      * 根据 DOI 更新年期卷页链接等字段
