@@ -64,7 +64,11 @@ async function onNotify(
                 (getPref("lint.onGroup")
                     ? true
                     : // @ts-ignore libraryID is got from item, so get() will never return false
-                      Zotero.Libraries.get(item.libraryID)._libraryType == "user"),
+                      Zotero.Libraries.get(item.libraryID)._libraryType == "user") &&
+                !extraData.skipAutoSync,
+            // Zotero.Date.sqlToDate(item.dateAdded, true) &&
+            // @ts-ignore 前已验证Zotero.Date.sqlToDate不为false
+            // new Date().getMilliseconds() - Zotero.Date.sqlToDate(item.dateAdded, true).getMilliseconds() < 500,
         );
         if (items.length !== 0) {
             addon.hooks.onUpdateInBatch("newItem", items);

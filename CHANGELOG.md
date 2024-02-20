@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复重复 lint 从其他设备同步的条目的问题。/ Fix duplicate lint sync items from other devices. close: [#150](https://github.com/northword/zotero-format-metadata/issues/150)
+
 ## [1.12.1] - 2024-02-17
 
 ### Fixed
