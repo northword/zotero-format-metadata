@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.2] - 2024-02-20
+
 ### Fixed
 
 - 修复重复 lint 从其他设备同步的条目的问题。/ Fix duplicate lint sync items from other devices. close: [#150](https://github.com/northword/zotero-format-metadata/issues/150)
@@ -637,7 +639,7 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/v1.12.1...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/v1.12.2...HEAD
 [1.6.11]: https://github.com/northword/zotero-format-metadata/compare/1.6.10...1.6.11
 [1.6.10]: https://github.com/northword/zotero-format-metadata/compare/1.6.9...1.6.10
 [1.6.9]: https://github.com/northword/zotero-format-metadata/compare/1.6.8...1.6.9
@@ -698,6 +700,7 @@ No changes, test release only.
 [0.0.4]: https://github.com/northword/zotero-format-metadata/compare/0.0.3...0.0.4
 [0.0.3]: https://github.com/northword/zotero-format-metadata/compare/0.0.2...0.0.3
 [0.0.2]: https://github.com/northword/zotero-format-metadata/commits/0.0.2
+[1.12.2]: https://github.com/northword/zotero-format-metadata/compare/v1.12.1...v1.12.2
 [1.12.1]: https://github.com/northword/zotero-format-metadata/compare/v1.12.0...v1.12.1
 [1.12.0]: https://github.com/northword/zotero-format-metadata/compare/v1.11.1...v1.12.0
 [1.11.1]: https://github.com/northword/zotero-format-metadata/compare/v1.11.0...v1.11.1
