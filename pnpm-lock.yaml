@@ -74,8 +74,8 @@ devDependencies:
     specifier: 5.3.3
     version: 5.3.3
   zotero-types:
-    specifier: 1.3.13
-    version: 1.3.13
+    specifier: 1.3.18
+    version: 1.3.18
 
 packages:
 
@@ -5110,6 +5110,7 @@ packages:
   /path-is-absolute@1.0.1:
     resolution: {integrity: sha512-AVbw3UJ2e9bq64vSaS9Am0fje1Pa8pbGqTTsmXfaIiMpnr5DlDhfJOuLj9Sf95ZPVDAUerDfEk88MPmPe7UCQg==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
 
   /path-key@3.1.1:
     resolution: {integrity: sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==}
@@ -5801,6 +5802,7 @@ packages:
 
   /string_decoder@1.3.0:
     resolution: {integrity: sha512-hkRX8U1WjJFd8LsDJ2yQ/wWWxaopEsABU1XfkM8A+j0+85JAGppt16cr1Whg6KIbb4okU6Mql6BOj+uup/wKeA==}
+    requiresBuild: true
     dependencies:
       safe-buffer: 5.2.1
 
@@ -6458,14 +6460,14 @@ packages:
   /zotero-plugin-toolkit@2.3.20:
     resolution: {integrity: sha512-07TAb0o64xfiz8Fo/PMwm1Dw/gRQkngjEhIsYX1D6usLMDQK02KCejio1ny6k5K+du1SeAcBCGsV1JjLoHCkfg==}
     dependencies:
-      zotero-types: 1.3.13
+      zotero-types: 1.3.18
     transitivePeerDependencies:
       - encoding
       - supports-color
     dev: false
 
-  /zotero-types@1.3.13:
-    resolution: {integrity: sha512-Q0JjLgvJLf1R4LdW33vdoJy5QXSzzm+wIggc1aqRqGls7/TLOx6t+zKiFGa+fVz1dNuRfqklY3CJ1wZl/r4lfw==}
+  /zotero-types@1.3.18:
+    resolution: {integrity: sha512-gRxim+xPMWSqGzm51QxY5QT4I2wkT9/l/NTz5zfw1tGHYZaG8bM2v2wfJ0zdQq4RpET16Uhsts03o4F2O5DfrQ==}
     dependencies:
       '@types/bluebird': 3.5.42
       '@types/react': 17.0.2
