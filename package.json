@@ -46,7 +46,7 @@
     "@types/node": "20.11.19",
     "@typescript-eslint/eslint-plugin": "6.21.0",
     "@typescript-eslint/parser": "6.21.0",
-    "chokidar": "3.5.3",
+    "chokidar": "3.6.0",
     "compressing": "1.10.0",
     "esbuild": "0.20.1",
     "eslint": "8.56.0",
