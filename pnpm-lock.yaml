@@ -15,8 +15,8 @@ dependencies:
     specifier: 1.3.4
     version: 1.3.4
   zotero-plugin-toolkit:
-    specifier: 2.3.17
-    version: 2.3.17
+    specifier: 2.3.20
+    version: 2.3.20
 
 devDependencies:
   '@release-it/keep-a-changelog':
@@ -6455,8 +6455,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /zotero-plugin-toolkit@2.3.17:
-    resolution: {integrity: sha512-HAC/3fPqT8tUcytAeW7Us9Lc0HYHBnrYelN95NHMl6PBbLF55JyTVXYWUJBoP1A1YfYDESOihNXpZD5ghXz6aQ==}
+  /zotero-plugin-toolkit@2.3.20:
+    resolution: {integrity: sha512-07TAb0o64xfiz8Fo/PMwm1Dw/gRQkngjEhIsYX1D6usLMDQK02KCejio1ny6k5K+du1SeAcBCGsV1JjLoHCkfg==}
     dependencies:
       zotero-types: 1.3.13
     transitivePeerDependencies:
