@@ -266,7 +266,7 @@ export default class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
     async getDOIFromArxiv(arxivID: string) {
         const id = arxivID.replace(/arxiv:/gi, arxivID).trim();
         const url = `https://export.arxiv.org/api/query?id_list=${id}`;
-
+        // @ts-ignore 第三个参数是可选的
         const res = await Zotero.HTTP.request("GET", url);
         const result = res.response as string;
         if (result == "" || result == null || result == undefined) {
