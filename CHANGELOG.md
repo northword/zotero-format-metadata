@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修改通过标识符更新数据的右键菜单描述。
+- 修改文档。
+
 ## [1.13.0] - 2024-03-03
 
 ### Added

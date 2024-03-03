@@ -74,9 +74,11 @@ The plugin has a built-in list of universities in mainland China and their locat
 
 [^gb7714]: Chinese GB/T 7714-2015: <http://www.cessp.org.cn/a258.html>
 
-### Lookup the date, volume, issue, pages, etc according to DOI
+### Lookup the date, volume, issue, pages, etc according to identifier
 
 Some items in the Zotero library may be added with incomplete information such as issue volume pages because the translator is not available, or the official publication is not in the journal at the time of record, etc. The plugin provides the ability to complete these fields based on the DOI.
+
+For book, ISBN was use. Preprint will be revised to journal article.
 
 ### Fill in the language of the item according to its title
 
