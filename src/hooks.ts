@@ -5,7 +5,7 @@ import { registerMutationObserver, registerNotifier } from "./modules/notifier";
 import { registerPrefs, registerPrefsScripts } from "./modules/preference";
 import Rules from "./modules/rules";
 import { getNewItemLintRules, getStdLintRules, setHtmlTag } from "./modules/rules-presets";
-import { LintRunner } from "./modules/rules-runner";
+import { LintRunner, Task } from "./modules/rules-runner";
 import { RuleBase } from "./modules/rules/rule-base";
 import { registerShortcuts } from "./modules/shortcuts";
 import * as Views from "./modules/views";
@@ -223,9 +223,9 @@ async function onLintInBatch(mode: string, items: Zotero.Item[] | "item" | "coll
             return;
     }
 
-    if (typeof rules == "undefined") return;
-
-    new LintRunner(items, rules).runInBatch();
+    if (rules === undefined) return;
+    const tasks = items.map((item) => ({ item: item, rules })) as Task[];
+    new LintRunner(tasks).runInBatch();
 }
 
 export default {

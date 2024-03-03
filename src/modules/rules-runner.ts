@@ -5,21 +5,55 @@ import { timeoutPromise, waitUtilAsync } from "../utils/wait";
 import { RuleBase } from "./rules/rule-base";
 import PQueue from "p-queue";
 
-export class LintRunner {
-    items: Zotero.Item[];
+export interface Task {
+    item: Zotero.Item;
+    rules: RuleBase<any> | RuleBase<any>[];
+}
+
+interface TaskInternal extends Task {
     rules: RuleBase<any>[];
+}
+
+export class LintRunner {
+    tasks: TaskInternal[];
+    current: number;
+    total: number;
+    error: number;
+    state: boolean;
     popWin: any;
     // queue;
-    constructor(items: Zotero.Item[], rules: RuleBase<any> | RuleBase<any>[]) {
-        this.items = items;
-        this.rules = Array.isArray(rules) ? rules.flat() : [rules];
+
+    constructor(tasks: Task[]) {
+        this.tasks = tasks.map((task) => ({
+            ...task,
+            rules: Array.isArray(task.rules) ? task.rules.flat() : [task.rules],
+        }));
+        this.current = 0;
+        this.total = tasks.length;
+        this.error = 0;
+        this.state = true;
+        this.popWin = new ztoolkit.ProgressWindow(config.addonName, {
+            closeOnClick: false,
+            closeTime: -1,
+        });
         // this.queue = new PQueue({ concurrency: 10, autoStart: false, timeout: 9000, throwOnTimeout: true });
     }
 
-    async run(item: Zotero.Item) {
-        for (const rule of this.rules) {
+    async run(task: TaskInternal) {
+        let item: Zotero.Item = task.item;
+        for (const rule of task.rules) {
             ztoolkit.log(`[Runner] Applying ${rule.constructor.name}`);
-            item = await rule.apply(item);
+            try {
+                item = await rule.apply(item);
+            } catch (err) {
+                logError(err, item);
+                item.setTags(["linter/error"]);
+                await item.saveTx();
+                throw err;
+            }
+        }
+        if (item.getTags().includes({ tag: "linter/error", type: 1 })) {
+            item.removeTag("linter/error");
         }
         await item.saveTx();
         // await Zotero.Promise.delay(1000);
@@ -28,10 +62,7 @@ export class LintRunner {
     async runInBatch(): Promise<void> {
         const startTime = new Date();
         ztoolkit.log("[Runner] The batch task begin", startTime.toLocaleString());
-        const progress = new ztoolkit.ProgressWindow(config.addonName, {
-            closeOnClick: false,
-            closeTime: -1,
-        })
+        this.popWin
             .createLine({
                 type: "default",
                 text: getString("info-batch-init"),
@@ -43,66 +74,55 @@ export class LintRunner {
 
         await waitUtilAsync(() =>
             // @ts-ignore lines可以被访问到
-            Boolean(progress.lines && progress.lines[1]._itemText),
+            Boolean(this.popWin.lines && this.popWin.lines[1]._itemText),
         );
         // @ts-ignore lines可以被访问到
-        progress.lines[1]._hbox.addEventListener("click", async (ev: MouseEvent) => {
+        this.popWin.lines[1]._hbox.addEventListener("click", async (ev: MouseEvent) => {
             ev.stopPropagation();
             ev.preventDefault();
-            state = false;
-            progress.changeLine({ text: getString("info-batch-stop-next"), idx: 1 });
+            this.state = false;
+            this.popWin.changeLine({ text: getString("info-batch-stop-next"), idx: 1 });
         });
 
-        if (this.items.length == 0) {
-            progress.createLine({
+        if (this.tasks.length == 0) {
+            this.popWin.createLine({
                 type: "fail",
                 text: getString("info-batch-no-selected"),
             });
             return;
         }
 
-        const total = this.items.length;
-        let current = 0,
-            errNum = 0,
-            state = true;
-        progress.changeLine({
+        this.popWin.changeLine({
             type: "default",
-            text: `[${current}/${total}] ${getString("info-batch-running")}`,
+            text: `[${this.current}/${this.total}] ${getString("info-batch-running")}`,
             progress: 0,
             idx: 0,
         });
 
-        for (const item of this.items) {
-            if (!state) break;
-            await timeoutPromise(this.run(item), 9000)
+        for (const task of this.tasks) {
+            if (!this.state) break;
+            await timeoutPromise(this.run(task), 10000)
                 .then(() => {
-                    if (item.getTags().includes({ tag: "linter/error", type: 1 })) {
-                        item.removeTag("linter/error");
-                        item.saveTx();
-                    }
-                    current++;
-                    progress.changeLine({
-                        text: `[${current}/${total}] ${getString("info-batch-running")}`,
-                        progress: (current / total) * 100,
+                    this.current++;
+                    this.popWin.changeLine({
+                        text: `[${this.current}/${this.total}] ${getString("info-batch-running")}`,
+                        progress: (this.current / this.total) * 100,
                         idx: 0,
                     });
                 })
                 .catch((err) => {
-                    progress.createLine({
+                    this.popWin.createLine({
                         type: "fail",
                         text: `${getString("info-batch-has-error")}, ${err}`,
                     });
-                    logError(err, item);
-                    item.setTags(["linter/error"]);
-                    item.saveTx();
-                    errNum++;
+                    this.error++;
                 });
         }
 
-        progress
+        this.popWin
             .changeLine({
                 // type: "default",
-                text: `[✔️${current} ${errNum ? ", ❌" + errNum : ""}] ${getString("info-batch-finish")}`,
+                text: `[✔️${this.current} ${this.error ? ", ❌" + this.error : ""}] ${getString("info-batch-finish")}`,
                 progress: 100,
                 idx: 0,
             })
