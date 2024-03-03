@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 支持通过 ISBN 更新图书元数据。支持调用知网转换器以更新中文期刊元数据。
+
 ## [1.12.3] - 2024-02-27
 
 ### Fixed
