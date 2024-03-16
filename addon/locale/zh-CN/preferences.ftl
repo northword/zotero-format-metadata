@@ -99,5 +99,11 @@ section-others = 其他
 std-clean-fileld = 
     .label = 清理被不合理占用的字段
 
+# 更新元数据
+section-updateMetadata = 通过标识符更新元数据
+others-semanticScholarToken = Semantic Scholar Token: 
+    .lalel = Semantic Scholar Token
+    .placeholder = Semantic Scholar Token
+    
 ## 关于
 help-version = { $name }, Build { $version }, { $time }

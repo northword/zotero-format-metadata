@@ -120,7 +120,6 @@ export default class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions
     async getAbbrFromLTWAOnline(publicationTitle: string): Promise<string | undefined> {
         publicationTitle = encodeURI(publicationTitle);
         const url = `https://abbreviso.toolforge.org/abbreviso/a/${publicationTitle}`;
-        // @ts-ignore 第三个参数是可选的
         const res = await Zotero.HTTP.request("GET", url);
         const result = res.response as string;
         if (result == "" || result == null || result == undefined) {

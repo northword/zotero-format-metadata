@@ -101,7 +101,7 @@ export class LintRunner {
 
         for (const task of this.tasks) {
             if (!this.state) break;
-            await timeoutPromise(this.run(task), 10000)
+            await timeoutPromise(this.run(task), 60000)
                 .then(() => {
                     this.current++;
                     this.popWin.changeLine({

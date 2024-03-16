@@ -31,7 +31,40 @@ export default class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
             }
         }
 
-        const newItem = await this.translateByItem(item);
+        if (item.itemType == "preprint") {
+            const arxivID =
+                item.getField("archiveID").replace("arxiv:", "") ||
+                item.getField("url").replace("http://arxiv.org/abs/", "");
+            if (arxivID) {
+                const tmpDOI = await this.getDOIFromArxiv(arxivID);
+                if (tmpDOI) {
+                    item.setField("DOI", tmpDOI);
+                    item = (await this.translateByItem(item)) ?? item;
+                } else {
+                    item = (await this.getMetadataFromSemanticScholar(item)) ?? item;
+                }
+            }
+            return item;
+        }
+
+        return (await this.translateByItem(item)) ?? item;
+    }
+
+    async translateByItem(item: Zotero.Item): Promise<Zotero.Item | undefined> {
+        const itemTemp = Zotero.Utilities.Internal.itemToExportFormat(item, false);
+        const translate = new Zotero.Translate.Search();
+        translate.setSearch(itemTemp);
+        const translators = await translate.getTranslators();
+        translate.setTranslator(translators);
+
+        // {libraryID: options} 避免条目保存
+        // https://github.com/zotero/translate/blob/05755f5051a77737c56458440c79964c7a8874cf/src/translation/translate.js#L1208-L1210
+        // 配置这一项后返回的不再是 Zotero.Item[]，而是一个包含字段信息的 Object[]
+        const newItems = await translate.translate({ libraryID: false });
+
+        if (newItems.length == 0) return undefined;
+
+        const newItem = newItems[0];
         ztoolkit.log("Item retrieved from translate: ", newItem);
 
         // mode == all: 强制更新，无论原值是否为空：mode == "all" ||
@@ -83,22 +116,6 @@ export default class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
             }
         }
 
-        // this.options.lint ? await addon.hooks.onUpdateInBatch("std", [item]) : "skip";
-        return item;
-    }
-
-    async translateByItem(item: Zotero.Item): Promise<{ [key: string]: any }> {
-        const itemTemp = Zotero.Utilities.Internal.itemToExportFormat(item, false);
-        const translate = new Zotero.Translate.Search();
-        translate.setSearch(itemTemp);
-        const translators = await translate.getTranslators();
-        translate.setTranslator(translators);
-
-        // {libraryID: options} 避免条目保存
-        // https://github.com/zotero/translate/blob/05755f5051a77737c56458440c79964c7a8874cf/src/translation/translate.js#L1208-L1210
-        // 配置这一项后返回的不再是 Zotero.Item[]，而是一个包含字段信息的 Object[]
-        const newItems = await translate.translate({ libraryID: false });
-        const newItem = newItems[0];
         return newItem;
     }
 
@@ -107,6 +124,7 @@ export default class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
      * 根据 DOI 更新年期卷页链接等字段
      * @param item
      * @returns
+     * @deprecated
      */
     async translateByDOI(doi: string) {
         const identifier = {
@@ -127,11 +145,10 @@ export default class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
         return newItem;
     }
 
-    async getDOIFromArxiv(arxivID: string) {
-        const id = arxivID.replace(/arxiv:/gi, arxivID).trim();
+    async getDOIFromArxiv(arxivID: string): Promise<string | undefined> {
+        const id = arxivID.replace(/arxiv:/gi, "").trim();
         const url = `https://export.arxiv.org/api/query?id_list=${id}`;
 
-        // @ts-ignore 第三个参数是可选的
         const res = await Zotero.HTTP.request("GET", url);
         const result = res.response as string;
         if (result == "" || result == null || result == undefined) {
@@ -141,9 +158,111 @@ export default class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
         const doc = new DOMParser().parseFromString(result, "text/xml");
         const refDoi = doc.querySelector("doi");
         if (refDoi) {
+            ztoolkit.log("Get DOI from Arxiv");
             return refDoi.innerHTML;
         } else {
+            ztoolkit.log("ArXiv did not return DOI");
             return undefined;
         }
+    }
+
+    async getMetadataFromSemanticScholar(item: Zotero.Item): Promise<Zotero.Item | undefined> {
+        let paperID: string;
+
+        if (item.getField("DOI") !== "") {
+            paperID = `DOI:${item.getField("DOI")}`;
+        } else if (ztoolkit.ExtraField.getExtraField(item, "PMCID")) {
+            paperID = `PMCID:${ztoolkit.ExtraField.getExtraField(item, "PMCID")}`;
+        } else if (item.getField("archiveID").match(/arxiv/i)) {
+            paperID = `ARXIV:${item.getField("archiveID").replace(/arxiv:/gi, "")}`;
+        } else if (ztoolkit.ExtraField.getExtraField(item, "SemanticScholar")) {
+            paperID = ztoolkit.ExtraField.getExtraField(item, "SemanticScholar") || "";
+        } else if (item.getField("url") !== "") {
+            paperID = `URL:${item.getField("url")}`;
+        } else {
+            ztoolkit.log("没有有效的 paper ID 用以向 Semantic Scholar 请求");
+            return undefined;
+        }
+
+        const fields = [
+            "publicationTypes", // 条目类别必须排在第一首先处理
+            "title",
+            "authors",
+            "abstract",
+            "externalIds",
+            "url",
+            "venue",
+            "publicationVenue",
+            "publicationDate",
+            "journal",
+        ];
+        const url = `https://api.semanticscholar.org/graph/v1/paper/${paperID.trim()}?fields=${fields.join(",")}`;
+
+        const res = await Zotero.HTTP.request("GET", url, {
+            headers: {
+                "x-api-key": getPref("semanticScholarToken"),
+            },
+        });
+        if (res.status !== 200) {
+            ztoolkit.log(`Request from Semantic Scholar failed, status code ${res.status}`);
+            return undefined;
+        }
+        const result = JSON.parse(res.response);
+        ztoolkit.log(`Data get from Semantic Scholar: `, result);
+
+        for (const field of fields) {
+            if (!(field in result)) continue;
+            const value = result[field];
+            ztoolkit.log(`value of field ${field} is `, value);
+            if (value !== "" && this.options.mode == "blank") continue;
+            switch (field) {
+                case "publicationTypes": {
+                    // 似乎未发布的预印本会此项为 null
+                    if (value.includes("Conference")) {
+                        item.setType(Zotero.ItemTypes.getID("conferencePaper") || 11);
+                    } else if (value.includes("JournalArticle")) {
+                        item.setType(Zotero.ItemTypes.getID("conferencePaper") || 21);
+                    }
+                    break;
+                }
+                case "authors": {
+                    //
+                    break;
+                }
+                case "abstract":
+                    item.setField("abstractNote", value);
+                    break;
+                case "venue":
+                    if (item.itemType == "conferencePaper") item.setField("conferenceName", value);
+                    if (item.itemType == "journalArticle") item.setField("publicationTitle", value);
+                    break;
+                case "publicationVenue":
+                    if (item.itemType == "conferencePaper") item.setField("proceedingsTitle", value.name);
+                    if (item.itemType == "journalArticle") item.setField("publicationTitle", value.name);
+                    if ("issn" in value) item.setField("ISSN", value.issn, true);
+                    break;
+                case "publicationDate": {
+                    item.setField("date", value);
+                    break;
+                }
+                case "journal": {
+                    if ("pages" in value) item.setField("pages", value.pages);
+                    if ("volume" in value) item.setField("volume", value.volume);
+                    break;
+                }
+                case "externalIds": {
+                    if ("DOI" in value) item.setField("DOI", value.DOI);
+                    // if ("ArXiv" in value) item.
+                    break;
+                }
+                default:
+                    item.setField(field as Zotero.Item.ItemField, value);
+                    break;
+            }
+        }
+        if (item.getField("publisher").match(/arxiv/gi)) item.setField("publisher", "");
+        item.setField("libraryCatalog", "Semantic Scholar");
+        ztoolkit.log(item);
+        return item;
     }
 }

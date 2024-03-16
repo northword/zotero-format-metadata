@@ -25,5 +25,6 @@ pref("__prefsPrefix__.university", true);
 pref("__prefsPrefix__.thesisType", true);
 pref("__prefsPrefix__.universityPlace", true);
 pref("__prefsPrefix__.cleanExtra", false);
+pref("__prefsPrefix__.semanticScholarToken", "");
 // pref("__prefsPrefix__.richtext.isEnableChem", true);
 // pref("__prefsPrefix__.lintAfterRetriveByDOI", true);

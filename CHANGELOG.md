@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 支持从 Semantic Scholar 更新预印本数据。close: [#161](https://github.com/northword/zotero-format-metadata/issues/161)
+
+### Fixed
+
+- 修复从 ArXiv 更新预印本正式 DOI 不可用的问题。
+
 ## [1.13.1] - 2024-03-03
 
 ### Fixed
