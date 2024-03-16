@@ -15,8 +15,8 @@ dependencies:
     specifier: 1.3.4
     version: 1.3.4
   zotero-plugin-toolkit:
-    specifier: 2.3.22
-    version: 2.3.22
+    specifier: 2.3.26
+    version: 2.3.26
 
 devDependencies:
   '@release-it/keep-a-changelog':
@@ -5133,6 +5133,18 @@ packages:
     transitivePeerDependencies:
       - encoding
       - supports-color
+    dev: true
+
+  /pdfjs-dist@3.8.162:
+    resolution: {integrity: sha512-Do0Lpuk1ItcNnIPr9MM+/jnnMOb4i6asRX7gVnL6fFUW1QPC7ERfHQkbhF7jkAri1o6GxttX0Yn7ZhOmpFUeGA==}
+    engines: {node: '>=18'}
+    optionalDependencies:
+      canvas: 2.11.2
+      path2d-polyfill: 2.0.1
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: false
 
   /pend@1.2.0:
     resolution: {integrity: sha512-F3asv42UuXchdzt+xXqfW1OGlVBe+mxa2mqI0pg5yAHZPvFmY3Y6drSf/GQ1A86WgWEN9Kzh/WrgKa6iGcHXLg==}
@@ -6443,10 +6455,10 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /zotero-plugin-toolkit@2.3.22:
-    resolution: {integrity: sha512-MT3tsUR+EgStPtvxhVKNm1wZeOUxRIrexEPmd1pYdluBtav/xVu2J+E4LpuF9Fz6+LBT4qk1ljMHw6BJo5P2aw==}
+  /zotero-plugin-toolkit@2.3.26:
+    resolution: {integrity: sha512-8DgqSyWNS2/yA8qKc6FxHOAI1MbpAnqkweCAmrW9DkJGCCmttcPQ0YbHZTbcyBtq3UUtmwe2cK3t9ORaiV6fgw==}
     dependencies:
-      zotero-types: 1.3.18
+      zotero-types: 1.3.20
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -6462,3 +6474,16 @@ packages:
     transitivePeerDependencies:
       - encoding
       - supports-color
+    dev: true
+
+  /zotero-types@1.3.20:
+    resolution: {integrity: sha512-LDMZTUZesgwQN608iaOrxk450j0AdOzWWhJgXzsNpd+n2aamZbsagZUiGiC00SNr2j1Fa5EAHE3DTCkfDNPl1A==}
+    dependencies:
+      '@types/bluebird': 3.5.42
+      '@types/react': 17.0.2
+      epubjs: 0.3.93
+      pdfjs-dist: 3.8.162
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: false
