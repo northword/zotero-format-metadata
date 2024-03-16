@@ -2,12 +2,14 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended",
+    "group:allNonMajor",
     ":prHourlyLimitNone",
     ":prConcurrentLimitNone",
     ":enableVulnerabilityAlerts",
     ":dependencyDashboard",
     "schedule:weekly"
   ],
+  "labels": ["dependencies"],
   "packageRules": [
     {
       "matchPackageNames": ["zotero-plugin-toolkit", "zotero-types"],
