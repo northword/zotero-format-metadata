@@ -221,7 +221,7 @@ export default class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
                     if (value.includes("Conference")) {
                         item.setType(Zotero.ItemTypes.getID("conferencePaper") || 11);
                     } else if (value.includes("JournalArticle")) {
-                        item.setType(Zotero.ItemTypes.getID("conferencePaper") || 21);
+                        item.setType(Zotero.ItemTypes.getID("journalArticle") || 21);
                     }
                     break;
                 }
