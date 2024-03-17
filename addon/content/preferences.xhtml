@@ -43,16 +43,22 @@
     <!-- 条目 -->
     <groupbox>
       <label><html:h2 data-l10n-id="section-item"></html:h2></label>
-      <!-- 添加时检测是否存在重复条目 -->
+      <!-- 检测是否存在重复条目 -->
       <checkbox
         data-l10n-id="item-noDuplication"
         preference="__prefsPrefix__.noDuplicationItems"
         native="true"
       />
-      <!-- 添加时检测网页条目 -->
+      <!-- 检测网页条目 -->
       <checkbox
         data-l10n-id="item-checkWebpage"
         preference="__prefsPrefix__.checkWebpage"
+        native="true"
+      />
+      <!-- 检测预印本误存为期刊文章 -->
+      <checkbox
+        data-l10n-id="item-NoPreprintJournalArticle"
+        preference="__prefsPrefix__.noPreprintJournalArticle"
         native="true"
       />
     </groupbox>

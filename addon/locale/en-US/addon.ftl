@@ -55,3 +55,7 @@ unimplemented = This feature is unimplemented.
 dialog-dup-title = Duplicates found
 dialog-dup-desc = The currently imported item is a duplicate of the item in the library
 dialog-dup-button-merge = Go to merge
+
+## 规则运行警告
+checkWebpage-warning = The URL of this WebPage item contains the domain of academic publisher, there may be an exception to the import, please confirm!
+NoPreprintJournalArticle-warning = The URL of this journal article item is the domain of the **preprint** server, please confirm that there may be an exception to the import!

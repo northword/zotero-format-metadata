@@ -20,6 +20,8 @@ item-noDuplication =
     .label = 不应添加重复条目
 item-checkWebpage = 
     .label = 网页条目不应连接到学术出版社（应为期刊文章或其他类型）
+item-NoPreprintJournalArticle =
+    .label = 预印本不应保存为期刊文章
 
 ## 标题
 section-title = 标题 Title

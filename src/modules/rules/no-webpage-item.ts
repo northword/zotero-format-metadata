@@ -1,3 +1,4 @@
+import { getString } from "../../utils/locale";
 import { progressWindow } from "../../utils/logger";
 import { isStringMatchStringInArray } from "../../utils/str";
 import { RuleBase, RuleBaseOptions } from "./rule-base";
@@ -102,10 +103,7 @@ export default class NoWebPageItem extends RuleBase<NoWebPageItemOptions> {
         if (typeof url == "string" && url !== "" && isStringMatchStringInArray(url, publisherUrlKeyWords)) {
             ztoolkit.log("The url of this webpage item is match with domin of publisher.");
             // show alart todo: 对话框完善，通过 URL 获取 DOI 并通过 DOI 强制更新条目类别
-            progressWindow(
-                "监测到您导入了一个 WebPage 条目，其 URL 中包含了主要学术出版商的域名，\n导入可能存在异常，请确认！",
-                "fail",
-            ).startCloseTimer(10000);
+            progressWindow(getString("checkWebpage-warning"), "fail").startCloseTimer(100000);
         }
         ztoolkit.log(`The url of this webpage item is not belong to publisher, maybe a normal webpage.`);
         return item;

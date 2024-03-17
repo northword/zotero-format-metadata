@@ -55,3 +55,7 @@ unimplemented = 此功能尚未实现。
 dialog-dup-title = 发现重复条目
 dialog-dup-desc = 以下条目与已有条目重复
 dialog-dup-button-merge = 前往合并条目窗格
+
+## 规则运行警告
+checkWebpage-warning = 监测到您导入了一个 WebPage 条目，其 URL 中包含了主要学术出版商的域名，\n导入可能存在异常，请确认！
+NoPreprintJournalArticle-warning = 监测到您导入了一个期刊文章条目，其 URL 中包含了预印本服务器的域名，\n导入可能存在异常，请确认！

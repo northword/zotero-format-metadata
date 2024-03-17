@@ -4,6 +4,7 @@ pref("__prefsPrefix__.richtext.toolBar", true);
 pref("__prefsPrefix__.richtext.hotkey", true);
 pref("__prefsPrefix__.noDuplicationItems", true);
 pref("__prefsPrefix__.checkWebpage", true);
+pref("__prefsPrefix__.noPreprintJournalArticle", true);
 pref("__prefsPrefix__.titleSentenceCase", true);
 pref("__prefsPrefix__.creatorsCase", true);
 pref("__prefsPrefix__.lang", true);

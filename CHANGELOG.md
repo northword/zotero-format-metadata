@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Minor Breaking Changes
+
+- 检测重复条目和检测网页条目现在在每一次 lint 都执行，而不是仅在导入条目时执行。
+
+### Added
+
+- 检测是否有预印本被错误存为期刊文章。close: [#137](https://github.com/northword/zotero-format-metadata/issues/137)
+
+### Fixed
+
+- 修复前一版本从 Semantic Scholar 更新预印本时将期刊文章存为会议的问题。
+
 ## [1.14.0] - 2024-03-16
 
 ### Added

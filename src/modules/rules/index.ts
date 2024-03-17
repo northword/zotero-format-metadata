@@ -13,6 +13,7 @@ import TitleSentenceCase from "./field-title-sentence-case";
 import University from "./field-university";
 import NoDuplicatItem from "./no-duplicate-item";
 import NoExtraZeros from "./no-extra-zeros";
+import NoPreprintJournalArticle from "./no-journalArticle-preprint";
 import NoWebPageItem from "./no-webpage-item";
 import UpdateMetadata from "./retrive-metadata";
 import SetFieldValue from "./set-field-value";
@@ -36,4 +37,5 @@ export default {
     NoWebPageItem,
     ThesisType,
     University,
+    NoPreprintJournalArticle,
 };

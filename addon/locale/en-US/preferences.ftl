@@ -20,6 +20,8 @@ item-noDuplication =
     .label = No duplicate items added
 item-checkWebpage = 
     .label = No webpage items linked to academic publishers
+item-NoPreprintJournalArticle =
+    .label = No journalArticle items have preprint url
 
 ## 标题
 section-title = Title
