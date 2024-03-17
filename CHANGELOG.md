@@ -7,9 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Minor Breaking Changes
+### Changed
 
 - 检测重复条目和检测网页条目现在在每一次 lint 都执行，而不是仅在导入条目时执行。
+- 使用新的快捷键注册方式。
 
 ### Added
 

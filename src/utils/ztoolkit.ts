@@ -6,8 +6,8 @@ import { DialogHelper } from "zotero-plugin-toolkit/dist/helpers/dialog";
 import { FilePickerHelper } from "zotero-plugin-toolkit/dist/helpers/filePicker";
 import { ProgressWindowHelper } from "zotero-plugin-toolkit/dist/helpers/progressWindow";
 import { VirtualizedTableHelper } from "zotero-plugin-toolkit/dist/helpers/virtualizedTable";
+import { KeyboardManager } from "zotero-plugin-toolkit/dist/managers/keyboard";
 import { MenuManager } from "zotero-plugin-toolkit/dist/managers/menu";
-import { ShortcutManager } from "zotero-plugin-toolkit/dist/managers/shortcut";
 import { ExtraFieldTool } from "zotero-plugin-toolkit/dist/tools/extraField";
 import { UITool } from "zotero-plugin-toolkit/dist/tools/ui";
 
@@ -39,7 +39,7 @@ function initZToolkit(_ztoolkit: ReturnType<typeof createZToolkit>) {
 class MyToolkit extends BasicTool {
     UI: UITool;
     Menu: MenuManager;
-    Shortcut: ShortcutManager;
+    Keyboard: KeyboardManager;
     ProgressWindow: typeof ProgressWindowHelper;
     VirtualizedTable: typeof VirtualizedTableHelper;
     Dialog: typeof DialogHelper;
@@ -50,7 +50,7 @@ class MyToolkit extends BasicTool {
         super();
         this.UI = new UITool(this);
         this.Menu = new MenuManager(this);
-        this.Shortcut = new ShortcutManager(this);
+        this.Keyboard = new KeyboardManager(this);
         this.ExtraField = new ExtraFieldTool(this);
         this.Dialog = makeHelperTool(DialogHelper, this);
         this.FilePicker = makeHelperTool(FilePickerHelper, this);
