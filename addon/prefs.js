@@ -21,6 +21,7 @@ pref("__prefsPrefix__.abbr.usefull", false);
 pref("__prefsPrefix__.abbr.usefullZh", false);
 pref("__prefsPrefix__.abbr.customDataPath", "");
 pref("__prefsPrefix__.noExtraZeros", true);
+pref("__prefsPrefix__.pagesConnector", true);
 pref("__prefsPrefix__.noDOIPrefix", true);
 pref("__prefsPrefix__.university", true);
 pref("__prefsPrefix__.thesisType", true);

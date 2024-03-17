@@ -81,6 +81,8 @@ date-iso =
 section-pages = Issue, volume, and pages
 pages-remove-zeros = 
     .label = No digits starting with 0
+pages-connector = 
+    .label = Pages connector should be `-` or `,`
 
 ## 标识符
 section-identifier = Identifier

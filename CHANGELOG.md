@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - 检测是否有预印本被错误存为期刊文章。close: [#137](https://github.com/northword/zotero-format-metadata/issues/137)
+- 规范页码连接符的格式。close: [#134](https://github.com/northword/zotero-format-metadata/issues/134)
 
 ### Fixed
 

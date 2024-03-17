@@ -20,6 +20,7 @@ function getStdLintRules() {
     getPref("dateISO") && !getPref("isEnableOtherFields") ? rules.push(new Rules.DateISO({})) : "";
     getPref("noDOIPrefix") ? rules.push(new Rules.RemoveDOIPrefix({})) : "";
     getPref("noExtraZeros") ? rules.push(new Rules.NoExtraZeros({})) : "";
+    getPref("pagesConnector") ? rules.push(new Rules.PagesConnector({})) : "";
     getPref("thesisType") ? rules.push(new Rules.ThesisType({})) : "";
     getPref("university") ? rules.push(new Rules.University({})) : "";
     return rules;

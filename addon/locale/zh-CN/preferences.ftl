@@ -81,6 +81,8 @@ date-iso =
 section-pages = 期卷页 Issue, volume, pages
 pages-remove-zeros = 
     .label = 期卷页数字不应以 0 起始
+pages-connector = 
+    .label = 页码连接符应为 `-` 或 `,`
 
 ## 标识符
 section-identifier = 标识符
