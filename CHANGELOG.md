@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 对预印本，从 Semantic Scholar 更新数据时，优先使用 ArXiv ID，而不是 DOI。close: [#161](https://github.com/northword/zotero-format-metadata/issues/161#issuecomment-2002960446)
+
 ## [1.15.0] - 2024-03-17
 
 ### Changed

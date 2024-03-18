@@ -169,12 +169,12 @@ export default class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
     async getMetadataFromSemanticScholar(item: Zotero.Item): Promise<Zotero.Item | undefined> {
         let paperID: string;
 
-        if (item.getField("DOI") !== "") {
+        if (item.getField("archiveID").match(/arxiv/i)) {
+            paperID = `ARXIV:${item.getField("archiveID").replace(/arxiv:/gi, "")}`;
+        } else if (item.getField("DOI") !== "") {
             paperID = `DOI:${item.getField("DOI")}`;
         } else if (ztoolkit.ExtraField.getExtraField(item, "PMCID")) {
             paperID = `PMCID:${ztoolkit.ExtraField.getExtraField(item, "PMCID")}`;
-        } else if (item.getField("archiveID").match(/arxiv/i)) {
-            paperID = `ARXIV:${item.getField("archiveID").replace(/arxiv:/gi, "")}`;
         } else if (ztoolkit.ExtraField.getExtraField(item, "SemanticScholar")) {
             paperID = ztoolkit.ExtraField.getExtraField(item, "SemanticScholar") || "";
         } else if (item.getField("url") !== "") {
