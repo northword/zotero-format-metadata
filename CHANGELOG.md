@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复根据标识符更新元数据失败的问题。close: [#166](https://github.com/northword/zotero-format-metadata/issues/166)
+
 ## [1.15.2] - 2024-03-26
 
 ### Fixed

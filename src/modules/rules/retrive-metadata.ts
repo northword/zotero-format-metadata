@@ -116,7 +116,7 @@ export default class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
             }
         }
 
-        return newItem;
+        return item;
     }
 
     /**

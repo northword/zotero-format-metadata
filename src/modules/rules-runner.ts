@@ -52,6 +52,7 @@ export class LintRunner {
                 throw err;
             }
         }
+        ztoolkit.log("[Runner] Item returned: ", item);
         if (item.getTags().includes({ tag: "linter/error", type: 1 })) {
             item.removeTag("linter/error");
         }
