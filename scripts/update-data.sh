@@ -12,5 +12,5 @@ cd -
 
 # merge
 cd src/data/journal-abbr/
-ts-node merge.ts
+tsx merge.ts
 cd -

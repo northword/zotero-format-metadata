@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 更新期刊缩写。close: [#167](https://github.com/northword/zotero-format-metadata/issues/167)
+
 ## [1.15.3] - 2024-03-26
 
 ### Fixed
