@@ -40,10 +40,11 @@ async function updatePrefsUI() {
                 "Select File",
                 "open",
                 [
-                    ["JSON File(*.json)", "*.json"],
+                    ["CSV File (*.csv)", "*.csv"],
+                    ["JSON File (*.json)", "*.json,"],
                     ["Any", "*.*"],
                 ],
-                "zotero-format-metadata-custom-abbr-data.json",
+                "zotero-format-metadata-custom-abbr-data.csv",
             ).open();
             if (filename) {
                 setPref("abbr.customDataPath", filename);
@@ -59,7 +60,7 @@ async function updatePrefsUI() {
                 "Select File",
                 "open",
                 [
-                    ["CSV File(*.csv)", "*.csv"],
+                    ["CSV File (*.csv)", "*.csv"],
                     ["Any", "*.*"],
                 ],
                 "zotero-format-metadata-custom-abbr-data.json",

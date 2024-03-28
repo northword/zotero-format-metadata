@@ -76,8 +76,9 @@ abbr-custom-data-label = Custom abbreviations data file:
 choose-custom-abbr-data-button = 
     .label = Choose
 choose-custom-abbr-data-input = 
-    .placeholder = A JSON file with "publicationTitle": "ISO 4 abbreviation"
-
+    .placeholder = The path of custom abbreviations data file
+abbr-custom-data-desc =  Description: The custom journal abbreviation file supports both JSON and CSV formats. The JSON file is structured as "publicationTitle": "ISO 4 abbreviation". The CSV files have a full publication title in the first column and its abbreviation in the second column, the delimiter can be a comma or a semicolon, but it must be uniform and not a tab.
+ 
 ## 日期
 section-date = Date
 date-iso = 

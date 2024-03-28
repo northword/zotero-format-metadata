@@ -2,6 +2,7 @@ import { journalAbbrlocalData } from "../../data";
 import { getPref } from "../../utils/prefs";
 import { getTextLanguage, normalizeKey } from "../../utils/str";
 import { RuleBase, RuleBaseOptions } from "./rule-base";
+import csv from "csvtojson";
 
 class UpdateJournalAbbrOptions implements RuleBaseOptions {}
 
@@ -144,22 +145,35 @@ export default class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions
             throw new Error("The custom journalAbbr file not exist.");
         }
 
-        if (!customAbbrDataPath.endsWith(".json")) {
-            throw new Error("The custom journalAbbr data file format error.");
-        }
+        if (customAbbrDataPath.endsWith(".json")) {
+            const customAbbrData = (await Zotero.File.getContentsAsync(customAbbrDataPath)) as string;
+            if (typeof customAbbrData !== "string" || customAbbrData == "") {
+                throw new Error("The custom journalAbbr data file format error.");
+            }
 
-        const customAbbrData = await Zotero.File.getContentsAsync(customAbbrDataPath);
-        if (typeof customAbbrData !== "string" || customAbbrData == "") {
-            throw new Error("The custom journalAbbr data file format error.");
-        }
+            try {
+                const data = JSON.parse(customAbbrData);
+                const abbr = (data[publicationTitle] as string) ?? undefined;
+                if (!abbr) ztoolkit.log("[Abbr] 自定义缩写未匹配");
+                return abbr;
+            } catch (e) {
+                throw new Error(`JSON Syntax Error, ${e}`);
+            }
+        } else if (customAbbrDataPath.endsWith(".csv")) {
+            const customAbbrData = (await Zotero.File.getContentsAsync(customAbbrDataPath)) as string;
+            const resolvedTerms = await csv({
+                delimiter: "auto",
+                trim: true,
+                noheader: true,
+                headers: ["publicationTitle", "abbr"],
+            }).fromString(customAbbrData);
+            ztoolkit.log(`[Abbr] Custom terms:`, resolvedTerms);
 
-        try {
-            const data = JSON.parse(customAbbrData);
-            const abbr = (data[publicationTitle] as string) ?? undefined;
-            if (!abbr) ztoolkit.log("[Abbr] 自定义缩写未匹配");
-            return abbr;
-        } catch (e) {
-            throw new Error(`JSON Syntax Error, ${e}`);
+            for (const term of resolvedTerms) {
+                if (term.publicationTitle == publicationTitle) return term.abbr;
+            }
+        } else {
+            throw new Error("The custom journalAbbr data file format error.");
         }
     }
 }

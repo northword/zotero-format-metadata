@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - 标题句子式大写转换支持自定义术语。close: [#58](https://github.com/northword/zotero-format-metadata/issues/58)
+- 自定义期刊缩写数据支持 CSV 文件。close: [#65](https://github.com/northword/zotero-format-metadata/issues/65)
 
 ### Fixed
 
