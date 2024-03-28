@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 手动触发 Lint 时忽略非常规条目（笔记、附件等）。
+
 ## [1.15.4] - 2024-03-27
 
 ### Fixed

@@ -224,7 +224,7 @@ async function onLintInBatch(mode: string, items: Zotero.Item[] | "item" | "coll
     }
 
     if (rules === undefined) return;
-    const tasks = items.map((item) => ({ item: item, rules })) as Task[];
+    const tasks = items.filter((item) => item.isRegularItem()).map((item) => ({ item: item, rules })) as Task[];
     new LintRunner(tasks).runInBatch();
 }
 
