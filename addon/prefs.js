@@ -6,6 +6,7 @@ pref("__prefsPrefix__.noDuplicationItems", true);
 pref("__prefsPrefix__.checkWebpage", true);
 pref("__prefsPrefix__.noPreprintJournalArticle", true);
 pref("__prefsPrefix__.titleSentenceCase", true);
+pref("__prefsPrefix__.title.customTermPath", "");
 pref("__prefsPrefix__.creatorsCase", true);
 pref("__prefsPrefix__.lang", true);
 pref("__prefsPrefix__.lang.only", true);

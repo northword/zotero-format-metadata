@@ -51,6 +51,25 @@ async function updatePrefsUI() {
                 setPref("abbr.customDataPath", "");
             }
         });
+
+    addon.data.prefs?.window.document
+        .querySelector(`#${config.addonRef}-title-choose-custom-data-button`)
+        ?.addEventListener("command", async () => {
+            const filename = await new ztoolkit.FilePicker(
+                "Select File",
+                "open",
+                [
+                    ["CSV File(*.csv)", "*.csv"],
+                    ["Any", "*.*"],
+                ],
+                "zotero-format-metadata-custom-abbr-data.json",
+            ).open();
+            if (filename) {
+                setPref("title.customTermPath", filename);
+            } else {
+                setPref("title.customTermPath", "");
+            }
+        });
 }
 
 function bindPrefEvents() {

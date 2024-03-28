@@ -4,6 +4,7 @@
     "module": "commonjs",
     "target": "ES2016",
     "resolveJsonModule": true,
+    "esModuleInterop": true,
     "skipLibCheck": true,
     "strict": true,
     "outDir": "build/dist/"

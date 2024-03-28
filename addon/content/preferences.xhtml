@@ -72,6 +72,29 @@
         preference="__prefsPrefix__.titleSentenceCase"
         native="true"
       />
+      <vbox class="indented-pref">
+        <hbox align="center">
+          <label data-l10n-id="title-custom-term"></label>
+          <html:input
+            style="flex: 1"
+            type="text"
+            readonly="true"
+            size="50"
+            data-l10n-id="title-custom-term"
+            preference="__prefsPrefix__.title.customTermPath"
+          >
+          </html:input>
+          <button
+            data-l10n-id="title-custom-term-button"
+            id="__addonRef__-title-choose-custom-data-button"
+            native="true"
+          />
+        </hbox>
+        <description
+          data-l10n-id="title-custom-term-desc"
+          style="width: 45em"
+        />
+      </vbox>
     </groupbox>
 
     <!-- 字段：作者 -->

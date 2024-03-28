@@ -6,9 +6,6 @@
 
 限于技术水平，插件程序终不如人工识别，使用本插件修改后仍需仔细检查各字段数据的准确性。
 
-> [!tip]
-> The following functions involving item field processing provide both an option to run them automatically and an item context menu for manual (and batch) triggering by the user.
-
 ## 条目
 
 ### 条目不应有重复
@@ -20,6 +17,8 @@
 当前规则目前主要针对 `journalArtical`。
 
 当导入的条目类型为 `Webpage` 且 `url` 字段包含几家主要学术期刊出版时的网址时，极有可能时 Connector 未就绪时进行了抓取，导致识别的条目类型错误，此时，弹窗警告。
+
+当条目类型为 `journalArtical` ，且其 `url` 字段包含 `arxiv` 等关键字，其可能是预印本，应将条目类型设置为 `preprint`。
 
 todo: 根据网址得到条目标识符并强制更新。
 
@@ -65,6 +64,12 @@ Zotero 文档建议将标题存储为“句子式大写”的格式，这将有�
 
 含有`.`的缩写应尽可能取回全称。
 
+### 中文作者的姓名拼音应分隔
+
+> 默认不启用，在“其他工具”里自行使用
+
+例如 `Zhang Jianbei` 应为 `Zhang Jian Bei`，这有利于满足部分 CSL 样式名缩写的要求（`Zhang J. B.`）。
+
 ## 语言
 
 CSL 根据条目的国家区域来完成本地化，Zotero 通过语言字段向 CSL 提供该值。
@@ -99,13 +104,17 @@ CSL 根据条目的国家区域来完成本地化，Zotero 通过语言字段向
 
 若仍没有找到缩写，则以期刊全称代替（可在首选项中关闭此行为）。
 
-## 所在地
+## 学位论文
 
-### 学位论文：高校所在地应正确
+### 高校所在地应正确
 
 插件内置了国内高校的名单及其所在地，对于学位论文条目，根据论文的高校填写其所在地，这有利于满足 GB/T 7714-2015 中需要显示出版地的要求 [^gb7714]。
 
 [^gb7714]: <http://www.cessp.org.cn/a258.html>
+
+### 论文类别应完整
+
+论文类别应填写完整的 `硕士学位论文` / `博士学位论文` / `Doctoral dissertation` / `Master thesis`。
 
 ## 日期
 
@@ -120,8 +129,6 @@ CSL 根据条目的国家区域来完成本地化，Zotero 通过语言字段向
 例如 `页码` 应为 `2-10` 而不是 `02-10`.
 
 ### 页码的连接符应正确
-
-> todo
 
 应为 `-`, `,`，而不是 `~`, `+`。
 

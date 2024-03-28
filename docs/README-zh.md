@@ -156,12 +156,6 @@ GNU Affero General Public License v3.0
 
 韩老师制作了 Quicker 动作：[填充城市](https://getquicker.net/Sharedaction?code=b5506c59-6116-4111-a65e-08db363ab19b)
 
-### 语言识别
-
-[茉莉花](https://gitee.com/l0o0/jasminum) 和 [Delitem](https://github.com/redleafnew/delitemwithatt) 插件也提供了类似的功能，但茉莉花提供的语言识别基于 `nlp.js`，且似是未经预处理的原因，对于标题内含有 HTML 标签或化学式的文本识别效果不佳， Delitem 仅提供了两种语言的直接指定。
-
-本插件基于 franc 库，并针对 HTML 标签进行了处理，提高了识别准确率。然而，如果您对本插件提供的其他功能没有需求，且是茉莉花用户，那么使用茉莉花插件已经可以完全满足，没有必要为了这一丝准确度的提高而额外加载数十兆的本插件。
-
 ## 致谢
 
 [![使用 Zotero 插件开发模板](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)

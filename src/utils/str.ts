@@ -178,6 +178,25 @@ export function toSentenceCase(text: string) {
 }
 
 /**
+ * 将字符串转换为正则表达式
+ * @author GPT
+ * @param str
+ * @returns RegExp
+ */
+export function convertToRegex(str: string) {
+    // 匹配正则表达式和标志
+    const regexPattern = str.match(/^\/(.*?)\/([gimy]*)$/);
+
+    if (regexPattern) {
+        const pattern = regexPattern[1];
+        const flags = regexPattern[2];
+        return new RegExp(pattern, flags);
+    } else {
+        return new RegExp(str.replace(/\//g, "\\/"));
+    }
+}
+
+/**
  * 将给定字符串转为 HTML
  * @param html 待转换的字符串
  * @returns

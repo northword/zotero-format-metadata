@@ -27,6 +27,12 @@ item-NoPreprintJournalArticle =
 section-title = 标题 Title
 title-sentenceCase = 
     .label = 标题应以句子式大写存储
+title-custom-term = 自定义术语: 
+    .label = 自定义术语
+    .placeholder = 自定义术语文件的路径
+title-custom-term-button = 
+    .label = 选择
+title-custom-term-desc =  说明：自定义术语文件使用 CSV 文件格式，第一列为搜索词，第二列为替换词，不需要标题，搜索词支持正则表达式。分隔符可以为逗号或分号，但须统一，不得为制表符。
 
 ## 作者
 section-creators = 创作者 Creators

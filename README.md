@@ -52,7 +52,7 @@ Check for duplicate items when new items are added.
 
 When adding an item, if its item type is a web page and its URL contains the domain of the major scholarly publisher, prompt the user to ask if they have imported the wrong type of item.
 
-### Convert title from "heading case" to "sentence case"
+### Convert title from "heading Case" to "Sentence case"
 
 The Zotero's documentation recommends storing titles in "sentence case" format, which will allow CSL to perform a "title case" transformation on them [^sentenceCase]. Zotero 7 has a built-in function to convert titles to "sentence capitalization", and some special case detection is preset, and this plugin expands on that by adding recognition of proper nouns, such as chemical formulas.
 
@@ -151,12 +151,6 @@ Both [zotero-journalabbr] and [zotero-updateifsE] plugins provide similar functi
 ### Place
 
 A quicker action is available: [填充城市](https://getquicker.net/Sharedaction?code=b5506c59-6116-4111-a65e-08db363ab19b)
-
-### Language
-
-The [Jasminum](https://gitee.com/l0o0/jasminum) and [Delitem](https://github.com/redleafnew/delitemwithatt) plugins provide similar functionality, but the language recognition provided by Jasminum is based on `nlp.js` and seems is not pre-processed and does not work well for text with HTML tags or chemical formulas in the title, Delitem only provides direct specification of the two languages.
-
-This plugin based `franc` and has been processed for HTML tags to improve the recognition accuracy. However, if you have no demand for the other features provided by this plugin and are a Jasminum user, then using the Jasminum plugin is already fully satisfying and there is no need to load tens of extra megabytes of plugins for this slight increase in accuracy.
 
 ## Acknowledgements
 

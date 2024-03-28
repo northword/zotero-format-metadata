@@ -27,7 +27,13 @@ item-NoPreprintJournalArticle =
 section-title = Title
 title-sentenceCase = 
     .label = Title should be "Sentence case"
-
+title-custom-term = Custom term: 
+    .label = title-custom-term
+    .placeholder = The path of custom terms file
+title-custom-term-button = 
+    .label = Choose
+title-custom-term-desc = Description: The custom terms file uses the CSV file format, with the first column being search terms and the second column being replacement terms, no headers are required, and regular expressions are supported for search terms. The delimiter can be a comma or a semicolon, but it must be uniform and not a tab.
+ 
 ## 作者
 section-creators = Creators
 creators-case = 

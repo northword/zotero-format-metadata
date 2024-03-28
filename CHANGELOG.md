@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 标题句子式大写转换支持自定义术语。close: [#58](https://github.com/northword/zotero-format-metadata/issues/58)
+
 ### Fixed
 
 - 手动触发 Lint 时忽略非常规条目（笔记、附件等）。
