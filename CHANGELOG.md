@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复禁用插件未能正确注销插件元素的问题。
+
 ## [1.16.0] - 2024-03-28
 
 ### Added
