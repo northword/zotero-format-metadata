@@ -192,8 +192,20 @@ export function convertToRegex(str: string) {
         const flags = regexPattern[2];
         return new RegExp(pattern, flags);
     } else {
-        return new RegExp(str.replace(/\//g, "\\/"));
+        return new RegExp(escapeRegex(str));
     }
+}
+
+/**
+ * Escape string to make it safe for use in a regex
+ *
+ * @see https://github.com/adamreisnz/replace-in-file/blob/e90c51fdb2e5104ffcd3bd889cdbf820c7865ef5/lib/helpers/make-replacements.js#L15C1-L23C2
+ */
+function escapeRegex(str: string) {
+    if (typeof str === "string") {
+        return str.replace(/[.*+?^${}()|[\]\\/]/g, "\\$&");
+    }
+    return str;
 }
 
 /**

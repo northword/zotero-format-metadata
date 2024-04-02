@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 转义标题自定义术语以安全创建正则表达式。resolve: [#58_comment](https://github.com/northword/zotero-format-metadata/issues/58#issuecomment-2031299203)
+
 ## [1.16.1] - 2024-03-29
 
 ### Fixed
