@@ -32,7 +32,7 @@ title-custom-term = 自定义术语:
     .placeholder = 自定义术语文件的路径
 title-custom-term-button = 
     .label = 选择
-title-custom-term-desc =  说明：自定义术语文件使用 CSV 文件格式，第一列为搜索词，第二列为替换词，不需要标题，搜索词支持正则表达式。分隔符可以为逗号或分号，但须统一，不得为制表符。
+title-custom-term-desc =  自定义术语文件使用 CSV 文件格式，第一列为搜索词，第二列为替换词，不需要标题，搜索词支持正则表达式。分隔符可以为逗号或分号，但须统一，不得为制表符。
 
 ## 作者
 section-creators = 创作者 Creators
@@ -112,9 +112,11 @@ std-clean-fileld =
 
 # 更新元数据
 section-updateMetadata = 通过标识符更新元数据
-others-semanticScholarToken = Semantic Scholar Token: 
-    .lalel = Semantic Scholar Token
+others-semanticScholarToken = Semantic Scholar API Key: 
+    .label = Semantic Scholar Token
     .placeholder = Semantic Scholar Token
-    
+other-semanticScholarToken-desc =  当更新预印本的字段数据时，插件会从 Semantic Scholar 查询该预印本是否已正式发表。默认的，此 API 限制请求 1 次/秒，你可以通过免费申请 API Key 来增加速率限制。
+other-semanticScholarToken-link = 申请
+
 ## 关于
 help-version = { $name }, Build { $version }, { $time }

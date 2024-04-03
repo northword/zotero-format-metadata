@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 为 Semantic Scholar API Key 添加说明。close: [#173](https://github.com/northword/zotero-format-metadata/issues/173)
+
 ## [1.16.2] - 2024-04-02
 
 ### Fixed

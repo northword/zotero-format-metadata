@@ -32,7 +32,7 @@ title-custom-term = Custom term:
     .placeholder = The path of custom terms file
 title-custom-term-button = 
     .label = Choose
-title-custom-term-desc = Description: The custom terms file uses the CSV file format, with the first column being search terms and the second column being replacement terms, no headers are required, and regular expressions are supported for search terms. The delimiter can be a comma or a semicolon, but it must be uniform and not a tab.
+title-custom-term-desc = The custom terms file uses the CSV file format, with the first column being search terms and the second column being replacement terms, no headers are required, and regular expressions are supported for search terms. The delimiter can be a comma or a semicolon, but it must be uniform and not a tab.
  
 ## 作者
 section-creators = Creators
@@ -52,7 +52,7 @@ language-fill-option-only-cmn =
 language-fill-option-only-eng = 
     .label = English (en)
 language-fill-option-only-other = and:
-language-fill-option-only-other-desc = Here you need to enter the ISO 639-1 language code, separated by a semi-colon comma
+language-fill-option-only-other-desc = Here you need to enter the ISO 639-1 language code, separated by a semi-colon comma.
 language-fill-option-only-other-doc = ISO 639-1 code
     .href = https://github.com/northword/zotero-format-metadata#readme
 
@@ -77,7 +77,7 @@ choose-custom-abbr-data-button =
     .label = Choose
 choose-custom-abbr-data-input = 
     .placeholder = The path of custom abbreviations data file
-abbr-custom-data-desc =  Description: The custom journal abbreviation file supports both JSON and CSV formats. The JSON file is structured as "publicationTitle": "ISO 4 abbreviation". The CSV files have a full publication title in the first column and its abbreviation in the second column, the delimiter can be a comma or a semicolon, but it must be uniform and not a tab.
+abbr-custom-data-desc =  The custom journal abbreviation file supports both JSON and CSV formats. The JSON file is structured as "publicationTitle": "ISO 4 abbreviation". The CSV files have a full publication title in the first column and its abbreviation in the second column, the delimiter can be a comma or a semicolon, but it must be uniform and not a tab.
  
 ## 日期
 section-date = Date
@@ -113,8 +113,9 @@ std-clean-fileld =
 # 更新元数据
 section-updateMetadata = Retrive Item Metadata
 others-semanticScholarToken = Semantic Scholar Token: 
-    .lalel = Semantic Scholar Token
+    .label = Semantic Scholar Token
     .placeholder = Semantic Scholar Token
-
+other-semanticScholarToken-desc =  When retrieving field data for preprint, the plugin will query Semantic Scholar to see if this preprint has been accepted for publication. By default, this API is limited to 1 request/s. You can increase the rate limit by requesting a free API Key.
+other-semanticScholarToken-link = Request an API key
 ## 关于
 help-version = { $name }, Build { $version }, { $time }
