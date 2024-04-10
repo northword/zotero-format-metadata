@@ -41,7 +41,7 @@ async function updatePrefsUI() {
                 "open",
                 [
                     ["CSV File (*.csv)", "*.csv"],
-                    ["JSON File (*.json)", "*.json,"],
+                    ["JSON File (*.json)", "*.json"],
                     ["Any", "*.*"],
                 ],
                 "zotero-format-metadata-custom-abbr-data.csv",

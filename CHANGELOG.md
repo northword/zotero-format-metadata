@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复自定义期刊缩写无法选择 JSON 文件的问题。close: [#178](https://github.com/northword/zotero-format-metadata/issues/178)
+
 ## [1.16.3] - 2024-04-03
 
 ### Fixed
