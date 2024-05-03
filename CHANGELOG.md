@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 临时修复 beta 77 上所有功能失效的问题。ref: [#182](https://github.com/northword/zotero-format-metadata/issues/182)
+
+### Known issues
+
+- 处理时，右下角弹窗插件图标不显示。
+
 ## [1.16.4] - 2024-04-10
 
 ### Fixed
