@@ -50,7 +50,7 @@
     "chokidar": "3.6.0",
     "compressing": "1.10.0",
     "esbuild": "0.20.2",
-    "eslint": "8.57.0",
+    "eslint": "9.2.0",
     "eslint-config-prettier": "9.1.0",
     "jest": "29.7.0",
     "jest-environment-jsdom": "29.7.0",
