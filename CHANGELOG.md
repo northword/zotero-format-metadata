@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复 computerProgram 不含有 language 字段导致 Lint 失败的问题。closes: [#185](https://github.com/northword/zotero-format-metadata/issues/185)
+
 ## [1.16.6] - 2024-05-07
 
 ### Added
