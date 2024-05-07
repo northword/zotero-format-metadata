@@ -22,7 +22,7 @@
           }
         },
         {
-          "version": "1.16.5",
+          "version": "1.16.6",
           "update_link": "https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-format-metadata.xpi",
           "applications": {
             "zotero": {

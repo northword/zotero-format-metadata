@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.16.6] - 2024-05-07
+
 ### Added
 
 - 富文本工具条支持设置小型大写字母（`<span style="font-variant:small-caps;">Small Caps</span>`）。closes: [#180](https://github.com/northword/zotero-format-metadata/issues/180)
@@ -761,7 +763,7 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/v1.16.5...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/v1.16.6...HEAD
 [1.6.11]: https://github.com/northword/zotero-format-metadata/compare/1.6.10...1.6.11
 [1.6.10]: https://github.com/northword/zotero-format-metadata/compare/1.6.9...1.6.10
 [1.6.9]: https://github.com/northword/zotero-format-metadata/compare/1.6.8...1.6.9
@@ -822,6 +824,7 @@ No changes, test release only.
 [0.0.4]: https://github.com/northword/zotero-format-metadata/compare/0.0.3...0.0.4
 [0.0.3]: https://github.com/northword/zotero-format-metadata/compare/0.0.2...0.0.3
 [0.0.2]: https://github.com/northword/zotero-format-metadata/commits/0.0.2
+[1.16.6]: https://github.com/northword/zotero-format-metadata/compare/v1.16.5...v1.16.6
 [1.16.5]: https://github.com/northword/zotero-format-metadata/compare/v1.16.4...v1.16.5
 [1.16.4]: https://github.com/northword/zotero-format-metadata/compare/v1.16.3...v1.16.4
 [1.16.3]: https://github.com/northword/zotero-format-metadata/compare/v1.16.2...v1.16.3
