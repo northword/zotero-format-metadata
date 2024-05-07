@@ -16,7 +16,7 @@ const startZoteroCmd = `"${zoteroBinPath}" --debugger --purgecaches -profile "${
 
 async function watch() {
     const watcher = chokidar.watch(["src/**", "addon/**"], {
-        ignored: /(^|[\/\\])\../, // ignore dotfiles
+        ignored: /(^|[/\\])\../, // ignore dotfiles
         persistent: true,
     });
 

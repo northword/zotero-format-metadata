@@ -3,7 +3,7 @@ import { existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, rmSync, wr
 import path from "path";
 
 export function copyFileSync(source, target) {
-    var targetFile = target;
+    let targetFile = target;
 
     // If target is a directory, a new file with the same name will be created
     if (existsSync(target)) {
@@ -16,10 +16,10 @@ export function copyFileSync(source, target) {
 }
 
 export function copyFolderRecursiveSync(source, target) {
-    var files = [];
+    let files = [];
 
     // Check if folder needs to be created or integrated
-    var targetFolder = path.join(target, path.basename(source));
+    const targetFolder = path.join(target, path.basename(source));
     if (!existsSync(targetFolder)) {
         mkdirSync(targetFolder);
     }
@@ -28,7 +28,7 @@ export function copyFolderRecursiveSync(source, target) {
     if (lstatSync(source).isDirectory()) {
         files = readdirSync(source);
         files.forEach(function (file) {
-            var curSource = path.join(source, file);
+            const curSource = path.join(source, file);
             if (lstatSync(curSource).isDirectory()) {
                 copyFolderRecursiveSync(curSource, targetFolder);
             } else {
@@ -56,7 +56,7 @@ export function dateFormat(fmt, date) {
         "M+": date.getMinutes().toString(),
         "S+": date.getSeconds().toString(),
     };
-    for (let k in opt) {
+    for (const k in opt) {
         ret = new RegExp("(" + k + ")").exec(fmt);
         if (ret) {
             fmt = fmt.replace(ret[1], ret[1].length == 1 ? opt[k] : opt[k].padStart(ret[1].length, "0"));
@@ -97,7 +97,7 @@ export class Logger {
 }
 
 export function isRunning(query, cb) {
-    let platform = process.platform;
+    const platform = process.platform;
     let cmd = "";
     switch (platform) {
         case "win32":

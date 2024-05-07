@@ -3,7 +3,7 @@ import { Logger } from "./utils.mjs";
 import { clearFolder } from "./utils.mjs";
 import cmd from "./zotero-cmd.json" assert { type: "json" };
 import { spawn } from "child_process";
-import { existsSync, readFileSync, writeFileSync } from "fs";
+import { existsSync, readFileSync, rmSync, writeFileSync } from "fs";
 import path from "path";
 import { exit } from "process";
 
