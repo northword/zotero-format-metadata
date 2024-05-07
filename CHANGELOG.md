@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复 beta 77 progressWindow 的图标问题。closes: [#182](https://github.com/northword/zotero-format-metadata/issues/182)
+
 ## [1.16.5] - 2024-05-03
 
 ### Fixed
