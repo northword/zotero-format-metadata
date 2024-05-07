@@ -49,6 +49,7 @@ supscript = 上标
 bold = 粗体
 italic = 斜体
 no-case = 保持大小写
+small-caps = 小型大写字母
 unimplemented = 此功能尚未实现。
 
 ## 重复条目弹窗

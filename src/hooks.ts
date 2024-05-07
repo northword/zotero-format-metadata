@@ -120,6 +120,9 @@ function onShortcuts(type: string) {
         case "nocase":
             setHtmlTag("span", "class", "nocase");
             break;
+        case "small-caps":
+            setHtmlTag("span", "style", "font-variant:small-caps;");
+            break;
         case "confliction":
             break;
         default:

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 富文本工具条支持设置小型大写字母（`<span style="font-variant:small-caps;">Small Caps</span>`）。closes: [#180](https://github.com/northword/zotero-format-metadata/issues/180)
+
 ### Fixed
 
 - 修复 beta 77 progressWindow 的图标问题。closes: [#182](https://github.com/northword/zotero-format-metadata/issues/182)
