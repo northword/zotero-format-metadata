@@ -71,7 +71,7 @@ async function onNotify(
             // new Date().getMilliseconds() - Zotero.Date.sqlToDate(item.dateAdded, true).getMilliseconds() < 500,
         );
         if (items.length !== 0) {
-            addon.hooks.onUpdateInBatch("newItem", items);
+            addon.hooks.onLintInBatch("newItem", items);
         }
     }
 }
@@ -231,6 +231,11 @@ async function onLintInBatch(mode: string, items: Zotero.Item[] | "item" | "coll
     new LintRunner(tasks).runInBatch();
 }
 
+/**
+ * @deprecated use onLintInBatch instead.
+ */
+const onUpdateInBatch = onLintInBatch;
+
 export default {
     onStartup,
     onMainWindowLoad,
@@ -240,5 +245,6 @@ export default {
     onMutationObserver,
     onPrefsEvent,
     onShortcuts,
-    onUpdateInBatch: onLintInBatch,
+    onLintInBatch,
+    onUpdateInBatch,
 };

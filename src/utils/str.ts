@@ -395,7 +395,7 @@ export function toSentenceCase_Bak(text: string) {
 /**
  * Gets text language
  * @param text
- * @returns  ISO 639-3 code
+ * @returns  ISO 639-1 code
  */
 export function getTextLanguage(text: string) {
     // 替换 title 中的 HTML 标签以降低 franc 识别错误
@@ -426,12 +426,8 @@ export function getTextLanguage(text: string) {
             : "pass";
     }
     ztoolkit.log("[lang] Selected ISO 639-1 code is: ", options.only);
-    return detect(text, options);
-}
 
-// const text =
-//     'Aaa Bbb ccc dDD Co<sub>3</sub>O<sub>4</sub> NH3 NH<sub>3</sub> <i><span class="nocase">No Case</span></i> a <b>bold</b> in Sentence and <i>italic</i> Test: A Review, Low-Temperature NH<sub>3</sub>-SCR Abatement of nitrogen oxides α-MnO2 via selective catalytic reduction over Ce1–W1 Atom-Pair sites Co-Mn-Al ';
-// const newStr = toSentenceCase(text);
-// console.log("newString", newStr);
+    return detect(text, options) || null;
+}
 
 export * as StringUtil from "./str";

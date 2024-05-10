@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Exposing `getTextLanguage` to other plugins.
+
+### Changed
+
+- Defaults to "en" when the language of the item is not recognized.
+
 ## [1.16.7] - 2024-05-07
 
 ### Fixed

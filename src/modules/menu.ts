@@ -11,7 +11,7 @@ export function registerMenu() {
                 tag: "menuitem",
                 label: getString("menuitem-stdFormatFlow"),
                 commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("std", menuPopup);
+                    addon.hooks.onLintInBatch("std", menuPopup);
                 },
             },
             {
@@ -28,21 +28,21 @@ export function registerMenu() {
                 tag: "menuitem",
                 label: getString("menuitem-toSentenceCase"),
                 commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("toSentenceCase", menuPopup);
+                    addon.hooks.onLintInBatch("toSentenceCase", menuPopup);
                 },
             },
             {
                 tag: "menuitem",
                 label: getString("menuitem-capitalizeName"),
                 commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("capitalizeName", menuPopup);
+                    addon.hooks.onLintInBatch("capitalizeName", menuPopup);
                 },
             },
             {
                 tag: "menuitem",
                 label: getString("menuitem-capitalizePinyin"),
                 commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("creatorsPinyin", menuPopup);
+                    addon.hooks.onLintInBatch("creatorsPinyin", menuPopup);
                 },
             },
             {
@@ -52,14 +52,14 @@ export function registerMenu() {
                 tag: "menuitem",
                 label: getString("menuitem-autoSetLang"),
                 commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("lang", menuPopup);
+                    addon.hooks.onLintInBatch("lang", menuPopup);
                 },
             },
             {
                 tag: "menuitem",
                 label: getString("menuitem-manuallySetLang"),
                 commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("lang-manual", menuPopup);
+                    addon.hooks.onLintInBatch("lang-manual", menuPopup);
                 },
             },
             {
@@ -69,21 +69,21 @@ export function registerMenu() {
                 tag: "menuitem",
                 label: getString("menuitem-setPublicationTitle"),
                 commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("publicationTitle", menuPopup);
+                    addon.hooks.onLintInBatch("publicationTitle", menuPopup);
                 },
             },
             {
                 tag: "menuitem",
                 label: getString("menuitem-setJournalAbbr"),
                 commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("abbr", menuPopup);
+                    addon.hooks.onLintInBatch("abbr", menuPopup);
                 },
             },
             {
                 tag: "menuitem",
                 label: getString("menuitem-setPlace"),
                 commandListener: (ev) => {
-                    addon.hooks.onUpdateInBatch("place", menuPopup);
+                    addon.hooks.onLintInBatch("place", menuPopup);
                 },
             },
             {
@@ -97,7 +97,7 @@ export function registerMenu() {
                         tag: "menuitem",
                         label: getString("menuitem-getFieldsByDOIForBlack"),
                         commandListener: (ev) => {
-                            addon.hooks.onUpdateInBatch("getBlankFieldViaDOI", menuPopup);
+                            addon.hooks.onLintInBatch("getBlankFieldViaDOI", menuPopup);
                         },
                     },
                     // {
@@ -111,7 +111,7 @@ export function registerMenu() {
                         tag: "menuitem",
                         label: getString("menuitem-getFieldsByDOIForAll"),
                         commandListener: (ev) => {
-                            addon.hooks.onUpdateInBatch("getAllFieldViaDOI", menuPopup);
+                            addon.hooks.onLintInBatch("getAllFieldViaDOI", menuPopup);
                         },
                     },
                     {
@@ -121,7 +121,7 @@ export function registerMenu() {
                         tag: "menuitem",
                         label: getString("menuitem-getFieldsByDOIForBlackAndLint"),
                         commandListener: (ev) => {
-                            addon.hooks.onUpdateInBatch("getBlankFieldViaDOIAndLint", menuPopup);
+                            addon.hooks.onLintInBatch("getBlankFieldViaDOIAndLint", menuPopup);
                         },
                     },
                     // {
@@ -135,7 +135,7 @@ export function registerMenu() {
                         tag: "menuitem",
                         label: getString("menuitem-getFieldsByDOIForAllAndLint"),
                         commandListener: (ev) => {
-                            addon.hooks.onUpdateInBatch("getAllFieldViaDOIAndLint", menuPopup);
+                            addon.hooks.onLintInBatch("getAllFieldViaDOIAndLint", menuPopup);
                         },
                     },
                 ],
@@ -183,14 +183,14 @@ export function registerMenu() {
                         tag: "menuitem",
                         label: getString("menuitem-titleGuillemetToBrackets"),
                         commandListener: (ev) => {
-                            addon.hooks.onUpdateInBatch("titleGuillemetToBrackets", "item");
+                            addon.hooks.onLintInBatch("titleGuillemetToBrackets", "item");
                         },
                     },
                     {
                         tag: "menuitem",
                         label: getString("menuitem-titleBracketsToGuillemet"),
                         commandListener: (ev) => {
-                            addon.hooks.onUpdateInBatch("titleBracketsToGuillemet", "item");
+                            addon.hooks.onLintInBatch("titleBracketsToGuillemet", "item");
                         },
                     },
                     {
@@ -200,7 +200,7 @@ export function registerMenu() {
                         tag: "menuitem",
                         label: getString("menuitem-setDoi"),
                         commandListener: (ev) => {
-                            addon.hooks.onUpdateInBatch("doi", menuPopup);
+                            addon.hooks.onLintInBatch("doi", menuPopup);
                         },
                         disabled: true,
                     },
@@ -208,14 +208,14 @@ export function registerMenu() {
                         tag: "menuitem",
                         label: getString("menuitem-setDate"),
                         commandListener: (ev) => {
-                            addon.hooks.onUpdateInBatch("date", menuPopup);
+                            addon.hooks.onLintInBatch("date", menuPopup);
                         },
                     },
                     {
                         tag: "menuitem",
                         label: getString("menuitem-remove-zeros"),
                         commandListener: (ev) => {
-                            addon.hooks.onUpdateInBatch("removeZeros", menuPopup);
+                            addon.hooks.onLintInBatch("removeZeros", menuPopup);
                         },
                     },
                     {
@@ -225,7 +225,7 @@ export function registerMenu() {
                         tag: "menuitem",
                         label: getString("menuitem-setCreatorExt"),
                         commandListener: (ev) => {
-                            addon.hooks.onUpdateInBatch("creatorExt", menuPopup);
+                            addon.hooks.onLintInBatch("creatorExt", menuPopup);
                         },
                     },
                 ],
@@ -269,7 +269,7 @@ export function registerMenu() {
             label: "测试",
             icon: menuIcon,
             commandListener: (ev) => {
-                addon.hooks.onUpdateInBatch("test", "item");
+                addon.hooks.onLintInBatch("test", "item");
             },
         });
     }
@@ -307,7 +307,7 @@ export function registerTextTransformMenu() {
         attributes: {
             label: getString("menufield-toSentenceCase"),
         },
-        listeners: [{ type: "click", listener: (e) => addon.hooks.onUpdateInBatch("toSentenceCase", "item") }],
+        listeners: [{ type: "click", listener: (e) => addon.hooks.onLintInBatch("toSentenceCase", "item") }],
     });
     zoteroFieldTransformMenu?.append(toSentenceCaseExtMenu);
     // todo: 支持与 Zotero 本身菜单一样的禁用
