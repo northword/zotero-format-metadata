@@ -3,6 +3,5 @@
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
-  },
-  "markdownlint.ignore": ["**/README*.md"]
+  }
 }

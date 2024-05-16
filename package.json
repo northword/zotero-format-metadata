@@ -13,14 +13,13 @@
   },
   "main": "src/index.ts",
   "scripts": {
-    "start": "node scripts/server.mjs",
-    "build": "tsc --noEmit && node scripts/build.mjs production",
-    "stop": "node scripts/stop.mjs",
+    "start": "zotero-plugin serve",
+    "build": "tsc --noEmit && zotero-plugin build",
     "lint": "prettier --write . && eslint . --fix",
     "update-data": "bash scripts/update-data.sh",
-    "test": "jest",
+    "test": "exit",
     "release": "release-it --only-version --preReleaseId=beta",
-    "update-deps": "pnpm update"
+    "update-deps": "pnpx taze minor -w -i"
   },
   "repository": {
     "type": "git",
@@ -32,7 +31,7 @@
     "url": "https://github.com/northword/zotero-format-metadata/issues"
   },
   "homepage": "https://github.com/northword/zotero-format-metadata#readme",
-  "packageManager": "pnpm@9.1.0",
+  "packageManager": "pnpm@9.1.1",
   "dependencies": {
     "csvtojson": "^2.0.10",
     "iso-locales": "1.1.1",
@@ -41,26 +40,16 @@
     "zotero-plugin-toolkit": "2.3.30"
   },
   "devDependencies": {
-    "@eslint/js": "^9.2.0",
+    "@eslint/js": "9.2.0",
     "@release-it/keep-a-changelog": "5.0.0",
     "@trivago/prettier-plugin-sort-imports": "4.3.0",
-    "@types/jest": "29.5.12",
     "@types/node": "20.12.8",
-    "@typescript-eslint/eslint-plugin": "7.8.0",
-    "@typescript-eslint/parser": "7.8.0",
-    "chokidar": "3.6.0",
-    "compressing": "1.10.0",
-    "esbuild": "0.20.2",
     "eslint": "9.2.0",
-    "eslint-config-prettier": "9.1.0",
-    "globals": "^15.1.0",
-    "jest": "29.7.0",
-    "jest-environment-jsdom": "29.7.0",
     "prettier": "3.2.5",
     "release-it": "17.2.1",
-    "replace-in-file": "7.1.0",
-    "ts-jest": "29.1.2",
     "typescript": "5.4.5",
+    "typescript-eslint": "^7.9.0",
+    "zotero-plugin-scaffold": "0.0.23",
     "zotero-types": "2.0.0"
   }
 }
