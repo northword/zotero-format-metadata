@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复 `The Accounting Review` 被错误修改为 `Accounting Review` 的问题。fix: [#188](https://github.com/northword/zotero-format-metadata/issues/188)
+
 ## [1.16.9] - 2024-05-16
 
 - 无显著更改。更新开发依赖，管道测试。
