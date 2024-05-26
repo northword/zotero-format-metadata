@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 标题句子式大写转换支持月、周、国家城市、大洲大洋等专有名词。/ Support special word for sentence case. resolve: [#171](https://github.com/northword/zotero-format-metadata/issues/171), fix: [#31](https://github.com/northword/zotero-format-metadata/issues/31)
+
 ## [1.16.11] - 2024-05-26
 
 ### Fixed
