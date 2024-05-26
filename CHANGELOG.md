@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - 修复军事院校的地点无法填充的问题。closes: [#126](https://github.com/northword/zotero-format-metadata/issues/126), fix: [#189](https://github.com/northword/zotero-format-metadata/issues/189)
 
+### Changed
+
+- 优化语言识别方式：当 TinyLd 没有返回有效语言时，检测文本是否存在中文字符，若存在，返回 `zh`，否则返回 `en`。 close: [#164](https://github.com/northword/zotero-format-metadata/issues/164)， close: [#190](https://github.com/northword/zotero-format-metadata/issues/190), ref: [#189](https://github.com/northword/zotero-format-metadata/issues/189)
+
 ## [1.16.10] - 2024-05-23
 
 ### Fixed

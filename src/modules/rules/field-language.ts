@@ -21,7 +21,7 @@ export default class UpdateItemLanguage extends RuleBase<UpdateItemLanguageOptio
             return item;
         }
         const title = item.getField("title") as string;
-        const language = getTextLanguage(title) ?? "en";
+        const language = getTextLanguage(title);
         item.setField("language", language);
 
         // const languageISO639_3 = getTextLanguage(title);

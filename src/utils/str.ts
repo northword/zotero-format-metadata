@@ -427,7 +427,13 @@ export function getTextLanguage(text: string) {
     }
     ztoolkit.log("[lang] Selected ISO 639-1 code is: ", options.only);
 
-    return detect(text, options) || null;
+    const langGetByTinyLd = detect(text, options) || null;
+    ztoolkit.log(`[lang] Returned from TinyLd: ${langGetByTinyLd}`);
+    if (langGetByTinyLd) {
+        return langGetByTinyLd;
+    } else {
+        return text.match(/[\u4e00-\u9fa5]/) ? "zh" : "en";
+    }
 }
 
 export * as StringUtil from "./str";
