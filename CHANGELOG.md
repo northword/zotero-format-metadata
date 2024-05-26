@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 修复军事院校的地点无法填充的问题。closes: [#126](https://github.com/northword/zotero-format-metadata/issues/126), fix: [#189](https://github.com/northword/zotero-format-metadata/issues/189)
+
 ## [1.16.10] - 2024-05-23
 
 ### Fixed
