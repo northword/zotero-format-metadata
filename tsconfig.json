@@ -9,7 +9,7 @@
     "strict": true,
     "outDir": "build/dist/"
   },
-  "include": ["src", "typings", "node_modules/zotero-types"],
+  "include": ["src", "typings", "node_modules/zotero-types", "test/toSentenseCase.test.ts"],
   // "include": ["src", "typings", "../zotero-types"],
   "exclude": ["build", "addon", "**/temp**"]
 }

@@ -3,6 +3,7 @@ import iso6393To6391 from "./iso-693-3-to-1";
 // import journalAbbrISO4Ubc from "./journal-abbr/library-ubc-ca/journalAbbrData"
 import journalAbbr from "./journal-abbr/journalAbbr"
 import universityPlace from "./university-list/university-place";
+import contry from "./country-by-capital-city.json"
 
 export interface dict {
     [key: string]: string;
@@ -31,3 +32,7 @@ export const universityPlaceLocalData: dict = universityPlace;
  * Value: ISO 639-1 code
 */
 export const iso6393To6391Data: dict = iso6393To6391;
+
+export { default as contryJson } from "./country-by-capital-city.json"
+export const contries = contry.map((c) => c.country);
+export const cities = contry.map((c) => c.city).filter(v=>v!==null);

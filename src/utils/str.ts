@@ -1,3 +1,4 @@
+import { contryJson } from "../data";
 import { getPref } from "./prefs";
 // import { franc } from "franc";
 import { detect } from "tinyld";
@@ -15,6 +16,27 @@ const chemElements = ["H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne",
     "Fr", "Ra", "Ac", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og",
     "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu",
     "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm", "Md", "No", "Lr"];
+// prettier-ignore
+const geographyWords = ["Asia", "Europe", "Africa", "North America", "South America", "Oceania", "Antarctica", 
+    "Pacific Ocean", "Atlantic Ocean", "Indian Ocean", "Arctic Ocean",
+    "Mediterranean", "Tibetan Plateau",
+    "Yangtze River", "Yangtze", "Beijing–Tianjin–Hebei", "Yellow River", "Huang He"
+];
+// prettier-ignore
+const dateWords = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday",
+    "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+];
+const contriesAndCities = contryJson.flatMap((c) => Object.values(c)).filter((v) => v !== null) as string[];
+// prettier-ignore
+const plantWords = ["Mercury","Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"]
+const specialWords = ["Microsoft", "Google", "Amazon", "Inc", "Ltd"]
+    .concat(geographyWords)
+    .concat(dateWords)
+    .concat(contriesAndCities)
+    .concat(plantWords)
+    .map((v) => escapeRegex(v));
+// const specialWordsPattern = specialWords.map((word) => word.replace(/\s+/g, "\\s+")).join("|");
+const specialWordsPattern = specialWords.join("|");
 
 /**
  * 统计给定字符串中大写字母的数量
@@ -168,7 +190,20 @@ export function toSentenceCase(text: string) {
             }
 
             return word.toLowerCase();
-        });
+        })
+        // northword patch: 支持月、周、国家城市、大洲大洋等专有名词
+        .replace(
+            new RegExp(
+                `\\b(?:in|on|at|of|from|by|for|the|north|south|east|west|northern|southern|eastern|western)\\s+(${specialWordsPattern})\\b`,
+                "gi",
+            ),
+            (match, specialWord) => {
+                return match.replace(
+                    specialWord,
+                    specialWords.find((word) => word.toLowerCase() === specialWord.toLowerCase()) ?? specialWord,
+                );
+            },
+        );
 
     for (const { start, end } of preserve) {
         masked = masked.substring(0, start) + text.substring(start, end) + masked.substring(end);
