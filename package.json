@@ -17,7 +17,7 @@
     "build": "tsc --noEmit && zotero-plugin build",
     "lint": "prettier --write . && eslint . --fix",
     "update-data": "bash scripts/update-data.sh",
-    "test": "exit",
+    "test": "vitest",
     "release": "release-it --only-version --preReleaseId=beta",
     "update-deps": "pnpx taze minor -w -i"
   },
@@ -49,6 +49,7 @@
     "release-it": "17.2.1",
     "typescript": "5.4.5",
     "typescript-eslint": "^7.10.0",
+    "vitest": "^1.6.0",
     "zotero-plugin-scaffold": "0.0.24",
     "zotero-types": "2.0.0"
   }

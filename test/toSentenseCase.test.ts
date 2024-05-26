@@ -1,4 +1,5 @@
 import { toSentenceCase } from "../src/utils/str";
+import { expect, test } from "vitest";
 
 /**
  * Test item / 测试项目信息
@@ -47,6 +48,21 @@ const testItems: testItem[] = [
         name: "化学元素加括号",
         original: `(N<sub>2</sub>O)`,
         expected: `(N<sub>2</sub>O)`,
+    },
+    {
+        name: "月份应大写",
+        original: `Attribution of the August 2022 Extreme Heatwave in Southern China: Role of Dynamical and Thermodynamical Processes`,
+        expected: `Attribution of the August 2022 extreme heatwave in southern China: role of dynamical and thermodynamical processes`,
+    },
+    {
+        name: "月份应大写：五月例外",
+        original: `We'll Meet in May.`,
+        expected: `We'll meet in May.`,
+    },
+    {
+        name: "国名应大写",
+        original: `This is in Southern China`,
+        expected: `This is in southern China`,
     },
 ];
 

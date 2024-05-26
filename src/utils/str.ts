@@ -27,7 +27,8 @@ const contriesAndCities = contryJson.flatMap((c) => Object.values(c)).filter((v)
 const specialWords = ["Microsoft", "Google", "Amazon", "Inc", "Ltd"]
     .concat(geographyWords)
     .concat(dateWords)
-    .concat(contriesAndCities);
+    .concat(contriesAndCities)
+    .map((v) => escapeRegex(v));
 // const specialWordsPattern = specialWords.map((word) => word.replace(/\s+/g, "\\s+")).join("|");
 const specialWordsPattern = specialWords.join("|");
 
@@ -186,9 +187,11 @@ export function toSentenceCase(text: string) {
         })
         // northword patch: 支持月、周、国家城市、大洲大洋等专有名词
         .replace(
-            new RegExp(`\\b(?:in|on|at|of|from|by|for|the)\\s+(${specialWordsPattern})\\b`, "gi"),
+            new RegExp(
+                `\\b(?:in|on|at|of|from|by|for|the|north|south|east|west|northern|southern|eastern|western)\\s+(${specialWordsPattern})\\b`,
+                "gi",
+            ),
             (match, specialWord) => {
-                ztoolkit.log("[toSentenceCase] hint ", match, specialWord);
                 return match.replace(
                     specialWord,
                     specialWords.find((word) => word.toLowerCase() === specialWord.toLowerCase()) ?? specialWord,
