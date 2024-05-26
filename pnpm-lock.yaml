@@ -9,13 +9,13 @@ importers:
   .:
     dependencies:
       csvtojson:
-        specifier: ^2.0.10
+        specifier: 2.0.10
         version: 2.0.10
       iso-locales:
         specifier: 1.1.1
         version: 1.1.1
       p-queue:
-        specifier: ^8.0.1
+        specifier: 8.0.1
         version: 8.0.1
       tinyld:
         specifier: 1.3.4
@@ -49,10 +49,10 @@ importers:
         specifier: 5.4.5
         version: 5.4.5
       typescript-eslint:
-        specifier: ^7.10.0
+        specifier: 7.10.0
         version: 7.10.0(eslint@9.2.0)(typescript@5.4.5)
       vitest:
-        specifier: ^1.6.0
+        specifier: 1.6.0
         version: 1.6.0(@types/node@20.12.8)
       zotero-plugin-scaffold:
         specifier: 0.0.24
