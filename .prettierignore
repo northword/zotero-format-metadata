@@ -14,5 +14,6 @@ src/libs/**
 **/*.new
 **/examples.ts
 **/abbrevIso*
-**/data*
+**/data/**/*.json
+!data/**/*.ts
 *.html

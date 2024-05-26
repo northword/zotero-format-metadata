@@ -11,6 +11,10 @@ export default class UpdateItemLanguage extends RuleBase<UpdateItemLanguageOptio
     }
 
     apply(item: Zotero.Item): Zotero.Item {
+        // computerProgram do not have field language
+        // https://github.com/northword/zotero-format-metadata/issues/185
+        // https://www.zotero.org/support/kb/item_types_and_fields#fields_for_software
+        if (item.itemType == "computerProgram") return item;
         // WIP: 已有合法 ISO 639 - ISO 3166 代码的，不予处理
         if (verifyIso3166(item.getField("language") as string) && getPref("lang.verifyBefore")) {
             ztoolkit.log("[lang] The item has been skipped due to the presence of valid ISO 639 - ISO 3166 code.");

@@ -49,6 +49,7 @@ supscript = Supscript
 bold = Bold
 italic = Italic
 no-case = Maintain case
+small-caps = Small Caps
 unimplemented = This feature is unimplemented.
 
 ## 重复条目弹窗

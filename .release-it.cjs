@@ -8,7 +8,7 @@ module.exports = {
     },
     github: {
         release: false,
-        assets: ["build/*.xpi", "update.json"],
+        assets: ["build/*.xpi", "build/update.json"],
         releaseNotes(context) {
             // console.log(context);
             let notes = `## What's changed  \n\n`;
@@ -22,8 +22,8 @@ module.exports = {
         },
     },
     hooks: {
-        "bfore:init": "npm run lint",
-        "after:bump": "npm run build",
+        "bfore:init": "pnpm lint",
+        "after:bump": "pnpm build",
     },
     plugins: {
         "@release-it/keep-a-changelog": {

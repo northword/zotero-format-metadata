@@ -1,3 +1,4 @@
+import api from "./api";
 import hooks from "./hooks";
 import { createZToolkit } from "./utils/ztoolkit";
 import { DialogHelper } from "zotero-plugin-toolkit/dist/helpers/dialog";
@@ -23,7 +24,7 @@ class Addon {
     // Lifecycle hooks
     public hooks: typeof hooks;
     // APIs
-    public api: object = {};
+    public api: typeof api;
 
     constructor() {
         this.data = {
@@ -33,7 +34,7 @@ class Addon {
             dialogs: {},
         };
         this.hooks = hooks;
-        this.api = {};
+        this.api = api;
     }
 }
 

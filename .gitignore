@@ -5,6 +5,7 @@ package-lock.json
 # pnpm-lock.yaml
 yarn.lock
 zotero-cmd.json
+.env
 
 # libs
 **/libs/**

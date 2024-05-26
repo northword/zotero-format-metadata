@@ -7,6 +7,62 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.16.11] - 2024-05-26
+
+### Fixed
+
+- 修复军事院校的地点无法填充的问题。closes: [#126](https://github.com/northword/zotero-format-metadata/issues/126), fix: [#189](https://github.com/northword/zotero-format-metadata/issues/189)
+
+### Changed
+
+- 优化语言识别方式：当 TinyLd 没有返回有效语言时，检测文本是否存在中文字符，若存在，返回 `zh`，否则返回 `en`。 close: [#164](https://github.com/northword/zotero-format-metadata/issues/164)， close: [#190](https://github.com/northword/zotero-format-metadata/issues/190), ref: [#189](https://github.com/northword/zotero-format-metadata/issues/189)
+
+## [1.16.10] - 2024-05-23
+
+### Fixed
+
+- 修复 `The Accounting Review` 被错误修改为 `Accounting Review` 的问题。fix: [#188](https://github.com/northword/zotero-format-metadata/issues/188)
+
+## [1.16.9] - 2024-05-16
+
+- 无显著更改。更新开发依赖，管道测试。
+
+## [1.16.8] - 2024-05-10
+
+### Added
+
+- Exposing `getTextLanguage` to other plugins.
+
+### Changed
+
+- Defaults to "en" when the language of the item is not recognized.
+
+## [1.16.7] - 2024-05-07
+
+### Fixed
+
+- 修复 computerProgram 不含有 language 字段导致 Lint 失败的问题。closes: [#185](https://github.com/northword/zotero-format-metadata/issues/185)
+
+## [1.16.6] - 2024-05-07
+
+### Added
+
+- 富文本工具条支持设置小型大写字母（`<span style="font-variant:small-caps;">Small Caps</span>`）。closes: [#180](https://github.com/northword/zotero-format-metadata/issues/180)
+
+### Fixed
+
+- 修复 beta 77 progressWindow 的图标问题。closes: [#182](https://github.com/northword/zotero-format-metadata/issues/182)
+
+## [1.16.5] - 2024-05-03
+
+### Fixed
+
+- 临时修复 beta 77 上所有功能失效的问题。ref: [#182](https://github.com/northword/zotero-format-metadata/issues/182)
+
+### Known issues
+
+- 处理时，右下角弹窗插件图标不显示。
+
 ## [1.16.4] - 2024-04-10
 
 ### Fixed
@@ -743,7 +799,7 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/v1.16.4...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/v1.16.11...HEAD
 [1.6.11]: https://github.com/northword/zotero-format-metadata/compare/1.6.10...1.6.11
 [1.6.10]: https://github.com/northword/zotero-format-metadata/compare/1.6.9...1.6.10
 [1.6.9]: https://github.com/northword/zotero-format-metadata/compare/1.6.8...1.6.9
@@ -804,6 +860,13 @@ No changes, test release only.
 [0.0.4]: https://github.com/northword/zotero-format-metadata/compare/0.0.3...0.0.4
 [0.0.3]: https://github.com/northword/zotero-format-metadata/compare/0.0.2...0.0.3
 [0.0.2]: https://github.com/northword/zotero-format-metadata/commits/0.0.2
+[1.16.11]: https://github.com/northword/zotero-format-metadata/compare/v1.16.10...v1.16.11
+[1.16.10]: https://github.com/northword/zotero-format-metadata/compare/v1.16.9...v1.16.10
+[1.16.9]: https://github.com/northword/zotero-format-metadata/compare/v1.16.8...v1.16.9
+[1.16.8]: https://github.com/northword/zotero-format-metadata/compare/v1.16.7...v1.16.8
+[1.16.7]: https://github.com/northword/zotero-format-metadata/compare/v1.16.6...v1.16.7
+[1.16.6]: https://github.com/northword/zotero-format-metadata/compare/v1.16.5...v1.16.6
+[1.16.5]: https://github.com/northword/zotero-format-metadata/compare/v1.16.4...v1.16.5
 [1.16.4]: https://github.com/northword/zotero-format-metadata/compare/v1.16.3...v1.16.4
 [1.16.3]: https://github.com/northword/zotero-format-metadata/compare/v1.16.2...v1.16.3
 [1.16.2]: https://github.com/northword/zotero-format-metadata/compare/v1.16.1...v1.16.2
