@@ -18,16 +18,22 @@ const chemElements = ["H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne",
     "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm", "Md", "No", "Lr"];
 // prettier-ignore
 const geographyWords = ["Asia", "Europe", "Africa", "North America", "South America", "Oceania", "Antarctica", 
-    "Pacific Ocean", "Atlantic Ocean", "Indian Ocean", "Arctic Ocean"];
+    "Pacific Ocean", "Atlantic Ocean", "Indian Ocean", "Arctic Ocean",
+    "Mediterranean", "Tibetan Plateau",
+    "Yangtze River", "Yangtze", "Beijing–Tianjin–Hebei", "Yellow River", "Huang He"
+];
 // prettier-ignore
 const dateWords = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday",
     "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
 ];
 const contriesAndCities = contryJson.flatMap((c) => Object.values(c)).filter((v) => v !== null) as string[];
+// prettier-ignore
+const plantWords = ["Mercury","Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"]
 const specialWords = ["Microsoft", "Google", "Amazon", "Inc", "Ltd"]
     .concat(geographyWords)
     .concat(dateWords)
     .concat(contriesAndCities)
+    .concat(plantWords)
     .map((v) => escapeRegex(v));
 // const specialWordsPattern = specialWords.map((word) => word.replace(/\s+/g, "\\s+")).join("|");
 const specialWordsPattern = specialWords.join("|");
