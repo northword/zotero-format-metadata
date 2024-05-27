@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.17.0] - 2024-05-26
+
 ### Added
 
 - 标题句子式大写转换支持月、周、国家城市、大洲大洋等专有名词。/ Support special word for sentence case. resolve: [#171](https://github.com/northword/zotero-format-metadata/issues/171), fix: [#31](https://github.com/northword/zotero-format-metadata/issues/31)
@@ -803,7 +805,7 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/v1.16.11...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/v1.17.0...HEAD
 [1.6.11]: https://github.com/northword/zotero-format-metadata/compare/1.6.10...1.6.11
 [1.6.10]: https://github.com/northword/zotero-format-metadata/compare/1.6.9...1.6.10
 [1.6.9]: https://github.com/northword/zotero-format-metadata/compare/1.6.8...1.6.9
@@ -864,6 +866,7 @@ No changes, test release only.
 [0.0.4]: https://github.com/northword/zotero-format-metadata/compare/0.0.3...0.0.4
 [0.0.3]: https://github.com/northword/zotero-format-metadata/compare/0.0.2...0.0.3
 [0.0.2]: https://github.com/northword/zotero-format-metadata/commits/0.0.2
+[1.17.0]: https://github.com/northword/zotero-format-metadata/compare/v1.16.11...v1.17.0
 [1.16.11]: https://github.com/northword/zotero-format-metadata/compare/v1.16.10...v1.16.11
 [1.16.10]: https://github.com/northword/zotero-format-metadata/compare/v1.16.9...v1.16.10
 [1.16.9]: https://github.com/northword/zotero-format-metadata/compare/v1.16.8...v1.16.9
