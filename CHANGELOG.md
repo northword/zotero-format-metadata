@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 将短标题（shortTitle）一并转为句子式大写。
+
 ## [1.17.0] - 2024-05-26
 
 ### Added

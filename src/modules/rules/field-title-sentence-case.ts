@@ -14,6 +14,12 @@ export default class TitleSentenceCase extends RuleBase<TitleSentenceCaseOptions
         let title = item.getField("title", false, true) as string;
         title = item.getField("language").match("zh") ? title : toSentenceCase(title);
 
+        const isLintShortTitle = getPref("title.shortTitle");
+        let shortTitle = item.getField("shortTitle", false, true) as string;
+        if (isLintShortTitle) {
+            shortTitle = item.getField("language").match("zh") ? shortTitle : toSentenceCase(shortTitle);
+        }
+
         const customTermFilePath = getPref("title.customTermPath") as string;
         if (customTermFilePath) {
             const fileContent = (await Zotero.File.getContentsAsync(customTermFilePath)) as string;
@@ -30,11 +36,15 @@ export default class TitleSentenceCase extends RuleBase<TitleSentenceCaseOptions
                 if (search.test(title)) {
                     title = title.replace(search, term.replace);
                     ztoolkit.log(`[title] Hit custom term: `, search);
+                    if (isLintShortTitle) {
+                        shortTitle = shortTitle.replace(search, term.replace);
+                    }
                 }
             });
         }
 
         item.setField("title", title);
+        if (isLintShortTitle) item.setField("shortTitle", shortTitle);
         return item;
     }
 }
