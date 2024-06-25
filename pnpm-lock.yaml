@@ -21,8 +21,8 @@ importers:
         specifier: 1.3.4
         version: 1.3.4
       zotero-plugin-toolkit:
-        specifier: 2.3.33
-        version: 2.3.33
+        specifier: 2.3.35
+        version: 2.3.35
     devDependencies:
       '@eslint/js':
         specifier: 9.5.0
@@ -34,8 +34,8 @@ importers:
         specifier: 4.3.0
         version: 4.3.0(prettier@3.3.2)
       '@types/node':
-        specifier: 20.14.8
-        version: 20.14.8
+        specifier: 20.14.9
+        version: 20.14.9
       eslint:
         specifier: 9.5.0
         version: 9.5.0
@@ -53,7 +53,7 @@ importers:
         version: 7.14.1(eslint@9.5.0)(typescript@5.5.2)
       vitest:
         specifier: 1.6.0
-        version: 1.6.0(@types/node@20.14.8)
+        version: 1.6.0(@types/node@20.14.9)
       zotero-plugin-scaffold:
         specifier: 0.0.32
         version: 0.0.32(conventional-commits-filter@5.0.0)
@@ -896,8 +896,8 @@ packages:
   '@types/mute-stream@0.0.4':
     resolution: {integrity: sha512-CPM9nzrCPPJHQNA9keH9CVkVI+WR5kMa+7XEs5jcGQ0VoAGnLv242w8lIVgwAEfmE4oufJRaTc9PNLQl0ioAow==}
 
-  '@types/node@20.14.8':
-    resolution: {integrity: sha512-DO+2/jZinXfROG7j7WKFn/3C6nFwxy2lLpgLjEXJz+0XKphZlTLJ14mo8Vfg8X5BWN6XjyESXq+LcYdT7tR3bA==}
+  '@types/node@20.14.9':
+    resolution: {integrity: sha512-06OCtnTXtWOZBJlRApleWndH4JsRVs1pDCc8dLSQp+7PpUpX3ePdHyeNSFTeSe7FtKyQkrlPvHwJOW3SLd8Oyg==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -4263,8 +4263,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  zotero-plugin-toolkit@2.3.33:
-    resolution: {integrity: sha512-0go3k/9DrIQQQphxebUwBpkdQ7mAsqpqXa+ceU1/7Lx4mbB+reQiH+M8GQe3S1A9eGgB7fZa4ND7h0ycB3VLTQ==}
+  zotero-plugin-toolkit@2.3.35:
+    resolution: {integrity: sha512-hoqAMSyDmNWnxbVi8SM6iKho31zCKALwLTNFI/1tSquqHfiIsDK5ovkbNgGVbtTI5qqx/vAXsTZHdwu/qEkH+w==}
 
   zotero-types@2.0.2:
     resolution: {integrity: sha512-IgMY/6Mk5kWGg1kmlmGaD9mbpbZ4eDcTWUJ6bhGrez4TeuOYLZdsQLnmb3Fq3Czwr7TX4yMckNCHpZgx4RurWQ==}
@@ -4609,7 +4609,7 @@ snapshots:
       '@inquirer/figures': 1.0.3
       '@inquirer/type': 1.3.3
       '@types/mute-stream': 0.0.4
-      '@types/node': 20.14.8
+      '@types/node': 20.14.9
       '@types/wrap-ansi': 3.0.0
       ansi-escapes: 4.3.2
       chalk: 4.1.2
@@ -5056,9 +5056,9 @@ snapshots:
 
   '@types/mute-stream@0.0.4':
     dependencies:
-      '@types/node': 20.14.8
+      '@types/node': 20.14.9
 
-  '@types/node@20.14.8':
+  '@types/node@20.14.9':
     dependencies:
       undici-types: 5.26.5
 
@@ -5077,7 +5077,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 20.14.8
+      '@types/node': 20.14.9
 
   '@typescript-eslint/eslint-plugin@7.14.1(@typescript-eslint/parser@7.14.1(eslint@9.5.0)(typescript@5.5.2))(eslint@9.5.0)(typescript@5.5.2)':
     dependencies:
@@ -5628,7 +5628,7 @@ snapshots:
 
   chrome-launcher@0.15.1:
     dependencies:
-      '@types/node': 20.14.8
+      '@types/node': 20.14.9
       escape-string-regexp: 4.0.0
       is-wsl: 2.2.0
       lighthouse-logger: 1.4.2
@@ -8663,13 +8663,13 @@ snapshots:
       core-util-is: 1.0.2
       extsprintf: 1.3.0
 
-  vite-node@1.6.0(@types/node@20.14.8):
+  vite-node@1.6.0(@types/node@20.14.9):
     dependencies:
       cac: 6.7.14
       debug: 4.3.4
       pathe: 1.1.2
       picocolors: 1.0.1
-      vite: 5.2.11(@types/node@20.14.8)
+      vite: 5.2.11(@types/node@20.14.9)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -8680,16 +8680,16 @@ snapshots:
       - supports-color
       - terser
 
-  vite@5.2.11(@types/node@20.14.8):
+  vite@5.2.11(@types/node@20.14.9):
     dependencies:
       esbuild: 0.20.2
       postcss: 8.4.38
       rollup: 4.18.0
     optionalDependencies:
-      '@types/node': 20.14.8
+      '@types/node': 20.14.9
       fsevents: 2.3.3
 
-  vitest@1.6.0(@types/node@20.14.8):
+  vitest@1.6.0(@types/node@20.14.9):
     dependencies:
       '@vitest/expect': 1.6.0
       '@vitest/runner': 1.6.0
@@ -8708,11 +8708,11 @@ snapshots:
       strip-literal: 2.1.0
       tinybench: 2.8.0
       tinypool: 0.8.4
-      vite: 5.2.11(@types/node@20.14.8)
-      vite-node: 1.6.0(@types/node@20.14.8)
+      vite: 5.2.11(@types/node@20.14.9)
+      vite-node: 1.6.0(@types/node@20.14.9)
       why-is-node-running: 2.2.2
     optionalDependencies:
-      '@types/node': 20.14.8
+      '@types/node': 20.14.9
     transitivePeerDependencies:
       - less
       - lightningcss
@@ -8948,7 +8948,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  zotero-plugin-toolkit@2.3.33:
+  zotero-plugin-toolkit@2.3.35:
     dependencies:
       zotero-types: 2.0.2
     transitivePeerDependencies:
