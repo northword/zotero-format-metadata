@@ -49,7 +49,7 @@
     "release-it": "17.6.0",
     "typescript": "5.5.4",
     "typescript-eslint": "7.18.0",
-    "vitest": "1.6.0",
+    "vitest": "2.0.4",
     "zotero-plugin-scaffold": "0.0.33",
     "zotero-types": "2.1.0"
   }
