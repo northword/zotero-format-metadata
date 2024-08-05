@@ -7,16 +7,15 @@
     ":prConcurrentLimitNone",
     ":enableVulnerabilityAlerts",
     ":dependencyDashboard",
-    "schedule:weekly"
+    "schedule:monthly"
   ],
   "labels": ["dependencies"],
   "packageRules": [
     {
-      "matchPackageNames": ["zotero-plugin-toolkit", "zotero-types"],
+      "matchPackageNames": ["zotero-plugin-toolkit", "zotero-types", "zotero-plugin-scaffold"],
       "schedule": ["at any time"]
     }
   ],
-  "lockFileMaintenance": { "enabled": true, "platformAutomerge": true },
   "git-submodules": {
     "enabled": true
   }
