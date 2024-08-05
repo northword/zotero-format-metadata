@@ -43,13 +43,13 @@
     "@eslint/js": "9.8.0",
     "@release-it/keep-a-changelog": "5.0.0",
     "@trivago/prettier-plugin-sort-imports": "4.3.0",
-    "@types/node": "20.14.13",
+    "@types/node": "20.14.14",
     "eslint": "9.8.0",
     "prettier": "3.3.3",
     "release-it": "17.6.0",
     "typescript": "5.5.4",
     "typescript-eslint": "8.0.0",
-    "vitest": "2.0.4",
+    "vitest": "2.0.5",
     "zotero-plugin-scaffold": "0.0.33",
     "zotero-types": "2.1.0"
   }
