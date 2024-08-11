@@ -52,17 +52,6 @@ export default defineConfig({
                         },
                     },
                 },
-                {
-                    version: "1.9.1",
-                    update_link:
-                        "https://github.com/northword/zotero-format-metadata/releases/download/v1.9.1/zotero-format-metadata.xpi",
-                    applications: {
-                        zotero: {
-                            strict_min_version: "6.999",
-                            strict_max_version: "7.0.0-beta.54",
-                        },
-                    },
-                },
             ],
         },
         hooks: {

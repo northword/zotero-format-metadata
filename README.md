@@ -110,8 +110,6 @@ See [Features (in Chinese)](./docs/features.md).
    - If you are using FireFox, right click on the link of the XPI file and select "Save As...".
 2. Then, in Zotero, click `Tools` -> `Add-ons` and drag the `.xpi` onto the Add-ons window. See [how to install a Zotero addon](https://zotero-chinese.com/user-guide/plugins/about-plugin.html).
 
-Note: The latest version is only supported for Zotero 7. If you are using Zotero 6, please download [version 0.4.4](https://github.com/northword/zotero-format-metadata/releases/tag/0.4.4).
-
 ## Changelog
 
 See [CHANGELOG.md](./CHANGELOG.md).

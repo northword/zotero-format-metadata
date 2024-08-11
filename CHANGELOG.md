@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fix typo of translation. closes: #194
 
+### Changed
+
+- Change docs and code for Zotero 7.
+
 ## [1.18.0] - 2024-06-23
 
 ### Added
