@@ -37,7 +37,7 @@
     "iso-locales": "1.1.1",
     "p-queue": "8.0.1",
     "tinyld": "1.3.4",
-    "zotero-plugin-toolkit": "2.3.37"
+    "zotero-plugin-toolkit": "3.0.0"
   },
   "devDependencies": {
     "@eslint/js": "9.8.0",
