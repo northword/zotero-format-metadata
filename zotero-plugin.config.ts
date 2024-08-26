@@ -14,7 +14,7 @@ export default defineConfig({
     xpiDownloadLink: "https://github.com/{{owner}}/{{repo}}/releases/download/v{{version}}/{{xpiName}}.xpi",
 
     server: {
-        asProxy: true,
+        // asProxy: true,
     },
 
     build: {
@@ -38,7 +38,6 @@ export default defineConfig({
                 outfile: `build/addon/content/scripts/${pkg.config.addonRef}.js`,
             },
         ],
-        // If you want to checkout update.json into the repository, uncomment the following lines:
         makeUpdateJson: {
             hash: false,
             updates: [
@@ -61,11 +60,6 @@ export default defineConfig({
             },
         },
     },
-    // release: {
-    //   bumpp: {
-    //     execute: "npm run build",
-    //   },
-    // },
 
     // If you need to see a more detailed build log, uncomment the following line:
     // logLevel: "trace",
