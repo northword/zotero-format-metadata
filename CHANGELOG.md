@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix the issue where setField fails for non-existent fields when the retrieved item type is inconsistent with the current item type. closes: [#208](https://github.com/northword/zotero-format-metadata/issues/208)
+
 ## [1.18.2] - 2024-08-26
 
 ### Fixed

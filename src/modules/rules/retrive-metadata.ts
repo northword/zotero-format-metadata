@@ -55,6 +55,8 @@ export default class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
         const translate = new Zotero.Translate.Search();
         translate.setSearch(itemTemp);
         const translators = await translate.getTranslators();
+        ztoolkit.log("translators:", translators);
+        if (translators.length == 0) return undefined;
         translate.setTranslator(translators);
 
         // {libraryID: options} 避免条目保存
@@ -82,13 +84,22 @@ export default class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
                     break;
 
                 case "itemType": {
-                    if (this.options.mode !== "all") break;
-                    if (newItem["DOI"]?.match(/arxiv/gi)) break;
                     const newItemTypeID = Zotero.ItemTypes.getID(newItem["itemType"]);
-                    if (newItemTypeID && newItem["itemType"] !== item.itemType) {
-                        ztoolkit.log(`Update ItemType from ${item.itemType} to ${newItem["itemType"]}`);
-                        item.setType(newItemTypeID);
+                    const isNeed = newItemTypeID && newItem["itemType"] !== item.itemType;
+                    if (!isNeed) break;
+
+                    if (this.options.mode !== "all") {
+                        ztoolkit.log("itemType need to update but mode is not 'all'.");
+                        break;
                     }
+
+                    if (newItem["DOI"]?.match(/arxiv/gi)) {
+                        ztoolkit.log("DOI has 'arxiv', skip to change itemType.");
+                        break;
+                    }
+
+                    ztoolkit.log(`Update ItemType from ${item.itemType} to ${newItem["itemType"]}`);
+                    item.setType(newItemTypeID);
                     break;
                 }
 
@@ -102,15 +113,15 @@ export default class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
                 default: {
                     const newFieldValue = newItem[field] ?? "",
                         // @ts-ignore field 已为 Zotero.Item.ItemField
-                        oldFieldValue = item.getField(field);
+                        oldFieldValue = item.getField(field, false, true);
 
                     if (this.options.mode !== "all" && oldFieldValue !== "") break;
                     // 当新条目该字段未空时，结束本次循环
                     // 存疑：当新条目该字段为空时，可能是该字段确实为空，用户已有条目字段可能是假值。
                     // if (!newFieldValue) continue;
-                    ztoolkit.log(`Update ${field} from ${oldFieldValue} to ${newFieldValue}`);
+                    ztoolkit.log(`Update "${field}" from "${oldFieldValue}" to "${newFieldValue}"`);
                     // @ts-ignore field 已为 Zotero.Item.ItemField
-                    item.setField(field, newFieldValue);
+                    item.setField(field, newFieldValue, true);
                     break;
                 }
             }
