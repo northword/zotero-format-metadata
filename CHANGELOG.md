@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix typo of transnation. closes: [#210](https://github.com/northword/zotero-format-metadata/issues/210)
+
 ## [1.18.1] - 2024-08-11
 
 ### Fixed
