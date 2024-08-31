@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix the issue that ISBN has higher priority than DOI when “Update metadata by identifier”. fixes: [#216](https://github.com/northword/zotero-format-metadata/issues/216)
+
 ## [1.18.3] - 2024-08-26
 
 ### Fixed
