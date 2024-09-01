@@ -29,7 +29,7 @@
     "url": "https://github.com/northword/zotero-format-metadata/issues"
   },
   "homepage": "https://github.com/northword/zotero-format-metadata#readme",
-  "packageManager": "pnpm@9.8.0",
+  "packageManager": "pnpm@9.9.0",
   "dependencies": {
     "csvtojson": "^2.0.10",
     "iso-locales": "^1.1.1",
