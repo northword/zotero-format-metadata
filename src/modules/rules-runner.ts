@@ -47,13 +47,13 @@ export class LintRunner {
                 item = await rule.apply(item);
             } catch (err) {
                 logError(err, item);
-                item.addTag("linter/error");
+                item.addTag("linter/error", 1);
                 await item.saveTx();
                 throw err;
             }
         }
         ztoolkit.log("[Runner] Item returned: ", item);
-        if (item.getTags().includes({ tag: "linter/error", type: 1 })) {
+        if (item.hasTag("linter/error")) {
             item.removeTag("linter/error");
         }
         await item.saveTx();
