@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix issue that Lint error would clear all tags. closes: [#221](https://github.com/northword/zotero-format-metadata/issues/221)
+
 ## [1.18.4] - 2024-08-31
 
 ### Fixed
