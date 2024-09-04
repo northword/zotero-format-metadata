@@ -47,7 +47,7 @@ export class LintRunner {
                 item = await rule.apply(item);
             } catch (err) {
                 logError(err, item);
-                item.setTags(["linter/error"]);
+                item.addTag("linter/error");
                 await item.saveTx();
                 throw err;
             }
