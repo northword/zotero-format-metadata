@@ -11,7 +11,7 @@ export default class RemoveDOIPrefix extends RuleBase<RemoveDOIPrefixOptions> {
         const doi = item.getField("DOI");
         if (doi && typeof doi == "string") {
             const cleandDOI = Zotero.Utilities.cleanDOI(doi);
-            cleandDOI ? item.setField("DOI", cleandDOI) : "pass";
+            if (cleandDOI) item.setField("DOI", cleandDOI);
         }
         return item;
     }

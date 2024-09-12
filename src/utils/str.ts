@@ -453,12 +453,11 @@ export function getTextLanguage(text: string) {
 
     // 限制常用语言
     if (getPref("lang.only")) {
-        getPref("lang.only.cmn") ? options.only.push("zh") : "pass";
-        getPref("lang.only.eng") ? options.only.push("en") : "pass";
+        if (getPref("lang.only.cmn")) options.only.push("zh");
+        if (getPref("lang.only.eng")) options.only.push("en");
         const otherLang = getPref("lang.only.other") as string;
-        otherLang !== "" && otherLang !== undefined
-            ? options.only.push.apply(otherLang.replace(/ /g, "").split(","))
-            : "pass";
+        if (otherLang !== "" && otherLang !== undefined)
+            options.only.push.apply(otherLang.replace(/ /g, "").split(","));
     }
     ztoolkit.log("[lang] Selected ISO 639-1 code is: ", options.only);
 

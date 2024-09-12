@@ -7,28 +7,27 @@ export { getStdLintRules, getNewItemLintRules };
 function getStdLintRules() {
     // 作者、期刊、年、期、卷、页 -> 判断语言 -> 作者大小写 -> 匹配缩写 -> 匹配地点 -> 格式化日期 -> 格式化DOI
     const rules = [];
-    // getPref("isEnableOtherFields") ? rules.push(new Rules.UpdateMetadata({ mode: "blank" })) : "";
-    getPref("noDuplicationItems") ? rules.push(new Rules.NoDuplicatItem({})) : "skip";
-    getPref("checkWebpage") ? rules.push(new Rules.NoWebPageItem({})) : "skip";
-    getPref("noPreprintJournalArticle") ? rules.push(new Rules.NoPreprintJournalArticle({})) : "skip";
-    getPref("lang") ? rules.push(new Rules.UpdateItemLanguage({})) : "";
-    getPref("creatorsCase") ? rules.push(new Rules.CapitalizeCreators({})) : "";
-    getPref("titleSentenceCase") ? rules.push(new Rules.TitleSentenceCase({})) : "";
-    getPref("publicationTitleCase") ? rules.push(new Rules.UpdatePublicationTitle({})) : "";
-    getPref("abbr") ? rules.push(new Rules.UpdateJournalAbbr({})) : "";
-    getPref("universityPlace") ? rules.push(new Rules.UpdateUniversityPlace({})) : "";
-    getPref("dateISO") && !getPref("isEnableOtherFields") ? rules.push(new Rules.DateISO({})) : "";
-    getPref("noDOIPrefix") ? rules.push(new Rules.RemoveDOIPrefix({})) : "";
-    getPref("noExtraZeros") ? rules.push(new Rules.NoExtraZeros({})) : "";
-    getPref("pagesConnector") ? rules.push(new Rules.PagesConnector({})) : "";
-    getPref("thesisType") ? rules.push(new Rules.ThesisType({})) : "";
-    getPref("university") ? rules.push(new Rules.University({})) : "";
+    if (getPref("noDuplicationItems")) rules.push(new Rules.NoDuplicatItem({}));
+    if (getPref("checkWebpage")) rules.push(new Rules.NoWebPageItem({}));
+    if (getPref("noPreprintJournalArticle")) rules.push(new Rules.NoPreprintJournalArticle({}));
+    if (getPref("lang")) rules.push(new Rules.UpdateItemLanguage({}));
+    if (getPref("creatorsCase")) rules.push(new Rules.CapitalizeCreators({}));
+    if (getPref("titleSentenceCase")) rules.push(new Rules.TitleSentenceCase({}));
+    if (getPref("publicationTitleCase")) rules.push(new Rules.UpdatePublicationTitle({}));
+    if (getPref("abbr")) rules.push(new Rules.UpdateJournalAbbr({}));
+    if (getPref("universityPlace")) rules.push(new Rules.UpdateUniversityPlace({}));
+    if (getPref("dateISO")) rules.push(new Rules.DateISO({}));
+    if (getPref("noDOIPrefix")) rules.push(new Rules.RemoveDOIPrefix({}));
+    if (getPref("noExtraZeros")) rules.push(new Rules.NoExtraZeros({}));
+    if (getPref("pagesConnector")) rules.push(new Rules.PagesConnector({}));
+    if (getPref("thesisType")) rules.push(new Rules.ThesisType({}));
+    if (getPref("university")) rules.push(new Rules.University({}));
     return rules;
 }
 
 function getNewItemLintRules() {
     const rules = [];
-    getPref("lint.onAdded") ? rules.push(getStdLintRules()) : "";
+    if (getPref("lint.onAdded")) rules.push(getStdLintRules());
     return rules.flat();
 }
 

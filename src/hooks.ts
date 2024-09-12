@@ -35,7 +35,7 @@ async function onMainWindowLoad(win: Window): Promise<void> {
 async function onMainWindowUnload(win: Window): Promise<void> {
     ztoolkit.unregisterAll();
     Object.values(addon.data.dialogs).forEach((dialog) => {
-        dialog === undefined ? "" : dialog?.window.close();
+        if (dialog !== undefined) dialog.window.close();
     });
 }
 

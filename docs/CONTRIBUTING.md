@@ -21,7 +21,7 @@ vi .env
 
 ```ini
 # The path of the Zotero binary file.
-# The path delimiter should be escaped as `\\` for win32. 
+# The path delimiter should be escaped as `\\` for win32.
 # The path is `*/Zotero.app/Contents/MacOS/zotero` for MacOS.
 ZOTERO_PLUGIN_ZOTERO_BIN_PATH = /path/to/zotero.exe
 

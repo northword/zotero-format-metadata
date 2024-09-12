@@ -9,6 +9,9 @@ pnpm-lock.yaml
 # libs
 src/libs/**
 
+# Data
+src/data/journal-abbr/
+
 # tmp
 **/*.bak
 **/*.new

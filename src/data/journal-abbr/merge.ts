@@ -1,15 +1,11 @@
-import * as fs from 'fs';
+import { normalizeKey } from "../../utils/str";
 import journalAbbrISO4JabRef from "./jabref-abbr/journal-list-dots";
-import journalAbbrISO4Ubc from "./library-ubc-ca/journalAbbrData"
-import { normalizeKey } from '../../utils/str';
+import journalAbbrISO4Ubc from "./library-ubc-ca/journalAbbrData";
+import * as fs from "fs";
 
-
-const dataList = [
-    journalAbbrISO4Ubc,
-    journalAbbrISO4JabRef
-] as {
+const dataList = [journalAbbrISO4Ubc, journalAbbrISO4JabRef] as {
     [key: string]: string;
-}[]
+}[];
 
 // 合并两个对象
 // const mergedJson = { ...json1, ...json2 } as {
@@ -38,4 +34,4 @@ for (const currentData of dataList) {
 
 export const resultJson = `export default ${JSON.stringify(uniqueJson, null, 2)}`;
 
-fs.writeFileSync('journalAbbr.ts', resultJson, 'utf8');
+fs.writeFileSync("journalAbbr.ts", resultJson, "utf8");

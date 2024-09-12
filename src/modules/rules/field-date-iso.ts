@@ -10,7 +10,7 @@ export default class DataISO extends RuleBase<DataISOOptions> {
     apply(item: Zotero.Item): Zotero.Item {
         const oldDate = item.getField("date") as string,
             newDate = Zotero.Date.strToISO(oldDate);
-        newDate ? item.setField("date", newDate) : "";
+        if (newDate) item.setField("date", newDate);
         return item;
     }
 }
