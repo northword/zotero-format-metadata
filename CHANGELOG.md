@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix formatting issues with accessDate. <https://forums.zotero.org/discussion/comment/474245#Comment_474245>
+
 ## [1.18.5] - 2024-09-04
 
 ### Fixed

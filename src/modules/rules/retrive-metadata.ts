@@ -118,6 +118,15 @@ export default class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
                     }
                     break;
 
+                case "accessDate": {
+                    const newFieldValue = Zotero.Date.dateToSQL(new Date(newItem[field] ?? ""), true);
+                    if (newFieldValue) {
+                        ztoolkit.log(`Update "accessDate" to ${newFieldValue}`);
+                        item.setField("accessDate", newFieldValue, true);
+                    }
+                    break;
+                }
+
                 default: {
                     const newFieldValue = newItem[field] ?? "",
                         // @ts-ignore field 已为 Zotero.Item.ItemField
