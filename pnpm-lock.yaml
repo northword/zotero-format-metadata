@@ -21,8 +21,8 @@ importers:
         specifier: ^1.3.4
         version: 1.3.4
       zotero-plugin-toolkit:
-        specifier: ^3.0.0
-        version: 3.0.0
+        specifier: ^4.0.0
+        version: 4.0.1
     devDependencies:
       '@eslint/js':
         specifier: ^9.9.1
@@ -3893,8 +3893,9 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  zotero-plugin-toolkit@3.0.0:
-    resolution: {integrity: sha512-wwTyPd3ZSU7B0U9/vPD+PCVJlI2SAFtNgF0NTj741ia7jHx5e3nqnsOAehGj0qaXLWtcxmy7H3Iku6n2yfRgsA==}
+  zotero-plugin-toolkit@4.0.1:
+    resolution: {integrity: sha512-hdsyXJBG3/fimD2FTXuUPl60SfPFNs6N2/3v3YSU9EuRkKwwRtHvMsxyb+dnhRK3Xfrlf5BdwscjlCvBzmUSrQ==}
+    engines: {node: '>=16'}
 
   zotero-types@2.1.1:
     resolution: {integrity: sha512-D7iVSorez8Z9R1kHnpPOfSgDKX2lE4DA22CvA4JLkhZoxqqq24qN7TwxsH0elKJKu8XW0MjYU5GmWtP4KGy97Q==}
@@ -8032,7 +8033,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  zotero-plugin-toolkit@3.0.0:
+  zotero-plugin-toolkit@4.0.1:
     dependencies:
       zotero-types: 2.1.1
     transitivePeerDependencies:
