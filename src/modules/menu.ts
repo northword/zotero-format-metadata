@@ -298,9 +298,9 @@ export function registerMenu() {
     // });
 }
 
-export function registerTextTransformMenu() {
-    const zoteroFieldTransformMenu = document.getElementById("zotero-field-transform-menu");
-    const toSentenceCaseExtMenu = ztoolkit.UI.createElement(document, "menuitem", {
+export function registerTextTransformMenu(window: Window) {
+    const zoteroFieldTransformMenu = Zotero.getMainWindow().document.getElementById("zotero-field-transform-menu");
+    const toSentenceCaseExtMenu = ztoolkit.UI.createElement(window.document, "menuitem", {
         id: "creator-transform-sentence-case-ext",
         skipIfExists: true,
         classList: ["menuitem-non-iconic"],

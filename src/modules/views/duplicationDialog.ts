@@ -27,7 +27,7 @@ export class duplicationDialog {
             .addButton(getString("dialog-dup-button-merge"), "ok", {
                 callback: () => {
                     // 聚焦
-                    ZoteroPane.setVirtual("1", "duplicates", true, true);
+                    Zotero.getActiveZoteroPane().setVirtual("1", "duplicates", true, true);
                 },
             });
 
@@ -53,13 +53,13 @@ export class duplicationDialog {
 
     static updateDialog(item: Zotero.Item) {
         console.log("adding item to dialog");
-        const newItem = document.createElement("li");
+        const window = addon.data.dialogs.duplicationDialog!.window,
+            newItem = window.document.createElement("li");
         newItem.textContent = item.getField("title") as string;
-        addon.data.dialogs
-            .duplicationDialog!.window.document.getElementById("formetmetadata-duplication-details")
-            ?.appendChild(newItem);
+
+        window.document.getElementById("formetmetadata-duplication-details")?.appendChild(newItem);
         // @ts-ignore window has sizeToContent() for firefox
-        addon.data.dialogs.duplicationDialog!.window.sizeToContent();
+        window.sizeToContent();
     }
 
     static closeDialog() {

@@ -9,6 +9,7 @@ export default tseslint.config(
     {
         extends: [eslint.configs.recommended, ...tseslint.configs.recommended],
         rules: {
+            "no-restricted-globals": ["error", "window", "document"],
             "@typescript-eslint/ban-ts-comment": [
                 "warn",
                 {

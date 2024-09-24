@@ -17,14 +17,11 @@ export function registerNotifier() {
     // Register the callback in Zotero as an item observer
     const notifierID = Zotero.Notifier.registerObserver(callback, ["item"]);
 
-    // Unregister callback when the window closes (important to avoid a memory leak)
-    window.addEventListener(
-        "unload",
-        (e: Event) => {
+    Zotero.Plugins.addObserver({
+        shutdown: ({ id: pluginID }) => {
             unregisterNotifier(notifierID);
         },
-        false,
-    );
+    });
 
     /**
      * 监听 切换选择的条目
@@ -40,9 +37,9 @@ function unregisterNotifier(notifierID: string) {
     Zotero.Notifier.unregisterObserver(notifierID);
 }
 
-export function registerMutationObserver() {
-    const itemPane = document.getElementById("zotero-item-pane-header") as HTMLElement;
-    const contextPane = document.getElementById("zotero-context-pane-inner") as HTMLElement;
+export function registerMutationObserver(window: Window) {
+    const itemPane = window.document.getElementById("zotero-item-pane-header") as HTMLElement;
+    const contextPane = window.document.getElementById("zotero-context-pane-inner") as HTMLElement;
 
     // ztoolkit.log(targetNode);
     const observerOptions = {
