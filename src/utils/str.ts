@@ -457,7 +457,7 @@ export function getTextLanguage(text: string) {
         if (getPref("lang.only.eng")) options.only.push("en");
         const otherLang = getPref("lang.only.other") as string;
         if (otherLang !== "" && otherLang !== undefined)
-            options.only.push.apply(otherLang.replace(/ /g, "").split(","));
+            options.only.push(...otherLang.replace(/ /g, "").split(","));
     }
     ztoolkit.log("[lang] Selected ISO 639-1 code is: ", options.only);
 
