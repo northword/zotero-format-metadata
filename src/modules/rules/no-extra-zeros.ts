@@ -3,7 +3,7 @@ import { RuleBase, RuleBaseOptions } from "./rule-base";
 
 class NoExtraZerosOptions implements RuleBaseOptions {}
 
-export default class NoExtraZeros extends RuleBase<RuleBaseOptions> {
+export class NoExtraZeros extends RuleBase<RuleBaseOptions> {
     constructor(options: NoExtraZerosOptions) {
         super(options);
     }

@@ -3,7 +3,7 @@ import { RuleBase, RuleBaseOptions } from "./rule-base";
 
 class CreatorsPinyinOptions implements RuleBaseOptions {}
 
-export default class CreatorsPinyin extends RuleBase<CreatorsPinyinOptions> {
+export class CreatorsPinyin extends RuleBase<CreatorsPinyinOptions> {
     constructor(options: CreatorsPinyinOptions) {
         super(options);
     }

@@ -1,9 +1,9 @@
 import { RuleBase, RuleBaseOptions } from "./rule-base";
 
-class DataISOOptions implements RuleBaseOptions {}
+class DateISOOptions implements RuleBaseOptions {}
 
-export default class DataISO extends RuleBase<DataISOOptions> {
-    constructor(options: DataISOOptions) {
+export class DateISO extends RuleBase<DateISOOptions> {
+    constructor(options: DateISOOptions) {
         super(options);
     }
 

@@ -6,7 +6,7 @@ class Options implements RuleBaseOptions {}
  * Replaces dot in title end
  * @see https://github.com/northword/zotero-format-metadata/issues/213
  */
-export default class TitleGuillemet extends RuleBase<Options> {
+export class TitleNoDotEnd extends RuleBase<Options> {
     constructor(options: Options) {
         super(options);
     }

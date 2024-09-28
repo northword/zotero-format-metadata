@@ -2,7 +2,7 @@ import { RuleBase, RuleBaseOptions } from "./rule-base";
 
 class UiversityOptions implements RuleBaseOptions {}
 
-export default class University extends RuleBase<UiversityOptions> {
+export class University extends RuleBase<UiversityOptions> {
     constructor(options: UiversityOptions) {
         super(options);
     }

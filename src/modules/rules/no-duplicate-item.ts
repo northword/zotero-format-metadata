@@ -3,7 +3,7 @@ import { RuleBase, RuleBaseOptions } from "./rule-base";
 
 class NoDuplicatItemOptions implements RuleBaseOptions {}
 
-export default class NoDuplicatItem extends RuleBase<NoDuplicatItemOptions> {
+export class NoDuplicatItem extends RuleBase<NoDuplicatItemOptions> {
     constructor(options: NoDuplicatItemOptions) {
         super(options);
     }

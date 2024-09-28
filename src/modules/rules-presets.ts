@@ -1,6 +1,6 @@
 import { getPref } from "../utils/prefs";
 import { removeHtmlTag } from "../utils/str";
-import Rules from "./rules";
+import * as Rules from "./rules";
 
 export { getStdLintRules, getNewItemLintRules };
 
@@ -13,6 +13,7 @@ function getStdLintRules() {
     if (getPref("lang")) rules.push(new Rules.UpdateItemLanguage({}));
     if (getPref("creatorsCase")) rules.push(new Rules.CapitalizeCreators({}));
     if (getPref("titleSentenceCase")) rules.push(new Rules.TitleSentenceCase({}));
+    if (getPref("titleDotEnd")) rules.push(new Rules.TitleNoDotEnd({}));
     if (getPref("publicationTitleCase")) rules.push(new Rules.UpdatePublicationTitle({}));
     if (getPref("abbr")) rules.push(new Rules.UpdateJournalAbbr({}));
     if (getPref("universityPlace")) rules.push(new Rules.UpdateUniversityPlace({}));

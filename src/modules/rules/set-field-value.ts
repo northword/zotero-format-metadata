@@ -5,7 +5,7 @@ class SetFieldValueOptions implements RuleBaseOptions {
     value: string | number | undefined = undefined;
 }
 
-export default class SetFieldValue extends RuleBase<SetFieldValueOptions> {
+export class SetFieldValue extends RuleBase<SetFieldValueOptions> {
     constructor(options: SetFieldValueOptions) {
         super(options);
     }

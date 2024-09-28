@@ -5,7 +5,7 @@ import { RuleBase, RuleBaseOptions } from "./rule-base";
 
 class CapitalizePublicationTitleOptions implements RuleBaseOptions {}
 
-export default class UpdatePublicationTitle extends RuleBase<CapitalizePublicationTitleOptions> {
+export class UpdatePublicationTitle extends RuleBase<CapitalizePublicationTitleOptions> {
     constructor(options: CapitalizePublicationTitleOptions) {
         super(options);
     }

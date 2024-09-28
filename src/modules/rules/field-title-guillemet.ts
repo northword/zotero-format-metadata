@@ -8,7 +8,7 @@ class TitleGuillemetOptions implements RuleBaseOptions {
  * Replaces `《》` to `〈〉`
  * @see https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl/issues/204
  */
-export default class TitleGuillemet extends RuleBase<TitleGuillemetOptions> {
+export class TitleGuillemet extends RuleBase<TitleGuillemetOptions> {
     constructor(options: TitleGuillemetOptions) {
         super(options);
     }

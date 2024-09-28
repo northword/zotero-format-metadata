@@ -8,7 +8,7 @@ class CapitalizeCreatorsOptions implements RuleBaseOptions {}
  * rule: 作者应以首字母大写方式存储
  * @param item
  */
-export default class CapitalizeCreators extends RuleBase<CapitalizeCreatorsOptions> {
+export class CapitalizeCreators extends RuleBase<CapitalizeCreatorsOptions> {
     constructor(options: CapitalizeCreatorsOptions) {
         super(options);
     }

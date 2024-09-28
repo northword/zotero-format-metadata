@@ -2,7 +2,7 @@ import { RuleBase, RuleBaseOptions } from "./rule-base";
 
 class PagesConnectorOptions implements RuleBaseOptions {}
 
-export default class PagesConnector extends RuleBase<RuleBaseOptions> {
+export class PagesConnector extends RuleBase<RuleBaseOptions> {
     constructor(options: PagesConnectorOptions) {
         super(options);
     }

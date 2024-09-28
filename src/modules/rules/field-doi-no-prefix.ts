@@ -2,7 +2,7 @@ import { RuleBase, RuleBaseOptions } from "./rule-base";
 
 class RemoveDOIPrefixOptions implements RuleBaseOptions {}
 
-export default class RemoveDOIPrefix extends RuleBase<RemoveDOIPrefixOptions> {
+export class RemoveDOIPrefix extends RuleBase<RemoveDOIPrefixOptions> {
     constructor(options: RemoveDOIPrefixOptions) {
         super(options);
     }

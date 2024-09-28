@@ -5,7 +5,7 @@ import { RuleBase, RuleBaseOptions } from "./rule-base";
 
 class UpdateItemLanguageOptions implements RuleBaseOptions {}
 
-export default class UpdateItemLanguage extends RuleBase<UpdateItemLanguageOptions> {
+export class UpdateItemLanguage extends RuleBase<UpdateItemLanguageOptions> {
     constructor(options: UpdateItemLanguageOptions) {
         super(options);
     }

@@ -5,7 +5,7 @@ import csv from "csvtojson";
 
 class TitleSentenceCaseOptions implements RuleBaseOptions {}
 
-export default class TitleSentenceCase extends RuleBase<TitleSentenceCaseOptions> {
+export class TitleSentenceCase extends RuleBase<TitleSentenceCaseOptions> {
     constructor(options: TitleSentenceCaseOptions) {
         super(options);
     }

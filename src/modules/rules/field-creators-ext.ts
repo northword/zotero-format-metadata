@@ -14,7 +14,7 @@ class UseCreatorsExtOptions implements RuleBaseOptions {
 }
 
 // 交换作者拓展信息
-export default class UseCreatorsExt extends RuleBase<UseCreatorsExtOptions> {
+export class UseCreatorsExt extends RuleBase<UseCreatorsExtOptions> {
     constructor(options: UseCreatorsExtOptions) {
         super(options);
     }

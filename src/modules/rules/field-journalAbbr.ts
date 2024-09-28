@@ -6,7 +6,7 @@ import csv from "csvtojson";
 
 class UpdateJournalAbbrOptions implements RuleBaseOptions {}
 
-export default class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions> {
+export class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions> {
     constructor(options: UpdateJournalAbbrOptions) {
         super(options);
     }

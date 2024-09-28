@@ -8,7 +8,7 @@ class UpdateMetadataOption implements RuleBaseOptions {
     // lint: boolean = false;
 }
 
-export default class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
+export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
     constructor(options: UpdateMetadataOption) {
         super(options);
     }

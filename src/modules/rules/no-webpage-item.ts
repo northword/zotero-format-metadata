@@ -92,7 +92,7 @@ const publisherUrlKeyWords = [
 
 class NoWebPageItemOptions implements RuleBaseOptions {}
 
-export default class NoWebPageItem extends RuleBase<NoWebPageItemOptions> {
+export class NoWebPageItem extends RuleBase<NoWebPageItemOptions> {
     constructor(options: NoWebPageItemOptions) {
         super(options);
     }

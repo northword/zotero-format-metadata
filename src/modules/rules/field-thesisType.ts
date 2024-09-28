@@ -12,7 +12,7 @@ class ThesisTypeOptions implements RuleBaseOptions {}
  *
  * @see https://github.com/northword/zotero-format-metadata/issues/132
  */
-export default class ThesisType extends RuleBase<ThesisTypeOptions> {
+export class ThesisType extends RuleBase<ThesisTypeOptions> {
     constructor(options: ThesisTypeOptions) {
         super(options);
     }

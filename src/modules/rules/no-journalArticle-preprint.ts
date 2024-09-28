@@ -9,7 +9,7 @@ const publisherUrlKeyWords = ["arxiv.org", "biorxiv.org", "medrxiv.org", "chinax
 
 class NoPreprintJournalArticleOptions implements RuleBaseOptions {}
 
-export default class NoPreprintJournalArticle extends RuleBase<NoPreprintJournalArticleOptions> {
+export class NoPreprintJournalArticle extends RuleBase<NoPreprintJournalArticleOptions> {
     constructor(options: NoPreprintJournalArticleOptions) {
         super(options);
     }
