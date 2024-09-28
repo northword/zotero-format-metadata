@@ -15,7 +15,8 @@ export async function setLanguageManualDialog(): Promise<string | undefined> {
             addon.data.dialogs.selectLang = dialog;
         },
         unloadCallback: () => {
-            const form = dialog.window.document.querySelector("form") as HTMLFormElement;
+            const window = dialog.window;
+            const form = window.document.querySelector("form") as HTMLFormElement;
             dialogData.formData = new window.FormData(form);
             dialogData.selectedLang = dialogData.formData.get("selectedLang");
             console.log(dialogData);
