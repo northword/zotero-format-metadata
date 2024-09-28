@@ -11,7 +11,8 @@ export async function getCreatorsExtOptionDialog(): Promise<any | undefined> {
             addon.data.dialogs.selectLang = dialog;
         },
         unloadCallback: () => {
-            const form = dialog.window.document.querySelector("form") as HTMLFormElement,
+            const window = dialog.window,
+                form = window.document.querySelector("form") as HTMLFormElement,
                 formData = new window.FormData(form);
             dialogData.data = {
                 mark: {

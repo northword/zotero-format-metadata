@@ -61,6 +61,7 @@ export class richTextToolBar {
     // }
 
     static showToolBar() {
+        const document = Zotero.getMainWindow().document;
         const toolbarDiv = document.createElement("div");
         toolbarDiv.className = "linter-richtext-toolbar";
         toolbarDiv.style.display = "flex";
@@ -107,6 +108,7 @@ export class richTextToolBar {
     }
 
     static closeToolBar() {
+        const document = Zotero.getMainWindow().document;
         document.querySelectorAll(".linter-richtext-toolbar").forEach((richtoolbar) => {
             richtoolbar?.parentNode?.removeChild(richtoolbar);
         });

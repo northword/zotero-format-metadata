@@ -18,18 +18,18 @@ async function onStartup() {
     initLocale();
     registerPrefs();
     registerNotifier();
-    await onMainWindowLoad(window);
+    await Promise.all(Zotero.getMainWindows().map((win) => onMainWindowLoad(win)));
     checkCompat();
 }
 
 async function onMainWindowLoad(win: Window): Promise<void> {
     // Create ztoolkit for every window
     addon.data.ztoolkit = createZToolkit();
-    registerMutationObserver();
+    registerMutationObserver(win);
     // Views.richTextToolBar.init();
     registerShortcuts();
     registerMenu();
-    registerTextTransformMenu();
+    registerTextTransformMenu(win);
 }
 
 async function onMainWindowUnload(win: Window): Promise<void> {
@@ -40,7 +40,10 @@ async function onMainWindowUnload(win: Window): Promise<void> {
 }
 
 function onShutdown() {
-    onMainWindowUnload(window);
+    ztoolkit.unregisterAll();
+    Object.values(addon.data.dialogs).forEach((dialog) => {
+        if (dialog !== undefined) dialog.window.close();
+    });
     // addon.data.dialogs = {};
     // Remove addon object
     addon.data.alive = false;
@@ -142,7 +145,7 @@ async function onLintInBatch(mode: string, items: Zotero.Item[] | "item" | "coll
                 items = Zotero.getActiveZoteroPane().getSelectedItems();
                 break;
             case "collection":
-                items = ZoteroPane.getSelectedCollection()?.getChildItems() ?? [];
+                items = Zotero.getActiveZoteroPane().getSelectedCollection()?.getChildItems() ?? [];
                 break;
             default:
                 items = Zotero.getActiveZoteroPane().getSelectedItems();
@@ -222,7 +225,7 @@ async function onLintInBatch(mode: string, items: Zotero.Item[] | "item" | "coll
             break;
         case "chem":
         default:
-            window.alert(getString("unimplemented"));
+            Zotero.getMainWindow().alert(getString("unimplemented"));
             return;
     }
 

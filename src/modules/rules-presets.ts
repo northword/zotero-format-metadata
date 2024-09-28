@@ -40,7 +40,7 @@ function getNewItemLintRules() {
  * @see https://stackoverflow.com/questions/31036076/how-to-replace-selected-text-in-a-textarea-with-javascript
  */
 export function setHtmlTag(tag: string, attribute?: string, value?: string) {
-    const editpaneItemBox = document.activeElement as HTMLInputElement | null;
+    const editpaneItemBox = Zotero.getMainWindow().document.activeElement as HTMLInputElement | null;
     if (
         editpaneItemBox !== null &&
         typeof editpaneItemBox.selectionStart == "number" &&
