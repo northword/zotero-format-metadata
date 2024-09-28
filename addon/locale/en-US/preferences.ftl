@@ -54,7 +54,7 @@ language-fill-option-only-cmn =
 language-fill-option-only-eng = 
     .label = English (en)
 language-fill-option-only-other = and:
-language-fill-option-only-other-desc = Here you need to enter the ISO 639-1 language code, separated by a semi-colon comma.
+language-fill-option-only-other-desc = Enter a comma-separated list of additional ISO 639-1 language codes.
 language-fill-option-only-other-doc = ISO 639-1 code
     .href = https://github.com/northword/zotero-format-metadata#readme
 

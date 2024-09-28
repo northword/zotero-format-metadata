@@ -1,7 +1,7 @@
 import { config } from "../../package.json";
 import { getString } from "../utils/locale";
 import { isRegularItem } from "../utils/zotero";
-import { MenuitemOptions } from "zotero-plugin-toolkit/dist/managers/menu";
+import type { MenuitemOptions } from "zotero-plugin-toolkit";
 
 export function registerMenu() {
     const menuIcon = `chrome://${config.addonRef}/content/icons/favicon.png`;
