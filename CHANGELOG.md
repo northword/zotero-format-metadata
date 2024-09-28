@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix language settings parsing, by @thebluepotato in [#229](https://github.com/northword/zotero-format-metadata/pull/229).
+
 ## [1.18.6] - 2024-09-15
 
 ### Fixed
