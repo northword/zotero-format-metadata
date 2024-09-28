@@ -10,6 +10,7 @@ pref("__prefsPrefix__.noPreprintJournalArticle", true);
 pref("__prefsPrefix__.titleSentenceCase", true);
 pref("__prefsPrefix__.title.shortTitle", true);
 pref("__prefsPrefix__.title.customTermPath", "");
+pref("__prefsPrefix__.titleDotEnd", true);
 pref("__prefsPrefix__.creatorsCase", true);
 pref("__prefsPrefix__.lang", true);
 pref("__prefsPrefix__.lang.only", true);

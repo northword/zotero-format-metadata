@@ -35,6 +35,8 @@ title-custom-term = 自定义术语:
 title-custom-term-button = 
     .label = 选择
 title-custom-term-desc =  自定义术语文件使用 CSV 文件格式，第一列为搜索词，第二列为替换词，不需要标题，搜索词支持正则表达式。分隔符可以为逗号或分号，但须统一，不得为制表符。
+title-dotend = 
+    .label = 标题不应以句号结尾
 
 ## 作者
 section-creators = 创作者 Creators

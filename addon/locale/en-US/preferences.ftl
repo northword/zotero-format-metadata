@@ -35,7 +35,9 @@ title-custom-term = Custom term:
 title-custom-term-button = 
     .label = Choose
 title-custom-term-desc = The custom terms file uses the CSV file format, with the first column being search terms and the second column being replacement terms, no headers are required, and regular expressions are supported for search terms. The delimiter can be a comma or a semicolon, but it must be uniform and not a tab.
- 
+title-dotend = 
+    .label = No title ending with dot
+
 ## 作者
 section-creators = Creators
 creators-case = 

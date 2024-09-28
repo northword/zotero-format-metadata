@@ -100,6 +100,11 @@
           style="width: 45em"
         />
       </vbox>
+      <checkbox
+        data-l10n-id="title-dotend"
+        preference="__prefsPrefix__.titleDotEnd"
+        native="true"
+      />
     </groupbox>
 
     <!-- 字段：作者 -->
@@ -128,43 +133,45 @@
         preference="__prefsPrefix__.lang"
         native="true"
       />
-      <checkbox
-        id="__addonRef__-lang-only"
-        data-l10n-id="language-fill-option-only"
-        preference="__prefsPrefix__.lang.only"
-        native="true"
-      />
       <vbox class="indented-pref">
-        <hbox align="center">
-          <checkbox
-            id="__addonRef__-lang-only-cmn"
-            data-l10n-id="language-fill-option-only-cmn"
-            preference="__prefsPrefix__.lang.only.cmn"
-            native="true"
-          />
-          <checkbox
-            id="__addonRef__-lang-only-eng"
-            data-l10n-id="language-fill-option-only-eng"
-            preference="__prefsPrefix__.lang.only.eng"
-            native="true"
-          />
-          <label data-l10n-id="language-fill-option-only-other" />
-          <html:input
-            type="text"
-            id="__addonRef__-lang-only-other"
-            preference="__prefsPrefix__.lang.only.other"
-          />
-          <label
-            data-l10n-id="language-fill-option-only-other-doc"
-            is="zotero-text-link"
-            class="zotero-text-link"
-            href="https://github.com/northword/zotero-format-metadata#readme"
-          />
-        </hbox>
-        <description
-          data-l10n-id="language-fill-option-only-other-desc"
-          style="width: 45em"
+        <checkbox
+          id="__addonRef__-lang-only"
+          data-l10n-id="language-fill-option-only"
+          preference="__prefsPrefix__.lang.only"
+          native="true"
         />
+        <vbox class="indented-pref">
+          <hbox align="center">
+            <checkbox
+              id="__addonRef__-lang-only-cmn"
+              data-l10n-id="language-fill-option-only-cmn"
+              preference="__prefsPrefix__.lang.only.cmn"
+              native="true"
+            />
+            <checkbox
+              id="__addonRef__-lang-only-eng"
+              data-l10n-id="language-fill-option-only-eng"
+              preference="__prefsPrefix__.lang.only.eng"
+              native="true"
+            />
+            <label data-l10n-id="language-fill-option-only-other" />
+            <html:input
+              type="text"
+              id="__addonRef__-lang-only-other"
+              preference="__prefsPrefix__.lang.only.other"
+            />
+            <label
+              data-l10n-id="language-fill-option-only-other-doc"
+              is="zotero-text-link"
+              class="zotero-text-link"
+              href="https://github.com/northword/zotero-format-metadata#readme"
+            />
+          </hbox>
+          <description
+            data-l10n-id="language-fill-option-only-other-desc"
+            style="width: 45em"
+          />
+        </vbox>
       </vbox>
     </groupbox>
 

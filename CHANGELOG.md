@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Title should not end with dot. [#213](https://github.com/northword/zotero-format-metadata/issues/213)
+
 ## [1.18.7] - 2024-09-28
 
 ### Fixed
