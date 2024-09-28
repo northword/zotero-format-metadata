@@ -1,15 +1,17 @@
-// import ZoteroToolkit from "../../../zotero-plugin-toolkit/dist/index";
 import { config } from "../../package.json";
-// import ZoteroToolkit from "zotero-plugin-toolkit";
-import { BasicTool, makeHelperTool, unregister } from "zotero-plugin-toolkit/dist/basic";
-import { DialogHelper } from "zotero-plugin-toolkit/dist/helpers/dialog";
-import { FilePickerHelper } from "zotero-plugin-toolkit/dist/helpers/filePicker";
-import { ProgressWindowHelper } from "zotero-plugin-toolkit/dist/helpers/progressWindow";
-import { VirtualizedTableHelper } from "zotero-plugin-toolkit/dist/helpers/virtualizedTable";
-import { KeyboardManager } from "zotero-plugin-toolkit/dist/managers/keyboard";
-import { MenuManager } from "zotero-plugin-toolkit/dist/managers/menu";
-import { ExtraFieldTool } from "zotero-plugin-toolkit/dist/tools/extraField";
-import { UITool } from "zotero-plugin-toolkit/dist/tools/ui";
+import {
+    BasicTool,
+    DialogHelper,
+    ExtraFieldTool,
+    FilePickerHelper,
+    KeyboardManager,
+    MenuManager,
+    ProgressWindowHelper,
+    UITool,
+    VirtualizedTableHelper,
+    makeHelperTool,
+    unregister,
+} from "zotero-plugin-toolkit";
 
 export { createZToolkit };
 
