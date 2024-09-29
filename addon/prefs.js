@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-
 pref("__prefsPrefix__.lint.onAdded", true);
 pref("__prefsPrefix__.lint.onGroup", false);
 pref("__prefsPrefix__.richtext.toolBar", true);

@@ -1,6 +1,7 @@
 {
   "name": "zotero-format-metadata",
   "version": "1.18.7",
+  "packageManager": "pnpm@9.11.0",
   "description": "An addon for Zotero to format item metadata.",
   "config": {
     "addonName": "Linter for Zotero",
@@ -9,27 +10,26 @@
     "addonInstance": "Linter",
     "prefsPrefix": "extensions.zotero.formatmetadata"
   },
+  "author": "northword",
+  "license": "AGPL-3.0-or-later",
+  "homepage": "https://github.com/northword/zotero-format-metadata#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/northword/zotero-format-metadata.git"
+  },
+  "bugs": {
+    "url": "https://github.com/northword/zotero-format-metadata/issues"
+  },
   "main": "src/index.ts",
   "scripts": {
     "start": "zotero-plugin serve",
     "build": "tsc --noEmit && zotero-plugin build",
-    "lint": "prettier --write . && eslint . --fix",
+    "lint": "eslint . --fix",
     "update-data": "bash scripts/update-data.sh",
     "test": "vitest",
     "release": "release-it --only-version --preReleaseId=beta",
     "update-deps": "pnpx taze minor -w -i"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/northword/zotero-format-metadata.git"
-  },
-  "author": "northword",
-  "license": "AGPL-3.0-or-later",
-  "bugs": {
-    "url": "https://github.com/northword/zotero-format-metadata/issues"
-  },
-  "homepage": "https://github.com/northword/zotero-format-metadata#readme",
-  "packageManager": "pnpm@9.11.0",
   "dependencies": {
     "csvtojson": "^2.0.10",
     "iso-locales": "^1.1.1",
@@ -38,15 +38,13 @@
     "zotero-plugin-toolkit": "^4.0.2"
   },
   "devDependencies": {
-    "@eslint/js": "^9.11.1",
+    "@antfu/eslint-config": "^3.7.3",
     "@release-it/keep-a-changelog": "^5.0.0",
-    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/node": "^20.16.10",
     "eslint": "^9.11.1",
-    "prettier": "^3.3.3",
+    "eslint-plugin-format": "^0.1.2",
     "release-it": "^17.6.0",
     "typescript": "^5.6.2",
-    "typescript-eslint": "^8.7.0",
     "vitest": "^2.1.1",
     "zotero-plugin-scaffold": "^0.1.4",
     "zotero-types": "^2.2.0"

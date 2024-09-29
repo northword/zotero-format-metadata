@@ -6,7 +6,7 @@ import journalAbbr from "./journal-abbr/journalAbbr";
 import universityPlace from "./university-list/university-place";
 
 export interface dict {
-    [key: string]: string;
+  [key: string]: string;
 }
 
 /**
@@ -34,5 +34,5 @@ export const universityPlaceLocalData: dict = universityPlace;
 export const iso6393To6391Data: dict = iso6393To6391;
 
 export { default as contryJson } from "./country-by-capital-city.json";
-export const contries = contry.map((c) => c.country);
-export const cities = contry.map((c) => c.city).filter((v) => v !== null);
+export const contries = contry.map(c => c.country);
+export const cities = contry.map(c => c.city).filter(v => v !== null);

@@ -6,7 +6,7 @@ import { config } from "../../package.json";
  * @param key
  */
 export function getPref(key: string) {
-    return Zotero.Prefs.get(`${config.prefsPrefix}.${key}`, true);
+  return Zotero.Prefs.get(`${config.prefsPrefix}.${key}`, true);
 }
 
 /**
@@ -16,7 +16,7 @@ export function getPref(key: string) {
  * @param value
  */
 export function setPref(key: string, value: string | number | boolean) {
-    return Zotero.Prefs.set(`${config.prefsPrefix}.${key}`, value, true);
+  return Zotero.Prefs.set(`${config.prefsPrefix}.${key}`, value, true);
 }
 
 /**
@@ -25,5 +25,5 @@ export function setPref(key: string, value: string | number | boolean) {
  * @param key
  */
 export function clearPref(key: string) {
-    return Zotero.Prefs.clear(`${config.prefsPrefix}.${key}`, true);
+  return Zotero.Prefs.clear(`${config.prefsPrefix}.${key}`, true);
 }

@@ -1,5 +1,6 @@
 import { getString } from "./locale";
 
+// eslint-disable-next-line ts/no-use-before-define
 export { isWindowAlive, localeWindow };
 
 /**
@@ -8,7 +9,7 @@ export { isWindowAlive, localeWindow };
  * @param win
  */
 function isWindowAlive(win?: Window) {
-    return win && !Components.utils.isDeadWrapper(win) && !win.closed;
+  return win && !Components.utils.isDeadWrapper(win) && !win.closed;
 }
 
 /**
@@ -42,25 +43,28 @@ function isWindowAlive(win?: Window) {
  * @param win
  */
 function localeWindow(win: Window) {
-    Array.from(win.document.querySelectorAll("*[locale-target]")).forEach((elem) => {
-        const errorInfo = "Locale Error";
-        const locales = elem.getAttribute("locale-target")?.split(",");
-        locales?.forEach((key) => {
-            const isProp = key in elem;
-            try {
-                const localeString = getString((isProp ? (elem as any)[key] : elem.getAttribute(key)).trim() || "");
-                if (isProp) {
-                    (elem as any)[key] = localeString;
-                } else {
-                    elem.setAttribute(key, localeString);
-                }
-            } catch (error) {
-                if (isProp) {
-                    (elem as any)[key] = errorInfo;
-                } else {
-                    elem.setAttribute(key, errorInfo);
-                }
-            }
-        });
+  Array.from(win.document.querySelectorAll("*[locale-target]")).forEach((elem) => {
+    const errorInfo = "Locale Error";
+    const locales = elem.getAttribute("locale-target")?.split(",");
+    locales?.forEach((key) => {
+      const isProp = key in elem;
+      try {
+        const localeString = getString((isProp ? (elem as any)[key] : elem.getAttribute(key)).trim() || "");
+        if (isProp) {
+          (elem as any)[key] = localeString;
+        }
+        else {
+          elem.setAttribute(key, localeString);
+        }
+      }
+      catch {
+        if (isProp) {
+          (elem as any)[key] = errorInfo;
+        }
+        else {
+          elem.setAttribute(key, errorInfo);
+        }
+      }
     });
+  });
 }

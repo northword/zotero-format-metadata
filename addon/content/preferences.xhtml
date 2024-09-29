@@ -1,8 +1,5 @@
 <linkset>
-  <html:link
-    rel="localization"
-    href="__addonRef__-preferences.ftl"
-  />
+  <html:link rel="localization" href="__addonRef__-preferences.ftl" />
 </linkset>
 <vbox
   id="__addonRef__"
@@ -10,7 +7,7 @@
 >
   <!-- 一般设置 -->
   <groupbox>
-    <label><html:h2 data-l10n-id="section-general"></html:h2></label>
+    <label><html:h2 data-l10n-id="section-general" /></label>
     <!-- 添加时自动执行格式化 -->
     <checkbox
       data-l10n-id="lint-on-item-added"
@@ -42,7 +39,7 @@
   <groupbox>
     <!-- 条目 -->
     <groupbox>
-      <label><html:h2 data-l10n-id="section-item"></html:h2></label>
+      <label><html:h2 data-l10n-id="section-item" /></label>
       <!-- 检测是否存在重复条目 -->
       <checkbox
         data-l10n-id="item-noDuplication"
@@ -65,7 +62,7 @@
 
     <!-- 字段：标题 -->
     <groupbox>
-      <label><html:h2 data-l10n-id="section-title"></html:h2></label>
+      <label><html:h2 data-l10n-id="section-title" /></label>
       <!-- 修改标题大小写 -->
       <checkbox
         data-l10n-id="title-sentenceCase"
@@ -79,7 +76,7 @@
           native="true"
         />
         <hbox align="center">
-          <label data-l10n-id="title-custom-term"></label>
+          <label data-l10n-id="title-custom-term" />
           <html:input
             style="flex: 1"
             type="text"
@@ -109,7 +106,7 @@
 
     <!-- 字段：作者 -->
     <groupbox>
-      <label><html:h2 data-l10n-id="section-creators"></html:h2></label>
+      <label><html:h2 data-l10n-id="section-creators" /></label>
       <!-- 修改作者大小写 -->
       <checkbox
         data-l10n-id="creators-case"
@@ -127,7 +124,7 @@
 
     <!-- 字段：语言 -->
     <groupbox>
-      <label><html:h2 data-l10n-id="section-language"></html:h2></label>
+      <label><html:h2 data-l10n-id="section-language" /></label>
       <checkbox
         data-l10n-id="language-fill"
         preference="__prefsPrefix__.lang"
@@ -177,7 +174,7 @@
 
     <!-- 字段：日期 -->
     <groupbox>
-      <label><html:h2 data-l10n-id="section-date"></html:h2></label>
+      <label><html:h2 data-l10n-id="section-date" /></label>
       <!-- 更新日期格式 -->
       <checkbox
         data-l10n-id="date-iso"
@@ -188,7 +185,7 @@
 
     <!-- 字段：期刊名 -->
     <groupbox>
-      <label><html:h2 data-l10n-id="section-publicationTitle">期刊名</html:h2></label>
+      <label><html:h2 data-l10n-id="section-publicationTitle" /></label>
       <!-- 修正期刊名大小写 -->
       <checkbox
         data-l10n-id="publicationTitle-case"
@@ -199,7 +196,7 @@
 
     <!-- 字段：期刊缩写 -->
     <groupbox>
-      <label><html:h2 data-l10n-id="section-abbr"></html:h2></label>
+      <label><html:h2 data-l10n-id="section-abbr" /></label>
       <!-- 更新期刊缩写 -->
       <checkbox
         data-l10n-id="abbr-iso"
@@ -207,7 +204,7 @@
         native="true"
       />
       <hbox align="center">
-        <label data-l10n-id="abbr-custom-data-label"></label>
+        <label data-l10n-id="abbr-custom-data-label" />
         <html:input
           style="flex: 1"
           type="text"
@@ -224,10 +221,7 @@
           native="true"
         />
       </hbox>
-      <description
-        data-l10n-id="abbr-custom-data-desc"
-        style="width: 45em"
-      />
+      <description data-l10n-id="abbr-custom-data-desc" style="width: 45em" />
       <checkbox
         id="__addonRef__-abbr-infer"
         data-l10n-id="abbr-infer"
@@ -250,7 +244,7 @@
 
     <!-- 期卷页 -->
     <groupbox>
-      <label><html:h2 data-l10n-id="section-pages"></html:h2></label>
+      <label><html:h2 data-l10n-id="section-pages" /></label>
       <!-- 去除期卷页0 -->
       <checkbox
         data-l10n-id="pages-remove-zeros"
@@ -278,7 +272,7 @@
 
     <!-- 字段：学位论文相关 -->
     <groupbox>
-      <label><html:h2 data-l10n-id="section-thesis"></html:h2></label>
+      <label><html:h2 data-l10n-id="section-thesis" /></label>
       <!-- 纠正学位论文类别 -->
       <checkbox
         data-l10n-id="university-type"
@@ -301,7 +295,7 @@
 
     <!-- 其他 -->
     <groupbox>
-      <label><html:h2 data-l10n-id="section-others"></html:h2></label>
+      <label><html:h2 data-l10n-id="section-others" /></label>
       <!-- 清理被不合理占用的字段 -->
       <checkbox
         data-l10n-id="std-clean-fileld"
@@ -314,9 +308,9 @@
 
   <!-- 更新元数据 -->
   <groupbox>
-    <label><html:h2 data-l10n-id="section-updateMetadata"></html:h2></label>
+    <label><html:h2 data-l10n-id="section-updateMetadata" /></label>
     <hbox align="center">
-      <label data-l10n-id="others-semanticScholarToken"></label>
+      <label data-l10n-id="others-semanticScholarToken" />
       <html:input
         style="flex: 1"
         type="text"

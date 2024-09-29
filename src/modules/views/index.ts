@@ -3,4 +3,4 @@ import { duplicationDialog } from "./duplicationDialog";
 import { richTextToolBar } from "./richTextToolBar";
 import { setLanguageManualDialog } from "./setLanguageManualDialog";
 
-export { getCreatorsExtOptionDialog, richTextToolBar, duplicationDialog, setLanguageManualDialog };
+export { duplicationDialog, getCreatorsExtOptionDialog, richTextToolBar, setLanguageManualDialog };

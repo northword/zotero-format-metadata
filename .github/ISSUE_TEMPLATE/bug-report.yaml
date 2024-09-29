@@ -24,8 +24,8 @@ body:
           - **Zotero Version**: 7.0.0
           - **Addon Version**: 1.0.0
       value: |
-        - OS: 
-        - Zotero Version: 
+        - OS:
+        - Zotero Version:
         - Addon Version:
     validations:
       required: false

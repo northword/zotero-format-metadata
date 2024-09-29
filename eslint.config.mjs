@@ -1,32 +1,49 @@
-// @ts-check Let TS check this config file
-import eslint from "@eslint/js";
-import tseslint from "typescript-eslint";
+import antfu from "@antfu/eslint-config";
+import format from "eslint-plugin-format";
 
-export default tseslint.config(
-    {
-        ignores: ["build/**", "dist/**", "node_modules/**", "scripts/", "**/lib/**", "*.cjs"],
+export default antfu(
+  {
+    stylistic: {
+      semi: true,
+      quotes: "double",
     },
-    {
-        extends: [eslint.configs.recommended, ...tseslint.configs.recommended],
-        rules: {
-            "no-restricted-globals": ["error", "window", "document"],
-            "@typescript-eslint/ban-ts-comment": [
-                "warn",
-                {
-                    "ts-expect-error": "allow-with-description",
-                    "ts-ignore": "allow-with-description",
-                    "ts-nocheck": "allow-with-description",
-                    "ts-check": "allow-with-description",
-                },
-            ],
-            "@typescript-eslint/no-unused-vars": "off",
-            "@typescript-eslint/no-explicit-any": [
-                "off",
-                {
-                    ignoreRestArgs: true,
-                },
-            ],
-            "@typescript-eslint/no-non-null-assertion": "off",
+    formatters: true,
+    javascript: {
+      overrides: {
+        "no-restricted-globals": ["error", "window", "document"],
+      },
+    },
+    ignores: [
+      "addon/lib/**",
+      "src/data/**/*.json",
+      "src/data/**/*.html",
+      "src/data/journal-abbr/jabref-abbr/**",
+    ],
+  },
+  {
+    files: ["**/bootstrap.js", "**/prefs.js"],
+    rules: {
+      "no-undef": "off",
+      "no-unused-vars": "off",
+      "unused-imports/no-unused-vars": "off",
+    },
+  },
+  {
+    files: ["**/*.xhtml"],
+    languageOptions: {
+      parser: format.parserPlain,
+    },
+    plugins: {
+      format,
+    },
+    rules: {
+      "format/prettier": ["error", {
+        parser: "html",
+        languageOptions: {
+          htmlWhitespaceSensitivity: "css",
+          singleAttributePerLine: true,
         },
+      }],
     },
+  },
 );

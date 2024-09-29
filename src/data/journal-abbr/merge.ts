@@ -1,10 +1,10 @@
+import * as fs from "node:fs";
 import { normalizeKey } from "../../utils/str";
 import journalAbbrISO4JabRef from "./jabref-abbr/journal-list-dots";
 import journalAbbrISO4Ubc from "./library-ubc-ca/journalAbbrData";
-import * as fs from "fs";
 
 const dataList = [journalAbbrISO4Ubc, journalAbbrISO4JabRef] as {
-    [key: string]: string;
+  [key: string]: string;
 }[];
 
 // 合并两个对象
@@ -20,16 +20,16 @@ const uniqueJson = {} as { [key: string]: string };
 
 // 遍历合并后的对象
 for (const currentData of dataList) {
-    for (const key in currentData) {
-        // 将键转为小写并去除空格
-        const normalizedKey = normalizeKey(key);
+  for (const key in currentData) {
+    // 将键转为小写并去除空格
+    const normalizedKey = normalizeKey(key);
 
-        // 如果新Set中没有相同键，就添加到新Set和新对象中
-        if (!uniqueKeys.has(normalizedKey)) {
-            uniqueKeys.add(normalizedKey);
-            uniqueJson[key] = currentData[key];
-        }
+    // 如果新Set中没有相同键，就添加到新Set和新对象中
+    if (!uniqueKeys.has(normalizedKey)) {
+      uniqueKeys.add(normalizedKey);
+      uniqueJson[key] = currentData[key];
     }
+  }
 }
 
 export const resultJson = `export default ${JSON.stringify(uniqueJson, null, 2)}`;

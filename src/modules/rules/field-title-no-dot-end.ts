@@ -1,4 +1,5 @@
-import { RuleBase, RuleBaseOptions } from "./rule-base";
+import type { RuleBaseOptions } from "./rule-base";
+import { RuleBase } from "./rule-base";
 
 class Options implements RuleBaseOptions {}
 
@@ -7,14 +8,14 @@ class Options implements RuleBaseOptions {}
  * @see https://github.com/northword/zotero-format-metadata/issues/213
  */
 export class TitleNoDotEnd extends RuleBase<Options> {
-    constructor(options: Options) {
-        super(options);
-    }
+  constructor(options: Options) {
+    super(options);
+  }
 
-    apply(item: Zotero.Item): Zotero.Item | Promise<Zotero.Item> {
-        const title = item.getField("title", false, true) as string;
-        const newTitle = title.replace(/.*\.$/g, "");
-        item.setField("title", newTitle);
-        return item;
-    }
+  apply(item: Zotero.Item): Zotero.Item | Promise<Zotero.Item> {
+    const title = item.getField("title", false, true) as string;
+    const newTitle = title.replace(/.*\.$/g, "");
+    item.setField("title", newTitle);
+    return item;
+  }
 }
