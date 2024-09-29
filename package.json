@@ -43,10 +43,11 @@
     "@types/node": "^20.16.10",
     "eslint": "^9.11.1",
     "eslint-plugin-format": "^0.1.2",
+    "prettier": "^3.3.3",
     "release-it": "^17.6.0",
     "typescript": "^5.6.2",
     "vitest": "^2.1.1",
-    "zotero-plugin-scaffold": "^0.1.4",
+    "zotero-plugin-scaffold": "^0.1.6",
     "zotero-types": "^2.2.0"
   }
 }
