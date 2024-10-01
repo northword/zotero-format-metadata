@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Title should not end with dot. [#213](https://github.com/northword/zotero-format-metadata/issues/213)
 - Update university-place list. [#214](https://github.com/northword/zotero-format-metadata/issues/214), [#212](https://github.com/northword/zotero-format-metadata/issues/212)
+- Shoutcuts to run lint and fix (Ctrl + Alt + L). [#219](https://github.com/northword/zotero-format-metadata/issues/219)
 
 ### Fixed
 

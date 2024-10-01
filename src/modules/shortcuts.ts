@@ -16,6 +16,9 @@ export function registerShortcuts() {
       if (data.keyboard.equals("accel,N")) {
         addon.hooks.onShortcuts("nocase");
       }
+      if (data.keyboard.equals("accel,alt,L")) {
+        addon.hooks.onLintInBatch("std", "item");
+      }
     }
   });
 }
