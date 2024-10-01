@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Fix toSentenceCase `southwest China` to `southwest china`. [#227](https://github.com/northword/zotero-format-metadata/issues/227)
+- Lint on group not work (preference).
+- Do not run lint when new item. [#211](https://github.com/northword/zotero-format-metadata/issues/211)
 
 ## [1.18.7] - 2024-09-28
 

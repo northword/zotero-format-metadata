@@ -63,18 +63,31 @@ async function onNotify(
 
   if (event === "add" && type === "item") {
     const items = Zotero.Items.get(ids as number[]).filter(
-      item =>
-        item.isRegularItem()
+      (item) => {
+        // skip synced item
+        if (extraData.skipAutoSync)
+          return false;
+
+        // skip attachment
+        if (!item.isRegularItem())
+          return false;
+
+        // skip feed item
         // @ts-expect-error item has no isFeedItem
-        && !item.isFeedItem
-        && (getPref("lint.onGroup")
-          ? true
+        if (item.isFeedItem)
+          return false;
+
+        // skip new empty item
+        if (!item.getField("title"))
+          return false;
+
+        // skip group item
         // @ts-expect-error libraryID is got from item, so get() will never return false
-          : Zotero.Libraries.get(item.libraryID)._libraryType === "user")
-          && !extraData.skipAutoSync,
-      // Zotero.Date.sqlToDate(item.dateAdded, true) &&
-      // // @ts-ignore 前已验证Zotero.Date.sqlToDate不为false
-      // new Date().getMilliseconds() - Zotero.Date.sqlToDate(item.dateAdded, true).getMilliseconds() < 500,
+        if (Zotero.Libraries.get(item.libraryID)._libraryType === "group" && !getPref("lint.onGroup"))
+          return false;
+
+        return true;
+      },
     );
     if (items.length !== 0) {
       addon.hooks.onLintInBatch("newItem", items);
