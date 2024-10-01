@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.19.0] - 2024-10-01
+
 ### Added
 
 - Title should not end with dot. [#213](https://github.com/northword/zotero-format-metadata/issues/213)
@@ -864,7 +866,7 @@ No changes, test release only.
 - chore: update readme [`5b8920c`](https://github.com/northword/zotero-format-metadata/commit/5b8920ce6d0fe14076581e6a426b3426a2f5cd9b)
 - feat: add university list data [`665f57a`](https://github.com/northword/zotero-format-metadata/commit/665f57a0f74222a02987d833ef6fbcbf4943fcec)
 
-[unreleased]: https://github.com/northword/zotero-format-metadata/compare/v1.18.7...HEAD
+[unreleased]: https://github.com/northword/zotero-format-metadata/compare/v1.19.0...HEAD
 [1.6.11]: https://github.com/northword/zotero-format-metadata/compare/1.6.10...1.6.11
 [1.6.10]: https://github.com/northword/zotero-format-metadata/compare/1.6.9...1.6.10
 [1.6.9]: https://github.com/northword/zotero-format-metadata/compare/1.6.8...1.6.9
@@ -925,6 +927,7 @@ No changes, test release only.
 [0.0.4]: https://github.com/northword/zotero-format-metadata/compare/0.0.3...0.0.4
 [0.0.3]: https://github.com/northword/zotero-format-metadata/compare/0.0.2...0.0.3
 [0.0.2]: https://github.com/northword/zotero-format-metadata/commits/0.0.2
+[1.19.0]: https://github.com/northword/zotero-format-metadata/compare/v1.18.7...v1.19.0
 [1.18.7]: https://github.com/northword/zotero-format-metadata/compare/v1.18.6...v1.18.7
 [1.18.6]: https://github.com/northword/zotero-format-metadata/compare/v1.18.5...v1.18.6
 [1.18.5]: https://github.com/northword/zotero-format-metadata/compare/v1.18.4...v1.18.5
