@@ -44,8 +44,7 @@ export default defineConfig({
       updates: [
         {
           version: "0.4.4",
-          update_link:
-                        "https://github.com/northword/zotero-format-metadata/releases/download/0.4.4/zotero-format-metadata.xpi",
+          update_link: "https://github.com/northword/zotero-format-metadata/releases/download/0.4.4/zotero-format-metadata.xpi",
           applications: {
             gecko: {
               strict_min_version: "60.0",
@@ -58,6 +57,22 @@ export default defineConfig({
       "build:makeUpdateJSON": () => {
         copyFileSync("build/update.json", "update.json");
         // copyFileSync("build/update-beta.json", "update-beta.json");
+      },
+    },
+  },
+
+  // TODO: switch to scaffold's releaser
+  release: {
+    github: {
+      enable: "ci",
+      updater: "releaser",
+      releaseNote(ctx) {
+        let notes = `## What's changed  \n\n`;
+        notes += `${ctx.release.changelog}  \n\n`;
+        notes += `## Notes  \n\n`;
+        notes += `Historical Changelog: [CHANGELOG.md](https://github.com/northword/zotero-format-metadata/blob/main/CHANGELOG.md).  \n\n`;
+        notes += `![GitHub release (by tag)](https://img.shields.io/github/downloads/${ctx.release.github.repository}/${ctx.release.bumpp.tag}/total)  \n\n`;
+        return notes;
       },
     },
   },

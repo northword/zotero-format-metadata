@@ -128,10 +128,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - 临时修复 beta 77 上所有功能失效的问题。ref: [#182](https://github.com/northword/zotero-format-metadata/issues/182)
-
-### Known issues
-
-- 处理时，右下角弹窗插件图标不显示。
+- Known issues
+  - 处理时，右下角弹窗插件图标不显示。
 
 ## [1.16.4] - 2024-04-10
 
@@ -272,7 +270,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.10.0] - 2024-01-26
 
-### Breaking Changes
+### Changed
 
 - 此版本起，不再支持 Zotero 7 beta 54 及以下版本。（其实只是标题富文本工具框不支持了，其他的都支持）。/ Since this release, Zotero 7 beta 54 and below are no longer supported.
 
@@ -335,7 +333,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.8.0] - 2024-01-02
 
-### Breaking Changes
+### Changed
 
 - 现在不再提供期刊缩写类型（ISO 4 with dot，ISO 4 without dot，JCR）的选项，默认使用 ISO 4 with dot。/ The option for the type of journal abbreviation (ISO 4 with dot, ISO 4 without dot, JCR) is no longer available, and ISO 4 with dot is used by default. close: [#110](https://github.com/northword/zotero-format-metadata/issues/110)
 
@@ -345,19 +343,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.7.0] - 2024-01-01
 
-### Breaking Changes
+### Changed
 
 - 语言识别限制现在使用 ISO 639-1 代码而不是 ISO 639-3 代码。/ Language recognition restrictions now use ISO 639-1 codes instead of ISO 639-3 codes. ref: [#99](https://github.com/northword/zotero-format-metadata/issues/99)
+- 语言识别库切换至 TinyLD。close: [#99](https://github.com/northword/zotero-format-metadata/issues/99)
+- 重构代码。close: [#107](https://github.com/northword/zotero-format-metadata/issues/107)
 
 ### Added
 
 - 通过 DOI 更新字段数据后执行 Lint。/ Lint after retrive fields via doi. close: [#104](https://github.com/northword/zotero-format-metadata/issues/104)
 - 去掉期卷页中多余的 `0`。/ Remove leading `0` in volume, issue, pages. close: [#20](https://github.com/northword/zotero-format-metadata/issues/20)
-
-### Refactor
-
-- 语言识别库切换至 TinyLD。close: [#99](https://github.com/northword/zotero-format-metadata/issues/99)
-- 重构代码。close: [#107](https://github.com/northword/zotero-format-metadata/issues/107)
 
 ## [1.6.18] - 2023-12-26
 
@@ -375,7 +370,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - 允许用户选择是否启用 `检测新增的网页条目是否正确`。/ Allows the user to enable or disable `Detecting the mistakes of added web page items`. [#102](https://github.com/northword/zotero-format-metadata/issues/102)
 
-### Performance
+### Changed
 
 - 对一个条目执行更新时，一次性保存所有字段，而不是每个字段分别保存一次。/ When updating an item, save all fields at once instead of saving each field separately.
 
@@ -602,7 +597,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.4] - 2023-07-13
 
-### Chore
+### Changed
 
 - 变更插件更新清单文件路径。/ Change URI of `update.json`.
 
@@ -627,7 +622,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0] - 2023-06-16
 
-### Breaking Changes
+### Changed
 
 - 不再支持 Zotero 6。由于本地化系统迁移至 fluent，同时兼容 Zotero 6 可能较大增加维护负担，故提前结束 Zotero 6 支持，最高兼容 Zotero 6 的插件版本为 0.4.4，当前版本（1.0.0）起仅支持 Zotero 7。 / Drop support for Zotero 6.
 
@@ -705,7 +700,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - 修复设置缩写类别无效的问题。
 
-### Chore
+### Changed
 
 - 项目增加 ESLint，Prettier
 
@@ -857,7 +852,7 @@ No changes, test release only.
 - 根据期刊/会议全称补充其缩写（ISO4 带点格式）
 - 根据高校名称补全高校所在地
 
-### Commits
+### Changed
 
 - feat: update j-abbr and univ-place data [`04ce40b`](https://github.com/northword/zotero-format-metadata/commit/04ce40ba2765dbe254e290ced4f4fdacdeb4088a)
 - feat: add journal abbr data [`336125a`](https://github.com/northword/zotero-format-metadata/commit/336125a1bf4371b1a443f9070ec2c4f50e1377b3)
