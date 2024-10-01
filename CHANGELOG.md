@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Title should not end with dot. [#213](https://github.com/northword/zotero-format-metadata/issues/213)
 
+### Fixed
+
+- Fix toSentenceCase `southwest China` to `southwest china`. [#227](https://github.com/northword/zotero-format-metadata/issues/227)
+
 ## [1.18.7] - 2024-09-28
 
 ### Fixed

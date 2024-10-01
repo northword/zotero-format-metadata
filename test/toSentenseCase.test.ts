@@ -64,6 +64,12 @@ const testItems: testItem[] = [
         original: `This is in Southern China`,
         expected: `This is in southern China`,
     },
+    {
+        // https://github.com/northword/zotero-format-metadata/issues/227
+        name: "国名应大写",
+        original: `A shrubby resprouting pine with serotinous cones endemic to southwest China`,
+        expected: `A shrubby resprouting pine with serotinous cones endemic to southwest China`,
+    },
 ];
 
 testItems.forEach((testItem, index) => {

@@ -24,6 +24,8 @@ const specialWords = ["Microsoft", "Google", "Amazon", "Inc", "Ltd"]
   .map(v => escapeRegex(v));
 // const specialWordsPattern = specialWords.map((word) => word.replace(/\s+/g, "\\s+")).join("|");
 const specialWordsPattern = specialWords.join("|");
+// prettier-ignore
+export const localityWords = ["north", "south", "east", "west", "northern", "southern", "eastern", "western", "southeast", "southwest", "northwest", "northeast"];
 
 /**
  * 统计给定字符串中大写字母的数量
@@ -39,20 +41,10 @@ export function countLowerCaseLetter(text: string) {
 }
 
 export function isFullUpperCase(text: string) {
-  // if (countUpperCaseLetter(text) >= countLowerCaseLetter(text)) {
-  //     return true;
-  // } else {
-  //     return false;
-  // }
   return text === text.toUpperCase();
 }
 
 export function isFullLowerCase(text: string) {
-  // if (countUpperCaseLetter(text) >= countLowerCaseLetter(text)) {
-  //     return true;
-  // } else {
-  //     return false;
-  // }
   return text === text.toLowerCase();
 }
 
@@ -164,10 +156,11 @@ export function toSentenceCase(text: string) {
 
       return word.toLowerCase();
     })
+
     // northword patch: 支持月、周、国家城市、大洲大洋等专有名词
     .replace(
       new RegExp(
-        `\\b(?:in|on|at|of|from|by|for|the|north|south|east|west|northern|southern|eastern|western)\\s+(${specialWordsPattern})\\b`,
+        `\\b(?:${functionWords.join("|")}|${localityWords.join("|")})\\s+(${specialWordsPattern})\\b`,
         "gi",
       ),
       (match, specialWord) => {
@@ -184,7 +177,6 @@ export function toSentenceCase(text: string) {
 
   return masked;
 }
-
 /**
  * 将字符串转换为正则表达式
  * @author GPT
