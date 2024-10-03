@@ -17,7 +17,6 @@ export default antfu(
       "addon/lib/**",
       "src/data/**/*.json",
       "src/data/**/*.html",
-      "src/data/journal-abbr/jabref-abbr/**",
     ],
   },
   {

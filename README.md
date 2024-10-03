@@ -5,7 +5,6 @@
 [![zotero target version](https://img.shields.io/badge/Zotero-7.0.*-green?&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![version](https://img.shields.io/github/package-json/v/northword/zotero-format-metadata)](https://github.com/northword/zotero-format-metadata/releases/)
 [![download number](https://img.shields.io/github/downloads/northword/zotero-format-metadata/latest/linter-for-zotero.xpi)](https://github.com/northword/zotero-format-metadata/releases/)
-[![download number for 0.4.4](https://img.shields.io/github/downloads/northword/zotero-format-metadata/0.4.4/total)](https://github.com/northword/zotero-format-metadata/releases/tag/0.4.4)
 [![license](https://img.shields.io/github/license/northword/zotero-format-metadata)](#licence)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/b851796e53724d7aa7c00923955e0f56)](https://app.codacy.com/gh/northword/zotero-format-metadata/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?&logo=github)](https://github.com/windingwind/zotero-plugin-template)
@@ -62,7 +61,7 @@ Detailed test results are available at [test/toSentenceCase.test.ts](./test/toSe
 
 ### Look up the journal abbreviation according to the journal full name
 
-The plugin has a built-in dataset of about 96,000 journal abbreviations (from JabRef and Woodward Library), and the plugin will first look up the journal abbreviations in the local dataset;
+The plugin has a built-in dataset of about 96,000 journal abbreviations (from JabRef), and the plugin will first look up the journal abbreviations in the local dataset;
 
 If none are available, the abbreviations are inferred from the [ISSN List of Title Word Abbreviations](https://www.issn.org/services/online-services/access-to-the-ltwa/) (optional);
 
@@ -128,37 +127,9 @@ GNU Affero General Public License v3.0
 
 Permissions of this strongest copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. When a modified version is used to provide a service over a network, the complete source code of the modified version must be made available.
 
-## Alternatives
-
-### Rich Text HTML Tags
-
-Some quicker actions are available:
-
-- [Supscript](https://getquicker.net/Sharedaction?code=dee60abc-d1f5-40ad-99c3-08d9c6b06ad1)
-- [Subscript](https://getquicker.net/Sharedaction?code=b44c0592-89fa-41c2-99c4-08d9c6b06ad1)
-- [Bold](https://getquicker.net/Sharedaction?code=dc815b9a-f463-4233-99c5-08d9c6b06ad1)
-- [Italic](https://getquicker.net/Sharedaction?code=98c3d460-22b5-49ab-99c2-08d9c6b06ad1)
-
-### Journal abbreviation
-
-Both [zotero-journalabbr] and [zotero-updateifsE] plugins provide similar function.
-
-[zotero-journalabbr]: https://github.com/zoushucai/zotero-journalabbr
-[zotero-updateifsE]: https://github.com/redleafnew/zotero-updateifsE
-
-### Place
-
-A quicker action is available: [填充城市](https://getquicker.net/Sharedaction?code=b5506c59-6116-4111-a65e-08db363ab19b)
-
 ## Acknowledgements
 
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
-
-The code of the following plug-ins was referenced during the development of this plug-in:
-
-- [redleafnew/zotero-updateifsE](https://github.com/redleafnew/zotero-updateifsE)
-- [windingwind/zotero-pdf-translate](https://github.com/windingwind/zotero-pdf-translate)
-- [windingwind/zotero-pdf-preview](https://github.com/windingwind/zotero-pdf-preview)
 
 The following data sets were used:
 

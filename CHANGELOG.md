@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Rebuild the journal abbr list. closes: [#226](https://github.com/northword/zotero-format-metadata/issues/226), ref: [#54](https://github.com/northword/zotero-format-metadata/issues/54)
+
 ## [1.19.0] - 2024-10-01
 
 ### Added

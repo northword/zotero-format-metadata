@@ -5,7 +5,6 @@
 [![zotero target version](https://img.shields.io/badge/Zotero-7.0.*-green?&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![version](https://img.shields.io/github/package-json/v/northword/zotero-format-metadata)](https://github.com/northword/zotero-format-metadata/releases/)
 [![download number](https://img.shields.io/github/downloads/northword/zotero-format-metadata/latest/linter-for-zotero.xpi)](https://github.com/northword/zotero-format-metadata/releases/)
-[![download number for 0.4.4](https://img.shields.io/github/downloads/northword/zotero-format-metadata/0.4.4/total)](https://github.com/northword/zotero-format-metadata/releases/tag/0.4.4)
 [![license](https://img.shields.io/github/license/northword/zotero-format-metadata)](#开源协议)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/b851796e53724d7aa7c00923955e0f56)](https://app.codacy.com/gh/northword/zotero-format-metadata/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?&logo=github)](https://github.com/windingwind/zotero-plugin-template)
@@ -66,7 +65,7 @@ Zotero 文档建议将标题存储为“句子式大写”的格式，这将有�
 
 对于期刊标题，插件将使相同的期刊统一。
 
-插件内置了一个包含约 10 万条期刊缩写的数据集（来自 JabRef 和 Woodward Library ），插件将首先在本地数据集里查询期刊缩写；
+插件内置了一个包含约 10 万条期刊缩写的数据集（来自 JabRef ），插件将首先在本地数据集里查询期刊缩写；
 
 若无则根据 [ISSN List of Title Word Abbreviations](https://www.issn.org/services/online-services/access-to-the-ltwa/) 推断其缩写（可在首选项中关闭此行为）；
 
@@ -132,37 +131,9 @@ GNU Affero General Public License v3.0
 
 本插件继承 Zotero 插件开发模板的 AGPL v3.0 协议，为传染性开源协议。简单的说，你可以商用、修改、分发、专利使用及个人使用本插件。但当修改版本重新分发或用于提供网络服务时，必须注明协议，声明所做出的修改，保持开源且使用相同的协议。
 
-## 替代品
-
-### 富文本 HTML 标签
-
-一些 quicker 动作可用：
-
-- [Supscript](https://getquicker.net/Sharedaction?code=dee60abc-d1f5-40ad-99c3-08d9c6b06ad1)
-- [Subscript](https://getquicker.net/Sharedaction?code=b44c0592-89fa-41c2-99c4-08d9c6b06ad1)
-- [Bold](https://getquicker.net/Sharedaction?code=dc815b9a-f463-4233-99c5-08d9c6b06ad1)
-- [Italic](https://getquicker.net/Sharedaction?code=98c3d460-22b5-49ab-99c2-08d9c6b06ad1)
-
-### 期刊缩写
-
-[zotero-journalabbr] 和 [zotero-updateifsE] 插件也都提供了类似的功能。
-
-[zotero-journalabbr]: https://github.com/zoushucai/zotero-journalabbr
-[zotero-updateifsE]: https://github.com/redleafnew/zotero-updateifsE
-
-### 高校地点
-
-韩老师制作了 Quicker 动作：[填充城市](https://getquicker.net/Sharedaction?code=b5506c59-6116-4111-a65e-08db363ab19b)
-
 ## 致谢
 
 [![使用 Zotero 插件开发模板](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
-
-插件开发过程中参考了如下项目的代码：
-
-- [redleafnew/zotero-updateifsE](https://github.com/redleafnew/zotero-updateifsE)
-- [windingwind/zotero-pdf-translate](https://github.com/windingwind/zotero-pdf-translate)
-- [windingwind/zotero-pdf-preview](https://github.com/windingwind/zotero-pdf-preview)
 
 开发过程中使用了如下项目的数据：
 

@@ -25,7 +25,7 @@
     "start": "zotero-plugin serve",
     "build": "tsc --noEmit && zotero-plugin build",
     "lint": "eslint . --fix",
-    "update-data": "bash scripts/update-data.sh",
+    "update-data": "bash src/data/update-data.sh",
     "test": "vitest",
     "release": "release-it --only-version --preReleaseId=beta",
     "update-deps": "pnpx taze minor -w -i"
