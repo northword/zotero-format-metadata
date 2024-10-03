@@ -37,38 +37,3 @@ export function registerNotifier() {
 function unregisterNotifier(notifierID: string) {
   Zotero.Notifier.unregisterObserver(notifierID);
 }
-
-export function registerMutationObserver(window: Window) {
-  const itemPane = window.document.getElementById("zotero-item-pane-header") as HTMLElement;
-  const contextPane = window.document.getElementById("zotero-context-pane-inner") as HTMLElement;
-
-  // ztoolkit.log(targetNode);
-  const observerOptions = {
-    // childList: true, // 观察目标子节点的变化，是否有添加或者删除
-    attributes: true, // 观察属性变动
-    attributeFilter: ["class"],
-    subtree: true, // 观察后代节点，默认为 false
-  };
-
-  function callback(records: MutationRecord[], observer: MutationObserver) {
-    records.forEach((record) => {
-      if (!addon?.data.alive) {
-        observer.disconnect();
-        return;
-      }
-      addon.hooks.onMutationObserver(record, observer);
-    });
-  }
-
-  const observer = new window.MutationObserver(callback);
-  observer.observe(itemPane, observerOptions);
-  observer.observe(contextPane, observerOptions);
-
-  window.addEventListener(
-    "unload",
-    (_e: Event) => {
-      observer.disconnect();
-    },
-    false,
-  );
-}

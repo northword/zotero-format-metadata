@@ -1,5 +1,4 @@
 import { getPref } from "../utils/prefs";
-import { removeHtmlTag } from "../utils/str";
 import * as Rules from "./rules";
 
 export function getStdLintRules() {
@@ -45,32 +44,4 @@ export function getNewItemLintRules() {
   if (getPref("lint.onAdded"))
     rules.push(getStdLintRules());
   return rules.flat();
-}
-
-/* 上下标 */
-/**
- * Get the selected text and replace it with text with or without HTML tags depending on the operation.
- * @param tag sub | sup | b | i
- *
- * @see https://stackoverflow.com/questions/31036076/how-to-replace-selected-text-in-a-textarea-with-javascript
- */
-export function setHtmlTag(tag: string, attribute?: string, value?: string) {
-  const editpaneItemBox = Zotero.getMainWindow().document.activeElement as HTMLInputElement | null;
-  if (
-    editpaneItemBox !== null
-    && typeof editpaneItemBox.selectionStart === "number"
-    && typeof editpaneItemBox.selectionEnd === "number"
-  ) {
-    const start = editpaneItemBox.selectionStart;
-    const end = editpaneItemBox.selectionEnd;
-    let selectedText = editpaneItemBox.value.slice(start, end);
-    const attributeText = attribute !== undefined ? ` ${attribute}="${value}"` : "";
-    selectedText = selectedText.startsWith(`<${tag}`)
-      ? removeHtmlTag(selectedText)
-      : `<${tag}${attributeText}>${selectedText}</${tag}>`;
-    // const text = editpaneItemBox.value.slice(0, start) + selectedText + editpaneItemBox.value.slice(end);
-    // editpaneItemBox.value = text;
-    editpaneItemBox.setRangeText(selectedText);
-    editpaneItemBox.focus();
-  }
 }

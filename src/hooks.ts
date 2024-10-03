@@ -3,10 +3,11 @@ import type { Task } from "./modules/rules-runner";
 import { config } from "../package.json";
 import { checkCompat } from "./modules/compat";
 import { registerMenu, registerTextTransformMenu } from "./modules/menu";
-import { registerMutationObserver, registerNotifier } from "./modules/notifier";
+import { registerNotifier } from "./modules/notifier";
 import { registerPrefs, registerPrefsScripts } from "./modules/preference";
+import { RichTextToolBar, setHtmlTag } from "./modules/richTextToolBar";
 import * as Rules from "./modules/rules";
-import { getNewItemLintRules, getStdLintRules, setHtmlTag } from "./modules/rules-presets";
+import { getNewItemLintRules, getStdLintRules } from "./modules/rules-presets";
 import { LintRunner } from "./modules/rules-runner";
 import { registerShortcuts } from "./modules/shortcuts";
 import * as Views from "./modules/views";
@@ -26,11 +27,10 @@ async function onStartup() {
 async function onMainWindowLoad(win: Window): Promise<void> {
   // Create ztoolkit for every window
   addon.data.ztoolkit = createZToolkit();
-  registerMutationObserver(win);
-  // Views.richTextToolBar.init();
   registerShortcuts();
   registerMenu();
   registerTextTransformMenu(win);
+  new RichTextToolBar(win).init();
 }
 
 async function onMainWindowUnload(_win: Window): Promise<void> {
@@ -91,23 +91,6 @@ async function onNotify(
     );
     if (items.length !== 0) {
       addon.hooks.onLintInBatch("newItem", items);
-    }
-  }
-}
-
-function onMutationObserver(record: MutationRecord, observer: MutationObserver) {
-  ztoolkit.log("MutationObserver", record, observer);
-
-  if (record.type === "attributes" && record.attributeName === "class") {
-    if (getPref("richtext.toolBar")) {
-      // @ts-expect-error 存在 attributes
-      if (record.target.className === "focused") {
-        Views.richTextToolBar.showToolBar();
-      }
-      // @ts-expect-error 存在 attributes
-      if (record.target.className === "") {
-        Views.richTextToolBar.closeToolBar();
-      }
     }
   }
 }
@@ -261,7 +244,6 @@ export default {
   onMainWindowUnload,
   onShutdown,
   onNotify,
-  onMutationObserver,
   onPrefsEvent,
   onShortcuts,
   onLintInBatch,

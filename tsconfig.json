@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2016",
+    // "lib": ["ESNext"],
     "experimentalDecorators": true,
     "module": "commonjs",
     "resolveJsonModule": true,
@@ -9,7 +10,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true
   },
-  "include": ["src", "typings", "node_modules/zotero-types", "test/toSentenseCase.test.ts"],
+  "include": ["src", "typings", "node_modules/zotero-types"],
   // "include": ["src", "typings", "../zotero-types"],
   "exclude": ["build", "addon", "**/temp**"]
 }
