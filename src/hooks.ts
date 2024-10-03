@@ -5,7 +5,7 @@ import { checkCompat } from "./modules/compat";
 import { registerMenu, registerTextTransformMenu } from "./modules/menu";
 import { registerNotifier } from "./modules/notifier";
 import { registerPrefs, registerPrefsScripts } from "./modules/preference";
-import { RichTextToolBar, setHtmlTag } from "./modules/richTextToolBar";
+import { RichTextToolBar, setHtmlTag } from "./modules/rich-text";
 import * as Rules from "./modules/rules";
 import { getNewItemLintRules, getStdLintRules } from "./modules/rules-presets";
 import { LintRunner } from "./modules/rules-runner";
