@@ -14,7 +14,7 @@ export class TitleNoDotEnd extends RuleBase<Options> {
 
   apply(item: Zotero.Item): Zotero.Item | Promise<Zotero.Item> {
     const title = item.getField("title", false, true) as string;
-    const newTitle = title.replace(/.*\.$/g, "");
+    const newTitle = title.replace(/(.*)\.$/g, "$1");
     item.setField("title", newTitle);
     return item;
   }

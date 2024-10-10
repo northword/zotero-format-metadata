@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix issue of title not dot end removes all title.
+
 ## [1.19.1] - 2024-10-03
 
 ### Changed

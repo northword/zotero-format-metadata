@@ -44,6 +44,7 @@ export class LintRunner {
       ztoolkit.log(`[Runner] Applying ${rule.constructor.name}`);
       try {
         item = await rule.apply(item);
+        ztoolkit.log("[Runner] Rule returned: ", item.toJSON());
       }
       catch (err) {
         logError(err, item);
