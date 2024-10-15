@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Shortcut for Lint on macOS. Fixes [#219](https://github.com/northword/zotero-format-metadata/issues/219)
+- Update journal abbr data.
 
 ## [1.19.2] - 2024-10-10
 
