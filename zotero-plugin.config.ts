@@ -43,8 +43,8 @@ export default defineConfig({
       hash: false,
       updates: [
         {
-          version: "0.4.4",
-          update_link: "https://github.com/northword/zotero-format-metadata/releases/download/0.4.4/zotero-format-metadata.xpi",
+          version: "0.4.5",
+          update_link: "https://github.com/northword/zotero-format-metadata/releases/download/0.4.4/zotero-format-metadata-0.4.5.xpi",
           applications: {
             gecko: {
               strict_min_version: "60.0",
@@ -63,6 +63,7 @@ export default defineConfig({
 
   // TODO: switch to scaffold's releaser
   release: {
+    changelog: "conventional-changelog",
     github: {
       enable: "ci",
       updater: "releaser",
