@@ -54,13 +54,20 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
 
   async translateByItem(item: Zotero.Item): Promise<Zotero.Item | undefined> {
     const itemTemp = Zotero.Utilities.Internal.itemToExportFormat(item, false);
-    ztoolkit.log("itemToExportFormat: ", itemTemp);
+    ztoolkit.log("itemToExportFormat (original): ", { ...itemTemp });
     // 如果 Item 包含多个标识符，优先使用 DOI
     // 因为部分会议论文包含 ISBN 会导致调用优先级更高的 K10plus ISBN 转换器，导致更新为论文集（书籍）
     // ref: https://github.com/northword/zotero-format-metadata/issues/216
-    if (itemTemp.DOI && itemTemp.ISBN) {
-      delete itemTemp.ISBN;
+    // 部分图书章节条目将 DOI 存入 extra，因此应优先使用 DOI 而不是 ISBN，以保留图书章节的信息
+    // ref: https://github.com/northword/zotero-format-metadata/issues/240
+    if (item.getField("ISBN")) {
+      const doi = item.getField("DOI") || ztoolkit.ExtraField.getExtraField(item, "DOI");
+      if (doi) {
+        itemTemp.DOI ??= doi;
+        delete itemTemp.ISBN;
+      }
     }
+    ztoolkit.log("itemToExportFormat (modified): ", { ...itemTemp });
 
     const translate = new Zotero.Translate.Search();
     translate.setSearch(itemTemp);
