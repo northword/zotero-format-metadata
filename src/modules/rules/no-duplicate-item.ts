@@ -12,8 +12,9 @@ export class NoDuplicatItem extends RuleBase<NoDuplicatItemOptions> {
   async apply(item: Zotero.Item): Promise<Zotero.Item> {
     // const item = Zotero.getActiveZoteroPane().getSelectedItems()[0];
     const itemID = item.id;
+    const libraryID = item.libraryID;
 
-    const duplicates = new Zotero.Duplicates("1");
+    const duplicates = new Zotero.Duplicates(libraryID);
     // console.log("Zotero.Duplicates", duplicates);
 
     const search = (await duplicates.getSearchObject()) as Zotero.Search;

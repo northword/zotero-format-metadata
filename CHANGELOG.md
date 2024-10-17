@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- NoDuplicatItem now support group items. closes: [#233](https://github.com/northword/zotero-format-metadata/issues/233)
+
 ## [1.19.3] - 2024-10-15
 
 ### Fixed
