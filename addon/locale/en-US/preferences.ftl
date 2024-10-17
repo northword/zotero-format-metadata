@@ -116,6 +116,8 @@ std-clean-fileld =
 
 # 更新元数据
 section-updateMetadata = Retrive Item Metadata
+update-metadata-confirm-when-itemtype-change = 
+    .label = Request confirmation when the item type changes
 others-semanticScholarToken = Semantic Scholar Token: 
     .label = Semantic Scholar Token
     .placeholder = Semantic Scholar Token

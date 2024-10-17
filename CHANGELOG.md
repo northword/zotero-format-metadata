@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- When retrive item field, request confirmation when the item type changes. closes: [#240](https://github.com/northword/zotero-format-metadata/issues/240)
+
 ## [1.19.4] - 2024-10-17
 
 ### Fixed

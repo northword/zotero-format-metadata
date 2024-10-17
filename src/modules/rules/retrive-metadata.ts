@@ -49,7 +49,11 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
       return item;
     }
 
-    return (await this.translateByItem(item)) ?? (await this.getMetadataFromSemanticScholar(item)) ?? item;
+    const newItem = (await this.translateByItem(item)) ?? (await this.getMetadataFromSemanticScholar(item));
+    if (!newItem)
+      return item;
+
+    return newItem;
   }
 
   async translateByItem(item: Zotero.Item): Promise<Zotero.Item | undefined> {
@@ -87,6 +91,15 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
 
     const newItem = newItems[0];
     ztoolkit.log("Item retrieved from translate: ", newItem);
+
+    ztoolkit.log(newItem.itemType, item.itemType, getPref("updateMetadate.confirmWhenItemTypeChange"));
+    if (newItem.itemType !== item.itemType && getPref("updateMetadate.confirmWhenItemTypeChange")) {
+      const isUpdate = Zotero.getMainWindow().confirm(`The itemType of "${item.getField("title")}" will be changed from ${item.itemType} to ${newItem.itemType}. \n\nAccept the changes?`);
+      if (!isUpdate) {
+        ztoolkit.log("User cancel update because itemtype changes.");
+        return item;
+      }
+    }
 
     // mode === all: 强制更新，无论原值是否为空：mode === "all" ||
     // 对于一个字段，若 mode === "all"，更新

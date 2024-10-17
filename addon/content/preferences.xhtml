@@ -309,6 +309,12 @@
   <!-- 更新元数据 -->
   <groupbox>
     <label><html:h2 data-l10n-id="section-updateMetadata" /></label>
+    <!-- 条目类型变更时要求确认 -->
+    <checkbox
+      data-l10n-id="update-metadata-confirm-when-itemtype-change"
+      preference="__prefsPrefix__.updateMetadate.confirmWhenItemTypeChange"
+      native="true"
+    />
     <hbox align="center">
       <label data-l10n-id="others-semanticScholarToken" />
       <html:input

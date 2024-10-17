@@ -116,6 +116,8 @@ std-clean-fileld =
 
 # 更新元数据
 section-updateMetadata = 通过标识符更新元数据
+update-metadata-confirm-when-itemtype-change = 
+    .label = 当条目类型变更时要求确认
 others-semanticScholarToken = Semantic Scholar API Key: 
     .label = Semantic Scholar Token
     .placeholder = Semantic Scholar Token
