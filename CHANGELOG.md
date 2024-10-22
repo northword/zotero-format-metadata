@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Ignore case when lookup journal abbrev. closes: [#241](https://github.com/northword/zotero-format-metadata/issues/241)
+- Update journal abbr data.
 
 ## [1.20.0] - 2024-10-17
 
