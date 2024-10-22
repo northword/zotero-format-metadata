@@ -148,6 +148,8 @@ export class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions> {
       throw new Error("The custom journalAbbr file not exist.");
     }
 
+    const normalizePublicationTitle = normalizeKey(publicationTitle);
+
     if (customAbbrDataPath.endsWith(".json")) {
       const customAbbrData = (await Zotero.File.getContentsAsync(customAbbrDataPath)) as string;
       if (typeof customAbbrData !== "string" || customAbbrData === "") {
@@ -156,10 +158,12 @@ export class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions> {
 
       try {
         const data = JSON.parse(customAbbrData);
-        const abbr = (data[publicationTitle] as string) ?? undefined;
-        if (!abbr)
-          ztoolkit.log("[Abbr] 自定义缩写未匹配");
-        return abbr;
+        for (const term in data) {
+          if (normalizeKey(term) === normalizePublicationTitle && data[term])
+            return data[term];
+        }
+        ztoolkit.log("[Abbr] 自定义缩写未匹配");
+        return undefined;
       }
       catch (e) {
         throw new Error(`JSON Syntax Error, ${e}`);
@@ -176,7 +180,7 @@ export class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions> {
       ztoolkit.log(`[Abbr] Custom terms:`, resolvedTerms);
 
       for (const term of resolvedTerms) {
-        if (term.publicationTitle === publicationTitle)
+        if (normalizeKey(term.publicationTitle) === normalizePublicationTitle)
           return term.abbr;
       }
     }
