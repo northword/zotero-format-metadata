@@ -1,6 +1,7 @@
 import type { RuleBaseOptions } from "./rule-base";
-import { journalAbbrlocalData } from "../../data";
+// import { journalAbbrlocalData } from "../../data";
 import { functionWords, isFullUpperCase, normalizeKey } from "../../utils/str";
+import { useData } from "../data-loader";
 import { RuleBase } from "./rule-base";
 
 class CapitalizePublicationTitleOptions implements RuleBaseOptions {}
@@ -10,10 +11,10 @@ export class UpdatePublicationTitle extends RuleBase<CapitalizePublicationTitleO
     super(options);
   }
 
-  apply(item: Zotero.Item): Zotero.Item {
+  async apply(item: Zotero.Item): Promise<Zotero.Item> {
     const publicationTitle = item.getField("publicationTitle", false, true) as string;
     let newPublicationTitle = "";
-    const publicationTitleDisambiguation = this.getPublicationTitleDisambiguation(publicationTitle);
+    const publicationTitleDisambiguation = await this.getPublicationTitleDisambiguation(publicationTitle);
     if (publicationTitleDisambiguation) {
       newPublicationTitle = publicationTitleDisambiguation;
     }
@@ -340,10 +341,11 @@ export class UpdatePublicationTitle extends RuleBase<CapitalizePublicationTitleO
   }
 
   // 期刊全称消岐
-  getPublicationTitleDisambiguation(publicationTitle: string, dataBase = journalAbbrlocalData) {
+  async getPublicationTitleDisambiguation(publicationTitle: string) {
+    const data = await useData("journalAbbr");
     const normalizedInputKey = normalizeKey(publicationTitle);
 
-    for (const originalKey of Object.keys(dataBase)) {
+    for (const originalKey of Object.keys(data)) {
       const normalizedOriginalKey = normalizeKey(originalKey);
 
       if (normalizedInputKey === normalizedOriginalKey) {

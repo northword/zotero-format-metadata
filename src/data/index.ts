@@ -1,6 +1,6 @@
 import contry from "./country-by-capital-city.json";
 import iso6393To6391 from "./iso-693-3-to-1";
-import journalAbbr from "./journal-abbr/journalAbbr.json";
+// import journalAbbr from "./journal-abbr/journal-abbr.json";
 import universityPlace from "./university-list/university-place";
 
 export interface dict {
@@ -13,7 +13,7 @@ export interface dict {
  * Key: 全称
  * Value: ISO 4 with dot 缩写
  */
-export const journalAbbrlocalData: dict = journalAbbr as dict;
+// export const journalAbbrlocalData: dict = journalAbbr as dict;
 
 /**
  * 高校所在地数据
@@ -34,11 +34,3 @@ export const iso6393To6391Data: dict = iso6393To6391;
 export { default as contryJson } from "./country-by-capital-city.json";
 export const contries = contry.map(c => c.country);
 export const cities = contry.map(c => c.city).filter(v => v !== null);
-
-// interface Data {
-
-// }
-
-export async function dataLoader() {
-  await Zotero.File.getContentsAsync(`${rootURI}/lib/abbreviso/shortwords.txt`);
-}

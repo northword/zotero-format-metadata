@@ -5,4 +5,4 @@ set -e
 git submodule update --remote
 
 ## journal-abbr
-python src/data/journal-abbr/generate-journal-list-dot.py
+python data/journal-abbr/generate-journal-list-dot.py

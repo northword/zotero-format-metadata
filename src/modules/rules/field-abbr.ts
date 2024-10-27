@@ -1,27 +1,28 @@
+import type { Data } from "../data-loader";
 import type { RuleBaseOptions } from "./rule-base";
-import csv from "csvtojson";
-import { journalAbbrlocalData } from "../../data";
 import { getPref } from "../../utils/prefs";
 import { getTextLanguage, normalizeKey } from "../../utils/str";
+import { useData } from "../data-loader";
 import { RuleBase } from "./rule-base";
 
-class UpdateJournalAbbrOptions implements RuleBaseOptions {}
+class UpdateAbbrOptions implements RuleBaseOptions {}
 
-export class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions> {
-  constructor(options: UpdateJournalAbbrOptions) {
+export class UpdateAbbr extends RuleBase<UpdateAbbrOptions> {
+  constructor(options: UpdateAbbrOptions) {
     super(options);
   }
 
   async apply(item: Zotero.Item): Promise<Zotero.Item> {
-    // 非 journalArticle 和 conferencePaper 直接跳过
-    if (item.itemType !== "journalArticle" && item.itemType !== "conferencePaper") {
-      ztoolkit.log(`[Abbr] Item type ${item.itemType} is not journalArticle or conferencePaper, skip it.`);
-      return item;
+    if (item.itemType === "journalArticle") {
+      return await this.getJournalAbbr(item);
     }
+    return item;
+  }
 
-    // 无期刊全称直接跳过
+  async getJournalAbbr(item: Zotero.Item): Promise<Zotero.Item> {
     const publicationTitle = item.getField("publicationTitle") as string;
 
+    // 无期刊全称直接跳过
     if (publicationTitle === "")
       return item;
 
@@ -35,7 +36,8 @@ export class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions> {
 
     // 从本地数据集获取缩写
     if (!journalAbbr) {
-      journalAbbr = this.getAbbrIso4Locally(publicationTitle, journalAbbrlocalData);
+      const data = await useData("journalAbbr");
+      journalAbbr = await this.getAbbrLocally(publicationTitle, data);
     }
 
     // 从 ISSN LTWA 推断完整期刊缩写
@@ -43,22 +45,6 @@ export class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions> {
       journalAbbr = await this.getAbbrFromLTWAOnline(publicationTitle);
       // journalAbbr = await this.getAbbrFromLTWALocally(publicationTitle);
     }
-
-    // if (journalAbbr) {
-    //     // 有缩写的，是否处理为 ISO dotless 或 JCR 格式
-    //     switch (getPref("abbr.type")) {
-    //         case "ISO4dot":
-    //             break;
-    //         case "ISO4dotless":
-    //             journalAbbr = removeDot(journalAbbr);
-    //             break;
-    //         case "JCR":
-    //             journalAbbr = this.toJCR(journalAbbr);
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    // }
 
     // 以期刊全称填充
     if (!journalAbbr) {
@@ -84,30 +70,18 @@ export class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions> {
 
     item.setField("journalAbbreviation", journalAbbr);
     return item;
-    // await item.saveTx();
   }
 
-  /**
-   * Get abbreviation from local dataset.
-   *
-   * @param publicationTitle - The full name of publication
-   * @param dataBase - local dataset, default journalAbbrlocalData
-   * @returns
-   * - String of `ISO 4 with dot abbr` when when it exist in the local dataset
-   * - `undefined` when abbr does not exist in local dataset
-   */
-  getAbbrIso4Locally(publicationTitle: string, dataBase = journalAbbrlocalData): string | undefined {
-    const normalizedInputKey = normalizeKey(publicationTitle);
+  async getAbbrLocally(publicationTitle: string, data: Data): Promise<string | undefined> {
+    const normalizedPublicationTitle = normalizeKey(publicationTitle);
 
-    for (const originalKey of Object.keys(dataBase)) {
-      const normalizedOriginalKey = normalizeKey(originalKey);
-
-      if (normalizedInputKey === normalizedOriginalKey) {
-        return dataBase[originalKey];
+    for (const term in data) {
+      if (normalizedPublicationTitle === normalizeKey(term) && data[term]) {
+        return data[term];
       }
     }
 
-    ztoolkit.log(`[Abbr] The abbr. of "${publicationTitle}" (${normalizedInputKey}) not exist in local dateset.`);
+    ztoolkit.log(`[Abbr] The abbr. of "${publicationTitle}" (${normalizedPublicationTitle}) not exist in local dateset.`);
     return undefined;
   }
 
@@ -144,41 +118,23 @@ export class UpdateJournalAbbr extends RuleBase<UpdateJournalAbbrOptions> {
   }
 
   async getAbbrFromCustom(publicationTitle: string, customAbbrDataPath: string): Promise<string | undefined> {
-    if (!(await IOUtils.exists(customAbbrDataPath))) {
-      throw new Error("The custom journalAbbr file not exist.");
-    }
-
     const normalizePublicationTitle = normalizeKey(publicationTitle);
 
     if (customAbbrDataPath.endsWith(".json")) {
-      const customAbbrData = (await Zotero.File.getContentsAsync(customAbbrDataPath)) as string;
-      if (typeof customAbbrData !== "string" || customAbbrData === "") {
-        throw new Error("The custom journalAbbr data file format error.");
-      }
+      const data = await useData("json", customAbbrDataPath);
 
-      try {
-        const data = JSON.parse(customAbbrData);
-        for (const term in data) {
-          if (normalizeKey(term) === normalizePublicationTitle && data[term])
-            return data[term];
-        }
-        ztoolkit.log("[Abbr] 自定义缩写未匹配");
-        return undefined;
+      for (const term in data) {
+        if (normalizeKey(term) === normalizePublicationTitle && data[term])
+          return data[term];
       }
-      catch (e) {
-        throw new Error(`JSON Syntax Error, ${e}`);
-      }
+      ztoolkit.log("[Abbr] 自定义缩写未匹配");
+      return undefined;
     }
     else if (customAbbrDataPath.endsWith(".csv")) {
-      const customAbbrData = (await Zotero.File.getContentsAsync(customAbbrDataPath)) as string;
-      const resolvedTerms = await csv({
-        delimiter: "auto",
-        trim: true,
-        noheader: true,
+      const resolvedTerms = await useData("csv", customAbbrDataPath, {
         headers: ["publicationTitle", "abbr"],
-      }).fromString(customAbbrData);
+      });
       ztoolkit.log(`[Abbr] Custom terms:`, resolvedTerms);
-
       for (const term of resolvedTerms) {
         if (normalizeKey(term.publicationTitle) === normalizePublicationTitle)
           return term.abbr;

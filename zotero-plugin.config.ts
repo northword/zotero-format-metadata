@@ -14,12 +14,13 @@ export default defineConfig({
   }`,
   xpiDownloadLink: "https://github.com/{{owner}}/{{repo}}/releases/download/v{{version}}/{{xpiName}}.xpi",
 
-  server: {
-    // asProxy: true,
-  },
-
   build: {
-    assets: ["addon/**/*.*"],
+    assets: [
+      "addon/**/*.*",
+      "data/journal-abbr/journal-abbr.json",
+      // "data/country-by-capital-city.json",
+
+    ],
     define: {
       ...pkg.config,
       author: pkg.author,

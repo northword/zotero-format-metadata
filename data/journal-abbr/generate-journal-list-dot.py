@@ -86,7 +86,7 @@ def save_to_json(data, output_file):
 
 def main():
     base_path = Path(__file__).parent
-    output_filename = base_path / "journalAbbr.json"
+    output_filename = base_path / "journal-abbr.json"
     import_paths = [base_path / file for file in import_order]
 
     journal_data = load_data(import_paths)

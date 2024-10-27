@@ -21,7 +21,7 @@ export function getStdLintRules() {
   if (getPref("publicationTitleCase"))
     rules.push(new Rules.UpdatePublicationTitle({}));
   if (getPref("abbr"))
-    rules.push(new Rules.UpdateJournalAbbr({}));
+    rules.push(new Rules.UpdateAbbr({}));
   if (getPref("universityPlace"))
     rules.push(new Rules.UpdateUniversityPlace({}));
   if (getPref("dateISO"))

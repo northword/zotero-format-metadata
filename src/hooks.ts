@@ -164,7 +164,7 @@ async function onLintInBatch(mode: string, items: Zotero.Item[] | "item" | "coll
       rules = new Rules.UpdatePublicationTitle({});
       break;
     case "abbr":
-      rules = new Rules.UpdateJournalAbbr({});
+      rules = new Rules.UpdateAbbr({});
       break;
     case "place":
       rules = new Rules.UpdateUniversityPlace({});
