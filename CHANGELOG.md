@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Update journal abbr data: Appl. Catal., B
+
 ## [1.20.1] - 2024-10-22
 
 ### Fixed
