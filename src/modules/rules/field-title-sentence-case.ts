@@ -2,6 +2,7 @@ import type { RuleBaseOptions } from "./rule-base";
 import csv from "csvtojson";
 import { getPref } from "../../utils/prefs";
 import { convertToRegex, toSentenceCase } from "../../utils/str";
+import { useData } from "../data-loader";
 import { RuleBase } from "./rule-base";
 
 class TitleSentenceCaseOptions implements RuleBaseOptions {}
@@ -23,16 +24,12 @@ export class TitleSentenceCase extends RuleBase<TitleSentenceCaseOptions> {
 
     const customTermFilePath = getPref("title.customTermPath") as string;
     if (customTermFilePath) {
-      const fileContent = (await Zotero.File.getContentsAsync(customTermFilePath)) as string;
-      const resolvedTerms = await csv({
-        delimiter: "auto",
-        trim: true,
-        noheader: true,
+      const data = await useData("csv", customTermFilePath, {
         headers: ["search", "replace"],
-      }).fromString(fileContent);
-      ztoolkit.log(`[title] Custom terms:`, resolvedTerms);
+      });
+      ztoolkit.log(`[title] Custom terms:`, data);
 
-      resolvedTerms.forEach((term) => {
+      data.forEach((term) => {
         const search = convertToRegex(term.search);
         if (search.test(title)) {
           title = title.replace(search, term.replace);

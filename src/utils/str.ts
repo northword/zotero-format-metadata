@@ -1,7 +1,6 @@
-import { contryJson } from "../data";
-import { getPref } from "./prefs";
-// import { franc } from "franc";
 import { detect } from "tinyld";
+import contryJson from "./country-by-capital-city.json";
+import { getPref } from "./prefs";
 
 // prettier-ignore
 export const functionWords = ["but", "or", "yet", "so", "for", "and", "nor", "a", "an", "the", "at", "by", "from", "in", "into", "of", "on", "to", "with", "up", "down", "as"];
@@ -177,6 +176,7 @@ export function toSentenceCase(text: string) {
 
   return masked;
 }
+
 /**
  * 将字符串转换为正则表达式
  * @author GPT
