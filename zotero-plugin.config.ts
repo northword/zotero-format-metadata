@@ -19,7 +19,6 @@ export default defineConfig({
       "addon/**/*.*",
       "data/journal-abbr/journal-abbr.json",
       "data/conference-abbr.json",
-
     ],
     define: {
       ...pkg.config,
@@ -64,15 +63,15 @@ export default defineConfig({
 
   // TODO: switch to scaffold's releaser
   release: {
+    bumpp: {
+      execute: "pnpm build",
+    },
     changelog: "conventional-changelog",
     github: {
       enable: "ci",
       updater: "releaser",
       releaseNote(ctx) {
-        let notes = `## What's changed  \n\n`;
-        notes += `${ctx.release.changelog}  \n\n`;
-        notes += `## Notes  \n\n`;
-        notes += `Historical Changelog: [CHANGELOG.md](https://github.com/northword/zotero-format-metadata/blob/main/CHANGELOG.md).  \n\n`;
+        let notes = `${ctx.release.changelog}  \n\n`;
         notes += `![GitHub release (by tag)](https://img.shields.io/github/downloads/${ctx.release.github.repository}/${ctx.release.bumpp.tag}/total)  \n\n`;
         return notes;
       },
