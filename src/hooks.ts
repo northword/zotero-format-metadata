@@ -2,6 +2,7 @@ import type { RuleBase } from "./modules/rules/rule-base";
 import type { Task } from "./modules/rules-runner";
 import { config } from "../package.json";
 import { checkCompat } from "./modules/compat";
+import { registerExtraColumns } from "./modules/item-tree";
 import { registerMenu, registerTextTransformMenu } from "./modules/menu";
 import { registerNotifier } from "./modules/notifier";
 import { registerPrefs, registerPrefsScripts } from "./modules/preference";
@@ -30,6 +31,7 @@ async function onMainWindowLoad(win: Window): Promise<void> {
   registerShortcuts();
   registerMenu();
   registerTextTransformMenu(win);
+  registerExtraColumns();
   new RichTextToolBar(win).init();
 }
 

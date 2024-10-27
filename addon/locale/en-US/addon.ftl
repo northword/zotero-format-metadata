@@ -29,6 +29,9 @@ menuitem-titleBracketsToGuillemet = Convert〈〉to《》in Title
 menuitem-titleGuillemetToBrackets = Convert《》to〈〉in Title
 menuitem-setCreatorExt = Apply Creators Extended
 
+## Item tree
+field-abbr = Abbr
+
 ## batch
 info-batch-init = Initialization
 info-batch-no-selected = No selected items

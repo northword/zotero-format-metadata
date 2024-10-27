@@ -65,23 +65,26 @@ section-publicationTitle = 期刊名 publicationTitle
 publicationTitle-case = 
     .label = 期刊标题应词首大写
 
-## 期刊缩写
-section-abbr = 期刊缩写 journalAbbreviation
-abbr-iso = 
+## 缩写
+section-abbr = 缩写 Abbreviation
+abbr-journal = 
     .label = 期刊缩写应不为空且为 ISO 4 格式
-abbr-type-label = 期刊缩写的类型：
 abbr-infer = 
     .label = 本地数据集没有期刊缩写时自动根据 ISO 4 规则推断缩写
 abbr-usefull = 
-    .label = 对于英文期刊，仍没有期刊缩写时使用全称代替
-abbr-usefullZh = 
-    .label = 对于中文期刊，仍没有期刊缩写时使用全称代替
+    .label = 仍没有期刊缩写时使用全称代替：
+abbr-usefull-en = 
+.label = 英文期刊
+abbr-usefull-zh = 
+    .label = 中文
+abbr-conferencePaper = 
+    .label = 会议名的缩写填入 extra.shortConferenceName 字段
 abbr-custom-data-label = 自定义数据文件：
 choose-custom-abbr-data-button = 
     .label = 选择
 choose-custom-abbr-data-input = 
     .placeholder = 期刊缩写文件的路径
-abbr-custom-data-desc = 自定义期刊缩写文件支持 JSON 格式和 CSV 格式。JSON 文件的格式为："publicationTitle": "ISO 4 abbreviation"。CSV 格式第一列填全称，第二列填简写，分隔符可以为逗号或分号，但须统一，不得为制表符。
+abbr-custom-data-desc = 自定义缩写文件支持 JSON 格式和 CSV 格式。JSON 文件的格式为："publicationTitle": "abbreviation"。CSV 格式第一列填全称，第二列填简写，分隔符可以为逗号或分号，但须统一，不得为制表符。
 
 ## 日期
 section-date = 日期 Date

@@ -18,7 +18,7 @@ export default defineConfig({
     assets: [
       "addon/**/*.*",
       "data/journal-abbr/journal-abbr.json",
-      // "data/country-by-capital-city.json",
+      "data/conference-abbr.json",
 
     ],
     define: {

@@ -8,6 +8,10 @@ export function checkCompat() {
     return;
   }
 
+  if (compareVersion(version, "1.20.2") === -1) {
+    mvPref("abbr", "abbr.journalArticle", true);
+  }
+
   if (compareVersion(version, "1.8.0") === -1) {
     // 1.8.0 废弃期刊缩写类型
     clearPref("abbr.type");

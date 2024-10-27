@@ -65,23 +65,25 @@ section-publicationTitle = Publication Title
 publicationTitle-case = 
     .label = Publication title should be capitalized
 
-## 期刊缩写
-section-abbr = Journal Abbreviation
-abbr-iso = 
+## 缩写
+section-abbr = Abbreviation
+abbr-journal = 
     .label = Journal abbreviations should be non-empty and in ISO 4 format
-abbr-type-label = Types of abbreviations: 
 abbr-infer = 
     .label = Automatically infer abbreviations from LTWA when no journal abbreviation is available
-abbr-usefull = 
-    .label = Use full name instead when journal abbreviation is still not available for English journal
-abbr-usefullZh = 
-    .label = Use full name instead when journal abbreviation is still not available for Chinese journal
+abbr-usefull =  Use full name if abbr is unavailable for:
+abbr-usefull-en = 
+    .label = English journal
+abbr-usefull-zh = 
+    .label = Chinese journal
+abbr-conferencePaper = 
+    .label = Conference name abbreviations should be in extra.shortConferenceName
 abbr-custom-data-label = Custom abbreviations data file:
 choose-custom-abbr-data-button = 
     .label = Choose
 choose-custom-abbr-data-input = 
     .placeholder = The path of custom abbreviations data file
-abbr-custom-data-desc =  The custom journal abbreviation file supports both JSON and CSV formats. The JSON file is structured as "publicationTitle": "ISO 4 abbreviation". The CSV files have a full publication title in the first column and its abbreviation in the second column, the delimiter can be a comma or a semicolon, but it must be uniform and not a tab.
+abbr-custom-data-desc =  The custom abbreviation file supports both JSON and CSV formats. The JSON file is structured as "publicationTitle": "abbreviation". The CSV files have a full publication title in the first column and its abbreviation in the second column, the delimiter can be a comma or a semicolon, but it must be uniform and not a tab.
  
 ## 日期
 section-date = Date

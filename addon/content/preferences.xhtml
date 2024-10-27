@@ -33,6 +33,11 @@
       native="true"
       disabled="true"
     />
+    <!-- <checkbox
+      data-l10n-id="enable-abbr-colume"
+      preference="__prefsPrefix__.itemtree.abbr"
+      native="true"
+    /> -->
   </groupbox>
 
   <!-- 详细设置 -->
@@ -194,15 +199,46 @@
       />
     </groupbox>
 
-    <!-- 字段：期刊缩写 -->
+    <!-- 字段：缩写 -->
     <groupbox>
       <label><html:h2 data-l10n-id="section-abbr" /></label>
       <!-- 更新期刊缩写 -->
       <checkbox
-        data-l10n-id="abbr-iso"
-        preference="__prefsPrefix__.abbr"
+        data-l10n-id="abbr-journal"
+        preference="__prefsPrefix__.abbr.journalArticle"
         native="true"
       />
+      <vbox class="indented-pref">
+        <checkbox
+          id="__addonRef__-abbr-infer"
+          data-l10n-id="abbr-infer"
+          preference="__prefsPrefix__.abbr.infer"
+          native="true"
+        />
+        <hbox align="center">
+          <label data-l10n-id="abbr-usefull" />
+          <checkbox
+            id="__addonRef__-abbr-usefull"
+            data-l10n-id="abbr-usefull-en"
+            preference="__prefsPrefix__.abbr.usefull"
+            native="true"
+          />
+          <checkbox
+            id="__addonRef__-abbr-usefull"
+            data-l10n-id="abbr-usefull-zh"
+            preference="__prefsPrefix__.abbr.usefullZh"
+            native="true"
+          />
+        </hbox>
+      </vbox>
+      <!-- 更新会议名简写 -->
+      <checkbox
+        data-l10n-id="abbr-conferencePaper"
+        preference="__prefsPrefix__.abbr.conferencePaper"
+        native="true"
+      />
+
+      <!-- 自定义缩写文件 -->
       <hbox align="center">
         <label data-l10n-id="abbr-custom-data-label" />
         <html:input
@@ -222,24 +258,6 @@
         />
       </hbox>
       <description data-l10n-id="abbr-custom-data-desc" style="width: 45em" />
-      <checkbox
-        id="__addonRef__-abbr-infer"
-        data-l10n-id="abbr-infer"
-        preference="__prefsPrefix__.abbr.infer"
-        native="true"
-      />
-      <checkbox
-        id="__addonRef__-abbr-usefull"
-        data-l10n-id="abbr-usefull"
-        preference="__prefsPrefix__.abbr.usefull"
-        native="true"
-      />
-      <checkbox
-        id="__addonRef__-abbr-usefull"
-        data-l10n-id="abbr-usefullZh"
-        preference="__prefsPrefix__.abbr.usefullZh"
-        native="true"
-      />
     </groupbox>
 
     <!-- 期卷页 -->

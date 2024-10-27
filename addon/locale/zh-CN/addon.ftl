@@ -29,6 +29,9 @@ menuitem-titleBracketsToGuillemet = 将标题中〈〉转为《》
 menuitem-titleGuillemetToBrackets = 将标题中《》转为〈〉
 menuitem-setCreatorExt = 应用作者扩展信息
 
+## Item tree
+field-abbr = 缩写
+
 ## batch
 info-batch-init = 初始化
 info-batch-no-selected = 未选中任何条目

@@ -13,13 +13,16 @@ export class UpdateAbbr extends RuleBase<UpdateAbbrOptions> {
   }
 
   async apply(item: Zotero.Item): Promise<Zotero.Item> {
-    if (item.itemType === "journalArticle") {
-      return await this.getJournalAbbr(item);
+    if (item.itemType === "journalArticle" && getPref("abbr.journalArticle")) {
+      return await this.applyJournalAbbr(item);
+    }
+    else if (item.itemType === "conferencePaper" && getPref("abbr.conferencePaper")) {
+      return await this.applyShortConferenName(item);
     }
     return item;
   }
 
-  async getJournalAbbr(item: Zotero.Item): Promise<Zotero.Item> {
+  async applyJournalAbbr(item: Zotero.Item): Promise<Zotero.Item> {
     const publicationTitle = item.getField("publicationTitle") as string;
 
     // 无期刊全称直接跳过
@@ -69,6 +72,34 @@ export class UpdateAbbr extends RuleBase<UpdateAbbrOptions> {
     }
 
     item.setField("journalAbbreviation", journalAbbr);
+    return item;
+  }
+
+  async applyShortConferenName(item: Zotero.Item): Promise<Zotero.Item> {
+    const conferenceName = item.getField("conferenceName") as string;
+
+    // 无全称直接跳过
+    if (conferenceName === "")
+      return item;
+
+    let shortConferenceName: string | undefined;
+
+    // 从自定义数据集获取
+    const customAbbrDataPath = getPref("abbr.customDataPath") as string;
+    if (customAbbrDataPath !== "") {
+      shortConferenceName = await this.getAbbrFromCustom(conferenceName, customAbbrDataPath);
+    }
+
+    // 从本地数据集获取缩写
+    if (!shortConferenceName) {
+      const data = await useData("conferencesAbbr");
+      shortConferenceName = await this.getAbbrLocally(conferenceName, data);
+    }
+
+    if (!shortConferenceName)
+      shortConferenceName = "";
+
+    ztoolkit.ExtraField.setExtraField(item, "shortConferenceName", shortConferenceName);
     return item;
   }
 

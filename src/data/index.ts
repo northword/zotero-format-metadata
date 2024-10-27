@@ -8,14 +8,6 @@ export interface dict {
 }
 
 /**
- * 期刊缩写数据
- *
- * Key: 全称
- * Value: ISO 4 with dot 缩写
- */
-// export const journalAbbrlocalData: dict = journalAbbr as dict;
-
-/**
  * 高校所在地数据
  *
  * Key: 高校名称
