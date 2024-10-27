@@ -65,6 +65,7 @@ export default defineConfig({
   release: {
     bumpp: {
       execute: "pnpm build",
+      all: true,
     },
     changelog: "conventional-changelog",
     github: {
