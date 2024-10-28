@@ -11,6 +11,7 @@ from pathlib import Path
 import re
 
 import_order = [
+    "override.csv",
     # Keep IEEE before ubc, because IEEE has its own style.
     "abbrv.jabref.org/journals/journal_abbreviations_ieee.csv",
     "abbrv.jabref.org/journals/journal_abbreviations_acs.csv",
@@ -34,7 +35,7 @@ def load_data(file_paths):
     normalized_keys = set()
     for path in file_paths:
         with open(path, mode="r", encoding="utf-8") as file:
-            reader = csv.reader(file)
+            reader = csv.reader(decomment(file))
             for row in reader:
                 name = row[0].strip()
                 abbr = row[1].strip()
@@ -68,6 +69,13 @@ def load_data(file_paths):
                 journal_dict[name] = abbr
                 normalized_keys.add(normalized_key)  # Add to the set of used keys
     return journal_dict
+
+
+def decomment(csvfile):
+    for row in csvfile:
+        raw = row.split("#")[0].strip()
+        if raw:
+            yield row
 
 
 def normalize_name(name):
