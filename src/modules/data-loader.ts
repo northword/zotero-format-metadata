@@ -29,7 +29,14 @@ export async function useData(key: string, path?: string, loaderOptions?: any) {
       break;
   }
 
-  const data = await Zotero.File.getContentsAsync(path) as string;
+  let data: string;
+  if (path.startsWith("jar:file://")) {
+    data = (await Zotero.HTTP.request("get", path)).response;
+  }
+  else {
+    data = await Zotero.File.getContentsAsync(path) as string;
+  }
+  ztoolkit.log(`${path} data: ${data}`);
 
   if (path.endsWith(".csv")) {
     return await csv({
