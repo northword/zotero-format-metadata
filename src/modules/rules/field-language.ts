@@ -1,4 +1,4 @@
-import type { Data } from "../data-loader";
+import type { Data } from "../../utils/data-loader";
 import type { RuleBaseOptions } from "./rule-base";
 import { getPref } from "../../utils/prefs";
 import { getTextLanguage } from "../../utils/str";

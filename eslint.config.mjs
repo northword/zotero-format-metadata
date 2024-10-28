@@ -15,8 +15,7 @@ export default antfu(
     },
     ignores: [
       "addon/lib/**",
-      "src/data/**/*.json",
-      "src/data/**/*.html",
+      "data",
     ],
   },
   {

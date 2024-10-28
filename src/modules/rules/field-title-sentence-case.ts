@@ -1,8 +1,7 @@
 import type { RuleBaseOptions } from "./rule-base";
-import csv from "csvtojson";
+import { useData } from "../../utils/data-loader";
 import { getPref } from "../../utils/prefs";
 import { convertToRegex, toSentenceCase } from "../../utils/str";
-import { useData } from "../data-loader";
 import { RuleBase } from "./rule-base";
 
 class TitleSentenceCaseOptions implements RuleBaseOptions {}

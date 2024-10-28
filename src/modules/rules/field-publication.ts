@@ -1,7 +1,7 @@
 import type { RuleBaseOptions } from "./rule-base";
+import { useData } from "../../utils/data-loader";
 // import { journalAbbrlocalData } from "../../data";
 import { functionWords, isFullUpperCase, normalizeKey } from "../../utils/str";
-import { useData } from "../data-loader";
 import { RuleBase } from "./rule-base";
 
 class CapitalizePublicationTitleOptions implements RuleBaseOptions {}

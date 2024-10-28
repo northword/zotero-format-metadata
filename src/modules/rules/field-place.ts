@@ -1,5 +1,5 @@
 import type { RuleBaseOptions } from "./rule-base";
-import { useData } from "../data-loader";
+import { useData } from "../../utils/data-loader";
 import { RuleBase } from "./rule-base";
 
 class updateUniversityPlaceOptions implements RuleBaseOptions {}

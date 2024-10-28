@@ -1,8 +1,8 @@
-import type { Data } from "../data-loader";
+import type { Data } from "../../utils/data-loader";
 import type { RuleBaseOptions } from "./rule-base";
+import { useData } from "../../utils/data-loader";
 import { getPref } from "../../utils/prefs";
 import { getTextLanguage, normalizeKey } from "../../utils/str";
-import { useData } from "../data-loader";
 import { RuleBase } from "./rule-base";
 
 class UpdateAbbrOptions implements RuleBaseOptions {}
