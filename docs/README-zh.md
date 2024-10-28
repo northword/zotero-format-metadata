@@ -4,7 +4,7 @@
 
 [![zotero target version](https://img.shields.io/badge/Zotero-7.0.*-green?&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![version](https://img.shields.io/github/package-json/v/northword/zotero-format-metadata)](https://github.com/northword/zotero-format-metadata/releases/)
-[![download number](https://img.shields.io/github/downloads/northword/zotero-format-metadata/latest/linter-for-zotero.xpi)](https://github.com/northword/zotero-format-metadata/releases/)
+[![download number](https://img.shields.io/github/downloads/northword/zotero-format-metadata/latest/total)](https://github.com/northword/zotero-format-metadata/releases/)
 [![license](https://img.shields.io/github/license/northword/zotero-format-metadata)](#开源协议)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/b851796e53724d7aa7c00923955e0f56)](https://app.codacy.com/gh/northword/zotero-format-metadata/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?&logo=github)](https://github.com/windingwind/zotero-plugin-template)
@@ -105,15 +105,9 @@ DOI 去前缀、日期修改为 ISO 格式等。
 ## 安装
 
 1. 前往 [发布页](https://github.com/northword/zotero-format-metadata/releases/) 下载 [最新的 `.xpi` 文件](https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-format-metadata.xpi).
-   - 如果你无法顺利的访问 GitHub，可以前往以下几个镜像站下载本插件。
-     - [GitHub Proxy](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fnorthword%2Fzotero-format-metadata%2Freleases%2Flatest%2Fdownload%2Fzotero-format-metadata.xpi)
-     - [Zotero 插件镜像下载 - Zotero 中文社区](https://plugins.zotero-chinese.com/)
+   - 如果你无法顺利的访问 GitHub，可以前往 [Zotero 插件镜像下载 - Zotero 中文社区](https://plugins.zotero-chinese.com/) 下载。
    - 如果你使用 FireFox ，请在 XPI 文件的链接上右击，选择“另存为...”。
-2. 在 Zotero 中，点击菜单 `工具` -> `附加组件`，将下载的 `.xpi` 文件拖入 Zotero 插件管理器页面。参阅 [如何安装 Zotero 插件](https://zotero-chinese.com/user-guide/plugins/about-plugin.html)。
-
-## 变更日志
-
-本插件的主要变更历史列于 [CHANGELOG.md](../CHANGELOG.md) 中。
+2. 在 Zotero 中，点击菜单 `工具` -> `插件`，将下载的 `.xpi` 文件拖入 Zotero 插件管理器页面。参阅 [如何安装 Zotero 插件](https://zotero-chinese.com/user-guide/plugins/about-plugin.html)。
 
 ## Todo
 

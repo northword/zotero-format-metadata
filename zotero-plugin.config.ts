@@ -9,9 +9,7 @@ export default defineConfig({
   name: pkg.config.addonName,
   id: pkg.config.addonID,
   namespace: pkg.config.addonRef,
-  updateURL: `https://raw.githubusercontent.com/northword/zotero-format-metadata/main/${
-    pkg.version.includes("-") ? "update-beta.json" : "update.json"
-  }`,
+  updateURL: `https://github.com/{{owner}}/{{repo}}/releases/download/releaser/{{updateJson}}`,
   xpiDownloadLink: "https://github.com/{{owner}}/{{repo}}/releases/download/v{{version}}/{{xpiName}}.xpi",
 
   build: {

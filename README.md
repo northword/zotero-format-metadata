@@ -4,7 +4,7 @@
 
 [![zotero target version](https://img.shields.io/badge/Zotero-7.0.*-green?&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![version](https://img.shields.io/github/package-json/v/northword/zotero-format-metadata)](https://github.com/northword/zotero-format-metadata/releases/)
-[![download number](https://img.shields.io/github/downloads/northword/zotero-format-metadata/latest/linter-for-zotero.xpi)](https://github.com/northword/zotero-format-metadata/releases/)
+[![download number](https://img.shields.io/github/downloads/northword/zotero-format-metadata/latest/total)](https://github.com/northword/zotero-format-metadata/releases/)
 [![license](https://img.shields.io/github/license/northword/zotero-format-metadata)](#licence)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/b851796e53724d7aa7c00923955e0f56)](https://app.codacy.com/gh/northword/zotero-format-metadata/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?&logo=github)](https://github.com/windingwind/zotero-plugin-template)
@@ -103,15 +103,9 @@ See [Features (in Chinese)](./docs/features.md).
 ## Install
 
 1. Go to the [release page](https://github.com/northword/zotero-format-metadata/releases/) to download [the latest `.xpi` file](https://github.com/northword/zotero-format-metadata/releases/latest/download/zotero-format-metadata.xpi).
-   - If you are in mainland China or cannot access GitHub easily, please download the plugin via the following mirror sites.
-     - [GitHub Proxy](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fnorthword%2Fzotero-format-metadata%2Freleases%2Flatest%2Fdownload%2Fzotero-format-metadata.xpi)
-     - [Zotero Chinese](https://plugins.zotero-chinese.com/)
+   - If you are in mainland China or cannot access GitHub easily, please download the plugin from [Zotero Chinese](https://plugins.zotero-chinese.com/).
    - If you are using FireFox, right click on the link of the XPI file and select "Save As...".
-2. Then, in Zotero, click `Tools` -> `Add-ons` and drag the `.xpi` onto the Add-ons window. See [how to install a Zotero addon](https://zotero-chinese.com/user-guide/plugins/about-plugin.html).
-
-## Changelog
-
-See [CHANGELOG.md](./CHANGELOG.md).
+2. Then, in Zotero, click `Tools` -> `Plugin` and drag the `.xpi` onto the Plugins Manager window. See [how to install a Zotero addon](https://zotero-chinese.com/user-guide/plugins/about-plugin.html).
 
 ## Todo
 
@@ -126,6 +120,8 @@ See [CONTRIBUTING.md](./docs/CONTRIBUTING.md).
 GNU Affero General Public License v3.0
 
 Permissions of this strongest copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. When a modified version is used to provide a service over a network, the complete source code of the modified version must be made available.
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnorthword%2Fzotero-format-metadata.svg?type=large&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnorthword%2Fzotero-format-metadata?ref=badge_large&issueType=license)
 
 ## Acknowledgements
 
