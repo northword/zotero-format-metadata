@@ -18,7 +18,7 @@ export async function useData(key: string, path?: string, loaderOptions?: any) {
       path = `${rootURI}data/conference-abbr.json`;
       break;
     case "universityPlace":
-      path = `${rootURI}data/university-place.json`;
+      path = `${rootURI}data/university-list/university-place.json`;
       break;
     case "csv":
     case "json":

@@ -17,6 +17,7 @@ export default defineConfig({
       "addon/**/*.*",
       "data/journal-abbr/journal-abbr.json",
       "data/conference-abbr.json",
+      "data/university-list/university-place.json",
     ],
     define: {
       ...pkg.config,
