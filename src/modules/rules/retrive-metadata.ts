@@ -147,7 +147,7 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
           const newFieldValue = Zotero.Date.dateToSQL(new Date(newItem[field] ?? ""), true);
           if (newFieldValue) {
             ztoolkit.log(`Update "accessDate" to ${newFieldValue}`);
-            item.setField("accessDate", newFieldValue, true);
+            item.setField("accessDate", newFieldValue);
           }
           break;
         }
@@ -164,7 +164,7 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
           // if (!newFieldValue) continue;
           ztoolkit.log(`Update "${field}" from "${oldFieldValue}" to "${newFieldValue}"`);
           // @ts-expect-error field 已为 Zotero.Item.ItemField
-          item.setField(field, newFieldValue, true);
+          item.setField(field, newFieldValue);
           break;
         }
       }
@@ -305,7 +305,7 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
           if (item.itemType === "journalArticle")
             item.setField("publicationTitle", value.name);
           if ("issn" in value)
-            item.setField("ISSN", value.issn, true);
+            item.setField("ISSN", value.issn);
           break;
         case "publicationDate": {
           item.setField("date", value);
