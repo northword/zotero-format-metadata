@@ -153,7 +153,7 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
         }
 
         default: {
-          const newFieldValue = newItem[field] ?? "";
+          let newFieldValue = newItem[field] ?? "";
           // @ts-expect-error field 已为 Zotero.Item.ItemField
           const oldFieldValue = item.getField(field, false, true);
 
@@ -162,6 +162,12 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
           // 当新条目该字段未空时，结束本次循环
           // 存疑：当新条目该字段为空时，可能是该字段确实为空，用户已有条目字段可能是假值。
           // if (!newFieldValue) continue;
+
+          // This is a Zotero translator bug, temporarily fixed here
+          // see https://github.com/northword/zotero-format-metadata/issues/237
+          if (field === "title")
+            newFieldValue = newFieldValue.replace(/\s+<(sub|sup)>/g, "<$1>");
+
           ztoolkit.log(`Update "${field}" from "${oldFieldValue}" to "${newFieldValue}"`);
           // @ts-expect-error field 已为 Zotero.Item.ItemField
           item.setField(field, newFieldValue);
