@@ -26,7 +26,7 @@ export class TitleSentenceCase extends RuleBase<TitleSentenceCaseOptions> {
       const data = await useData("csv", customTermFilePath, {
         headers: ["search", "replace"],
       });
-      ztoolkit.log(`[title] Custom terms:`, data);
+      ztoolkit.log(`[title] Custom terms:`, data, typeof data);
 
       data.forEach((term) => {
         const search = convertToRegex(term.search);
