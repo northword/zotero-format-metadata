@@ -55,8 +55,8 @@ importers:
         specifier: ^0.1.7
         version: 0.1.7(@types/node@20.16.12)(conventional-changelog@6.0.0(conventional-commits-filter@5.0.0))
       zotero-types:
-        specifier: ^2.2.1
-        version: 2.2.1
+        specifier: ^3.0.0
+        version: 3.0.0
 
 packages:
 
@@ -4329,6 +4329,9 @@ packages:
 
   zotero-types@2.2.1:
     resolution: {integrity: sha512-alsjWn7i3pJq7b9+2XT2WbxZtWk4WWH4EIUi6o+Xx7/uz8TQDA0PFY2mS91gL8VXWKXMrSBJKYEbkvMMR6KuKA==}
+
+  zotero-types@3.0.0:
+    resolution: {integrity: sha512-1v8O4FKJhjrGTdwc4EmHMvpDClHO5Au4b62EuiZtcoJSjEJDUdbI3Dy2CQLXlaDWuTE6MeBY+lB77C3z48aaSg==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -9103,6 +9106,16 @@ snapshots:
       - supports-color
 
   zotero-types@2.2.1:
+    dependencies:
+      '@types/bluebird': 3.5.42
+      '@types/react': 18.3.1
+      epubjs: 0.3.93
+      pdfjs-dist: 4.7.76
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+
+  zotero-types@3.0.0:
     dependencies:
       '@types/bluebird': 3.5.42
       '@types/react': 18.3.1
