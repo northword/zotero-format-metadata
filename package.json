@@ -41,7 +41,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^3.8.0",
     "@release-it/keep-a-changelog": "^5.0.0",
-    "@types/node": "^20.17.3",
+    "@types/node": "^22.0.0",
     "conventional-changelog": "^6.0.0",
     "eslint": "^9.13.0",
     "eslint-plugin-format": "^0.1.2",
