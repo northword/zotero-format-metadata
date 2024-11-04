@@ -1,8 +1,5 @@
 # This file is used to override error entries in the upstream database that were not addressed in timely fashion
 
-## UBC, 241028, Abbr case error
-"Lasers in Surgery and Medicine","Lasers Surg. Med.",
-
 ## UBC, 241028, miss `:`, https://github.com/northword/zotero-format-metadata/issues/234
 "Transportation Research Part A: Policy and Practice","Transp. Res. Part A Policy Pract."
 "Transportation Research Part B: Methodological","Transp. Res. Part B Methodol."
@@ -10,3 +7,7 @@
 "Transportation Research Part D: Transport and Environment","Transp. Res. Part D Transp. Environ."
 "Transportation Research Part E: Logistics and Transportation Review","Transp. Res. Part E Logist. Transp. Rev."
 "Transportation Research Part F: Traffic Psychology and Behaviour","Transp. Res. Part F Psychol. Behav."
+
+
+## UBC, 241104
+"Annals of Mathematical Sciences and Applications","Ann. Math. Sci. Appl."

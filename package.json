@@ -26,7 +26,7 @@
     "build": "tsc --noEmit && zotero-plugin build",
     "lint:check": "eslint .",
     "lint:fix": "eslint . --fix",
-    "update-data": "bash src/data/update-data.sh",
+    "update-data": "bash data/update-data.sh",
     "test": "vitest",
     "release": "zotero-plugin release",
     "update-deps": "pnpx taze minor -w -i"
