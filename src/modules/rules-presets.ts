@@ -20,7 +20,7 @@ export function getStdLintRules() {
     rules.push(new Rules.TitleNoDotEnd({}));
   if (getPref("publicationTitleCase"))
     rules.push(new Rules.UpdatePublicationTitle({}));
-  if (getPref("abbr"))
+  if (getPref("abbr.journalArticle") || getPref("abbr.conferencePaper"))
     rules.push(new Rules.UpdateAbbr({}));
   if (getPref("universityPlace"))
     rules.push(new Rules.UpdateUniversityPlace({}));
