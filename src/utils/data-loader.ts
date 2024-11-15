@@ -12,12 +12,15 @@ export async function useData(key: string, path: string): Promise<any>;
 export async function useData(key: string, path?: string, loaderOptions?: any) {
   switch (key) {
     case "journalAbbr":
+      key = "json";
       path = `${rootURI}data/journal-abbr/journal-abbr.json`;
       break;
     case "conferencesAbbr":
+      key = "json";
       path = `${rootURI}data/conference-abbr.json`;
       break;
     case "universityPlace":
+      key = "json";
       path = `${rootURI}data/university-list/university-place.json`;
       break;
     case "csv":
@@ -38,7 +41,7 @@ export async function useData(key: string, path?: string, loaderOptions?: any) {
   }
   ztoolkit.log(`${path} data: ${data}`);
 
-  if (key === "csv") {
+  if (key === "csv" || path.endsWith(".csv")) {
     return (await csv({
       delimiter: "auto",
       trim: true,
@@ -46,7 +49,7 @@ export async function useData(key: string, path?: string, loaderOptions?: any) {
       ...loaderOptions,
     }).fromString(data));
   }
-  else if (key === "json") {
+  else if (key === "json" || path.endsWith(".json")) {
     if (typeof data !== "string" || data === "") {
       throw new SyntaxError("The custom json data file format error.");
     }
