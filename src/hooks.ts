@@ -63,13 +63,16 @@ async function onNotify(
 ) {
   ztoolkit.log("notify", event, type, ids, extraData);
 
+  // skip synced item
+  if (extraData.skipAutoSync)
+    return;
+
+  // wait 500ms to wait other plugins changes saved
+  await Zotero.Promise.delay(500);
+
   if (event === "add" && type === "item") {
     const items = Zotero.Items.get(ids as number[]).filter(
       (item) => {
-        // skip synced item
-        if (extraData.skipAutoSync)
-          return false;
-
         // skip attachment
         if (!item.isRegularItem())
           return false;
@@ -91,6 +94,7 @@ async function onNotify(
         return true;
       },
     );
+
     if (items.length !== 0) {
       addon.hooks.onLintInBatch("newItem", items);
     }
