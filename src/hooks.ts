@@ -1,5 +1,5 @@
-import type { RuleBase } from "./modules/rules/rule-base";
 import type { Task } from "./modules/rules-runner";
+import type { RuleBase } from "./modules/rules/rule-base";
 import { config } from "../package.json";
 import { checkCompat } from "./modules/compat";
 import { registerExtraColumns } from "./modules/item-tree";
