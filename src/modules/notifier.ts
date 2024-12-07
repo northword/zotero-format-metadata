@@ -18,9 +18,11 @@ export function registerNotifier() {
     ["item"],
   );
 
+  // Unregister callback when the plugin shutdown (important to avoid a memory leak)
   Zotero.Plugins.addObserver({
-    shutdown: () => {
-      unregisterNotifier(notifierID);
+    shutdown: ({ id }) => {
+      if (id === addon.data.config.addonID)
+        unregisterNotifier(notifierID);
     },
   });
 
