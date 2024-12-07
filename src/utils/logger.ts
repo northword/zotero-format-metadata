@@ -1,5 +1,3 @@
-import { config } from "../../package.json";
-
 export function callingLoggerForMethod(target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) {
   const original = descriptor.value;
   descriptor.value = function (...args: never) {
@@ -16,7 +14,7 @@ export function callingLoggerForMethod(target: any, propertyKey: string | symbol
 }
 
 export function progressWindow(text: string, type = "default", progress = 100) {
-  return new ztoolkit.ProgressWindow(config.addonName, {
+  return new ztoolkit.ProgressWindow(addon.data.config.addonName, {
     closeOnClick: true,
   })
     .createLine({

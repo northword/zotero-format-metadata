@@ -1,8 +1,7 @@
-import { config } from "../../package.json";
 import { getString } from "../utils/locale";
 
 export async function registerExtraColumns() {
-  await Zotero.ItemTreeManager.registerColumns({
+  Zotero.ItemTreeManager.registerColumn({
     dataKey: "abbr",
     label: getString("field-abbr"),
     dataProvider: (item, _dataKey) => {
@@ -17,7 +16,7 @@ export async function registerExtraColumns() {
       else
         return ztoolkit.ExtraField.getExtraField(item, "abbr") || "";
     },
-    pluginID: config.addonID,
+    pluginID: addon.data.config.addonID,
     zoteroPersist: ["width", "hidden", "sortDirection"],
   });
 }

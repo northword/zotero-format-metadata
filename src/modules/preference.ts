@@ -1,13 +1,13 @@
-import { config, homepage } from "../../package.json";
+import { homepage } from "../../package.json";
 import { getString } from "../utils/locale";
 import { getPref, setPref } from "../utils/prefs";
 
 export function registerPrefs() {
   Zotero.PreferencePanes.register({
-    pluginID: config.addonID,
+    pluginID: addon.data.config.addonID,
     src: `${rootURI}content/preferences.xhtml`,
     label: getString("prefs-title"),
-    image: `chrome://${config.addonRef}/content/icons/favicon.png`,
+    image: `chrome://${addon.data.config.addonRef}/content/icons/favicon.png`,
     helpURL: homepage,
   });
 }
@@ -35,7 +35,7 @@ async function updatePrefsUI() {
   disablePrefsLang();
 
   addon.data.prefs?.window.document
-    .querySelector(`#${config.addonRef}-abbr-choose-custom-data-button`)
+    .querySelector(`#${addon.data.config.addonRef}-abbr-choose-custom-data-button`)
     ?.addEventListener("command", async () => {
       const filename = await new ztoolkit.FilePicker(
         "Select File",
@@ -56,7 +56,7 @@ async function updatePrefsUI() {
     });
 
   addon.data.prefs?.window.document
-    .querySelector(`#${config.addonRef}-title-choose-custom-data-button`)
+    .querySelector(`#${addon.data.config.addonRef}-title-choose-custom-data-button`)
     ?.addEventListener("command", async () => {
       const filename = await new ztoolkit.FilePicker(
         "Select File",
@@ -78,7 +78,7 @@ async function updatePrefsUI() {
 
 function bindPrefEvents() {
   addon.data.prefs?.window.document
-    .querySelector(`#${config.addonRef}-lang-only-enable`)
+    .querySelector(`#${addon.data.config.addonRef}-lang-only-enable`)
     ?.addEventListener("command", (e) => {
       ztoolkit.log(e);
       disablePrefsLang();
@@ -88,12 +88,12 @@ function bindPrefEvents() {
 function disablePrefsLang() {
   const state = getPref("lang.only");
   addon.data.prefs?.window.document
-    .getElementById(`${config.addonRef}-lang-only-cmn`)
+    .getElementById(`${addon.data.config.addonRef}-lang-only-cmn`)
     ?.setAttribute("disabled", String(!state));
   addon.data.prefs?.window.document
-    .getElementById(`${config.addonRef}-lang-only-eng`)
+    .getElementById(`${addon.data.config.addonRef}-lang-only-eng`)
     ?.setAttribute("disabled", String(!state));
   // addon.data
-  //     .prefs!.window.document.getElementById(`${config.addonRef}-lang-only-other`)!
+  //     .prefs!.window.document.getElementById(`${addon.data.config.addonRef}-lang-only-other`)!
   //     .setAttribute("disabled", String(!state));
 }

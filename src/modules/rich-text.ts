@@ -161,7 +161,7 @@ export class RichTextToolBar {
       const toolbarbutton = document.createElement("toolbarbutton");
       toolbarbutton.id = `linter-richtext-${btn.hookName}-btn`;
       toolbarbutton.className = "zotero-tb-button";
-      // toolbarbutton.style.listStyleImage = `url("chrome://${config.addonRef}/content/subscript.svg")`;
+      // toolbarbutton.style.listStyleImage = `url("chrome://${addon.data.config.addonRef}/content/subscript.svg")`;
       toolbarbutton.style.fill = "currentColor";
       toolbarbutton.style.stroke = "currentColor";
       toolbarbutton.style.display = "flex";
@@ -318,8 +318,8 @@ export function setHtmlTag(tag: string, attribute?: string, value?: string) {
 //         return toolBarPanel;
 
 //         // addon.data.panel.toolBarPanel = ztoolkit.getGlobal("openDialog")(
-//         //     `chrome://${config.addonRef}/content/standalone.xhtml`,
-//         //     `${config.addonRef}-standalone`,
+//         //     `chrome://${addon.data.config.addonRef}/content/standalone.xhtml`,
+//         //     `${addon.data.config.addonRef}-standalone`,
 //         //     `chrome,extrachrome,menubar,resizable=yes,scrollbars,status,dialog=no,alwaysRaised=yes`,
 //         //     dialogData
 //         // );

@@ -1,5 +1,4 @@
 import type { RuleBase } from "./rules/rule-base";
-import { config } from "../../package.json";
 import { getString } from "../utils/locale";
 import { logError } from "../utils/logger";
 import { timeoutPromise, waitUtilAsync } from "../utils/wait";
@@ -31,7 +30,7 @@ export class LintRunner {
     this.total = tasks.length;
     this.error = 0;
     this.state = true;
-    this.popWin = new ztoolkit.ProgressWindow(config.addonName, {
+    this.popWin = new ztoolkit.ProgressWindow(addon.data.config.addonName, {
       closeOnClick: false,
       closeTime: -1,
     });

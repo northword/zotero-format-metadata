@@ -1,5 +1,3 @@
-import { config } from "../../package.json";
-
 // eslint-disable-next-line ts/no-use-before-define
 export { getString, initLocale };
 
@@ -7,7 +5,7 @@ export { getString, initLocale };
  * Initialize locale data
  */
 function initLocale() {
-  const l10n = new (ztoolkit.getGlobal("Localization"))([`${config.addonRef}-addon.ftl`], true);
+  const l10n = new (ztoolkit.getGlobal("Localization"))([`${addon.data.config.addonRef}-addon.ftl`], true);
   addon.data.locale = {
     current: l10n,
   };
@@ -61,7 +59,7 @@ function _getString(
   localString: string,
   options: { branch?: string | undefined; args?: Record<string, unknown> } = {},
 ): string {
-  const localStringWithPrefix = `${config.addonRef}-${localString}`;
+  const localStringWithPrefix = `${addon.data.config.addonRef}-${localString}`;
   const { branch, args } = options;
   const pattern = addon.data.locale?.current.formatMessagesSync([{ id: localStringWithPrefix, args }])[0];
   if (!pattern) {

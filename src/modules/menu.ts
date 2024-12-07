@@ -1,10 +1,9 @@
 import type { MenuitemOptions } from "zotero-plugin-toolkit";
-import { config } from "../../package.json";
 import { getString } from "../utils/locale";
 import { isRegularItem } from "../utils/zotero";
 
 export function registerMenu() {
-  const menuIcon = `chrome://${config.addonRef}/content/icons/favicon.png`;
+  const menuIcon = `chrome://${addon.data.config.addonRef}/content/icons/favicon.png`;
   function getMenuItem(menuPopup: string) {
     const menuItem: MenuitemOptions[] = [
       {
@@ -277,7 +276,7 @@ export function registerMenu() {
   // ztoolkit.Menu.register("menuTools", {
   //     tag: "menu",
   //     label: getString("menuTools-label"),
-  //     id: `${config.addonRef}-menuTools`,
+  //     id: `${addon.data.config.addonRef}-menuTools`,
   //     icon: menuIcon,
   //     children: [
   //         {

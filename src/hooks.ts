@@ -1,6 +1,5 @@
 import type { Task } from "./modules/rules-runner";
 import type { RuleBase } from "./modules/rules/rule-base";
-import { config } from "../package.json";
 import { checkCompat } from "./modules/compat";
 import { registerExtraColumns } from "./modules/item-tree";
 import { registerMenu, registerTextTransformMenu } from "./modules/menu";
@@ -52,7 +51,7 @@ function onShutdown() {
   // addon.data.dialogs = {};
   // Remove addon object
   addon.data.alive = false;
-  delete Zotero[config.addonInstance];
+  delete Zotero[addon.data.config.addonInstance];
 }
 
 async function onNotify(

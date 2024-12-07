@@ -30,7 +30,6 @@ function initZToolkit(_ztoolkit: ReturnType<typeof createZToolkit>) {
   _ztoolkit.basicOptions.log.disableConsole = env === "production";
   _ztoolkit.UI.basicOptions.ui.enableElementJSONLog = __env__ === "development";
   _ztoolkit.UI.basicOptions.ui.enableElementDOMLog = __env__ === "development";
-  _ztoolkit.UI.basicOptions.ui.enableElementRecord = true;
   _ztoolkit.basicOptions.debug.disableDebugBridgePassword = __env__ === "development";
   _ztoolkit.basicOptions.api.pluginID = config.addonID;
   _ztoolkit.ProgressWindow.setIconURI("default", `chrome://${config.addonRef}/content/icons/favicon.png`);
