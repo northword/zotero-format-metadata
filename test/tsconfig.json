@@ -1,0 +1,5 @@
+{
+  "extends": "../tsconfig.json",
+  "include": ["./**/*.spec.ts", "typings", "../node_modules/zotero-types", "zotero.spec.ts"],
+  "exclude": []
+}
