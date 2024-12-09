@@ -45,7 +45,8 @@ jobs:
         run: |
           echo "public-hoist-pattern[]=@types*" >> .npmrc
           pnpm install
-
+          pnpm link ../zotero-plugin-scaffold
+          
       # - name: Run Lint
       #   run: |
       #     pnpm lint:check
