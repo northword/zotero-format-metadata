@@ -19,6 +19,16 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Clone Zotero Plugin Scaffold # TEMP: Use the official repository once the PR is merged
+        run: |
+          cd ..
+          git clone --branch add-test https://github.com/windingwind/zotero-plugin-scaffold.git zotero-plugin-scaffold
+          cd -
+          cd ../zotero-plugin-scaffold
+          pnpm install
+          pnpm run build
+          cd -
+        
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
@@ -41,6 +51,10 @@ jobs:
         run: |
           pnpm build
 
-      - name: Run Test
+      # - name: Run Test
+      #   run: |
+      #     pnpm test
+
+      - name: Run Test Client
         run: |
-          pnpm test
+          pnpm test:client
