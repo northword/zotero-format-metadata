@@ -38,6 +38,9 @@ jobs:
           pnpm install
           pnpm run build
           cd -
+
+          which xvfb
+          which Xvfb 
       
       - name: Install deps
         run: |
