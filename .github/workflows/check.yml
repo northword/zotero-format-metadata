@@ -39,25 +39,11 @@ jobs:
           pnpm run build
           cd -
       
-
-
       - name: Install deps
         run: |
           echo "public-hoist-pattern[]=@types*" >> .npmrc
           pnpm install
           pnpm link ../zotero-plugin-scaffold
-          
-      # - name: Run Lint
-      #   run: |
-      #     pnpm lint:check
-
-      # - name: Run Build
-      #   run: |
-      #     pnpm build
-
-      # - name: Run Test
-      #   run: |
-      #     pnpm test
 
       - name: Run Test Client
         run: |
