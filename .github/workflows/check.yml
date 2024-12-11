@@ -19,7 +19,6 @@ jobs:
         with:
           fetch-depth: 0
 
-       
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
@@ -28,22 +27,22 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
-    
-      - name: Clone Zotero Plugin Scaffold # TEMP: Use the official repository once the PR is merged
-        run: |
-          cd ..
-          git clone --branch add-test https://github.com/windingwind/zotero-plugin-scaffold.git zotero-plugin-scaffold
-          cd -
-          cd ../zotero-plugin-scaffold
-          pnpm install
-          pnpm run build
-          cd -
-      
+
+      # - name: Clone Zotero Plugin Scaffold # TEMP: Use the official repository once the PR is merged
+      #   run: |
+      #     cd ..
+      #     git clone --branch add-test https://github.com/windingwind/zotero-plugin-scaffold.git zotero-plugin-scaffold
+      #     cd -
+      #     cd ../zotero-plugin-scaffold
+      #     pnpm install
+      #     pnpm run build
+      #     cd -
+
       - name: Install deps
         run: |
           echo "public-hoist-pattern[]=@types*" >> .npmrc
           pnpm install
-          pnpm link ../zotero-plugin-scaffold
+          # pnpm link ../zotero-plugin-scaffold
 
       - name: Run Test Client
         run: |
