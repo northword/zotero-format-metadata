@@ -28,11 +28,6 @@ jobs:
           node-version: 20
           cache: pnpm
 
-      - name: Install X11 dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y xvfb x11-xkb-utils xkb-data
-
       - name: Clone Zotero Plugin Scaffold
         run: |
           cd ..
@@ -52,5 +47,4 @@ jobs:
 
       - name: Run Test Client
         run: |
-          # pnpm test:client
           pnpm test:client
