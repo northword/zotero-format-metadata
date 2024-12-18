@@ -10,7 +10,7 @@ on:
 
 jobs:
   check:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     env:
       GITHUB_TOKEN: ${{ secrets.GitHub_TOKEN }}
     steps:
@@ -28,7 +28,7 @@ jobs:
           node-version: 20
           cache: pnpm
 
-          
+
       - name: Clone Zotero Plugin Scaffold
         run: |
           cd ..
