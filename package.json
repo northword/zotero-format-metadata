@@ -44,7 +44,7 @@
     "@release-it/keep-a-changelog": "^5.0.0",
     "@types/chai": "^5.0.1",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^22.10.1",
+    "@types/node": "^22.10.2",
     "chai": "^5.1.2",
     "conventional-changelog": "^6.0.0",
     "eslint": "^9.16.0",
