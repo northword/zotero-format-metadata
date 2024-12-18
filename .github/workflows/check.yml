@@ -36,7 +36,7 @@ jobs:
       - name: Clone Zotero Plugin Scaffold
         run: |
           cd ..
-          git clone --branch fix-xvfb https://github.com/northword/zotero-plugin-scaffold.git zotero-plugin-scaffold
+          git clone --branch add-test https://github.com/windingwind/zotero-plugin-scaffold.git zotero-plugin-scaffold
           cd -
           cd ../zotero-plugin-scaffold
           pnpm install
@@ -51,4 +51,5 @@ jobs:
 
       - name: Run Test Client
         run: |
-          pnpm test:client
+          # pnpm test:client
+          xvfb-run pnpx zotero-plugin test
