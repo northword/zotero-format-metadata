@@ -64,8 +64,8 @@ importers:
         specifier: ^2.1.8
         version: 2.1.8(@types/node@22.10.2)
       zotero-plugin-scaffold:
-        specifier: ^0.2.0-beta.10
-        version: 0.2.0-beta.10(conventional-changelog@6.0.0(conventional-commits-filter@5.0.0))
+        specifier: ^0.2.0-beta.11
+        version: 0.2.0-beta.11(conventional-changelog@6.0.0(conventional-commits-filter@5.0.0))
       zotero-types:
         specifier: ^3.0.3
         version: 3.0.3
@@ -3695,8 +3695,8 @@ packages:
     resolution: {integrity: sha512-cYVsTjKl8b+FrnidjibDWskAv7UKOfcwaVZdp/it9n1s9fU3IkgDbhdIRKCW4JDsAlECJY0ytoVPT3sK6kideA==}
     engines: {node: '>=18'}
 
-  zotero-plugin-scaffold@0.2.0-beta.10:
-    resolution: {integrity: sha512-QtlMEohEdpSjYK4WTf6xpNFZKNhfseOC6EA8iYZfPQp+2Ew8u/64o3LE43PTK2SiNx/YSeCErWAY7CoIDrIhZg==}
+  zotero-plugin-scaffold@0.2.0-beta.11:
+    resolution: {integrity: sha512-1lG5fHcKPYifQxUUJ8rla//TV7SGJMEO1V0F2O2NQA0Tecp1XWdO8rVottOeythmrZ5zb6++lnGEe6OGWNBItA==}
     engines: {node: '>=18'}
     hasBin: true
     peerDependencies:
@@ -7657,7 +7657,7 @@ snapshots:
 
   yoctocolors-cjs@2.1.2: {}
 
-  zotero-plugin-scaffold@0.2.0-beta.10(conventional-changelog@6.0.0(conventional-commits-filter@5.0.0)):
+  zotero-plugin-scaffold@0.2.0-beta.11(conventional-changelog@6.0.0(conventional-commits-filter@5.0.0)):
     dependencies:
       '@commander-js/extra-typings': 12.1.0(commander@12.1.0)
       adm-zip: 0.5.16
