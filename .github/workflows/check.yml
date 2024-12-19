@@ -1,4 +1,4 @@
-name: Check
+name: Test
 
 on:
   push:
@@ -28,19 +28,23 @@ jobs:
           node-version: 20
           cache: pnpm
 
+      # - name: Clone Zotero Plugin Scaffold
+      #   run: |
+      #     cd ..
+      #     # git clone --branch add-test https://github.com/windingwind/zotero-plugin-scaffold.git zotero-plugin-scaffold
+      #     git clone --branch fix-xvfb https://github.com/northword/zotero-plugin-scaffold.git zotero-plugin-scaffold
+      #     cd -
+      #     cd ../zotero-plugin-scaffold
+      #     pnpm install
+      #     pnpm run build
+      #     cd -
+
       - name: Install deps
         run: |
           echo "public-hoist-pattern[]=@types*" >> .npmrc
           pnpm install
+          # pnpm link ../zotero-plugin-scaffold
 
-      - name: Run Lint
+      - name: Run Test Client
         run: |
-          pnpm lint:check
-
-      - name: Run Build
-        run: |
-          pnpm build
-
-      - name: Run Test
-        run: |
-          pnpm test
+          pnpm test:client

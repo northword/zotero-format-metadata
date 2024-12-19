@@ -5,7 +5,7 @@ import pkg from "./package.json";
 
 export default defineConfig({
   source: ["src", "addon"],
-  dist: "build",
+  dist: ".scaffold/build",
   name: pkg.config.addonName,
   id: pkg.config.addonID,
   namespace: pkg.config.addonRef,
@@ -35,7 +35,7 @@ export default defineConfig({
         },
         bundle: true,
         target: "firefox115",
-        outfile: `build/addon/content/scripts/${pkg.config.addonRef}.js`,
+        outfile: `.scaffold/build/addon/content/scripts/${pkg.config.addonRef}.js`,
       },
     ],
     makeUpdateJson: {
@@ -54,7 +54,7 @@ export default defineConfig({
     },
     hooks: {
       "build:makeUpdateJSON": () => {
-        copyFileSync("build/update.json", "update.json");
+        copyFileSync(".scaffold/build/update.json", "update.json");
         // copyFileSync("build/update-beta.json", "update-beta.json");
       },
     },
@@ -79,5 +79,5 @@ export default defineConfig({
   },
 
   // If you need to see a more detailed build log, uncomment the following line:
-  // logLevel: "trace",
+  logLevel: "trace",
 });
