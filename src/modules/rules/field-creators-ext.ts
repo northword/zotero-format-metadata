@@ -1,7 +1,7 @@
 import type { RuleBaseOptions } from "./rule-base";
 import { RuleBase } from "./rule-base";
 
-interface CreatorExt extends Zotero.Item.Creator {
+interface CreatorExt extends _ZoteroTypes.Item.Creator {
   country?: string;
   original?: string;
 }

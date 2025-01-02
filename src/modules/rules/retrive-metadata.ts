@@ -73,6 +73,7 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
     }
     ztoolkit.log("itemToExportFormat (modified): ", { ...itemTemp });
 
+    // @ts-expect-error miss types for `Zotero.Translate`
     const translate = new Zotero.Translate.Search();
     translate.setSearch(itemTemp);
     const translators = await translate.getTranslators();
@@ -190,6 +191,7 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
       DOI: doi,
     };
 
+    // @ts-expect-error miss types for `Zotero.Translate`
     const translate = new Zotero.Translate.Search();
     translate.setIdentifier(identifier);
     const translators = await translate.getTranslators();
@@ -331,7 +333,7 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
           break;
         }
         default:
-          item.setField(field as Zotero.Item.ItemField, value);
+          item.setField(field as _ZoteroTypes.Item.ItemField, value);
           break;
       }
     }

@@ -4,6 +4,7 @@ import Addon from "./addon";
 
 const basicTool = new BasicTool();
 
+// @ts-expect-error - Plugin instance is not typed
 if (!basicTool.getGlobal("Zotero")[config.addonInstance]) {
   // Set global variables
   _globalThis.Zotero = basicTool.getGlobal("Zotero");
@@ -12,6 +13,7 @@ if (!basicTool.getGlobal("Zotero")[config.addonInstance]) {
   defineGlobal("ztoolkit", () => {
     return _globalThis.addon.data.ztoolkit;
   });
+  // @ts-expect-error - Plugin instance is not typed
   Zotero[config.addonInstance] = addon;
 }
 

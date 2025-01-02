@@ -10,7 +10,7 @@ export class NoExtraZeros extends RuleBase<RuleBaseOptions> {
   }
 
   apply(item: Zotero.Item): Zotero.Item | Promise<Zotero.Item> {
-    const checkFields: Zotero.Item.ItemField[] = ["pages", "issue", "volume"];
+    const checkFields: _ZoteroTypes.Item.ItemField[] = ["pages", "issue", "volume"];
     checkFields.forEach((fieldName) => {
       const fieldValue = String(item.getField(fieldName));
       const newFieldValue = removeLeadingZeros(fieldValue);

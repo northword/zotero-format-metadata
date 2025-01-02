@@ -20,3 +20,4 @@ zotero-cmd.json
 
 # ts 编译的 js
 src/**/*.js
+.scaffold

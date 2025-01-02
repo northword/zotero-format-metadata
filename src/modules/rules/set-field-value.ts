@@ -2,7 +2,7 @@ import type { RuleBaseOptions } from "./rule-base";
 import { RuleBase } from "./rule-base";
 
 class SetFieldValueOptions implements RuleBaseOptions {
-  field: Zotero.Item.ItemField = "language";
+  field: _ZoteroTypes.Item.ItemField = "language";
   value: string | number | undefined = undefined;
 }
 

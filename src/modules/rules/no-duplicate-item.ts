@@ -14,6 +14,7 @@ export class NoDuplicatItem extends RuleBase<NoDuplicatItemOptions> {
     const itemID = item.id;
     const libraryID = item.libraryID;
 
+    // @ts-expect-error miss types for `Zotero.Duplicates`
     const duplicates = new Zotero.Duplicates(libraryID);
     // console.log("Zotero.Duplicates", duplicates);
 
