@@ -2,14 +2,15 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended",
+    "schedule:monthly",
     "group:allNonMajor",
+    ":dependencyDashboard",
     ":prHourlyLimitNone",
     ":prConcurrentLimitNone",
-    ":enableVulnerabilityAlerts",
-    ":dependencyDashboard",
-    "schedule:monthly"
+    ":enableVulnerabilityAlerts"
   ],
   "labels": ["dependencies"],
+  "rangeStrategy": "bump",
   "packageRules": [
     {
       "matchPackageNames": ["zotero-plugin-toolkit", "zotero-types", "zotero-plugin-scaffold"],
