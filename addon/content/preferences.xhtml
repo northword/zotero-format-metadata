@@ -11,25 +11,25 @@
     <!-- 添加时自动执行格式化 -->
     <checkbox
       data-l10n-id="lint-on-item-added"
-      preference="__prefsPrefix__.lint.onAdded"
+      preference="lint.onAdded"
       native="true"
     />
     <!-- 添加时自动执行格式化（群组条目） -->
     <checkbox
       data-l10n-id="lint-on-groupItem-added"
-      preference="__prefsPrefix__.lint.onGroup"
+      preference="lint.onGroup"
       native="true"
     />
 
     <!-- 是否启用富文本工具框 -->
     <checkbox
       data-l10n-id="enable-richtext-toolbar"
-      preference="__prefsPrefix__.richtext.toolBar"
+      preference="richtext.toolBar"
       native="true"
     />
     <checkbox
       data-l10n-id="enable-richtext-hotkey"
-      preference="__prefsPrefix__.richtext.hotkey"
+      preference="richtext.hotkey"
       native="true"
       disabled="true"
     />
@@ -43,19 +43,19 @@
       <!-- 检测是否存在重复条目 -->
       <checkbox
         data-l10n-id="item-noDuplication"
-        preference="__prefsPrefix__.noDuplicationItems"
+        preference="noDuplicationItems"
         native="true"
       />
       <!-- 检测网页条目 -->
       <checkbox
         data-l10n-id="item-checkWebpage"
-        preference="__prefsPrefix__.checkWebpage"
+        preference="checkWebpage"
         native="true"
       />
       <!-- 检测预印本误存为期刊文章 -->
       <checkbox
         data-l10n-id="item-NoPreprintJournalArticle"
-        preference="__prefsPrefix__.noPreprintJournalArticle"
+        preference="noPreprintJournalArticle"
         native="true"
       />
     </groupbox>
@@ -66,13 +66,13 @@
       <!-- 修改标题大小写 -->
       <checkbox
         data-l10n-id="title-sentenceCase"
-        preference="__prefsPrefix__.titleSentenceCase"
+        preference="titleSentenceCase"
         native="true"
       />
       <vbox class="indented-pref">
         <checkbox
           data-l10n-id="title-shortTitle"
-          preference="__prefsPrefix__.title.shortTitle"
+          preference="title.shortTitle"
           native="true"
         />
         <hbox align="center">
@@ -83,7 +83,7 @@
             readonly="true"
             size="50"
             data-l10n-id="title-custom-term"
-            preference="__prefsPrefix__.title.customTermPath"
+            preference="title.customTermPath"
           >
           </html:input>
           <button
@@ -99,7 +99,7 @@
       </vbox>
       <checkbox
         data-l10n-id="title-dotend"
-        preference="__prefsPrefix__.titleDotEnd"
+        preference="titleDotEnd"
         native="true"
       />
     </groupbox>
@@ -110,31 +110,22 @@
       <!-- 修改作者大小写 -->
       <checkbox
         data-l10n-id="creators-case"
-        preference="__prefsPrefix__.creatorsCase"
+        preference="creatorsCase"
         native="true"
       />
       <!-- 去除国籍 -->
-      <checkbox
-        data-l10n-id="creators-country"
-        preference="__prefsPrefix__."
-        native="true"
-        disabled="true"
-      />
+      <checkbox data-l10n-id="creators-country" native="true" disabled="true" />
     </groupbox>
 
     <!-- 字段：语言 -->
     <groupbox>
       <label><html:h2 data-l10n-id="section-language" /></label>
-      <checkbox
-        data-l10n-id="language-fill"
-        preference="__prefsPrefix__.lang"
-        native="true"
-      />
+      <checkbox data-l10n-id="language-fill" preference="lang" native="true" />
       <vbox class="indented-pref">
         <checkbox
           id="__addonRef__-lang-only"
           data-l10n-id="language-fill-option-only"
-          preference="__prefsPrefix__.lang.only"
+          preference="lang.only"
           native="true"
         />
         <vbox class="indented-pref">
@@ -142,20 +133,20 @@
             <checkbox
               id="__addonRef__-lang-only-cmn"
               data-l10n-id="language-fill-option-only-cmn"
-              preference="__prefsPrefix__.lang.only.cmn"
+              preference="lang.only.cmn"
               native="true"
             />
             <checkbox
               id="__addonRef__-lang-only-eng"
               data-l10n-id="language-fill-option-only-eng"
-              preference="__prefsPrefix__.lang.only.eng"
+              preference="lang.only.eng"
               native="true"
             />
             <label data-l10n-id="language-fill-option-only-other" />
             <html:input
               type="text"
               id="__addonRef__-lang-only-other"
-              preference="__prefsPrefix__.lang.only.other"
+              preference="lang.only.other"
             />
             <label
               data-l10n-id="language-fill-option-only-other-doc"
@@ -176,11 +167,7 @@
     <groupbox>
       <label><html:h2 data-l10n-id="section-date" /></label>
       <!-- 更新日期格式 -->
-      <checkbox
-        data-l10n-id="date-iso"
-        preference="__prefsPrefix__.dateISO"
-        native="true"
-      />
+      <checkbox data-l10n-id="date-iso" preference="dateISO" native="true" />
     </groupbox>
 
     <!-- 字段：期刊名 -->
@@ -189,7 +176,7 @@
       <!-- 修正期刊名大小写 -->
       <checkbox
         data-l10n-id="publicationTitle-case"
-        preference="__prefsPrefix__.publicationTitleCase"
+        preference="publicationTitleCase"
         native="true"
       />
     </groupbox>
@@ -200,14 +187,14 @@
       <!-- 更新期刊缩写 -->
       <checkbox
         data-l10n-id="abbr-journal"
-        preference="__prefsPrefix__.abbr.journalArticle"
+        preference="abbr.journalArticle"
         native="true"
       />
       <vbox class="indented-pref">
         <checkbox
           id="__addonRef__-abbr-infer"
           data-l10n-id="abbr-infer"
-          preference="__prefsPrefix__.abbr.infer"
+          preference="abbr.infer"
           native="true"
         />
         <hbox align="center">
@@ -215,13 +202,13 @@
           <checkbox
             id="__addonRef__-abbr-usefull"
             data-l10n-id="abbr-usefull-en"
-            preference="__prefsPrefix__.abbr.usefull"
+            preference="abbr.usefull"
             native="true"
           />
           <checkbox
             id="__addonRef__-abbr-usefull"
             data-l10n-id="abbr-usefull-zh"
-            preference="__prefsPrefix__.abbr.usefullZh"
+            preference="abbr.usefullZh"
             native="true"
           />
         </hbox>
@@ -229,7 +216,7 @@
       <!-- 更新会议名简写 -->
       <checkbox
         data-l10n-id="abbr-conferencePaper"
-        preference="__prefsPrefix__.abbr.conferencePaper"
+        preference="abbr.conferencePaper"
         native="true"
       />
 
@@ -243,7 +230,7 @@
           size="50"
           id="__addonRef__-abbr-custom-path"
           data-l10n-id="choose-custom-abbr-data-input"
-          preference="__prefsPrefix__.abbr.customDataPath"
+          preference="abbr.customDataPath"
         >
         </html:input>
         <button
@@ -261,13 +248,13 @@
       <!-- 去除期卷页0 -->
       <checkbox
         data-l10n-id="pages-remove-zeros"
-        preference="__prefsPrefix__.noExtraZeros"
+        preference="noExtraZeros"
         native="true"
       />
       <!-- 页码连接符 -->
       <checkbox
         data-l10n-id="pages-connector"
-        preference="__prefsPrefix__.pagesConnector"
+        preference="pagesConnector"
         native="true"
       />
     </groupbox>
@@ -278,7 +265,7 @@
       <!-- 更新DOI格式 -->
       <checkbox
         data-l10n-id="doi-noPrefix"
-        preference="__prefsPrefix__.noDOIPrefix"
+        preference="noDOIPrefix"
         native="true"
       />
     </groupbox>
@@ -289,19 +276,19 @@
       <!-- 纠正学位论文类别 -->
       <checkbox
         data-l10n-id="university-type"
-        preference="__prefsPrefix__.thesisType"
+        preference="thesisType"
         native="true"
       />
       <!-- 更新大学字段 -->
       <checkbox
         data-l10n-id="university-brackets"
-        preference="__prefsPrefix__.university"
+        preference="university"
         native="true"
       />
       <!-- 更新地点字段 -->
       <checkbox
         data-l10n-id="university-place"
-        preference="__prefsPrefix__.universityPlace"
+        preference="universityPlace"
         native="true"
       />
     </groupbox>
@@ -312,7 +299,7 @@
       <!-- 清理被不合理占用的字段 -->
       <checkbox
         data-l10n-id="std-clean-fileld"
-        preference="__prefsPrefix__.cleanExtra"
+        preference="cleanExtra"
         native="true"
         disabled="true"
       />
@@ -325,7 +312,7 @@
     <!-- 条目类型变更时要求确认 -->
     <checkbox
       data-l10n-id="update-metadata-confirm-when-itemtype-change"
-      preference="__prefsPrefix__.updateMetadate.confirmWhenItemTypeChange"
+      preference="updateMetadate.confirmWhenItemTypeChange"
       native="true"
     />
     <hbox align="center">
@@ -335,7 +322,7 @@
         type="text"
         size="60"
         data-l10n-id="others-semanticScholarToken"
-        preference="__prefsPrefix__.semanticScholarToken"
+        preference="semanticScholarToken"
       >
       </html:input>
       <label

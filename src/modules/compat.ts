@@ -54,6 +54,7 @@ export function checkCompat() {
 }
 
 function mvPref(source: string, target: string, defaultValue: boolean | string | number) {
+  // @ts-expect-error target and source may not exist in prefs.js
   setPref(target, getPref(source) ?? defaultValue);
   clearPref(source);
 }

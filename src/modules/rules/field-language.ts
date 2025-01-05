@@ -1,6 +1,5 @@
 import type { Data } from "../../utils/data-loader";
 import type { RuleBaseOptions } from "./rule-base";
-import { getPref } from "../../utils/prefs";
 import { getTextLanguage } from "../../utils/str";
 import { RuleBase } from "./rule-base";
 
@@ -18,10 +17,10 @@ export class UpdateItemLanguage extends RuleBase<UpdateItemLanguageOptions> {
     if (item.itemType === "computerProgram")
       return item;
     // WIP: 已有合法 ISO 639 - ISO 3166 代码的，不予处理
-    if (verifyIso3166(item.getField("language") as string) && getPref("lang.verifyBefore")) {
-      ztoolkit.log("[lang] The item has been skipped due to the presence of valid ISO 639 - ISO 3166 code.");
-      return item;
-    }
+    // if (verifyIso3166(item.getField("language") as string) && getPref("lang.verifyBefore")) {
+    //   ztoolkit.log("[lang] The item has been skipped due to the presence of valid ISO 639 - ISO 3166 code.");
+    //   return item;
+    // }
     const title = item.getField("title") as string;
     const language = getTextLanguage(title);
     item.setField("language", language);
@@ -82,7 +81,7 @@ function _toIso639_1(iso639_3: string) {
  * Verify that the given locale code is a valid ISO 3166-1 code
  * TODO
  */
-function verifyIso3166(_locale: string) {
+function _verifyIso3166(_locale: string) {
   return false;
 }
 
