@@ -49,8 +49,8 @@ importers:
         specifier: ^2.1.8
         version: 2.1.8(@types/node@22.10.5)
       zotero-plugin-scaffold:
-        specifier: 0.2.0-beta.14
-        version: 0.2.0-beta.14(conventional-changelog@6.0.0(conventional-commits-filter@5.0.0))
+        specifier: 0.2.0-beta.15
+        version: 0.2.0-beta.15(conventional-changelog@6.0.0(conventional-commits-filter@5.0.0))
       zotero-types:
         specifier: ^3.1.1
         version: 3.1.1(@types/bluebird@3.5.42)(@types/react@18.3.1)(epubjs@0.3.93)(pdfjs-dist@4.8.69)
@@ -2845,8 +2845,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  zotero-plugin-scaffold@0.2.0-beta.14:
-    resolution: {integrity: sha512-BrR8/J04flOHXZzCEo+JZAuHmEL2oBjGkWrySlzRojRuiYokAGVNyXG+lbP+bH7eqp2HNBRkNJ5cuHa6oBqTMg==}
+  zotero-plugin-scaffold@0.2.0-beta.15:
+    resolution: {integrity: sha512-NPa+E7qM5F5hSeUuoKGHtWPELUZcxDuZ6BzNa7PXdT2zcqslZh1CzEwnYlHcyogEy19spwYJJ/qys9G4+oEfvA==}
     engines: {node: '>=18'}
     hasBin: true
     peerDependencies:
@@ -5893,7 +5893,7 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zotero-plugin-scaffold@0.2.0-beta.14(conventional-changelog@6.0.0(conventional-commits-filter@5.0.0)):
+  zotero-plugin-scaffold@0.2.0-beta.15(conventional-changelog@6.0.0(conventional-commits-filter@5.0.0)):
     dependencies:
       '@commander-js/extra-typings': 13.0.0(commander@13.0.0)
       adm-zip: 0.5.16
