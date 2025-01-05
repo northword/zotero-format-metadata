@@ -38,7 +38,7 @@ export default defineConfig({
         },
         bundle: true,
         target: "firefox115",
-        outfile: `./scaffold/build/addon/content/scripts/${pkg.config.addonRef}.js`,
+        outfile: `.scaffold/build/addon/content/scripts/${pkg.config.addonRef}.js`,
       },
     ],
     makeUpdateJson: {
