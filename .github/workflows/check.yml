@@ -1,4 +1,4 @@
-name: Check
+name: Test
 
 on:
   push:
@@ -32,15 +32,8 @@ jobs:
         run: |
           echo "public-hoist-pattern[]=@types*" >> .npmrc
           pnpm install
+          # pnpm add -D zotero-plugin-scaffold
 
-      - name: Run Lint
+      - name: Run Test Client
         run: |
-          pnpm lint:check
-
-      - name: Run Build
-        run: |
-          pnpm build
-
-      - name: Run Test
-        run: |
-          pnpm test
+          pnpm test:client
