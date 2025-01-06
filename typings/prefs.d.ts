@@ -3,53 +3,49 @@
 /* eslint-disable */
 // @ts-nocheck
 
+// prettier-ignore
 type _PluginPrefsMap = {
   "version": string;
-  "lint.onAdded": string;
-  "lint.onGroup": string;
-  "richtext.toolBar": string;
-  "richtext.hotkey": string;
-  "noDuplicationItems": string;
-  "checkWebpage": string;
-  "noPreprintJournalArticle": string;
-  "titleSentenceCase": string;
-  "title.shortTitle": string;
+  "lint.onAdded": boolean;
+  "lint.onGroup": boolean;
+  "richtext.toolBar": boolean;
+  "richtext.hotkey": boolean;
+  "noDuplicationItems": boolean;
+  "checkWebpage": boolean;
+  "noPreprintJournalArticle": boolean;
+  "titleSentenceCase": boolean;
+  "title.shortTitle": boolean;
   "title.customTermPath": string;
-  "titleDotEnd": string;
-  "creatorsCase": string;
-  "lang": string;
-  "lang.only": string;
-  "lang.only.cmn": string;
-  "lang.only.eng": string;
+  "titleDotEnd": boolean;
+  "creatorsCase": boolean;
+  "lang": boolean;
+  "lang.only": boolean;
+  "lang.only.cmn": boolean;
+  "lang.only.eng": boolean;
   "lang.only.other": string;
-  "dateISO": string;
-  "publicationTitleCase": string;
-  "abbr.journalArticle": string;
-  "abbr.conferencePaper": string;
-  "abbr.infer": string;
-  "abbr.usefull": string;
-  "abbr.usefullZh": string;
+  "dateISO": boolean;
+  "publicationTitleCase": boolean;
+  "abbr.journalArticle": boolean;
+  "abbr.conferencePaper": boolean;
+  "abbr.infer": boolean;
+  "abbr.usefull": boolean;
+  "abbr.usefullZh": boolean;
   "abbr.customDataPath": string;
-  "noExtraZeros": string;
-  "pagesConnector": string;
-  "noDOIPrefix": string;
-  "university": string;
-  "thesisType": string;
-  "universityPlace": string;
-  "cleanExtra": string;
-  "updateMetadate.confirmWhenItemTypeChange": string;
+  "noExtraZeros": boolean;
+  "pagesConnector": boolean;
+  "noDOIPrefix": boolean;
+  "university": boolean;
+  "thesisType": boolean;
+  "universityPlace": boolean;
+  "cleanExtra": boolean;
+  "updateMetadate.confirmWhenItemTypeChange": boolean;
   "semanticScholarToken": string;
 };
 
+// prettier-ignore
 type PluginPrefKey<K extends keyof _PluginPrefsMap> = `extensions.zotero.formatmetadata.${K}`;
 
+// prettier-ignore
 type PluginPrefsMap = {
   [K in keyof _PluginPrefsMap as PluginPrefKey<K>]: _PluginPrefsMap[K]
 };
-
-declare namespace _ZoteroTypes {
-  interface Prefs {
-    get: <K extends keyof PluginPrefsMap>(key: K, global?: boolean) => PluginPrefsMap[K];
-    set: <K extends keyof PluginPrefsMap>(key: K, value: PluginPrefsMap[K], global?: boolean) => any;
-  }
-}
