@@ -4,48 +4,44 @@
 // @ts-nocheck
 
 // prettier-ignore
-type _PluginPrefsMap = {
-  "version": string;
-  "lint.onAdded": boolean;
-  "lint.onGroup": boolean;
-  "richtext.toolBar": boolean;
-  "richtext.hotkey": boolean;
-  "noDuplicationItems": boolean;
-  "checkWebpage": boolean;
-  "noPreprintJournalArticle": boolean;
-  "titleSentenceCase": boolean;
-  "title.shortTitle": boolean;
-  "title.customTermPath": string;
-  "titleDotEnd": boolean;
-  "creatorsCase": boolean;
-  "lang": boolean;
-  "lang.only": boolean;
-  "lang.only.cmn": boolean;
-  "lang.only.eng": boolean;
-  "lang.only.other": string;
-  "dateISO": boolean;
-  "publicationTitleCase": boolean;
-  "abbr.journalArticle": boolean;
-  "abbr.conferencePaper": boolean;
-  "abbr.infer": boolean;
-  "abbr.usefull": boolean;
-  "abbr.usefullZh": boolean;
-  "abbr.customDataPath": string;
-  "noExtraZeros": boolean;
-  "pagesConnector": boolean;
-  "noDOIPrefix": boolean;
-  "university": boolean;
-  "thesisType": boolean;
-  "universityPlace": boolean;
-  "cleanExtra": boolean;
-  "updateMetadate.confirmWhenItemTypeChange": boolean;
-  "semanticScholarToken": string;
-};
-
-// prettier-ignore
-type PluginPrefKey<K extends keyof _PluginPrefsMap> = `extensions.zotero.formatmetadata.${K}`;
-
-// prettier-ignore
-type PluginPrefsMap = {
-  [K in keyof _PluginPrefsMap as PluginPrefKey<K>]: _PluginPrefsMap[K]
-};
+declare namespace _ZoteroTypes {
+  interface Prefs {
+    PluginPrefsMap: {
+      "version": string;
+      "lint.onAdded": boolean;
+      "lint.onGroup": boolean;
+      "richtext.toolBar": boolean;
+      "richtext.hotkey": boolean;
+      "noDuplicationItems": boolean;
+      "checkWebpage": boolean;
+      "noPreprintJournalArticle": boolean;
+      "titleSentenceCase": boolean;
+      "title.shortTitle": boolean;
+      "title.customTermPath": string;
+      "titleDotEnd": boolean;
+      "creatorsCase": boolean;
+      "lang": boolean;
+      "lang.only": boolean;
+      "lang.only.cmn": boolean;
+      "lang.only.eng": boolean;
+      "lang.only.other": string;
+      "dateISO": boolean;
+      "publicationTitleCase": boolean;
+      "abbr.journalArticle": boolean;
+      "abbr.conferencePaper": boolean;
+      "abbr.infer": boolean;
+      "abbr.usefull": boolean;
+      "abbr.usefullZh": boolean;
+      "abbr.customDataPath": string;
+      "noExtraZeros": boolean;
+      "pagesConnector": boolean;
+      "noDOIPrefix": boolean;
+      "university": boolean;
+      "thesisType": boolean;
+      "universityPlace": boolean;
+      "cleanExtra": boolean;
+      "updateMetadate.confirmWhenItemTypeChange": boolean;
+      "semanticScholarToken": string;
+    };
+  }
+}
