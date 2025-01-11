@@ -25,7 +25,6 @@ import_order = [
     "abbrv.jabref.org/journals/journal_abbreviations_mechanical.csv",
     "abbrv.jabref.org/journals/journal_abbreviations_meteorology.csv",
     "abbrv.jabref.org/journals/journal_abbreviations_sociology.csv",
-    "abbrv.jabref.org/journals/journal_abbreviations_webofscience-dots.csv",
 ]
 
 
