@@ -78,7 +78,6 @@ async function onNotify(
           return false;
 
         // skip feed item
-        // @ts-expect-error item has no isFeedItem
         if (item.isFeedItem)
           return false;
 

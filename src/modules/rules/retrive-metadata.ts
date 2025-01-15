@@ -73,7 +73,6 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
     }
     ztoolkit.log("itemToExportFormat (modified): ", { ...itemTemp });
 
-    // @ts-expect-error miss types for `Zotero.Translate`
     const translate = new Zotero.Translate.Search();
     translate.setSearch(itemTemp);
     const translators = await translate.getTranslators();
@@ -155,7 +154,6 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
 
         default: {
           let newFieldValue = newItem[field] ?? "";
-          // @ts-expect-error field 已为 Zotero.Item.ItemField
           const oldFieldValue = item.getField(field, false, true);
 
           if (this.options.mode !== "all" && oldFieldValue !== "")
@@ -170,7 +168,6 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
             newFieldValue = newFieldValue.replace(/\s+<(sub|sup)>/g, "<$1>");
 
           ztoolkit.log(`Update "${field}" from "${oldFieldValue}" to "${newFieldValue}"`);
-          // @ts-expect-error field 已为 Zotero.Item.ItemField
           item.setField(field, newFieldValue);
           break;
         }
@@ -191,7 +188,6 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
       DOI: doi,
     };
 
-    // @ts-expect-error miss types for `Zotero.Translate`
     const translate = new Zotero.Translate.Search();
     translate.setIdentifier(identifier);
     const translators = await translate.getTranslators();
