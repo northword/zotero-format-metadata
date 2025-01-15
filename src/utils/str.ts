@@ -148,11 +148,6 @@ export function toSentenceCase(text: string) {
         return word;
       }
 
-      // If the word contains any non-letter character, retain its original case
-      if (unmasked.match(/[^a-z]/i)) {
-        return word;
-      }
-
       // northword patch: 支持化学元素识别
       if (chemElements.includes(word)) {
         return word;
