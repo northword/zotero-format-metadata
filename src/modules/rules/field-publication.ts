@@ -18,12 +18,8 @@ export class UpdatePublicationTitle extends RuleBase<CapitalizePublicationTitleO
     if (publicationTitleDisambiguation) {
       newPublicationTitle = publicationTitleDisambiguation;
     }
-    else if (isFullUpperCase(publicationTitle)) {
-      // 针对全大写的，将其改为词首大写；仅当其为全大写时处理，以减少误伤
-      newPublicationTitle = this.capitalizePublicationTitle(publicationTitle);
-    }
     else {
-      newPublicationTitle = publicationTitle;
+      newPublicationTitle = this.capitalizePublicationTitle(publicationTitle, isFullUpperCase(publicationTitle));
     }
     item.setField("publicationTitle", newPublicationTitle);
     return item;
@@ -323,21 +319,27 @@ export class UpdatePublicationTitle extends RuleBase<CapitalizePublicationTitleO
   ];
 
   // 期刊名应词首大写
-  capitalizePublicationTitle(publicationTitle: string) {
-    const words = publicationTitle.split(" ");
-    const newWords = [];
-    for (const word of words) {
-      if (functionWords.includes(word)) {
-        newWords.push(word.toLowerCase());
-        continue;
+  capitalizePublicationTitle(publicationTitle: string, force = false) {
+    return publicationTitle.split(" ").map((word, index) => {
+      const upperCaseVariant = word.toUpperCase();
+      const lowerCaseVariant = word.toLowerCase();
+      const capitalizeVariant = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+
+      // 对于全大写的词，除非启用 force，否则不予处理
+      if (upperCaseVariant === lowerCaseVariant && !force) {
+        return word;
+      }
+
+      if (functionWords.includes(lowerCaseVariant)) {
+        if (index === 0)
+          return capitalizeVariant;
+        return lowerCaseVariant;
       }
       if (this.skipWordsForPublicationTitle.includes(word)) {
-        newWords.push(word);
-        continue;
+        return word;
       }
-      newWords.push(word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
-    }
-    return newWords.join(" ");
+      return capitalizeVariant;
+    }).join(" ");
   }
 
   // 期刊全称消岐
