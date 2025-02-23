@@ -1,7 +1,8 @@
 {
   "name": "zotero-format-metadata",
+  "type": "module",
   "version": "1.22.5",
-  "packageManager": "pnpm@9.15.4",
+  "packageManager": "pnpm@10.4.1",
   "description": "An addon for Zotero to format item metadata.",
   "config": {
     "addonName": "Linter for Zotero",
@@ -39,14 +40,14 @@
     "zotero-plugin-toolkit": "^4.1.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.1.0",
-    "@types/node": "^22.13.0",
+    "@antfu/eslint-config": "^4.3.0",
+    "@types/node": "^22.13.5",
     "conventional-changelog": "^6.0.0",
-    "eslint": "^9.19.0",
+    "eslint": "^9.21.0",
     "eslint-plugin-format": "^1.0.1",
-    "prettier": "^3.4.2",
+    "prettier": "^3.5.2",
     "typescript": "^5.7.3",
-    "vitest": "^3.0.4",
+    "vitest": "^3.0.6",
     "zotero-plugin-scaffold": "0.2.0",
     "zotero-types": "^3.1.7"
   }

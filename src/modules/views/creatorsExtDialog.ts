@@ -1,4 +1,4 @@
-import type { TagElementProps } from "zotero-plugin-toolkit/dist/tools/ui";
+import type { TagElementProps } from "zotero-plugin-toolkit";
 import { getString } from "../../utils/locale";
 
 /**
