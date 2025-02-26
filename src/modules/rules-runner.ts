@@ -5,6 +5,8 @@ import { getString } from "../utils/locale";
 import { logError } from "../utils/logger";
 import { waitUtilAsync } from "../utils/wait";
 
+type QueueTask = () => Promise<void>;
+
 export interface Task {
   item: Zotero.Item;
   rules: RuleBase<any> | RuleBase<any>[];
@@ -14,13 +16,16 @@ interface TaskInternal extends Task {
   rules: RuleBase<any>[];
 }
 
+const PROGRESS_WINDOW_CLOSE_DELAY = 5000;
+const TASK_TIMEOUT = 60000;
+
 export class LintRunner {
   private current: number = 0;
   private error: number = 0;
   private isStopped: boolean = false;
   private progressWindow?: ProgressWindowHelper;
   private queue: PQueue;
-  private startTime: number = Date.now();
+  private startTime: number = 0;
 
   constructor() {
     this.queue = this.setupQueue();
@@ -30,61 +35,100 @@ export class LintRunner {
     return this.queue.size + this.queue.pending;
   }
 
+  get isRunning() {
+    return !this.queue.isPaused && this.queue.pending > 0;
+  }
+
   private setupQueue() {
     return new PQueue({
       concurrency: 1,
-      autoStart: true,
-      timeout: 60000,
+      autoStart: false,
+      timeout: TASK_TIMEOUT,
       throwOnTimeout: true,
     })
-      .on("next", () => {
-        this.updateMainProgress();
-      })
-      .on("error", (error) => {
-        this.error++;
-        this.updateProgressLine(`${getString("info-batch-has-error")}: ${error}`, "fail");
-      })
-      .on("idle", () => {
-        this.finalizeProcessing(this.startTime);
-      });
+      .on("active", () => this.updateMainProgress())
+      .on("error", error => this.handleQueueError(error))
+      .on("idle", () => this.finalizeProcessing());
   }
 
   public async add(tasks: Task[]): Promise<void> {
-    const _tasks = this.createTasks(tasks);
+    if (this.isRunning) {
+      throw new Error("Runner is already processing tasks");
+    }
 
-    this.startTime = Date.now();
-    ztoolkit.log(`[Runner] Batch task started at ${new Date(this.startTime).toLocaleString()}`);
-
-    await this.ensureProgressWindow();
-
-    if (_tasks.length === 0) {
-      this.updateProgressLine(getString("info-batch-no-selected"), "fail");
+    const preparedTasks = this.prepareTasks(tasks);
+    if (preparedTasks.length === 0) {
+      this.showNoTasksMessage();
       return;
     }
 
-    this.queue.addAll(_tasks);
-    // force start the queue
+    this.resetState();
+    await this.initializeProgressWindow();
+    this.queue.addAll(preparedTasks);
     this.queue.start();
   }
 
-  private createTasks = (tasks: Task[]) => {
+  private prepareTasks(tasks: Task[]): QueueTask[] {
     return tasks
       .map(task => ({
         ...task,
         rules: Array.isArray(task.rules) ? task.rules.flat() : [task.rules],
       }))
-      .map(() => async () => this.processTask);
-  };
+      .map(task => async () => {
+        if (this.isStopped)
+          return;
+        await this.processSingleTask(task);
+      });
+  }
 
-  private async ensureProgressWindow() {
-    this.progressWindow?.close();
-    await this.initializeProgressWindow();
-    // if (!this.progressWindow || !this.progressWindow.win)
-    //   return await this.initializeProgressWindow();
-    // return this.progressWindow;
+  private async processSingleTask(task: TaskInternal) {
+    try {
+      let currentItem = task.item;
+      for (const rule of task.rules) {
+        currentItem = await this.applyRule(rule, currentItem);
+      }
+      await this.finalizeItem(currentItem);
+    }
+    catch (error) {
+      await this.handleTaskError(error, task.item);
+    }
+  }
+
+  private async applyRule(rule: RuleBase<any>, item: Zotero.Item) {
+    ztoolkit.log(`[Runner] Applying ${rule.constructor.name}`);
+    const result = await rule.apply(item);
+    ztoolkit.log("[Runner] Rule applied:", result.toJSON());
+    return result;
+  }
+
+  private async finalizeItem(item: Zotero.Item) {
+    if (item.hasTag("linter/error")) {
+      item.removeTag("linter/error");
+    }
+    await item.saveTx();
+  }
+
+  private async handleTaskError(error: unknown, item: Zotero.Item) {
+    this.error++;
+    logError(error, item);
+
+    try {
+      item.addTag("linter/error", 1);
+      await item.saveTx();
+    }
+    catch (saveError) {
+      logError(saveError, item);
+    }
+
+    this.updateProgressLine(
+      `${getString("info-batch-has-error")}: ${error instanceof Error ? error.message : error}`,
+      "fail",
+    );
   }
 
   private async initializeProgressWindow() {
+    this.progressWindow?.close();
+
     this.progressWindow = new ztoolkit.ProgressWindow(addon.data.config.addonName, {
       closeOnClick: false,
       closeTime: -1,
@@ -100,60 +144,49 @@ export class LintRunner {
         idx: 1,
       })
       .show();
-    // @ts-expect-error can
-    await waitUtilAsync(() => Boolean(this.progressWindow?.lines?.[1]?._itemText));
-    // @ts-expect-error can
-    this.progressWindow.lines[1]._hbox.addEventListener("click", (ev: MouseEvent) => {
-      ev.stopPropagation();
-      ev.preventDefault();
-      this.handleStopRequest();
-    });
 
-    return this.progressWindow;
+    await this.waitForProgressWindowReady();
+    this.attachStopHandler();
   }
 
-  private handleStopRequest() {
+  private async waitForProgressWindowReady() {
+    await waitUtilAsync(() =>
+      Boolean(this.progressWindow?.lines?.[1]?._itemText),
+    );
+  }
+
+  private attachStopHandler() {
+    const stopLine = this.progressWindow?.lines?.[1];
+    if (stopLine?._hbox) {
+      stopLine._hbox.addEventListener("click", this.handleStopRequest);
+    }
+  }
+
+  private handleStopRequest = (ev: MouseEvent) => {
+    ev.stopPropagation();
+    ev.preventDefault();
     this.isStopped = true;
     this.queue.pause();
-    this.updateProgressLine(getString("info-batch-stop-next"), "default", 1);
     this.queue.clear();
-  }
-
-  private async processTask(task: TaskInternal) {
-    let { item, rules } = task;
-    try {
-      for (const rule of rules) {
-        ztoolkit.log(`[Runner] Applying ${rule.constructor.name}`);
-        item = await rule.apply(item);
-        ztoolkit.log("[Runner] Rule applied:", item.toJSON());
-      }
-
-      if (item.hasTag("linter/error")) {
-        item.removeTag("linter/error");
-      }
-    }
-    catch (error) {
-      this.error++;
-      item.addTag("linter/error", 1);
-      this.updateProgressLine(`${getString("info-batch-has-error")}: ${error}`, "fail");
-    }
-
-    await item.saveTx();
-    // this.updateMainProgress();
-  }
+    this.updateProgressLine(getString("info-batch-stop-next"), "default", 1);
+  };
 
   private updateMainProgress() {
-    this.current++;
+    this.current = this.total - this.queue.size;
+    const progress = this.total > 0
+      ? (this.current / this.total) * 100
+      : 0;
+
     this.updateProgressLine(
       `[${this.current}/${this.total}] ${getString("info-batch-running")}`,
       "default",
       0,
-      (this.current / this.total) * 100,
+      progress,
     );
   }
 
-  private finalizeProcessing(startTime: number) {
-    const duration = (Date.now() - startTime) / 1000;
+  private finalizeProcessing() {
+    const duration = (Date.now() - this.startTime) / 1000;
     ztoolkit.log(`[Runner] Batch tasks completed in ${duration}s`);
 
     this.updateProgressLine(
@@ -164,8 +197,7 @@ export class LintRunner {
     );
 
     this.updateProgressLine("Finished", "default", 1);
-    this.progressWindow?.startCloseTimer(5000);
-    // this.progressWindow = undefined;
+    this.progressWindow?.startCloseTimer(PROGRESS_WINDOW_CLOSE_DELAY);
   }
 
   private updateProgressLine(
@@ -180,5 +212,27 @@ export class LintRunner {
       progress,
       idx,
     });
+  }
+
+  private resetState() {
+    this.current = 0;
+    this.error = 0;
+    this.isStopped = false;
+    this.startTime = Date.now();
+    this.queue.clear();
+  }
+
+  private showNoTasksMessage() {
+    this.updateProgressLine(getString("info-batch-no-selected"), "fail");
+    this.progressWindow?.startCloseTimer(PROGRESS_WINDOW_CLOSE_DELAY);
+  }
+
+  private handleQueueError(error: unknown) {
+    this.error++;
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    this.updateProgressLine(
+      `${getString("info-batch-has-error")}: ${errorMessage}`,
+      "fail",
+    );
   }
 }
