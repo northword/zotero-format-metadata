@@ -15,59 +15,77 @@ interface TaskInternal extends Task {
 }
 
 export class LintRunner {
-  private tasks?: TaskInternal[];
-  private current: number;
-  private total: number;
-  private error: number;
-  private isStopped: boolean;
-  private popWin?: ProgressWindowHelper;
+  private current: number = 0;
+  private error: number = 0;
+  private isStopped: boolean = false;
+  private progressWindow?: ProgressWindowHelper;
   private queue: PQueue;
+  private startTime: number = Date.now();
 
   constructor() {
-    this.current = 0;
-    this.error = 0;
-    this.isStopped = false;
-    this.queue = new PQueue({
+    this.queue = this.setupQueue();
+  }
+
+  get total() {
+    return this.queue.size + this.queue.pending;
+  }
+
+  private setupQueue() {
+    return new PQueue({
       concurrency: 1,
-      autoStart: false,
+      autoStart: true,
       timeout: 60000,
       throwOnTimeout: true,
-    });
-    this.total = this.queue.size;
+    })
+      .on("next", () => {
+        this.updateMainProgress();
+      })
+      .on("error", (error) => {
+        this.error++;
+        this.updateProgressLine(`${getString("info-batch-has-error")}: ${error}`, "fail");
+      })
+      .on("idle", () => {
+        this.finalizeProcessing(this.startTime);
+      });
   }
 
   public async add(tasks: Task[]): Promise<void> {
-    this.tasks = tasks.map(task => ({
-      ...task,
-      rules: Array.isArray(task.rules) ? task.rules.flat() : [task.rules],
-    }));
+    const _tasks = this.createTasks(tasks);
 
-    const startTime = Date.now();
-    ztoolkit.log(`[Runner] Batch task started at ${new Date(startTime).toLocaleString()}`);
+    this.startTime = Date.now();
+    ztoolkit.log(`[Runner] Batch task started at ${new Date(this.startTime).toLocaleString()}`);
 
-    await this.initializeProgressWindow();
+    await this.ensureProgressWindow();
 
-    if (this.tasks.length === 0) {
+    if (_tasks.length === 0) {
       this.updateProgressLine(getString("info-batch-no-selected"), "fail");
       return;
     }
 
-    this.queue.addAll(this.createQueueTasks());
-
-    this.setupQueueEvents(startTime);
+    this.queue.addAll(_tasks);
+    // force start the queue
     this.queue.start();
   }
 
-  private async initializeProgressWindow() {
-    this.createProgressWindow();
-    // @ts-expect-error can
-    await waitUtilAsync(() => Boolean(this.popWin?.lines?.[1]?._itemText));
-    this.setupStopButtonHandler();
+  private createTasks = (tasks: Task[]) => {
+    return tasks
+      .map(task => ({
+        ...task,
+        rules: Array.isArray(task.rules) ? task.rules.flat() : [task.rules],
+      }))
+      .map(() => async () => this.processTask);
+  };
+
+  private async ensureProgressWindow() {
+    this.progressWindow?.close();
+    await this.initializeProgressWindow();
+    // if (!this.progressWindow || !this.progressWindow.win)
+    //   return await this.initializeProgressWindow();
+    // return this.progressWindow;
   }
 
-  private createProgressWindow() {
-    this.popWin?.close();
-    this.popWin = new ztoolkit.ProgressWindow(addon.data.config.addonName, {
+  private async initializeProgressWindow() {
+    this.progressWindow = new ztoolkit.ProgressWindow(addon.data.config.addonName, {
       closeOnClick: false,
       closeTime: -1,
     })
@@ -82,77 +100,50 @@ export class LintRunner {
         idx: 1,
       })
       .show();
-  }
-
-  private setupStopButtonHandler() {
     // @ts-expect-error can
-    this.popWin!.lines[1]._hbox.addEventListener("click", (ev: MouseEvent) => {
+    await waitUtilAsync(() => Boolean(this.progressWindow?.lines?.[1]?._itemText));
+    // @ts-expect-error can
+    this.progressWindow.lines[1]._hbox.addEventListener("click", (ev: MouseEvent) => {
       ev.stopPropagation();
       ev.preventDefault();
       this.handleStopRequest();
     });
+
+    return this.progressWindow;
   }
 
   private handleStopRequest() {
     this.isStopped = true;
     this.queue.pause();
-    this.queue.clear();
     this.updateProgressLine(getString("info-batch-stop-next"), "default", 1);
-  }
-
-  private createQueueTasks(): (() => Promise<void>)[] {
-    return this.tasks.map(task => async () => {
-      if (this.isStopped)
-        return;
-
-      try {
-        await this.processTask(task);
-        this.current++;
-        this.updateMainProgress();
-      }
-      catch (error) {
-        this.handleTaskError(error, task.item);
-      }
-    });
+    this.queue.clear();
   }
 
   private async processTask(task: TaskInternal) {
-    let currentItem = task.item;
-    for (const rule of task.rules) {
-      ztoolkit.log(`[Runner] Applying ${rule.constructor.name}`);
-      currentItem = await rule.apply(currentItem);
-      ztoolkit.log("[Runner] Rule applied:", currentItem.toJSON());
-    }
-    await this.finalizeItemProcessing(currentItem);
-  }
+    let { item, rules } = task;
+    try {
+      for (const rule of rules) {
+        ztoolkit.log(`[Runner] Applying ${rule.constructor.name}`);
+        item = await rule.apply(item);
+        ztoolkit.log("[Runner] Rule applied:", item.toJSON());
+      }
 
-  private async finalizeItemProcessing(item: Zotero.Item) {
-    if (item.hasTag("linter/error")) {
-      item.removeTag("linter/error");
+      if (item.hasTag("linter/error")) {
+        item.removeTag("linter/error");
+      }
     }
+    catch (error) {
+      this.error++;
+      item.addTag("linter/error", 1);
+      this.updateProgressLine(`${getString("info-batch-has-error")}: ${error}`, "fail");
+    }
+
     await item.saveTx();
-  }
-
-  private handleTaskError(error: unknown, item: Zotero.Item) {
-    this.error++;
-    logError(error, item);
-    item.addTag("linter/error", 1);
-    item.saveTx();
-    this.updateProgressLine(`${getString("info-batch-has-error")}: ${error}`, "fail");
-  }
-
-  private setupQueueEvents(startTime: number) {
-    this.queue
-      .on("error", (error) => {
-        this.error++;
-        this.updateProgressLine(`${getString("info-batch-has-error")}: ${error}`, "fail");
-      })
-      .on("idle", () => {
-        this.finalizeProcessing(startTime);
-      });
+    // this.updateMainProgress();
   }
 
   private updateMainProgress() {
+    this.current++;
     this.updateProgressLine(
       `[${this.current}/${this.total}] ${getString("info-batch-running")}`,
       "default",
@@ -173,7 +164,8 @@ export class LintRunner {
     );
 
     this.updateProgressLine("Finished", "default", 1);
-    this.popWin?.startCloseTimer(5000);
+    this.progressWindow?.startCloseTimer(5000);
+    // this.progressWindow = undefined;
   }
 
   private updateProgressLine(
@@ -182,10 +174,7 @@ export class LintRunner {
     idx: number = 0,
     progress?: number,
   ) {
-    if (!this.popWin)
-      this.createProgressWindow();
-
-    this.popWin?.changeLine({
+    this.progressWindow?.changeLine({
       type,
       text,
       progress,
