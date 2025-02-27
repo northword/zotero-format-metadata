@@ -35,7 +35,7 @@ field-abbr = Abbr
 ## batch
 info-batch-init = Initialization
 info-batch-no-selected = No selected items
-info-batch-running = Progressing... Please wait.
+info-batch-running = Linting...
 info-batch-finish = Finished
 info-batch-break = Click here to stop this process
 info-batch-stop-next = Will stop when current item is complete

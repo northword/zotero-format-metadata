@@ -8,7 +8,6 @@ import { registerPrefs, registerPrefsScripts } from "./modules/preference";
 import { RichTextToolBar, setHtmlTag } from "./modules/rich-text";
 import * as Rules from "./modules/rules";
 import { getNewItemLintRules, getStdLintRules } from "./modules/rules-presets";
-import { LintRunner } from "./modules/rules-runner";
 import { registerShortcuts } from "./modules/shortcuts";
 import * as Views from "./modules/views";
 import { getString, initLocale } from "./utils/locale";
@@ -235,7 +234,7 @@ async function onLintInBatch(mode: string, items: Zotero.Item[] | "item" | "coll
   if (rules === undefined)
     return;
   const tasks = items.filter(item => item.isRegularItem()).map(item => ({ item, rules })) as Task[];
-  new LintRunner(tasks).runInBatch();
+  addon.runner.add(tasks);
 }
 
 /**
