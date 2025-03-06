@@ -1,4 +1,5 @@
 import antfu from "@antfu/eslint-config";
+import { specialCases } from "@zotero-plugin/eslint-config";
 import format from "eslint-plugin-format";
 
 export default antfu(
@@ -19,14 +20,6 @@ export default antfu(
     ],
   },
   {
-    files: ["**/bootstrap.js", "**/prefs.js"],
-    rules: {
-      "no-undef": "off",
-      "no-unused-vars": "off",
-      "unused-imports/no-unused-vars": "off",
-    },
-  },
-  {
     files: ["**/*.xhtml"],
     languageOptions: {
       parser: format.parserPlain,
@@ -44,4 +37,4 @@ export default antfu(
       }],
     },
   },
-);
+).append(specialCases);
