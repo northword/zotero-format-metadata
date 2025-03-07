@@ -11,12 +11,6 @@
   ],
   "labels": ["dependencies"],
   "rangeStrategy": "bump",
-  "packageRules": [
-    {
-      "matchPackageNames": ["zotero-plugin-toolkit", "zotero-types", "zotero-plugin-scaffold"],
-      "schedule": ["at any time"]
-    }
-  ],
   "git-submodules": {
     "enabled": true
   }
