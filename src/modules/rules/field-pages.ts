@@ -12,7 +12,7 @@ export class PagesConnector extends RuleBase<RuleBaseOptions> {
     const pages = item.getField("pages");
     let newPages = this.normizePages(pages);
 
-    if (!this.isPagesRange(pages)) {
+    if (!this.isPagesRange(newPages)) {
       const numberOfPages = await this.getPDFPages(item);
       if (numberOfPages) {
         newPages = `${pages}-${Number(pages) + numberOfPages}`;
