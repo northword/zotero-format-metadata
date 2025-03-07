@@ -82,5 +82,5 @@ export default defineConfig({
   },
 
   // If you need to see a more detailed build log, uncomment the following line:
-  logLevel: "TRACE",
+  // logLevel: "TRACE",
 });
