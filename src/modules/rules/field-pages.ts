@@ -9,6 +9,9 @@ export class PagesConnector extends RuleBase<RuleBaseOptions> {
   }
 
   async apply(item: Zotero.Item): Promise<Zotero.Item> {
+    if (item.itemType !== "journalArticle")
+      return item;
+
     const pages = item.getField("pages");
     let newPages = this.normizePages(pages);
 
