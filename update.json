@@ -12,8 +12,8 @@
           }
         },
         {
-          "version": "1.23.1",
-          "update_link": "https://github.com/northword/zotero-format-metadata/releases/download/v1.23.1/linter-for-zotero.xpi",
+          "version": "1.23.2",
+          "update_link": "https://github.com/northword/zotero-format-metadata/releases/download/v1.23.2/linter-for-zotero.xpi",
           "applications": {
             "zotero": {
               "strict_min_version": "6.999",
