@@ -9,6 +9,8 @@
     "source.organizeImports": "never"
   },
 
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+
   "eslint.options": {
     "flags": ["unstable_ts_config"]
   },
