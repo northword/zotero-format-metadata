@@ -326,7 +326,7 @@ export class UpdatePublicationTitle extends RuleBase<CapitalizePublicationTitleO
       const capitalizeVariant = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
 
       // 对于全大写的词，除非启用 force，否则不予处理
-      if (upperCaseVariant === lowerCaseVariant && !force) {
+      if (word === upperCaseVariant && !force) {
         return word;
       }
 
