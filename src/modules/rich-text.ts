@@ -106,7 +106,11 @@ export class RichTextToolBar {
       false,
     );
     Zotero.Plugins.addObserver({
-      shutdown: this.clean.bind(this),
+      shutdown: ({ id }) => {
+        if (id !== addon.data.config.addonID)
+          return;
+        this.clean();
+      },
     });
   }
 
