@@ -5,5 +5,6 @@ describe("abbr", () => {
     const _item = new Zotero.Item();
     const item = await new UpdateAbbr({}).apply(_item);
     console.log(item);
+    // expect(1 + 1).to.equal(3);
   });
 });
