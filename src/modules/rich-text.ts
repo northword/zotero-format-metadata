@@ -61,8 +61,10 @@ export class RichTextToolBar {
   }
 
   get contextPaneHeader() {
-    const list = [...Zotero.getMainWindow().document.querySelectorAll("[tabType=\"reader\"]")];
-    return list.filter(node => node?.nodeName === "item-pane-header")[0]!;
+    // @ts-expect-error ZoteroContextPane has context
+    return ztoolkit.getGlobal("ZoteroContextPane").context;
+    // const list = [...Zotero.getMainWindow().document.querySelectorAll("[tabType=\"reader\"]")];
+    // return list.filter(node => node?.nodeName === "item-pane-header")[0]!;
     // return Zotero.getMainWindow().document.getElementById("zotero-item-pane-header") as HTMLElement;
     // // @ts-expect-error ZoteroContextPane has context
     // return ztoolkit.getGlobal("ZoteroContextPane").context._getItemContext(ztoolkit.getGlobal("Zotero_Tabs").selectedID)._header;
@@ -122,10 +124,7 @@ export class RichTextToolBar {
     if (record.type === "attributes" && record.attributeName === "class") {
       const target = record.target as HTMLElement;
       ztoolkit.log(target.classList);
-      if (target.classList.contains("value")) {
-        this.showToolBar("field");
-      }
-      else if (target.classList.contains("focused")) {
+      if (target.classList.contains("focused")) {
         this.showToolBar("header");
       }
       if (target.className === "") {
