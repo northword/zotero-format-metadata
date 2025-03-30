@@ -215,7 +215,7 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
     const refDoi = doc.querySelector("doi");
     if (refDoi) {
       ztoolkit.log("Get DOI from Arxiv");
-      return refDoi.innerHTML;
+      return refDoi.innerHTML as string;
     }
     else {
       ztoolkit.log("ArXiv did not return DOI");

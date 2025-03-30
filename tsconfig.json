@@ -1,25 +1,10 @@
 {
-  "compilerOptions": {
-    "target": "ES2016",
-    "lib": ["ESNext"],
-    "experimentalDecorators": true,
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "types": [
-      "zotero-types"
-    ],
-    "strict": true,
-    "outDir": "build/dist/",
-    "skipLibCheck": true
-  },
+  "extends": "zotero-types/entries/sandbox/tsconfig.json",
   "include": [
     "src",
     "typings"
   ],
-  // "include": ["src", "typings", "../zotero-types"],
   "exclude": [
-    "build",
     "addon",
     "**/temp**"
   ]

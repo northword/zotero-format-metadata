@@ -146,7 +146,7 @@ export class RichTextToolBar {
 
   closeToolBar() {
     this.window.document.querySelectorAll(".linter-richtext-toolbar")
-      .forEach((richtoolbar) => {
+      .forEach((richtoolbar: Element) => {
         richtoolbar?.parentNode?.removeChild(richtoolbar);
       });
   }

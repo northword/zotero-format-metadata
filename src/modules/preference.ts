@@ -79,7 +79,7 @@ async function updatePrefsUI() {
 function bindPrefEvents() {
   addon.data.prefs?.window.document
     .querySelector(`#${addon.data.config.addonRef}-lang-only-enable`)
-    ?.addEventListener("command", (e) => {
+    ?.addEventListener("command", (e: Event) => {
       ztoolkit.log(e);
       disablePrefsLang();
     });

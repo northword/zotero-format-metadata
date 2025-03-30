@@ -17,6 +17,7 @@ zotero-cmd.json
 **/examples.ts
 # **/test.js
 **/*test*.*
+*.tsbuildinfo
 
 # ts 编译的 js
 src/**/*.js
