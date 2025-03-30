@@ -28,8 +28,8 @@
     "lint:check": "eslint .",
     "lint:fix": "eslint . --fix",
     "update-data": "bash data/update-data.sh",
-    "test": "vitest **/*.test.ts",
-    "test:client": "zotero-plugin test",
+    "test": "zotero-plugin test",
+    "vitest": "vitest **/*.test.ts",
     "release": "zotero-plugin release",
     "update-deps": "pnpx taze minor -w -i"
   },
