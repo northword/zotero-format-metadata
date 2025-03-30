@@ -5,7 +5,7 @@ import pkg from "./package.json";
 
 export default defineConfig({
   source: ["src", "addon"],
-  dist: "./.scaffold/build",
+  dist: ".scaffold/build",
   name: pkg.config.addonName,
   id: pkg.config.addonID,
   namespace: pkg.config.addonRef,
@@ -79,6 +79,10 @@ export default defineConfig({
         return notes;
       },
     },
+  },
+  test: {
+    entries: ["test/tests"],
+    // watch: true,
   },
 
   // If you need to see a more detailed build log, uncomment the following line:

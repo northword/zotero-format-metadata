@@ -28,7 +28,8 @@
     "lint:check": "eslint .",
     "lint:fix": "eslint . --fix",
     "update-data": "bash data/update-data.sh",
-    "test": "vitest",
+    "test": "zotero-plugin test",
+    "vitest": "vitest **/*.test.ts",
     "release": "zotero-plugin release",
     "update-deps": "pnpx taze minor -w -i"
   },
@@ -41,15 +42,19 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.10.1",
+    "@types/chai": "^5.0.1",
+    "@types/mocha": "^10.0.10",
     "@types/node": "^22.13.10",
     "@zotero-plugin/eslint-config": "^0.3.5",
+    "chai": "^5.2.0",
     "conventional-changelog": "^6.0.0",
     "eslint": "^9.22.0",
     "eslint-plugin-format": "^1.0.1",
+    "mocha": "^11.1.0",
     "prettier": "^3.5.3",
     "typescript": "^5.8.2",
     "vitest": "^3.0.8",
-    "zotero-plugin-scaffold": "^0.3.5",
+    "zotero-plugin-scaffold": "^0.4.1",
     "zotero-types": "^3.1.9"
   }
 }

@@ -17,6 +17,8 @@ export default antfu(
     ignores: [
       "addon/lib/**",
       "data",
+      // 暂时忽略，待 @zotero-chinese/eslint-config 适配完成
+      "tests",
     ],
   },
   {
