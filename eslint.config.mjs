@@ -1,5 +1,5 @@
 import antfu from "@antfu/eslint-config";
-import { specialCases } from "@zotero-plugin/eslint-config";
+import { mocha, specialCases } from "@zotero-plugin/eslint-config";
 import format from "eslint-plugin-format";
 
 export default antfu(
@@ -9,16 +9,10 @@ export default antfu(
       quotes: "double",
     },
     formatters: true,
-    javascript: {
-      overrides: {
-        "no-restricted-globals": ["error", "window", "document"],
-      },
-    },
+    javascript: { },
     ignores: [
       "addon/lib/**",
       "data",
-      // 暂时忽略，待 @zotero-chinese/eslint-config 适配完成
-      "tests",
     ],
   },
   {
@@ -39,4 +33,4 @@ export default antfu(
       }],
     },
   },
-).append(specialCases);
+).append(specialCases, mocha);
