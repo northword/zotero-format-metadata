@@ -4,6 +4,8 @@ lint-on-item-added =
     .label = 添加条目时自动执行 Lint
 lint-on-groupItem-added = 
     .label = 添加群组条目时自动执行 Lint
+notify-on-lint = 
+    .label = Lint 时显示进度通知
 
 enable-richtext-toolbar = 
     .label = 启用富文本工具条

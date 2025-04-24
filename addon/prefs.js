@@ -1,6 +1,7 @@
 pref("version", "0.0.0");
 pref("lint.onAdded", true);
 pref("lint.onGroup", false);
+pref("lint.notify", true);
 pref("richtext.toolBar", true);
 pref("richtext.hotkey", true);
 pref("noDuplicationItems", true);

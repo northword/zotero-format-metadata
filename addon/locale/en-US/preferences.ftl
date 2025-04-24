@@ -4,6 +4,8 @@ lint-on-item-added =
     .label = Lint when item added to library 
 lint-on-groupItem-added = 
     .label = Lint when item added to group
+notify-on-lint = 
+    .label = Show progress notification when Lint
 
 enable-richtext-toolbar = 
     .label = Enable rich text toolbar

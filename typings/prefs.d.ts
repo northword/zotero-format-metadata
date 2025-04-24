@@ -10,6 +10,7 @@ declare namespace _ZoteroTypes {
       "version": string;
       "lint.onAdded": boolean;
       "lint.onGroup": boolean;
+      "lint.notify": boolean;
       "richtext.toolBar": boolean;
       "richtext.hotkey": boolean;
       "noDuplicationItems": boolean;

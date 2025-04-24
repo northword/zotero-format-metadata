@@ -3,6 +3,7 @@ import type { RuleBase } from "./rules/rule-base";
 import PQueue from "p-queue";
 import { getString } from "../utils/locale";
 import { logError } from "../utils/logger";
+import { getPref } from "../utils/prefs";
 import { waitUtilAsync } from "../utils/wait";
 
 type QueueTask = () => Promise<void>;
@@ -127,6 +128,9 @@ export class LintRunner {
 
   private async initializeProgressWindow() {
     this.progressWindow?.close();
+
+    if (!getPref("lint.notify"))
+      return;
 
     this.progressWindow = new ztoolkit.ProgressWindow(addon.data.config.addonName, {
       closeOnClick: false,
