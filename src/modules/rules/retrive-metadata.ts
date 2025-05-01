@@ -101,6 +101,9 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
       }
     }
 
+    // @ts-expect-error no types
+    const fieldsIds = Zotero.ItemFields.getItemTypeFields(item.itemTypeID).map(id => Zotero.ItemFields.getName(id)) as string[];
+
     // mode === all: 强制更新，无论原值是否为空：mode === "all" ||
     // 对于一个字段，若 mode === "all"，更新
     //              若 mode === "blank"，且 旧值为空，更新
@@ -167,8 +170,15 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
           if (field === "title")
             newFieldValue = newFieldValue.replace(/\s+<(sub|sup)>/g, "<$1>");
 
-          ztoolkit.log(`Update "${field}" from "${oldFieldValue}" to "${newFieldValue}"`);
-          item.setField(field, newFieldValue);
+          if (fieldsIds.includes(field)) {
+            ztoolkit.log(`Update "${field}" from "${oldFieldValue}" to "${newFieldValue}"`);
+            item.setField(field, newFieldValue);
+          }
+          else {
+            ztoolkit.log(`Update "extra.${field}" from "${oldFieldValue}" to "${newFieldValue}"`);
+            ztoolkit.ExtraField.setExtraField(item, field, newFieldValue);
+          }
+
           break;
         }
       }
