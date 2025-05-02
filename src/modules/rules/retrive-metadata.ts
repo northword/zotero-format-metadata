@@ -175,8 +175,9 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
             item.setField(field, newFieldValue);
           }
           else {
-            ztoolkit.log(`Update "extra.${field}" from "${oldFieldValue}" to "${newFieldValue}"`);
-            ztoolkit.ExtraField.setExtraField(item, field, newFieldValue);
+            // ztoolkit.log(`Update "extra.${field}" from "${oldFieldValue}" to "${newFieldValue}"`);
+            // ztoolkit.ExtraField.setExtraField(item, field, newFieldValue);
+            ztoolkit.log(`Skip updating "${field}=${newFieldValue}" because it is not in the itemType fields.`);
           }
 
           break;
