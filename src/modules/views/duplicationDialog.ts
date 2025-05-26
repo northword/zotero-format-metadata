@@ -27,7 +27,7 @@ export class duplicationDialog {
       .addButton(getString("dialog-dup-button-merge"), "ok", {
         callback: () => {
           // 聚焦
-          Zotero.getActiveZoteroPane().setVirtual("1", "duplicates", true, true);
+          Zotero.getActiveZoteroPane().setVirtual(item.libraryID, "duplicates", true, true);
         },
       });
 
