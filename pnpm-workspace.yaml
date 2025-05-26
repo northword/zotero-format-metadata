@@ -1,0 +1,2 @@
+overrides:
+  zotero-plugin-scaffold: link:../zotero-plugin-dev-tool/packages/scaffold

@@ -4,7 +4,7 @@ import { progressWindow } from "../../utils/logger";
 import { isStringMatchStringInArray } from "../../utils/str";
 import { RuleBase } from "./rule-base";
 
-// 当条目为 webpage ，且 url 为各期刊出版社时，警告
+// 当条目为 webpage，且 url 为各期刊出版社时，警告
 
 const publisherUrlKeyWords = [
   "acm.org",

@@ -6,13 +6,15 @@ class updateUniversityPlaceOptions implements RuleBaseOptions {}
 
 export class UpdateUniversityPlace extends RuleBase<updateUniversityPlaceOptions> {
   constructor(options: updateUniversityPlaceOptions) {
-    super(options);
+    super({
+      nameKey: "university-place",
+      type: ["field"],
+      targetItemTypes: ["thesis"],
+      targetItemFields: ["place"],
+    }, options);
   }
 
   async apply(item: Zotero.Item) {
-    if (item.itemType !== "thesis")
-      return item;
-
     const university = item.getField("university") as string;
     const place = await this.getUniversityPlace(university)
       || await this.getUniversityPlace(university.replace(/[（(].*[)|）]/, ""));
