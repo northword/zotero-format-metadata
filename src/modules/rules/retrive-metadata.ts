@@ -62,7 +62,7 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
 
   async translateByItem(item: Zotero.Item): Promise<Zotero.Item | undefined> {
     const itemTemp = Zotero.Utilities.Internal.itemToExportFormat(item, false);
-    ztoolkit.log("itemToExportFormat (original): ", { ...itemTemp });
+    this.debug("itemToExportFormat (original): ", { ...itemTemp });
     // 如果 Item 包含多个标识符，优先使用 DOI
     // 因为部分会议论文包含 ISBN 会导致调用优先级更高的 K10plus ISBN 转换器，导致更新为论文集（书籍）
     // ref: https://github.com/northword/zotero-format-metadata/issues/216
@@ -75,12 +75,12 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
         delete itemTemp.ISBN;
       }
     }
-    ztoolkit.log("itemToExportFormat (modified): ", { ...itemTemp });
+    this.debug("itemToExportFormat (modified): ", { ...itemTemp });
 
     const translate = new Zotero.Translate.Search();
     translate.setSearch(itemTemp);
     const translators = await translate.getTranslators();
-    ztoolkit.log("translators:", translators);
+    this.debug("translators:", translators);
     if (translators.length === 0)
       return undefined;
     translate.setTranslator(translators);
@@ -94,13 +94,13 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
       return undefined;
 
     const newItem = newItems[0];
-    ztoolkit.log("Item retrieved from translate: ", newItem);
+    this.debug("Item retrieved from translate: ", newItem);
 
-    ztoolkit.log(newItem.itemType, item.itemType, getPref("updateMetadate.confirmWhenItemTypeChange"));
+    this.debug(newItem.itemType, item.itemType, getPref("updateMetadate.confirmWhenItemTypeChange"));
     if (newItem.itemType !== item.itemType && getPref("updateMetadate.confirmWhenItemTypeChange")) {
       const isUpdate = Zotero.getMainWindow().confirm(`The itemType of "${item.getField("title")}" will be changed from ${item.itemType} to ${newItem.itemType}. \n\nAccept the changes?`);
       if (!isUpdate) {
-        ztoolkit.log("User cancel update because itemtype changes.");
+        this.debug("User cancel update because itemtype changes.");
         return item;
       }
     }
@@ -129,23 +129,23 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
             break;
 
           if (this.options.mode !== "all") {
-            ztoolkit.log("itemType need to update but mode is not 'all'.");
+            this.debug("itemType need to update but mode is not 'all'.");
             break;
           }
 
           if (newItem.DOI?.match(/arxiv/gi)) {
-            ztoolkit.log("DOI has 'arxiv', skip to change itemType.");
+            this.debug("DOI has 'arxiv', skip to change itemType.");
             break;
           }
 
-          ztoolkit.log(`Update ItemType from ${item.itemType} to ${newItem.itemType}`);
+          this.debug(`Update ItemType from ${item.itemType} to ${newItem.itemType}`);
           item.setType(newItemTypeID);
           break;
         }
 
         case "creators":
           if (this.options.mode === "all" || item.getCreators().length === 0) {
-            ztoolkit.log("Update creators");
+            this.debug("Update creators");
             item.setCreators(newItem.creators);
           }
           break;
@@ -153,7 +153,7 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
         case "accessDate": {
           const newFieldValue = Zotero.Date.dateToSQL(new Date(newItem[field] ?? ""), true);
           if (newFieldValue) {
-            ztoolkit.log(`Update "accessDate" to ${newFieldValue}`);
+            this.debug(`Update "accessDate" to ${newFieldValue}`);
             item.setField("accessDate", newFieldValue);
           }
           break;
@@ -175,13 +175,13 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
             newFieldValue = newFieldValue.replace(/\s+<(sub|sup)>/g, "<$1>");
 
           if (fieldsIds.includes(field)) {
-            ztoolkit.log(`Update "${field}" from "${oldFieldValue}" to "${newFieldValue}"`);
+            this.debug(`Update "${field}" from "${oldFieldValue}" to "${newFieldValue}"`);
             item.setField(field, newFieldValue);
           }
           else {
-            // ztoolkit.log(`Update "extra.${field}" from "${oldFieldValue}" to "${newFieldValue}"`);
+            // this.debug(`Update "extra.${field}" from "${oldFieldValue}" to "${newFieldValue}"`);
             // ztoolkit.ExtraField.setExtraField(item, field, newFieldValue);
-            ztoolkit.log(`Skip updating "${field}=${newFieldValue}" because it is not in the itemType fields.`);
+            this.debug(`Skip updating "${field}=${newFieldValue}" because it is not in the itemType fields.`);
           }
 
           break;
@@ -223,7 +223,7 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
     const res = await Zotero.HTTP.request("GET", url);
     const result = res.response as string;
     if (result === "" || result === null || result === undefined) {
-      ztoolkit.log("从 Arxiv API 请求失败");
+      this.debug("从 Arxiv API 请求失败");
       return undefined;
     }
     const doc = new DOMParser().parseFromString(result, "text/xml");
@@ -233,7 +233,7 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
       return refDoi.innerHTML as string;
     }
     else {
-      ztoolkit.log("ArXiv did not return DOI");
+      this.debug("ArXiv did not return DOI");
       return undefined;
     }
   }
@@ -372,7 +372,7 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
       paperID = `URL:${item.getField("url")}`;
     }
     else {
-      ztoolkit.log("没有有效的 paper ID 用以向 Semantic Scholar 请求");
+      this.debug("没有有效的 paper ID 用以向 Semantic Scholar 请求");
       return undefined;
     }
 
@@ -385,7 +385,7 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
     });
 
     if (res.status !== 200) {
-      ztoolkit.log(`Request from Semantic Scholar failed, status code ${res.status}`);
+      this.debug(`Request from Semantic Scholar failed, status code ${res.status}`);
       return undefined;
     }
 
@@ -413,7 +413,7 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
     if (item.getField("publisher").match(/arxiv/gi))
       item.setField("publisher", "");
     item.setField("libraryCatalog", "Semantic Scholar");
-    ztoolkit.log(item);
+    this.debug(item);
     return item;
   }
 }

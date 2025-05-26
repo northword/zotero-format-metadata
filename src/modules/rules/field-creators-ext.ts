@@ -23,7 +23,7 @@ export class UseCreatorsExt extends RuleBase<UseCreatorsExtOptions> {
 
   apply(item: Zotero.Item): Zotero.Item | Promise<Zotero.Item> {
     if (!this.options) {
-      ztoolkit.log("参数未定义，可能是弹窗未确认，结束应用规则。");
+      this.debug("参数未定义，可能是弹窗未确认，结束应用规则。");
       return item;
     }
     const creators = item.getCreators();
@@ -46,7 +46,7 @@ export class UseCreatorsExt extends RuleBase<UseCreatorsExtOptions> {
           original: "",
         };
       });
-      ztoolkit.log("可能修改 creators 字段，备份当前 creators 至 extra.creatorsExt.");
+      this.debug("可能修改 creators 字段，备份当前 creators 至 extra.creatorsExt.");
       ztoolkit.ExtraField.setExtraField(item, "creatorsExt", JSON.stringify(creators));
     }
 

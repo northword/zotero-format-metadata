@@ -18,7 +18,7 @@ export class UpdateItemLanguage extends RuleBase<UpdateItemLanguageOptions> {
       return item;
     // WIP: 已有合法 ISO 639 - ISO 3166 代码的，不予处理
     // if (verifyIso3166(item.getField("language") as string) && getPref("lang.verifyBefore")) {
-    //   ztoolkit.log("[lang] The item has been skipped due to the presence of valid ISO 639 - ISO 3166 code.");
+    //   this.debug("[lang] The item has been skipped due to the presence of valid ISO 639 - ISO 3166 code.");
     //   return item;
     // }
     const title = item.getField("title") as string;

@@ -8,8 +8,13 @@ import { RuleBase } from "./rule-base";
 class UpdateAbbrOptions implements RuleBaseOptions {}
 
 export class UpdateAbbr extends RuleBase<UpdateAbbrOptions> {
-  constructor(options: UpdateAbbrOptions) {
-    super(options);
+  constructor(options?: UpdateAbbrOptions) {
+    super({
+      nameKey: "abbr-journal",
+      type: ["item"],
+      targetItemTypes: ["journalArticle", "conferencePaper"],
+      targetItemFields: ["journalAbbreviation", "conferenceName"],
+    }, options);
   }
 
   async apply(item: Zotero.Item): Promise<Zotero.Item> {
@@ -56,12 +61,12 @@ export class UpdateAbbr extends RuleBase<UpdateAbbrOptions> {
       const isChinese = ["zh", "zh-CN"].includes(itemLanguage);
       if (isChinese && getPref("abbr.usefullZh")) {
         // 中文，无缩写的，是否以全称替代
-        ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
+        this.debug(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
         journalAbbr = publicationTitle;
       }
       else if (!isChinese && getPref("abbr.usefull")) {
         // 非中文，无缩写的，是否以全称替代
-        ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
+        this.debug(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
         journalAbbr = publicationTitle;
       }
     }
@@ -112,7 +117,7 @@ export class UpdateAbbr extends RuleBase<UpdateAbbrOptions> {
       }
     }
 
-    ztoolkit.log(`[Abbr] The abbr. of "${publicationTitle}" (${normalizedPublicationTitle}) not exist in local dateset.`);
+    this.debug(`[Abbr] The abbr. of "${publicationTitle}" (${normalizedPublicationTitle}) not exist in local dateset.`);
     return undefined;
   }
 
@@ -132,7 +137,7 @@ export class UpdateAbbr extends RuleBase<UpdateAbbrOptions> {
     const res = await Zotero.HTTP.request("GET", url);
     const result = res.response as string;
     if (result === "" || result === null || result === undefined) {
-      ztoolkit.log("[Abbr] Failed to infer the abbr. from LTWA");
+      this.debug("[Abbr] Failed to infer the abbr. from LTWA");
       return undefined;
     }
     return result;
@@ -158,14 +163,14 @@ export class UpdateAbbr extends RuleBase<UpdateAbbrOptions> {
         if (normalizeKey(term) === normalizePublicationTitle && data[term])
           return data[term];
       }
-      ztoolkit.log("[Abbr] 自定义缩写未匹配");
+      this.debug("[Abbr] 自定义缩写未匹配");
       return undefined;
     }
     else if (customAbbrDataPath.endsWith(".csv")) {
       const resolvedTerms = await useData("csv", customAbbrDataPath, {
         headers: ["publicationTitle", "abbr"],
       });
-      ztoolkit.log(`[Abbr] Custom terms:`, resolvedTerms);
+      this.debug(`[Abbr] Custom terms:`, resolvedTerms);
       for (const term of resolvedTerms) {
         if (normalizeKey(term.publicationTitle) === normalizePublicationTitle)
           return term.abbr;

@@ -16,20 +16,20 @@ export class NoDuplicatItem extends RuleBase<NoDuplicatItemOptions> {
 
     // @ts-expect-error miss types for `Zotero.Duplicates`
     const duplicates = new Zotero.Duplicates(libraryID);
-    // ztoolkit.log("Zotero.Duplicates", duplicates);
+    // this.debug("Zotero.Duplicates", duplicates);
 
     const search = (await duplicates.getSearchObject()) as Zotero.Search;
-    // ztoolkit.log("d.getSearchObject", search);
+    // this.debug("d.getSearchObject", search);
 
     const searchResult = await search.search();
-    // ztoolkit.log(searchResult);
+    // this.debug(searchResult);
 
     if (searchResult.includes(itemID)) {
-      ztoolkit.log("当前条目存在重复条目", item);
+      this.debug("当前条目存在重复条目", item);
       await duplicationDialog.showDialog(item);
     }
     else {
-      ztoolkit.log("当前条目未发现重复条目");
+      this.debug("当前条目未发现重复条目");
     }
 
     return item;

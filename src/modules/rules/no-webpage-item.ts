@@ -4,7 +4,7 @@ import { progressWindow } from "../../utils/logger";
 import { isStringMatchStringInArray } from "../../utils/str";
 import { RuleBase } from "./rule-base";
 
-// 当条目为 webpage ，且 url 为各期刊出版社时，警告
+// 当条目为 webpage，且 url 为各期刊出版社时，警告
 
 const publisherUrlKeyWords = [
   "acm.org",
@@ -103,11 +103,11 @@ export class NoWebPageItem extends RuleBase<NoWebPageItemOptions> {
       return item;
     const url = item.getField("url");
     if (typeof url === "string" && url !== "" && isStringMatchStringInArray(url, publisherUrlKeyWords)) {
-      ztoolkit.log("The url of this webpage item is match with domin of publisher.");
+      this.debug("The url of this webpage item is match with domin of publisher.");
       // show alart todo: 对话框完善，通过 URL 获取 DOI 并通过 DOI 强制更新条目类别
       progressWindow(getString("checkWebpage-warning"), "fail").startCloseTimer(100000);
     }
-    ztoolkit.log(`The url of this webpage item is not belong to publisher, maybe a normal webpage.`);
+    this.debug(`The url of this webpage item is not belong to publisher, maybe a normal webpage.`);
     return item;
   }
 }

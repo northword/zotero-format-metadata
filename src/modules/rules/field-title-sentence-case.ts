@@ -26,13 +26,13 @@ export class TitleSentenceCase extends RuleBase<TitleSentenceCaseOptions> {
       const data = await useData("csv", customTermFilePath, {
         headers: ["search", "replace"],
       });
-      ztoolkit.log(`[title] Custom terms:`, data, typeof data);
+      this.debug(`[title] Custom terms:`, data, typeof data);
 
       data.forEach((term) => {
         const search = convertToRegex(term.search);
         if (search.test(title)) {
           title = title.replace(search, term.replace);
-          ztoolkit.log(`[title] Hit custom term: `, search);
+          this.debug(`[title] Hit custom term: `, search);
           if (isLintShortTitle) {
             shortTitle = shortTitle.replace(search, term.replace);
           }
