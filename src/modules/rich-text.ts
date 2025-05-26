@@ -1,10 +1,11 @@
+import type { FluentMessageId } from "../../typings/i10n";
 import { getString } from "../utils/locale";
 import { getPref } from "../utils/prefs";
 import { removeHtmlTag } from "../utils/str";
 
 interface Button {
   name: string;
-  i18nName: string;
+  i18nName: FluentMessageId;
   hookName: string;
   icon: string;
 }

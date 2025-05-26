@@ -82,7 +82,7 @@ export async function getCreatorsExtOptionDialog(): Promise<any | undefined> {
           children: [
             {
               tag: "label",
-              properties: { innerHTML: "国籍: " },
+              properties: { innerHTML: "国籍：" },
             },
             {
               tag: "input",
@@ -103,7 +103,7 @@ export async function getCreatorsExtOptionDialog(): Promise<any | undefined> {
     .addButton(getString("confirm"), "confirm")
     .addButton(getString("cancel"), "cancel")
     .setDialogData(dialogData)
-    .open(getString("作者扩展信息"));
+    .open("作者扩展信息");
   await dialogData.unloadLock.promise;
 
   if (dialogData._lastButtonId !== "confirm") {
