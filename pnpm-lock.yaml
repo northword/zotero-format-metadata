@@ -22,7 +22,7 @@ importers:
         version: 1.3.4
       zotero-plugin-toolkit:
         specifier: 5.0.1
-        version: 5.0.1(zotero-types@4.0.5-beta.0)
+        version: 5.0.1(zotero-types@4.0.5)
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^4.16.1
@@ -67,8 +67,8 @@ importers:
         specifier: ^0.6.1
         version: 0.6.1(conventional-changelog@6.0.0(conventional-commits-filter@5.0.0))
       zotero-types:
-        specifier: 4.0.5-beta.0
-        version: 4.0.5-beta.0
+        specifier: 4.0.5
+        version: 4.0.5
 
 packages:
 
@@ -2824,8 +2824,8 @@ packages:
     peerDependencies:
       zotero-types: '>=4.0.0'
 
-  zotero-types@4.0.5-beta.0:
-    resolution: {integrity: sha512-E4t3lP/L6nZ8GFp97TzXEKPrSmQWeksKsqdjE7Rwv3HlF6ffHTt2Qx9DqnlmS4Hlg29DhOdX7avrCnCZvW3wvA==}
+  zotero-types@4.0.5:
+    resolution: {integrity: sha512-U8CCf5JNXTBt8eqqDjWTUY+kbYN1UlFSbyPM5QFI1PHrla8q6oqJzlzvrUJWu1dspvfITSrj1mDpK8TafObutw==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -5811,11 +5811,11 @@ snapshots:
       - '@swc/helpers'
       - magicast
 
-  zotero-plugin-toolkit@5.0.1(zotero-types@4.0.5-beta.0):
+  zotero-plugin-toolkit@5.0.1(zotero-types@4.0.5):
     dependencies:
-      zotero-types: 4.0.5-beta.0
+      zotero-types: 4.0.5
 
-  zotero-types@4.0.5-beta.0:
+  zotero-types@4.0.5:
     dependencies:
       '@types/bluebird': 3.5.42
       '@types/react': 18.3.23
