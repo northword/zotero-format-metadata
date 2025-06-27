@@ -17,7 +17,11 @@ export class UpdateUniversityPlace extends RuleBase<updateUniversityPlaceOptions
     const place = await this.getUniversityPlace(university)
       || await this.getUniversityPlace(university.replace(/[（(].*[)|）]/, ""));
 
-    item.setField("place", place);
+    if (!place && item.getField("place"))
+      ztoolkit.log(`[place] ${university} not existed in dataset, and original place not empty, skip it.`);
+    else
+      item.setField("place", place);
+
     return item;
   }
 
