@@ -16,7 +16,6 @@ zotero-cmd.json
 **/*.new
 **/examples.ts
 # **/test.js
-**/*test*.*
 *.tsbuildinfo
 
 # ts 编译的 js

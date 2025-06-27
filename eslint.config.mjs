@@ -1,6 +1,10 @@
+// @ts-check
+
 import antfu from "@antfu/eslint-config";
-import { mocha, specialCases } from "@zotero-plugin/eslint-config";
+import { ignores, specialCases, test } from "@zotero-plugin/eslint-config";
 import format from "eslint-plugin-format";
+
+// export default zotero();
 
 export default antfu(
   {
@@ -33,4 +37,11 @@ export default antfu(
       }],
     },
   },
-).append(specialCases, mocha);
+  {
+    files: ["**/*.spec.ts"],
+    rules: {
+      "prefer-arrow-callback": "off",
+    },
+
+  },
+).append(specialCases, test, ignores);

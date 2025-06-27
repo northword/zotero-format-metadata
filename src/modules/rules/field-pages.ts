@@ -42,7 +42,6 @@ export class PagesConnector extends RuleBase<RuleBaseOptions> {
     if (attachment.attachmentContentType !== "application/pdf")
       return;
 
-    // @ts-expect-error Fulltext is not in the types
     const pages = await Zotero.Fulltext.getPages(attachment.id);
     if (!pages)
       return;

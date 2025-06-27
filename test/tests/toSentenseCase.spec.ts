@@ -72,9 +72,10 @@ const testItems: testItem[] = [
   },
 ];
 
-describe("toSentenceCase", () => {
+describe("toSentenceCase", function () {
+  // eslint-disable-next-line mocha/no-setup-in-describe
   testItems.forEach((testItem) => {
-    it(testItem.name, () => {
+    it(testItem.name, function () {
       expect(toSentenceCase(testItem.original)).to.equal(testItem.expected);
       // assert.equal(toSentenceCase(testItem.original), testItem.expected);
     });
