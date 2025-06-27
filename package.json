@@ -47,7 +47,7 @@
     "@types/node": "^22.15.33",
     "@zotero-plugin/eslint-config": "^0.6.7",
     "chai": "^5.2.0",
-    "conventional-changelog": "^6.0.0",
+    "conventional-changelog": "^7.1.0",
     "eslint": "^9.29.0",
     "eslint-plugin-format": "^1.0.1",
     "mocha": "^11.7.1",
