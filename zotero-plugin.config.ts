@@ -69,7 +69,6 @@ export default defineConfig({
       execute: "pnpm build",
       all: true,
     },
-    changelog: "conventional-changelog",
     github: {
       enable: "ci",
       updater: "releaser",
