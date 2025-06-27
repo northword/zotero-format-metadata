@@ -55,6 +55,6 @@
     "typescript": "^5.8.3",
     "vitest": "^3.2.4",
     "zotero-plugin-scaffold": "^0.6.1",
-    "zotero-types": "4.0.5-beta.0"
+    "zotero-types": "4.0.5"
   }
 }
