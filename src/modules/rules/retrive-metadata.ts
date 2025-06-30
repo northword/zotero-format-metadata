@@ -35,7 +35,7 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
     if (item.itemType === "preprint") {
       const arxivID
                 = item.getField("archiveID").replace("arxiv:", "")
-                  || item.getField("url").replace("http://arxiv.org/abs/", "");
+                  || item.getField("url").replace("http://arxiv.org/abs/", "").replace("https://arxiv.org/abs/", "");
       if (arxivID) {
         const tmpDOI = await this.getDOIFromArxiv(arxivID);
         if (tmpDOI) {
