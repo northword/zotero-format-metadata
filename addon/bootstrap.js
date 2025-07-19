@@ -8,8 +8,6 @@
 function install(data, reason) {}
 
 async function startup({ id, version, resourceURI, rootURI }, reason) {
-  await Zotero.initializationPromise;
-
   /**
    * Global variables for plugin code.
    * The `_globalThis` is the global root variable of the plugin sandbox environment
@@ -22,7 +20,7 @@ async function startup({ id, version, resourceURI, rootURI }, reason) {
   ctx._globalThis = ctx;
 
   Services.scriptloader.loadSubScript(`${rootURI}/content/scripts/__addonRef__.js`, ctx);
-  Zotero.__addonInstance__.hooks.onStartup();
+  await Zotero.__addonInstance__.hooks.onStartup();
 }
 
 async function onMainWindowLoad({ window }, reason) {
