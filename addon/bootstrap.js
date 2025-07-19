@@ -5,23 +5,10 @@
  * [2] https://www.zotero.org/support/dev/zotero_7_for_developers
  */
 
-let chromeHandle;
-
 function install(data, reason) {}
 
 async function startup({ id, version, resourceURI, rootURI }, reason) {
   await Zotero.initializationPromise;
-
-  // String 'rootURI' introduced in Zotero 7
-  if (!rootURI) {
-    rootURI = resourceURI.spec;
-  }
-
-  const aomStartup = Components.classes["@mozilla.org/addons/addon-manager-startup;1"].getService(
-    Components.interfaces.amIAddonManagerStartup,
-  );
-  const manifestURI = Services.io.newURI(`${rootURI}manifest.json`);
-  chromeHandle = aomStartup.registerChrome(manifestURI, [["content", "__addonRef__", `${rootURI}content/`]]);
 
   /**
    * Global variables for plugin code.
@@ -51,21 +38,7 @@ function shutdown({ id, version, resourceURI, rootURI }, reason) {
     return;
   }
 
-  if (typeof Zotero === "undefined") {
-    Zotero = Components.classes["@zotero.org/Zotero;1"].getService(
-      Components.interfaces.nsISupports,
-    ).wrappedJSObject;
-  }
   Zotero.__addonInstance__?.hooks.onShutdown();
-
-  Cc["@mozilla.org/intl/stringbundle;1"].getService(Components.interfaces.nsIStringBundleService).flushBundles();
-
-  Cu.unload(`${rootURI}/content/scripts/__addonRef__.js`);
-
-  if (chromeHandle) {
-    chromeHandle.destruct();
-    chromeHandle = null;
-  }
 }
 
 function uninstall(data, reason) {}

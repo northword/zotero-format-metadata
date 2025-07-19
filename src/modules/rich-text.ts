@@ -168,7 +168,6 @@ export class RichTextToolBar {
       const toolbarbutton = document.createElement("toolbarbutton");
       toolbarbutton.id = `linter-richtext-${btn.hookName}-btn`;
       toolbarbutton.className = "zotero-tb-button";
-      // toolbarbutton.style.listStyleImage = `url("chrome://${addon.data.config.addonRef}/content/subscript.svg")`;
       toolbarbutton.style.fill = "currentColor";
       toolbarbutton.style.stroke = "currentColor";
       toolbarbutton.style.display = "flex";

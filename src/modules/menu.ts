@@ -3,7 +3,7 @@ import { getString } from "../utils/locale";
 import { isRegularItem } from "../utils/zotero";
 
 export function registerMenu() {
-  const menuIcon = `chrome://${addon.data.config.addonRef}/content/icons/favicon.png`;
+  const menuIcon = `${rootURI}/content/icons/favicon.png`;
   function getMenuItem(menuPopup: string) {
     const menuItem: MenuitemOptions[] = [
       {
