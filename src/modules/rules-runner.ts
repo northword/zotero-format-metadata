@@ -78,7 +78,9 @@ export class LintRunner {
       await item.saveTx();
     }
     catch (error) {
-      logError(error, item);
+      const message = `[Linter for Zotero] An error occurred when lint item ${item.id}: ${error instanceof Error ? error.message : error}\n`;
+      console.error(message, error, item);
+      Zotero.debug(message);
       item.addTag("linter/error", 1);
       await item.saveTx();
       throw error;

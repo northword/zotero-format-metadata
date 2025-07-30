@@ -25,10 +25,10 @@ export function progressWindow(text: string, type = "default", progress = 100) {
     .show();
 }
 
-export function logError(...data: any) {
+export function logError(...data: any | Error) {
   const orgOption = addon.data.ztoolkit.basicOptions.log.disableConsole;
   addon.data.ztoolkit.basicOptions.log.disableConsole = false;
-  console.error("[Linter for Zotero] An error occurred and the detailed error log is shown below: \n", data);
+  console.error(`[Linter for Zotero] An error occurred and the detailed error log is shown below: ${data}\n`, data);
   // ztoolkit.log("Error! ", data);
   addon.data.ztoolkit.basicOptions.log.disableConsole = orgOption;
 }
