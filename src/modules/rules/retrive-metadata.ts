@@ -26,26 +26,30 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
       }
 
       if (doi.match(/arxiv/gi)) {
-        const arxivID = doi.replace(/10.48550\/arXiv\./gi, "");
-        const tmpDOI = await this.getDOIFromArxiv(arxivID);
-        item.setField("DOI", tmpDOI ?? doi);
+        item.setType(30); // 30: preprint
       }
     }
 
     if (item.itemType === "preprint") {
-      const arxivID
-                = item.getField("archiveID").replace("arxiv:", "")
-                  || item.getField("url").replace("http://arxiv.org/abs/", "").replace("https://arxiv.org/abs/", "");
+      // for arxiv, try to get new DOI from arxiv, then translate by DOI
+      let arxivID = "";
+      if (item.getField("DOI").match(/10.48550\/arXiv\./gi))
+        arxivID = item.getField("DOI").replace(/10.48550\/arXiv\./gi, "");
+      else if (item.getField("archiveID").match(/arxiv/gi))
+        arxivID = item.getField("archiveID").replace("arxiv:", "");
+      else if (item.getField("url").match(/arxiv/gi))
+        arxivID = item.getField("url").replace(/https?:\/\/arxiv\.org\/abs\//, "");
+
       if (arxivID) {
         const tmpDOI = await this.getDOIFromArxiv(arxivID);
         if (tmpDOI) {
           item.setField("DOI", tmpDOI);
-          item = (await this.translateByItem(item)) ?? item;
-        }
-        else {
-          item = (await this.getMetadataFromSemanticScholar(item)) ?? item;
+          return (await this.translateByItem(item)) ?? item;
         }
       }
+
+      // else, try to get metadata from SemanticScholar
+      item = (await this.getMetadataFromSemanticScholar(item)) ?? item;
       return item;
     }
 
@@ -225,7 +229,7 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
     const doc = new DOMParser().parseFromString(result, "text/xml");
     const refDoi = doc.querySelector("doi");
     if (refDoi) {
-      ztoolkit.log("Get DOI from Arxiv");
+      ztoolkit.log("Got DOI from Arxiv", refDoi);
       return refDoi.innerHTML as string;
     }
     else {
@@ -235,6 +239,121 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
   }
 
   async getMetadataFromSemanticScholar(item: Zotero.Item): Promise<Zotero.Item | undefined> {
+    const fields: (keyof Result)[] = [
+      "publicationTypes", // keep this first
+      "title",
+      "authors",
+      "abstract",
+      "externalIds",
+      "url",
+      "venue",
+      "publicationVenue",
+      "publicationDate",
+      "journal",
+    ];
+
+    interface Result {
+      paperId?: string;
+      abstract?: string;
+      authors?: {
+        name: string;
+        authorId: string;
+      }[];
+      externalIds?: {
+        [key: string]: string;
+      };
+      journal?: {
+        name?: string;
+        volume?: string;
+        pages?: string;
+      };
+      openAccessPdf?: {
+        url?: string;
+        status?: string;
+      };
+      publicationDate?: string;
+      publicationTypes?: string[];
+      publicationVenue?: {
+        name?: string;
+        issn?: string;
+      };
+      title?: string;
+      url?: string;
+      venue?: {
+        name?: string;
+      };
+    }
+
+    const fieldHandlers: {
+      [K in keyof Result]?: (value: NonNullable<Result[K]>) => void;
+    } = {
+      publicationTypes: (value) => {
+        if (value.includes("Conference")) {
+          item.setType(Zotero.ItemTypes.getID("conferencePaper") || 11);
+        }
+        else if (value.includes("JournalArticle") || value.includes("Review")) {
+          item.setType(Zotero.ItemTypes.getID("journalArticle") || 21);
+        }
+      },
+
+      title: (value) => {
+        item.setField("title", value);
+      },
+
+      abstract: (value) => {
+        item.setField("abstractNote", value);
+      },
+
+      authors: (_value) => {
+        // skip
+      },
+
+      externalIds: (value) => {
+        if (value?.DOI) {
+          item.setField("DOI", value.DOI);
+        }
+      },
+
+      url: (value) => {
+        item.setField("url", value);
+      },
+
+      venue: (value) => {
+        if (item.itemType === "conferencePaper" && value.name) {
+          item.setField("conferenceName", value.name);
+        }
+        if (item.itemType === "journalArticle" && value.name) {
+          item.setField("publicationTitle", value.name);
+        }
+      },
+
+      publicationVenue: (value) => {
+        if (item.itemType === "conferencePaper" && value.name) {
+          item.setField("proceedingsTitle", value.name);
+        }
+        if (item.itemType === "journalArticle" && value.name) {
+          item.setField("publicationTitle", value.name);
+        }
+        if (value.issn) {
+          item.setField("ISSN", value.issn);
+        }
+      },
+
+      publicationDate: (value) => {
+        item.setField("date", value);
+      },
+
+      journal: (value) => {
+        if (value.volume) {
+          item.setField("volume", value.volume);
+        }
+        if (value.pages) {
+          item.setField("pages", value.pages);
+        }
+      },
+    };
+
+    // Get Identifiers
     let paperID: string;
 
     if (item.getField("archiveID").match(/arxiv/i)) {
@@ -257,93 +376,40 @@ export class UpdateMetadata extends RuleBase<UpdateMetadataOption> {
       return undefined;
     }
 
-    const fields = [
-      "publicationTypes", // 条目类别必须排在第一首先处理
-      "title",
-      "authors",
-      "abstract",
-      "externalIds",
-      "url",
-      "venue",
-      "publicationVenue",
-      "publicationDate",
-      "journal",
-    ];
+    // Do request
     const url = `https://api.semanticscholar.org/graph/v1/paper/${paperID.trim()}?fields=${fields.join(",")}`;
-
     const res = await Zotero.HTTP.request("GET", url, {
       headers: {
         "x-api-key": getPref("semanticScholarToken"),
       },
     });
+
     if (res.status !== 200) {
       ztoolkit.log(`Request from Semantic Scholar failed, status code ${res.status}`);
       return undefined;
     }
-    const result = JSON.parse(res.response);
+
+    const result = JSON.parse(res.response) as Result;
     ztoolkit.log(`Data get from Semantic Scholar: `, result);
 
+    // Proformence change
     for (const field of fields) {
-      if (!(field in result))
+      const value = result[field] || "";
+      if (!!value && this.options.mode === "blank")
         continue;
-      const value = result[field];
-      ztoolkit.log(`value of field ${field} is `, value);
-      if (value !== "" && this.options.mode === "blank")
-        continue;
-      switch (field) {
-        case "publicationTypes": {
-          // 似乎未发布的预印本会此项为 null
-          if (value.includes("Conference")) {
-            item.setType(Zotero.ItemTypes.getID("conferencePaper") || 11);
-          }
-          else if (value.includes("JournalArticle")) {
-            item.setType(Zotero.ItemTypes.getID("journalArticle") || 21);
-          }
-          break;
-        }
-        case "authors": {
-          //
-          break;
-        }
-        case "abstract":
-          item.setField("abstractNote", value);
-          break;
-        case "venue":
-          if (item.itemType === "conferencePaper")
-            item.setField("conferenceName", value);
-          if (item.itemType === "journalArticle")
-            item.setField("publicationTitle", value);
-          break;
-        case "publicationVenue":
-          if (item.itemType === "conferencePaper")
-            item.setField("proceedingsTitle", value.name);
-          if (item.itemType === "journalArticle")
-            item.setField("publicationTitle", value.name);
-          if ("issn" in value)
-            item.setField("ISSN", value.issn);
-          break;
-        case "publicationDate": {
-          item.setField("date", value);
-          break;
-        }
-        case "journal": {
-          if ("pages" in value)
-            item.setField("pages", value.pages);
-          if ("volume" in value)
-            item.setField("volume", value.volume);
-          break;
-        }
-        case "externalIds": {
-          if ("DOI" in value)
-            item.setField("DOI", value.DOI);
-          // if ("ArXiv" in value) item.
-          break;
-        }
-        default:
+
+      const handler = fieldHandlers[field];
+      if (handler) {
+        handler(value as any);
+      }
+      else {
+        // fallback
+        if (typeof value === "string") {
           item.setField(field as _ZoteroTypes.Item.ItemField, value);
-          break;
+        }
       }
     }
+
     if (item.getField("publisher").match(/arxiv/gi))
       item.setField("publisher", "");
     item.setField("libraryCatalog", "Semantic Scholar");

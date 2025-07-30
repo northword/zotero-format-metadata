@@ -70,8 +70,8 @@ export class LintRunner {
       for (const rule of rules) {
         ztoolkit.log(`[Runner] Applying ${rule.constructor.name}`);
         item = await rule.apply(item);
-        ztoolkit.log("[Runner] Rule applied:", item.toJSON());
       }
+      ztoolkit.log("[Runner] Rules applied:", item.toJSON());
       if (item.hasTag("linter/error")) {
         item.removeTag("linter/error");
       }
