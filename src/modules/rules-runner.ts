@@ -2,7 +2,6 @@ import type { ProgressWindowHelper } from "zotero-plugin-toolkit";
 import type { RuleBase } from "./rules/rule-base";
 import PQueue from "p-queue";
 import { getString } from "../utils/locale";
-import { logError } from "../utils/logger";
 import { getPref } from "../utils/prefs";
 import { waitUtilAsync } from "../utils/wait";
 
