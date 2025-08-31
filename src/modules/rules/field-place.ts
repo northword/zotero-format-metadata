@@ -1,13 +1,15 @@
-import type { RuleBaseOptions } from "./rule-base";
+import type { RuleBaseOptions, RuleMetaData } from "./rule-base";
 import { useData } from "../../utils/data-loader";
 import { RuleBase } from "./rule-base";
 
-class updateUniversityPlaceOptions implements RuleBaseOptions {}
+class updateUniversityPlaceOptions implements RuleBaseOptions {
+  test: string = "";
+}
 
-export class UpdateUniversityPlace extends RuleBase<updateUniversityPlaceOptions> {
+export class UpdateUniversityPlace extends RuleBase<"title", updateUniversityPlaceOptions> {
   constructor(options: updateUniversityPlaceOptions) {
     super({
-      nameKey: "university-place",
+      nameKey: "title",
       type: ["field"],
       targetItemTypes: ["thesis"],
       targetItemFields: ["place"],
@@ -15,6 +17,8 @@ export class UpdateUniversityPlace extends RuleBase<updateUniversityPlaceOptions
   }
 
   async apply(item: Zotero.Item) {
+    this.getPref("test");
+    this._getPref("");
     const university = item.getField("university") as string;
     const place = await this.getUniversityPlace(university)
       || await this.getUniversityPlace(university.replace(/[（(].*[)|）]/, ""));
