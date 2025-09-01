@@ -91,9 +91,9 @@ export function capitalizeFirstLetter(str: string): string {
  * @see https://github.com/zotero/utilities/pull/26
  * @see https://github.com/zotero/utilities/pull/27
  */
-export function toSentenceCase(text: string) {
+export function toSentenceCase(text: string, locale: string = "en-US") {
   const preserve = [] as any[]; // northword: add for tsc
-  const allcaps = text === text.toUpperCase();
+  const allcaps = text === text.toLocaleUpperCase(locale);
 
   // sub-sentence start
   text.replace(/([.?!]\s+)(<[^>]+>)?(\p{Lu})/gu, (match, end, markup, char, i) => {
@@ -125,17 +125,17 @@ export function toSentenceCase(text: string) {
   });
 
   masked = masked
-    .replace(/[;:]\uFFFD*\s+\uFFFD*A\s/g, match => match.toLowerCase())
-    .replace(/[–—]\uFFFD*(?:\s+\uFFFD*)?A\s/g, match => match.toLowerCase())
+    .replace(/[;:]\uFFFD*\s+\uFFFD*A\s/g, match => match.toLocaleLowerCase(locale))
+    .replace(/[–—]\uFFFD*(?:\s+\uFFFD*)?A\s/g, match => match.toLocaleLowerCase(locale))
     // words, compound words, and acronyms (latter also catches U.S.A.)
     .replace(/([\u{FFFD}\p{L}\p{N}]+([\u{FFFD}\p{L}\p{N}\p{Pc}]*))|(\s(\p{Lu}+\.){2,})?/gu, (word) => {
       if (allcaps)
-        return word.toLowerCase();
+        return word.toLocaleLowerCase(locale);
 
       const unmasked = word.replace(/\uFFFD/g, "");
 
       if (unmasked.length === 1) {
-        return unmasked === "A" ? word.toLowerCase() : word;
+        return unmasked === "A" ? word.toLocaleLowerCase(locale) : word;
       }
 
       // inner capital somewhere
@@ -153,7 +153,7 @@ export function toSentenceCase(text: string) {
         return word;
       }
 
-      return word.toLowerCase();
+      return word.toLocaleLowerCase(locale);
     })
 
     // northword patch: 支持月、周、国家城市、大洲大洋等专有名词
@@ -165,7 +165,7 @@ export function toSentenceCase(text: string) {
       (match, specialWord) => {
         return match.replace(
           specialWord,
-          specialWords.find(word => word.toLowerCase() === specialWord.toLowerCase()) ?? specialWord,
+          specialWords.find(word => word.toLocaleLowerCase(locale) === specialWord.toLocaleLowerCase(locale)) ?? specialWord,
         );
       },
     );
