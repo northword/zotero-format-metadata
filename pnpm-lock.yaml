@@ -40,8 +40,8 @@ importers:
         specifier: ^0.6.7
         version: 0.6.7(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2)
       chai:
-        specifier: ^5.2.1
-        version: 5.2.1
+        specifier: ^6.0.1
+        version: 6.0.1
       eslint:
         specifier: ^9.32.0
         version: 9.32.0(jiti@2.5.1)
@@ -1094,6 +1094,10 @@ packages:
 
   chai@5.2.1:
     resolution: {integrity: sha512-5nFxhUrX0PqtyogoYOA8IPswy5sZFTOsBFl/9bNsmDLgsxYTzSZQJDPppDnZPTQbzSEm0hqGjWPzRemQCYbD6A==}
+    engines: {node: '>=18'}
+
+  chai@6.0.1:
+    resolution: {integrity: sha512-/JOoU2//6p5vCXh00FpNgtlw0LjvhGttaWc+y7wpW9yjBm3ys0dI8tSKZxIOgNruz5J0RleccatSIC3uxEZP0g==}
     engines: {node: '>=18'}
 
   chalk@4.1.2:
@@ -3611,6 +3615,8 @@ snapshots:
       deep-eql: 5.0.2
       loupe: 3.2.0
       pathval: 2.0.1
+
+  chai@6.0.1: {}
 
   chalk@4.1.2:
     dependencies:
