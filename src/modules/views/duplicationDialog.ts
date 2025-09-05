@@ -26,8 +26,16 @@ export class duplicationDialog {
       })
       .addButton(getString("dialog-dup-button-merge"), "ok", {
         callback: () => {
-          // 聚焦
-          Zotero.getActiveZoteroPane().setVirtual(item.libraryID, "duplicates", true, true);
+          const mainWindow = Zotero.getMainWindow();
+          if (mainWindow) {
+            // Un-minimize if minimized
+            if (mainWindow.windowState === mainWindow.STATE_MINIMIZED) {
+              mainWindow.restore();
+            }
+            // Focus the main window
+            mainWindow.focus();
+            Zotero.getActiveZoteroPane().setVirtual(item.libraryID, "duplicates", true, true);
+          }
         },
       });
 
