@@ -12,13 +12,14 @@ export class TitleSentenceCase extends RuleBase<TitleSentenceCaseOptions> {
   }
 
   async apply(item: Zotero.Item): Promise<Zotero.Item> {
+    const lang = item.getField("language");
     let title = item.getField("title", false, true) as string;
-    title = item.getField("language").match("zh") ? title : toSentenceCase(title);
+    title = lang.match("zh") ? title : toSentenceCase(title, lang);
 
     const isLintShortTitle = getPref("title.shortTitle");
     let shortTitle = item.getField("shortTitle", false, true) as string;
     if (isLintShortTitle) {
-      shortTitle = item.getField("language").match("zh") ? shortTitle : toSentenceCase(shortTitle);
+      shortTitle = lang.match("zh") ? shortTitle : toSentenceCase(shortTitle, lang);
     }
 
     const customTermFilePath = getPref("title.customTermPath") as string;
