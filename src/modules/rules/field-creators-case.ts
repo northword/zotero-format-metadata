@@ -19,11 +19,11 @@ export class CapitalizeCreators extends RuleBase<CapitalizeCreatorsOptions> {
 
     for (const creator of creators) {
       creator.firstName
-                = isFullUpperCase(creator.firstName!) || isFullLowerCase(creator.firstName!)
+        = isFullUpperCase(creator.firstName!) || isFullLowerCase(creator.firstName!)
           ? Zotero.Utilities.capitalizeName(creator.firstName!.trim())
           : creator.firstName;
       creator.lastName
-                = isFullUpperCase(creator.lastName!) || isFullLowerCase(creator.lastName!)
+        = isFullUpperCase(creator.lastName!) || isFullLowerCase(creator.lastName!)
           ? Zotero.Utilities.capitalizeName(creator.lastName!.trim())
           : creator.lastName;
     }
