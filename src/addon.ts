@@ -2,7 +2,7 @@ import type { DialogHelper } from "zotero-plugin-toolkit";
 import { config } from "../package.json";
 import api from "./api";
 import hooks from "./hooks";
-import { LintRunner } from "./modules/rules-runner";
+import { LintRunner } from "./modules/runner";
 import { createZToolkit } from "./utils/ztoolkit";
 
 class Addon {

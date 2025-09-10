@@ -1,14 +1,11 @@
-import type { RuleBaseOptions } from "./rule-base";
-import { RuleBase } from "./rule-base";
+import type { Rule } from "./rule-base";
 
-class RemoveDOIPrefixOptions implements RuleBaseOptions {}
+export const RemoveDOIPrefix: Rule = {
+  id: "no-doi-prefix",
+  type: "field",
+  targetItemFields: ["DOI"],
 
-export class RemoveDOIPrefix extends RuleBase<RemoveDOIPrefixOptions> {
-  constructor(options: RemoveDOIPrefixOptions) {
-    super(options);
-  }
-
-  apply(item: Zotero.Item): Zotero.Item {
+  apply({ item }) {
     const doi = item.getField("DOI");
     if (doi && typeof doi === "string") {
       const cleandDOI = Zotero.Utilities.cleanDOI(doi);
@@ -16,5 +13,5 @@ export class RemoveDOIPrefix extends RuleBase<RemoveDOIPrefixOptions> {
         item.setField("DOI", cleandDOI);
     }
     return item;
-  }
-}
+  },
+};

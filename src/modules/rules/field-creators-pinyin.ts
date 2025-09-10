@@ -1,15 +1,13 @@
-import type { RuleBaseOptions } from "./rule-base";
+import type { Rule } from "./rule-base";
 import { capitalizeFirstLetter } from "../../utils/str";
-import { RuleBase } from "./rule-base";
 
-class CreatorsPinyinOptions implements RuleBaseOptions {}
+export const CreatorsPinyin: Rule = {
+  id: "creators-pinyin",
+  nameKey: "creators-pinyin",
+  type: "field",
+  targetItemFields: ["creators"],
 
-export class CreatorsPinyin extends RuleBase<CreatorsPinyinOptions> {
-  constructor(options: CreatorsPinyinOptions) {
-    super(options);
-  }
-
-  apply(item: Zotero.Item): Zotero.Item {
+  apply({ item }) {
     const creators = item.getCreators();
     for (const creator of creators) {
       if (creator.fieldMode !== 0)
@@ -23,8 +21,8 @@ export class CreatorsPinyin extends RuleBase<CreatorsPinyinOptions> {
     }
     item.setCreators(creators);
     return item;
-  }
-}
+  },
+};
 
 // prettier-ignore
 const pinyinArray = [

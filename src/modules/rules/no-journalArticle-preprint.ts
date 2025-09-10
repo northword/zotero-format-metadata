@@ -20,7 +20,7 @@ export class NoPreprintJournalArticle extends RuleBase<NoPreprintJournalArticleO
       return item;
     const url = item.getField("url");
     if (typeof url === "string" && url !== "" && isStringMatchStringInArray(url, publisherUrlKeyWords)) {
-      ztoolkit.log("The url of this journalArticle item is match with domin of preprint publisher.");
+      this.debug("The url of this journalArticle item is match with domin of preprint publisher.");
       // show alart todo: 对话框完善，通过 URL 获取 DOI 并通过 DOI 强制更新条目类别
       progressWindow(getString("NoPreprintJournalArticle-warning"), "fail").startCloseTimer(100000);
     }

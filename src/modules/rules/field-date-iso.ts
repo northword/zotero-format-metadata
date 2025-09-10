@@ -1,18 +1,15 @@
-import type { RuleBaseOptions } from "./rule-base";
-import { RuleBase } from "./rule-base";
+import type { Rule } from "./rule-base";
 
-class DateISOOptions implements RuleBaseOptions {}
+export const DataISO: Rule = {
+  id: "data-should-in-iso-format",
+  type: "field",
+  targetItemFields: ["date"],
 
-export class DateISO extends RuleBase<DateISOOptions> {
-  constructor(options: DateISOOptions) {
-    super(options);
-  }
-
-  apply(item: Zotero.Item): Zotero.Item {
+  apply({ item }) {
     const oldDate = item.getField("date") as string;
     const newDate = Zotero.Date.strToISO(oldDate);
     if (newDate)
       item.setField("date", newDate);
     return item;
-  }
-}
+  },
+};

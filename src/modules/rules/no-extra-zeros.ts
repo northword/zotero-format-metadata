@@ -1,22 +1,25 @@
-import type { RuleBaseOptions } from "./rule-base";
+import type { Rule } from "./rule-base";
 import { removeLeadingZeros } from "../../utils/str";
-import { RuleBase } from "./rule-base";
 
-class NoExtraZerosOptions implements RuleBaseOptions {}
+type Field = "pages" | "issue" | "volume";
 
-export class NoExtraZeros extends RuleBase<RuleBaseOptions> {
-  constructor(options: NoExtraZerosOptions) {
-    super(options);
-  }
+function createRule(field: Field): Rule {
+  return {
+    nameKey: "rule.no-extra-zeros.name",
+    type: "field",
+    targetItemTypes: "all",
+    targetItemFields: [field],
+    apply: (item) => {
+      const checkFields: _ZoteroTypes.Item.ItemField[] = ["pages", "issue", "volume"];
+      checkFields.forEach((fieldName) => {
+        const fieldValue = String(item.getField(fieldName));
+        const newFieldValue = removeLeadingZeros(fieldValue);
+        item.setField(fieldName, newFieldValue);
+      });
 
-  apply(item: Zotero.Item): Zotero.Item | Promise<Zotero.Item> {
-    const checkFields: _ZoteroTypes.Item.ItemField[] = ["pages", "issue", "volume"];
-    checkFields.forEach((fieldName) => {
-      const fieldValue = String(item.getField(fieldName));
-      const newFieldValue = removeLeadingZeros(fieldValue);
-      item.setField(fieldName, newFieldValue);
-    });
-
-    return item;
-  }
+      return item;
+    },
+  };
 }
+
+export const NoExtraZerosInPages = createRule("pages");
