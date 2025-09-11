@@ -1,10 +1,10 @@
-import type { Rule } from "./rule-base";
 import { useData } from "../../utils/data-loader";
 import { getPref } from "../../utils/prefs";
 import { convertToRegex, toSentenceCase } from "../../utils/str";
+import { defineRule } from "./rule-base";
 
-function createSentenceCaseRule(targetField: "title" | "shortTitle"): Rule {
-  return {
+function createSentenceCaseRule(targetField: "title" | "shortTitle") {
+  return defineRule({
     id: "title-should-sentence-case",
     type: "field",
     targetItemFields: [targetField],
@@ -43,8 +43,8 @@ function createSentenceCaseRule(targetField: "title" | "shortTitle"): Rule {
       // if (isLintShortTitle)
       //   item.setField("shortTitle", shortTitle);
     },
-  };
+  });
 }
 
-export const TitleShouldSentenceCase: Rule = createSentenceCaseRule("title");
-export const ShortTitleShouldSentenceCase: Rule = createSentenceCaseRule("shortTitle");
+export const TitleShouldSentenceCase = createSentenceCaseRule("title");
+export const ShortTitleShouldSentenceCase = createSentenceCaseRule("shortTitle");

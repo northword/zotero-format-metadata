@@ -1,10 +1,12 @@
-import type { Rule } from "./rule-base";
 import { useData } from "../../utils/data-loader";
 import { functionWords, isFullUpperCase, normalizeKey } from "../../utils/str";
+import { defineRule } from "./rule-base";
 
-export const UpdatePublicationTitleName: Rule = {
+export const PublicationTitleShouldValid = defineRule({
   id: "update-publication-title",
   type: "field",
+  recommended: true,
+
   targetItemTypes: ["journalArticle"],
   targetItemFields: ["publicationTitle"],
   async apply({ item }) {
@@ -19,7 +21,7 @@ export const UpdatePublicationTitleName: Rule = {
     }
     item.setField("publicationTitle", newPublicationTitle);
   },
-};
+});
 
 const skipWordsForPublicationTitle = [
   "AAPG",

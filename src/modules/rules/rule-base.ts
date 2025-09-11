@@ -1,173 +1,96 @@
 import type { FluentMessageId } from "../../../typings/i10n";
+import type { Awaitable } from "../../utils/types";
 
-type Awaitable<T> = Promise<T> | T;
-
-export interface Context<T = object> {
+export interface Context<Option = object> {
   item: Zotero.Item;
-  options: T;
-  debug: () => void;
-  report: () => void;
+  options: Option;
+  debug: (...args: any) => void;
+  report: (info: ReportInfo) => void;
 }
 
-export type Rule<T = undefined> = RuleForItem<T> | RuleForField<T>;
+export interface ReportInfo {
+  level?: "warning" | "error";
+  message: string;
+}
 
-interface RuleBase<T> {
+interface RuleBase<Option = object> {
+  /**
+   * The unique ID of the rule.
+   *
+   * Should be kebab-case.
+   */
   id: string;
+  /**
+   * The name of the rule.
+   */
   nameKey?: FluentMessageId | string;
+  /**
+   * The description of the rule.
+   */
   descriptionKey?: FluentMessageId;
-  type: "field" | "item";
+  /**
+   * The type of the rule.
+   */
+  type: "field" | "item" | "tag" | "attachment";
+  /**
+   * Whether the rule is recommended.
+   */
+  recommended?: boolean;
+  /**
+   * Whether the rule is a tool.
+   */
+  tool?: boolean;
+  /**
+   * The target item types of the rule.
+   */
   targetItemTypes?: _ZoteroTypes.Item.ItemType[];
+  /**
+   * The ignore item types of the rule.
+   */
   ignoreItemTypes?: _ZoteroTypes.Item.ItemType[];
-  // hasSpecialExecutionOrder?: boolean;
 
-  apply: (ctx: Context<T>) => Awaitable<Zotero.Item | void>;
-  getOptions?: () => Awaitable<T>;
+  /**
+   * Handler of the rule.
+   *
+   * @example
+   * async apply({ item, report }) {
+   *   item.setField("title", "New Title");
+   *   report({
+   *     level: "error",
+   *     message: "Title is too long"
+   *   })
+   * }
+   */
+  apply: (ctx: Context<Option>) => Awaitable<Zotero.Item | void>;
+
+  /**
+   * Get options of the rule.
+   * @returns T
+   */
+  getOptions?: () => Awaitable<Option>;
 
   menuItem?: () => any;
   menuField?: () => any;
 }
 
-interface RuleForItem<T> extends RuleBase<T> {
+interface RuleForRegularItem<Option = object> extends RuleBase<Option> {
   type: "item";
 }
 
-interface RuleForField<T> extends RuleBase<T> {
+interface RuleForRegularField<Option = object> extends RuleBase<Option> {
   type: "field";
   targetItemFields: Array<_ZoteroTypes.Item.ItemField | "creators">;
 }
 
-// =============================================
-// abstract class
-// =============================================
+interface RuleForTag<Option = object> extends RuleBase<Option> {}
+interface RuleForAttachment<Option = object> extends RuleBase<Option> {}
 
-// export interface RuleBaseOptions {
-//   [optionName: string]: any;
-// }
+export type Rule<Option = object>
+  = | RuleForRegularItem<Option>
+    | RuleForRegularField<Option>
+    | RuleForTag<Option>
+    | RuleForAttachment<Option>;
 
-// type RuleType = "field" | "item";
-
-// export interface RuleMetaData {
-//   nameKey: FluentMessageId;
-//   descriptionKey?: FluentMessageId;
-//   type: RuleType[];
-//   targetItemTypes: _ZoteroTypes.Item.ItemType[];
-//   targetItemFields?: _ZoteroTypes.Item.ItemField[];
-//   hasSpecialExecutionOrder?: boolean;
-// }
-
-// export abstract class RuleBase<T = undefined> {
-//   readonly meta: RuleMetaData;
-
-//   constructor(meta: RuleMetaData) {
-//     this.meta = meta;
-//   }
-
-//   get name(): string {
-//     return "";
-//     // return getString(this.meta.nameKey);
-//   }
-
-//   get description(): string {
-//     return "";
-//     // return getString(this.meta.descriptionKey || this.meta.nameKey);
-//   }
-
-//   protected shouldApply(item: Zotero.Item): boolean {
-//     if (this.meta.targetItemTypes
-//       && !this.meta.targetItemTypes.includes(item.itemType)) {
-//       return false;
-//     }
-
-//     // if (this.meta.targetItemFields) {
-//     //   return this.meta.targetItemFields.every(field =>
-//     //     item.getField(field) !== undefined,
-//     //   );
-//     // }
-
-//     return true;
-//   }
-
-//   public async execute(item: Zotero.Item): Promise<Zotero.Item> {
-//     if (!this.shouldapply({ item })) {
-//       return item;
-//     }
-//     return this.apply({ item });
-//   }
-
-//   protected abstract apply(item: Zotero.Item, ctx: Context<T>): Zotero.Item | Promise<Zotero.Item>;
-//   protected dialog?: () => T;
-//   public debug(...arg: any[]) {
-//     ztoolkit.log(`[${this.name}] `, ...arg);
-//   }
-
-//   public log(...arg: any[]) {
-//     ztoolkit.log(`[${this.name}] `, ...arg);
-//   }
-
-//   public error(..._arg: any[]) {
-//     //
-//   }
-
-//   public report() {
-//     //
-//   }
-
-//   public getPref(key: keyof RulePrefs2 | keyof TOptions): any {
-//     // this._getPref<this.meta.nameKey>
-//   }
-
-//   _getPref(key: keyof RulePrefs<K>): any {
-//     //
-//   }
-
-//   // public getPref<K extends keyof RulePrefs<this["meta"]["nameKey"]>>(
-//   //   key: K,
-//   // ): RulePrefs<this["meta"]["nameKey"]>[K] {
-//   //   const fullKey = `rules.${this.meta.nameKey}.${key}` as keyof _ZoteroTypes.Prefs["PluginPrefsMap"];
-//   //   return Zotero.Prefs.get(fullKey) as PluginPrefsMap[fullKey];
-//   // }
-// }
-
-// type RulesPrefsOnly = {
-//   [K in keyof _ZoteroTypes.Prefs["PluginPrefsMap"] as K extends `rules.${string}` ? K : never]:
-//   _ZoteroTypes.Prefs["PluginPrefsMap"][K];
-// };
-
-// type StripRulesPrefix<T> = {
-//   [K in keyof T as K extends `rules.${infer Rest}` ? Rest : never]: T[K];
-// };
-
-// type RulesPrefsOnly = StripRulesPrefix<_ZoteroTypes.Prefs["PluginPrefsMap"]>;
-
-// type PluginPrefsMap = _ZoteroTypes.Prefs["PluginPrefsMap"];
-// type RulePrefs<R extends string> = {
-//   [K in keyof PluginPrefsMap as K extends `rules.${R}.${infer Rest}` ? Rest : never]: PluginPrefsMap[K];
-// };
-// type RulePrefs2 = {
-//   [K in keyof PluginPrefsMap as K extends `rules.${infer Rest}` ? Rest : never]: PluginPrefsMap[K];
-// };
-
-// export function RegisterRule<TMeta extends RuleMetaData>(meta: TMeta) {
-//   return function <
-//     T extends new (...args: any[]) => RuleBase<any, TMeta>, // 强约束：子类必须与 meta 匹配
-//   >(constructor: T) {
-//     const expectedNameKey = toKebabCase(constructor.name);
-
-//     if (!meta.nameKey) {
-//       meta.nameKey = expectedNameKey as TMeta["nameKey"];
-//     }
-//     else if (meta.nameKey !== expectedNameKey) {
-//       console.warn(`[RegisterRule] nameKey "${meta.nameKey}" != "${expectedNameKey}"`);
-//     }
-
-//     (constructor as any).meta = meta;
-//     registerRule(constructor, meta);
-//   };
-// }
-
-// function toKebabCase(str: string): string {
-//   return str
-//     .replace(/([a-z])([A-Z])/g, "$1-$2")
-//     .replace(/[\s_]+/g, "-")
-//     .toLowerCase();
-// }
+export function defineRule<Options = unknown>(rule: Rule<Options>) {
+  return rule;
+}

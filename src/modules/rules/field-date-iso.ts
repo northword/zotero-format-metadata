@@ -1,8 +1,9 @@
-import type { Rule } from "./rule-base";
+import { defineRule } from "./rule-base";
 
-export const DataISO: Rule = {
+export const DataShouldInISOFormat = defineRule({
   id: "data-should-in-iso-format",
   type: "field",
+  recommended: true,
   targetItemFields: ["date"],
 
   apply({ item }) {
@@ -12,4 +13,4 @@ export const DataISO: Rule = {
       item.setField("date", newDate);
     return item;
   },
-};
+});

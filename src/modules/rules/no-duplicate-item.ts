@@ -1,15 +1,10 @@
-import type { RuleBaseOptions } from "./rule-base";
-import { duplicationDialog } from "../views/duplicationDialog";
-import { RuleBase } from "./rule-base";
+import { defineRule } from "./rule-base";
 
-class NoDuplicatItemOptions implements RuleBaseOptions {}
+export const NoDuplicatItem = defineRule({
+  id: "no-duplicate-item",
+  type: "item",
 
-export class NoDuplicatItem extends RuleBase<NoDuplicatItemOptions> {
-  constructor(options: NoDuplicatItemOptions) {
-    super(options);
-  }
-
-  async apply(item: Zotero.Item): Promise<Zotero.Item> {
+  async apply({ item, report, debug }) {
     // const item = Zotero.getActiveZoteroPane().getSelectedItems()[0];
     const itemID = item.id;
     const libraryID = item.libraryID;
@@ -25,13 +20,14 @@ export class NoDuplicatItem extends RuleBase<NoDuplicatItemOptions> {
     // this.debug(searchResult);
 
     if (searchResult.includes(itemID)) {
-      this.debug("当前条目存在重复条目", item);
-      await duplicationDialog.showDialog(item);
+      report({
+        level: "error",
+        message: "当前条目存在重复条目",
+      });
+      // await duplicationDialog.showDialog(item);
     }
     else {
-      this.debug("当前条目未发现重复条目");
+      debug("当前条目未发现重复条目");
     }
-
-    return item;
-  }
-}
+  },
+});

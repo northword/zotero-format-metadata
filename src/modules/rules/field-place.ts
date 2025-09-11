@@ -1,9 +1,11 @@
-import type { Rule } from "./rule-base";
 import { useData } from "../../utils/data-loader";
+import { defineRule } from "./rule-base";
 
-export const updateUniversityPlace: Rule = {
+export const UniversityPlaceShouldValid = defineRule({
   id: "no-empty-university-place",
   type: "field",
+  recommended: true,
+
   targetItemTypes: ["thesis"],
   targetItemFields: ["place"],
 
@@ -19,7 +21,7 @@ export const updateUniversityPlace: Rule = {
 
     return item;
   },
-};
+});
 
 async function getUniversityPlace(university: string) {
   const data = await useData("universityPlace");

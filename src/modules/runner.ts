@@ -1,5 +1,6 @@
 import type { ProgressWindowHelper } from "zotero-plugin-toolkit";
-import type { Context, Rule } from "./rules/rule-base";
+import type { Arrayable } from "../utils/types";
+import type { Context, ReportInfo, Rule } from "./rules/rule-base";
 import PQueue from "p-queue";
 import { getString } from "../utils/locale";
 import { getPref } from "../utils/prefs";
@@ -8,9 +9,9 @@ import { waitUtilAsync } from "../utils/wait";
 const PROGRESS_WINDOW_CLOSE_DELAY = 5000;
 const TASK_TIMEOUT = 60000;
 
-interface Task {
-  items: Zotero.Item | Zotero.Item[];
-  rules: Rule<any> | Rule<any>[];
+export interface Task {
+  items: Arrayable<Zotero.Item>;
+  rules: Arrayable<Rule<any>>;
 }
 
 interface ResolvedTask {
@@ -24,6 +25,7 @@ interface RunnerStats {
   current: number;
   error: number;
   startTime: number;
+  records: ReportInfo[];
 }
 
 function shouldApplyRule(rule: Rule<any>, item: Zotero.Item): boolean {
@@ -51,7 +53,7 @@ export class LintRunner {
     throwOnTimeout: true,
   })
     .on("add", () => this.stats.total += 1)
-    .on("next", this.onTaskComplete.bind(this))
+    // .on("next", this.onTaskComplete.bind(this))
     .on("error", this.onTaskError.bind(this))
     .on("idle", this.onIdle.bind(this));
 
@@ -61,7 +63,7 @@ export class LintRunner {
     this.ui.onCancel(() => this.queue.clear());
   }
 
-  public async add(task: Task): Promise<void> {
+  public async add(task: Task, slient = false): Promise<void> {
     this.stats = this.createEmptyStats();
     this.stats.startTime = Date.now();
 
@@ -69,7 +71,7 @@ export class LintRunner {
 
     const resolvedTasks = await this.resolveTasks(task);
 
-    await this.ui.init();
+    await this.ui.init(slient);
     if (resolvedTasks.length === 0) {
       this.ui.showNoTasks();
       return;
@@ -86,7 +88,12 @@ export class LintRunner {
     const options = new Map<string, any>();
     for (const rule of rules) {
       if (rule.getOptions) {
-        options.set(rule.id, await rule.getOptions());
+        try {
+          options.set(rule.id, await rule.getOptions());
+        }
+        catch (error) {
+          ztoolkit.log(`[Rule ${rule.id}] Failed to get options:`, error);
+        }
       }
     }
 
@@ -96,15 +103,7 @@ export class LintRunner {
   private wrapTask(resolvedTask: ResolvedTask): () => Promise<void> {
     return async () => {
       await this.runTask(resolvedTask);
-    };
-  }
-
-  private getContext(item: Zotero.Item, options = {}): Context {
-    return {
-      item,
-      options,
-      debug: (...args: any[]) => ztoolkit.log("[Runner] Debug:", ...args),
-      report: (...args: any[]) => ztoolkit.log("[Runner] Report:", ...args),
+      this.onTaskComplete();
     };
   }
 
@@ -115,15 +114,24 @@ export class LintRunner {
           continue;
         }
 
-        ztoolkit.log(`[Runner] Applying ${rule.constructor.name}`);
-        const ctx = this.getContext(item, options.get(rule.id));
+        const ctx: Context = {
+          item,
+          options: options.get(rule.id) ?? {},
+          debug: (...args: any[]) => ztoolkit.log(`[${rule.id}] Debug: `, ...args),
+          report: ({ level, message }) => {
+            ztoolkit.log(`[Report ${level}] rule ${rule.id} for item ${item.id}:`, message);
+          },
+        };
+
+        ztoolkit.log(`[Runner] Applying ${rule.id}`);
         await rule.apply(ctx);
-        ztoolkit.log("[Runner] Rule applied:", item.toJSON());
+        // ztoolkit.log("[Runner] Rule applied:", item.toJSON());
       }
 
       if (item.hasTag("linter/error")) {
         item.removeTag("linter/error");
       }
+
       await item.saveTx();
     }
     catch (error) {
@@ -157,11 +165,18 @@ export class LintRunner {
     );
 
     ztoolkit.log(`[Runner] Batch tasks completed in ${duration}s`);
+    ztoolkit.log(this.stats);
     this.stats = this.createEmptyStats();
   }
 
   private createEmptyStats(): RunnerStats {
-    return { total: 0, current: 0, error: 0, startTime: 0 };
+    return {
+      total: 0,
+      current: 0,
+      error: 0,
+      startTime: 0,
+      records: [],
+    };
   }
 }
 
@@ -169,10 +184,10 @@ class ProgressUI {
   private progressWindow?: ProgressWindowHelper;
   private _onCancel?: () => void;
 
-  public async init(): Promise<void> {
+  public async init(slient?: boolean): Promise<void> {
     this.progressWindow?.close();
 
-    if (!getPref("lint.notify"))
+    if (slient || !getPref("lint.notify"))
       return;
 
     this.progressWindow = new ztoolkit.ProgressWindow(addon.data.config.addonName, {

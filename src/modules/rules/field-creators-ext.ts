@@ -1,6 +1,6 @@
 import type { TagElementProps } from "zotero-plugin-toolkit";
-import type { Rule } from "./rule-base";
 import { getString } from "../../utils/locale";
+import { defineRule } from "./rule-base";
 
 interface CreatorExt extends _ZoteroTypes.Item.Creator {
   country?: string;
@@ -15,7 +15,7 @@ interface CreatorExtOptions {
   country?: string;
 }
 
-export const CreatorsExt: Rule<CreatorExtOptions> = {
+export const CreatorsExt = defineRule<CreatorExtOptions> ({
   id: "creators-ext",
   type: "field",
   targetItemFields: ["creators"],
@@ -65,7 +65,7 @@ export const CreatorsExt: Rule<CreatorExtOptions> = {
   async getOptions() {
     return createCreatorsExtOptionDialog();
   },
-};
+});
 
 async function createCreatorsExtOptionDialog(): Promise<any | undefined> {
   const dialogData: { [key: string | number]: any } = {

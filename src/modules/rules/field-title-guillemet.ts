@@ -1,20 +1,23 @@
-import type { Rule } from "./rule-base";
+import { defineRule } from "./rule-base";
 
 interface TitleGuillemetOptions {
-  target: "single" | "double";
+  target?: "single" | "double";
 }
 
 /**
  * Replaces `《》` to `〈〉`
  * @see https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl/issues/204
  */
-export const TitleGuillemet: Rule<TitleGuillemetOptions> = {
+export const TitleGuillemet = defineRule<TitleGuillemetOptions> ({
   id: "title-guillemet",
   nameKey: "title-guillemet",
   type: "field",
   // targetItemTypes: ["journalArticle", "conferencePaper"],
   targetItemFields: ["title"],
   async apply({ item, options }) {
+    if (!options.target)
+      return;
+
     const title = item.getField("title", false, true);
     let newTitle: string;
     if (options.target === "single") {
@@ -26,19 +29,17 @@ export const TitleGuillemet: Rule<TitleGuillemetOptions> = {
     else {
       newTitle = title;
     }
+
     item.setField("title", newTitle);
   },
 
   async getOptions() {
-    const target = "single";
-    createDialog();
-
-    return { target };
+    return await createDialog();
   },
-};
+});
 
-function createDialog() {
-  const dialog = new ztoolkit.Dialog(1, 1);
+async function createDialog(): Promise<TitleGuillemetOptions> {
+  const dialog = new ztoolkit.Dialog(2, 2);
 
   dialog
     .addCell(0, 0, {
@@ -47,25 +48,38 @@ function createDialog() {
     })
     .addCell(0, 1, {
       tag: "select",
+      attributes: {
+        "data-bind": "target",
+      },
       children: [
-        {
-          tag: "option",
-          attributes: {
-            value: "",
-          },
-          properties: {
-            innerHTML: "No symbols",
-          },
-        },
         {
           tag: "option",
           attributes: {
             value: "single",
           },
           properties: {
-            innerHTML: "Single guillemet",
+            innerHTML: "Single 〈〉 to Double 《》",
+          },
+        },
+        {
+          tag: "option",
+          attributes: {
+            value: "double",
+          },
+          properties: {
+            innerHTML: "Double 《》 to Single 〈〉",
           },
         },
       ],
-    });
+    })
+    .addButton("OK", "ok")
+    .open("Select Guillemet");
+
+  await dialog.dialogData.unloadLock;
+
+  if (dialog.dialogData._lastButtonId === "ok") {
+    return { target: dialog.dialogData.target };
+  }
+
+  return {};
 }

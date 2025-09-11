@@ -1,25 +1,25 @@
-import type { Rule } from "./rule-base";
-import { removeLeadingZeros } from "../../utils/str";
+import { defineRule } from "./rule-base";
+
+export function removeLeadingZeros(input: string): string {
+  return input.replace(/\b0+(\d+)/g, "$1");
+}
 
 type Field = "pages" | "issue" | "volume";
 
-function createRule(field: Field): Rule {
-  return {
-    nameKey: "rule.no-extra-zeros.name",
+function createRule(field: Field) {
+  return defineRule({
+    id: `no-extra-zeros-in-${field}`,
     type: "field",
-    targetItemTypes: "all",
+    targetItemTypes: ["journalArticle"],
     targetItemFields: [field],
-    apply: (item) => {
-      const checkFields: _ZoteroTypes.Item.ItemField[] = ["pages", "issue", "volume"];
-      checkFields.forEach((fieldName) => {
-        const fieldValue = String(item.getField(fieldName));
-        const newFieldValue = removeLeadingZeros(fieldValue);
-        item.setField(fieldName, newFieldValue);
-      });
-
-      return item;
+    apply: ({ item }) => {
+      const fieldValue = String(item.getField(field));
+      const newFieldValue = removeLeadingZeros(fieldValue);
+      item.setField(field, newFieldValue);
     },
-  };
+  });
 }
 
 export const NoExtraZerosInPages = createRule("pages");
+export const NoExtraZerosInIssue = createRule("issue");
+export const NoExtraZerosInVolume = createRule("volume");

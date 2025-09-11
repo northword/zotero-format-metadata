@@ -1,4 +1,4 @@
-import type { Rule } from "./rule-base";
+import { defineRule } from "./rule-base";
 
 /**
  * Thesis type
@@ -11,9 +11,11 @@ import type { Rule } from "./rule-base";
  *
  * @see https://github.com/northword/zotero-format-metadata/issues/132
  */
-export const ThesisTypeName: Rule = {
+export const ThesisTypeShouldValid = defineRule({
   id: "thesis-type-name",
   type: "field",
+  recommended: true,
+
   targetItemTypes: ["thesis"],
   targetItemFields: ["thesisType"],
 
@@ -44,4 +46,4 @@ export const ThesisTypeName: Rule = {
     item.setField("thesisType", type);
   },
 
-};
+});

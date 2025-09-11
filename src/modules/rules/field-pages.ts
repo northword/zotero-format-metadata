@@ -1,8 +1,10 @@
-import type { Rule } from "./rule-base";
+import { defineRule } from "./rule-base";
 
-export const PagesConnectorName: Rule = {
+export const PagesConnectorShouldValid = defineRule({
   id: "pages-connector",
   type: "item",
+  recommended: true,
+
   targetItemTypes: ["journalArticle"],
   apply({ item }) {
     const pages = item.getField("pages");
@@ -19,7 +21,7 @@ export const PagesConnectorName: Rule = {
     return item;
   },
 
-};
+});
 
 function _isPagesRange(pages: string): boolean {
   return pages.includes("-") || pages.includes(",");

@@ -1,17 +1,17 @@
 import type { TagElementProps } from "zotero-plugin-toolkit";
-
-import type { Rule } from "./rule-base";
 import { langName, toISO3 } from "tinyld";
 import { getString } from "../../utils/locale";
 import { getPref } from "../../utils/prefs";
+import { defineRule } from "./rule-base";
 
 interface Options {
   language?: string;
 }
 
-export const LanguageManual: Rule<Options> = {
+export const LanguageManual = defineRule<Options>({
   id: "language-manual",
   type: "field",
+  recommended: false,
   targetItemFields: ["language"],
   apply({ item, options }) {
     if (options.language)
@@ -24,7 +24,7 @@ export const LanguageManual: Rule<Options> = {
       language,
     };
   },
-};
+});
 
 /**
  * 手动设置条目语言_选择语言的弹窗
@@ -55,7 +55,7 @@ export async function createSetLanguageManualDialog(): Promise<string | undefine
       allowLangs.push.apply(otherLang.replace(/ /g, "").split(","));
     }
   }
-  const row = allowLangs.length > 2 ? allowLangs.length : 3;
+  const row = allowLangs.length + 1;
 
   const dialog = new ztoolkit.Dialog(row, 2);
 
@@ -84,50 +84,54 @@ export async function createSetLanguageManualDialog(): Promise<string | undefine
     );
   });
   // 添加一个“其他”输入框
-  radiogroupChildren.push({
-    tag: "div",
-    children: [
-      {
-        tag: "input",
-        namespace: "html",
-        id: `dialog-checkbox-other`,
-        attributes: {
-          type: "radio",
-          name: "selectedLang",
-          // for: `dialog-checkbox-input`,
-          value: "other",
-        },
+  radiogroupChildren.push(
+    {
+      tag: "input",
+      namespace: "html",
+      id: `dialog-checkbox-other`,
+      attributes: {
+        type: "radio",
+        name: "selectedLang",
+        // for: `dialog-checkbox-input`,
+        value: "other",
       },
-      {
-        tag: "input",
-        id: `dialog-checkbox-input`,
-        attributes: {
-          "type": "text",
-          "for": "dialog-checkbox-other",
-          "placeholder": "Other",
-          "data-bind": "inputLang",
-          "data-prop": "value",
-        },
-        listeners: [
-          {
-            type: "input",
-            listener: () => {
-              const radioOther = dialog.window.document.getElementById(
-                "dialog-checkbox-other",
-              ) as HTMLInputElement;
-              radioOther.checked = true;
-            },
+    },
+    {
+      tag: "input",
+      id: `dialog-checkbox-input`,
+      attributes: {
+        "type": "text",
+        "for": "dialog-checkbox-other",
+        "placeholder": "Other",
+        "data-bind": "inputLang",
+        "data-prop": "value",
+      },
+      styles: {
+        minWidth: "100px",
+      },
+      listeners: [
+        {
+          type: "input",
+          listener: () => {
+            const radioOther = dialog.window.document.getElementById(
+              "dialog-checkbox-other",
+            ) as HTMLInputElement;
+            radioOther.checked = true;
           },
-        ],
-      },
-    ],
-  });
+        },
+      ],
+    },
+  );
 
   dialog
     .addCell(0, 0, {
       tag: "form",
       id: `dialog-checkboxgroup`,
-      // attributes: { "data-bind": "selectedLang", "data-prop": "lang" },
+      styles: {
+        display: "grid",
+        gridTemplateColumns: "auto 1fr",
+        gridGap: "10px",
+      },
       children: radiogroupChildren,
     })
     .addButton(getString("confirm"), "confirm")

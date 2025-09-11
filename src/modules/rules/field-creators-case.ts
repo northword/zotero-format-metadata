@@ -1,9 +1,10 @@
-import type { Rule } from "./rule-base";
 import { isFullLowerCase, isFullUpperCase } from "../../utils/str";
+import { defineRule } from "./rule-base";
 
-export const CreatorsCase: Rule = {
+export const CreatorsCase = defineRule({
   id: "creators-case",
   type: "field",
+  recommended: true,
   targetItemFields: ["creators"],
   apply({ item }) {
     const creators = item.getCreators();
@@ -20,4 +21,4 @@ export const CreatorsCase: Rule = {
     }
     item.setCreators(creators);
   },
-};
+});

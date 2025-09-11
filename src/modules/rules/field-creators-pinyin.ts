@@ -1,10 +1,10 @@
-import type { Rule } from "./rule-base";
 import { capitalizeFirstLetter } from "../../utils/str";
+import { defineRule } from "./rule-base";
 
-export const CreatorsPinyin: Rule = {
+export const CreatorsPinyin = defineRule({
   id: "creators-pinyin",
-  nameKey: "creators-pinyin",
   type: "field",
+  recommended: true,
   targetItemFields: ["creators"],
 
   apply({ item }) {
@@ -22,7 +22,7 @@ export const CreatorsPinyin: Rule = {
     item.setCreators(creators);
     return item;
   },
-};
+});
 
 // prettier-ignore
 const pinyinArray = [

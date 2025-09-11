@@ -1,8 +1,6 @@
-import type { RuleBaseOptions } from "./rule-base";
 import { getString } from "../../utils/locale";
-import { progressWindow } from "../../utils/logger";
 import { isStringMatchStringInArray } from "../../utils/str";
-import { RuleBase } from "./rule-base";
+import { defineRule } from "./rule-base";
 
 // 当条目为 webpage，且 url 为各期刊出版社时，警告
 
@@ -91,23 +89,23 @@ const publisherUrlKeyWords = [
   "zotero.org",
 ];
 
-class NoWebPageItemOptions implements RuleBaseOptions {}
+export const NoWebPageItem = defineRule({
+  id: "no-webpage-item",
+  type: "item",
+  targetItemTypes: ["webpage"],
 
-export class NoWebPageItem extends RuleBase<NoWebPageItemOptions> {
-  constructor(options: NoWebPageItemOptions) {
-    super(options);
-  }
-
-  apply(item: Zotero.Item): Zotero.Item | Promise<Zotero.Item> {
-    if (item.itemType !== "webpage")
-      return item;
+  apply({ item, debug, report }) {
     const url = item.getField("url");
     if (typeof url === "string" && url !== "" && isStringMatchStringInArray(url, publisherUrlKeyWords)) {
-      this.debug("The url of this webpage item is match with domin of publisher.");
+      debug("The url of this webpage item is match with domin of publisher.");
       // show alart todo: 对话框完善，通过 URL 获取 DOI 并通过 DOI 强制更新条目类别
-      progressWindow(getString("checkWebpage-warning"), "fail").startCloseTimer(100000);
+      // progressWindow(getString("checkWebpage-warning"), "fail").startCloseTimer(100000);
+      report({
+        level: "error",
+        message: getString("checkWebpage-warning"),
+      });
+      return;
     }
-    this.debug(`The url of this webpage item is not belong to publisher, maybe a normal webpage.`);
-    return item;
-  }
-}
+    debug(`The url of this webpage item is not belong to publisher, maybe a normal webpage.`);
+  },
+});

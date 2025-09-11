@@ -1,10 +1,11 @@
 import type { Data } from "../../utils/data-loader";
-import type { Rule } from "./rule-base";
 import { getTextLanguage } from "../../utils/str";
+import { defineRule } from "./rule-base";
 
-export const AutoSetLanguage: Rule = {
+export const LanguageShouldValid = defineRule({
   id: "language-should-correct",
   type: "field",
+  recommended: true,
 
   // computerProgram do not have field language
   // https://github.com/northword/zotero-format-metadata/issues/185
@@ -41,7 +42,7 @@ export const AutoSetLanguage: Rule = {
     return item;
   },
 
-};
+});
 
 /**
  * Convert ISO 639 code to ISO 3166 code.

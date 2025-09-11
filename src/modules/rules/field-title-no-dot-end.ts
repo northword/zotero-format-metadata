@@ -1,10 +1,10 @@
-import type { Rule } from "./rule-base";
+import { defineRule } from "./rule-base";
 
 /**
  * Replaces dot in title end
  * @see https://github.com/northword/zotero-format-metadata/issues/213
  */
-export const NoDotEndTitle: Rule = {
+export const NoDotEndTitle = defineRule({
   id: "no-title-end-dot",
   type: "field",
   targetItemFields: ["title"],
@@ -13,4 +13,4 @@ export const NoDotEndTitle: Rule = {
     const newTitle = title.replace(/(.*)\.$/g, "$1");
     item.setField("title", newTitle);
   },
-};
+});

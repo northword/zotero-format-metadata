@@ -1,8 +1,8 @@
 import type { Data } from "../../utils/data-loader";
-import type { Rule } from "./rule-base";
 import { useData } from "../../utils/data-loader";
 import { getPref } from "../../utils/prefs";
 import { getTextLanguage, normalizeKey } from "../../utils/str";
+import { defineRule } from "./rule-base";
 
 interface Options {
   customDataPath: string;
@@ -20,10 +20,11 @@ function getOptions(): Options {
   };
 }
 
-export const JornalAbbrShouldCorrect: Rule<Options> = {
+export const JornalAbbrShouldCorrect = defineRule<Options>({
   id: "journal-abbr-should-correct",
   nameKey: "abbr-journal",
   type: "field",
+  recommended: true,
   targetItemTypes: ["journalArticle"],
   targetItemFields: ["journalAbbreviation"],
   async apply({ item }) {
@@ -81,9 +82,9 @@ export const JornalAbbrShouldCorrect: Rule<Options> = {
 
   getOptions,
 
-};
+});
 
-export const conferenceAbbr: Rule<Options> = {
+export const ConferenceAbbr = defineRule<Options>({
   id: "conference-abbr-should-correct",
   nameKey: "abbr-conference",
   type: "field",
@@ -119,7 +120,7 @@ export const conferenceAbbr: Rule<Options> = {
 
   getOptions,
 
-};
+});
 
 async function getAbbrLocally(publicationTitle: string, data: Data): Promise<string | undefined> {
   const normalizedPublicationTitle = normalizeKey(publicationTitle);

@@ -1,8 +1,9 @@
-import type { Rule } from "./rule-base";
+import { defineRule } from "./rule-base";
 
-export const RemoveDOIPrefix: Rule = {
+export const NoDOIPrefix = defineRule({
   id: "no-doi-prefix",
   type: "field",
+  recommended: true,
   targetItemFields: ["DOI"],
 
   apply({ item }) {
@@ -14,4 +15,4 @@ export const RemoveDOIPrefix: Rule = {
     }
     return item;
   },
-};
+});
