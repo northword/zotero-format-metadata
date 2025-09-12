@@ -1,5 +1,5 @@
 // Auto generated file. Do not modify.
-// eslint-disable
+/* eslint-disable */
 type ID =
   | "no-duplicate-item"
   | "no-webpage-item"

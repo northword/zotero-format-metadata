@@ -62,7 +62,7 @@ export default defineConfig({
         const { Rules } = await import("./src/modules/rules/index.ts");
 
         const dts = `// Auto generated file. Do not modify.
-        // eslint-disable
+        /* eslint-disable */
         type ID =
           | ${Rules.getAll().map(r => `"${r.id}"`).join("\n  | ")}
         `.replaceAll(" ".repeat(8), "");
