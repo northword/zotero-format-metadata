@@ -33,19 +33,10 @@ async function onMainWindowLoad(win: Window): Promise<void> {
 
 async function onMainWindowUnload(_win: Window): Promise<void> {
   ztoolkit.unregisterAll();
-  Object.values(addon.data.dialogs).forEach((dialog) => {
-    if (dialog !== undefined)
-      dialog.window.close();
-  });
 }
 
 function onShutdown() {
   ztoolkit.unregisterAll();
-  Object.values(addon.data.dialogs).forEach((dialog) => {
-    if (dialog !== undefined)
-      dialog.window.close();
-  });
-  // addon.data.dialogs = {};
   // Remove addon object
   addon.data.alive = false;
   // @ts-expect-error - Plugin instance is not typed

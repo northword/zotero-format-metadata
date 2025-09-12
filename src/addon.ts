@@ -1,4 +1,3 @@
-import type { DialogHelper } from "zotero-plugin-toolkit";
 import { config } from "../package.json";
 import api from "./api";
 import hooks from "./hooks";
@@ -18,11 +17,6 @@ class Addon {
     prefs?: {
       window: Window;
     };
-    dialogs: {
-      richTextToolBar?: DialogHelper | undefined;
-      selectLang?: DialogHelper | undefined;
-      duplicationDialog?: DialogHelper | undefined;
-    };
   };
 
   public runner: LintRunner;
@@ -38,7 +32,6 @@ class Addon {
       config,
       env: __env__,
       ztoolkit: createZToolkit(),
-      dialogs: {},
     };
     this.hooks = hooks;
     this.api = api;
