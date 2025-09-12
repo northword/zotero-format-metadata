@@ -12,6 +12,5 @@ export const NoDOIPrefix = defineRule({
       if (cleandDOI)
         item.setField("DOI", cleandDOI);
     }
-    return item;
   },
 });

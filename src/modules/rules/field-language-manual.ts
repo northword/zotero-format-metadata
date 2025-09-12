@@ -11,7 +11,6 @@ interface Options {
 export const LanguageManual = defineRule<Options>({
   id: "language-manual",
   type: "field",
-  recommended: false,
   targetItemFields: ["language"],
   apply({ item, options }) {
     if (options.language)
@@ -34,17 +33,13 @@ export async function createSetLanguageManualDialog(): Promise<string | undefine
     selectedLang: "",
     inputLang: "",
     formData: "",
-    loadCallback: () => {
-      // eslint-disable-next-line ts/no-use-before-define
-      addon.data.dialogs.selectLang = dialog;
-    },
+
     unloadCallback: () => {
       // eslint-disable-next-line ts/no-use-before-define
       const window = dialog.window;
       const form = window.document.querySelector("form") as HTMLFormElement;
       dialogData.formData = new window.FormData(form);
       dialogData.selectedLang = dialogData.formData.get("selectedLang");
-      delete addon.data.dialogs.selectLang;
     },
   };
 

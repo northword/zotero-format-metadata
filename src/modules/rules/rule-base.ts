@@ -53,7 +53,7 @@ interface RuleBase<Option = object> {
    *   })
    * }
    */
-  apply: (ctx: Context<Option>) => Awaitable<Zotero.Item | void>;
+  apply: (ctx: Context<Option>) => Awaitable<void>;
 
   /**
    * Get options of the rule.

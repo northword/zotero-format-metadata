@@ -22,7 +22,7 @@ export const UpdateMetadata = defineRule<UpdateMetadataOption> ({
       // todo: 弹出 DOI 输入对话框?
       if (!doi) {
         progressWindow(getString("info-noDOI"), "fail");
-        return item;
+        return;
       }
 
       if (doi.match(/arxiv/gi)) {
@@ -44,20 +44,19 @@ export const UpdateMetadata = defineRule<UpdateMetadataOption> ({
         const tmpDOI = await getDOIFromArxiv(arxivID);
         if (tmpDOI) {
           item.setField("DOI", tmpDOI);
-          return (await translateByItem(item, options)) ?? item;
+          await translateByItem(item, options);
+          return;
         }
       }
 
       // else, try to get metadata from SemanticScholar
       item = (await getMetadataFromSemanticScholar(item, options)) ?? item;
-      return item;
+      return;
     }
 
     const newItem = (await translateByItem(item, options)) ?? (await getMetadataFromSemanticScholar(item, options));
-    if (!newItem)
-      return item;
-
-    return newItem;
+    if (newItem)
+      item = newItem;
   },
 
 });
@@ -103,7 +102,7 @@ async function translateByItem(item: Zotero.Item, options: UpdateMetadataOption)
     const isUpdate = Zotero.getMainWindow().confirm(`The itemType of "${item.getField("title")}" will be changed from ${item.itemType} to ${newItem.itemType}. \n\nAccept the changes?`);
     if (!isUpdate) {
       // ztoolkit.log("User cancel update because itemtype changes.");
-      return item;
+      return;
     }
   }
 
@@ -190,8 +189,6 @@ async function translateByItem(item: Zotero.Item, options: UpdateMetadataOption)
       }
     }
   }
-
-  return item;
 }
 
 /**
@@ -416,5 +413,4 @@ async function getMetadataFromSemanticScholar(item: Zotero.Item, options: Update
     item.setField("publisher", "");
   item.setField("libraryCatalog", "Semantic Scholar");
   ztoolkit.log(item);
-  return item;
 }

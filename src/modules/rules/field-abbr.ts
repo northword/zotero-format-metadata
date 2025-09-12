@@ -31,7 +31,7 @@ export const JornalAbbrShouldCorrect = defineRule<Options>({
 
     // 无期刊全称直接跳过
     if (publicationTitle === "")
-      return item;
+      return;
 
     let journalAbbr: string | undefined;
 
@@ -76,7 +76,6 @@ export const JornalAbbrShouldCorrect = defineRule<Options>({
     }
 
     item.setField("journalAbbreviation", journalAbbr);
-    return item;
   },
 
   getOptions,
@@ -94,7 +93,7 @@ export const ConferenceAbbr = defineRule<Options>({
 
     // 无全称直接跳过
     if (conferenceName === "")
-      return item;
+      return;
 
     let shortConferenceName: string | undefined;
 
@@ -114,7 +113,6 @@ export const ConferenceAbbr = defineRule<Options>({
       shortConferenceName = "";
 
     ztoolkit.ExtraField.setExtraField(item, "shortConferenceName", shortConferenceName);
-    return item;
   },
 
   getOptions,

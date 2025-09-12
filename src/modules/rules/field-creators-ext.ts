@@ -23,7 +23,7 @@ export const CreatorsExt = defineRule<CreatorExtOptions> ({
   apply({ item, options }) {
     if (!options) {
       ztoolkit.log("参数未定义，可能是弹窗未确认，结束应用规则。");
-      return item;
+      return;
     }
 
     const creators = item.getCreators();
@@ -58,8 +58,6 @@ export const CreatorsExt = defineRule<CreatorExtOptions> ({
       }
       item.setCreator(index, creatorExt);
     });
-
-    return item;
   },
 
   async getOptions() {
@@ -70,10 +68,6 @@ export const CreatorsExt = defineRule<CreatorExtOptions> ({
 async function createCreatorsExtOptionDialog(): Promise<any | undefined> {
   const dialogData: { [key: string | number]: any } = {
     data: undefined,
-    loadCallback: () => {
-      // eslint-disable-next-line ts/no-use-before-define
-      addon.data.dialogs.selectLang = dialog;
-    },
     unloadCallback: () => {
       // eslint-disable-next-line ts/no-use-before-define
       const window = dialog.window;
@@ -88,7 +82,6 @@ async function createCreatorsExtOptionDialog(): Promise<any | undefined> {
       };
 
       ztoolkit.log(dialogData.data);
-      delete addon.data.dialogs.selectLang;
     },
   };
 

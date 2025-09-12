@@ -17,8 +17,6 @@ export const UniversityPlaceShouldValid = defineRule({
       ztoolkit.log(`[place] ${university} not existed in dataset, and original place not empty, skip it.`);
     else
       item.setField("place", place);
-
-    return item;
   },
 });
 

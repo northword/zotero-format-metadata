@@ -10,6 +10,5 @@ export const DataShouldInISOFormat = defineRule({
     const newDate = Zotero.Date.strToISO(oldDate);
     if (newDate)
       item.setField("date", newDate);
-    return item;
   },
 });

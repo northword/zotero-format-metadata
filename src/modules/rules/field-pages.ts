@@ -17,7 +17,6 @@ export const PagesConnectorShouldValid = defineRule({
     // }
 
     item.setField("pages", newPages);
-    return item;
   },
 
 });

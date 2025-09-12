@@ -19,7 +19,6 @@ export const CreatorsPinyin = defineRule({
       creator.firstName = splitPinyin(creator.firstName)[0] || creator.firstName;
     }
     item.setCreators(creators);
-    return item;
   },
 });
 
