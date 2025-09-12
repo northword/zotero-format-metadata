@@ -11,6 +11,9 @@ importers:
       csvtojson:
         specifier: ^2.0.10
         version: 2.0.10
+      es-toolkit:
+        specifier: ^1.39.10
+        version: 1.39.10
       iso-locales:
         specifier: ^1.1.1
         version: 1.1.1
@@ -1345,8 +1348,8 @@ packages:
   es-module-lexer@1.7.0:
     resolution: {integrity: sha512-jEQoCwk8hyb2AZziIOLhDqpm5+2ww5uIE6lkO/6jcOCusfk6LhMHpXXfBLXTZ7Ydyt0j4VoUQv6uGNYbdW+kBA==}
 
-  es-toolkit@1.39.8:
-    resolution: {integrity: sha512-A8QO9TfF+rltS8BXpdu8OS+rpGgEdnRhqIVxO/ZmNvnXBYgOdSsxukT55ELyP94gZIntWJ+Li9QRrT2u1Kitpg==}
+  es-toolkit@1.39.10:
+    resolution: {integrity: sha512-E0iGnTtbDhkeczB0T+mxmoVlT4YNweEKBLq7oaU4p11mecdsZpNWOglI4895Vh4usbQ+LsJiuLuI2L0Vdmfm2w==}
 
   es5-ext@0.10.64:
     resolution: {integrity: sha512-p2snDhiLaXe6dahss1LddxqEm+SkuDvV8dnIQG0MWjyHpcMNfXKPE+/Cc0y+PhxJX3A4xGNeFCj5oc0BUh6deg==}
@@ -3956,7 +3959,7 @@ snapshots:
 
   es-module-lexer@1.7.0: {}
 
-  es-toolkit@1.39.8: {}
+  es-toolkit@1.39.10: {}
 
   es5-ext@0.10.64:
     dependencies:
@@ -5600,7 +5603,7 @@ snapshots:
       c12: 3.2.0
       chokidar: 4.0.3
       commander: 14.0.0
-      es-toolkit: 1.39.8
+      es-toolkit: 1.39.10
       esbuild: 0.25.8
       fs-extra: 11.3.0
       hookable: 5.5.3

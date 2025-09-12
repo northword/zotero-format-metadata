@@ -1,16 +1,12 @@
 import type { FluentMessageId } from "../../../typings/i10n";
 import type { Awaitable } from "../../utils/types";
+import type { ReportInfo } from "../report";
 
 export interface Context<Option = object> {
   item: Zotero.Item;
   options: Option;
   debug: (...args: any) => void;
-  report: (info: ReportInfo) => void;
-}
-
-export interface ReportInfo {
-  level?: "warning" | "error";
-  message: string;
+  report: (info: Omit<ReportInfo, "item" | "ruleID">) => void;
 }
 
 interface RuleBase<Option = object> {

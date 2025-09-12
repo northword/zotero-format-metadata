@@ -1,10 +1,12 @@
 import type { ProgressWindowHelper } from "zotero-plugin-toolkit";
 import type { Arrayable } from "../utils/types";
-import type { Context, ReportInfo, Rule } from "./rules/rule-base";
+import type { ReportInfo } from "./report";
+import type { Context, Rule } from "./rules/rule-base";
 import PQueue from "p-queue";
 import { getString } from "../utils/locale";
 import { getPref } from "../utils/prefs";
 import { waitUtilAsync } from "../utils/wait";
+import { createReporter } from "./report";
 
 const PROGRESS_WINDOW_CLOSE_DELAY = 5000;
 const TASK_TIMEOUT = 60000;
@@ -118,8 +120,9 @@ export class LintRunner {
           item,
           options: options.get(rule.id) ?? {},
           debug: (...args: any[]) => ztoolkit.log(`[${rule.id}] Debug: `, ...args),
-          report: ({ level, message }) => {
-            ztoolkit.log(`[Report ${level}] rule ${rule.id} for item ${item.id}:`, message);
+          report: (info) => {
+            this.stats.records.push({ ...info, item, ruleID: rule.id });
+            ztoolkit.log(`[Report ${info.level}] rule ${rule.id} for item ${item.id}:`, info.message);
           },
         };
 
@@ -164,8 +167,8 @@ export class LintRunner {
       duration,
     );
 
+    createReporter(this.stats.records);
     ztoolkit.log(`[Runner] Batch tasks completed in ${duration}s`);
-    ztoolkit.log(this.stats);
     this.stats = this.createEmptyStats();
   }
 
