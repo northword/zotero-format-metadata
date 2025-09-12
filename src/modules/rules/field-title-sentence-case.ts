@@ -9,39 +9,27 @@ function createSentenceCaseRule(targetField: "title" | "shortTitle") {
     type: "field",
     targetItemFields: [targetField],
 
-    async apply({ item }) {
+    async apply({ item, debug }) {
       const lang = item.getField("language");
-      let title = item.getField(targetField, false, true) as string;
+      let title = item.getField(targetField, false, true);
       title = lang.match("zh") ? title : toSentenceCase(title, lang);
 
-      // const isLintShortTitle = getPref("title.shortTitle");
-      // let shortTitle = item.getField("shortTitle", false, true) as string;
-      // if (isLintShortTitle) {
-      //   shortTitle = lang.match("zh") ? shortTitle : toSentenceCase(shortTitle, lang);
-      // }
-
-      const customTermFilePath = getPref("title.customTermPath") as string;
+      const customTermFilePath = getPref("title.customTermPath");
       if (customTermFilePath) {
         const data = await useData("csv", customTermFilePath, {
           headers: ["search", "replace"],
         });
-        // this.debug(`[title] Custom terms:`, data, typeof data);
 
         data.forEach((term) => {
           const search = convertToRegex(term.search);
           if (search.test(title)) {
             title = title.replace(search, term.replace);
-            // this.debug(`[title] Hit custom term: `, search);
-            // if (isLintShortTitle) {
-            //   shortTitle = shortTitle.replace(search, term.replace);
-            // }
+            debug(`[title] Hit custom term: `, search);
           }
         });
       }
 
       item.setField(targetField, title);
-      // if (isLintShortTitle)
-      //   item.setField("shortTitle", shortTitle);
     },
   });
 }

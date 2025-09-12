@@ -20,9 +20,9 @@ export const CreatorsExt = defineRule<CreatorExtOptions> ({
   type: "field",
   targetItemFields: ["creators"],
 
-  apply({ item, options }) {
+  apply({ item, options, debug }) {
     if (!options) {
-      ztoolkit.log("参数未定义，可能是弹窗未确认，结束应用规则。");
+      debug("参数未定义，可能是弹窗未确认，结束应用规则。");
       return;
     }
 
@@ -46,7 +46,7 @@ export const CreatorsExt = defineRule<CreatorExtOptions> ({
           original: "",
         };
       });
-      ztoolkit.log("可能修改 creators 字段，备份当前 creators 至 extra.creatorsExt.");
+      debug("可能修改 creators 字段，备份当前 creators 至 extra.creatorsExt.");
       ztoolkit.ExtraField.setExtraField(item, "creatorsExt", JSON.stringify(creators));
     }
 

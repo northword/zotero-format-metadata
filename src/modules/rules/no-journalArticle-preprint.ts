@@ -10,12 +10,10 @@ export const NoPreprintJournalArticle = defineRule({
   id: "no-preprint-journal-article",
   type: "item",
   targetItemTypes: ["journalArticle"],
-  async apply({ item, debug, report }) {
+  async apply({ item, report }) {
     const url = item.getField("url");
     if (typeof url === "string" && url !== "" && isStringMatchStringInArray(url, publisherUrlKeyWords)) {
-      debug("The url of this journalArticle item is match with domin of preprint publisher.");
       // show alart todo: 对话框完善，通过 URL 获取 DOI 并通过 DOI 强制更新条目类别
-      // progressWindow(getString("NoPreprintJournalArticle-warning"), "fail").startCloseTimer(100000);
       report({
         level: "warning",
         message: getString("NoPreprintJournalArticle-warning"),

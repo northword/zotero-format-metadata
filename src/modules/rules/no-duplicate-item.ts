@@ -23,7 +23,7 @@ export const NoDuplicatItem = defineRule({
     if (searchResult.includes(itemID)) {
       report({
         level: "error",
-        message: "当前条目存在重复条目",
+        message: getString("dialog-dup-desc"),
         action: {
           label: getString("dialog-dup-button-merge"),
           callback: () => {

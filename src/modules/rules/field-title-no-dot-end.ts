@@ -9,7 +9,7 @@ export const NoDotEndTitle = defineRule({
   type: "field",
   targetItemFields: ["title"],
   async apply({ item }) {
-    const title = item.getField("title", false, true) as string;
+    const title = item.getField("title", false, true);
     const newTitle = title.replace(/(.*)\.$/g, "$1");
     item.setField("title", newTitle);
   },

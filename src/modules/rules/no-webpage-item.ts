@@ -94,18 +94,16 @@ export const NoWebPageItem = defineRule({
   type: "item",
   targetItemTypes: ["webpage"],
 
-  apply({ item, debug, report }) {
+  apply({ item, report }) {
     const url = item.getField("url");
-    if (typeof url === "string" && url !== "" && isStringMatchStringInArray(url, publisherUrlKeyWords)) {
-      debug("The url of this webpage item is match with domin of publisher.");
-      // show alart todo: 对话框完善，通过 URL 获取 DOI 并通过 DOI 强制更新条目类别
-      // progressWindow(getString("checkWebpage-warning"), "fail").startCloseTimer(100000);
+    if (typeof url !== "string" || url !== "")
+      return;
+
+    if (isStringMatchStringInArray(url, publisherUrlKeyWords)) {
       report({
         level: "error",
         message: getString("checkWebpage-warning"),
       });
-      return;
     }
-    debug(`The url of this webpage item is not belong to publisher, maybe a normal webpage.`);
   },
 });

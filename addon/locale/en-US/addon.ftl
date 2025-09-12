@@ -57,7 +57,7 @@ unimplemented = This feature is unimplemented.
 
 ## 重复条目弹窗
 dialog-dup-title = Duplicates found
-dialog-dup-desc = The currently imported item is a duplicate of the item in the library
+dialog-dup-desc = This item is a duplicate of the item in the library
 dialog-dup-button-merge = Go to merge
 
 ## 规则运行警告

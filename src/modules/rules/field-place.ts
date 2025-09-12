@@ -8,13 +8,13 @@ export const UniversityPlaceShouldValid = defineRule({
   targetItemTypes: ["thesis"],
   targetItemFields: ["place"],
 
-  async apply({ item }) {
+  async apply({ item, debug }) {
     const university = item.getField("university") as string;
     const place = await getUniversityPlace(university)
       || await getUniversityPlace(university.replace(/[（(].*[)|）]/, ""));
 
     if (!place && item.getField("place"))
-      ztoolkit.log(`[place] ${university} not existed in dataset, and original place not empty, skip it.`);
+      debug(`${university} not existed in dataset, and original place not empty, skip it.`);
     else
       item.setField("place", place);
   },
