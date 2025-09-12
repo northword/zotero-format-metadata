@@ -24,6 +24,7 @@ export function createReporter(infos: ReportInfo[]) {
       flexDirection: "column",
       gap: "16px",
       padding: "12px",
+      maxWidth: `1000px`,
       fontFamily: "Segoe UI, sans-serif",
       fontSize: "14px",
       color: "#222",
