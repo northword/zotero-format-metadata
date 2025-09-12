@@ -167,7 +167,9 @@ export class LintRunner {
       duration,
     );
 
-    createReporter(this.stats.records);
+    if (this.stats.records.length !== 0)
+      createReporter(this.stats.records);
+
     ztoolkit.log(`[Runner] Batch tasks completed in ${duration}s`);
     this.stats = this.createEmptyStats();
   }
