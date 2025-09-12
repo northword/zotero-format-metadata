@@ -138,6 +138,12 @@ export class LintRunner {
       await item.saveTx();
     }
     catch (error) {
+      this.stats.records.push({
+        message: error instanceof Error ? error.message : String(error),
+        level: "error",
+        item,
+        ruleID: "Error",
+      });
       const message = `[Linter for Zotero] An error occurred when lint item ${item.id}: ${
         error instanceof Error ? error.message : error
       }\n`;
