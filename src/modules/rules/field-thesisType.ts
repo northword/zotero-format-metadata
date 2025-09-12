@@ -14,7 +14,6 @@ import { defineRule } from "./rule-base";
 export const ThesisTypeShouldValid = defineRule({
   id: "thesis-type-name",
   type: "field",
-  recommended: true,
 
   targetItemTypes: ["thesis"],
   targetItemFields: ["thesisType"],

@@ -5,7 +5,6 @@ import { defineRule } from "./rule-base";
 export const PublicationTitleShouldValid = defineRule({
   id: "update-publication-title",
   type: "field",
-  recommended: true,
 
   targetItemTypes: ["journalArticle"],
   targetItemFields: ["publicationTitle"],

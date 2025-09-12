@@ -5,7 +5,6 @@ import { defineRule } from "./rule-base";
 export const LanguageShouldValid = defineRule({
   id: "language-should-correct",
   type: "field",
-  recommended: true,
 
   // computerProgram do not have field language
   // https://github.com/northword/zotero-format-metadata/issues/185

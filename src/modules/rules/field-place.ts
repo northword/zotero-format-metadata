@@ -4,7 +4,6 @@ import { defineRule } from "./rule-base";
 export const UniversityPlaceShouldValid = defineRule({
   id: "no-empty-university-place",
   type: "field",
-  recommended: true,
 
   targetItemTypes: ["thesis"],
   targetItemFields: ["place"],

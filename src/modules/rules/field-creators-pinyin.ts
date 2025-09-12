@@ -4,7 +4,6 @@ import { defineRule } from "./rule-base";
 export const CreatorsPinyin = defineRule({
   id: "creators-pinyin",
   type: "field",
-  recommended: true,
   targetItemFields: ["creators"],
 
   apply({ item }) {

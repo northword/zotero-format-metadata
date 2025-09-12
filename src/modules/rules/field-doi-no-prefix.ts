@@ -3,7 +3,6 @@ import { defineRule } from "./rule-base";
 export const NoDOIPrefix = defineRule({
   id: "no-doi-prefix",
   type: "field",
-  recommended: true,
   targetItemFields: ["DOI"],
 
   apply({ item }) {

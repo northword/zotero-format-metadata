@@ -29,10 +29,6 @@ interface RuleBase<Option = object> {
    */
   type: "field" | "item" | "tag" | "attachment";
   /**
-   * Whether the rule is recommended.
-   */
-  recommended?: boolean;
-  /**
    * Whether the rule is a tool.
    */
   tool?: boolean;

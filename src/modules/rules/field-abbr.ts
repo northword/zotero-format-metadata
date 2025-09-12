@@ -24,7 +24,6 @@ export const JornalAbbrShouldCorrect = defineRule<Options>({
   id: "journal-abbr-should-correct",
   nameKey: "abbr-journal",
   type: "field",
-  recommended: true,
   targetItemTypes: ["journalArticle"],
   targetItemFields: ["journalAbbreviation"],
   async apply({ item }) {

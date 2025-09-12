@@ -3,7 +3,6 @@ import { defineRule } from "./rule-base";
 export const PagesConnectorShouldValid = defineRule({
   id: "pages-connector",
   type: "item",
-  recommended: true,
 
   targetItemTypes: ["journalArticle"],
   apply({ item }) {

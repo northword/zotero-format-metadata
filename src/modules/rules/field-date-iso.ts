@@ -3,7 +3,6 @@ import { defineRule } from "./rule-base";
 export const DataShouldInISOFormat = defineRule({
   id: "data-should-in-iso-format",
   type: "field",
-  recommended: true,
   targetItemFields: ["date"],
 
   apply({ item }) {
