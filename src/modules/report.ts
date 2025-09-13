@@ -23,20 +23,18 @@ export function createReporter(infos: ReportInfo[]) {
       display: "flex",
       flexDirection: "column",
       gap: "16px",
-      padding: "12px",
       maxWidth: `1000px`,
       fontFamily: "Segoe UI, sans-serif",
       fontSize: "14px",
-      color: "#222",
     },
     children: Object.values(resolvedInfos).flatMap(infos => [
       {
         tag: "div",
         styles: {
-          border: "1px solid #ddd",
+          border: "var(--material-border)",
           borderRadius: "8px",
           padding: "10px",
-          backgroundColor: "#fafafa",
+          backgroundColor: "var(--material-background)",
         },
         children: [
           {
@@ -49,7 +47,7 @@ export function createReporter(infos: ReportInfo[]) {
               marginBottom: "8px",
               display: "block",
               fontSize: "15px",
-              color: "#2c3e50",
+              color: "var(--fill-primary)",
             },
           },
           ...infos.map(createRuleResultRows),
@@ -70,6 +68,7 @@ function createRuleResultRows(info: ReportInfo) {
       gap: "8px",
       padding: "6px 8px",
       borderRadius: "6px",
+      minHeight: "2rem",
       backgroundColor:
           info.level === "error"
             ? "rgba(255, 0, 0, 0.08)"
@@ -84,7 +83,7 @@ function createRuleResultRows(info: ReportInfo) {
         },
         styles: {
           fontWeight: "bold",
-          color: info.level === "error" ? "#d93025" : "#e67e22",
+          color: info.level === "error" ? "var(--accent-red)" : "var(--accent-orange)",
           minWidth: "80px",
         },
       },
@@ -95,7 +94,7 @@ function createRuleResultRows(info: ReportInfo) {
         },
         styles: {
           flex: "1",
-          color: "#333",
+          color: "var(--fill-primary)",
           fontSize: "13px",
           lineHeight: "1.4",
         },

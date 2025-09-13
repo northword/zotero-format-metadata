@@ -96,7 +96,7 @@ export const NoWebPageItem = defineRule({
 
   apply({ item, report }) {
     const url = item.getField("url");
-    if (typeof url !== "string" || url !== "")
+    if (url === "")
       return;
 
     if (isStringMatchStringInArray(url, publisherUrlKeyWords)) {
