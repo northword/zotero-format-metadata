@@ -54,28 +54,28 @@ async function createDialog(): Promise<TitleGuillemetOptions> {
       children: [
         {
           tag: "option",
-          attributes: {
-            value: "single",
-          },
           properties: {
+            value: "single",
             innerHTML: "Single 〈〉 to Double 《》",
           },
         },
         {
           tag: "option",
-          attributes: {
-            value: "double",
-          },
           properties: {
+            value: "double",
             innerHTML: "Double 《》 to Single 〈〉",
           },
         },
       ],
     })
     .addButton("OK", "ok")
-    .open("Select Guillemet");
+    .open("Select Guillemet", {
+      height: 100,
+      width: 400,
+      centerscreen: true,
+    });
 
-  await dialog.dialogData.unloadLock;
+  await dialog.dialogData.unloadLock?.promise;
 
   if (dialog.dialogData._lastButtonId === "ok") {
     return { target: dialog.dialogData.target };

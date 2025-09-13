@@ -3,23 +3,23 @@ import { getPref } from "../../utils/prefs";
 import { convertToRegex, toSentenceCase } from "../../utils/str";
 import { defineRule } from "./rule-base";
 
+interface Options {
+  data?: any[];
+}
+
 function createSentenceCaseRule(targetField: "title" | "shortTitle") {
-  return defineRule({
+  return defineRule<Options>({
     id: "title-should-sentence-case",
     type: "field",
     targetItemFields: [targetField],
 
-    async apply({ item, debug }) {
+    async apply({ item, options, debug }) {
       const lang = item.getField("language");
       let title = item.getField(targetField, false, true);
       title = lang.match("zh") ? title : toSentenceCase(title, lang);
 
-      const customTermFilePath = getPref("title.customTermPath");
-      if (customTermFilePath) {
-        const data = await useData("csv", customTermFilePath, {
-          headers: ["search", "replace"],
-        });
-
+      const data = options.data;
+      if (data) {
         data.forEach((term) => {
           const search = convertToRegex(term.search);
           if (search.test(title)) {
@@ -30,6 +30,20 @@ function createSentenceCaseRule(targetField: "title" | "shortTitle") {
       }
 
       item.setField(targetField, title);
+    },
+
+    async getOptions() {
+      const customTermFilePath = getPref("title.customTermPath");
+      if (customTermFilePath) {
+        return {
+          data: await useData("csv", customTermFilePath, {
+            headers: ["search", "replace"],
+          }),
+        };
+      }
+      else {
+        return {};
+      }
     },
   });
 }

@@ -7,14 +7,15 @@ export interface ReportInfo {
     label: string;
     callback: () => void;
   };
-  item: Zotero.Item;
+  itemID: number;
+  title: string;
   ruleID: string;
 }
 
 export function createReporter(infos: ReportInfo[]) {
   const resolvedInfos: Record<number, ReportInfo[]> = groupBy(
     infos,
-    info => info.item.id,
+    info => info.itemID,
   );
 
   const dialog = new ztoolkit.Dialog(1, 1).addCell(0, 0, {
@@ -23,7 +24,8 @@ export function createReporter(infos: ReportInfo[]) {
       display: "flex",
       flexDirection: "column",
       gap: "16px",
-      maxWidth: `1000px`,
+      maxWidth: "1000px",
+      minWidth: "300px",
       fontFamily: "Segoe UI, sans-serif",
       fontSize: "14px",
     },
@@ -40,7 +42,7 @@ export function createReporter(infos: ReportInfo[]) {
           {
             tag: "label",
             properties: {
-              innerHTML: `${infos[0].item.id} - ${infos[0].item.getDisplayTitle()}`,
+              innerHTML: `${infos[0].itemID} - ${infos[0].title}`,
             },
             styles: {
               fontWeight: "bold",

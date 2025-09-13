@@ -18,10 +18,14 @@ interface RuleBase<Option = object> {
   id: string;
   /**
    * The name of the rule.
+   *
+   * @default `rule-${rule.id}`
    */
   nameKey?: FluentMessageId | string;
   /**
    * The description of the rule.
+   *
+   * @default `rule-${rule.id}-description`
    */
   descriptionKey?: FluentMessageId;
   /**
@@ -74,8 +78,19 @@ interface RuleForRegularField<Option = object> extends RuleBase<Option> {
   targetItemFields: Array<_ZoteroTypes.Item.ItemField | "creators">;
 }
 
-interface RuleForTag<Option = object> extends RuleBase<Option> {}
-interface RuleForAttachment<Option = object> extends RuleBase<Option> {}
+/**
+ * @todo unimplemented
+ */
+interface RuleForTag<Option = object> extends RuleBase<Option> {
+  type: "tag";
+}
+
+/**
+ * @todo unimplemented
+ */
+interface RuleForAttachment<Option = object> extends RuleBase<Option> {
+  type: "attachment";
+}
 
 export type Rule<Option = object>
   = | RuleForRegularItem<Option>

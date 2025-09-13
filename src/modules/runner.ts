@@ -25,22 +25,31 @@ interface ResolvedTask {
 interface RunnerStats {
   total: number;
   current: number;
+  pass: number;
   error: number;
   startTime: number;
   records: ReportInfo[];
 }
 
 function shouldApplyRule(rule: Rule<any>, item: Zotero.Item): boolean {
-  if (rule.targetItemTypes
-    && !rule.targetItemTypes.includes(item.itemType)) {
+  if (rule.targetItemTypes && !rule.targetItemTypes.includes(item.itemType)) {
+    ztoolkit.log(`[Rule ${rule.id}] Skip rule for item ${item.id} type ${item.itemType}`);
     return false;
   }
 
-  // if (rule.targetItemFields) {
-  //   return rule.targetItemFields.every(field =>
-  //     item.getField(field) !== undefined,
-  //   );
-  // }
+  if (rule.type === "field") {
+    const allFieldForThisItemType = Zotero.ItemFields.getItemTypeFields(item.itemTypeID)
+      .map(Zotero.ItemFields.getName);
+
+    if (rule.targetItemFields.length !== 0) {
+      for (const field of rule.targetItemFields) {
+        if (!allFieldForThisItemType.includes(field)) {
+          ztoolkit.log(`[Rule ${rule.id}] Skip rule for item ${item.id} field ${field}`);
+          return false;
+        }
+      }
+    }
+  }
 
   return true;
 }
@@ -54,9 +63,9 @@ export class LintRunner {
     timeout: TASK_TIMEOUT,
     throwOnTimeout: true,
   })
-    .on("add", () => this.stats.total += 1)
-    // .on("next", this.onTaskComplete.bind(this))
-    .on("error", this.onTaskError.bind(this))
+    .on("add", this.onAdd.bind(this))
+    .on("completed", this.onComplated.bind(this))
+    .on("error", this.onError.bind(this))
     .on("idle", this.onIdle.bind(this));
 
   private readonly ui: ProgressUI = new ProgressUI();
@@ -70,10 +79,10 @@ export class LintRunner {
     this.stats.startTime = Date.now();
 
     ztoolkit.log(`[Runner] Add tasks at ${new Date(this.stats.startTime).toLocaleTimeString()}`);
+    await this.ui.init(slient);
 
     const resolvedTasks = await this.resolveTasks(task);
 
-    await this.ui.init(slient);
     if (resolvedTasks.length === 0) {
       this.ui.showNoTasks();
       return;
@@ -94,10 +103,21 @@ export class LintRunner {
           options.set(rule.id, await rule.getOptions());
         }
         catch (error) {
+          this.stats.records.push({
+            level: "error",
+            message: error instanceof Error ? error.message : String(error),
+            itemID: 0,
+            title: "Error: Failed to get options",
+            ruleID: rule.id,
+          });
           ztoolkit.log(`[Rule ${rule.id}] Failed to get options:`, error);
+          this.onError(error);
+          this.onIdle();
+          throw error;
         }
       }
     }
+    ztoolkit.log("[Runner] Options:", options);
 
     return items.map(item => ({ item, rules, options }));
   }
@@ -105,7 +125,6 @@ export class LintRunner {
   private wrapTask(resolvedTask: ResolvedTask): () => Promise<void> {
     return async () => {
       await this.runTask(resolvedTask);
-      this.onTaskComplete();
     };
   }
 
@@ -121,7 +140,12 @@ export class LintRunner {
           options: options.get(rule.id) ?? {},
           debug: (...args: any[]) => ztoolkit.log(`[${rule.id}] Debug: `, ...args),
           report: (info) => {
-            this.stats.records.push({ ...info, item, ruleID: rule.id });
+            this.stats.records.push({
+              ...info,
+              itemID: item.id,
+              title: item.getDisplayTitle(),
+              ruleID: rule.id,
+            });
             ztoolkit.log(`[Report ${info.level}] rule ${rule.id} for item ${item.id}:`, info.message);
           },
         };
@@ -141,7 +165,8 @@ export class LintRunner {
       this.stats.records.push({
         message: error instanceof Error ? error.message : String(error),
         level: "error",
-        item,
+        itemID: item.id,
+        title: item.getDisplayTitle(),
         ruleID: "Error",
       });
       const message = `[Linter for Zotero] An error occurred when lint item ${item.id}: ${
@@ -155,20 +180,27 @@ export class LintRunner {
     }
   }
 
-  private onTaskComplete(): void {
+  private onAdd(): void {
+    this.stats.total++;
+  }
+
+  private onComplated(): void {
+    this.stats.pass++;
     this.stats.current++;
     this.ui.updateProgress(this.stats.current, this.stats.total);
   }
 
-  private onTaskError(error: unknown): void {
+  private onError(error: unknown): void {
     this.stats.error++;
+    this.stats.current++;
+    this.ui.updateProgress(this.stats.current, this.stats.total);
     this.ui.showError(error);
   }
 
   private onIdle(): void {
     const duration = (Date.now() - this.stats.startTime) / 1000;
     this.ui.showFinished(
-      this.stats.current - this.stats.error,
+      this.stats.pass,
       this.stats.error,
       duration,
     );
@@ -184,6 +216,7 @@ export class LintRunner {
     return {
       total: 0,
       current: 0,
+      pass: 0,
       error: 0,
       startTime: 0,
       records: [],
