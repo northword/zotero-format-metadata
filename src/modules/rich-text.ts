@@ -1,6 +1,5 @@
 import type { FluentMessageId } from "../../typings/i10n";
 import { getString } from "../utils/locale";
-import { getPref } from "../utils/prefs";
 import { removeHtmlTag } from "../utils/str";
 
 const TOOLBAR_CLASS = "linter-richtext-toolbar";
@@ -53,111 +52,11 @@ const BUTTONS: ButtonConfig[] = [
   },
 ];
 
-export class RichTextToolBar {
-  private observer?: MutationObserver;
-  private window: Window;
-  private mutationOptions: MutationObserverInit = {
-    childList: true,
-    attributes: true,
-    attributeFilter: ["class"],
-    subtree: true,
-  };
+/** -------------------- BUTTON MODULE -------------------- */
+class ButtonManager {
+  constructor(private window: Window) {}
 
-  constructor(window: Window) {
-    this.window = window;
-  }
-
-  private get itemPaneHeader(): HTMLElement {
-    // @ts-expect-error itemPane has inited so not false
-    return Zotero.getActiveZoteroPane().itemPane._itemDetails._header;
-  }
-
-  private get contextPaneHeader(): HTMLElement | null {
-    // @ts-expect-error ZoteroContextPane has context
-    return ztoolkit.getGlobal("ZoteroContextPane").context;
-  }
-
-  get itemPaneTitleField() {
-    const itemPane = Zotero.getActiveZoteroPane().itemPane;
-    if (!itemPane)
-      return undefined;
-
-    // @ts-expect-error itemPane has _itemDetails
-    return itemPane._itemDetails!.querySelectorAll("editable-text[fieldname='title']")[0];
-  }
-
-  get contextPaneTitleField() {
-    return this.window.document.querySelectorAll("#itembox-field-value-title")[1];
-  }
-
-  init(): void {
-    if (!getPref("richtext.toolBar"))
-      return;
-
-    // Zotero not expose MutationObserver as global variable, so we define it here
-    const MutationObserver = (this.window as Window & typeof globalThis).MutationObserver;
-    this.observer = new MutationObserver(this.onMutations.bind(this));
-
-    this.observer.observe(this.itemPaneHeader, this.mutationOptions);
-
-    if (this.contextPaneHeader) {
-      this.observer.observe(this.contextPaneHeader, this.mutationOptions);
-    }
-
-    this.window.addEventListener("unload", () => this.clean());
-    Zotero.Plugins.addObserver({
-      shutdown: ({ id }) => id === addon.data.config.addonID && this.clean(),
-    });
-  }
-
-  private onMutations(records: MutationRecord[]): void {
-    ztoolkit.log("mutations", records);
-
-    for (const record of records) {
-      if (record.type !== "attributes" || record.attributeName !== "class")
-        continue;
-
-      const target = record.target as HTMLElement;
-      const textarea = this.getTextareaFromTarget(target);
-
-      if (!textarea)
-        continue;
-
-      if (target.classList.contains("focused")) {
-        this.attachToolbar(textarea);
-        this.attachPreview(textarea);
-      }
-      else if (target.className === "") {
-        this.close();
-      }
-    }
-  }
-
-  private getTextareaFromTarget(target: HTMLElement): HTMLTextAreaElement | null {
-    if (target.nodeName === "editable-text") {
-      return target.querySelector("textarea");
-    }
-    else if (target.nodeName === "textarea") {
-      return target as HTMLTextAreaElement;
-    }
-    return null;
-  }
-
-  private attachToolbar(textarea: HTMLTextAreaElement): void {
-    if (this.window.document?.querySelector(`.${TOOLBAR_CLASS}`))
-      return;
-
-    const bar = this.createToolbar();
-    textarea.parentElement?.parentElement?.insertBefore(bar, textarea.parentElement);
-  }
-
-  private attachPreview(textarea: HTMLTextAreaElement): void {
-    this.updatePreview(textarea);
-    textarea.addEventListener("focus", () => this.updatePreview(textarea));
-    textarea.addEventListener("input", () => this.updatePreview(textarea));
-  }
-
-  private createToolbar(): HTMLDivElement {
+  createToolbar(): HTMLDivElement {
     const document = this.window.document;
     const toolbarDiv = document.createElement("div");
     toolbarDiv.className = TOOLBAR_CLASS;
@@ -204,9 +103,39 @@ export class RichTextToolBar {
     return button;
   }
 
+  attachToolbar(textarea: HTMLTextAreaElement): void {
+    if (this.window.document?.querySelector(`.${TOOLBAR_CLASS}`))
+      return;
+
+    const bar = this.createToolbar();
+    textarea.parentElement?.parentElement?.insertBefore(bar, textarea.parentElement);
+  }
+
+  close(): void {
+    this.window.document.querySelectorAll(`.${TOOLBAR_CLASS}`).forEach((el: Element) => el.remove());
+  }
+}
+
+/** -------------------- PREVIEW MODULE -------------------- */
+class PreviewManager {
+  private listeners = new Map<HTMLTextAreaElement, { focus: () => void; input: () => void }>();
+
+  constructor(private window: Window) {}
+
+  attachPreview(textarea: HTMLTextAreaElement): void {
+    this.updatePreview(textarea);
+
+    const focusListener = () => this.updatePreview(textarea);
+    const inputListener = () => this.updatePreview(textarea);
+
+    textarea.addEventListener("focus", focusListener);
+    textarea.addEventListener("input", inputListener);
+
+    this.listeners.set(textarea, { focus: focusListener, input: inputListener });
+  }
+
   private ensurePreview(textarea: HTMLTextAreaElement): HTMLDivElement {
     let preview = textarea.parentElement?.querySelector<HTMLDivElement>(`#${PREVIEW_ID}`);
-
     if (!preview && textarea.parentElement) {
       preview = this.window.document.createElement("div");
       preview.id = PREVIEW_ID;
@@ -218,20 +147,168 @@ export class RichTextToolBar {
       });
       textarea.parentElement.appendChild(preview);
     }
-
     return preview!;
   }
 
-  private updatePreview(textarea: HTMLTextAreaElement): void {
+  updatePreview(textarea: HTMLTextAreaElement): void {
     const preview = this.ensurePreview(textarea);
-    preview.innerHTML = textarea.value;
+    const value = textarea.value;
+
+    try {
+      const errorDetails = this.checkHTMLorXMLValidity(value);
+      if (errorDetails) {
+        // We should use textContent instead of innerHTML,
+        // because tags in errorDetails will break the preview,
+        // even we excape the errorDetails.
+        preview.textContent = `Preview failed! Please check html tags in your title. \n${errorDetails}`;
+      }
+      else {
+        preview.innerHTML = value;
+      }
+    }
+    catch {}
+  }
+
+  checkHTMLorXMLValidity(source: string): string | null {
+    // Should wrap the source with a root tag, because DOMParser
+    // will throw error if the xml doesn't have a root tag.
+    const wrapped = `<root>${source}</root>`;
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(wrapped, "application/xml");
+    const errorNode = doc.querySelector("parsererror");
+    if (errorNode) {
+      /**
+       * Example of errorNode.textContent:
+       *
+       * "XML Parsing Error: mismatched tag. Expected: </sub>.
+       * Location: moz-nullprincipal:{0cfb54c0-6fe2-48bb-963b-db92e9a2ce31}
+       * Line Number 1, Column 115:<root>Enhancing performance of Co/CeO<sub>2</sub> catalyst by Sr doping for catalytic combustion of toluene<sub></root>
+       * ------------------------------------------------------------------------------------------------------------------^"
+       *
+       * We only need the first line of errorDetails.
+       */
+      return errorNode.textContent?.split("\n")[0] || "Unknown parsing error";
+    }
+    return null;
   }
 
   close(): void {
-    this.window.document.querySelectorAll(`.${TOOLBAR_CLASS}`).forEach((el: Element) => el.remove());
-    this.window.document.querySelectorAll(`#${PREVIEW_ID}`).forEach((el: Element) => el.remove());
+    this.window.document
+      .querySelectorAll(`#${PREVIEW_ID}`)
+      .forEach((el: Element) => el.remove());
+
+    this.listeners.forEach((listener, textarea) => {
+      textarea.removeEventListener("focus", listener.focus);
+      textarea.removeEventListener("input", listener.input);
+    });
+
+    this.listeners.clear();
+  }
+}
+
+/** -------------------- MAIN CLASS -------------------- */
+export class RichTextToolBar {
+  private observer?: MutationObserver;
+  private buttonManager: ButtonManager;
+  private previewManager: PreviewManager;
+
+  private mutationOptions: MutationObserverInit = {
+    childList: true,
+    attributes: true,
+    attributeFilter: ["class"],
+    subtree: true,
+  };
+
+  constructor(private window: Window) {
+    this.buttonManager = new ButtonManager(window);
+    this.previewManager = new PreviewManager(window);
   }
 
+  private get itemPaneHeader(): HTMLElement {
+    // @ts-expect-error itemPane has inited so not false
+    return Zotero.getActiveZoteroPane().itemPane._itemDetails._header;
+  }
+
+  private get contextPaneHeader(): HTMLElement | null {
+    // @ts-expect-error ZoteroContextPane has context
+    return ztoolkit.getGlobal("ZoteroContextPane").context;
+  }
+
+  /**
+   * @todo title not initialized when richtext class init
+   */
+  get itemPaneTitleField() {
+    const itemPane = Zotero.getActiveZoteroPane().itemPane;
+    if (!itemPane)
+      return undefined;
+
+    // @ts-expect-error itemPane has _itemDetails
+    return itemPane._itemDetails!.querySelectorAll("editable-text[fieldname='title']")[0];
+  }
+
+  /**
+   * @todo title in context pane not initialized when richtext class init
+   */
+  get contextPaneTitleField() {
+    return this.window.document.querySelectorAll("#itembox-field-value-title")[1];
+  }
+
+  init(): void {
+    const MutationObserver = (this.window as Window & typeof globalThis).MutationObserver;
+    this.observer = new MutationObserver(this.onMutations.bind(this));
+
+    this.observer.observe(this.itemPaneHeader, this.mutationOptions);
+    if (this.contextPaneHeader)
+      this.observer.observe(this.contextPaneHeader, this.mutationOptions);
+
+    this.window.addEventListener("unload", () => this.clean());
+    Zotero.Plugins.addObserver({
+      shutdown: ({ id }) => {
+        if (id === addon.data.config.addonID)
+          this.clean();
+      },
+    });
+  }
+
+  private onMutations(records: MutationRecord[]): void {
+    for (const record of records) {
+      if (record.type !== "attributes" || record.attributeName !== "class")
+        continue;
+
+      const target = record.target as HTMLElement;
+      const textarea = this.getTextareaFromTarget(target);
+      if (!textarea)
+        continue;
+
+      if (target.classList.contains("focused")) {
+        this.buttonManager.attachToolbar(textarea);
+        this.previewManager.attachPreview(textarea);
+      }
+      else if (target.className === "") {
+        this.close();
+      }
+    }
+  }
+
+  private getTextareaFromTarget(target: HTMLElement): HTMLTextAreaElement | null {
+    if (target.nodeName === "editable-text")
+      return target.querySelector("textarea");
+    if (target.nodeName === "textarea")
+      return target as HTMLTextAreaElement;
+    return null;
+  }
+
+  /**
+   * Close all toolbar and preview - on blur
+   */
+  close(): void {
+    this.buttonManager.close();
+    this.previewManager.close();
+  }
+
+  /**
+   * Clean up - on plugin shundown
+   */
   clean(): void {
     this.observer?.disconnect();
     this.close();

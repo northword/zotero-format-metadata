@@ -30,7 +30,8 @@ async function onMainWindowLoad(win: Window): Promise<void> {
   registerMenu();
   registerTextTransformMenu(win);
   registerExtraColumns();
-  new RichTextToolBar(win).init();
+  if (getPref("richtext.toolBar"))
+    new RichTextToolBar(win).init();
 }
 
 async function onMainWindowUnload(_win: Window): Promise<void> {
