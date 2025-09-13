@@ -1,14 +1,9 @@
-import type { ProgressWindowHelper } from "zotero-plugin-toolkit";
 import type { Arrayable } from "../utils/types";
-import type { ReportInfo } from "./report";
+import type { ReportInfo } from "./reporter";
 import type { Context, Rule } from "./rules/rule-base";
 import PQueue from "p-queue";
-import { getString } from "../utils/locale";
-import { getPref } from "../utils/prefs";
-import { waitUtilAsync } from "../utils/wait";
-import { createReporter } from "./report";
+import { createReporter, ProgressUI } from "./reporter";
 
-const PROGRESS_WINDOW_CLOSE_DELAY = 5000;
 const TASK_TIMEOUT = 60000;
 
 export interface Task {
@@ -222,98 +217,4 @@ export class LintRunner {
       records: [],
     };
   }
-}
-
-class ProgressUI {
-  private progressWindow?: ProgressWindowHelper;
-  private _onCancel?: () => void;
-
-  public async init(slient?: boolean): Promise<void> {
-    this.progressWindow?.close();
-
-    if (slient || !getPref("lint.notify"))
-      return;
-
-    this.progressWindow = new ztoolkit.ProgressWindow(addon.data.config.addonName, {
-      closeOnClick: false,
-      closeTime: -1,
-    })
-      .createLine({
-        type: "default",
-        text: getString("info-batch-init"),
-        progress: 0,
-        idx: 0,
-      })
-      .createLine({
-        text: getString("info-batch-break"),
-        idx: 1,
-      })
-      .show();
-
-    // @ts-expect-error miss types
-    await waitUtilAsync(() => Boolean(this.progressWindow?.lines?.[1]?._itemText));
-    // @ts-expect-error miss types
-    const stopLine = this.progressWindow?.lines?.[1];
-    if (stopLine?._hbox) {
-      stopLine._hbox.addEventListener("click", this.handleStopRequest);
-    }
-  }
-
-  public onCancel(fn: () => void): void {
-    this._onCancel = fn;
-  }
-
-  public updateProgress(current: number, total: number): void {
-    if (!this.progressWindow)
-      return;
-    const text = `[${current}/${total}] ${getString("info-batch-running")}`;
-    const progress = (current / total) * 100;
-
-    this.progressWindow.changeLine({ text, progress, idx: 0 });
-  }
-
-  public showError(error: unknown): void {
-    this.progressWindow?.createLine({
-      type: "fail",
-      text: `${getString("info-batch-has-error")}: ${
-        error instanceof Error ? error.message : error
-      }`,
-    });
-  }
-
-  public showFinished(successCount: number, errorCount: number, duration: number): void {
-    if (!this.progressWindow)
-      return;
-
-    const text = [
-      "[",
-      `✔️${successCount}`,
-      errorCount ? ` ❌${errorCount}` : "",
-      "] ",
-      getString("info-batch-finish"),
-    ].join("");
-
-    this.progressWindow
-      .changeLine({ text, progress: 100, idx: 0 })
-      .changeLine({ text: `Finished in ${duration}s`, idx: 1 })
-      .startCloseTimer(PROGRESS_WINDOW_CLOSE_DELAY);
-  }
-
-  public showNoTasks(): void {
-    this.progressWindow?.changeLine({
-      text: getString("info-batch-no-selected"),
-      idx: 0,
-    });
-    this.progressWindow?.startCloseTimer(PROGRESS_WINDOW_CLOSE_DELAY);
-  }
-
-  private handleStopRequest = (ev: MouseEvent): void => {
-    ev.stopPropagation();
-    ev.preventDefault();
-    this.progressWindow?.changeLine({
-      text: getString("info-batch-stop-next"),
-      idx: 1,
-    });
-    this._onCancel?.();
-  };
 }

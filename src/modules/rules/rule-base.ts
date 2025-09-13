@@ -1,6 +1,6 @@
 import type { FluentMessageId } from "../../../typings/i10n";
 import type { Awaitable } from "../../utils/types";
-import type { ReportInfo } from "../report";
+import type { ReportInfo } from "../reporter";
 
 export interface Context<Option = object> {
   item: Zotero.Item;
@@ -30,6 +30,8 @@ interface RuleBase<Option = object> {
   descriptionKey?: FluentMessageId;
   /**
    * The type of the rule.
+   *
+   * @todo tag and attachment are not implemented
    */
   type: "field" | "item" | "tag" | "attachment";
   /**
@@ -50,7 +52,10 @@ interface RuleBase<Option = object> {
    *
    * @example
    * async apply({ item, report }) {
+   *   // Modify item
    *   item.setField("title", "New Title");
+   *
+   *   // Report error
    *   report({
    *     level: "error",
    *     message: "Title is too long"
@@ -65,7 +70,18 @@ interface RuleBase<Option = object> {
    */
   getOptions?: () => Awaitable<Option>;
 
+  /**
+   * Item menus
+   *
+   * @todo not implemented
+   */
   menuItem?: () => any;
+
+  /**
+   * Field menus
+   *
+   * @todo not implemented
+   */
   menuField?: () => any;
 }
 
