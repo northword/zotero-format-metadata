@@ -2,7 +2,7 @@ import type { Rule } from "./rule-base";
 import { getPref } from "../../utils/prefs";
 import { CorrectCreatorsCase } from "./correct-creators-case";
 import { CorrectCreatorsPinyin } from "./correct-creators-pinyin";
-import { CorrectDataFormat } from "./correct-data-format";
+import { CorrectDateFormat } from "./correct-date-format";
 import { CorrectPagesConnector } from "./correct-pages-connector";
 import { CorrectPublicationTitle } from "./correct-publication-title";
 import { CorrectThesisType } from "./correct-thesis-type";
@@ -41,7 +41,7 @@ const register: Rule<any>[] = [
   CorrectCreatorsPinyin,
 
   // Other general fields
-  CorrectDataFormat,
+  CorrectDateFormat,
 
   // Article specific fields
   CorrectPublicationTitle,
@@ -80,8 +80,7 @@ export class Rules {
 
   static getEnabledStandard() {
     return [...this.getStandard()
-      // @ts-expect-error todo
-      .filter(rule => getPref(`rule.${rule.id}`))];
+      .filter(rule => getPref(`rule.${rule.id as ID}`))];
   }
 
   static getTool() {

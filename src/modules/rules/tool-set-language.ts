@@ -45,8 +45,8 @@ export async function createSetLanguageManualDialog(): Promise<string | undefine
   };
 
   const allowLangs = ["zh", "en"];
-  if (getPref("lang.only")) {
-    const otherLang = getPref("lang.only.other") as string;
+  if (getPref("rule.require-language.only")) {
+    const otherLang = getPref("rule.require-language.only.other");
     if (otherLang !== "" && otherLang !== undefined) {
       allowLangs.push.apply(otherLang.replace(/ /g, "").split(","));
     }

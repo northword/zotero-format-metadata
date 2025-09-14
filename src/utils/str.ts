@@ -255,12 +255,12 @@ export function getTextLanguage(text: string) {
   // }
 
   // 限制常用语言
-  if (getPref("lang.only")) {
-    if (getPref("lang.only.cmn"))
+  if (getPref("rule.require-language.only")) {
+    if (getPref("rule.require-language.only.cmn"))
       options.only.push("zh");
-    if (getPref("lang.only.eng"))
+    if (getPref("rule.require-language.only.eng"))
       options.only.push("en");
-    const otherLang = getPref("lang.only.other") as string;
+    const otherLang = getPref("rule.require-language.only.other") as string;
     if (otherLang !== "" && otherLang !== undefined)
       options.only.push(...otherLang.replace(/ /g, "").split(","));
   }

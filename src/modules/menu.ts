@@ -118,7 +118,7 @@ export function registerMenu() {
             tag: "menuitem",
             label: getString("rule-correct-date-format-menu-item"),
             commandListener: () => {
-              addon.hooks.onLintInBatch("correct-data-format", menuPopup);
+              addon.hooks.onLintInBatch("correct-date-format", menuPopup);
             },
           },
           {

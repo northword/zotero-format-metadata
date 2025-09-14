@@ -33,7 +33,7 @@ function createRequireTitleSentenceCaseRule(targetItemField: "title" | "shortTit
     },
 
     async getOptions() {
-      const customTermFilePath = getPref("title.customTermPath");
+      const customTermFilePath = getPref("rule.require-title-sentence-case.custom-term-path");
       if (customTermFilePath) {
         return {
           data: await useData("csv", customTermFilePath, {

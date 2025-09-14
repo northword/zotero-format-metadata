@@ -10,7 +10,7 @@ type ID =
   | "no-title-trailing-dot"
   | "correct-creators-case"
   | "correct-creators-pinyin"
-  | "correct-data-format"
+  | "correct-date-format"
   | "correct-publication-title"
   | "require-journal-abbr"
   | "correct-pages-connector"

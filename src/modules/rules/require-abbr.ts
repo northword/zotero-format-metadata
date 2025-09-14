@@ -13,10 +13,10 @@ interface Options {
 
 function getOptions(): Options {
   return {
-    customDataPath: getPref("abbr.customDataPath"),
-    infer: getPref("abbr.infer"),
-    usefull: getPref("abbr.usefull"),
-    usefullZh: getPref("abbr.usefullZh"),
+    customDataPath: getPref("rule.require-journal-abbr.customDataPath"),
+    infer: getPref("rule.require-journal-abbr.infer"),
+    usefull: getPref("rule.require-journal-abbr.usefull"),
+    usefullZh: getPref("rule.require-journal-abbr.usefullZh"),
   };
 }
 
@@ -25,7 +25,7 @@ export const RequireJournalAbbr = defineRule<Options>({
   scope: "field",
   targetItemTypes: ["journalArticle"],
   targetItemField: "journalAbbreviation",
-  async apply({ item }) {
+  async apply({ item, options }) {
     const publicationTitle = item.getField("publicationTitle") as string;
 
     // 无期刊全称直接跳过
@@ -35,9 +35,8 @@ export const RequireJournalAbbr = defineRule<Options>({
     let journalAbbr: string | undefined;
 
     // 从自定义数据集获取
-    const customAbbrDataPath = getPref("abbr.customDataPath") as string;
-    if (customAbbrDataPath !== "") {
-      journalAbbr = await getAbbrFromCustom(publicationTitle, customAbbrDataPath);
+    if (options.customDataPath !== "") {
+      journalAbbr = await getAbbrFromCustom(publicationTitle, options.customDataPath);
     }
 
     // 从本地数据集获取缩写
@@ -47,7 +46,7 @@ export const RequireJournalAbbr = defineRule<Options>({
     }
 
     // 从 ISSN LTWA 推断完整期刊缩写
-    if (!journalAbbr && getPref("abbr.infer")) {
+    if (!journalAbbr && options.infer) {
       journalAbbr = await getAbbrFromLTWAOnline(publicationTitle);
     // journalAbbr = await this.getAbbrFromLTWALocally(publicationTitle);
     }
@@ -57,12 +56,12 @@ export const RequireJournalAbbr = defineRule<Options>({
     // 获取条目语言，若无则根据期刊全称判断语言
       const itemLanguage = (item.getField("language") as string) ?? getTextLanguage(publicationTitle);
       const isChinese = ["zh", "zh-CN"].includes(itemLanguage);
-      if (isChinese && getPref("abbr.usefullZh")) {
+      if (isChinese && options.usefullZh) {
       // 中文，无缩写的，是否以全称替代
         ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
         journalAbbr = publicationTitle;
       }
-      else if (!isChinese && getPref("abbr.usefull")) {
+      else if (!isChinese && options.usefull) {
       // 非中文，无缩写的，是否以全称替代
         ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
         journalAbbr = publicationTitle;
@@ -87,7 +86,7 @@ export const CorrectConferenceAbbr = defineRule<Options>({
   scope: "field",
   targetItemTypes: ["conferencePaper"],
   targetItemField: "conferenceName",
-  async apply({ item }) {
+  async apply({ item, options }) {
     const conferenceName = item.getField("conferenceName") as string;
 
     // 无全称直接跳过
@@ -97,9 +96,8 @@ export const CorrectConferenceAbbr = defineRule<Options>({
     let shortConferenceName: string | undefined;
 
     // 从自定义数据集获取
-    const customAbbrDataPath = getPref("abbr.customDataPath") as string;
-    if (customAbbrDataPath !== "") {
-      shortConferenceName = await getAbbrFromCustom(conferenceName, customAbbrDataPath);
+    if (options.customDataPath !== "") {
+      shortConferenceName = await getAbbrFromCustom(conferenceName, options.customDataPath);
     }
 
     // 从本地数据集获取缩写

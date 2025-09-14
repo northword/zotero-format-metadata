@@ -50,10 +50,51 @@ export function checkCompat() {
     clearPref("lintAfterRetriveByDOI");
   }
 
+  // v2.0.0 refactor the rules id and preference key
+  if (compareVersion(version, "2.0.0") === -1) {
+    mvPref("noDuplicationItems", "rule.no-item-duplication");
+    mvPref("checkWebpage", "rule.no-article-webpage");
+    mvPref("noPreprintJournalArticle", "rule.no-journal-preprint");
+    mvPref("titleDotEnd", "rule.no-title-trailing-dot");
+    mvPref("noDOIPrefix", "rule.no-doi-prefix");
+    mvPref("noExtraZeros", "rule.no-issue-extra-zeros", true);
+    mvPref("noExtraZeros", "rule.no-pages-extra-zeros", true);
+    mvPref("noExtraZeros", "rule.no-volume-extra-zeros", true);
+
+    mvPref("lang", "rule.require-language");
+    mvPref("lang.only", "rule.require-language.only");
+    mvPref("lang.only.cmn", "rule.require-language.only.cmn");
+    mvPref("lang.only.eng", "rule.require-language.only.eng");
+    mvPref("lang.only.other", "rule.require-language.only.other", "");
+    mvPref("titleSentenceCase", "rule.require-title-sentence-case");
+    mvPref("title.shortTitle", "rule.require-shortTitle-sentence-case");
+    mvPref("abbr.journalArticle", "rule.require-journal-abbr");
+    mvPref("abbr.infer", "rule.require-journal-abbr.infer");
+    mvPref("abbr.usefull", "rule.require-journal-abbr.usefull");
+    mvPref("abbr.usefullZh", "rule.require-journal-abbr.usefullZh");
+    mvPref("abbr.customDataPath", "rule.require-journal-abbr.customDataPath");
+    mvPref("universityPlace", "rule.require-university-place");
+
+    mvPref("creatorsCase", "rule.correct-creators-case");
+    mvPref("creatorsPinyin", "rule.correct-creators-pinyin");
+    mvPref("dateISO", "rule.correct-date-format");
+    mvPref("publicationTitleCase", "rule.correct-publication-title");
+    mvPref("pagesConnector", "rule.correct-pages-connector");
+    mvPref("abbr.conferencePaper", "rule.correct-conference-abbr");
+    mvPref("thesisType", "rule.correct-thesis-type");
+    mvPref("university", "rule.correct-university");
+
+    mvPref("title.guillement", "rule.tool-title-guillemet");
+    mvPref("creatorsExt", "rule.tool-creators-ext");
+    mvPref("lang.set", "rule.tool-set-language");
+    mvPref("updateMetadate", "rule.tool-update-metadata");
+    mvPref("updateMetadate.confirmWhenItemTypeChange", "rule.tool-update-metadata.confirm-when-item-type-change", false);
+  }
+
   setPref("version", currentVersion);
 }
 
-function mvPref(source: string, target: string, defaultValue: boolean | string | number) {
+function mvPref(source: string, target: string, defaultValue?: boolean | string | number) {
   // @ts-expect-error target and source may not exist in prefs.js
   setPref(target, getPref(source) ?? defaultValue);
   clearPref(source);

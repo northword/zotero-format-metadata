@@ -50,19 +50,19 @@
       <!-- 检测是否存在重复条目 -->
       <checkbox
         data-l10n-id="rule-no-item-duplication"
-        preference="noDuplicationItems"
+        preference="rule.no-item-duplication"
         native="true"
       />
       <!-- 检测网页条目 -->
       <checkbox
         data-l10n-id="rule-no-article-webpage"
-        preference="checkWebpage"
+        preference="rule.no-article-webpage"
         native="true"
       />
       <!-- 检测预印本误存为期刊文章 -->
       <checkbox
         data-l10n-id="rule-no-journal-preprint"
-        preference="noPreprintJournalArticle"
+        preference="rule.no-journal-preprint"
         native="true"
       />
     </groupbox>
@@ -73,13 +73,13 @@
       <!-- 修改标题大小写 -->
       <checkbox
         data-l10n-id="rule-require-title-sentence-case"
-        preference="titleSentenceCase"
+        preference="rule.require-title-sentence-case"
         native="true"
       />
       <vbox class="indented-pref">
         <checkbox
           data-l10n-id="rule-require-shortTitle-sentence-case"
-          preference="title.shortTitle"
+          preference="rule.require-shortTitle-sentence-case"
           native="true"
         />
         <hbox align="center">
@@ -92,9 +92,8 @@
             readonly="true"
             size="50"
             data-l10n-id="rule-require-title-sentence-option-custom-term"
-            preference="title.customTermPath"
-          >
-          </html:input>
+            preference="rule.require-title-sentence-case.custom-term-path"
+          />
           <button
             data-l10n-id="rule-require-title-sentence-option-custom-term-button"
             id="__addonRef__-title-choose-custom-data-button"
@@ -108,7 +107,7 @@
       </vbox>
       <checkbox
         data-l10n-id="rule-no-title-trailing-dot"
-        preference="titleDotEnd"
+        preference="rule.no-title-trailing-dot"
         native="true"
       />
     </groupbox>
@@ -119,7 +118,7 @@
       <!-- 修改作者大小写 -->
       <checkbox
         data-l10n-id="rule-correct-creators-case"
-        preference="creatorsCase"
+        preference="rule.correct-creators-case"
         native="true"
       />
     </groupbox>
@@ -129,14 +128,14 @@
       <label><html:h2 data-l10n-id="section-language" /></label>
       <checkbox
         data-l10n-id="rule-require-language"
-        preference="lang"
+        preference="rule.require-language"
         native="true"
       />
       <vbox class="indented-pref">
         <checkbox
           id="__addonRef__-lang-only"
           data-l10n-id="rule-require-language-option-only"
-          preference="lang.only"
+          preference="rule.require-language.only"
           native="true"
         />
         <vbox class="indented-pref">
@@ -144,20 +143,20 @@
             <checkbox
               id="__addonRef__-lang-only-cmn"
               data-l10n-id="rule-require-language-option-only-cmn"
-              preference="lang.only.cmn"
+              preference="rule.require-language.only.cmn"
               native="true"
             />
             <checkbox
               id="__addonRef__-lang-only-eng"
               data-l10n-id="rule-require-language-option-only-eng"
-              preference="lang.only.eng"
+              preference="rule.require-language.only.eng"
               native="true"
             />
             <label data-l10n-id="rule-require-language-option-only-other" />
             <html:input
               type="text"
               id="__addonRef__-lang-only-other"
-              preference="lang.only.other"
+              preference="rule.require-language.only.other"
             />
             <label
               data-l10n-id="rule-require-language-option-only-other-doc"
@@ -180,7 +179,7 @@
       <!-- 更新日期格式 -->
       <checkbox
         data-l10n-id="rule-correct-date-format"
-        preference="dateISO"
+        preference="rule.correct-date-format"
         native="true"
       />
     </groupbox>
@@ -191,7 +190,7 @@
       <!-- 修正期刊名大小写 -->
       <checkbox
         data-l10n-id="rule-correct-publication-title"
-        preference="publicationTitleCase"
+        preference="rule.correct-publication-title"
         native="true"
       />
     </groupbox>
@@ -202,14 +201,14 @@
       <!-- 更新期刊缩写 -->
       <checkbox
         data-l10n-id="rule-require-journal-abbr"
-        preference="abbr.journalArticle"
+        preference="rule.require-journal-abbr"
         native="true"
       />
       <vbox class="indented-pref">
         <checkbox
           id="__addonRef__-abbr-infer"
           data-l10n-id="rule-require-journal-abbr-option-infer"
-          preference="abbr.infer"
+          preference="rule.require-journal-abbr.infer"
           native="true"
         />
         <hbox align="center">
@@ -217,13 +216,13 @@
           <checkbox
             id="__addonRef__-abbr-usefull"
             data-l10n-id="rule-require-journal-abbr-option-usefull-en"
-            preference="abbr.usefull"
+            preference="rule.require-journal-abbr.usefull"
             native="true"
           />
           <checkbox
             id="__addonRef__-abbr-usefull"
             data-l10n-id="rule-require-journal-abbr-option-usefull-zh"
-            preference="abbr.usefullZh"
+            preference="rule.require-journal-abbr.usefullZh"
             native="true"
           />
         </hbox>
@@ -231,7 +230,7 @@
       <!-- 更新会议名简写 -->
       <checkbox
         data-l10n-id="rule-correct-conference-abbr"
-        preference="abbr.conferencePaper"
+        preference="rule.correct-conference-abbr"
         native="true"
       />
 
@@ -247,9 +246,8 @@
           size="50"
           id="__addonRef__-abbr-custom-path"
           data-l10n-id="rule-require-journal-abbr-option-choose-custom-abbr-data-input"
-          preference="abbr.customDataPath"
-        >
-        </html:input>
+          preference="rule.require-journal-abbr.customDataPath"
+        />
         <button
           data-l10n-id="rule-require-journal-abbr-option-choose-custom-abbr-data-button"
           id="__addonRef__-abbr-choose-custom-data-button"
@@ -268,23 +266,23 @@
       <!-- 去除期卷页0 -->
       <checkbox
         data-l10n-id="rule-no-issue-extra-zeros"
-        preference="noExtraZeros"
+        preference="rule.no-issue-extra-zeros"
         native="true"
       />
       <checkbox
         data-l10n-id="rule-no-pages-extra-zeros"
-        preference="noExtraZeros"
+        preference="rule.no-pages-extra-zeros"
         native="true"
       />
       <checkbox
         data-l10n-id="rule-no-volume-extra-zeros"
-        preference="noExtraZeros"
+        preference="rule.no-volume-extra-zeros"
         native="true"
       />
       <!-- 页码连接符 -->
       <checkbox
         data-l10n-id="rule-correct-pages-connector"
-        preference="pagesConnector"
+        preference="rule.correct-pages-connector"
         native="true"
       />
     </groupbox>
@@ -295,7 +293,7 @@
       <!-- 更新DOI格式 -->
       <checkbox
         data-l10n-id="rule-no-doi-prefix"
-        preference="noDOIPrefix"
+        preference="rule.no-doi-prefix"
         native="true"
       />
     </groupbox>
@@ -306,27 +304,21 @@
       <!-- 纠正学位论文类别 -->
       <checkbox
         data-l10n-id="rule-correct-thesis-type"
-        preference="thesisType"
+        preference="rule.correct-thesis-type"
         native="true"
       />
       <!-- 更新大学字段 -->
       <checkbox
         data-l10n-id="rule-correct-university"
-        preference="university"
+        preference="rule.correct-university"
         native="true"
       />
       <!-- 更新地点字段 -->
       <checkbox
         data-l10n-id="rule-require-university-place"
-        preference="universityPlace"
+        preference="rule.require-university-place"
         native="true"
       />
-    </groupbox>
-
-    <!-- 其他 -->
-    <groupbox>
-      <label><html:h2 data-l10n-id="section-others" /></label>
-      <!-- 清理被不合理占用的字段 -->
     </groupbox>
   </groupbox>
 
@@ -336,7 +328,7 @@
     <!-- 条目类型变更时要求确认 -->
     <checkbox
       data-l10n-id="tool-update-metadata-option-confirm-when-itemtype-change"
-      preference="updateMetadate.confirmWhenItemTypeChange"
+      preference="rule.tool-update-metadata.confirm-when-item-type-change"
       native="true"
     />
     <hbox align="center">
@@ -347,8 +339,7 @@
         size="60"
         data-l10n-id="tool-update-metadata-option-semanticScholarToken"
         preference="semanticScholarToken"
-      >
-      </html:input>
+      />
       <label
         data-l10n-id="tool-update-metadata-option-semanticScholarToken-link"
         is="zotero-text-link"

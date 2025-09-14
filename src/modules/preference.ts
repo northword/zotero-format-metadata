@@ -48,10 +48,10 @@ async function updatePrefsUI() {
         "zotero-format-metadata-custom-abbr-data.csv",
       ).open();
       if (filename) {
-        setPref("abbr.customDataPath", filename);
+        setPref("rule.require-journal-abbr.customDataPath", filename);
       }
       else {
-        setPref("abbr.customDataPath", "");
+        setPref("rule.require-journal-abbr.customDataPath", "");
       }
     });
 
@@ -68,10 +68,10 @@ async function updatePrefsUI() {
         "zotero-format-metadata-custom-abbr-data.json",
       ).open();
       if (filename) {
-        setPref("title.customTermPath", filename);
+        setPref("rule.require-title-sentence-case.custom-term-path", filename);
       }
       else {
-        setPref("title.customTermPath", "");
+        setPref("rule.require-title-sentence-case.custom-term-path", "");
       }
     });
 }
@@ -86,7 +86,7 @@ function bindPrefEvents() {
 }
 
 function disablePrefsLang() {
-  const state = getPref("lang.only");
+  const state = getPref("rule.require-language.only");
   addon.data.prefs?.window.document
     .getElementById(`${addon.data.config.addonRef}-lang-only-cmn`)
     ?.setAttribute("disabled", String(!state));

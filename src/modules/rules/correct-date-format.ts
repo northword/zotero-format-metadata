@@ -1,7 +1,7 @@
 import { defineRule } from "./rule-base";
 
-export const CorrectDataFormat = defineRule({
-  id: "correct-data-format",
+export const CorrectDateFormat = defineRule({
+  id: "correct-date-format",
   scope: "field",
   targetItemField: "date",
 
