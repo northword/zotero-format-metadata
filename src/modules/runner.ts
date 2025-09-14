@@ -196,6 +196,7 @@ export class LintRunner {
 
   private onAdd(): void {
     this.stats.total++;
+    this.ui.updateProgress(this.stats.current, this.stats.total);
   }
 
   private onComplated(): void {
