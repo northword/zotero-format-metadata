@@ -68,6 +68,7 @@ export function checkCompat() {
     mvPref("lang.only.other", "rule.require-language.only.other", "");
     mvPref("titleSentenceCase", "rule.require-title-sentence-case");
     mvPref("title.shortTitle", "rule.require-shortTitle-sentence-case");
+    mvPref("abbr", "rule.require-journal-abbr");
     mvPref("abbr.journalArticle", "rule.require-journal-abbr");
     mvPref("abbr.infer", "rule.require-journal-abbr.infer");
     mvPref("abbr.usefull", "rule.require-journal-abbr.usefull");
@@ -96,7 +97,12 @@ export function checkCompat() {
 
 function mvPref(source: string, target: string, defaultValue?: boolean | string | number) {
   // @ts-expect-error target and source may not exist in prefs.js
-  setPref(target, getPref(source) ?? defaultValue);
+  if (getPref(source) !== undefined)
+    // @ts-expect-error target and source may not exist in prefs.js
+    setPref(target, getPref(source));
+  else if (defaultValue !== undefined)
+    // @ts-expect-error target and source may not exist in prefs.js
+    setPref(target, defaultValue);
   clearPref(source);
 }
 
