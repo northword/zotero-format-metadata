@@ -43,7 +43,7 @@ export const NoItemDuplication = defineRule({
       // await duplicationDialog.showDialog(item);
     }
     else {
-      debug("当前条目未发现重复条目");
+      debug("No duplicates found");
     }
   },
 });
