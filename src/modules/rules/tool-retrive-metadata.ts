@@ -59,6 +59,12 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption> ({
       item = newItem;
   },
 
+  getOptions() {
+    return {
+      mode: "all",
+    };
+  },
+
 });
 
 async function translateByItem(item: Zotero.Item, options: UpdateMetadataOption): Promise<Zotero.Item | undefined> {
