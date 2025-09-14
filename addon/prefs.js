@@ -31,7 +31,7 @@ pref("rule.require-language.only.cmn", true);
 pref("rule.require-language.only.eng", true);
 pref("rule.require-language.only.other", "");
 pref("rule.require-title-sentence-case", true);
-pref("rule.require-title-sentence-case.custom-term-path", "")
+pref("rule.require-title-sentence-case.custom-term-path", "");
 pref("rule.require-shortTitle-sentence-case", true);
 pref("rule.require-journal-abbr", true);
 pref("rule.require-journal-abbr.infer", true);
