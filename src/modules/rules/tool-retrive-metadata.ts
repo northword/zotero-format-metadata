@@ -13,7 +13,7 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption> ({
   id: "tool-update-metadata",
   scope: "item",
   targetItemTypes: ["journalArticle", "preprint"],
-
+  category: "tool",
   async apply({ item, options }) {
     if (item.itemType === "journalArticle") {
       const doi = item.getField("DOI") as string;
