@@ -158,7 +158,7 @@ async function onLintInBatch(
 
   const rules = toArray(ruleIDs).map(id =>
     id === "standard"
-      ? Rules.getStandard()
+      ? Rules.getEnabledStandard()
       : Rules.getByID(id)!,
   ).flat();
 
