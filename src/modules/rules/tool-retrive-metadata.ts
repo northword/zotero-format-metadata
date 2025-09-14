@@ -108,7 +108,7 @@ async function translateByItem(item: Zotero.Item, options: UpdateMetadataOption)
     const isUpdate = Zotero.getMainWindow().confirm(`The itemType of "${item.getField("title")}" will be changed from ${item.itemType} to ${newItem.itemType}. \n\nAccept the changes?`);
     if (!isUpdate) {
       // ztoolkit.log("User cancel update because itemtype changes.");
-      return;
+      return item;
     }
   }
 
@@ -195,6 +195,8 @@ async function translateByItem(item: Zotero.Item, options: UpdateMetadataOption)
       }
     }
   }
+
+  return item;
 }
 
 /**
