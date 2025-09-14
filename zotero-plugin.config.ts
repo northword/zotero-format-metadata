@@ -1,4 +1,3 @@
-import { copyFileSync } from "node:fs";
 import { env } from "node:process";
 import { defineConfig } from "zotero-plugin-scaffold";
 import { fse } from "zotero-plugin-scaffold/vendor";
@@ -68,10 +67,6 @@ export default defineConfig({
         `.replaceAll(" ".repeat(8), "");
 
         fse.outputFileSync("typings/rules.d.ts", dts);
-      },
-
-      "build:makeUpdateJSON": () => {
-        copyFileSync(".scaffold/build/update.json", "update.json");
       },
     },
   },
