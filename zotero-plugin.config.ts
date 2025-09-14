@@ -84,7 +84,7 @@ export default defineConfig({
     github: {
       enable: "ci",
       updater: "releaser",
-      releaseNote(ctx) {
+      releaseNote(ctx: any) {
         let notes = `${ctx.release.changelog}  \n\n`;
         notes += `![GitHub release (by tag)](https://img.shields.io/github/downloads/${ctx.release.github.repository}/${ctx.release.bumpp.tag}/total)  \n\n`;
         return notes;

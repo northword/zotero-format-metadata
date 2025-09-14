@@ -1,5 +1,5 @@
-import { expect } from "chai";
-import { toSentenceCase } from "../../src/utils/str";
+import { describe, expect, it } from "vitest";
+import { toSentenceCase } from "./require-title-sentence-case";
 
 /**
  * Test item / 测试项目信息
@@ -72,12 +72,10 @@ const testItems: testItem[] = [
   },
 ];
 
-describe("toSentenceCase", function () {
-  // eslint-disable-next-line mocha/no-setup-in-describe
+describe("toSentenceCase", () => {
   testItems.forEach((testItem) => {
-    it(testItem.name, function () {
+    it(testItem.name, () => {
       expect(toSentenceCase(testItem.original)).to.equal(testItem.expected);
-      // assert.equal(toSentenceCase(testItem.original), testItem.expected);
     });
   });
 });
