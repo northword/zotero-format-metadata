@@ -23,9 +23,9 @@ export const NoItemDuplication = defineRule({
     if (searchResult.includes(itemID)) {
       report({
         level: "error",
-        message: getString("dialog-dup-desc"),
+        message: getString("rule-no-item-duplication-report-message"),
         action: {
-          label: getString("dialog-dup-button-merge"),
+          label: getString("rule-no-item-duplication-report-action"),
           callback: () => {
             const mainWindow = Zotero.getMainWindow();
             if (mainWindow) {

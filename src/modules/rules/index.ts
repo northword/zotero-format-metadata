@@ -15,7 +15,7 @@ import { NoJournalPreprint } from "./no-journal-preprint";
 import { NoTitleTrailingDot } from "./no-title-trailing-dot";
 import { CorrectConferenceAbbr, RequireJournalAbbr } from "./require-abbr";
 import { RequireLanguage } from "./require-language";
-import { RequireTitleSentenceCase } from "./require-title-sentence-case";
+import { RequireShortTitleSentenceCase, RequireTitleSentenceCase } from "./require-title-sentence-case";
 import { RequireUniversityPlace } from "./require-university-place";
 import { ToolCreatorsExt } from "./tool-creators-ext";
 import { ToolUpdateMetadata } from "./tool-retrive-metadata";
@@ -33,6 +33,7 @@ const register: Rule<any>[] = [
 
   // Title
   RequireTitleSentenceCase,
+  RequireShortTitleSentenceCase,
   NoTitleTrailingDot,
 
   // Creators

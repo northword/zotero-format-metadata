@@ -102,7 +102,7 @@ export const NoArticleWebPage = defineRule({
     if (isStringMatchStringInArray(url, publisherUrlKeyWords)) {
       report({
         level: "error",
-        message: getString("checkWebpage-warning"),
+        message: getString("rule-no-article-webpage-report-message"),
       });
     }
   },

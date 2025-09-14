@@ -133,7 +133,7 @@ export async function createSetLanguageManualDialog(): Promise<string | undefine
     .addButton(getString("confirm"), "confirm")
     .addButton(getString("cancel"), "cancel")
     .setDialogData(dialogData)
-    .open(getString("dialog-selectLanguage"));
+    .open("Select Language");
   await dialogData.unloadLock.promise;
 
   // 如果取消/直接关闭弹窗，则返回 false

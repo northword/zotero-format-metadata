@@ -9,7 +9,7 @@ interface Options {
 
 function createRequireTitleSentenceCaseRule(targetItemField: "title" | "shortTitle") {
   return defineRule<Options>({
-    id: "require-title-sentence-case",
+    id: `require-${targetItemField}-sentence-case`,
     scope: "field",
     targetItemField,
 

@@ -1,5 +1,6 @@
 <linkset>
   <html:link rel="localization" href="__addonRef__-preferences.ftl" />
+  <html:link rel="localization" href="__addonRef__-rules.ftl" />
 </linkset>
 <vbox
   id="__addonRef__"
@@ -48,19 +49,19 @@
       <label><html:h2 data-l10n-id="section-item" /></label>
       <!-- 检测是否存在重复条目 -->
       <checkbox
-        data-l10n-id="item-noDuplication"
+        data-l10n-id="rule-no-item-duplication"
         preference="noDuplicationItems"
         native="true"
       />
       <!-- 检测网页条目 -->
       <checkbox
-        data-l10n-id="item-checkWebpage"
+        data-l10n-id="rule-no-article-webpage"
         preference="checkWebpage"
         native="true"
       />
       <!-- 检测预印本误存为期刊文章 -->
       <checkbox
-        data-l10n-id="item-NoPreprintJournalArticle"
+        data-l10n-id="rule-no-journal-preprint"
         preference="noPreprintJournalArticle"
         native="true"
       />
@@ -71,40 +72,42 @@
       <label><html:h2 data-l10n-id="section-title" /></label>
       <!-- 修改标题大小写 -->
       <checkbox
-        data-l10n-id="title-sentenceCase"
+        data-l10n-id="rule-require-title-sentence-case"
         preference="titleSentenceCase"
         native="true"
       />
       <vbox class="indented-pref">
         <checkbox
-          data-l10n-id="title-shortTitle"
+          data-l10n-id="rule-require-shortTitle-sentence-case"
           preference="title.shortTitle"
           native="true"
         />
         <hbox align="center">
-          <label data-l10n-id="title-custom-term" />
+          <label
+            data-l10n-id="rule-require-title-sentence-option-custom-term"
+          />
           <html:input
             style="flex: 1"
             type="text"
             readonly="true"
             size="50"
-            data-l10n-id="title-custom-term"
+            data-l10n-id="rule-require-title-sentence-option-custom-term"
             preference="title.customTermPath"
           >
           </html:input>
           <button
-            data-l10n-id="title-custom-term-button"
+            data-l10n-id="rule-require-title-sentence-option-custom-term-button"
             id="__addonRef__-title-choose-custom-data-button"
             native="true"
           />
         </hbox>
         <description
-          data-l10n-id="title-custom-term-desc"
+          data-l10n-id="rule-require-title-sentence-option-custom-term-desc"
           style="width: 45em"
         />
       </vbox>
       <checkbox
-        data-l10n-id="title-dotend"
+        data-l10n-id="rule-no-title-trailing-dot"
         preference="titleDotEnd"
         native="true"
       />
@@ -115,22 +118,24 @@
       <label><html:h2 data-l10n-id="section-creators" /></label>
       <!-- 修改作者大小写 -->
       <checkbox
-        data-l10n-id="creators-case"
+        data-l10n-id="rule-correct-creators-case"
         preference="creatorsCase"
         native="true"
       />
-      <!-- 去除国籍 -->
-      <checkbox data-l10n-id="creators-country" native="true" disabled="true" />
     </groupbox>
 
     <!-- 字段：语言 -->
     <groupbox>
       <label><html:h2 data-l10n-id="section-language" /></label>
-      <checkbox data-l10n-id="language-fill" preference="lang" native="true" />
+      <checkbox
+        data-l10n-id="rule-require-language"
+        preference="lang"
+        native="true"
+      />
       <vbox class="indented-pref">
         <checkbox
           id="__addonRef__-lang-only"
-          data-l10n-id="language-fill-option-only"
+          data-l10n-id="rule-require-language-option-only"
           preference="lang.only"
           native="true"
         />
@@ -138,31 +143,31 @@
           <hbox align="center">
             <checkbox
               id="__addonRef__-lang-only-cmn"
-              data-l10n-id="language-fill-option-only-cmn"
+              data-l10n-id="rule-require-language-option-only-cmn"
               preference="lang.only.cmn"
               native="true"
             />
             <checkbox
               id="__addonRef__-lang-only-eng"
-              data-l10n-id="language-fill-option-only-eng"
+              data-l10n-id="rule-require-language-option-only-eng"
               preference="lang.only.eng"
               native="true"
             />
-            <label data-l10n-id="language-fill-option-only-other" />
+            <label data-l10n-id="rule-require-language-option-only-other" />
             <html:input
               type="text"
               id="__addonRef__-lang-only-other"
               preference="lang.only.other"
             />
             <label
-              data-l10n-id="language-fill-option-only-other-doc"
+              data-l10n-id="rule-require-language-option-only-other-doc"
               is="zotero-text-link"
               class="zotero-text-link"
               href="https://github.com/northword/zotero-format-metadata#readme"
             />
           </hbox>
           <description
-            data-l10n-id="language-fill-option-only-other-desc"
+            data-l10n-id="rule-require-language-option-only-other-desc"
             style="width: 45em"
           />
         </vbox>
@@ -173,7 +178,11 @@
     <groupbox>
       <label><html:h2 data-l10n-id="section-date" /></label>
       <!-- 更新日期格式 -->
-      <checkbox data-l10n-id="date-iso" preference="dateISO" native="true" />
+      <checkbox
+        data-l10n-id="rule-correct-date-format"
+        preference="dateISO"
+        native="true"
+      />
     </groupbox>
 
     <!-- 字段：期刊名 -->
@@ -181,7 +190,7 @@
       <label><html:h2 data-l10n-id="section-publicationTitle" /></label>
       <!-- 修正期刊名大小写 -->
       <checkbox
-        data-l10n-id="publicationTitle-case"
+        data-l10n-id="rule-correct-publication-title"
         preference="publicationTitleCase"
         native="true"
       />
@@ -192,28 +201,28 @@
       <label><html:h2 data-l10n-id="section-abbr" /></label>
       <!-- 更新期刊缩写 -->
       <checkbox
-        data-l10n-id="abbr-journal"
+        data-l10n-id="rule-require-journal-abbr"
         preference="abbr.journalArticle"
         native="true"
       />
       <vbox class="indented-pref">
         <checkbox
           id="__addonRef__-abbr-infer"
-          data-l10n-id="abbr-infer"
+          data-l10n-id="rule-require-journal-abbr-option-infer"
           preference="abbr.infer"
           native="true"
         />
         <hbox align="center">
-          <label data-l10n-id="abbr-usefull" />
+          <label data-l10n-id="rule-require-journal-abbr-option-usefull" />
           <checkbox
             id="__addonRef__-abbr-usefull"
-            data-l10n-id="abbr-usefull-en"
+            data-l10n-id="rule-require-journal-abbr-option-usefull-en"
             preference="abbr.usefull"
             native="true"
           />
           <checkbox
             id="__addonRef__-abbr-usefull"
-            data-l10n-id="abbr-usefull-zh"
+            data-l10n-id="rule-require-journal-abbr-option-usefull-zh"
             preference="abbr.usefullZh"
             native="true"
           />
@@ -221,31 +230,36 @@
       </vbox>
       <!-- 更新会议名简写 -->
       <checkbox
-        data-l10n-id="abbr-conferencePaper"
+        data-l10n-id="rule-correct-conference-abbr"
         preference="abbr.conferencePaper"
         native="true"
       />
 
       <!-- 自定义缩写文件 -->
       <hbox align="center">
-        <label data-l10n-id="abbr-custom-data-label" />
+        <label
+          data-l10n-id="rule-require-journal-abbr-option-custom-data-label"
+        />
         <html:input
           style="flex: 1"
           type="text"
           readonly="true"
           size="50"
           id="__addonRef__-abbr-custom-path"
-          data-l10n-id="choose-custom-abbr-data-input"
+          data-l10n-id="rule-require-journal-abbr-option-choose-custom-abbr-data-input"
           preference="abbr.customDataPath"
         >
         </html:input>
         <button
-          data-l10n-id="choose-custom-abbr-data-button"
+          data-l10n-id="rule-require-journal-abbr-option-choose-custom-abbr-data-button"
           id="__addonRef__-abbr-choose-custom-data-button"
           native="true"
         />
       </hbox>
-      <description data-l10n-id="abbr-custom-data-desc" style="width: 45em" />
+      <description
+        data-l10n-id="rule-require-journal-abbr-option-custom-data-desc"
+        style="width: 45em"
+      />
     </groupbox>
 
     <!-- 期卷页 -->
@@ -253,13 +267,23 @@
       <label><html:h2 data-l10n-id="section-pages" /></label>
       <!-- 去除期卷页0 -->
       <checkbox
-        data-l10n-id="pages-remove-zeros"
+        data-l10n-id="rule-no-issue-extra-zeros"
+        preference="noExtraZeros"
+        native="true"
+      />
+      <checkbox
+        data-l10n-id="rule-no-pages-extra-zeros"
+        preference="noExtraZeros"
+        native="true"
+      />
+      <checkbox
+        data-l10n-id="rule-no-volume-extra-zeros"
         preference="noExtraZeros"
         native="true"
       />
       <!-- 页码连接符 -->
       <checkbox
-        data-l10n-id="pages-connector"
+        data-l10n-id="rule-correct-pages-connector"
         preference="pagesConnector"
         native="true"
       />
@@ -267,10 +291,10 @@
 
     <!-- 标识符 -->
     <groupbox>
-      <label><html:h2 data-l10n-id="section-identifier">DOI</html:h2></label>
+      <label><html:h2 data-l10n-id="section-identifier" /></label>
       <!-- 更新DOI格式 -->
       <checkbox
-        data-l10n-id="doi-noPrefix"
+        data-l10n-id="rule-no-doi-prefix"
         preference="noDOIPrefix"
         native="true"
       />
@@ -281,19 +305,19 @@
       <label><html:h2 data-l10n-id="section-thesis" /></label>
       <!-- 纠正学位论文类别 -->
       <checkbox
-        data-l10n-id="university-type"
+        data-l10n-id="rule-correct-thesis-type"
         preference="thesisType"
         native="true"
       />
       <!-- 更新大学字段 -->
       <checkbox
-        data-l10n-id="university-brackets"
+        data-l10n-id="rule-correct-university"
         preference="university"
         native="true"
       />
       <!-- 更新地点字段 -->
       <checkbox
-        data-l10n-id="university-place"
+        data-l10n-id="rule-require-university-place"
         preference="universityPlace"
         native="true"
       />
@@ -303,12 +327,6 @@
     <groupbox>
       <label><html:h2 data-l10n-id="section-others" /></label>
       <!-- 清理被不合理占用的字段 -->
-      <checkbox
-        data-l10n-id="std-clean-fileld"
-        preference="cleanExtra"
-        native="true"
-        disabled="true"
-      />
     </groupbox>
   </groupbox>
 
@@ -317,29 +335,29 @@
     <label><html:h2 data-l10n-id="section-updateMetadata" /></label>
     <!-- 条目类型变更时要求确认 -->
     <checkbox
-      data-l10n-id="update-metadata-confirm-when-itemtype-change"
+      data-l10n-id="tool-update-metadata-option-confirm-when-itemtype-change"
       preference="updateMetadate.confirmWhenItemTypeChange"
       native="true"
     />
     <hbox align="center">
-      <label data-l10n-id="others-semanticScholarToken" />
+      <label data-l10n-id="tool-update-metadata-option-semanticScholarToken" />
       <html:input
         style="flex: 1"
         type="text"
         size="60"
-        data-l10n-id="others-semanticScholarToken"
+        data-l10n-id="tool-update-metadata-option-semanticScholarToken"
         preference="semanticScholarToken"
       >
       </html:input>
       <label
-        data-l10n-id="other-semanticScholarToken-link"
+        data-l10n-id="tool-update-metadata-option-semanticScholarToken-link"
         is="zotero-text-link"
         class="zotero-text-link"
         href="https://www.semanticscholar.org/product/api#api-key"
       />
     </hbox>
     <description
-      data-l10n-id="other-semanticScholarToken-desc"
+      data-l10n-id="tool-update-metadata-option-semanticScholarToken-desc"
       style="width: 45em"
     />
   </groupbox>

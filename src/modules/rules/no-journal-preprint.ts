@@ -14,7 +14,7 @@ export const NoJournalPreprint = defineRule({
       // show alart todo: 对话框完善，通过 URL 获取 DOI 并通过 DOI 强制更新条目类别
       report({
         level: "warning",
-        message: getString("NoPreprintJournalArticle-warning"),
+        message: getString("rule-no-journal-preprint-report-message"),
       });
     }
   },
