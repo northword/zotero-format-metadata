@@ -1,6 +1,7 @@
 import { copyFileSync } from "node:fs";
 import { env } from "node:process";
 import { defineConfig } from "zotero-plugin-scaffold";
+import { fse } from "zotero-plugin-scaffold/vendor";
 import pkg from "./package.json";
 
 export default defineConfig({
@@ -56,14 +57,25 @@ export default defineConfig({
       ],
     },
     hooks: {
+      "build:bundle": async () => {
+        // Generate declaration file for rule ids
+        const { Rules } = await import("./src/modules/rules/index.ts");
+
+        const dts = `// Auto generated file. Do not modify.
+        /* eslint-disable */
+        type ID =
+          | ${Rules.getAll().map(r => `"${r.id}"`).join("\n  | ")}
+        `.replaceAll(" ".repeat(8), "");
+
+        fse.outputFileSync("typings/rules.d.ts", dts);
+      },
+
       "build:makeUpdateJSON": () => {
         copyFileSync(".scaffold/build/update.json", "update.json");
-        // copyFileSync("build/update-beta.json", "update-beta.json");
       },
     },
   },
 
-  // TODO: switch to scaffold's releaser
   release: {
     bumpp: {
       execute: "pnpm build",
@@ -72,7 +84,7 @@ export default defineConfig({
     github: {
       enable: "ci",
       updater: "releaser",
-      releaseNote(ctx) {
+      releaseNote(ctx: any) {
         let notes = `${ctx.release.changelog}  \n\n`;
         notes += `![GitHub release (by tag)](https://img.shields.io/github/downloads/${ctx.release.github.repository}/${ctx.release.bumpp.tag}/total)  \n\n`;
         return notes;
@@ -81,7 +93,6 @@ export default defineConfig({
   },
   test: {
     entries: ["test/tests"],
-    // watch: true,
   },
 
   // If you need to see a more detailed build log, uncomment the following line:

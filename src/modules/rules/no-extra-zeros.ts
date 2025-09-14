@@ -1,22 +1,25 @@
-import type { RuleBaseOptions } from "./rule-base";
-import { removeLeadingZeros } from "../../utils/str";
-import { RuleBase } from "./rule-base";
+import { defineRule } from "./rule-base";
 
-class NoExtraZerosOptions implements RuleBaseOptions {}
-
-export class NoExtraZeros extends RuleBase<RuleBaseOptions> {
-  constructor(options: NoExtraZerosOptions) {
-    super(options);
-  }
-
-  apply(item: Zotero.Item): Zotero.Item | Promise<Zotero.Item> {
-    const checkFields: _ZoteroTypes.Item.ItemField[] = ["pages", "issue", "volume"];
-    checkFields.forEach((fieldName) => {
-      const fieldValue = String(item.getField(fieldName));
-      const newFieldValue = removeLeadingZeros(fieldValue);
-      item.setField(fieldName, newFieldValue);
-    });
-
-    return item;
-  }
+export function removeLeadingZeros(input: string): string {
+  return input.replace(/\b0+(\d+)/g, "$1");
 }
+
+type Field = "pages" | "issue" | "volume";
+
+function createRule(targetItemField: Field) {
+  return defineRule({
+    id: `no-${targetItemField}-extra-zeros`,
+    scope: "field",
+    targetItemTypes: ["journalArticle"],
+    targetItemField,
+    apply: ({ item }) => {
+      const fieldValue = String(item.getField(targetItemField));
+      const newFieldValue = removeLeadingZeros(fieldValue);
+      item.setField(targetItemField, newFieldValue);
+    },
+  });
+}
+
+export const NoPagesExtraZeros = createRule("pages");
+export const NoIssueExtraZeros = createRule("issue");
+export const NoVolumeExtraZeros = createRule("volume");

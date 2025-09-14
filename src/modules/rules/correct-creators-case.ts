@@ -1,20 +1,11 @@
-import type { RuleBaseOptions } from "./rule-base";
 import { isFullLowerCase, isFullUpperCase } from "../../utils/str";
-import { RuleBase } from "./rule-base";
+import { defineRule } from "./rule-base";
 
-class CapitalizeCreatorsOptions implements RuleBaseOptions {}
-
-/**
- * 将作者转为首字母大写
- * rule: 作者应以首字母大写方式存储
- * @param item
- */
-export class CapitalizeCreators extends RuleBase<CapitalizeCreatorsOptions> {
-  constructor(options: CapitalizeCreatorsOptions) {
-    super(options);
-  }
-
-  apply(item: Zotero.Item): Zotero.Item | Promise<Zotero.Item> {
+export const CorrectCreatorsCase = defineRule({
+  id: "correct-creators-case",
+  scope: "field",
+  targetItemField: "creators",
+  apply({ item }) {
     const creators = item.getCreators();
 
     for (const creator of creators) {
@@ -28,8 +19,5 @@ export class CapitalizeCreators extends RuleBase<CapitalizeCreatorsOptions> {
           : creator.lastName;
     }
     item.setCreators(creators);
-    return item;
-  }
-}
-
-// todo: 期刊文章必须含有作者
+  },
+});

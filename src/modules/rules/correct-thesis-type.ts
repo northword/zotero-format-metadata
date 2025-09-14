@@ -1,7 +1,5 @@
-import type { RuleBaseOptions } from "./rule-base";
-import { RuleBase } from "./rule-base";
+import { defineRule } from "./rule-base";
 
-class ThesisTypeOptions implements RuleBaseOptions {}
 /**
  * Thesis type
  *
@@ -13,18 +11,17 @@ class ThesisTypeOptions implements RuleBaseOptions {}
  *
  * @see https://github.com/northword/zotero-format-metadata/issues/132
  */
-export class ThesisType extends RuleBase<ThesisTypeOptions> {
-  constructor(options: ThesisTypeOptions) {
-    super(options);
-  }
+export const CorrectThesisType = defineRule({
+  id: "correct-thesis-type",
+  scope: "field",
 
-  apply(item: Zotero.Item): Zotero.Item {
-    if (item.itemType !== "thesis")
-      return item;
+  targetItemTypes: ["thesis"],
+  targetItemField: "thesisType",
 
+  apply({ item }) {
     let type = item.getField("thesisType");
     if (!type)
-      return item;
+      return;
 
     if (type.match("硕士")) {
       type = "硕士学位论文";
@@ -46,6 +43,6 @@ export class ThesisType extends RuleBase<ThesisTypeOptions> {
     }
 
     item.setField("thesisType", type);
-    return item;
-  }
-}
+  },
+
+});

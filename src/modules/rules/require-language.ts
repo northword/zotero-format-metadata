@@ -1,25 +1,21 @@
 import type { Data } from "../../utils/data-loader";
-import type { RuleBaseOptions } from "./rule-base";
 import { getTextLanguage } from "../../utils/str";
-import { RuleBase } from "./rule-base";
+import { defineRule } from "./rule-base";
 
-class UpdateItemLanguageOptions implements RuleBaseOptions {}
+export const RequireLanguage = defineRule({
+  id: "require-language",
+  scope: "field",
 
-export class UpdateItemLanguage extends RuleBase<UpdateItemLanguageOptions> {
-  constructor(options: UpdateItemLanguageOptions) {
-    super(options);
-  }
-
-  apply(item: Zotero.Item): Zotero.Item {
-    // computerProgram do not have field language
-    // https://github.com/northword/zotero-format-metadata/issues/185
-    // https://www.zotero.org/support/kb/item_types_and_fields#fields_for_software
-    if (item.itemType === "computerProgram")
-      return item;
+  // computerProgram do not have field language
+  // https://github.com/northword/zotero-format-metadata/issues/185
+  // https://www.zotero.org/support/kb/item_types_and_fields#fields_for_software
+  ignoreItemTypes: ["computerProgram"],
+  targetItemField: "language",
+  async apply({ item }) {
     // WIP: 已有合法 ISO 639 - ISO 3166 代码的，不予处理
     // if (verifyIso3166(item.getField("language") as string) && getPref("lang.verifyBefore")) {
-    //   ztoolkit.log("[lang] The item has been skipped due to the presence of valid ISO 639 - ISO 3166 code.");
-    //   return item;
+    //   this.debug("[lang] The item has been skipped due to the presence of valid ISO 639 - ISO 3166 code.");
+    //   return;
     // }
     const title = item.getField("title") as string;
     const language = getTextLanguage(title);
@@ -42,13 +38,9 @@ export class UpdateItemLanguage extends RuleBase<UpdateItemLanguageOptions> {
     // } else {
     //     progressWindow(`Failed to identify the language of text “${title}”`, "failed");
     // }
-    return item;
-  }
-}
+  },
 
-/* 条目语言 */
-
-// export { updateLanguage, toIso639_1 };
+});
 
 /**
  * Convert ISO 639 code to ISO 3166 code.

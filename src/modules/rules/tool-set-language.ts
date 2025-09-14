@@ -2,37 +2,56 @@ import type { TagElementProps } from "zotero-plugin-toolkit";
 import { langName, toISO3 } from "tinyld";
 import { getString } from "../../utils/locale";
 import { getPref } from "../../utils/prefs";
+import { defineRule } from "./rule-base";
+
+interface Options {
+  language?: string;
+}
+
+export const ToolSetLanguage = defineRule<Options>({
+  id: "tool-set-language",
+  scope: "field",
+  category: "tool",
+  targetItemField: "language",
+  apply({ item, options }) {
+    if (options.language)
+      item.setField("language", options.language);
+  },
+
+  async getOptions() {
+    const language = await createSetLanguageManualDialog();
+    return {
+      language,
+    };
+  },
+});
 
 /**
  * 手动设置条目语言_选择语言的弹窗
  */
-export async function setLanguageManualDialog(): Promise<string | undefined> {
+export async function createSetLanguageManualDialog(): Promise<string | undefined> {
   const dialogData: { [key: string | number]: any } = {
     selectedLang: "",
     inputLang: "",
     formData: "",
-    loadCallback: () => {
-      // eslint-disable-next-line ts/no-use-before-define
-      addon.data.dialogs.selectLang = dialog;
-    },
+
     unloadCallback: () => {
       // eslint-disable-next-line ts/no-use-before-define
       const window = dialog.window;
       const form = window.document.querySelector("form") as HTMLFormElement;
       dialogData.formData = new window.FormData(form);
       dialogData.selectedLang = dialogData.formData.get("selectedLang");
-      delete addon.data.dialogs.selectLang;
     },
   };
 
   const allowLangs = ["zh", "en"];
-  if (getPref("lang.only")) {
-    const otherLang = getPref("lang.only.other") as string;
+  if (getPref("rule.require-language.only")) {
+    const otherLang = getPref("rule.require-language.only.other");
     if (otherLang !== "" && otherLang !== undefined) {
       allowLangs.push.apply(otherLang.replace(/ /g, "").split(","));
     }
   }
-  const row = allowLangs.length > 2 ? allowLangs.length : 3;
+  const row = allowLangs.length + 1;
 
   const dialog = new ztoolkit.Dialog(row, 2);
 
@@ -61,56 +80,60 @@ export async function setLanguageManualDialog(): Promise<string | undefined> {
     );
   });
   // 添加一个“其他”输入框
-  radiogroupChildren.push({
-    tag: "div",
-    children: [
-      {
-        tag: "input",
-        namespace: "html",
-        id: `dialog-checkbox-other`,
-        attributes: {
-          type: "radio",
-          name: "selectedLang",
-          // for: `dialog-checkbox-input`,
-          value: "other",
-        },
+  radiogroupChildren.push(
+    {
+      tag: "input",
+      namespace: "html",
+      id: `dialog-checkbox-other`,
+      attributes: {
+        type: "radio",
+        name: "selectedLang",
+        // for: `dialog-checkbox-input`,
+        value: "other",
       },
-      {
-        tag: "input",
-        id: `dialog-checkbox-input`,
-        attributes: {
-          "type": "text",
-          "for": "dialog-checkbox-other",
-          "placeholder": "Other",
-          "data-bind": "inputLang",
-          "data-prop": "value",
-        },
-        listeners: [
-          {
-            type: "input",
-            listener: () => {
-              const radioOther = dialog.window.document.getElementById(
-                "dialog-checkbox-other",
-              ) as HTMLInputElement;
-              radioOther.checked = true;
-            },
+    },
+    {
+      tag: "input",
+      id: `dialog-checkbox-input`,
+      attributes: {
+        "type": "text",
+        "for": "dialog-checkbox-other",
+        "placeholder": "Other",
+        "data-bind": "inputLang",
+        "data-prop": "value",
+      },
+      styles: {
+        minWidth: "100px",
+      },
+      listeners: [
+        {
+          type: "input",
+          listener: () => {
+            const radioOther = dialog.window.document.getElementById(
+              "dialog-checkbox-other",
+            ) as HTMLInputElement;
+            radioOther.checked = true;
           },
-        ],
-      },
-    ],
-  });
+        },
+      ],
+    },
+  );
 
   dialog
     .addCell(0, 0, {
       tag: "form",
       id: `dialog-checkboxgroup`,
-      // attributes: { "data-bind": "selectedLang", "data-prop": "lang" },
+      styles: {
+        display: "grid",
+        gridTemplateColumns: "auto 1fr",
+        gridGap: "10px",
+      },
       children: radiogroupChildren,
     })
     .addButton(getString("confirm"), "confirm")
     .addButton(getString("cancel"), "cancel")
     .setDialogData(dialogData)
-    .open(getString("dialog-selectLanguage"));
+    .open("Select Language");
   await dialogData.unloadLock.promise;
 
   // 如果取消/直接关闭弹窗，则返回 false

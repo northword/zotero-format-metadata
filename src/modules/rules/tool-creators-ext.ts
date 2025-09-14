@@ -1,16 +1,74 @@
 import type { TagElementProps } from "zotero-plugin-toolkit";
 import { getString } from "../../utils/locale";
+import { defineRule } from "./rule-base";
 
-/**
- * 应用扩展作者信息选项
- */
-export async function getCreatorsExtOptionDialog(): Promise<any | undefined> {
+interface CreatorExt extends _ZoteroTypes.Item.Creator {
+  country?: string;
+  original?: string;
+}
+
+interface CreatorExtOptions {
+  mark: {
+    open?: string;
+    close?: string;
+  };
+  country?: string;
+}
+
+export const ToolCreatorsExt = defineRule<CreatorExtOptions> ({
+  id: "tool-creators-ext",
+  scope: "field",
+  targetItemField: "creators",
+  category: "tool",
+
+  apply({ item, options, debug }) {
+    if (!options) {
+      debug("参数未定义，可能是弹窗未确认，结束应用规则。");
+      return;
+    }
+
+    const creators = item.getCreators();
+    const creatorsExtRaw = ztoolkit.ExtraField.getExtraField(item, "creatorsExt");
+    let creatorsExt: CreatorExt[];
+    if (creatorsExtRaw) {
+      creatorsExt = (JSON.parse(creatorsExtRaw) as CreatorExt[]).map((creator) => {
+        creator.country = creator.country || options.country || "";
+        return creator;
+      });
+    }
+    else {
+      creatorsExt = creators.map((creator) => {
+        return {
+          firstName: creator.firstName,
+          lastName: creator.lastName,
+          fieldMode: creator.fieldMode,
+          creatorTypeID: creator.creatorTypeID,
+          country: options.country || "",
+          original: "",
+        };
+      });
+      debug("可能修改 creators 字段，备份当前 creators 至 extra.creatorsExt.");
+      ztoolkit.ExtraField.setExtraField(item, "creatorsExt", JSON.stringify(creators));
+    }
+
+    creatorsExt.forEach((creatorExt, index) => {
+      if (options.mark.open && creatorExt.country) {
+        creatorExt.lastName = `${
+          (options.mark.open ?? "") + creatorExt.country + (options.mark.close ?? "")
+        } ${creatorExt.lastName}`.trim();
+      }
+      item.setCreator(index, creatorExt);
+    });
+  },
+
+  async getOptions() {
+    return createCreatorsExtOptionDialog();
+  },
+});
+
+async function createCreatorsExtOptionDialog(): Promise<any | undefined> {
   const dialogData: { [key: string | number]: any } = {
     data: undefined,
-    loadCallback: () => {
-      // eslint-disable-next-line ts/no-use-before-define
-      addon.data.dialogs.selectLang = dialog;
-    },
     unloadCallback: () => {
       // eslint-disable-next-line ts/no-use-before-define
       const window = dialog.window;
@@ -25,7 +83,6 @@ export async function getCreatorsExtOptionDialog(): Promise<any | undefined> {
       };
 
       ztoolkit.log(dialogData.data);
-      delete addon.data.dialogs.selectLang;
     },
   };
 

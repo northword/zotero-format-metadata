@@ -10,38 +10,7 @@ export function registerMenu() {
         tag: "menuitem",
         label: getString("menuitem-stdFormatFlow"),
         commandListener: () => {
-          addon.hooks.onLintInBatch("std", menuPopup);
-        },
-      },
-      {
-        tag: "menuseparator",
-      },
-      // {
-      //     tag: "menuitem",
-      //     label: getString("menuitem-自动识别标题中的上下标"),
-      //     commandListener: () => {
-      //         addon.hooks.onUpdateInBatch("todo", menuPopup);
-      //     },
-      // },
-      {
-        tag: "menuitem",
-        label: getString("menuitem-toSentenceCase"),
-        commandListener: () => {
-          addon.hooks.onLintInBatch("toSentenceCase", menuPopup);
-        },
-      },
-      {
-        tag: "menuitem",
-        label: getString("menuitem-capitalizeName"),
-        commandListener: () => {
-          addon.hooks.onLintInBatch("capitalizeName", menuPopup);
-        },
-      },
-      {
-        tag: "menuitem",
-        label: getString("menuitem-capitalizePinyin"),
-        commandListener: () => {
-          addon.hooks.onLintInBatch("creatorsPinyin", menuPopup);
+          addon.hooks.onLintInBatch("standard", menuPopup);
         },
       },
       {
@@ -49,16 +18,23 @@ export function registerMenu() {
       },
       {
         tag: "menuitem",
-        label: getString("menuitem-autoSetLang"),
+        label: getString("rule-require-title-sentence-case-menu-item"),
         commandListener: () => {
-          addon.hooks.onLintInBatch("lang", menuPopup);
+          addon.hooks.onLintInBatch("require-title-sentence-case", menuPopup);
         },
       },
       {
         tag: "menuitem",
-        label: getString("menuitem-manuallySetLang"),
+        label: getString("rule-correct-creators-case-menu-item"),
         commandListener: () => {
-          addon.hooks.onLintInBatch("lang-manual", menuPopup);
+          addon.hooks.onLintInBatch("correct-creators-case", menuPopup);
+        },
+      },
+      {
+        tag: "menuitem",
+        label: getString("rule-correct-creators-pinyin-menu-item"),
+        commandListener: () => {
+          addon.hooks.onLintInBatch("correct-creators-pinyin", menuPopup);
         },
       },
       {
@@ -66,96 +42,52 @@ export function registerMenu() {
       },
       {
         tag: "menuitem",
-        label: getString("menuitem-setPublicationTitle"),
+        label: getString("rule-require-language-menu-item"),
         commandListener: () => {
-          addon.hooks.onLintInBatch("publicationTitle", menuPopup);
+          addon.hooks.onLintInBatch("require-language", menuPopup);
         },
       },
       {
         tag: "menuitem",
-        label: getString("menuitem-setJournalAbbr"),
+        label: getString("rule-tool-set-language-menu-item"),
         commandListener: () => {
-          addon.hooks.onLintInBatch("abbr", menuPopup);
-        },
-      },
-      {
-        tag: "menuitem",
-        label: getString("menuitem-setPlace"),
-        commandListener: () => {
-          addon.hooks.onLintInBatch("place", menuPopup);
+          addon.hooks.onLintInBatch("tool-set-language", menuPopup);
         },
       },
       {
         tag: "menuseparator",
       },
       {
-        tag: "menu",
-        label: getString("menuitem-retriveFields"),
-        children: [
-          {
-            tag: "menuitem",
-            label: getString("menuitem-getFieldsByDOIForBlack"),
-            commandListener: () => {
-              addon.hooks.onLintInBatch("getBlankFieldViaDOI", menuPopup);
-            },
-          },
-          // {
-          //     tag: "menuitem",
-          //     label: getString("menuitem-getFieldsByDOIForSelected"),
-          //     commandListener: () => {
-          //         addon.hooks.onUpdateInBatch("todo", menuPopup);
-          //     },
-          // },
-          {
-            tag: "menuitem",
-            label: getString("menuitem-getFieldsByDOIForAll"),
-            commandListener: () => {
-              addon.hooks.onLintInBatch("getAllFieldViaDOI", menuPopup);
-            },
-          },
-          {
-            tag: "menuseparator",
-          },
-          {
-            tag: "menuitem",
-            label: getString("menuitem-getFieldsByDOIForBlackAndLint"),
-            commandListener: () => {
-              addon.hooks.onLintInBatch("getBlankFieldViaDOIAndLint", menuPopup);
-            },
-          },
-          // {
-          //     tag: "menuitem",
-          //     label: getString("menuitem-getFieldsByDOIForSelected"),
-          //     commandListener: () => {
-          //         addon.hooks.onUpdateInBatch("todo", menuPopup);
-          //     },
-          // },
-          {
-            tag: "menuitem",
-            label: getString("menuitem-getFieldsByDOIForAllAndLint"),
-            commandListener: () => {
-              addon.hooks.onLintInBatch("getAllFieldViaDOIAndLint", menuPopup);
-            },
-          },
-        ],
+        tag: "menuitem",
+        label: getString("rule-correct-publication-title-menu-item"),
+        commandListener: () => {
+          addon.hooks.onLintInBatch("correct-publication-title", menuPopup);
+        },
       },
-      // {
-      //     tag: "menuseparator",
-      // },
-      // {
-      //     tag: "menuitem",
-      //     label: getString("menuitem-去除期卷页中多余的0"),
-      //     commandListener: () => {
-      //         addon.hooks.onUpdateInBatch("todo", menuPopup);
-      //     },
-      // },
-      // {
-      //     tag: "menuitem",
-      //     label: getString("menuitem-清理非法占用的字段"),
-      //     commandListener: () => {
-      //         addon.hooks.onUpdateInBatch("todo", menuPopup);
-      //     },
-      // },
+      {
+        tag: "menuitem",
+        label: getString("rule-require-journal-abbr-menu-item"),
+        commandListener: () => {
+          addon.hooks.onLintInBatch("require-journal-abbr", menuPopup);
+        },
+      },
+      {
+        tag: "menuitem",
+        label: getString("rule-require-university-place-menu-item"),
+        commandListener: () => {
+          addon.hooks.onLintInBatch("require-university-place", menuPopup);
+        },
+      },
+      {
+        tag: "menuseparator",
+      },
+      {
+        tag: "menuitem",
+        label: getString("tool-update-metadata-menu-item"),
+        commandListener: () => {
+          addon.hooks.onLintInBatch(["tool-update-metadata", "standard"], menuPopup);
+        },
+      },
       {
         tag: "menuseparator",
       },
@@ -164,32 +96,11 @@ export function registerMenu() {
         label: getString("menuTools-label"),
         icon: menuIcon,
         children: [
-          // {
-          //     tag: "menuitem",
-          //     label: getString("menuitem-titleDoubleQuoteToSingleQuote"),
-          //     commandListener: () => {
-          //         addon.hooks.onUpdateInBatch("titleDoubleQuoteToSingleQuote", "item");
-          //     },
-          // },
-          // {
-          //     tag: "menuitem",
-          //     label: getString("menuitem-titleSingleQuoteToDoubleQuote"),
-          //     commandListener: () => {
-          //         addon.hooks.onUpdateInBatch("titleSingleQuoteToDoubleQuote", "item");
-          //     },
-          // },
           {
             tag: "menuitem",
-            label: getString("menuitem-titleGuillemetToBrackets"),
+            label: getString("rule-tool-title-guillemet-menu-item"),
             commandListener: () => {
-              addon.hooks.onLintInBatch("titleGuillemetToBrackets", "item");
-            },
-          },
-          {
-            tag: "menuitem",
-            label: getString("menuitem-titleBracketsToGuillemet"),
-            commandListener: () => {
-              addon.hooks.onLintInBatch("titleBracketsToGuillemet", "item");
+              addon.hooks.onLintInBatch("tool-title-guillemet", "item");
             },
           },
           {
@@ -197,24 +108,17 @@ export function registerMenu() {
           },
           {
             tag: "menuitem",
-            label: getString("menuitem-setDoi"),
+            label: getString("rule-no-doi-prefix-menu-item"),
             commandListener: () => {
-              addon.hooks.onLintInBatch("doi", menuPopup);
+              addon.hooks.onLintInBatch("no-doi-prefix", menuPopup);
             },
             disabled: true,
           },
           {
             tag: "menuitem",
-            label: getString("menuitem-setDate"),
+            label: getString("rule-correct-date-format-menu-item"),
             commandListener: () => {
-              addon.hooks.onLintInBatch("date", menuPopup);
-            },
-          },
-          {
-            tag: "menuitem",
-            label: getString("menuitem-remove-zeros"),
-            commandListener: () => {
-              addon.hooks.onLintInBatch("removeZeros", menuPopup);
+              addon.hooks.onLintInBatch("correct-date-format", menuPopup);
             },
           },
           {
@@ -222,9 +126,9 @@ export function registerMenu() {
           },
           {
             tag: "menuitem",
-            label: getString("menuitem-setCreatorExt"),
+            label: getString("rule-tool-creators-ext-menu-item"),
             commandListener: () => {
-              addon.hooks.onLintInBatch("creatorExt", menuPopup);
+              addon.hooks.onLintInBatch("tool-creators-ext", menuPopup);
             },
           },
         ],
@@ -268,33 +172,10 @@ export function registerMenu() {
       label: "测试",
       icon: menuIcon,
       commandListener: () => {
-        addon.hooks.onLintInBatch("test", "item");
+        addon.hooks.onLintInBatch("standard", "item");
       },
     });
   }
-
-  // ztoolkit.Menu.register("menuTools", {
-  //     tag: "menu",
-  //     label: getString("menuTools-label"),
-  //     id: `${addon.data.config.addonRef}-menuTools`,
-  //     icon: menuIcon,
-  //     children: [
-  //         {
-  //             tag: "menuitem",
-  //             label: getString("menuitem-titleBracketsToGuillemet"),
-  //             commandListener: () => {
-  //                 addon.hooks.onUpdateInBatch("titleBracketsToGuillemet", "item");
-  //             },
-  //         },
-  //         {
-  //             tag: "menuitem",
-  //             label: getString("menuitem-titleGuillemetToBrackets"),
-  //             commandListener: () => {
-  //                 addon.hooks.onUpdateInBatch("titleGuillemetToBrackets", "item");
-  //             },
-  //         },
-  //     ],
-  // });
 }
 
 export function registerTextTransformMenu(window: Window) {
@@ -304,9 +185,9 @@ export function registerTextTransformMenu(window: Window) {
     skipIfExists: true,
     classList: ["menuitem-non-iconic"],
     attributes: {
-      label: getString("menufield-toSentenceCase"),
+      label: getString("rule-require-title-sentence-case-menu-field"),
     },
-    listeners: [{ type: "click", listener: _e => addon.hooks.onLintInBatch("toSentenceCase", "item") }],
+    listeners: [{ type: "click", listener: _e => addon.hooks.onLintInBatch("require-title-sentence-case", "item") }],
   });
   zoteroFieldTransformMenu?.append(toSentenceCaseExtMenu);
   // todo: 支持与 Zotero 本身菜单一样的禁用

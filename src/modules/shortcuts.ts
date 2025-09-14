@@ -18,7 +18,7 @@ export function registerShortcuts() {
       }
       // `accel,alt,¬` is for compatibility with macOS, because option+L will become `¬`
       if (data.keyboard.equals("accel,alt,L") || data.keyboard.equals("accel,alt,¬")) {
-        addon.hooks.onLintInBatch("std", "item");
+        addon.hooks.onLintInBatch("standard", "item");
       }
     }
   });

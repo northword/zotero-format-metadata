@@ -1,21 +1,97 @@
-export * from "./field-abbr";
-export * from "./field-creators-case";
-export * from "./field-creators-ext";
-export * from "./field-creators-pinyin";
-export * from "./field-date-iso";
-export * from "./field-doi-no-prefix";
-export * from "./field-language";
-export * from "./field-pages";
-export * from "./field-place";
-export * from "./field-publication";
-export * from "./field-thesisType";
-export * from "./field-title-guillemet";
-export * from "./field-title-no-dot-end";
-export * from "./field-title-sentence-case";
-export * from "./field-university";
-export * from "./no-duplicate-item";
-export * from "./no-extra-zeros";
-export * from "./no-journalArticle-preprint";
-export * from "./no-webpage-item";
-export * from "./retrive-metadata";
-export * from "./set-field-value";
+import type { Rule } from "./rule-base";
+import { getPref } from "../../utils/prefs";
+import { CorrectCreatorsCase } from "./correct-creators-case";
+import { CorrectCreatorsPinyin } from "./correct-creators-pinyin";
+import { CorrectDateFormat } from "./correct-date-format";
+import { CorrectPagesConnector } from "./correct-pages-connector";
+import { CorrectPublicationTitle } from "./correct-publication-title";
+import { CorrectThesisType } from "./correct-thesis-type";
+import { CorrectUniversity } from "./correct-university";
+import { NoArticleWebPage } from "./no-article-webpage";
+import { NoDOIPrefix } from "./no-doi-prefix";
+import { NoIssueExtraZeros, NoPagesExtraZeros, NoVolumeExtraZeros } from "./no-extra-zeros";
+import { NoItemDuplication } from "./no-item-duplication";
+import { NoJournalPreprint } from "./no-journal-preprint";
+import { NoTitleTrailingDot } from "./no-title-trailing-dot";
+import { CorrectConferenceAbbr, RequireJournalAbbr } from "./require-abbr";
+import { RequireLanguage } from "./require-language";
+import { RequireShortTitleSentenceCase, RequireTitleSentenceCase } from "./require-title-sentence-case";
+import { RequireUniversityPlace } from "./require-university-place";
+import { ToolCreatorsExt } from "./tool-creators-ext";
+import { ToolUpdateMetadata } from "./tool-retrive-metadata";
+import { ToolSetLanguage } from "./tool-set-language";
+import { ToolTitleGuillemet } from "./tool-title-guillemet";
+
+const register: Rule<any>[] = [
+  // Item rules first
+  NoItemDuplication,
+  NoArticleWebPage,
+  NoJournalPreprint,
+
+  // Language
+  RequireLanguage,
+
+  // Title
+  RequireTitleSentenceCase,
+  RequireShortTitleSentenceCase,
+  NoTitleTrailingDot,
+
+  // Creators
+  CorrectCreatorsCase,
+  CorrectCreatorsPinyin,
+
+  // Other general fields
+  CorrectDateFormat,
+
+  // Article specific fields
+  CorrectPublicationTitle,
+  RequireJournalAbbr,
+  CorrectPagesConnector,
+  NoDOIPrefix,
+  NoIssueExtraZeros,
+  NoPagesExtraZeros,
+  NoVolumeExtraZeros,
+
+  // Conference specific fields
+  CorrectConferenceAbbr,
+
+  // Thesis specific fields
+  CorrectThesisType,
+  CorrectUniversity,
+  RequireUniversityPlace,
+
+  // Tools
+  ToolTitleGuillemet,
+  ToolCreatorsExt,
+  ToolSetLanguage,
+  ToolUpdateMetadata,
+];
+
+export class Rules {
+  private static readonly register = Object.freeze(register);
+
+  static getAll() {
+    return [...this.register];
+  }
+
+  static getStandard() {
+    return [...this.getAll().filter(rule => rule.category !== "tool")];
+  }
+
+  static getEnabledStandard() {
+    return [...this.getStandard()
+      .filter(rule => getPref(`rule.${rule.id as ID}`))];
+  }
+
+  static getTool() {
+    return [...this.getAll().filter(rule => rule.category === "tool")];
+  }
+
+  static getByType(type: Rule["scope"]) {
+    return this.register.filter(rule => rule.scope === type);
+  }
+
+  static getByID(id: ID) {
+    return this.register.find(rule => rule.id === id);
+  }
+}
