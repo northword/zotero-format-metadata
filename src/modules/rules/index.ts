@@ -1,27 +1,28 @@
 import type { Rule } from "./rule-base";
-import { CorrectConferenceAbbr, RequireJournalAbbr } from "./field-abbr";
-import { CorrectCreatorsCase } from "./field-creators-case";
-import { ToolCreatorsExt } from "./field-creators-ext";
-import { CorrectCreatorsPinyin } from "./field-creators-pinyin";
-import { CorrectDataFormat } from "./field-date-iso";
-import { NoDOIPrefix } from "./field-doi-no-prefix";
-import { RequireLanguage } from "./field-language";
-import { ToolSetLanguage } from "./field-language-manual";
-import { CorrectPagesConnector } from "./field-pages";
-import { RequireUniversityPlace } from "./field-place";
-import { CorrectPublicationTitle } from "./field-publication";
-import { CorrectThesisType } from "./field-thesisType";
-import { ToolTitleGuillemet } from "./field-title-guillemet";
-import { NoTitleTrailingDot } from "./field-title-no-dot-end";
-import { RequireTitleSentenceCase } from "./field-title-sentence-case";
-import { CorrectUniversity } from "./field-university";
-import { NoItemDuplication } from "./no-duplicate-item";
+import { getPref } from "../../utils/prefs";
+import { CorrectCreatorsCase } from "./correct-creators-case";
+import { CorrectCreatorsPinyin } from "./correct-creators-pinyin";
+import { CorrectDataFormat } from "./correct-data-format";
+import { CorrectPagesConnector } from "./correct-pages-connector";
+import { CorrectPublicationTitle } from "./correct-publication-title";
+import { CorrectThesisType } from "./correct-thesis-type";
+import { CorrectUniversity } from "./correct-university";
+import { NoArticleWebPage } from "./no-article-webpage";
+import { NoDOIPrefix } from "./no-doi-prefix";
 import { NoIssueExtraZeros, NoPagesExtraZeros, NoVolumeExtraZeros } from "./no-extra-zeros";
-import { NoJournalPreprint } from "./no-journalArticle-preprint";
-import { NoArticleWebPage } from "./no-webpage-item";
-import { ToolUpdateMetadata } from "./retrive-metadata";
+import { NoItemDuplication } from "./no-item-duplication";
+import { NoJournalPreprint } from "./no-journal-preprint";
+import { NoTitleTrailingDot } from "./no-title-trailing-dot";
+import { CorrectConferenceAbbr, RequireJournalAbbr } from "./require-abbr";
+import { RequireLanguage } from "./require-language";
+import { RequireTitleSentenceCase } from "./require-title-sentence-case";
+import { RequireUniversityPlace } from "./require-university-place";
+import { ToolCreatorsExt } from "./tool-creators-ext";
+import { ToolUpdateMetadata } from "./tool-retrive-metadata";
+import { ToolSetLanguage } from "./tool-set-language";
+import { ToolTitleGuillemet } from "./tool-title-guillemet";
 
-const StandardRules: Rule<any>[] = [
+const register: Rule<any>[] = [
   // Item rules first
   NoItemDuplication,
   NoArticleWebPage,
@@ -44,8 +45,8 @@ const StandardRules: Rule<any>[] = [
   // Article specific fields
   CorrectPublicationTitle,
   RequireJournalAbbr,
-  NoDOIPrefix,
   CorrectPagesConnector,
+  NoDOIPrefix,
   NoIssueExtraZeros,
   NoPagesExtraZeros,
   NoVolumeExtraZeros,
@@ -57,9 +58,8 @@ const StandardRules: Rule<any>[] = [
   CorrectThesisType,
   CorrectUniversity,
   RequireUniversityPlace,
-];
 
-const ToolRules: Rule<any>[] = [
+  // Tools
   ToolTitleGuillemet,
   ToolCreatorsExt,
   ToolSetLanguage,
@@ -67,30 +67,31 @@ const ToolRules: Rule<any>[] = [
 ];
 
 export class Rules {
-  private static readonly StandardRules = Object.freeze(StandardRules);
-  private static readonly ToolRules = Object.freeze(ToolRules);
-  private static readonly rules = Object.freeze([
-    ...StandardRules,
-    ...ToolRules,
-  ]);
+  private static readonly register = Object.freeze(register);
 
   static getAll() {
-    return [...this.rules];
+    return [...this.register];
   }
 
   static getStandard() {
-    return [...this.StandardRules];
+    return [...this.getAll().filter(rule => rule.category !== "tool")];
+  }
+
+  static getEnabledStandard() {
+    return [...this.getStandard()
+      // @ts-expect-error todo
+      .filter(rule => getPref(`rule.${rule.id}`))];
   }
 
   static getTool() {
-    return [...this.ToolRules];
+    return [...this.getAll().filter(rule => rule.category === "tool")];
   }
 
-  static getByType(type: "item" | "field") {
-    return this.rules.filter(rule => rule.scope === type);
+  static getByType(type: Rule["scope"]) {
+    return this.register.filter(rule => rule.scope === type);
   }
 
   static getByID(id: ID) {
-    return this.rules.find(rule => rule.id === id);
+    return this.register.find(rule => rule.id === id);
   }
 }
