@@ -11,12 +11,12 @@ import { defineRule } from "./rule-base";
  *
  * @see https://github.com/northword/zotero-format-metadata/issues/132
  */
-export const ThesisTypeShouldValid = defineRule({
-  id: "thesis-type-name",
-  type: "field",
+export const CorrectThesisType = defineRule({
+  id: "correct-thesis-type",
+  scope: "field",
 
   targetItemTypes: ["thesis"],
-  targetItemFields: ["thesisType"],
+  targetItemField: "thesisType",
 
   apply({ item }) {
     let type = item.getField("thesisType");

@@ -8,10 +8,11 @@ interface Options {
   language?: string;
 }
 
-export const LanguageManual = defineRule<Options>({
-  id: "language-manual",
-  type: "field",
-  targetItemFields: ["language"],
+export const ToolSetLanguage = defineRule<Options>({
+  id: "tool-set-language",
+  scope: "field",
+  category: "tool",
+  targetItemField: "language",
   apply({ item, options }) {
     if (options.language)
       item.setField("language", options.language);

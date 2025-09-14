@@ -2,12 +2,12 @@ import { useData } from "../../utils/data-loader";
 import { functionWords, isFullUpperCase, normalizeKey } from "../../utils/str";
 import { defineRule } from "./rule-base";
 
-export const PublicationTitleShouldValid = defineRule({
-  id: "update-publication-title",
-  type: "field",
+export const CorrectPublicationTitle = defineRule({
+  id: "correct-publication-title",
+  scope: "field",
 
   targetItemTypes: ["journalArticle"],
-  targetItemFields: ["publicationTitle"],
+  targetItemField: "publicationTitle",
   async apply({ item }) {
     const publicationTitle = item.getField("publicationTitle", false, true) as string;
     let newPublicationTitle = "";

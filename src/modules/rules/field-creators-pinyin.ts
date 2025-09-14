@@ -1,10 +1,10 @@
 import { capitalizeFirstLetter } from "../../utils/str";
 import { defineRule } from "./rule-base";
 
-export const CreatorsPinyin = defineRule({
-  id: "creators-pinyin",
-  type: "field",
-  targetItemFields: ["creators"],
+export const CorrectCreatorsPinyin = defineRule({
+  id: "correct-creators-pinyin",
+  scope: "field",
+  targetItemField: "creators",
 
   apply({ item }) {
     const creators = item.getCreators();

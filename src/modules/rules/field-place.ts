@@ -1,12 +1,12 @@
 import { useData } from "../../utils/data-loader";
 import { defineRule } from "./rule-base";
 
-export const UniversityPlaceShouldValid = defineRule({
-  id: "no-empty-university-place",
-  type: "field",
+export const RequireUniversityPlace = defineRule({
+  id: "require-university-place",
+  scope: "field",
 
   targetItemTypes: ["thesis"],
-  targetItemFields: ["place"],
+  targetItemField: "place",
 
   async apply({ item, debug }) {
     const university = item.getField("university") as string;

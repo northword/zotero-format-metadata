@@ -7,15 +7,15 @@ interface Options {
   data?: any[];
 }
 
-function createSentenceCaseRule(targetField: "title" | "shortTitle") {
+function createRequireTitleSentenceCaseRule(targetItemField: "title" | "shortTitle") {
   return defineRule<Options>({
-    id: "title-should-sentence-case",
-    type: "field",
-    targetItemFields: [targetField],
+    id: "require-title-sentence-case",
+    scope: "field",
+    targetItemField,
 
     async apply({ item, options, debug }) {
       const lang = item.getField("language");
-      let title = item.getField(targetField, false, true);
+      let title = item.getField(targetItemField, false, true);
       title = lang.match("zh") ? title : toSentenceCase(title, lang);
 
       const data = options.data;
@@ -29,7 +29,7 @@ function createSentenceCaseRule(targetField: "title" | "shortTitle") {
         });
       }
 
-      item.setField(targetField, title);
+      item.setField(targetItemField, title);
     },
 
     async getOptions() {
@@ -48,5 +48,5 @@ function createSentenceCaseRule(targetField: "title" | "shortTitle") {
   });
 }
 
-export const TitleShouldSentenceCase = createSentenceCaseRule("title");
-export const ShortTitleShouldSentenceCase = createSentenceCaseRule("shortTitle");
+export const RequireTitleSentenceCase = createRequireTitleSentenceCaseRule("title");
+export const RequireShortTitleSentenceCase = createRequireTitleSentenceCaseRule("shortTitle");

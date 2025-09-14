@@ -1,69 +1,69 @@
 import type { Rule } from "./rule-base";
-import { ConferenceAbbr, JornalAbbrShouldCorrect } from "./field-abbr";
-import { CreatorsCase } from "./field-creators-case";
-import { CreatorsExt } from "./field-creators-ext";
-import { CreatorsPinyin } from "./field-creators-pinyin";
-import { DataShouldInISOFormat } from "./field-date-iso";
+import { CorrectConferenceAbbr, RequireJournalAbbr } from "./field-abbr";
+import { CorrectCreatorsCase } from "./field-creators-case";
+import { ToolCreatorsExt } from "./field-creators-ext";
+import { CorrectCreatorsPinyin } from "./field-creators-pinyin";
+import { CorrectDataFormat } from "./field-date-iso";
 import { NoDOIPrefix } from "./field-doi-no-prefix";
-import { LanguageShouldValid } from "./field-language";
-import { LanguageManual } from "./field-language-manual";
-import { PagesConnectorShouldValid } from "./field-pages";
-import { UniversityPlaceShouldValid } from "./field-place";
-import { PublicationTitleShouldValid } from "./field-publication";
-import { ThesisTypeShouldValid } from "./field-thesisType";
-import { TitleGuillemet } from "./field-title-guillemet";
-import { NoDotEndTitle } from "./field-title-no-dot-end";
-import { TitleShouldSentenceCase } from "./field-title-sentence-case";
-import { UniversityShouldValid } from "./field-university";
-import { NoDuplicatItem } from "./no-duplicate-item";
-import { NoExtraZerosInIssue, NoExtraZerosInPages, NoExtraZerosInVolume } from "./no-extra-zeros";
-import { NoPreprintJournalArticle } from "./no-journalArticle-preprint";
-import { NoWebPageItem } from "./no-webpage-item";
-import { UpdateMetadata } from "./retrive-metadata";
+import { RequireLanguage } from "./field-language";
+import { ToolSetLanguage } from "./field-language-manual";
+import { CorrectPagesConnector } from "./field-pages";
+import { RequireUniversityPlace } from "./field-place";
+import { CorrectPublicationTitle } from "./field-publication";
+import { CorrectThesisType } from "./field-thesisType";
+import { ToolTitleGuillemet } from "./field-title-guillemet";
+import { NoTitleTrailingDot } from "./field-title-no-dot-end";
+import { RequireTitleSentenceCase } from "./field-title-sentence-case";
+import { CorrectUniversity } from "./field-university";
+import { NoItemDuplication } from "./no-duplicate-item";
+import { NoIssueExtraZeros, NoPagesExtraZeros, NoVolumeExtraZeros } from "./no-extra-zeros";
+import { NoJournalPreprint } from "./no-journalArticle-preprint";
+import { NoArticleWebPage } from "./no-webpage-item";
+import { ToolUpdateMetadata } from "./retrive-metadata";
 
 const StandardRules: Rule<any>[] = [
   // Item rules first
-  NoDuplicatItem,
-  NoWebPageItem,
-  NoPreprintJournalArticle,
+  NoItemDuplication,
+  NoArticleWebPage,
+  NoJournalPreprint,
 
   // Language
-  LanguageShouldValid,
+  RequireLanguage,
 
   // Title
-  TitleShouldSentenceCase,
-  NoDotEndTitle,
+  RequireTitleSentenceCase,
+  NoTitleTrailingDot,
 
   // Creators
-  CreatorsCase,
-  CreatorsPinyin,
+  CorrectCreatorsCase,
+  CorrectCreatorsPinyin,
 
   // Other general fields
-  DataShouldInISOFormat,
+  CorrectDataFormat,
 
   // Article specific fields
-  PublicationTitleShouldValid,
-  JornalAbbrShouldCorrect,
+  CorrectPublicationTitle,
+  RequireJournalAbbr,
   NoDOIPrefix,
-  PagesConnectorShouldValid,
-  NoExtraZerosInIssue,
-  NoExtraZerosInPages,
-  NoExtraZerosInVolume,
+  CorrectPagesConnector,
+  NoIssueExtraZeros,
+  NoPagesExtraZeros,
+  NoVolumeExtraZeros,
 
   // Conference specific fields
-  ConferenceAbbr,
+  CorrectConferenceAbbr,
 
   // Thesis specific fields
-  ThesisTypeShouldValid,
-  UniversityShouldValid,
-  UniversityPlaceShouldValid,
+  CorrectThesisType,
+  CorrectUniversity,
+  RequireUniversityPlace,
 ];
 
 const ToolRules: Rule<any>[] = [
-  TitleGuillemet,
-  CreatorsExt,
-  LanguageManual,
-  UpdateMetadata,
+  ToolTitleGuillemet,
+  ToolCreatorsExt,
+  ToolSetLanguage,
+  ToolUpdateMetadata,
 ];
 
 export class Rules {
@@ -87,7 +87,7 @@ export class Rules {
   }
 
   static getByType(type: "item" | "field") {
-    return this.rules.filter(rule => rule.type === type);
+    return this.rules.filter(rule => rule.scope === type);
   }
 
   static getByID(id: ID) {

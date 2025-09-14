@@ -2,15 +2,15 @@ import type { Data } from "../../utils/data-loader";
 import { getTextLanguage } from "../../utils/str";
 import { defineRule } from "./rule-base";
 
-export const LanguageShouldValid = defineRule({
-  id: "language-should-correct",
-  type: "field",
+export const RequireLanguage = defineRule({
+  id: "require-language",
+  scope: "field",
 
   // computerProgram do not have field language
   // https://github.com/northword/zotero-format-metadata/issues/185
   // https://www.zotero.org/support/kb/item_types_and_fields#fields_for_software
   ignoreItemTypes: ["computerProgram"],
-  targetItemFields: ["language"],
+  targetItemField: "language",
   async apply({ item }) {
     // WIP: 已有合法 ISO 639 - ISO 3166 代码的，不予处理
     // if (verifyIso3166(item.getField("language") as string) && getPref("lang.verifyBefore")) {

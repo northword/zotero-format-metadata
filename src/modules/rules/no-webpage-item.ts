@@ -89,9 +89,9 @@ const publisherUrlKeyWords = [
   "zotero.org",
 ];
 
-export const NoWebPageItem = defineRule({
-  id: "no-webpage-item",
-  type: "item",
+export const NoArticleWebPage = defineRule({
+  id: "no-article-webpage",
+  scope: "item",
   targetItemTypes: ["webpage"],
 
   apply({ item, report }) {

@@ -1,9 +1,9 @@
 import { defineRule } from "./rule-base";
 
-export const DataShouldInISOFormat = defineRule({
-  id: "data-should-in-iso-format",
-  type: "field",
-  targetItemFields: ["date"],
+export const CorrectDataFormat = defineRule({
+  id: "correct-data-format",
+  scope: "field",
+  targetItemField: "date",
 
   apply({ item }) {
     const oldDate = item.getField("date") as string;

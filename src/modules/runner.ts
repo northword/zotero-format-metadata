@@ -4,6 +4,8 @@ import type { Context, Rule } from "./rules/rule-base";
 import PQueue from "p-queue";
 import { createReporter, ProgressUI } from "./reporter";
 
+const debug = (...args: any[]) => ztoolkit.log("[Runner]", ...args);
+
 const TASK_TIMEOUT = 60000;
 
 export interface Task {
@@ -27,22 +29,38 @@ interface RunnerStats {
 }
 
 function shouldApplyRule(rule: Rule<any>, item: Zotero.Item): boolean {
-  if (rule.targetItemTypes && !rule.targetItemTypes.includes(item.itemType)) {
-    ztoolkit.log(`[Rule ${rule.id}] Skip rule for item ${item.id} type ${item.itemType}`);
+  // tag and attachment rules are not implemented
+  if (rule.scope !== "item" && rule.scope !== "field") {
+    return false;
+  }
+  if (!item.isRegularItem()) {
     return false;
   }
 
-  if (rule.type === "field") {
-    const allFieldForThisItemType = Zotero.ItemFields.getItemTypeFields(item.itemTypeID)
-      .map(Zotero.ItemFields.getName);
+  /*  For regular item and rule  */
+  if (rule.targetItemTypes && rule.ignoreItemTypes) {
+    debug(`[Warn] Rule ${rule.id} has both targetItemTypes and ignoreItemTypes.`);
+  }
 
-    if (rule.targetItemFields.length !== 0) {
-      for (const field of rule.targetItemFields) {
-        if (!allFieldForThisItemType.includes(field)) {
-          ztoolkit.log(`[Rule ${rule.id}] Skip rule for item ${item.id} field ${field}`);
-          return false;
-        }
-      }
+  // Check item type
+  if (rule.targetItemTypes && !rule.targetItemTypes.includes(item.itemType)) {
+    debug(`Skip ${rule.id}: ${item.itemType} not supported by this rule`);
+    return false;
+  }
+  if (rule.ignoreItemTypes?.includes(item.itemType)) {
+    debug(`Skip ${rule.id}: ${item.itemType} is ignored by this rule`);
+    return false;
+  }
+
+  if (rule.scope === "field") {
+    // if targetField of this rule is primary field, always apply
+    if (rule.targetItemField === "creators")
+      return true;
+
+    // Check this target field is included in this item type
+    if (!Zotero.ItemFields.isValidForType(Zotero.ItemFields.getID(rule.targetItemField), item.itemTypeID)) {
+      debug(`Skip ${rule.id}: ${rule.targetItemField} not valid for ${item.itemType}`);
+      return false;
     }
   }
 
@@ -73,7 +91,7 @@ export class LintRunner {
     this.stats = this.createEmptyStats();
     this.stats.startTime = Date.now();
 
-    ztoolkit.log(`[Runner] Add tasks at ${new Date(this.stats.startTime).toLocaleTimeString()}`);
+    debug(`Add tasks at ${new Date(this.stats.startTime).toLocaleTimeString()}`);
     await this.ui.init(slient);
 
     const resolvedTasks = await this.resolveTasks(task);
@@ -105,14 +123,14 @@ export class LintRunner {
             title: "Error: Failed to get options",
             ruleID: rule.id,
           });
-          ztoolkit.log(`[Rule ${rule.id}] Failed to get options:`, error);
+          debug(`Failed to get options for ${rule.id}:`, error);
           this.onError(error);
           this.onIdle();
           throw error;
         }
       }
     }
-    ztoolkit.log("[Runner] Options:", options);
+    debug("Options:", options);
 
     return items.map(item => ({ item, rules, options }));
   }
@@ -130,10 +148,12 @@ export class LintRunner {
           continue;
         }
 
+        debug(`Applying ${rule.id}`);
+
         const ctx: Context = {
           item,
           options: options.get(rule.id) ?? {},
-          debug: (...args: any[]) => ztoolkit.log(`[${rule.id}] Debug: `, ...args),
+          debug: (...args: any[]) => ztoolkit.log(`[${rule.id}]`, ...args),
           report: (info) => {
             this.stats.records.push({
               ...info,
@@ -141,13 +161,12 @@ export class LintRunner {
               title: item.getDisplayTitle(),
               ruleID: rule.id,
             });
-            ztoolkit.log(`[Report ${info.level}] rule ${rule.id} for item ${item.id}:`, info.message);
+            ztoolkit.log(`[${rule.id}] Report ${info.level} for item ${item.id}:`, info.message);
           },
         };
 
-        ztoolkit.log(`[Runner] Applying ${rule.id}`);
         await rule.apply(ctx);
-        // ztoolkit.log("[Runner] Rule applied:", item.toJSON());
+        // debug("Rule applied:", item.toJSON());
       }
 
       if (item.hasTag("linter/error")) {
@@ -203,7 +222,7 @@ export class LintRunner {
     if (this.stats.records.length !== 0)
       createReporter(this.stats.records);
 
-    ztoolkit.log(`[Runner] Batch tasks completed in ${duration}s`);
+    debug(`Batch tasks completed in ${duration}s`);
     this.stats = this.createEmptyStats();
   }
 

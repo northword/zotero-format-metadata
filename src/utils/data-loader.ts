@@ -39,7 +39,7 @@ export async function useData(key: string, path?: string, loaderOptions?: any) {
   else {
     data = await Zotero.File.getContentsAsync(path) as string;
   }
-  ztoolkit.log(`${path} data: ${data}`);
+  ztoolkit.log(`[data-loader] Success read ${path}, data head: ${data.split("\n").slice(0, 5).join("\n")}`);
 
   if (key === "csv" || path.endsWith(".csv")) {
     return (await csv({

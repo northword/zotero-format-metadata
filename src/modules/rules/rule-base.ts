@@ -6,7 +6,7 @@ export interface Context<Option = object> {
   item: Zotero.Item;
   options: Option;
   debug: (...args: any) => void;
-  report: (info: Omit<ReportInfo, "item" | "ruleID">) => void;
+  report: (info: Omit<ReportInfo, "itemID" | "title" | "ruleID">) => void;
 }
 
 interface RuleBase<Option = object> {
@@ -33,19 +33,13 @@ interface RuleBase<Option = object> {
    *
    * @todo tag and attachment are not implemented
    */
-  type: "field" | "item" | "tag" | "attachment";
+  scope: "field" | "item" | "tag" | "attachment";
   /**
    * Whether the rule is a tool.
+   *
+   * @default "rule"
    */
-  tool?: boolean;
-  /**
-   * The target item types of the rule.
-   */
-  targetItemTypes?: _ZoteroTypes.Item.ItemType[];
-  /**
-   * The ignore item types of the rule.
-   */
-  ignoreItemTypes?: _ZoteroTypes.Item.ItemType[];
+  category?: "rule" | "tool";
 
   /**
    * Handler of the rule.
@@ -75,42 +69,54 @@ interface RuleBase<Option = object> {
    *
    * @todo not implemented
    */
-  menuItem?: () => any;
+  getItemMenu?: () => any;
 
   /**
    * Field menus
    *
    * @todo not implemented
    */
-  menuField?: () => any;
+  getFieldMenu?: () => any;
 }
 
 interface RuleForRegularItem<Option = object> extends RuleBase<Option> {
-  type: "item";
+  scope: "item" | "field";
+  /**
+   * The target item types of the rule.
+   */
+  targetItemTypes?: _ZoteroTypes.Item.ItemType[];
+  /**
+   * The ignore item types of the rule.
+   */
+  ignoreItemTypes?: _ZoteroTypes.Item.ItemType[];
 }
 
-interface RuleForRegularField<Option = object> extends RuleBase<Option> {
-  type: "field";
-  targetItemFields: Array<_ZoteroTypes.Item.ItemField | "creators">;
+interface RuleForRegularItemScopeItem<Option = object> extends RuleForRegularItem<Option> {
+  scope: "item";
+}
+
+interface RuleForRegularScopeField<Option = object> extends RuleForRegularItem<Option> {
+  scope: "field";
+  targetItemField: _ZoteroTypes.Item.ItemField | "creators";
 }
 
 /**
  * @todo unimplemented
  */
 interface RuleForTag<Option = object> extends RuleBase<Option> {
-  type: "tag";
+  scope: "tag";
 }
 
 /**
  * @todo unimplemented
  */
 interface RuleForAttachment<Option = object> extends RuleBase<Option> {
-  type: "attachment";
+  scope: "attachment";
 }
 
 export type Rule<Option = object>
-  = | RuleForRegularItem<Option>
-    | RuleForRegularField<Option>
+  = | RuleForRegularItemScopeItem<Option>
+    | RuleForRegularScopeField<Option>
     | RuleForTag<Option>
     | RuleForAttachment<Option>;
 

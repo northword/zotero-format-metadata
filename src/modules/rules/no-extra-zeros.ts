@@ -6,20 +6,20 @@ export function removeLeadingZeros(input: string): string {
 
 type Field = "pages" | "issue" | "volume";
 
-function createRule(field: Field) {
+function createRule(targetItemField: Field) {
   return defineRule({
-    id: `no-extra-zeros-in-${field}`,
-    type: "field",
+    id: `no-${targetItemField}-extra-zeros`,
+    scope: "field",
     targetItemTypes: ["journalArticle"],
-    targetItemFields: [field],
+    targetItemField,
     apply: ({ item }) => {
-      const fieldValue = String(item.getField(field));
+      const fieldValue = String(item.getField(targetItemField));
       const newFieldValue = removeLeadingZeros(fieldValue);
-      item.setField(field, newFieldValue);
+      item.setField(targetItemField, newFieldValue);
     },
   });
 }
 
-export const NoExtraZerosInPages = createRule("pages");
-export const NoExtraZerosInIssue = createRule("issue");
-export const NoExtraZerosInVolume = createRule("volume");
+export const NoPagesExtraZeros = createRule("pages");
+export const NoIssueExtraZeros = createRule("issue");
+export const NoVolumeExtraZeros = createRule("volume");

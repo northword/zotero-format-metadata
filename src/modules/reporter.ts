@@ -2,6 +2,7 @@ import type { ProgressWindowHelper } from "zotero-plugin-toolkit";
 import { groupBy } from "es-toolkit";
 import { getString } from "../utils/locale";
 import { getPref } from "../utils/prefs";
+import { waitUtilAsync } from "../utils/wait";
 
 export interface ReportInfo {
   level?: "warning" | "error";

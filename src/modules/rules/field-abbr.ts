@@ -20,12 +20,11 @@ function getOptions(): Options {
   };
 }
 
-export const JornalAbbrShouldCorrect = defineRule<Options>({
-  id: "journal-abbr-should-correct",
-  nameKey: "abbr-journal",
-  type: "field",
+export const RequireJournalAbbr = defineRule<Options>({
+  id: "require-journal-abbr",
+  scope: "field",
   targetItemTypes: ["journalArticle"],
-  targetItemFields: ["journalAbbreviation"],
+  targetItemField: "journalAbbreviation",
   async apply({ item }) {
     const publicationTitle = item.getField("publicationTitle") as string;
 
@@ -82,12 +81,12 @@ export const JornalAbbrShouldCorrect = defineRule<Options>({
 
 });
 
-export const ConferenceAbbr = defineRule<Options>({
-  id: "conference-abbr-should-correct",
+export const CorrectConferenceAbbr = defineRule<Options>({
+  id: "correct-conference-abbr",
   nameKey: "abbr-conference",
-  type: "field",
+  scope: "field",
   targetItemTypes: ["conferencePaper"],
-  targetItemFields: ["conferenceName"],
+  targetItemField: "conferenceName",
   async apply({ item }) {
     const conferenceName = item.getField("conferenceName") as string;
 

@@ -2,8 +2,8 @@ import { defineRule } from "./rule-base";
 
 export const NoDOIPrefix = defineRule({
   id: "no-doi-prefix",
-  type: "field",
-  targetItemFields: ["DOI"],
+  scope: "field",
+  targetItemField: "DOI",
 
   apply({ item }) {
     const doi = item.getField("DOI");

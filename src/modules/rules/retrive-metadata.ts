@@ -8,10 +8,10 @@ interface UpdateMetadataOption {
   // lint: boolean = false;
 }
 
-export const UpdateMetadata = defineRule<UpdateMetadataOption> ({
+export const ToolUpdateMetadata = defineRule<UpdateMetadataOption> ({
 
-  id: "update-metadata",
-  type: "item",
+  id: "tool-update-metadata",
+  scope: "item",
   targetItemTypes: ["journalArticle", "preprint"],
 
   async apply({ item, options }) {

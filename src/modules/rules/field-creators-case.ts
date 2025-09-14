@@ -1,10 +1,10 @@
 import { isFullLowerCase, isFullUpperCase } from "../../utils/str";
 import { defineRule } from "./rule-base";
 
-export const CreatorsCase = defineRule({
-  id: "creators-case",
-  type: "field",
-  targetItemFields: ["creators"],
+export const CorrectCreatorsCase = defineRule({
+  id: "correct-creators-case",
+  scope: "field",
+  targetItemField: "creators",
   apply({ item }) {
     const creators = item.getCreators();
 

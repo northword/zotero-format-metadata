@@ -1,9 +1,9 @@
 import { getString } from "../../utils/locale";
 import { defineRule } from "./rule-base";
 
-export const NoDuplicatItem = defineRule({
-  id: "no-duplicate-item",
-  type: "item",
+export const NoItemDuplication = defineRule({
+  id: "no-item-duplication",
+  scope: "item",
 
   async apply({ item, report, debug }) {
     // const item = Zotero.getActiveZoteroPane().getSelectedItems()[0];

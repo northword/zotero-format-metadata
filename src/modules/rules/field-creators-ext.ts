@@ -15,10 +15,11 @@ interface CreatorExtOptions {
   country?: string;
 }
 
-export const CreatorsExt = defineRule<CreatorExtOptions> ({
-  id: "creators-ext",
-  type: "field",
-  targetItemFields: ["creators"],
+export const ToolCreatorsExt = defineRule<CreatorExtOptions> ({
+  id: "tool-creators-ext",
+  scope: "field",
+  targetItemField: "creators",
+  category: "tool",
 
   apply({ item, options, debug }) {
     if (!options) {

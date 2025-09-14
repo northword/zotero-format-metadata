@@ -8,12 +8,13 @@ interface TitleGuillemetOptions {
  * Replaces `《》` to `〈〉`
  * @see https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl/issues/204
  */
-export const TitleGuillemet = defineRule<TitleGuillemetOptions> ({
-  id: "title-guillemet",
+export const ToolTitleGuillemet = defineRule<TitleGuillemetOptions> ({
+  id: "tool-title-guillemet",
   nameKey: "title-guillemet",
-  type: "field",
+  scope: "field",
+  category: "tool",
   // targetItemTypes: ["journalArticle", "conferencePaper"],
-  targetItemFields: ["title"],
+  targetItemField: "title",
   async apply({ item, options }) {
     if (!options.target)
       return;

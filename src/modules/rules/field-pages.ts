@@ -1,10 +1,10 @@
 import { defineRule } from "./rule-base";
 
-export const PagesConnectorShouldValid = defineRule({
-  id: "pages-connector",
-  type: "item",
-
+export const CorrectPagesConnector = defineRule({
+  id: "correct-pages-connector",
+  scope: "field",
   targetItemTypes: ["journalArticle"],
+  targetItemField: "pages",
   apply({ item }) {
     const pages = item.getField("pages");
     const newPages = normizePages(pages);

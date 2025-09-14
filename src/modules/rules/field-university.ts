@@ -1,10 +1,10 @@
 import { defineRule } from "./rule-base";
 
-export const UniversityShouldValid = defineRule({
-  id: "university",
-  type: "field",
+export const CorrectUniversity = defineRule({
+  id: "correct-university",
+  scope: "field",
   targetItemTypes: ["thesis"],
-  targetItemFields: ["university"],
+  targetItemField: "university",
   apply({ item }) {
     const language = item.getField("language");
     let university = item.getField("university");
