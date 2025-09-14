@@ -144,6 +144,7 @@ class PreviewManager {
         padding: "6px",
         marginTop: "6px",
         whiteSpace: "pre-wrap",
+        fontWeight: "normal",
       });
       textarea.parentElement.appendChild(preview);
     }
@@ -337,7 +338,7 @@ export function setHtmlTag(tag: string, attribute?: string, value?: string): voi
   textarea.setRangeText(selectedText);
 
   // The changes of content may cause the height of textarea to change
-  updateTextareaHeight(textarea);
+  textarea.style.height = "auto";
 
   // Dispatch input event to trigger any listeners
   // Zotero not expose Event as global vars, so we define it here
@@ -346,9 +347,4 @@ export function setHtmlTag(tag: string, attribute?: string, value?: string): voi
   textarea.dispatchEvent(inputEvent);
 
   textarea.focus();
-}
-
-function updateTextareaHeight(textarea: HTMLTextAreaElement): void {
-  textarea.style.height = "auto";
-  textarea.style.height = `${textarea.scrollHeight}px`;
 }
