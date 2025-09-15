@@ -17,6 +17,10 @@ rule-no-journal-preprint =
 rule-no-journal-preprint-report-message = 该期刊文章条目 URL 中包含了预印本服务器的域名，请确认条目类型！
 
 
+## no-nullish-value
+rule-no-nullish-value = 
+  .label = 字段值不应为无效值（无、N/A 等）
+
 ## require-language
 rule-require-language =
   .label = 语言字段应填写 ISO 639-1 语言代码

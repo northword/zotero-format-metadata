@@ -12,6 +12,7 @@ import { NoDOIPrefix } from "./no-doi-prefix";
 import { NoIssueExtraZeros, NoPagesExtraZeros, NoVolumeExtraZeros } from "./no-extra-zeros";
 import { NoItemDuplication } from "./no-item-duplication";
 import { NoJournalPreprint } from "./no-journal-preprint";
+import { NoNullishValue } from "./no-nullish-value";
 import { NoTitleTrailingDot } from "./no-title-trailing-dot";
 import { CorrectConferenceAbbr, RequireJournalAbbr } from "./require-abbr";
 import { RequireLanguage } from "./require-language";
@@ -27,6 +28,7 @@ const register: Rule<any>[] = [
   NoItemDuplication,
   NoArticleWebPage,
   NoJournalPreprint,
+  NoNullishValue,
 
   // Language
   RequireLanguage,

@@ -19,6 +19,7 @@ pref("richtext.hotkey", true);
 pref("rule.no-item-duplication", true);
 pref("rule.no-article-webpage", true);
 pref("rule.no-journal-preprint", true);
+pref("rule.no-nullish-value", true);
 pref("rule.no-title-trailing-dot", true);
 pref("rule.no-doi-prefix", true);
 pref("rule.no-issue-extra-zeros", true);

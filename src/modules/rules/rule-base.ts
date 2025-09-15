@@ -148,10 +148,12 @@ export type Rule<Option = object>
     | RuleForTag<Option>
     | RuleForAttachment<Option>;
 
+// We overide id's type to string, so that
+// we can supress type error when add new rule.
+type WithStringID<R> = R extends any ? Omit<R, "id"> & { id: string } : never;
+
 export function defineRule<Options = unknown>(
-  // We overide id's type to string, so that
-  // we can supress type error when add new rule.
-  rule: Rule<Options> & { id: string },
+  rule: WithStringID<Rule<Options>>,
 ): Rule<Options> {
-  return rule;
+  return rule as Rule<Options>;
 }

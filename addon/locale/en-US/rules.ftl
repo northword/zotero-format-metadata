@@ -17,6 +17,11 @@ rule-no-journal-preprint =
 rule-no-journal-preprint-report-message = The URL contains a preprint server domain, please confirm item type!
 
 
+## no-nullish-value
+rule-no-nullish-value = 
+  .label = No nullish field values
+
+
 ## require-language
 rule-require-language =
   .label = Language should be ISO 639-1 code
