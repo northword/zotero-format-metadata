@@ -1,4 +1,4 @@
-import type { Rule } from "./rule-base";
+import type { Rule, RuleForRegularItemScopeItem, RuleForRegularScopeField } from "./rule-base";
 import { getPref } from "../../utils/prefs";
 import { CorrectCreatorsCase } from "./correct-creators-case";
 import { CorrectCreatorsPinyin } from "./correct-creators-pinyin";
@@ -75,23 +75,25 @@ export class Rules {
   }
 
   static getStandard() {
-    return [...this.getAll().filter(rule => rule.category !== "tool")];
+    return this.getAll().filter(rule => rule.category !== "tool");
   }
 
   static getEnabledStandard() {
-    return [...this.getStandard()
-      .filter(rule => getPref(`rule.${rule.id as ID}`))];
+    return this.getStandard()
+      .filter(rule => getPref(`rule.${rule.id}`));
   }
 
   static getTool() {
-    return [...this.getAll().filter(rule => rule.category === "tool")];
+    return this.getAll().filter(rule => rule.category === "tool");
   }
 
+  static getByType(scope: "item"): RuleForRegularItemScopeItem[];
+  static getByType(scope: "field"): RuleForRegularScopeField[];
   static getByType(type: Rule["scope"]) {
-    return this.register.filter(rule => rule.scope === type);
+    return this.getStandard().filter(rule => rule.scope === type);
   }
 
   static getByID(id: ID) {
-    return this.register.find(rule => rule.id === id);
+    return this.getAll().find(rule => rule.id === id);
   }
 }

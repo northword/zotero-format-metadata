@@ -1,6 +1,43 @@
 import type { MenuitemOptions } from "zotero-plugin-toolkit";
-import { getString } from "../utils/locale";
+import { getLocaleID, getString } from "../utils/locale";
 import { isRegularItem } from "../utils/zotero";
+import { Rules } from "./rules";
+
+type FieldMenu = _ZoteroTypes.MenuManager.MenuData<_ZoteroTypes.MenuManager.ItemPaneMenuContext>;
+
+export function registerFieldMenu() {
+  if (!Zotero.version.startsWith("8"))
+    return;
+
+  const menus: FieldMenu[] = Rules.getByType("field").map((rule) => {
+    return {
+      menuType: "menuitem",
+      // @ts-expect-error some rules are not defined in the field menu
+      l10nID: getLocaleID(`rule-${rule.id}-menu-field`),
+      enableForTabTypes: rule.targetItemTypes,
+      onShowing: (_event, context) => {
+        if (rule.targetItemField !== context.fieldName) {
+          context.setVisible(false);
+        }
+      },
+      onShown: (_event, context) => {
+        if (context.menuElem.textContent === "") {
+          context.setVisible(false);
+        }
+      },
+      onCommand: (_event, context) => {
+        addon.hooks.onLintInBatch(rule.id, context.items);
+      },
+    };
+  });
+
+  Zotero.MenuManager.registerMenu({
+    pluginID: addon.data.config.addonID,
+    menuID: "field-menu",
+    target: "itemPane/info/row",
+    menus,
+  });
+}
 
 export function registerMenu() {
   const menuIcon = `${rootURI}/content/icons/favicon.png`;
@@ -176,20 +213,4 @@ export function registerMenu() {
       },
     });
   }
-}
-
-export function registerTextTransformMenu(window: Window) {
-  const zoteroFieldTransformMenu = Zotero.getMainWindow().document.getElementById("zotero-field-transform-menu");
-  const toSentenceCaseExtMenu = ztoolkit.UI.createElement(window.document, "menuitem", {
-    id: "creator-transform-sentence-case-ext",
-    skipIfExists: true,
-    classList: ["menuitem-non-iconic"],
-    attributes: {
-      label: getString("rule-require-title-sentence-case-menu-field"),
-    },
-    listeners: [{ type: "click", listener: _e => addon.hooks.onLintInBatch("require-title-sentence-case", "item") }],
-  });
-  zoteroFieldTransformMenu?.append(toSentenceCaseExtMenu);
-  // todo: 支持与 Zotero 本身菜单一样的禁用
-  // @see https://github.com/zotero/zotero/blob/2639981ddab4c353c7c864fc8b979dae9926f967/chrome/content/zotero/elements/itemBox.js#L2103-L2123
 }

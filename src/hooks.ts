@@ -1,7 +1,7 @@
 import type { Arrayable } from "./utils/types";
 import { checkCompat } from "./modules/compat";
 import { registerExtraColumns } from "./modules/item-tree";
-import { registerMenu, registerTextTransformMenu } from "./modules/menu";
+import { registerFieldMenu, registerMenu } from "./modules/menu";
 import { registerNotifier } from "./modules/notifier";
 import { registerPrefs, registerPrefsScripts } from "./modules/preference";
 import { RichTextToolBar, setHtmlTag } from "./modules/rich-text";
@@ -17,27 +17,33 @@ async function onStartup() {
   initLocale();
   registerPrefs();
   registerNotifier();
-  await Promise.all(Zotero.getMainWindows().map(win => onMainWindowLoad(win)));
+  await Promise.all(Zotero.getMainWindows().map(onMainWindowLoad));
   checkCompat();
 }
 
 async function onMainWindowLoad(win: Window): Promise<void> {
   // Create ztoolkit for every window
   addon.data.ztoolkit = createZToolkit();
+  win.MozXULElement.insertFTLIfNeeded(`${addon.data.config.addonRef}-rules.ftl`);
+
   registerShortcuts();
   registerMenu();
-  registerTextTransformMenu(win);
+  registerFieldMenu();
   registerExtraColumns();
   if (getPref("richtext.toolBar"))
     new RichTextToolBar(win).init();
 }
 
-async function onMainWindowUnload(_win: Window): Promise<void> {
+async function onMainWindowUnload(win: Window): Promise<void> {
   ztoolkit.unregisterAll();
+  win.document
+    .querySelector(`[href="${addon.data.config.addonRef}-rules.ftl"]`)
+    ?.remove();
 }
 
-function onShutdown() {
+async function onShutdown() {
   ztoolkit.unregisterAll();
+  await Promise.all(Zotero.getMainWindows().map(onMainWindowUnload));
   // Remove addon object
   addon.data.alive = false;
   // @ts-expect-error - Plugin instance is not typed

@@ -79,3 +79,7 @@ function _getString(
     return pattern.value || localStringWithPrefix;
   }
 }
+
+export function getLocaleID(id: FluentMessageId) {
+  return `${addon.data.config.addonRef}-${id}`;
+}

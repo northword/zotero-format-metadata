@@ -15,7 +15,7 @@ interface RuleBase<Option = object> {
    *
    * Should be kebab-case.
    */
-  id: string;
+  id: ID;
   /**
    * The name of the rule.
    *
@@ -69,14 +69,25 @@ interface RuleBase<Option = object> {
    *
    * @todo not implemented
    */
-  getItemMenu?: () => any;
+  getItemMenu?: () => {
+    /**
+     * The i18n ID of the menu item.
+     *
+     * @default `rule-${rule.id}-menu-item`
+     */
+    i10nID?: FluentMessageId;
 
-  /**
-   * Field menus
-   *
-   * @todo not implemented
-   */
-  getFieldMenu?: () => any;
+    icon?: string;
+
+    /**
+     * Whether the menu item can be applied to multiple items.
+     *
+     * @default true
+     */
+    mutiltipleItems?: boolean;
+
+    onCommand?: () => void;
+  };
 }
 
 interface RuleForRegularItem<Option = object> extends RuleBase<Option> {
@@ -91,26 +102,43 @@ interface RuleForRegularItem<Option = object> extends RuleBase<Option> {
   ignoreItemTypes?: _ZoteroTypes.Item.ItemType[];
 }
 
-interface RuleForRegularItemScopeItem<Option = object> extends RuleForRegularItem<Option> {
+export interface RuleForRegularItemScopeItem<Option = object> extends RuleForRegularItem<Option> {
   scope: "item";
 }
 
-interface RuleForRegularScopeField<Option = object> extends RuleForRegularItem<Option> {
+export interface RuleForRegularScopeField<Option = object> extends RuleForRegularItem<Option> {
   scope: "field";
   targetItemField: _ZoteroTypes.Item.ItemField | "creators";
+  /**
+   * Field menus
+   *
+   * @todo not implemented
+   */
+  getFieldMenu?: () => {
+    /**
+     * The i18n ID of the menu item.
+     *
+     * @default `rule-${rule.id}-menu-field`
+     */
+    i10nID?: FluentMessageId;
+
+    icon?: string;
+
+    onCommand?: () => void;
+  };
 }
 
 /**
  * @todo unimplemented
  */
-interface RuleForTag<Option = object> extends RuleBase<Option> {
+export interface RuleForTag<Option = object> extends RuleBase<Option> {
   scope: "tag";
 }
 
 /**
  * @todo unimplemented
  */
-interface RuleForAttachment<Option = object> extends RuleBase<Option> {
+export interface RuleForAttachment<Option = object> extends RuleBase<Option> {
   scope: "attachment";
 }
 
@@ -120,6 +148,10 @@ export type Rule<Option = object>
     | RuleForTag<Option>
     | RuleForAttachment<Option>;
 
-export function defineRule<Options = unknown>(rule: Rule<Options>) {
+export function defineRule<Options = unknown>(
+  // We overide id's type to string, so that
+  // we can supress type error when add new rule.
+  rule: Rule<Options> & { id: string },
+): Rule<Options> {
   return rule;
 }

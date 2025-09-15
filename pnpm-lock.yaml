@@ -67,8 +67,8 @@ importers:
         specifier: ^0.8.0
         version: 0.8.0
       zotero-types:
-        specifier: 4.1.0-beta.2
-        version: 4.1.0-beta.2
+        specifier: 4.1.0-beta.3
+        version: 4.1.0-beta.3
 
 packages:
 
@@ -2720,8 +2720,8 @@ packages:
     resolution: {integrity: sha512-XwKVYS5FmGN5I+wV2M7H//uolCEHzCfUnCliDEgNPe4bxnuuLFWuBCHPj1OmDjuMqdH7wqOCsEP6nlBl7gLuGA==}
     engines: {node: '>=18'}
 
-  zotero-types@4.1.0-beta.2:
-    resolution: {integrity: sha512-LePY0Rfq4g3nJLjcWIfpTs9Pdx6poMTeo48Od9+BWtMGZP3KcUNW5mFhR0bIboyd6X4K2jIlUeJ4ZFldVFfB7A==}
+  zotero-types@4.1.0-beta.3:
+    resolution: {integrity: sha512-PKjCh9ojONtyW8A8nMluU0wN7ky/SmQX7G2mdPBIZtJRNpE/eHsoW9DWj1oXyGub2BYYEyk+WtgoLBRh5RPRyg==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -5618,7 +5618,7 @@ snapshots:
 
   zotero-plugin-toolkit@5.1.0-beta.9: {}
 
-  zotero-types@4.1.0-beta.2:
+  zotero-types@4.1.0-beta.3:
     dependencies:
       '@types/bluebird': 3.5.42
       '@types/react': 18.3.23
