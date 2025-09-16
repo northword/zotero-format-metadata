@@ -31,6 +31,7 @@ pref("rule.require-language.only", true);
 pref("rule.require-language.only.cmn", true);
 pref("rule.require-language.only.eng", true);
 pref("rule.require-language.only.other", "");
+pref("rule.require-short-title", true);
 pref("rule.correct-title-sentence-case", true);
 pref("rule.correct-title-sentence-case.custom-term-path", "");
 pref("rule.correct-shortTitle-sentence-case", true);

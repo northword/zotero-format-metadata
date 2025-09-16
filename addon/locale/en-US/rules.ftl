@@ -40,6 +40,11 @@ rule-require-language-option-only-other-doc = ISO 639-1 codes
     .href = https://github.com/northword/zotero-format-metadata#readme
 
 
+## require-short-title
+rule-require-short-title = 
+    .label = Require short title
+
+
 ## correct-title-sentence-case
 rule-correct-title-sentence-case =
   .label = Title should be sentence case

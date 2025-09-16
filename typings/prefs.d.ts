@@ -27,6 +27,7 @@ declare namespace _ZoteroTypes {
       "rule.require-language.only.cmn": boolean;
       "rule.require-language.only.eng": boolean;
       "rule.require-language.only.other": string;
+      "rule.require-short-title": boolean;
       "rule.correct-title-sentence-case": boolean;
       "rule.correct-title-sentence-case.custom-term-path": string;
       "rule.correct-shortTitle-sentence-case": boolean;

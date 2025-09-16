@@ -39,6 +39,10 @@ rule-require-language-option-only-other-doc = ISO 639-1 代码
     .href = https://github.com/northword/zotero-format-metadata#readme
 
 
+## require-short-title
+rule-require-short-title = 
+    .label = 主标题应填入短标题
+
 
 ## correct-title-sentence-case
 rule-correct-title-sentence-case =

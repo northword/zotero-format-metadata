@@ -84,6 +84,7 @@ export type FluentMessageId =
   | 'rule-require-language-option-only-other'
   | 'rule-require-language-option-only-other-desc'
   | 'rule-require-language-option-only-other-doc'
+  | 'rule-require-short-title'
   | 'rule-require-university-place'
   | 'rule-require-university-place-menu-field'
   | 'rule-require-university-place-menu-item'

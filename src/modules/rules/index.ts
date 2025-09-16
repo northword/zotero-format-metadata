@@ -17,6 +17,7 @@ import { NoTitleTrailingDot } from "./no-title-trailing-dot";
 import { NoValueNullish } from "./no-value-nullish";
 import { CorrectConferenceAbbr, RequireJournalAbbr } from "./require-abbr";
 import { RequireLanguage } from "./require-language";
+import { RequireShortTitle } from "./require-short-title";
 import { RequireUniversityPlace } from "./require-university-place";
 import { ToolCreatorsExt } from "./tool-creators-ext";
 import { ToolUpdateMetadata } from "./tool-retrive-metadata";
@@ -36,6 +37,7 @@ const register: Rule<any>[] = [
   // Title
   NoTitleTrailingDot,
   CorrectTitleSentenceCase,
+  RequireShortTitle,
   CorrectShortTitleSentenceCase,
 
   // Creators

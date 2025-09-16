@@ -8,6 +8,7 @@ type ID =
   | "require-language"
   | "no-title-trailing-dot"
   | "correct-title-sentence-case"
+  | "require-short-title"
   | "correct-shortTitle-sentence-case"
   | "correct-creators-case"
   | "correct-creators-pinyin"
