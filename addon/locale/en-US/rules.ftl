@@ -17,8 +17,8 @@ rule-no-journal-preprint =
 rule-no-journal-preprint-report-message = The URL contains a preprint server domain, please confirm item type!
 
 
-## no-nullish-value
-rule-no-nullish-value = 
+## no-value-nullish
+rule-no-value-nullish = 
   .label = No nullish field values
 
 

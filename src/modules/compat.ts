@@ -90,6 +90,9 @@ export function checkCompat() {
     mvPref("lang.set", "rule.tool-set-language");
     mvPref("updateMetadate", "rule.tool-update-metadata");
     mvPref("updateMetadate.confirmWhenItemTypeChange", "rule.tool-update-metadata.confirm-when-item-type-change", false);
+
+    // v2.0.0-beta.4 rename rule id
+    mvPref("rule.no-nullish-value", "rule.no-value-nullish");
   }
 
   setPref("version", currentVersion);

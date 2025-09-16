@@ -4,7 +4,7 @@ type ID =
   | "no-item-duplication"
   | "no-article-webpage"
   | "no-journal-preprint"
-  | "no-nullish-value"
+  | "no-value-nullish"
   | "require-language"
   | "require-title-sentence-case"
   | "require-shortTitle-sentence-case"

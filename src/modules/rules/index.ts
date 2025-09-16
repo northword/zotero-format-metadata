@@ -12,8 +12,8 @@ import { NoDOIPrefix } from "./no-doi-prefix";
 import { NoIssueExtraZeros, NoPagesExtraZeros, NoVolumeExtraZeros } from "./no-extra-zeros";
 import { NoItemDuplication } from "./no-item-duplication";
 import { NoJournalPreprint } from "./no-journal-preprint";
-import { NoNullishValue } from "./no-nullish-value";
 import { NoTitleTrailingDot } from "./no-title-trailing-dot";
+import { NoValueNullish } from "./no-value-nullish";
 import { CorrectConferenceAbbr, RequireJournalAbbr } from "./require-abbr";
 import { RequireLanguage } from "./require-language";
 import { RequireShortTitleSentenceCase, RequireTitleSentenceCase } from "./require-title-sentence-case";
@@ -28,7 +28,7 @@ const register: Rule<any>[] = [
   NoItemDuplication,
   NoArticleWebPage,
   NoJournalPreprint,
-  NoNullishValue,
+  NoValueNullish,
 
   // Language
   RequireLanguage,

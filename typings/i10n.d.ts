@@ -52,7 +52,7 @@ export type FluentMessageId =
   | 'rule-no-item-duplication-report-message'
   | 'rule-no-journal-preprint'
   | 'rule-no-journal-preprint-report-message'
-  | 'rule-no-nullish-value'
+  | 'rule-no-value-nullish'
   | 'rule-no-pages-extra-zeros'
   | 'rule-no-title-trailing-dot'
   | 'rule-no-volume-extra-zeros'

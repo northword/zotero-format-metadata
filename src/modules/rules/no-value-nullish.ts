@@ -11,8 +11,8 @@ const list = [
   "无",
 ];
 
-export const NoNullishValue = defineRule({
-  id: "no-nullish-value",
+export const NoValueNullish = defineRule({
+  id: "no-value-nullish",
   scope: "item",
   apply({ item }) {
     const fields = Zotero.ItemFields
