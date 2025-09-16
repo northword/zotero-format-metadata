@@ -27,15 +27,16 @@ If the title is missing, try to retrieve it via DOI. Otherwise, show an error.
 
 ### Require Sentence Case (`require-title-sentence-case`, `require-shortTitle-sentence-case`)
 
-Zotero recommends storing titles in **Sentence case**, which makes it easier for CSL styles to apply “title case” transformations [^sentenceCase].
+Zotero recommends storing titles in **Sentence case**, which makes it easier for CSL styles to apply “Title Case” transformations [^sentenceCase].
+
 Zotero 7 has built-in sentence casing with exceptions, but this plugin extends it with better handling for chemical formulas, country names, and proper nouns.
 
 [^sentenceCase]: <https://www.zotero.org/support/kb/sentence_casing>
 
 ### Rich Text in Titles
 
-Zotero’s bibliography rich text requires raw HTML tags (see [^rich_text_bibliography]), which is not user-friendly.
-While Zotero has promised visual rich text editing, it has not materialized after years.
+Zotero’s bibliography rich text requires raw HTML tags (see [^rich_text_bibliography]), which is not user-friendly. While Zotero has promised visual rich text editing, it has not materialized after years.
+
 This plugin provides a toolbar and shortcuts to insert tags for **superscript, subscript, bold, italics, and nocase** formatting.
 
 [^rich_text_bibliography]: <https://www.zotero.org/support/kb/rich_text_bibliography>
@@ -91,13 +92,11 @@ By default, only **Simplified Chinese** and **English** are detected. You can di
 
 ### Correct Journal Title (`correct-publication-title`)
 
-Unifies journal names to their official form.
+1. Unifies journal names to their official form.
 
-For example, `Applied Catalysis B-environmental` → `Applied Catalysis B: Environmental`.
+   For example, `Applied Catalysis B-environmental` → `Applied Catalysis B: Environmental`.
 
-### Correct Journal Title Case (`correct-data-format`)
-
-Converts all-uppercase journal names to **capitalized words**, while keeping special words (e.g., acronyms) uppercase.
+2. Converts all-uppercase journal names to **capitalized words**, while keeping special words (e.g., acronyms) uppercase.
 
 ## Journal Abbreviation Rules
 
@@ -113,7 +112,8 @@ Uses a built-in dataset (JabRef + Woodward Library) to look up journal abbreviat
 ### Require University Place (`require-university-place`)
 
 For `thesis` items, fills in the university’s location automatically (based on built-in data).
-This supports GB/T 7714-2015 formatting requirements [^gb7714].
+
+This is GB/T 7714-2015 formatting requirements [^gb7714].
 
 [^gb7714]: <http://www.cessp.org.cn/a258.html>
 
@@ -121,9 +121,10 @@ This supports GB/T 7714-2015 formatting requirements [^gb7714].
 
 Ensures full dissertation type names are set: `硕士学位论文`, `博士学位论文`, `Master thesis`, or `Doctoral dissertation`.
 
-### Correct University Format (`correct-university-pronunciation`)
+### Correct University Pronunciation (`correct-university-pronunciation`)
 
 Normalizes university names.
+
 For example, in Chinese entries, replaces half-width parentheses `()` with full-width ones `（）`.
 
 ## Date Rules
@@ -131,6 +132,7 @@ For example, in Chinese entries, replaces half-width parentheses `()` with full-
 ### Correct Date Format (`correct-date-format`)
 
 Ensures ISO format: `YYYY-MM-DD`.
+
 Example: `2023-01-01`.
 
 ## Volume, Issue, and Page Rules
