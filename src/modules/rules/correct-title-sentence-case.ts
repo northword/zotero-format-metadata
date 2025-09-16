@@ -123,9 +123,9 @@ interface Options {
   data?: any[];
 }
 
-function createRequireTitleSentenceCaseRule(targetItemField: "title" | "shortTitle") {
+function createCorrectTitleSentenceCaseRule(targetItemField: "title" | "shortTitle") {
   return defineRule<Options>({
-    id: `require-${targetItemField}-sentence-case`,
+    id: `correct-${targetItemField}-sentence-case`,
     scope: "field",
     targetItemField,
 
@@ -149,7 +149,7 @@ function createRequireTitleSentenceCaseRule(targetItemField: "title" | "shortTit
     },
 
     async getOptions() {
-      const customTermFilePath = getPref("rule.require-title-sentence-case.custom-term-path");
+      const customTermFilePath = getPref("rule.correct-title-sentence-case.custom-term-path");
       if (customTermFilePath) {
         return {
           data: await useData("csv", customTermFilePath, {
@@ -164,5 +164,5 @@ function createRequireTitleSentenceCaseRule(targetItemField: "title" | "shortTit
   });
 }
 
-export const RequireTitleSentenceCase = createRequireTitleSentenceCaseRule("title");
-export const RequireShortTitleSentenceCase = createRequireTitleSentenceCaseRule("shortTitle");
+export const CorrectTitleSentenceCase = createCorrectTitleSentenceCaseRule("title");
+export const CorrectShortTitleSentenceCase = createCorrectTitleSentenceCaseRule("shortTitle");

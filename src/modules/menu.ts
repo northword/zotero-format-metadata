@@ -55,9 +55,9 @@ export function registerMenu() {
       },
       {
         tag: "menuitem",
-        label: getString("rule-require-title-sentence-case-menu-item"),
+        label: getString("rule-correct-title-sentence-case-menu-item"),
         commandListener: () => {
-          addon.hooks.onLintInBatch("require-title-sentence-case", menuPopup);
+          addon.hooks.onLintInBatch("correct-title-sentence-case", menuPopup);
         },
       },
       {

@@ -40,24 +40,24 @@ rule-require-language-option-only-other-doc = ISO 639-1 codes
     .href = https://github.com/northword/zotero-format-metadata#readme
 
 
-## require-title-sentence-case
-rule-require-title-sentence-case =
+## correct-title-sentence-case
+rule-correct-title-sentence-case =
   .label = Title should be sentence case
-rule-require-title-sentence-case-menu-item = Convert title to sentence case
-rule-require-title-sentence-case-menu-field = Sentence case (Linter)
+rule-correct-title-sentence-case-menu-item = Convert title to sentence case
+rule-correct-title-sentence-case-menu-field = Sentence case (Linter)
 
-rule-require-title-sentence-option-custom-term = Custom term: 
+rule-correct-title-sentence-option-custom-term = Custom term: 
     .label = Custom terms
     .placeholder = Path of custom terms file
-rule-require-title-sentence-option-custom-term-button = 
+rule-correct-title-sentence-option-custom-term-button = 
     .label = Choose
-rule-require-title-sentence-option-custom-term-desc = Custom terms file should be CSV: first column search term, second column replacement, no headers. Regex supported. Separator must be comma or semicolon (no tabs).
+rule-correct-title-sentence-option-custom-term-desc = Custom terms file should be CSV: first column search term, second column replacement, no headers. Regex supported. Separator must be comma or semicolon (no tabs).
 
 
-## require-shortTitle-sentence-case
-rule-require-shortTitle-sentence-case =
+## correct-shortTitle-sentence-case
+rule-correct-shortTitle-sentence-case =
   .label = ShortTitle should be sentence case
-rule-require-shortTitle-sentence-case-description = Shares config with 「{ rule-require-title-sentence-case.label }」
+rule-correct-shortTitle-sentence-case-description = Shares config with 「{ rule-correct-title-sentence-case.label }」
 
 
 ## no-title-trailing-dot
@@ -149,8 +149,8 @@ rule-correct-thesis-type =
   .label = Thesis type should include the word "thesis/dissertation"
 
 
-## correct-university
-rule-correct-university =
+## correct-university-punctuation
+rule-correct-university-punctuation =
   .label = Brackets in university names should match language style
 
 

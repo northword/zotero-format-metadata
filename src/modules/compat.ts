@@ -66,8 +66,9 @@ export function checkCompat() {
     mvPref("lang.only.cmn", "rule.require-language.only.cmn");
     mvPref("lang.only.eng", "rule.require-language.only.eng");
     mvPref("lang.only.other", "rule.require-language.only.other", "");
-    mvPref("titleSentenceCase", "rule.require-title-sentence-case");
-    mvPref("title.shortTitle", "rule.require-shortTitle-sentence-case");
+    mvPref("titleSentenceCase", "rule.correct-title-sentence-case");
+    mvPref("title.shortTitle", "rule.correct-shortTitle-sentence-case");
+    mvPref("title.customTermPath", "rule.correct-title-sentence-case.custom-term-path");
     mvPref("abbr", "rule.require-journal-abbr");
     mvPref("abbr.journalArticle", "rule.require-journal-abbr");
     mvPref("abbr.infer", "rule.require-journal-abbr.infer");
@@ -83,7 +84,7 @@ export function checkCompat() {
     mvPref("pagesConnector", "rule.correct-pages-connector");
     mvPref("abbr.conferencePaper", "rule.correct-conference-abbr");
     mvPref("thesisType", "rule.correct-thesis-type");
-    mvPref("university", "rule.correct-university");
+    mvPref("university", "rule.correct-university-punctuation");
 
     mvPref("title.guillement", "rule.tool-title-guillemet");
     mvPref("creatorsExt", "rule.tool-creators-ext");
@@ -92,7 +93,7 @@ export function checkCompat() {
     mvPref("updateMetadate.confirmWhenItemTypeChange", "rule.tool-update-metadata.confirm-when-item-type-change", false);
 
     // v2.0.0-beta.4 rename rule id
-    mvPref("rule.no-nullish-value", "rule.no-value-nullish");
+    clearPref("rule.no-nullish-value");
   }
 
   setPref("version", currentVersion);

@@ -68,10 +68,10 @@ async function updatePrefsUI() {
         "zotero-format-metadata-custom-abbr-data.json",
       ).open();
       if (filename) {
-        setPref("rule.require-title-sentence-case.custom-term-path", filename);
+        setPref("rule.correct-title-sentence-case.custom-term-path", filename);
       }
       else {
-        setPref("rule.require-title-sentence-case.custom-term-path", "");
+        setPref("rule.correct-title-sentence-case.custom-term-path", "");
       }
     });
 }

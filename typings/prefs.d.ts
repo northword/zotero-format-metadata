@@ -27,9 +27,9 @@ declare namespace _ZoteroTypes {
       "rule.require-language.only.cmn": boolean;
       "rule.require-language.only.eng": boolean;
       "rule.require-language.only.other": string;
-      "rule.require-title-sentence-case": boolean;
-      "rule.require-title-sentence-case.custom-term-path": string;
-      "rule.require-shortTitle-sentence-case": boolean;
+      "rule.correct-title-sentence-case": boolean;
+      "rule.correct-title-sentence-case.custom-term-path": string;
+      "rule.correct-shortTitle-sentence-case": boolean;
       "rule.require-journal-abbr": boolean;
       "rule.require-journal-abbr.infer": boolean;
       "rule.require-journal-abbr.usefull": boolean;
@@ -43,7 +43,7 @@ declare namespace _ZoteroTypes {
       "rule.correct-pages-connector": boolean;
       "rule.correct-conference-abbr": boolean;
       "rule.correct-thesis-type": boolean;
-      "rule.correct-university": boolean;
+      "rule.correct-university-punctuation": boolean;
       "rule.tool-title-guillemet": boolean;
       "rule.tool-creators-ext": boolean;
       "rule.tool-set-language": boolean;

@@ -1,7 +1,7 @@
 import { defineRule } from "./rule-base";
 
-export const CorrectUniversity = defineRule({
-  id: "correct-university",
+export const CorrectUniversityPunctuation = defineRule({
+  id: "correct-university-punctuation",
   scope: "field",
   targetItemTypes: ["thesis"],
   targetItemField: "university",

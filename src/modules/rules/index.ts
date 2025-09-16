@@ -6,7 +6,8 @@ import { CorrectDateFormat } from "./correct-date-format";
 import { CorrectPagesConnector } from "./correct-pages-connector";
 import { CorrectPublicationTitle } from "./correct-publication-title";
 import { CorrectThesisType } from "./correct-thesis-type";
-import { CorrectUniversity } from "./correct-university";
+import { CorrectShortTitleSentenceCase, CorrectTitleSentenceCase } from "./correct-title-sentence-case";
+import { CorrectUniversityPunctuation } from "./correct-university-punctuation";
 import { NoArticleWebPage } from "./no-article-webpage";
 import { NoDOIPrefix } from "./no-doi-prefix";
 import { NoIssueExtraZeros, NoPagesExtraZeros, NoVolumeExtraZeros } from "./no-extra-zeros";
@@ -16,7 +17,6 @@ import { NoTitleTrailingDot } from "./no-title-trailing-dot";
 import { NoValueNullish } from "./no-value-nullish";
 import { CorrectConferenceAbbr, RequireJournalAbbr } from "./require-abbr";
 import { RequireLanguage } from "./require-language";
-import { RequireShortTitleSentenceCase, RequireTitleSentenceCase } from "./require-title-sentence-case";
 import { RequireUniversityPlace } from "./require-university-place";
 import { ToolCreatorsExt } from "./tool-creators-ext";
 import { ToolUpdateMetadata } from "./tool-retrive-metadata";
@@ -34,9 +34,9 @@ const register: Rule<any>[] = [
   RequireLanguage,
 
   // Title
-  RequireTitleSentenceCase,
-  RequireShortTitleSentenceCase,
   NoTitleTrailingDot,
+  CorrectTitleSentenceCase,
+  CorrectShortTitleSentenceCase,
 
   // Creators
   CorrectCreatorsCase,
@@ -59,7 +59,7 @@ const register: Rule<any>[] = [
 
   // Thesis specific fields
   CorrectThesisType,
-  CorrectUniversity,
+  CorrectUniversityPunctuation,
   RequireUniversityPlace,
 
   // Tools

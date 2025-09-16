@@ -40,24 +40,24 @@ rule-require-language-option-only-other-doc = ISO 639-1 代码
 
 
 
-## require-title-sentence-case
-rule-require-title-sentence-case =
+## correct-title-sentence-case
+rule-correct-title-sentence-case =
   .label = 标题标题应以句子式大写存储
-rule-require-title-sentence-case-menu-item = 将标题改为句首大写
-rule-require-title-sentence-case-menu-field = 句首大写（Linter）
+rule-correct-title-sentence-case-menu-item = 将标题改为句首大写
+rule-correct-title-sentence-case-menu-field = 句首大写（Linter）
 
-rule-require-title-sentence-option-custom-term = 自定义术语: 
+rule-correct-title-sentence-option-custom-term = 自定义术语: 
     .label = 自定义术语
     .placeholder = 自定义术语文件的路径
-rule-require-title-sentence-option-custom-term-button = 
+rule-correct-title-sentence-option-custom-term-button = 
     .label = 选择
-rule-require-title-sentence-option-custom-term-desc =  自定义术语文件使用 CSV 文件格式，第一列为搜索词，第二列为替换词，不需要标题，搜索词支持正则表达式。分隔符可以为逗号或分号，但须统一，不得为制表符。
+rule-correct-title-sentence-option-custom-term-desc =  自定义术语文件使用 CSV 文件格式，第一列为搜索词，第二列为替换词，不需要标题，搜索词支持正则表达式。分隔符可以为逗号或分号，但须统一，不得为制表符。
 
 
-## require-shortTitle-sentence-case
-rule-require-shortTitle-sentence-case =
+## correct-shortTitle-sentence-case
+rule-correct-shortTitle-sentence-case =
   .label = ShortTitle 也以句子式大写存储
-rule-require-shortTitle-sentence-case-description = 此规则与「{ rule-require-title-sentence-case.label }」共享配置
+rule-correct-shortTitle-sentence-case-description = 此规则与「{ rule-correct-title-sentence-case.label }」共享配置
 
 
 ## no-title-trailing-dot
@@ -148,8 +148,8 @@ rule-correct-thesis-type =
   .label = 学位论文类别不可省略「学位论文」字样
 
 
-## correct-university
-rule-correct-university =
+## correct-university-punctuation
+rule-correct-university-punctuation =
   .label = 中文大学中的括号应使用中文括号，反之应使用西文括号
 
 
