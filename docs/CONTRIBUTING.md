@@ -1,47 +1,140 @@
-# 贡献指南
+# Contribution Guide
 
-## 开发和构建指南
-
-在开始前，请确认 [Node.js](https://nodejs.org/) v18 及以上版本已安装。同时，你还需要安装 [Git](https://git-scm.com/) 程序。
+## Directory Structure
 
 ```bash
-# Clone 本仓库到本地
-# 若希望向本仓库提交代码，请 fork 本仓库，并将 forked repo clone 到本地。
+.
+|-- addon
+|   |-- content
+|   |-- lib
+|   `-- locale                 # Localization files
+|       |-- en-US
+|       `-- zh-CN
+|-- data                       # Built-in data directory
+|   |-- journal-abbr
+|   |   |-- abbrv.jabref.org
+|   |   |-- endnote
+|   |   `-- issn-ltwa
+|   `-- university-list
+|-- docs                       # Documentation
+|-- src                        # Source code
+|   |-- modules
+|   |   `-- rules              ## Rules directory
+|   `-- utils
+|-- test                       # End-to-end test code
+`-- typings                    # Global type declarations
+```
+
+## Development and Build Guide
+
+Before you start, make sure [Node.js](https://nodejs.org/) v22 or later is installed.
+You also need [Git](https://git-scm.com/).
+
+```bash
+# Clone this repository locally
+# If you plan to contribute, fork the repository and clone your fork instead.
 git clone https://github.com/northword/zotero-format-metadata.git
 cd zotero-format-metadata/
 
-# 安装依赖
+# Install dependencies
 npm install -g pnpm
 pnpm install
 
-# 配置 Zotero 路径和 Profile 路径
+# Configure Zotero binary and profile paths
 cp .env.example .env
 vi .env
 ```
 
 ```ini
 # The path of the Zotero binary file.
-# The path delimiter should be escaped as `\\` for win32.
-# The path is `*/Zotero.app/Contents/MacOS/zotero` for MacOS.
+# On Windows, escape path delimiters with `\\`.
+# On MacOS, the path is `*/Zotero.app/Contents/MacOS/zotero`.
 ZOTERO_PLUGIN_ZOTERO_BIN_PATH = /path/to/zotero.exe
 
 # The path of the profile used for development.
-# Start the profile manager by `/path/to/zotero.exe -p` to create a profile for development.
+# Launch the profile manager with `/path/to/zotero.exe -p`
+# to create a profile for development.
 # @see https://www.zotero.org/support/kb/profile_directory
 ZOTERO_PLUGIN_PROFILE_PATH = /path/to/profile
 ```
 
-至此，开发环境配置完毕，你可以通过以下脚本开始开发：
+At this point, the development environment is set up. You can start development with:
 
 ```bash
-# 启动开发服务器
+# Start the development server
 pnpm start
 
-# 构建
-# 构建后的插件位于 build/ 目录
+# Build
+# The built plugin will be located in the .scaffold/build/ directory
 pnpm run build
 ```
 
-本插件以 [windingwind/zotero-plugin-template](https://github.com/windingwind/zotero-plugin-template) 为模板，使用了 [zotero-plugin-toolkit](https://github.com/windingwind/zotero-plugin-toolkit) 封装的诸多功能，更多信息请前往对应仓库查阅文档。
+This plugin is based on [windingwind/zotero-plugin-template](https://github.com/windingwind/zotero-plugin-template) and uses [zotero-plugin-toolkit](https://github.com/windingwind/zotero-plugin-toolkit) for many features. Check their repositories for more documentation.
 
-推荐使用 [VS Code](https://code.visualstudio.com/) 作为代码编辑器，并安装 [.vscode/extensions.json](../.vscode/extensions.json) 中推荐的插件。
+We recommend using [VS Code](https://code.visualstudio.com/) as your editor, and installing the extensions listed in [.vscode/extensions.json](../.vscode/extensions.json).
+
+## Updating Built-in Data
+
+Built-in data is located in the `data` directory. Please update it according to the respective formats.
+
+## Adding a New Rule
+
+### Steps
+
+1. Copy `src/modules/rules/_template.ts` to `${id}.ts`.
+2. Implement the rule in `${id}.ts`.
+3. Add `${id}.ts` to `src/modules/rules/index.ts`.
+   Note: the order in `register` determines execution order.
+4. Add default preference values in `addon/prefs.js` if needed.
+5. Add i10n text in `addon/locale/**/rules.ftl` if needed.
+
+### Rule Naming
+
+All rule IDs must use **kebab-case**, following this convention:
+
+```plain
+<category>-<target>-<attribute>
+```
+
+- `category` describes the rule behavior:
+  - `no`: prohibition rules – check and forbid invalid content
+  - `require`: requirement rules – enforce values to exist or match conditions
+  - `correct`: correction rules – fix field values or formats
+  - `tool`: tool rules – provide user utilities, beyond validation or correction
+
+- `target` describes the object of the rule:
+  - `item`: the item itself (e.g., duplicates)
+  - `itemType`: a specific item type (e.g., wrong type)
+  - `itemField`: a specific field
+  - `value`: multiple fields
+
+- `attribute` describes the constraint:
+  - an error type (e.g., duplicate)
+  - a format or condition (e.g., sentence case)
+  - a syntax or object (e.g., quotation marks)
+
+Distinguishing `require` vs `correct`:
+
+- `require` → checks **existence** and validity; may fetch a value if missing.
+- `correct` → only ensures **validity**, not existence; typically formatting or punctuation fixes.
+
+### Preference Key Naming
+
+Preference keys must follow this pattern:
+
+```plain
+rule.${id}.option-name
+```
+
+### i10n
+
+Fluent message IDs must follow these rules:
+
+- Rule name: `rule-${id}`.
+  Put the text in `.label` since only `preference.xhtml` uses rule names.
+- Rule option: `rule-${id}-option-${option-name}`.
+  Provide content according to the option’s UI element.
+- Context menu item (library item): `rule-${id}-menu-item`.
+  Keep it short and descriptive.
+- Context menu item (sidebar field): `rule-${id}-menu-field`.
+  Keep it concise and append `(Linter)`.

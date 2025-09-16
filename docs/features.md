@@ -1,153 +1,163 @@
-# 特性与规则
+# Features and Rules
 
-本页规划了本插件可以涉及或计划涉及的规则，旨在规范 Zotero 文献库中所有条目、字段的存在性、正确性、准确性。
+This page outlines the rules supported (or planned) by this plugin. The purpose is to ensure the **existence, correctness, and accuracy** of all items and fields in a Zotero library.
 
-与传统 Lint 工具不同的是，本插件旨在直接修复，并未为所有规则提供仅警告不修复的方式。
+Unlike traditional linting tools, this plugin focuses on **direct fixes**. There is no "warn-only" mode for most rules.
 
-限于技术水平，插件程序终不如人工识别，使用本插件修改后仍需仔细检查各字段数据的准确性。
+⚠️ Please note: due to technical limitations, the plugin can never fully replace human review. After automatic corrections, you should still carefully check each field for accuracy.
 
-## 条目
+## Item-Level Rules
 
-### 条目不应有重复
+### No Duplicate Items (`no-item-duplication`)
 
-当导入的条目与库中已有条目重复时，弹窗警告。
+Warns with a popup when an imported item duplicates an existing one in the library.
 
-### 条目类型应正确
+### Correct Item Type (`no-article-webpage`, `no-journal-preprint`)
 
-当前规则目前主要针对 `journalArtical`。
+- If an item is imported as `Webpage` but the URL points to a major journal publisher, it is likely that the Zotero Connector was not ready and misclassified the item. A warning popup is shown.
+- If the item type is `journalArticle` but the `url` contains `arxiv`, the item is probably a preprint and should be changed to `preprint`.
 
-当导入的条目类型为 `Webpage` 且 `url` 字段包含几家主要学术期刊出版时的网址时，极有可能时 Connector 未就绪时进行了抓取，导致识别的条目类型错误，此时，弹窗警告。
+_Todo:_ Automatically resolve identifiers from URLs and enforce metadata updates.
 
-当条目类型为 `journalArtical` ，且其 `url` 字段包含 `arxiv` 等关键字，其可能是预印本，应将条目类型设置为 `preprint`。
+## Title Rules
 
-todo: 根据网址得到条目标识符并强制更新。
+### Require Title (`require-title`) _(planned)_
 
-## 标题
+If the title is missing, try to retrieve it via DOI. Otherwise, show an error.
 
-### 标题应存在
+### Require Sentence Case (`require-title-sentence-case`, `require-shortTitle-sentence-case`)
 
-> Todo
-
-若不存在，通过 DOI 获取；否则警告。
-
-### 标题应为句子式大写
-
-Zotero 文档建议将标题存储为“句子式大写”的格式，这将有利于 CSL 对其执行“title case”变换 [^sentenceCase]。Zotero 7 内置了将标题转为“句子式大写”的功能，预置了一些特例识别，本插件在其基础上，增加了针对化学式等的专有名词识别。
+Zotero recommends storing titles in **Sentence case**, which makes it easier for CSL styles to apply “title case” transformations [^sentenceCase].
+Zotero 7 has built-in sentence casing with exceptions, but this plugin extends it with better handling for chemical formulas, country names, and proper nouns.
 
 [^sentenceCase]: <https://www.zotero.org/support/kb/sentence_casing>
 
-不得为全大写或词首大写。
+### Rich Text in Titles
 
-### 标题中的富文本设置应正确
+Zotero’s bibliography rich text requires raw HTML tags (see [^rich_text_bibliography]), which is not user-friendly.
+While Zotero has promised visual rich text editing, it has not materialized after years.
+This plugin provides a toolbar and shortcuts to insert tags for **superscript, subscript, bold, italics, and nocase** formatting.
 
-无法自动识别，插件提供了“工具条”和“快捷键”两种方式设置 CSL 支持的富文本类别。
+[^rich_text_bibliography]: <https://www.zotero.org/support/kb/rich_text_bibliography>
 
-## 作者
+- **Shortcuts**
+  - Superscript: `Ctrl` + `Shift` + `+`
+  - Subscript: `Ctrl` + `=`
+  - Bold: `Ctrl` + `B`
+  - Italic: `Ctrl` + `I`
+  - Nocase: `Ctrl` + `N`
 
-### 作者应存在
+- **Toolbar**
+  A floating toolbar appears when editing the title field. It can be disabled in preferences.
 
-主要针对`期刊文章`。
+- **Preview**
+  A preview of the title rich text is available when editing the title field.
 
-期刊文章应存在作者，若不存在，通过 DOI / 标题 自动匹配作者。否则警告。
+## Author Rules
 
-### 作者应词首大写
+### Require Authors (`require-creators`) _(planned)_
 
-作者的大小写应保持词首大写。
+For `journalArticle`, authors must exist.
+If missing, they are retrieved via DOI or title; otherwise, an error is shown.
 
-### 作者应是全称
+### Correct Author Case (`correct-creators-case`)
 
-> Todo
+Ensures that author names use **capitalized words**.
 
-不是全称的向数据库检索全称。
+### Correct Full Author Names (`correct-creators-full`) _(planned)_
 
-含有`-`的中文拼音名应是正确的，但可以提供去除`-`的选项。
+- If initials or abbreviations are found, query full names.
+- For Chinese names, hyphenated pinyin (e.g., `Zhang Jian-Bei`) is supported, but an option can remove hyphens.
+- For abbreviated names with `.` (e.g., `J.`), attempt to expand to full names.
 
-含有`.`的缩写应尽可能取回全称。
+### Correct Chinese Name Pinyin (`correct-creators-pinyin`)
 
-### 中文作者的姓名拼音应分隔
+Converts names such as `Zhang Jianbei` → `Zhang Jian Bei`.
 
-> 默认不启用，在“其他工具”里自行使用
+This helps generate correct CSL abbreviations (`Zhang J. B.`).
 
-例如 `Zhang Jianbei` 应为 `Zhang Jian Bei`，这有利于满足部分 CSL 样式名缩写的要求（`Zhang J. B.`）。
+## Language Rules
 
-## 语言
+### Require Language (`require-language`)
 
-CSL 根据条目的国家区域来完成本地化，Zotero 通过语言字段向 CSL 提供该值。
+CSL styles rely on the language field for localization (e.g., mixing _et al._ with “等”).
+This rule infers language from the title and fills in the `language` field automatically.
 
-插件根据条目的标题判断其语言，并将识别结果填入“语言字段”，这对于 CSL 完成参考文献表双语排版（如 et al 与 等 混排）非常重要。[^csl-etal]。
+By default, only **Simplified Chinese** and **English** are detected. You can disable the restriction or add other [ISO 639-1 codes].
 
-默认的，插件被限制仅识别简体中文和英文，你可以在首选项中关闭语言限制或添加其他常用语言的 [ISO 639-1 代码]。
+[ISO 639-1 codes]: https://github.com/komodojp/tinyld/blob/develop/docs/langs.md
 
-[^csl-etal]: <https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8>
+## Journal Rules
 
-[ISO 639-1 代码]: https://github.com/komodojp/tinyld/blob/develop/docs/langs.md
+### Correct Journal Title (`correct-publication-title`)
 
-## 期刊
+Unifies journal names to their official form.
 
-### 期刊名应以期刊官方名为准
+For example, `Applied Catalysis B-environmental` → `Applied Catalysis B: Environmental`.
 
-如 `Applied Catalysis B-environmental` 与 `Applied Catalysis B: Environmental` 是同一本期刊，后者为官方名称，前者为 Web of Science 收录名称。
+### Correct Journal Title Case (`correct-data-format`)
 
-内置一些常见的期刊名，进行校正。
+Converts all-uppercase journal names to **capitalized words**, while keeping special words (e.g., acronyms) uppercase.
 
-### 期刊名应是词首大写
+## Journal Abbreviation Rules
 
-针对部分来源导入的全大写出版物标题，将其转为词首大写。加入了部分恒为大写的词，见 [src\modules\rules\field-publication.ts](../src/modules/rules/field-publication.ts)。
+### Require ISO4 Abbreviation (`require-journal-abbr`)
 
-## 期刊缩写
+Uses a built-in dataset (JabRef + Woodward Library) to look up journal abbreviations.
 
-### 期刊缩写应为 ISO 4 带点格式
+- If missing, infers abbreviation from the [ISSN LTWA list](https://www.issn.org/services/online-services/access-to-the-ltwa/).
+- If still missing, defaults to full journal title (can be disabled).
 
-插件内置了一个包含约 10 万条期刊缩写的数据集（来自 JabRef 和 Woodward Library ），插件将首先在本地数据集里查询期刊缩写；
+## Thesis Rules
 
-若无则根据 [ISSN List of Title Word Abbreviations](https://www.issn.org/services/online-services/access-to-the-ltwa/) 推断其缩写（可在首选项中关闭此行为）；
+### Require University Place (`require-university-place`)
 
-若仍没有找到缩写，则以期刊全称代替（可在首选项中关闭此行为）。
-
-## 学位论文
-
-### 高校所在地应正确
-
-插件内置了国内高校的名单及其所在地，对于学位论文条目，根据论文的高校填写其所在地，这有利于满足 GB/T 7714-2015 中需要显示出版地的要求 [^gb7714]。
+For `thesis` items, fills in the university’s location automatically (based on built-in data).
+This supports GB/T 7714-2015 formatting requirements [^gb7714].
 
 [^gb7714]: <http://www.cessp.org.cn/a258.html>
 
-### 论文类别应完整
+### Correct Thesis Type (`correct-thesis-type`)
 
-论文类别应填写完整的 `硕士学位论文` / `博士学位论文` / `Doctoral dissertation` / `Master thesis`。
+Ensures full dissertation type names are set: `硕士学位论文`, `博士学位论文`, `Master thesis`, or `Doctoral dissertation`.
 
-## 日期
+### Correct University Format (`correct-university-pronunciation`)
 
-### 日期应为 ISO 格式
+Normalizes university names.
+For example, in Chinese entries, replaces half-width parentheses `()` with full-width ones `（）`.
 
-日期应为 `YYYY-MM-DD` 格式，例如`2023-01-01`。
+## Date Rules
 
-## 期卷页
+### Correct Date Format (`correct-date-format`)
 
-### 不应有前导0
+Ensures ISO format: `YYYY-MM-DD`.
+Example: `2023-01-01`.
 
-例如 `页码` 应为 `2-10` 而不是 `02-10`.
+## Volume, Issue, and Page Rules
 
-### 页码的连接符应正确
+### No Leading Zeros (`no-issue-extra-zeros`, `no-pages-extra-zeros`, `no-volume-extra-zeros`)
 
-应为 `-`, `,`，而不是 `~`, `+`。
+Removes leading zeros from issue, pages, and volume fields.
 
-## 标识符
+Example: `02-10` → `2-10`.
 
-### DOI 不应为空
+### Correct Page Connector (`correct-pages-connector`)
 
-对于期刊文章，应存在 DOI。
+Replaces invalid connectors like `~` or `+` with `-` or `,`.
 
-### DOI 应有效
+## Identifier Rules
 
-> todo
+### Require DOI (`require-doi`) _(planned)_
 
-DOI 应是真实存在的
+For `journalArticle`, DOI must exist.
+If missing, attempt to retrieve it.
 
-### DOI 不需要前缀
+### No DOI Prefix (`no-doi-prefix`)
 
-DOI 之需要保留机构编码和资源编码即可，doi.org 等网址前缀无需添加。
+Removes URL prefixes like `https://doi.org/` and stores only the DOI string.
 
-## todo
+## Metadata Update Tool (`tool-update-metadata`)
 
-还没写完...
+Allows filling in missing fields (date, volume, issue, pages, etc.) from identifiers such as DOI or ISBN.
+
+For preprints, updates item type to `journalArticle` when possible.
