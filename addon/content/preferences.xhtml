@@ -27,19 +27,27 @@
       preference="lint.notify"
       native="true"
     />
+  </groupbox>
 
-    <!-- 是否启用富文本工具框 -->
+  <groupbox>
+    <!-- 是否启用富文本工具 -->
+    <label><html:h2 data-l10n-id="section-rich-text" /></label>
     <checkbox
       data-l10n-id="enable-richtext-toolbar"
       preference="richtext.toolBar"
       native="true"
     />
     <checkbox
+      data-l10n-id="enable-richtext-preview"
+      preference="richtext.preview"
+      native="true"
+    />
+    <checkbox
       data-l10n-id="enable-richtext-hotkey"
       preference="richtext.hotkey"
       native="true"
-      disabled="true"
     />
+    <label data-l10n-id="richtext-restart-needed" style="font-size: 0.85em" />
   </groupbox>
 
   <!-- 详细设置 -->

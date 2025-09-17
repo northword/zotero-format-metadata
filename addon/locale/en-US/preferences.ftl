@@ -9,14 +9,19 @@ notify-on-lint =
 
 enable-richtext-toolbar = 
     .label = Enable rich text toolbar
+enable-richtext-preview = 
+    .label = Enable rich text preview
 enable-richtext-hotkey = 
-    .label = Enable hotkey for rich text
+    .label = Enable rich text hotkey
+richtext-restart-needed = These settings changes will apply after restarting Zotero.
+
 wip = 
     .label = Work in progress...
 
 
 ## 分组标题
 section-item = Item
+section-rich-text = Rich Text Edit Tools
 section-title = Title
 section-creators = Creators
 section-language = Language

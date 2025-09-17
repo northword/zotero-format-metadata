@@ -1,5 +1,6 @@
 import type { FluentMessageId } from "../../typings/i10n";
 import { getString } from "../utils/locale";
+import { getPref } from "../utils/prefs";
 import { removeHtmlTag } from "../utils/str";
 
 const TOOLBAR_CLASS = "linter-richtext-toolbar";
@@ -145,6 +146,7 @@ class PreviewManager {
         marginTop: "6px",
         whiteSpace: "pre-wrap",
         fontWeight: "normal",
+        borderRadius: "5px",
       });
       textarea.parentElement.appendChild(preview);
     }
@@ -164,7 +166,7 @@ class PreviewManager {
         preview.textContent = `Preview failed! Please check html tags in your title. \n${errorDetails}`;
       }
       else {
-        preview.innerHTML = value;
+        preview.innerHTML = value || "Title";
       }
     }
     catch {}
@@ -210,8 +212,8 @@ class PreviewManager {
 /** -------------------- MAIN CLASS -------------------- */
 export class RichTextToolBar {
   private observer?: MutationObserver;
-  private buttonManager: ButtonManager;
-  private previewManager: PreviewManager;
+  private buttonManager?: ButtonManager;
+  private previewManager?: PreviewManager;
 
   private mutationOptions: MutationObserverInit = {
     childList: true,
@@ -220,10 +222,7 @@ export class RichTextToolBar {
     subtree: true,
   };
 
-  constructor(private window: Window) {
-    this.buttonManager = new ButtonManager(window);
-    this.previewManager = new PreviewManager(window);
-  }
+  constructor(private window: Window) {}
 
   private get itemPaneHeader(): HTMLElement {
     // @ts-expect-error itemPane has inited so not false
@@ -255,12 +254,25 @@ export class RichTextToolBar {
   }
 
   init(): void {
+    const isEnableToolBar = getPref("richtext.toolBar");
+    const isEnablePreview = getPref("richtext.preview");
+
+    // If all features are disabled, do nothing
+    if (!isEnablePreview && !isEnableToolBar)
+      return;
+
+    if (isEnableToolBar)
+      this.buttonManager = new ButtonManager(this.window);
+    if (isEnablePreview)
+      this.previewManager = new PreviewManager(this.window);
+
+    // MutationObserver not a global object in Zotero's plugin sandbox,
+    // So we define it here, it actually in window, but miss types.
     const MutationObserver = (this.window as Window & typeof globalThis).MutationObserver;
     this.observer = new MutationObserver(this.onMutations.bind(this));
 
-    this.observer.observe(this.itemPaneHeader, this.mutationOptions);
-    if (this.contextPaneHeader)
-      this.observer.observe(this.contextPaneHeader, this.mutationOptions);
+    this.addObserver(this.itemPaneHeader);
+    this.addObserver(this.contextPaneHeader);
 
     this.window.addEventListener("unload", () => this.clean());
     Zotero.Plugins.addObserver({
@@ -269,6 +281,12 @@ export class RichTextToolBar {
           this.clean();
       },
     });
+  }
+
+  addObserver(element?: Element | null): void {
+    if (!element)
+      return;
+    this.observer?.observe(element, this.mutationOptions);
   }
 
   private onMutations(records: MutationRecord[]): void {
@@ -282,8 +300,8 @@ export class RichTextToolBar {
         continue;
 
       if (target.classList.contains("focused")) {
-        this.buttonManager.attachToolbar(textarea);
-        this.previewManager.attachPreview(textarea);
+        this.buttonManager?.attachToolbar(textarea);
+        this.previewManager?.attachPreview(textarea);
       }
       else if (target.className === "") {
         this.close();
@@ -303,8 +321,8 @@ export class RichTextToolBar {
    * Close all toolbar and preview - on blur
    */
   close(): void {
-    this.buttonManager.close();
-    this.previewManager.close();
+    this.buttonManager?.close();
+    this.previewManager?.close();
   }
 
   /**

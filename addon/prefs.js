@@ -12,6 +12,7 @@ pref("lint.notify", true);
 // --------------------
 pref("richtext.toolBar", true);
 pref("richtext.hotkey", true);
+pref("richtext.preview", true);
 
 // --------------------
 // Rule settings

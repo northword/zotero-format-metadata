@@ -13,6 +13,7 @@ declare namespace _ZoteroTypes {
       "lint.notify": boolean;
       "richtext.toolBar": boolean;
       "richtext.hotkey": boolean;
+      "richtext.preview": boolean;
       "rule.no-item-duplication": boolean;
       "rule.no-article-webpage": boolean;
       "rule.no-journal-preprint": boolean;
