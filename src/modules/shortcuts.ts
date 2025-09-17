@@ -4,7 +4,8 @@ export function registerShortcuts() {
       if (data.keyboard.equals("accel,=")) {
         addon.hooks.onShortcuts("subscript");
       }
-      if (data.keyboard.equals("accel,+") || data.keyboard.equals("accel,shift,+")) {
+      // `accel,shift,=` is for compatibility with macOS
+      if (data.keyboard.equals("accel,+") || data.keyboard.equals("accel,shift,+") || data.keyboard.equals("accel,shift,=")) {
         addon.hooks.onShortcuts("supscript");
       }
       if (data.keyboard.equals("accel,B")) {
