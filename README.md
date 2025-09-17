@@ -9,7 +9,7 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/b851796e53724d7aa7c00923955e0f56)](https://app.codacy.com/gh/northword/zotero-format-metadata/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?&logo=github)](https://github.com/windingwind/zotero-plugin-template)
 
-This README is also available in: [:cn: 简体中文](./docs/README-zh.md) | :gb: English
+This README is also available in: [:cn: 简体中文](./docs/README-zh.md) | [:fr: French](https://docs.zotero-fr.org/kbfr/kbfr_linter)
 
 An addon for [Zotero](https://www.zotero.org/) to format item metadata.
 
