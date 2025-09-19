@@ -9,17 +9,23 @@ export const RequireShortTitle = defineRule({
   id: "require-short-title",
   scope: "field",
   targetItemField: "shortTitle",
-  apply: ({ item }) => {
+  apply: ({ item, debug }) => {
+    const title = item.getField("title");
+    if (!title) {
+      return;
+    }
+
+    if (!title.includes(": ")) {
+      debug("No colon found in title, may no need to store the main title in shortTitle field.");
+      return;
+    }
+
     // Since the plugin cannot handle titles containing
     // multiple colons and dashes accurately, skip items
     // that already include a shortTitle.
     const shortTitle = item.getField("shortTitle");
-    if (shortTitle) {
-      return;
-    }
-
-    const title = item.getField("title");
-    if (!title) {
+    if (shortTitle && title.startsWith(shortTitle)) {
+      debug("shortTitle field already contains the main title, skip.");
       return;
     }
 
