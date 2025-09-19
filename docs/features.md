@@ -149,14 +149,23 @@ Replaces invalid connectors like `~` or `+` with `-` or `,`.
 
 ## Identifier Rules
 
-### Require DOI (`require-doi`) _(planned)_
+### Require DOI (`require-doi`)
 
 For `journalArticle`, DOI must exist.
+
 If missing, attempt to retrieve it.
 
 ### No DOI Prefix (`no-doi-prefix`)
 
 Removes URL prefixes like `https://doi.org/` and stores only the DOI string.
+
+### Correct DOI to long form (`correct-doi-long`)
+
+If DOI is short form (e.g. `10/p6kd`), converts it to long form (e.g. `10.1016/j.fuel.2022.126104`).
+
+### Tool: Get Short DOI (`tool-get-short-doi`)
+
+Retrieves short DOI from the DOI, and stores it in the `extra.short-doi` field.
 
 ## Metadata Update Tool (`tool-update-metadata`)
 

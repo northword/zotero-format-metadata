@@ -116,11 +116,22 @@ rule-require-journal-abbr-option-choose-custom-abbr-data-input =
 rule-require-journal-abbr-option-custom-data-desc = Supports JSON or CSV. JSON: `"publicationTitle": "abbreviation"`. CSV: first col = full title, second col = abbreviation. Separator must be comma or semicolon (no tabs).
 
 
+## require-doi
+rule-require-doi =
+  .label = DOI should be non-empty
+rule-require-doi-menu-item = Retrieve DOI
+
+
 ## no-doi-prefix
 rule-no-doi-prefix =
   .label = No URL prefix for DOI
 rule-no-doi-prefix-menu-item = Remove DOI prefix
 rule-no-doi-prefix-menu-field = Remove URL prefix
+
+
+## correct-doi-long
+rule-correct-doi-long =
+  .label = Correct DOI to long format
 
 
 ## correct-pages-connector
@@ -196,3 +207,7 @@ tool-update-metadata-option-semanticScholarToken = Semantic Scholar API Key:
     .placeholder = Semantic Scholar Token
 tool-update-metadata-option-semanticScholarToken-desc = When updating preprint fields, the plugin queries Semantic Scholar to check if it has been published. Default API rate is 1 req/s. Apply for free API Key to increase rate limit.
 tool-update-metadata-option-semanticScholarToken-link = Request API key
+
+
+## tool-get-short-doi
+rule-tool-get-short-doi-menu-item = Retrieve short DOI

@@ -114,11 +114,21 @@ rule-require-journal-abbr-option-choose-custom-abbr-data-input =
 rule-require-journal-abbr-option-custom-data-desc = 自定义缩写文件支持 JSON 格式和 CSV 格式。JSON 文件的格式为："publicationTitle": "abbreviation"。CSV 格式第一列填全称，第二列填简写，分隔符可以为逗号或分号，但须统一，不得为制表符。
 
 
+## require-doi
+rule-require-doi =
+  .label = DOI 应填写完整
+rule-require-doi-menu-item = 获取 DOI
+
 ## no-doi-prefix
 rule-no-doi-prefix =
   .label = DOI 无须保留网址前缀
 rule-no-doi-prefix-menu-item = 去除 DOI 网址前缀
 rule-no-doi-prefix-menu-field = 去除网址前缀
+
+
+## correct-doi-long
+rule-correct-doi-long =
+  .label = DOI 应为长格式而非短格式
 
 
 ## correct-pages-connector
@@ -194,3 +204,7 @@ tool-update-metadata-option-semanticScholarToken = Semantic Scholar API Key:
     .placeholder = Semantic Scholar Token
 tool-update-metadata-option-semanticScholarToken-desc =  当更新预印本的字段数据时，插件会从 Semantic Scholar 查询该预印本是否已正式发表。默认的，此 API 限制请求 1 次/秒，你可以通过免费申请 API Key 来增加速率限制。
 tool-update-metadata-option-semanticScholarToken-link = 申请
+
+
+## tool-get-short-doi
+rule-tool-get-short-doi-menu-item = Retrieve short DOI
