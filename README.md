@@ -15,7 +15,7 @@ An addon for [Zotero](https://www.zotero.org/) to format item metadata.
 
 Keep your Zotero library clean and consistent with automatic validation, corrections, and metadata updates.
 
-</div></br>
+</div>
 
 ## Features
 
@@ -50,11 +50,27 @@ Permissions of this strongest copyleft license are conditioned on making availab
 
 ## Acknowledgements
 
-[![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
+We would like to express our sincere gratitude to the following:
 
-The following data sets were used:
+- This project is built upon the [Zotero Plugin Template](https://github.com/windingwind/zotero-plugin-template) and makes extensive use of outstanding open-source libraries. For a complete list, please refer to the [dependency graph](https://github.com/northword/zotero-format-metadata/network/dependencies).
+- We thank the providers of the following data resources:
+  - [ISO 639-3](https://github.com/wooorm/iso-639-3) and its associated [mapping table](https://github.com/amitbend/iso-639-3-to-1/blob/master/6393-6391.json)
+  - [JabRef journal abbreviation list](https://github.com/JabRef/abbrv.jabref.org)
+  - [List of National Higher Education Institutions](http://www.moe.gov.cn/jyb_xxgk/s5743/s5744/A03/202110/t20211025_574874.html), published by the Ministry of Education of the People’s Republic of China
+- We gratefully acknowledge the data support provided by the following API services:
+  - [CrossRef API](https://api.crossref.org/): for retrieving DOI metadata and bibliographic metadata
+  - [Semantic Scholar API](https://api.semanticscholar.org/): for retrieving bibliographic metadata
+  - [shortdoi.org](https://shortdoi.org/): for generating short DOIs
+  - [doi.org](https://www.doi.org/): for resolving DOIs
+  - [abbreviso](https://github.com/marcocorvi/abbreviso): for inferring journal abbreviations
+- We are indebted to the [DOI Manager](https://github.com/bwiernik/zotero-shortdoi) (MPL-2.0 License) for inspiring the implementation of the `require-doi`, `correct-doi-long`, and `tool-get-short-doi` rules.
+- Special thanks to @zepinglee for curating the [Zotero Field Specification](https://github.com/l0o0/translators_CN/issues/257).
+- We would also like to thank the Zotero French translation team for providing a French user guide for this plugin.
+- We also acknowledge the valuable coding assistance provided by ChatGPT and DeepSeek during development.
+- Finally, thanks to all project contributors:
 
-- [ISO 639-3](https://github.com/wooorm/iso-639-3)
-  - [Map of ISO 639-3 to ISO 639-1](https://github.com/amitbend/iso-639-3-to-1/blob/master/6393-6391.json)
-- [JabRef/abbr.jabref.org](https://github.com/JabRef/abbrv.jabref.org)
-- [中华人民共和国教育部：全国高等学校名单](http://www.moe.gov.cn/jyb_xxgk/s5743/s5744/A03/202110/t20211025_574874.html)
+[![contributors](https://contrib.rocks/image?repo=northword/zotero-format-metadata)](https://github.com/northword/zotero-format-metadata/graphs/contributors)
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=northword/zotero-format-metadata&type=Date)](https://star-history.com/#northword/zotero-format-metadata&Date)

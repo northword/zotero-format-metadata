@@ -44,5 +44,10 @@
     "yaml",
     "toml",
     "xml"
-  ]
+  ],
+
+  "markdownlint.config": {
+    "MD033": false,
+    "md041": false
+  }
 }
