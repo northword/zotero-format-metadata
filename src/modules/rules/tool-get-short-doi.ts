@@ -37,36 +37,25 @@ export const ToolGetShortDOI = defineRule({
       return;
     }
 
-    try {
-      const url = `https://shortdoi.org/${encodeURIComponent(cleanDOI)}?format=json`;
-      const req = await Zotero.HTTP.request("GET", url);
+    const url = `https://shortdoi.org/${encodeURIComponent(cleanDOI)}?format=json`;
+    const req = await Zotero.HTTP.request("GET", url);
 
-      if (req.status !== 200) {
-        report({ level: "warning", message: `ShortDOI request failed: ${req.status}` });
-        return;
-      }
-
-      if (!req.responseText) {
-        return;
-      }
-
-      const json: Result = JSON.parse(req.responseText);
-      if (json.ShortDOI) {
-        const shortDOI: string = json.ShortDOI.toLowerCase();
-        debug("ShortDOI obtained:", shortDOI);
-
-        const extra = item.getField("extra") || "";
-        const newExtra = extra.includes("ShortDOI:")
-          ? extra.replace(/ShortDOI:.*$/m, `ShortDOI: ${shortDOI}`)
-          : `${extra}\nShortDOI: ${shortDOI}`;
-        item.setField("extra", newExtra.trim());
-      }
-      else {
-        report({ level: "warning", message: "ShortDOI not found in response" });
-      }
+    if (req.status !== 200) {
+      report({ level: "warning", message: `ShortDOI request failed: ${req.status}` });
+      return;
     }
-    catch (e) {
-      report({ level: "error", message: `ShortDOI error: ${String(e)}` });
+
+    if (!req.responseText) {
+      return;
+    }
+
+    const json: Result = JSON.parse(req.responseText);
+    if (json.ShortDOI) {
+      debug("ShortDOI obtained:", json.ShortDOI);
+      ztoolkit.ExtraField.setExtraField(item, "short-doi", json.ShortDOI);
+    }
+    else {
+      report({ level: "warning", message: "ShortDOI not found in response" });
     }
   },
 

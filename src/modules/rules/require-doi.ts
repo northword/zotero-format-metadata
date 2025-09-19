@@ -7,30 +7,39 @@ export const RequireDOI = defineRule({
   targetItemTypes: ["journalArticle", "conferencePaper"],
 
   async apply({ item, report, debug }) {
+    if (item.getField("language").startsWith("zh")) {
+      debug("Skipping for Chinese language");
+      return;
+    }
+
     const doi = item.getField("DOI");
     if (doi)
       return;
 
     debug("DOI is empty, trying CrossRef lookup");
 
-    const crossrefOpenURL = "https://www.crossref.org/openurl?pid=zoteroDOI@wiernik.org&";
     // @ts-expect-error miss types
     const ctx = Zotero.OpenURL.createContextObject(item, "1.0");
     if (!ctx) {
-      report({ level: "warning", message: "Could not build OpenURL context" });
-      return;
+      throw new Error("Could not build OpenURL context");
     }
 
-    const url = `${crossrefOpenURL + ctx}&multihit=true`;
-    const req = await Zotero.HTTP.request("GET", url);
+    const url = `https://www.crossref.org/openurl?pid=${addon.data.config.addonID}&${ctx}&multihit=true`;
+    const req = await Zotero.HTTP.request("GET", url, {
+      responseType: "xml",
+    })
+      // We catch here and re-throw because this error message is too long
+      .catch((error) => {
+        throw new Error(`CrossRef request error, ${error.status}`);
+      });
 
     if (req.status !== 200) {
-      throw `CrossRef request error: ${req.status}`;
+      throw new Error(`CrossRef request error: ${req.status}`);
     }
 
     const response = req.responseXML?.getElementsByTagName("query")[0];
     if (!response) {
-      throw "CrossRef response XML parse error";
+      throw new Error("CrossRef response XML parse error");
     }
 
     const status = response.getAttribute("status");
@@ -48,7 +57,7 @@ export const RequireDOI = defineRule({
       report({ level: "warning", message: "Multiple possible DOIs found on CrossRef" });
     }
     else {
-      throw `CrossRef unknown status: ${status}`;
+      throw new Error(`CrossRef unknown status: ${status}`);
     }
   },
 });

@@ -53,7 +53,9 @@ const ErrorCodeMessage: Record<number, string> = {
 
 async function makeRequest(doi: string): Promise<Result> {
   const url = `https://doi.org/api/handles/${encodeURIComponent(doi)}`;
-  const req = await Zotero.HTTP.request("GET", url);
+  const req = await Zotero.HTTP.request("GET", url, {
+    responseType: "json",
+  });
 
   if (req.status !== 200) {
     throw new Error(`DOI API request failed: ${req.status}`);

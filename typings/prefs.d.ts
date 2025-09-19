@@ -29,15 +29,16 @@ declare namespace _ZoteroTypes {
       "rule.require-language.only.eng": boolean;
       "rule.require-language.only.other": string;
       "rule.require-short-title": boolean;
-      "rule.correct-title-sentence-case": boolean;
-      "rule.correct-title-sentence-case.custom-term-path": string;
-      "rule.correct-shortTitle-sentence-case": boolean;
       "rule.require-journal-abbr": boolean;
       "rule.require-journal-abbr.infer": boolean;
       "rule.require-journal-abbr.usefull": boolean;
       "rule.require-journal-abbr.usefullZh": boolean;
       "rule.require-journal-abbr.customDataPath": string;
       "rule.require-university-place": boolean;
+      "rule.require-doi": boolean;
+      "rule.correct-title-sentence-case": boolean;
+      "rule.correct-title-sentence-case.custom-term-path": string;
+      "rule.correct-shortTitle-sentence-case": boolean;
       "rule.correct-creators-case": boolean;
       "rule.correct-creators-pinyin": boolean;
       "rule.correct-date-format": boolean;
@@ -46,6 +47,7 @@ declare namespace _ZoteroTypes {
       "rule.correct-conference-abbr": boolean;
       "rule.correct-thesis-type": boolean;
       "rule.correct-university-punctuation": boolean;
+      "rule.correct-doi-long": boolean;
       "rule.tool-title-guillemet": boolean;
       "rule.tool-creators-ext": boolean;
       "rule.tool-set-language": boolean;

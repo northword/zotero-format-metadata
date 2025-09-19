@@ -153,6 +153,13 @@ export function registerMenu() {
           },
           {
             tag: "menuitem",
+            label: getString("rule-tool-get-short-doi-menu-item"),
+            commandListener: () => {
+              addon.hooks.onLintInBatch("tool-get-short-doi", menuPopup);
+            },
+          },
+          {
+            tag: "menuitem",
             label: getString("rule-correct-date-format-menu-item"),
             commandListener: () => {
               addon.hooks.onLintInBatch("correct-date-format", menuPopup);

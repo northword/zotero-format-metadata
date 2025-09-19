@@ -310,10 +310,22 @@
     <!-- 标识符 -->
     <groupbox>
       <label><html:h2 data-l10n-id="section-identifier" /></label>
-      <!-- 更新DOI格式 -->
+      <!-- DOI: 需要 DOI -->
+      <checkbox
+        data-l10n-id="rule-require-doi"
+        preference="rule.require-doi"
+        native="true"
+      />
+      <!-- DOI: 无前缀 -->
       <checkbox
         data-l10n-id="rule-no-doi-prefix"
         preference="rule.no-doi-prefix"
+        native="true"
+      />
+      <!-- DOI: 应为长型 -->
+      <checkbox
+        data-l10n-id="rule-correct-doi-long"
+        preference="rule.correct-doi-long"
         native="true"
       />
     </groupbox>

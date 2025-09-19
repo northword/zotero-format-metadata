@@ -3,6 +3,7 @@ import { getPref } from "../../utils/prefs";
 import { CorrectCreatorsCase } from "./correct-creators-case";
 import { CorrectCreatorsPinyin } from "./correct-creators-pinyin";
 import { CorrectDateFormat } from "./correct-date-format";
+import { CorrectDOILong } from "./correct-doi-long";
 import { CorrectPagesConnector } from "./correct-pages-connector";
 import { CorrectPublicationTitle } from "./correct-publication-title";
 import { CorrectThesisType } from "./correct-thesis-type";
@@ -16,10 +17,12 @@ import { NoJournalPreprint } from "./no-journal-preprint";
 import { NoTitleTrailingDot } from "./no-title-trailing-dot";
 import { NoValueNullish } from "./no-value-nullish";
 import { CorrectConferenceAbbr, RequireJournalAbbr } from "./require-abbr";
+import { RequireDOI } from "./require-doi";
 import { RequireLanguage } from "./require-language";
 import { RequireShortTitle } from "./require-short-title";
 import { RequireUniversityPlace } from "./require-university-place";
 import { ToolCreatorsExt } from "./tool-creators-ext";
+import { ToolGetShortDOI } from "./tool-get-short-doi";
 import { ToolUpdateMetadata } from "./tool-retrive-metadata";
 import { ToolSetLanguage } from "./tool-set-language";
 import { ToolTitleGuillemet } from "./tool-title-guillemet";
@@ -47,11 +50,15 @@ const register: Rule<any>[] = [
   // Other general fields
   CorrectDateFormat,
 
+  // Identifiers
+  RequireDOI,
+  NoDOIPrefix,
+  CorrectDOILong,
+
   // Article specific fields
   CorrectPublicationTitle,
   RequireJournalAbbr,
   CorrectPagesConnector,
-  NoDOIPrefix,
   NoIssueExtraZeros,
   NoPagesExtraZeros,
   NoVolumeExtraZeros,
@@ -69,6 +76,7 @@ const register: Rule<any>[] = [
   ToolCreatorsExt,
   ToolSetLanguage,
   ToolUpdateMetadata,
+  ToolGetShortDOI,
 ];
 
 export class Rules {
