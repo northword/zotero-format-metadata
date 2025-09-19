@@ -1,4 +1,4 @@
-name: Release
+name: release
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  release-it:
+  release:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GitHub_TOKEN }}
@@ -30,9 +30,7 @@ jobs:
           node-version: 22.19.0
 
       - name: Install deps
-        run: |
-          echo "public-hoist-pattern[]=@types*" >> .npmrc
-          pnpm install
+        run: pnpm install
 
       - name: Release to GitHub
         run: |
