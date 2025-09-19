@@ -173,12 +173,10 @@ export class ProgressUI {
     this.progressWindow.changeLine({ text, progress, idx: 0 });
   }
 
-  public showError(error: unknown): void {
+  public showError(): void {
     this.progressWindow?.createLine({
       type: "fail",
-      text: `${getString("info-batch-has-error")}: ${
-        error instanceof Error ? error.message : error
-      }`,
+      text: getString("info-batch-has-error"),
     });
   }
 

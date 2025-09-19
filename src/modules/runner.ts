@@ -142,55 +142,68 @@ export class LintRunner {
   }
 
   private async runTask({ item, rules, options }: ResolvedTask) {
-    try {
-      for (const rule of rules) {
-        if (!shouldApplyRule(rule, item)) {
-          continue;
+    for (const rule of rules) {
+      if (!shouldApplyRule(rule, item)) {
+        continue;
+      }
+
+      debug(`Applying ${rule.id}`);
+
+      const ctx: Context = {
+        item,
+        options: options.get(rule.id) ?? {},
+        debug: (...args: any[]) => ztoolkit.log(`[${rule.id}]`, ...args),
+        report: (info) => {
+          this.stats.records.push({
+            ...info,
+            itemID: item.id,
+            title: item.getDisplayTitle(),
+            ruleID: rule.id,
+          });
+          ztoolkit.log(`[${rule.id}] Report ${info.level} for item ${item.id}:`, info.message);
+        },
+      };
+
+      try {
+        await rule.apply(ctx);
+
+        if (item.hasTag("linter/error")) {
+          item.removeTag("linter/error");
         }
 
-        debug(`Applying ${rule.id}`);
-
-        const ctx: Context = {
-          item,
-          options: options.get(rule.id) ?? {},
-          debug: (...args: any[]) => ztoolkit.log(`[${rule.id}]`, ...args),
-          report: (info) => {
-            this.stats.records.push({
-              ...info,
-              itemID: item.id,
-              title: item.getDisplayTitle(),
-              ruleID: rule.id,
-            });
-            ztoolkit.log(`[${rule.id}] Report ${info.level} for item ${item.id}:`, info.message);
-          },
-        };
-
-        await rule.apply(ctx);
-        // debug("Rule applied:", item.toJSON());
+        await item.saveTx();
       }
+      catch (error: any) {
+        let message: string = "Error: ";
+        if (error instanceof Error) {
+          message += error.message;
+        }
+        // Zotero.HTTP.request error, the message is too long, here we just show the status
+        else if ("xmlhttp" in error && "message" in error) {
+          message += `HTTP request error, status ${error.status}`;
+        }
+        else if ("message" in error) {
+          message += `${error.message}`;
+        }
+        else {
+          message += String(error);
+        }
 
-      if (item.hasTag("linter/error")) {
-        item.removeTag("linter/error");
+        console.error(`[Linter for Zotero] ${message}`, error, item);
+        Zotero.debug(`[Linter for Zotero] ${message}`);
+
+        this.stats.records.push({
+          message,
+          level: "error",
+          itemID: item.id,
+          title: item.getDisplayTitle(),
+          ruleID: rule.id,
+        });
+
+        item.addTag("linter/error", 1);
+        await item.saveTx();
+        throw error;
       }
-
-      await item.saveTx();
-    }
-    catch (error) {
-      this.stats.records.push({
-        message: error instanceof Error ? error.message : String(error),
-        level: "error",
-        itemID: item.id,
-        title: item.getDisplayTitle(),
-        ruleID: "Error",
-      });
-      const message = `[Linter for Zotero] An error occurred when lint item ${item.id}: ${
-        error instanceof Error ? error.message : error
-      }\n`;
-      console.error(message, error, item);
-      Zotero.debug(message);
-      item.addTag("linter/error", 1);
-      await item.saveTx();
-      throw error;
     }
   }
 
@@ -205,11 +218,11 @@ export class LintRunner {
     this.ui.updateProgress(this.stats.current, this.stats.total);
   }
 
-  private onError(error: unknown): void {
+  private onError(_error: unknown): void {
     this.stats.error++;
     this.stats.current++;
     this.ui.updateProgress(this.stats.current, this.stats.total);
-    this.ui.showError(error);
+    this.ui.showError();
   }
 
   private onIdle(): void {
