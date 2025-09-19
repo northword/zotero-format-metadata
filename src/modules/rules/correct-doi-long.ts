@@ -20,6 +20,7 @@ export const CorrectDOILong = defineRule({
       const longDOI = getLongDOI(result);
       if (longDOI) {
         item.setField("DOI", longDOI);
+        ztoolkit.ExtraField.setExtraField(item, "short-doi", cleanDOI);
       }
       else {
         report({

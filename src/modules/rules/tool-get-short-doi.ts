@@ -37,6 +37,11 @@ export const ToolGetShortDOI = defineRule({
       return;
     }
 
+    const exists = ztoolkit.ExtraField.getExtraField(item, "short-doi");
+    if (exists) {
+      return;
+    }
+
     const url = `https://shortdoi.org/${encodeURIComponent(cleanDOI)}?format=json`;
     const req = await Zotero.HTTP.request("GET", url);
 
@@ -58,12 +63,4 @@ export const ToolGetShortDOI = defineRule({
       report({ level: "warning", message: "ShortDOI not found in response" });
     }
   },
-
-  // getItemMenu() {
-  //   return {
-  //     i10nID: "rule-tool-get-short-doi-menu-item",
-  //     icon: "chrome://zotero/skin/doi.png",
-  //     mutiltipleItems: true,
-  //   };
-  // },
 });
