@@ -31,6 +31,7 @@ section-date = 日期 Date
 section-pages = 期卷页 Issue, volume, pages
 section-identifier = 标识符
 section-thesis = 学位论文相关
+section-book = 书籍
 section-others = 其他
 section-updateMetadata = 更新元数据
 

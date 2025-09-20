@@ -174,6 +174,16 @@ rule-require-university-place-menu-item = 填写高校所在地
 rule-require-university-place-menu-field = 查找（Linter）
 
 
+## correct-edition-numeral
+rule-correct-edition-numeral =
+  .label =  edition 应为纯数字
+
+
+## correct-volume-numeral
+rule-correct-volume-numeral =
+  .label =  volume 应为纯数字
+
+
 ## tool-title-guillemet
 rule-tool-title-guillemet =
   .label = 转换标题中的尖括号「〈〉与《》」

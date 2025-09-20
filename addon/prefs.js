@@ -53,6 +53,8 @@ pref("rule.correct-conference-abbr", true);
 pref("rule.correct-thesis-type", true);
 pref("rule.correct-university-punctuation", true);
 pref("rule.correct-doi-long", true);
+pref("rule.correct-edition-numeral", true);
+pref("rule.correct-volume-numeral", true);
 
 // The tool's settings option is compatibility,
 // which suppresses typing error.

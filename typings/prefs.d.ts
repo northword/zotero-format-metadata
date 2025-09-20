@@ -48,6 +48,8 @@ declare namespace _ZoteroTypes {
       "rule.correct-thesis-type": boolean;
       "rule.correct-university-punctuation": boolean;
       "rule.correct-doi-long": boolean;
+      "rule.correct-edition-numeral": boolean;
+      "rule.correct-volume-numeral": boolean;
       "rule.tool-title-guillemet": boolean;
       "rule.tool-creators-ext": boolean;
       "rule.tool-set-language": boolean;

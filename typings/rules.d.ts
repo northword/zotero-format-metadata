@@ -26,6 +26,8 @@ type ID =
   | "correct-thesis-type"
   | "correct-university-punctuation"
   | "require-university-place"
+  | "correct-edition-numeral"
+  | "correct-volume-numeral"
   | "tool-title-guillemet"
   | "tool-creators-ext"
   | "tool-set-language"

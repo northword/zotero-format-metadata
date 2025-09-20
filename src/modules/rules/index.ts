@@ -4,6 +4,7 @@ import { CorrectCreatorsCase } from "./correct-creators-case";
 import { CorrectCreatorsPinyin } from "./correct-creators-pinyin";
 import { CorrectDateFormat } from "./correct-date-format";
 import { CorrectDOILong } from "./correct-doi-long";
+import { CorrectEditionNumeral, CorrectVolumeNumeral } from "./correct-edition-numeral";
 import { CorrectPagesConnector } from "./correct-pages-connector";
 import { CorrectPublicationTitle } from "./correct-publication-title";
 import { CorrectThesisType } from "./correct-thesis-type";
@@ -70,6 +71,10 @@ const register: Rule<any>[] = [
   CorrectThesisType,
   CorrectUniversityPunctuation,
   RequireUniversityPlace,
+
+  // Book
+  CorrectEditionNumeral,
+  CorrectVolumeNumeral,
 
   // Tools
   ToolTitleGuillemet,

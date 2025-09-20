@@ -177,6 +177,16 @@ rule-require-university-place-menu-item = Fill university place
 rule-require-university-place-menu-field = Lookup (Linter)
 
 
+## correct-edition-numeral
+rule-correct-edition-numeral =
+  .label =  Edition should be numeral
+
+
+## correct-volume-numeral
+rule-correct-volume-numeral =
+  .label =  Volume should be numeral
+
+
 ## tool-title-guillemet
 rule-tool-title-guillemet =
   .label = Convert 〈〉 and 《》 in title

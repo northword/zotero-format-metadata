@@ -31,6 +31,7 @@ section-date = Date
 section-pages = Issue, volume, and pages
 section-identifier = Identifier
 section-thesis = Thesis
+section-book = Book
 section-others = Others
 section-updateMetadata = Update Metadata
 
