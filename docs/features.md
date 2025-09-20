@@ -98,14 +98,22 @@ By default, only **Simplified Chinese** and **English** are detected. You can di
 
 2. Converts all-uppercase journal names to **capitalized words**, while keeping special words (e.g., acronyms) uppercase.
 
-## Journal Abbreviation Rules
-
 ### Require ISO4 Abbreviation (`require-journal-abbr`)
 
 Uses a built-in dataset (JabRef + Woodward Library) to look up journal abbreviations.
 
 - If missing, infers abbreviation from the [ISSN LTWA list](https://www.issn.org/services/online-services/access-to-the-ltwa/).
 - If still missing, defaults to full journal title (can be disabled).
+
+### No Leading Zeros (`no-issue-extra-zeros`, `no-pages-extra-zeros`, `no-volume-extra-zeros`)
+
+Removes leading zeros from issue, pages, and volume fields.
+
+Example: `02-10` → `2-10`.
+
+### Correct Page Connector (`correct-pages-connector`)
+
+Replaces invalid connectors like `~` or `+` with `-` or `,`.
 
 ## Thesis Rules
 
@@ -127,25 +135,25 @@ Normalizes university names.
 
 For example, in Chinese entries, replaces half-width parentheses `()` with full-width ones `（）`.
 
-## Date Rules
+## Book Rules
 
-### Correct Date Format (`correct-date-format`)
+### Correct Edition/Volume Numeral (`correct-edition-numeral`)
 
-Ensures ISO format: `YYYY-MM-DD`.
+Automatically normalizes the `edition` and `volume` field for books:
 
-Example: `2023-01-01`.
+- Converts English ordinal words, numeric ordinals, Roman numerals, and Chinese ordinals to numbers.
+- Converts incomplete names to full forms (`修订` → `修订版`, `Revised` → `Revised Edition`).
+- Removes trailing `"ed."` or `"edition"`.
 
-## Volume, Issue, and Page Rules
+**Example**:
 
-### No Leading Zeros (`no-issue-extra-zeros`, `no-pages-extra-zeros`, `no-volume-extra-zeros`)
-
-Removes leading zeros from issue, pages, and volume fields.
-
-Example: `02-10` → `2-10`.
-
-### Correct Page Connector (`correct-pages-connector`)
-
-Replaces invalid connectors like `~` or `+` with `-` or `,`.
+| Original        | Normalized |
+| --------------- | ---------- |
+| `first edition` | `1`        |
+| `2nd ed.`       | `2`        |
+| `III`           | `3`        |
+| `第一版`        | `1`        |
+| `修订`          | `修订版`   |
 
 ## Identifier Rules
 
@@ -166,6 +174,14 @@ If DOI is short form (e.g. `10/p6kd`), converts it to long form (e.g. `10.1016/j
 ### Tool: Get Short DOI (`tool-get-short-doi`)
 
 Retrieves short DOI from the DOI, and stores it in the `extra.short-doi` field.
+
+## Other Field Rules
+
+### Correct Date Format (`correct-date-format`)
+
+Ensures ISO format: `YYYY-MM-DD`.
+
+Example: `2023-01-01`.
 
 ## Metadata Update Tool (`tool-update-metadata`)
 
