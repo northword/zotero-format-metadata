@@ -45,7 +45,7 @@ pref("rule.correct-title-sentence-case", true);
 pref("rule.correct-title-sentence-case.custom-term-path", "");
 pref("rule.correct-shortTitle-sentence-case", true);
 pref("rule.correct-creators-case", true);
-pref("rule.correct-creators-pinyin", true);
+pref("rule.correct-creators-pinyin", false);
 pref("rule.correct-date-format", true);
 pref("rule.correct-publication-title", true);
 pref("rule.correct-pages-connector", true);
