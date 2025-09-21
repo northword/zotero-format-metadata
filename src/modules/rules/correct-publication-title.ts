@@ -316,6 +316,7 @@ const skipWordsForPublicationTitle = [
   "SA",
   "ZDM",
   "ZKG",
+  "npj",
 ];
 
 // 期刊名应词首大写
