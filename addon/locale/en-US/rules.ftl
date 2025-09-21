@@ -78,7 +78,7 @@ rule-correct-creators-case-menu-item = Fix case of creators
 
 ## correct-creators-pinyin
 rule-correct-creators-pinyin =
-  .label = Chinese creators’ Pinyin should be hyphenated
+  .label = Chinese creators' Pinyin should be splitted (i.e. Zhang Sanfeng → Zhang San Feng)
 rule-correct-creators-pinyin-menu-item = Split creator Pinyin
 
 

@@ -76,7 +76,7 @@ rule-correct-creators-case-menu-item = 修正作者的大小写
 
 ## correct-creators-pinyin
 rule-correct-creators-pinyin =
-  .label = 作者中的中文拼音应以短划线分隔
+  .label = 作者中的中文拼音应被拆分（即Zhang Sanfeng → Zhang San Feng）
 rule-correct-creators-pinyin-menu-item = 拆分作者拼音
 
 
