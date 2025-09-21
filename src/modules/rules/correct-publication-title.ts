@@ -15,6 +15,9 @@ export const CorrectPublicationTitle = defineRule({
     if (publicationTitleDisambiguation) {
       newPublicationTitle = publicationTitleDisambiguation;
     }
+    else if (keepOriginPublicationTitle(publicationTitle)) {
+      newPublicationTitle = publicationTitle;
+    }
     else {
       newPublicationTitle = capitalizePublicationTitle(publicationTitle, isFullUpperCase(publicationTitle));
     }
@@ -313,6 +316,7 @@ const skipWordsForPublicationTitle = [
   "SA",
   "ZDM",
   "ZKG",
+  "npj",
 ];
 
 // 期刊名应词首大写
@@ -352,4 +356,12 @@ async function getPublicationTitleDisambiguation(publicationTitle: string) {
     }
   }
   return false;
+}
+
+// For iScience-link publication title, keep origin
+function keepOriginPublicationTitle(publicationTitle: string): boolean {
+  return publicationTitle.split(" ").length === 1
+    && publicationTitle.length > 1
+    && publicationTitle.charAt(0) === publicationTitle.charAt(0).toLowerCase()
+    && publicationTitle.charAt(1) === publicationTitle.charAt(1).toUpperCase();
 }
