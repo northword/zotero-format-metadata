@@ -16,7 +16,7 @@ export interface Task {
 interface ResolvedTask {
   item: Zotero.Item;
   rules: Rule<any>[];
-  options: Map<string, object>;
+  optionsMap: Map<string, object>;
 }
 
 interface RunnerStats {
@@ -109,11 +109,11 @@ export class LintRunner {
     const items = Array.isArray(task.items) ? task.items : [task.items];
     const rules = Array.isArray(task.rules) ? task.rules.flat() : [task.rules];
 
-    const options = new Map<string, any>();
+    const optionsMap = new Map<string, any>();
     for (const rule of rules) {
       if (rule.getOptions) {
         try {
-          options.set(rule.id, await rule.getOptions());
+          optionsMap.set(rule.id, await rule.getOptions());
         }
         catch (error) {
           this.stats.records.push({
@@ -130,9 +130,9 @@ export class LintRunner {
         }
       }
     }
-    debug("Options:", options);
+    debug("Options:", optionsMap);
 
-    return items.map(item => ({ item, rules, options }));
+    return items.map(item => ({ item, rules, optionsMap }));
   }
 
   private wrapTask(resolvedTask: ResolvedTask): () => Promise<void> {
@@ -141,7 +141,7 @@ export class LintRunner {
     };
   }
 
-  private async runTask({ item, rules, options }: ResolvedTask) {
+  private async runTask({ item, rules, optionsMap }: ResolvedTask) {
     const errors = [];
 
     for (const rule of rules) {
@@ -151,7 +151,11 @@ export class LintRunner {
 
       debug(`Applying ${rule.id}`);
 
-      await this.runRule({ item, rule, options: options.get(rule.id) ?? {} })
+      await this.runRule({
+        item,
+        rule,
+        options: optionsMap.get(rule.id) ?? {},
+      })
         .catch(e => errors.push(e));
     }
 

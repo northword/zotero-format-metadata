@@ -6,7 +6,7 @@ export interface Context<Option = object> {
   item: Zotero.Item;
   options: Option;
   debug: (...args: any) => void;
-  report: (info: Omit<ReportInfo, "itemID" | "title" | "ruleID">) => void;
+  report: (info: Pick<ReportInfo, "level" | "message" | "action">) => void;
 }
 
 interface RuleBase<Option = object> {
