@@ -41,6 +41,7 @@
     "markdown",
     "json",
     "jsonc",
+    "yml",
     "yaml",
     "toml",
     "xml"
