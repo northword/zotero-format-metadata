@@ -10,7 +10,11 @@ export const NoTitleTrailingDot = defineRule({
   targetItemField: "title",
   async apply({ item }) {
     const title = item.getField("title", false, true);
-    const newTitle = title.replace(/(.*)\.$/g, "$1");
+    const newTitle = removeTrailingDot(title);
     item.setField("title", newTitle);
   },
 });
+
+export function removeTrailingDot(input: string): string {
+  return input.replace(/(.*)\.$/g, "$1");
+}
