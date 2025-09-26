@@ -41,11 +41,55 @@ body:
       required: true
 
   - type: textarea
+    id: item-json
+    attributes:
+      label: Item RDF export
+      render: XML
+      description: |
+        Please export the Zotero item(s) related to this bug as RDF and paste it below.
+
+        **Steps to export item(s) as Zotero RDF:**
+        1. Select the item(s) in Zotero.
+        2. Right-click → **Export Item...**.
+        3. In the dialog, choose **Zotero RDF** as the format.
+        4. Click **OK** and save the file.
+        5. Open the saved file in a text editor and copy its content here.
+
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: |
+        Provide clear steps to reproduce the problem. For example:
+          1. Open item X
+          2. Apply rule Y
+          3. See error
+    validations:
+      required: false
+
+  - type: textarea
+    id: debug-output
+    attributes:
+      label: Debug output
+      description: |
+        If possible, please provide debug output. To enable debug output in Zotero:
+
+        1. Open **Help → Debug Output Logging → Enable**.
+        2. Reproduce the bug.
+        3. Open **Help → Debug Output Logging → View Output**.
+        4. Copy the log content here, or save it (**File → Save...**) and drag it into this textarea.
+    validations:
+      required: false
+
+  - type: textarea
     id: additional-context
     attributes:
       label: Anything else?
       description: |
-        Links? References? Anything that will give us more context about the issue you are encountering!
-        Tip: You can attach images or log files by clicking this area to highlight it and then dragging files in.
+        Provide any extra information that might help us understand the issue.
+        For example, related links, references, or context about your workflow.
     validations:
       required: false
