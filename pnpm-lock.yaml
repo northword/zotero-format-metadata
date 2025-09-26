@@ -14,15 +14,9 @@ importers:
       es-toolkit:
         specifier: ^1.39.10
         version: 1.39.10
-      husky:
-        specifier: ^9.1.7
-        version: 9.1.7
       iso-locales:
         specifier: ^1.1.1
         version: 1.1.1
-      lint-staged:
-        specifier: ^16.2.1
-        version: 16.2.1
       p-queue:
         specifier: ^8.1.1
         version: 8.1.1
@@ -57,6 +51,12 @@ importers:
       eslint-plugin-format:
         specifier: ^1.0.1
         version: 1.0.1(eslint@9.35.0(jiti@2.5.1))
+      husky:
+        specifier: ^9.1.7
+        version: 9.1.7
+      lint-staged:
+        specifier: ^16.2.1
+        version: 16.2.1
       mocha:
         specifier: ^11.7.2
         version: 11.7.2
