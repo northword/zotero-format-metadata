@@ -142,6 +142,8 @@ export class LintRunner {
   }
 
   private async runTask({ item, rules, options }: ResolvedTask) {
+    const errors = [];
+
     for (const rule of rules) {
       if (!shouldApplyRule(rule, item)) {
         continue;
@@ -149,61 +151,77 @@ export class LintRunner {
 
       debug(`Applying ${rule.id}`);
 
-      const ctx: Context = {
-        item,
-        options: options.get(rule.id) ?? {},
-        debug: (...args: any[]) => ztoolkit.log(`[${rule.id}]`, ...args),
-        report: (info) => {
-          this.stats.records.push({
-            ...info,
-            itemID: item.id,
-            title: item.getDisplayTitle(),
-            ruleID: rule.id,
-          });
-          ztoolkit.log(`[${rule.id}] Report ${info.level} for item ${item.id}:`, info.message);
-        },
-      };
+      await this.runRule({ item, rule, options: options.get(rule.id) ?? {} })
+        .catch(e => errors.push(e));
+    }
 
-      try {
-        await rule.apply(ctx);
+    // Add tags to indicate whether there are errors
+    // TODO: remove this feature? because we alrady have reports
+    if (!errors.length) {
+      if (item.hasTag("linter/error"))
+        item.removeTag("linter/error");
+    }
+    else {
+      item.addTag("linter/error", 1);
+    }
 
-        if (item.hasTag("linter/error")) {
-          item.removeTag("linter/error");
-        }
+    // Save item, after all rules are applied
+    await item.saveTx();
 
-        await item.saveTx();
-      }
-      catch (error: any) {
-        let message: string = "Error: ";
-        if (error instanceof Error) {
-          message += error.message;
-        }
-        // Zotero.HTTP.request error, the message is too long, here we just show the status
-        else if ("xmlhttp" in error && "message" in error) {
-          message += `HTTP request error, status ${error.status}`;
-        }
-        else if ("message" in error) {
-          message += `${error.message}`;
-        }
-        else {
-          message += String(error);
-        }
+    // If there are errors, throw a error so queue can catch
+    if (errors.length) {
+      throw new Error(`Item ${item.id} failed ${errors.length} rules`);
+    }
+  }
 
-        console.error(`[Linter for Zotero] ${message}`, error, item);
-        Zotero.debug(`[Linter for Zotero] ${message}`);
-
+  private async runRule({ item, rule, options }: { item: Zotero.Item; rule: Rule<any>; options: object }): Promise<void> {
+    const ctx: Context = {
+      item,
+      options,
+      debug: (...args: any[]) => ztoolkit.log(`[${rule.id}]`, ...args),
+      report: (info) => {
         this.stats.records.push({
-          message,
-          level: "error",
+          ...info,
           itemID: item.id,
           title: item.getDisplayTitle(),
           ruleID: rule.id,
         });
+        ztoolkit.log(`[${rule.id}] Report ${info.level} for item ${item.id}:`, info.message);
+      },
+    };
 
-        item.addTag("linter/error", 1);
-        await item.saveTx();
-        throw error;
+    try {
+      await rule.apply(ctx);
+    }
+
+    catch (error: any) {
+      let message: string = "Error: ";
+      if (error instanceof Error) {
+        message += error.message;
       }
+      // Zotero.HTTP.request error, the message is too long, here we just show the status
+      else if ("xmlhttp" in error && "message" in error) {
+        message += `HTTP request error, status ${error.status}`;
+      }
+      else if ("message" in error) {
+        message += `${error.message}`;
+      }
+      else {
+        message += String(error);
+      }
+
+      console.error(`[Linter for Zotero] ${message}`, error, item);
+      Zotero.debug(`[Linter for Zotero] ${message}`);
+
+      this.stats.records.push({
+        message,
+        level: "error",
+        itemID: item.id,
+        title: item.getDisplayTitle(),
+        ruleID: rule.id,
+      });
+
+      throw error;
     }
   }
 
