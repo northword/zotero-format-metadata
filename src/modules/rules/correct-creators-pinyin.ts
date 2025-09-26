@@ -8,19 +8,28 @@ export const CorrectCreatorsPinyin = defineRule({
 
   apply({ item }) {
     const creators = item.getCreators();
-    for (const creator of creators) {
-      if (creator.fieldMode !== 0)
-        continue;
-      // TODO: 添加姓的拼音
-      if (splitPinyin(creator.lastName).length === 0)
-        continue;
-      if (creator.firstName.match(/[ -]/))
-        continue;
-      creator.firstName = splitPinyin(creator.firstName)[0] || creator.firstName;
-    }
-    item.setCreators(creators);
+    const newCreators = creators.map(correctCreatorPinyin);
+    item.setCreators(newCreators);
   },
 });
+
+export function correctCreatorPinyin(creator: _ZoteroTypes.Item.Creator) {
+  if (creator.fieldMode !== 0)
+    return creator;
+
+  const lastNamePinyin = splitPinyin(creator.lastName);
+  if (lastNamePinyin.length === 0)
+    return creator;
+
+  if (creator.firstName.match(/[ -]/))
+    return creator;
+
+  const firstNamePinyin = splitPinyin(creator.firstName);
+  if (firstNamePinyin.length > 0) {
+    creator.firstName = firstNamePinyin[0];
+  }
+  return creator;
+}
 
 // prettier-ignore
 const pinyinArray = [
@@ -61,9 +70,7 @@ const pinyinArray = [
   "jun qun xun yun",
 ].flatMap(item => item.split(" ").filter(Boolean));
 
-const _lastNamePinyin: string[] = [];
-
-function splitPinyin(inputPinyin: string): string[] {
+export function splitPinyin(inputPinyin: string): string[] {
   const result: string[] = [];
   backtrack(inputPinyin, 0, [], result);
   return result.sort((a, b) => a.length - b.length);
@@ -99,8 +106,3 @@ function backtrack(pinyin: string, start: number, currentSegments: string[], res
     }
   }
 }
-
-// // 示例
-// const pinyinString = "Li Feifei Aiyuan Jianbei";
-// const result = splitPinyin(pinyinString);
-// console.log(result);
