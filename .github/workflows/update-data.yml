@@ -1,0 +1,33 @@
+name: Update data
+
+on:
+  pull_request:
+    paths:
+      - "data/**"
+
+jobs:
+  update-data:
+    # if: github.actor == 'renovate[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "pnpm"
+
+      - uses: pnpm/action-setup@v4
+
+      - run: pnpm install
+
+      - run: pnpm update-data
+
+      - uses: stefanzweifel/git-auto-commit-action@v6
+        with:
+          commit_message: "fix(data): update build-in data"
+          file_pattern: data/**
