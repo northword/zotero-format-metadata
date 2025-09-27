@@ -50,7 +50,7 @@ rule-correct-title-sentence-case =
 rule-correct-title-sentence-case-menu-item = 将标题改为句首大写
 rule-correct-title-sentence-case-menu-field = 句首大写（Linter）
 
-rule-correct-title-sentence-option-custom-term = 自定义术语: 
+rule-correct-title-sentence-option-custom-term = 自定义术语：
     .label = 自定义术语
     .placeholder = 自定义术语文件的路径
 rule-correct-title-sentence-option-custom-term-button = 
@@ -76,7 +76,7 @@ rule-correct-creators-case-menu-item = 修正作者的大小写
 
 ## correct-creators-pinyin
 rule-correct-creators-pinyin =
-  .label = 作者中的中文拼音应被拆分（即Zhang Sanfeng → Zhang San Feng）
+  .label = 作者中的中文拼音应被拆分（即 Zhang Sanfeng → Zhang San Feng）
 rule-correct-creators-pinyin-menu-item = 拆分作者拼音
 
 
@@ -138,7 +138,7 @@ rule-correct-pages-connector =
 
 ## no-issue-extra-zeros
 rule-no-issue-extra-zeros =
-  .label = 期「issue」 不应以 0 起始
+  .label = 期「issue」不应以 0 起始
 
 
 ## no-pages-extra-zeros
@@ -148,7 +148,7 @@ rule-no-pages-extra-zeros =
 
 ## no-volume-extra-zeros
 rule-no-volume-extra-zeros =
-  .label = 卷「volume」 不应以 0 起始
+  .label = 卷「volume」不应以 0 起始
 
 
 ## correct-conference-abbr

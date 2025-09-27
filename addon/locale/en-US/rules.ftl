@@ -62,7 +62,7 @@ rule-correct-title-sentence-option-custom-term-desc = Custom terms file should b
 ## correct-shortTitle-sentence-case
 rule-correct-shortTitle-sentence-case =
   .label = ShortTitle should be sentence case
-rule-correct-shortTitle-sentence-case-description = Shares config with 「{ rule-correct-title-sentence-case.label }」
+rule-correct-shortTitle-sentence-case-description = Shares config with '{ rule-correct-title-sentence-case.label }'
 
 
 ## no-title-trailing-dot
@@ -157,7 +157,7 @@ rule-no-volume-extra-zeros =
 ## correct-conference-abbr
 rule-correct-conference-abbr =
   .label = Conference abbreviation should be in extra.shortConferenceName
-rule-correct-conference-abbr-description = Shares config with 「{ rule-require-journal-abbr.label }」
+rule-correct-conference-abbr-description = Shares config with '{ rule-require-journal-abbr.label }'
 
 
 ## correct-thesis-type

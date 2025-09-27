@@ -81,7 +81,7 @@ This helps generate correct CSL abbreviations (`Zhang J. B.`).
 
 ### Require Language (`require-language`)
 
-CSL styles rely on the language field for localization (e.g., mixing _et al._ with “等”).
+CSL styles rely on the language field for localization (e.g., mixing _et al._ with“等”).
 This rule infers language from the title and fills in the `language` field automatically.
 
 By default, only **Simplified Chinese** and **English** are detected. You can disable the restriction or add other [ISO 639-1 codes].

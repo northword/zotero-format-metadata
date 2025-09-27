@@ -61,13 +61,13 @@ GNU Affero General Public License v3.0
   - [ISO 639-3](https://github.com/wooorm/iso-639-3) 及相关的[映射表](https://github.com/amitbend/iso-639-3-to-1/blob/master/6393-6391.json)
   - [JabRef 期刊缩写列表](https://github.com/JabRef/abbrv.jabref.org)
   - 中华人民共和国教育部发布的[全国高等学校名单](http://www.moe.gov.cn/jyb_xxgk/s5743/s5744/A03/202110/t20211025_574874.html)
-- 感谢以下API服务提供的数据支持：
-  - [CrossRef API](https://api.crossref.org/)：用于获取DOI元数据和文献元数据
+- 感谢以下 API 服务提供的数据支持：
+  - [CrossRef API](https://api.crossref.org/)：用于获取 DOI 元数据和文献元数据
   - [Semantic Scholar API](https://api.semanticscholar.org/)：用于检索文献元数据
-  - [shortdoi.org](https://shortdoi.org/)：用于生成ShortDOI
-  - [doi.org](https://www.doi.org/)：用于解析DOI
+  - [shortdoi.org](https://shortdoi.org/)：用于生成 ShortDOI
+  - [doi.org](https://www.doi.org/)：用于解析 DOI
   - [abbreviso](https://github.com/marcocorvi/abbreviso)：用于推断期刊缩写
-- 感谢 [DOI Manager](https://github.com/bwiernik/zotero-shortdoi) (MPL-2.0协议) 为`require-doi`, `correct-doi-long`, `tool-get-short-doi`规则的实现提供了灵感。
+- 感谢 [DOI Manager](https://github.com/bwiernik/zotero-shortdoi) (MPL-2.0 协议) 为`require-doi`, `correct-doi-long`, `tool-get-short-doi`规则的实现提供了灵感。
 - 感谢 @zepinglee 整理的 [Zotero 字段填写规范](https://github.com/l0o0/translators_CN/issues/257)。
 - 感谢 Zotero 法语翻译团队提供的法语使用手册。
 - 感谢 ChatGPT 和 DeepSeek 在开发过程中提供的编码协助。

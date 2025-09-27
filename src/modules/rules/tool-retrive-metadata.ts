@@ -18,8 +18,8 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption> ({
     if (item.itemType === "journalArticle") {
       const doi = item.getField("DOI") as string;
       // 不存在 DOI 直接结束
-      // todo: 若有附件，尝试从附件获取?
-      // todo: 弹出 DOI 输入对话框?
+      // todo: 若有附件，尝试从附件获取？
+      // todo: 弹出 DOI 输入对话框？
       if (!doi) {
         progressWindow(getString("info-noDOI"), "fail");
         return;

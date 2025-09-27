@@ -25,8 +25,8 @@
   "scripts": {
     "start": "zotero-plugin serve",
     "build": "zotero-plugin build && tsc --noEmit",
-    "lint:check": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint:check": "eslint . && autocorrect --lint",
+    "lint:fix": "eslint . --fix && autocorrect --fix",
     "update-data": "bash data/update-data.sh",
     "test": "node --run test:unit && node --run test:e2e",
     "test:e2e": "zotero-plugin test",
@@ -49,6 +49,7 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.18.1",
     "@zotero-plugin/eslint-config": "^0.6.7",
+    "autocorrect-node": "^2.14.0",
     "chai": "^6.0.1",
     "eslint": "^9.35.0",
     "eslint-plugin-format": "^1.0.1",
@@ -62,6 +63,6 @@
     "zotero-types": "4.1.0-beta.3"
   },
   "lint-staged": {
-    "*": "eslint --fix"
+    "*": ["eslint --fix", "autocorrect --fix"]
   }
 }

@@ -126,7 +126,7 @@ function normalizeName(value: string): string {
 function normalizeChineseOrdinal(value: string): string {
   let result = value;
 
-  // Convert "第X版" / "第X册" to numbers
+  // Convert "第 X 版" / "第 X 册" to numbers
   result = result.replace(/第([一二三四五六七八九十\d]+)[版册]?/g, (_, match) => {
     if (/^\d+$/.test(match))
       return match; // already numeric

@@ -1,3 +1,4 @@
+// autocorrect-disable -- autocorrect mismark of `《》`
 import { defineRule } from "./rule-base";
 
 interface TitleGuillemetOptions {

@@ -1,3 +1,5 @@
+// autocorrect-disable
+
 import { describe, expect, it } from "vitest";
 import { normalizeField } from "./correct-edition-numeral";
 

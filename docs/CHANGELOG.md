@@ -294,8 +294,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- 批处理时，每个条目最长持续9秒，超时的抛出 timeout 错误。close: [#147](https://github.com/northword/zotero-format-metadata/issues/147)
-- 批处理时，错误的条目自动添加 “linter/error” 标签，重新执行正常退出的自动清除。close: [#147](https://github.com/northword/zotero-format-metadata/issues/147)
+- 批处理时，每个条目最长持续 9 秒，超时的抛出 timeout 错误。close: [#147](https://github.com/northword/zotero-format-metadata/issues/147)
+- 批处理时，错误的条目自动添加“linter/error”标签，重新执行正常退出的自动清除。close: [#147](https://github.com/northword/zotero-format-metadata/issues/147)
 
 ## [1.12.0] - 2024-02-01
 
@@ -463,7 +463,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- 重新添加 JabRef 期刊缩写数据，数据会首选 library.ubc.ca ，次选 JabRef。[#5](https://github.com/northword/zotero-format-metadata/issues/5#issuecomment-1790844575)
+- 重新添加 JabRef 期刊缩写数据，数据会首选 library.ubc.ca，次选 JabRef。[#5](https://github.com/northword/zotero-format-metadata/issues/5#issuecomment-1790844575)
 
 ## [1.6.7] - 2023-10-27
 
@@ -687,7 +687,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- 更新 zotero-plugin-toolkit ，修复菜单没有 icon 的问题。[windingwind/zotero-plugin-toolkit#24](https://github.com/windingwind/zotero-plugin-toolkit/pull/24) / fix: menu icon do not show.
+- 更新 zotero-plugin-toolkit，修复菜单没有 icon 的问题。[windingwind/zotero-plugin-toolkit#24](https://github.com/windingwind/zotero-plugin-toolkit/pull/24) / fix: menu icon do not show.
 
 ## [0.4.3] - 2023-06-10
 
@@ -742,8 +742,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- 手动设置条目语言，#13 。
-- 富文本工具条，按钮改为图标，#8 。
+- 手动设置条目语言，#13。
+- 富文本工具条，按钮改为图标，#8。
 
 ### Fixed
 
