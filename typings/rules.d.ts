@@ -19,6 +19,7 @@ type ID =
   | "correct-publication-title"
   | "require-journal-abbr"
   | "correct-pages-connector"
+  | "correct-pages-range"
   | "no-issue-extra-zeros"
   | "no-pages-extra-zeros"
   | "no-volume-extra-zeros"

@@ -40,6 +40,7 @@ export type FluentMessageId =
   | 'rule-correct-doi-long'
   | 'rule-correct-edition-numeral'
   | 'rule-correct-pages-connector'
+  | 'rule-correct-pages-range'
   | 'rule-correct-publication-title'
   | 'rule-correct-publication-title-menu-field'
   | 'rule-correct-publication-title-menu-item'

@@ -44,6 +44,7 @@ declare namespace _ZoteroTypes {
       "rule.correct-date-format": boolean;
       "rule.correct-publication-title": boolean;
       "rule.correct-pages-connector": boolean;
+      "rule.correct-pages-range": boolean;
       "rule.correct-conference-abbr": boolean;
       "rule.correct-thesis-type": boolean;
       "rule.correct-university-punctuation": boolean;
