@@ -6,6 +6,7 @@ package-lock.json
 yarn.lock
 zotero-cmd.json
 .env
+coverage
 
 # libs
 **/libs/**
