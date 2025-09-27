@@ -24,7 +24,7 @@ pref("rule.no-value-nullish", true);
 pref("rule.no-title-trailing-dot", true);
 pref("rule.no-doi-prefix", true);
 pref("rule.no-issue-extra-zeros", true);
-pref("rule.no-pages-extra-zeros", true);
+pref("rule.no-pages-extra-zeros", false);
 pref("rule.no-volume-extra-zeros", true);
 
 pref("rule.require-language", true);
