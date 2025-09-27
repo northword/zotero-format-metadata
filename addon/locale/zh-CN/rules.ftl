@@ -21,6 +21,7 @@ rule-no-journal-preprint-report-message = 该期刊文章条目 URL 中包含了
 rule-no-value-nullish = 
   .label = 字段值不应为无效值（无、N/A 等）
 
+
 ## require-language
 rule-require-language =
   .label = 语言字段应填写 ISO 639-1 语言代码
@@ -74,6 +75,7 @@ rule-correct-creators-case =
   .label = 作者应以首字母大写方式存储
 rule-correct-creators-case-menu-item = 修正作者的大小写
 
+
 ## correct-creators-pinyin
 rule-correct-creators-pinyin =
   .label = 作者中的中文拼音应被拆分（即 Zhang Sanfeng → Zhang San Feng）
@@ -119,6 +121,7 @@ rule-require-doi =
   .label = DOI 应填写完整
 rule-require-doi-menu-item = 获取 DOI
 
+
 ## no-doi-prefix
 rule-no-doi-prefix =
   .label = DOI 无须保留网址前缀
@@ -134,6 +137,11 @@ rule-correct-doi-long =
 ## correct-pages-connector
 rule-correct-pages-connector =
   .label = 页码连接符应为 `-` 或 `,`
+
+
+## correct-pages-range
+rule-correct-pages-range =
+  .label = Pages 应为范围
 
 
 ## no-issue-extra-zeros

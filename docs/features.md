@@ -115,6 +115,12 @@ Example: `02-10` → `2-10`.
 
 Replaces invalid connectors like `~` or `+` with `-` or `,`.
 
+### Correct Page Range (`correct-pages-range`)
+
+Pages should include both starting and ending page numbers, not just the starting page number.
+
+This rule retrieves the total number of pages from the PDF of this item and automatically fills the field.
+
 ## Thesis Rules
 
 ### Require University Place (`require-university-place`)

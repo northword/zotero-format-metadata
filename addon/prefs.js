@@ -49,6 +49,7 @@ pref("rule.correct-creators-pinyin", false);
 pref("rule.correct-date-format", true);
 pref("rule.correct-publication-title", true);
 pref("rule.correct-pages-connector", true);
+pref("rule.correct-pages-range", true);
 pref("rule.correct-conference-abbr", true);
 pref("rule.correct-thesis-type", true);
 pref("rule.correct-university-punctuation", true);

@@ -139,6 +139,11 @@ rule-correct-pages-connector =
   .label = Pages connector should be `-` or `,`
 
 
+## correct-pages-range
+rule-correct-pages-range =
+  .label = Pages should be a range
+
+
 ## no-issue-extra-zeros
 rule-no-issue-extra-zeros =
   .label = No issue numbers starting with 0

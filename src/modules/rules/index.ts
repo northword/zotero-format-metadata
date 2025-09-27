@@ -6,6 +6,7 @@ import { CorrectDateFormat } from "./correct-date-format";
 import { CorrectDOILong } from "./correct-doi-long";
 import { CorrectEditionNumeral, CorrectVolumeNumeral } from "./correct-edition-numeral";
 import { CorrectPagesConnector } from "./correct-pages-connector";
+import { CorrectPagesRange } from "./correct-pages-range";
 import { CorrectPublicationTitle } from "./correct-publication-title";
 import { CorrectThesisType } from "./correct-thesis-type";
 import { CorrectShortTitleSentenceCase, CorrectTitleSentenceCase } from "./correct-title-sentence-case";
@@ -60,6 +61,7 @@ const register: Rule<any>[] = [
   CorrectPublicationTitle,
   RequireJournalAbbr,
   CorrectPagesConnector,
+  CorrectPagesRange,
   NoIssueExtraZeros,
   NoPagesExtraZeros,
   NoVolumeExtraZeros,
