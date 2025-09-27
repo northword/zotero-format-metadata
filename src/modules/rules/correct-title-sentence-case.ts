@@ -4,27 +4,111 @@ import { getPref } from "../../utils/prefs";
 import { convertToRegex, escapeRegex, functionWords } from "../../utils/str";
 import { defineRule } from "./rule-base";
 
-// prettier-ignore
-const chemElements = ["H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne", "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br", "Kr", "Rb", "Sr", "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pb", "Ag", "Cd", "In", "Sn", "Sb", "Te", "I", "Xe", "Cs", "Ba", "La", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Ac", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og", "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm", "Md", "No", "Lr"];
-// prettier-ignore
-const geographyWords = ["Asia", "Europe", "Africa", "North America", "South America", "Oceania", "Antarctica", "Pacific Ocean", "Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Mediterranean", "Tibetan Plateau", "Yangtze River", "Yangtze", "Beijing–Tianjin–Hebei", "Yellow River", "Huang He",
+/** =============================  Special Words Begin  ============================= */
+
+/* eslint-disable antfu/consistent-list-newline  -- We expect to customize the line breaks of these arrays. */
+const chemElements = [
+  "H", "He",
+  "Li", "Be", "B", "C", "N", "O", "F", "Ne",
+  "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar",
+  "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br", "Kr",
+  "Rb", "Sr", "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pb", "Ag", "Cd", "In", "Sn", "Sb", "Te", "I", "Xe",
+  "Cs", "Ba", "La", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn",
+  "Fr", "Ra", "Ac", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og",
+  "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu",
+  "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm", "Md", "No", "Lr",
 ];
-// prettier-ignore
-const dateWords = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
+
+const geographyWords = [
+  "Asia", "Europe", "Africa", "North America", "South America",
+  "Oceania", "Antarctica", "Pacific Ocean", "Atlantic Ocean", "Indian Ocean", "Arctic Ocean",
+  "Mediterranean", "Tibetan Plateau",
+  "Yangtze River", "Yangtze", "Beijing–Tianjin–Hebei", "Yellow River", "Huang He",
 ];
-const contriesAndCities = contryJson.flatMap(c => Object.values(c)).filter(v => v !== null) as string[];
-// prettier-ignore
+
+const dateWords = [
+  "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday",
+  "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
+];
+
 const plantWords = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"];
-const specialWords = ["Microsoft", "Google", "Amazon", "Inc", "Ltd"]
-  .concat(geographyWords)
-  .concat(dateWords)
-  .concat(contriesAndCities)
-  .concat(plantWords)
+
+const brands = [
+  "Apple", "Microsoft", "Google", "Amazon", "Alibaba", "Tencent", "Facebook", "Twitter", "Instagram",
+  "YouTube", "Netflix", "Spotify", "Tidal",
+  "Inc", "Ltd",
+];
+
+const localityWords = [
+  "north", "south", "east", "west",
+  "northern", "southern", "eastern", "western",
+  "southeast", "southwest", "northwest", "northeast",
+];
+
+const chinaCapitals = [
+  "Beijing", "Tianjin", "Shijiazhuang", "Taiyuan", "Hohhot", "Shenyang",
+  "Changchun", "Harbin", "Shanghai", "Nanjing", "Hangzhou", "Hefei",
+  "Fuzhou", "Nanchang", "Jinan", "Zhengzhou", "Wuhan", "Changsha",
+  "Guangzhou", "Nanning", "Haikou", "Chongqing", "Chengdu", "Guiyang",
+  "Kunming", "Lhasa", "Xi’an", "Lanzhou", "Xining", "Yinchuan",
+  "Urumqi", "Hong Kong", "Macao",
+];
+
+const worldCities = [
+  "New York", "Los Angeles", "San Francisco", "Chicago", "Miami", // United States
+  "London", // United Kingdom
+  "Paris", // France
+  "Berlin", "Munich", // Germany
+  "Rome", "Milan", // Italy
+  "Madrid", "Barcelona", // Spain
+  "Amsterdam", // Netherlands
+  "Brussels", // Belgium
+  "Vienna", // Austria
+  "Zurich", // Switzerland
+  "Moscow", "Saint Petersburg", // Russia
+  "Istanbul", // Turkey
+  "Dubai", "Abu Dhabi", // United Arab Emirates
+  "Doha", // Qatar
+  "Riyadh", // Saudi Arabia
+  "Tel Aviv", // Israel
+  "Singapore", // Singapore
+  "Tokyo", "Osaka", "Kyoto", // Japan
+  "Seoul", "Busan", // South Korea
+  "Bangkok", // Thailand
+  "Jakarta", // Indonesia
+  "Kuala Lumpur", // Malaysia
+  "Manila", // Philippines
+  "Hanoi", "Ho Chi Minh City", // Vietnam
+  "Sydney", "Melbourne", // Australia
+  "Auckland", // New Zealand
+  "Toronto", "Vancouver", "Montreal", // Canada
+  "Mexico City", // Mexico
+  "São Paulo", "Rio de Janeiro", // Brazil
+  "Buenos Aires", // Argentina
+  "Lima", // Peru
+  "Cape Town", "Johannesburg", // South Africa
+];
+
+/* eslint-enable antfu/consistent-list-newline */
+
+const contriesAndCities = [
+  ...contryJson.flatMap(c => Object.values(c)).filter(v => v !== null) as string[],
+  ...chinaCapitals,
+  ...worldCities,
+];
+
+const specialWords = [
+  ...brands,
+  ...geographyWords,
+  ...dateWords,
+  ...contriesAndCities,
+  ...plantWords,
+]
   .map(v => escapeRegex(v));
-// const specialWordsPattern = specialWords.map((word) => word.replace(/\s+/g, "\\s+")).join("|");
+
 const specialWordsPattern = specialWords.join("|");
-// prettier-ignore
-export const localityWords = ["north", "south", "east", "west", "northern", "southern", "eastern", "western", "southeast", "southwest", "northwest", "northeast"];
+
+/** =============================  Special Words End  ============================= */
 
 /**
  * To sentence case

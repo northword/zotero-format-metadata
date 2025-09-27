@@ -70,6 +70,11 @@ const testItems: testItem[] = [
     original: `A shrubby resprouting pine with serotinous cones endemic to southwest China`,
     expected: `A shrubby resprouting pine with serotinous cones endemic to southwest China`,
   },
+  {
+    name: "城市名",
+    original: `The Chengdu is A City of China`,
+    expected: `The Chengdu is a city of China`,
+  },
 ];
 
 describe("toSentenceCase", () => {
