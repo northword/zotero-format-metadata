@@ -10,6 +10,7 @@ export const CorrectPagesRange = defineRule({
 
     if (!shouldApply(pages)) {
       debug(`Skip process pages ${pages}, it may be alrady a range, or a paper id`);
+      return;
     }
 
     const numberOfPages = await getPDFPages(item);
