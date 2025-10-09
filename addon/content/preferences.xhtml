@@ -29,8 +29,8 @@
     />
   </groupbox>
 
+  <!-- 是否启用富文本工具 -->
   <groupbox>
-    <!-- 是否启用富文本工具 -->
     <label><html:h2 data-l10n-id="section-rich-text" /></label>
     <checkbox
       data-l10n-id="enable-richtext-toolbar"
@@ -47,7 +47,10 @@
       preference="richtext.hotkey"
       native="true"
     />
-    <label data-l10n-id="richtext-restart-needed" style="font-size: 0.85em" />
+    <label
+      data-l10n-id="richtext-restart-needed"
+      class="linter-pref-description"
+    />
   </groupbox>
 
   <!-- 详细设置 -->
@@ -81,7 +84,7 @@
       />
     </groupbox>
 
-    <!-- 字段：标题 -->
+    <!-- General Field: Title -->
     <groupbox>
       <label><html:h2 data-l10n-id="section-title" /></label>
       <!-- 需要短标题 -->
@@ -90,18 +93,14 @@
         preference="rule.require-short-title"
         native="true"
       />
-      <!-- 修改标题大小写 -->
+
+      <!-- correct-title-sentence-case -->
       <checkbox
         data-l10n-id="rule-correct-title-sentence-case"
         preference="rule.correct-title-sentence-case"
         native="true"
       />
       <vbox class="indented-pref">
-        <checkbox
-          data-l10n-id="rule-correct-shortTitle-sentence-case"
-          preference="rule.correct-shortTitle-sentence-case"
-          native="true"
-        />
         <hbox align="center">
           <label
             data-l10n-id="rule-correct-title-sentence-option-custom-term"
@@ -122,9 +121,22 @@
         </hbox>
         <description
           data-l10n-id="rule-correct-title-sentence-option-custom-term-desc"
-          style="width: 45em"
+          class="linter-pref-description"
         />
       </vbox>
+
+      <!-- correct-shortTitle-sentence-case -->
+      <checkbox
+        data-l10n-id="rule-correct-shortTitle-sentence-case"
+        preference="rule.correct-shortTitle-sentence-case"
+        native="true"
+      />
+      <description
+        data-l10n-id="rule-correct-shortTitle-sentence-case-description"
+        class="indented-pref linter-pref-description"
+      />
+
+      <!-- no-title-trailing-dot -->
       <checkbox
         data-l10n-id="rule-no-title-trailing-dot"
         preference="rule.no-title-trailing-dot"
@@ -132,7 +144,7 @@
       />
     </groupbox>
 
-    <!-- 字段：作者 -->
+    <!-- General Field: Creators -->
     <groupbox>
       <label><html:h2 data-l10n-id="section-creators" /></label>
       <!-- 修改作者大小写 -->
@@ -149,7 +161,7 @@
       />
     </groupbox>
 
-    <!-- 字段：语言 -->
+    <!-- General Field: Language -->
     <groupbox>
       <label><html:h2 data-l10n-id="section-language" /></label>
       <checkbox
@@ -193,13 +205,13 @@
           </hbox>
           <description
             data-l10n-id="rule-require-language-option-only-other-desc"
-            style="width: 45em"
+            class="linter-pref-description"
           />
         </vbox>
       </vbox>
     </groupbox>
 
-    <!-- 字段：日期 -->
+    <!-- General Field: Date -->
     <groupbox>
       <label><html:h2 data-l10n-id="section-date" /></label>
       <!-- 更新日期格式 -->
@@ -210,135 +222,126 @@
       />
     </groupbox>
 
-    <!-- 字段：期刊名 -->
+    <!-- Article Related Field -->
     <groupbox>
-      <label><html:h2 data-l10n-id="section-publicationTitle" /></label>
+      <label><html:h2 data-l10n-id="section-article" /></label>
       <!-- 修正期刊名大小写 -->
       <checkbox
         data-l10n-id="rule-correct-publication-title"
         preference="rule.correct-publication-title"
         native="true"
       />
-    </groupbox>
 
-    <!-- 字段：缩写 -->
-    <groupbox>
-      <label><html:h2 data-l10n-id="section-abbr" /></label>
-      <!-- 更新期刊缩写 -->
-      <checkbox
-        data-l10n-id="rule-require-journal-abbr"
-        preference="rule.require-journal-abbr"
-        native="true"
-      />
-      <vbox class="indented-pref">
+      <!-- 字段：缩写 -->
+      <groupbox>
+        <!-- 更新期刊缩写 -->
         <checkbox
-          id="__addonRef__-abbr-infer"
-          data-l10n-id="rule-require-journal-abbr-option-infer"
-          preference="rule.require-journal-abbr.infer"
+          data-l10n-id="rule-require-journal-abbr"
+          preference="rule.require-journal-abbr"
           native="true"
         />
-        <hbox align="center">
-          <label data-l10n-id="rule-require-journal-abbr-option-usefull" />
+        <vbox class="indented-pref">
           <checkbox
-            id="__addonRef__-abbr-usefull"
-            data-l10n-id="rule-require-journal-abbr-option-usefull-en"
-            preference="rule.require-journal-abbr.usefull"
+            id="__addonRef__-abbr-infer"
+            data-l10n-id="rule-require-journal-abbr-option-infer"
+            preference="rule.require-journal-abbr.infer"
             native="true"
           />
-          <checkbox
-            id="__addonRef__-abbr-usefull"
-            data-l10n-id="rule-require-journal-abbr-option-usefull-zh"
-            preference="rule.require-journal-abbr.usefullZh"
-            native="true"
+          <hbox align="center">
+            <label data-l10n-id="rule-require-journal-abbr-option-usefull" />
+            <checkbox
+              id="__addonRef__-abbr-usefull"
+              data-l10n-id="rule-require-journal-abbr-option-usefull-en"
+              preference="rule.require-journal-abbr.usefull"
+              native="true"
+            />
+            <checkbox
+              id="__addonRef__-abbr-usefull"
+              data-l10n-id="rule-require-journal-abbr-option-usefull-zh"
+              preference="rule.require-journal-abbr.usefullZh"
+              native="true"
+            />
+          </hbox>
+
+          <!-- 自定义缩写文件 -->
+          <hbox align="center">
+            <label
+              data-l10n-id="rule-require-journal-abbr-option-custom-data-label"
+            />
+            <html:input
+              style="flex: 1"
+              type="text"
+              readonly="true"
+              size="50"
+              id="__addonRef__-abbr-custom-path"
+              data-l10n-id="rule-require-journal-abbr-option-choose-custom-abbr-data-input"
+              preference="rule.require-journal-abbr.customDataPath"
+            />
+            <button
+              data-l10n-id="rule-require-journal-abbr-option-choose-custom-abbr-data-button"
+              id="__addonRef__-abbr-choose-custom-data-button"
+              native="true"
+            />
+          </hbox>
+          <description
+            data-l10n-id="rule-require-journal-abbr-option-custom-data-desc"
+            class="linter-pref-description"
           />
-        </hbox>
-      </vbox>
+        </vbox>
+      </groupbox>
+
+      <!-- 期卷页 -->
+      <groupbox>
+        <!-- 去除期卷页0 -->
+        <checkbox
+          data-l10n-id="rule-no-issue-extra-zeros"
+          preference="rule.no-issue-extra-zeros"
+          native="true"
+        />
+        <checkbox
+          data-l10n-id="rule-no-pages-extra-zeros"
+          preference="rule.no-pages-extra-zeros"
+          native="true"
+        />
+        <checkbox
+          data-l10n-id="rule-no-volume-extra-zeros"
+          preference="rule.no-volume-extra-zeros"
+          native="true"
+        />
+        <!-- 页码连接符 -->
+        <checkbox
+          data-l10n-id="rule-correct-pages-connector"
+          preference="rule.correct-pages-connector"
+          native="true"
+        />
+        <!-- 页码范围 -->
+        <checkbox
+          data-l10n-id="rule-correct-pages-range"
+          preference="rule.correct-pages-range"
+          native="true"
+        />
+      </groupbox>
+    </groupbox>
+
+    <!-- 字段：会议论文相关 -->
+    <groupbox>
+      <label><html:h2 data-l10n-id="section-conference" /></label>
+      <!-- correct-proceedingsTitle-sentence-case -->
+      <checkbox
+        data-l10n-id="rule-correct-proceedingsTitle-sentence-case"
+        preference="rule.correct-proceedingsTitle-sentence-case"
+        native="true"
+      />
+
       <!-- 更新会议名简写 -->
       <checkbox
         data-l10n-id="rule-correct-conference-abbr"
         preference="rule.correct-conference-abbr"
         native="true"
       />
-
-      <!-- 自定义缩写文件 -->
-      <hbox align="center">
-        <label
-          data-l10n-id="rule-require-journal-abbr-option-custom-data-label"
-        />
-        <html:input
-          style="flex: 1"
-          type="text"
-          readonly="true"
-          size="50"
-          id="__addonRef__-abbr-custom-path"
-          data-l10n-id="rule-require-journal-abbr-option-choose-custom-abbr-data-input"
-          preference="rule.require-journal-abbr.customDataPath"
-        />
-        <button
-          data-l10n-id="rule-require-journal-abbr-option-choose-custom-abbr-data-button"
-          id="__addonRef__-abbr-choose-custom-data-button"
-          native="true"
-        />
-      </hbox>
       <description
-        data-l10n-id="rule-require-journal-abbr-option-custom-data-desc"
-        style="width: 45em"
-      />
-    </groupbox>
-
-    <!-- 期卷页 -->
-    <groupbox>
-      <label><html:h2 data-l10n-id="section-pages" /></label>
-      <!-- 去除期卷页0 -->
-      <checkbox
-        data-l10n-id="rule-no-issue-extra-zeros"
-        preference="rule.no-issue-extra-zeros"
-        native="true"
-      />
-      <checkbox
-        data-l10n-id="rule-no-pages-extra-zeros"
-        preference="rule.no-pages-extra-zeros"
-        native="true"
-      />
-      <checkbox
-        data-l10n-id="rule-no-volume-extra-zeros"
-        preference="rule.no-volume-extra-zeros"
-        native="true"
-      />
-      <!-- 页码连接符 -->
-      <checkbox
-        data-l10n-id="rule-correct-pages-connector"
-        preference="rule.correct-pages-connector"
-        native="true"
-      />
-      <!-- 页码范围 -->
-      <checkbox
-        data-l10n-id="rule-correct-pages-range"
-        preference="rule.correct-pages-range"
-        native="true"
-      />
-    </groupbox>
-
-    <!-- 标识符 -->
-    <groupbox>
-      <label><html:h2 data-l10n-id="section-identifier" /></label>
-      <!-- DOI: 需要 DOI -->
-      <checkbox
-        data-l10n-id="rule-require-doi"
-        preference="rule.require-doi"
-        native="true"
-      />
-      <!-- DOI: 无前缀 -->
-      <checkbox
-        data-l10n-id="rule-no-doi-prefix"
-        preference="rule.no-doi-prefix"
-        native="true"
-      />
-      <!-- DOI: 应为长型 -->
-      <checkbox
-        data-l10n-id="rule-correct-doi-long"
-        preference="rule.correct-doi-long"
-        native="true"
+        data-l10n-id="rule-correct-conference-abbr-description"
+        class="indented-pref linter-pref-description"
       />
     </groupbox>
 
@@ -380,6 +383,35 @@
         preference="rule.correct-volume-numeral"
         native="true"
       />
+      <!-- correct-bookTitle-sentence-case -->
+      <checkbox
+        data-l10n-id="rule-correct-bookTitle-sentence-case"
+        preference="rule.correct-bookTitle-sentence-case"
+        native="true"
+      />
+    </groupbox>
+
+    <!-- 标识符 -->
+    <groupbox>
+      <label><html:h2 data-l10n-id="section-identifier" /></label>
+      <!-- DOI: 需要 DOI -->
+      <checkbox
+        data-l10n-id="rule-require-doi"
+        preference="rule.require-doi"
+        native="true"
+      />
+      <!-- DOI: 无前缀 -->
+      <checkbox
+        data-l10n-id="rule-no-doi-prefix"
+        preference="rule.no-doi-prefix"
+        native="true"
+      />
+      <!-- DOI: 应为长型 -->
+      <checkbox
+        data-l10n-id="rule-correct-doi-long"
+        preference="rule.correct-doi-long"
+        native="true"
+      />
     </groupbox>
   </groupbox>
 
@@ -410,7 +442,7 @@
     </hbox>
     <description
       data-l10n-id="tool-update-metadata-option-semanticScholarToken-desc"
-      style="width: 45em"
+      class="linter-pref-description"
     />
   </groupbox>
 

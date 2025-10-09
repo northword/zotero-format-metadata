@@ -20,20 +20,20 @@ wip =
 
 
 ## 分组标题
-section-item = 条目
+section-item = 条目级规则
 section-rich-text = 富文本编辑工具
 section-title = 标题 Title
 section-creators = 创作者 Creators
 section-language = 语言 Language
-section-publicationTitle = 期刊名 publicationTitle
-section-abbr = 缩写 Abbreviation
+section-article = Article 相关字段
+section-conference = Conference 相关字段
 section-date = 日期 Date
-section-pages = 期卷页 Issue, volume, pages
+section-thesis = Thesis 相关字段
+section-book = Book 相关字段
 section-identifier = 标识符
-section-thesis = 学位论文相关
-section-book = 书籍
 section-others = 其他
 section-updateMetadata = 更新元数据
+
 
 ## 关于
 help-version = { $name }, Build { $version }, { $time }

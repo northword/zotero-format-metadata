@@ -20,18 +20,17 @@ wip =
 
 
 ## 分组标题
-section-item = Item
+section-item = Item Level Rules
 section-rich-text = Rich Text Edit Tools
 section-title = Title
 section-creators = Creators
 section-language = Language
-section-publicationTitle = Publication Title
-section-abbr = Abbreviation
+section-article = Article Related Fields
+section-conference = Conference Related Fields
 section-date = Date
-section-pages = Issue, volume, and pages
+section-thesis = Thesis Related Fields
+section-book = Book Related Fields
 section-identifier = Identifier
-section-thesis = Thesis
-section-book = Book
 section-others = Others
 section-updateMetadata = Update Metadata
 

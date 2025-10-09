@@ -8,6 +8,7 @@ export function registerPrefs() {
     src: `${rootURI}content/preferences.xhtml`,
     label: getString("prefs-title"),
     image: `${rootURI}/content/icons/favicon.png`,
+    stylesheets: [`${rootURI}/content/preferences.css`],
     helpURL: homepage,
   });
 }
