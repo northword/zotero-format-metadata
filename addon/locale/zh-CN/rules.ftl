@@ -113,7 +113,10 @@ rule-require-journal-abbr-option-choose-custom-abbr-data-button =
     .label = 选择
 rule-require-journal-abbr-option-choose-custom-abbr-data-input = 
     .placeholder = 期刊缩写文件的路径
-rule-require-journal-abbr-option-custom-data-desc = 自定义缩写文件支持 JSON 格式和 CSV 格式。JSON 文件的格式为："publicationTitle": "abbreviation"。CSV 格式第一列填全称，第二列填简写，分隔符可以为逗号或分号，但须统一，不得为制表符。
+rule-require-journal-abbr-option-custom-data-desc = 
+    自定义缩写文件支持 JSON 格式和 CSV 格式。
+    JSON 文件的格式为："publicationTitle": "abbreviation"。
+    CSV 格式第一列填全称，第二列填简写，分隔符可以为逗号或分号，但须统一，不得为制表符。
 
 
 ## require-doi
@@ -190,6 +193,16 @@ rule-correct-edition-numeral =
 ## correct-volume-numeral
 rule-correct-volume-numeral =
   .label =  volume 应为纯数字
+
+
+## correct-bookTitle-sentence-case
+rule-correct-bookTitle-sentence-case =
+  .label = 书籍标题应为句子式大写
+
+
+## correct-proceedingsTitle-sentence-case
+rule-correct-proceedingsTitle-sentence-case =
+  .label = Proceedings title 应为句子式大写
 
 
 ## tool-title-guillemet

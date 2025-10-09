@@ -113,7 +113,10 @@ rule-require-journal-abbr-option-choose-custom-abbr-data-button =
     .label = Choose
 rule-require-journal-abbr-option-choose-custom-abbr-data-input = 
     .placeholder = Path of custom abbreviation file
-rule-require-journal-abbr-option-custom-data-desc = Supports JSON or CSV. JSON: `"publicationTitle": "abbreviation"`. CSV: first col = full title, second col = abbreviation. Separator must be comma or semicolon (no tabs).
+rule-require-journal-abbr-option-custom-data-desc = 
+    Supports JSON or CSV. 
+    JSON: `"publicationTitle": "abbreviation"`. 
+    CSV: first col = full title, second col = abbreviation. Separator must be comma or semicolon (no tabs).
 
 
 ## require-doi
@@ -190,6 +193,16 @@ rule-correct-edition-numeral =
 ## correct-volume-numeral
 rule-correct-volume-numeral =
   .label =  Volume should be numeral
+
+
+## correct-bookTitle-sentence-case
+rule-correct-bookTitle-sentence-case =
+  .label = Book title should be sentence case
+
+
+## correct-proceedingsTitle-sentence-case
+rule-correct-proceedingsTitle-sentence-case =
+  .label = Proceedings title should be sentence case
 
 
 ## tool-title-guillemet

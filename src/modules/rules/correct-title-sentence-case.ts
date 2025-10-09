@@ -207,7 +207,7 @@ interface Options {
   data?: any[];
 }
 
-function createCorrectTitleSentenceCaseRule(targetItemField: "title" | "shortTitle") {
+function createCorrectTitleSentenceCaseRule(targetItemField: "title" | "shortTitle" | "bookTitle" | "proceedingsTitle") {
   return defineRule<Options>({
     id: `correct-${targetItemField}-sentence-case`,
     scope: "field",
@@ -250,3 +250,5 @@ function createCorrectTitleSentenceCaseRule(targetItemField: "title" | "shortTit
 
 export const CorrectTitleSentenceCase = createCorrectTitleSentenceCaseRule("title");
 export const CorrectShortTitleSentenceCase = createCorrectTitleSentenceCaseRule("shortTitle");
+export const CorrectBookTitleSentenceCase = createCorrectTitleSentenceCaseRule("bookTitle");
+export const CorrectProceedingsTitleSentenceCase = createCorrectTitleSentenceCaseRule("proceedingsTitle");

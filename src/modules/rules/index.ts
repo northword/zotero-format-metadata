@@ -9,7 +9,7 @@ import { CorrectPagesConnector } from "./correct-pages-connector";
 import { CorrectPagesRange } from "./correct-pages-range";
 import { CorrectPublicationTitle } from "./correct-publication-title";
 import { CorrectThesisType } from "./correct-thesis-type";
-import { CorrectShortTitleSentenceCase, CorrectTitleSentenceCase } from "./correct-title-sentence-case";
+import { CorrectBookTitleSentenceCase, CorrectProceedingsTitleSentenceCase, CorrectShortTitleSentenceCase, CorrectTitleSentenceCase } from "./correct-title-sentence-case";
 import { CorrectUniversityPunctuation } from "./correct-university-punctuation";
 import { NoArticleWebPage } from "./no-article-webpage";
 import { NoDOIPrefix } from "./no-doi-prefix";
@@ -68,6 +68,7 @@ const register: Rule<any>[] = [
 
   // Conference specific fields
   CorrectConferenceAbbr,
+  CorrectProceedingsTitleSentenceCase,
 
   // Thesis specific fields
   CorrectThesisType,
@@ -77,6 +78,7 @@ const register: Rule<any>[] = [
   // Book
   CorrectEditionNumeral,
   CorrectVolumeNumeral,
+  CorrectBookTitleSentenceCase,
 
   // Tools
   ToolTitleGuillemet,

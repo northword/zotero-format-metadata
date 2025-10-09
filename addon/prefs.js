@@ -56,6 +56,8 @@ pref("rule.correct-university-punctuation", true);
 pref("rule.correct-doi-long", true);
 pref("rule.correct-edition-numeral", true);
 pref("rule.correct-volume-numeral", true);
+pref("rule.correct-bookTitle-sentence-case", true);
+pref("rule.correct-proceedingsTitle-sentence-case", false);
 
 // The tool's settings option is compatibility,
 // which suppresses typing error.

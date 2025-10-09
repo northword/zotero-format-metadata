@@ -51,6 +51,8 @@ declare namespace _ZoteroTypes {
       "rule.correct-doi-long": boolean;
       "rule.correct-edition-numeral": boolean;
       "rule.correct-volume-numeral": boolean;
+      "rule.correct-bookTitle-sentence-case": boolean;
+      "rule.correct-proceedingsTitle-sentence-case": boolean;
       "rule.tool-title-guillemet": boolean;
       "rule.tool-creators-ext": boolean;
       "rule.tool-set-language": boolean;
