@@ -5,6 +5,11 @@ on:
     paths:
       - "data/**"
 
+permissions:
+  # Give the default GITHUB_TOKEN write permission to commit and push the
+  # added or changed files to the repository.
+  contents: write
+
 jobs:
   update-data:
     # if: github.actor == 'renovate[bot]'
@@ -15,13 +20,13 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.head_ref }}
+          submodules: recursive
 
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v5
         with:
           node-version: 22.20.0
           cache: pnpm
-
-      - uses: pnpm/action-setup@v4
 
       - run: pnpm install
 
