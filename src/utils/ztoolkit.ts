@@ -7,6 +7,7 @@ import {
   makeHelperTool,
   MenuManager,
   ProgressWindowHelper,
+  SettingsDialogHelper,
   UITool,
   unregister,
   VirtualizedTableHelper,
@@ -28,7 +29,7 @@ function initZToolkit(_ztoolkit: ReturnType<typeof createZToolkit>) {
   const env = __env__;
   _ztoolkit.basicOptions.log.prefix = `[${config.addonName}]`;
   _ztoolkit.basicOptions.log.disableConsole = env === "production";
-  _ztoolkit.UI.basicOptions.ui.enableElementJSONLog = __env__ === "development";
+  _ztoolkit.UI.basicOptions.ui.enableElementJSONLog = false;
   _ztoolkit.UI.basicOptions.ui.enableElementDOMLog = __env__ === "development";
   _ztoolkit.basicOptions.debug.disableDebugBridgePassword = __env__ === "development";
   _ztoolkit.basicOptions.api.pluginID = config.addonID;
@@ -42,6 +43,7 @@ class MyToolkit extends BasicTool {
   ProgressWindow: typeof ProgressWindowHelper;
   VirtualizedTable: typeof VirtualizedTableHelper;
   Dialog: typeof DialogHelper;
+  SettingsDialog: typeof SettingsDialogHelper;
   FilePicker: typeof FilePickerHelper;
   ExtraField: ExtraFieldTool;
 
@@ -52,6 +54,7 @@ class MyToolkit extends BasicTool {
     this.Keyboard = new KeyboardManager(this);
     this.ExtraField = new ExtraFieldTool(this);
     this.Dialog = makeHelperTool(DialogHelper, this);
+    this.SettingsDialog = makeHelperTool(SettingsDialogHelper, this);
     this.FilePicker = makeHelperTool(FilePickerHelper, this);
     this.ProgressWindow = makeHelperTool(ProgressWindowHelper, this);
     this.VirtualizedTable = makeHelperTool(VirtualizedTableHelper, this);

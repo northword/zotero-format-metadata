@@ -16,7 +16,7 @@ export interface Task {
 interface ResolvedTask {
   item: Zotero.Item;
   rules: Rule<any>[];
-  optionsMap: Map<string, object>;
+  optionsMap: Map<string, object | false>;
 }
 
 interface RunnerStats {
@@ -113,7 +113,7 @@ export class LintRunner {
     for (const rule of rules) {
       if (rule.getOptions) {
         try {
-          optionsMap.set(rule.id, await rule.getOptions());
+          optionsMap.set(rule.id, await rule.getOptions({ items }));
         }
         catch (error) {
           this.stats.records.push({
@@ -149,12 +149,18 @@ export class LintRunner {
         continue;
       }
 
+      const options = optionsMap.get(rule.id) ?? {};
+      if (options === false) {
+        debug(`Skip ${rule.id}: options is false`);
+        continue;
+      }
+
       debug(`Applying ${rule.id}`);
 
       await this.runRule({
         item,
         rule,
-        options: optionsMap.get(rule.id) ?? {},
+        options,
       })
         .catch(e => errors.push(e));
     }

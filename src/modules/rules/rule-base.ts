@@ -4,6 +4,9 @@ import type { ReportInfo } from "../reporter";
 
 export interface Context<Option = object> {
   item: Zotero.Item;
+  /**
+   * @default {}
+   */
   options: Option;
   debug: (...args: any) => void;
   report: (info: Pick<ReportInfo, "level" | "message" | "action">) => void;
@@ -60,9 +63,10 @@ interface RuleBase<Option = object> {
 
   /**
    * Get options of the rule.
-   * @returns T
+   *
+   * If returns false, the rule will be skipped.
    */
-  getOptions?: () => Awaitable<Option>;
+  getOptions?: (ctx: { items: Zotero.Item[] }) => Awaitable<Option | false>;
 
   /**
    * Item menus

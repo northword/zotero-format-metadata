@@ -23,6 +23,7 @@ import { RequireDOI } from "./require-doi";
 import { RequireLanguage } from "./require-language";
 import { RequireShortTitle } from "./require-short-title";
 import { RequireUniversityPlace } from "./require-university-place";
+import { ToolCleanExtraField } from "./tool-clean-extra-field";
 import { ToolCreatorsExt } from "./tool-creators-ext";
 import { ToolGetShortDOI } from "./tool-get-short-doi";
 import { ToolUpdateMetadata } from "./tool-retrive-metadata";
@@ -86,6 +87,7 @@ const register: Rule<any>[] = [
   ToolSetLanguage,
   ToolUpdateMetadata,
   ToolGetShortDOI,
+  ToolCleanExtraField,
 ];
 
 export class Rules {
