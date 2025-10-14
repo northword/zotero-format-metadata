@@ -1,17 +1,37 @@
 import type { FluentMessageId } from "../../typings/i10n";
 
-// eslint-disable-next-line ts/no-use-before-define
-export { getString, initLocale };
+const localeFilesForJS = [
+  "addon.ftl",
+  "rules.ftl",
+];
+
+const localeFilesForMainWindow = [
+  "main-window.ftl",
+  "rules.ftl",
+];
+
+function getLocaleFileFullNames(files: string[]) {
+  return files.map(file => `${addon.data.config.addonRef}-${file}`);
+}
+
+export function registerMainWindowLocale(win: Window) {
+  getLocaleFileFullNames(localeFilesForMainWindow)
+    .forEach(file => (win as any).MozXULElement.insertFTLIfNeeded(file));
+}
+
+export function unregisterMainWindowLocale(win: Window) {
+  getLocaleFileFullNames(localeFilesForMainWindow)
+    .forEach(file => win.document
+      .querySelector(`[href="${file}"]`)
+      ?.remove());
+}
 
 /**
  * Initialize locale data
  */
-function initLocale() {
+export function initLocale() {
   const l10n = new Localization(
-    [
-      `${addon.data.config.addonRef}-addon.ftl`,
-      `${addon.data.config.addonRef}-rules.ftl`,
-    ],
+    getLocaleFileFullNames(localeFilesForJS),
     true,
   );
   addon.data.locale = {
@@ -39,13 +59,13 @@ function initLocale() {
  * getString("addon-dynamic-example", { args: { count: 2 } }); // I have 2 apples
  * ```
  */
-function getString(localString: FluentMessageId): string;
-function getString(localString: FluentMessageId, branch: string): string;
-function getString(
+export function getString(localString: FluentMessageId): string;
+export function getString(localString: FluentMessageId, branch: string): string;
+export function getString(
   localString: FluentMessageId,
   options: { branch?: string | undefined; args?: Record<string, unknown> },
 ): string;
-function getString(...inputs: any[]) {
+export function getString(...inputs: any[]) {
   if (inputs.length === 1) {
     return _getString(inputs[0]);
   }

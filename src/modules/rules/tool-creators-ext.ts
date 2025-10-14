@@ -64,6 +64,12 @@ export const ToolCreatorsExt = defineRule<CreatorExtOptions> ({
   async getOptions() {
     return createCreatorsExtOptionDialog();
   },
+
+  getItemMenu() {
+    return {
+      mutiltipleItems: false,
+    };
+  },
 });
 
 async function createCreatorsExtOptionDialog(): Promise<any | undefined> {

@@ -224,17 +224,17 @@ rule-tool-set-language-menu-item = { rule-tool-set-language.label }
 
 
 ## tool-update-metadata
-tool-update-metadata =
+rule-tool-update-metadata =
   .label = Retrieve item metadata via identifier
-tool-update-metadata-menu-item = Retrieve metadata via identifier and lint
+rule-tool-update-metadata-menu-item = Retrieve metadata via identifier and lint
 
-tool-update-metadata-option-confirm-when-itemtype-change = 
+rule-tool-update-metadata-option-confirm-when-itemtype-change = 
     .label = Request confirmation when item type changes
-tool-update-metadata-option-semanticScholarToken = Semantic Scholar API Key: 
+rule-tool-update-metadata-option-semanticScholarToken = Semantic Scholar API Key: 
     .label = Semantic Scholar Token
     .placeholder = Semantic Scholar Token
-tool-update-metadata-option-semanticScholarToken-desc = When updating preprint fields, the plugin queries Semantic Scholar to check if it has been published. Default API rate is 1 req/s. Apply for free API Key to increase rate limit.
-tool-update-metadata-option-semanticScholarToken-link = Request API key
+rule-tool-update-metadata-option-semanticScholarToken-desc = When updating preprint fields, the plugin queries Semantic Scholar to check if it has been published. Default API rate is 1 req/s. Apply for free API Key to increase rate limit.
+rule-tool-update-metadata-option-semanticScholarToken-link = Request API key
 
 
 ## tool-get-short-doi
