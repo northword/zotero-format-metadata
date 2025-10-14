@@ -1,5 +1,4 @@
-import type { TagElementProps } from "zotero-plugin-toolkit";
-import { getString } from "../../utils/locale";
+import { useDialog } from "../../utils/dialog";
 import { defineRule } from "./rule-base";
 
 interface CreatorExt extends _ZoteroTypes.Item.Creator {
@@ -8,12 +7,46 @@ interface CreatorExt extends _ZoteroTypes.Item.Creator {
 }
 
 interface CreatorExtOptions {
-  mark: {
-    open?: string;
-    close?: string;
-  };
+  mark: string;
   country?: string;
 }
+
+const KNOWN_SYMBOLS: {
+  label: string;
+  open: string;
+  close: string;
+}[] = [
+  {
+    label: "[]",
+    open: "[",
+    close: "]",
+  },
+  {
+    label: "()",
+    open: "(",
+    close: ")",
+  },
+  {
+    label: "【】",
+    open: "【",
+    close: "】",
+  },
+  {
+    label: "（）",
+    open: "（",
+    close: "）",
+  },
+  {
+    label: "〔〕",
+    open: "〔",
+    close: "〕",
+  },
+  {
+    label: "No Symbols",
+    open: "",
+    close: "",
+  },
+];
 
 export const ToolCreatorsExt = defineRule<CreatorExtOptions> ({
   id: "tool-creators-ext",
@@ -51,10 +84,11 @@ export const ToolCreatorsExt = defineRule<CreatorExtOptions> ({
       ztoolkit.ExtraField.setExtraField(item, "creatorsExt", JSON.stringify(creators));
     }
 
+    const mark = KNOWN_SYMBOLS.find(mark => mark.label === options.mark);
     creatorsExt.forEach((creatorExt, index) => {
-      if (options.mark.open && creatorExt.country) {
+      if (mark && creatorExt.country) {
         creatorExt.lastName = `${
-          (options.mark.open ?? "") + creatorExt.country + (options.mark.close ?? "")
+          (mark.open ?? "") + creatorExt.country + (mark.close ?? "")
         } ${creatorExt.lastName}`.trim();
       }
       item.setCreator(index, creatorExt);
@@ -62,7 +96,30 @@ export const ToolCreatorsExt = defineRule<CreatorExtOptions> ({
   },
 
   async getOptions() {
-    return createCreatorsExtOptionDialog();
+    const { dialog, open } = useDialog<CreatorExtOptions>();
+    dialog
+      .addSetting("标记符号：", "mark", {
+        tag: "select",
+        children: KNOWN_SYMBOLS.map(mark => ({
+          tag: "option",
+          properties: {
+            value: mark.label,
+            innerHTML: mark.label,
+          },
+        }),
+        ),
+      })
+      .addSetting("国籍：", "country", {
+        tag: "input",
+        attributes: {
+          type: "text",
+          name: "country",
+          placeholder: "Default is extra.creatorsExt",
+        },
+      });
+
+    const result = await open("作者扩展信息");
+    return result;
   },
 
   getItemMenu() {
@@ -71,107 +128,3 @@ export const ToolCreatorsExt = defineRule<CreatorExtOptions> ({
     };
   },
 });
-
-async function createCreatorsExtOptionDialog(): Promise<any | undefined> {
-  const dialogData: { [key: string | number]: any } = {
-    data: undefined,
-    unloadCallback: () => {
-      // eslint-disable-next-line ts/no-use-before-define
-      const window = dialog.window;
-      const form = window.document.querySelector("form") as HTMLFormElement;
-      const formData = new window.FormData(form);
-      dialogData.data = {
-        mark: {
-          open: formData.get("mark")?.slice(0, 1),
-          close: formData.get("mark")?.slice(1, 2),
-        },
-        country: formData.get("country"),
-      };
-
-      ztoolkit.log(dialogData.data);
-    },
-  };
-
-  const marks: Array<TagElementProps> = ["[]", "()", "【】", "（）", "〔〕"]
-    .map((mark, index) => {
-      return [
-        {
-          tag: "input",
-          id: `dialog-checkbox-mark-${index}`,
-          attributes: {
-            type: "radio",
-            name: "mark",
-            value: mark,
-          },
-        },
-        {
-          tag: "label",
-          attributes: {
-            for: `dialog-checkbox-mark-${index}`,
-          },
-          properties: { innerHTML: mark },
-        },
-      ];
-    })
-    .flat();
-  marks.unshift(
-    {
-      tag: "input",
-      id: `dialog-checkbox-mark-0`,
-      attributes: {
-        type: "radio",
-        name: "mark",
-        value: "",
-        checked: true,
-      },
-    },
-    {
-      tag: "label",
-      attributes: {
-        for: `dialog-checkbox-mark-0`,
-      },
-      properties: { innerHTML: "No symbols" },
-    },
-  );
-
-  const dialog = new ztoolkit.Dialog(1, 1)
-    .addCell(0, 0, {
-      tag: "form",
-      // id: `dialog-checkboxgroup`,
-      children: [
-        { tag: "div", children: [{ tag: "label", properties: { innerHTML: "国籍左右符号：" } }, ...marks] },
-        {
-          tag: "div",
-          children: [
-            {
-              tag: "label",
-              properties: { innerHTML: "国籍：" },
-            },
-            {
-              tag: "input",
-              id: `dialog-checkbox-input`,
-              attributes: {
-                "type": "text",
-                "name": "country",
-                "for": "dialog-checkbox-other",
-                "placeholder": "Default is extra.creatorsExt",
-                "data-bind": "inputLang",
-                "data-prop": "value",
-              },
-            },
-          ],
-        },
-      ],
-    })
-    .addButton(getString("confirm"), "confirm")
-    .addButton(getString("cancel"), "cancel")
-    .setDialogData(dialogData)
-    .open("作者扩展信息");
-  await dialogData.unloadLock.promise;
-
-  if (dialogData._lastButtonId !== "confirm") {
-    return undefined;
-  }
-
-  return dialogData.data;
-}

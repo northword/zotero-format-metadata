@@ -1,4 +1,5 @@
 // autocorrect-disable -- autocorrect mismark of `《》`
+import { useDialog } from "../../utils/dialog";
 import { defineRule } from "./rule-base";
 
 interface TitleGuillemetOptions {
@@ -36,52 +37,34 @@ export const ToolTitleGuillemet = defineRule<TitleGuillemetOptions> ({
   },
 
   async getOptions() {
-    return await createDialog();
-  },
-});
+    const { dialog, open } = useDialog<TitleGuillemetOptions>();
 
-async function createDialog(): Promise<TitleGuillemetOptions> {
-  const dialog = new ztoolkit.Dialog(2, 2);
-
-  dialog
-    .addCell(0, 0, {
-      tag: "label",
-      properties: { innerHTML: "Select your guillemet:" },
-    })
-    .addCell(0, 1, {
+    dialog.addSetting("Select your guillemet:", "target", {
       tag: "select",
-      attributes: {
-        "data-bind": "target",
-      },
       children: [
         {
           tag: "option",
           properties: {
-            value: "single",
+            value: "double",
             innerHTML: "Single 〈〉 to Double 《》",
           },
         },
         {
           tag: "option",
           properties: {
-            value: "double",
+            value: "single",
             innerHTML: "Double 《》 to Single 〈〉",
           },
         },
       ],
-    })
-    .addButton("OK", "ok")
-    .open("Select Guillemet", {
-      height: 100,
-      width: 400,
-      centerscreen: true,
     });
 
-  await dialog.dialogData.unloadLock?.promise;
-
-  if (dialog.dialogData._lastButtonId === "ok") {
-    return { target: dialog.dialogData.target };
-  }
-
-  return {};
-}
+    const result = await open("Select Guillemet");
+    if (result) {
+      return { target: result.target };
+    }
+    else {
+      return false;
+    }
+  },
+});
