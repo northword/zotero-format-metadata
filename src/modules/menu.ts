@@ -216,7 +216,7 @@ export function registerMenu() {
       label: "测试",
       icon: menuIcon,
       commandListener: () => {
-        addon.hooks.onLintInBatch("tool-clean-extra-field", "item");
+        addon.hooks.onLintInBatch("standard", "item");
       },
     });
   }
