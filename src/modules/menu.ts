@@ -4,8 +4,9 @@ import { isRegularItem } from "../utils/zotero";
 import { Rules } from "./rules";
 
 type FieldMenu = _ZoteroTypes.MenuManager.MenuData<_ZoteroTypes.MenuManager.ItemPaneMenuContext>;
+type ItemMenu = _ZoteroTypes.MenuManager.MenuData<_ZoteroTypes.MenuManager.LibraryMenuContext>;
 
-export function registerFieldMenu() {
+function registerFieldMenus() {
   if (!Zotero.version.startsWith("8"))
     return;
 
@@ -39,7 +40,96 @@ export function registerFieldMenu() {
   });
 }
 
-export function registerMenu() {
+function registerItemMenus() {
+  function makeItemMenu(ruleID: ID): ItemMenu {
+    const rule = Rules.getByID(ruleID)!;
+    const menu = rule?.getItemMenu?.();
+
+    return {
+      menuType: "menuitem",
+      // @ts-expect-error some rules are not defined in the item menu
+      l10nID: getLocaleID(menu?.i10nID || `rule-${ruleID}-menu-item`),
+      // enableForTabTypes: rule?.targetItemTypes,
+      onShowing(event, context) {
+        if (menu?.mutiltipleItems === false && context.items!.length > 1) {
+          context.setEnabled(false);
+        }
+      },
+      onCommand(event, context) {
+        addon.hooks.onLintInBatch(ruleID, context.items!);
+      },
+    };
+  }
+
+  function makeSeparator(): ItemMenu {
+    return {
+      menuType: "separator",
+    };
+  }
+
+  const icon = `${rootURI}/content/icons/favicon.png`;
+  const menus: ItemMenu[] = [
+    {
+      menuType: "submenu",
+      l10nID: getLocaleID("menuitem-label"),
+      icon,
+      menus: [
+        {
+          menuType: "menuitem",
+          l10nID: getLocaleID("menuitem-stdFormatFlow"),
+          onCommand(event, { items }) {
+            if (items)
+              addon.hooks.onLintInBatch("standard", items);
+          },
+        },
+        makeSeparator(),
+        makeItemMenu("correct-title-sentence-case"),
+        makeItemMenu("correct-creators-case"),
+        makeItemMenu("correct-creators-pinyin"),
+        makeSeparator(),
+        makeItemMenu("require-language"),
+        makeItemMenu("tool-set-language"),
+        makeSeparator(),
+        makeItemMenu("correct-publication-title"),
+        makeItemMenu("require-journal-abbr"),
+        makeItemMenu("require-university-place"),
+        makeSeparator(),
+        makeItemMenu("tool-update-metadata"),
+        makeSeparator(),
+        {
+          menuType: "submenu",
+          l10nID: getLocaleID("menuTools-label"),
+          icon,
+          menus: [
+            makeItemMenu("tool-title-guillemet"),
+            makeSeparator(),
+            makeItemMenu("no-doi-prefix"),
+            makeItemMenu("tool-get-short-doi"),
+            makeItemMenu("correct-date-format"),
+            makeSeparator(),
+            makeItemMenu("tool-creators-ext"),
+          ],
+        },
+      ],
+    },
+  ];
+
+  Zotero.MenuManager.registerMenu({
+    pluginID: addon.data.config.addonID,
+    menuID: "item-menu",
+    target: "main/library/item",
+    menus,
+  });
+
+  Zotero.MenuManager.registerMenu({
+    pluginID: addon.data.config.addonID,
+    menuID: "item-menu",
+    target: "main/library/collection",
+    menus,
+  });
+}
+
+function registerItemMenusByZToolkit() {
   const menuIcon = `${rootURI}/content/icons/favicon.png`;
   function getMenuItem(menuPopup: string) {
     const menuItem: MenuitemOptions[] = [
@@ -120,7 +210,7 @@ export function registerMenu() {
       },
       {
         tag: "menuitem",
-        label: getString("tool-update-metadata-menu-item"),
+        label: getString("rule-tool-update-metadata-menu-item"),
         commandListener: () => {
           addon.hooks.onLintInBatch(["tool-update-metadata", "standard"], menuPopup);
         },
@@ -219,5 +309,15 @@ export function registerMenu() {
         addon.hooks.onLintInBatch("standard", "item");
       },
     });
+  }
+}
+
+export function registerMenu() {
+  if (Zotero.version.startsWith("8")) {
+    registerItemMenus();
+    registerFieldMenus();
+  }
+  else {
+    registerItemMenusByZToolkit();
   }
 }

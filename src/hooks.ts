@@ -1,14 +1,14 @@
 import type { Arrayable } from "./utils/types";
 import { checkCompat } from "./modules/compat";
 import { registerExtraColumns } from "./modules/item-tree";
-import { registerFieldMenu, registerMenu } from "./modules/menu";
+import { registerMenu } from "./modules/menu";
 import { registerNotifier } from "./modules/notifier";
 import { registerPrefs, registerPrefsScripts } from "./modules/preference";
 import { RichTextToolBar, setHtmlTag } from "./modules/rich-text";
 import { Rules } from "./modules/rules";
 import { registerShortcuts } from "./modules/shortcuts";
 import { toArray } from "./utils/general";
-import { initLocale } from "./utils/locale";
+import { initLocale, registerMainWindowLocale, unregisterMainWindowLocale } from "./utils/locale";
 import { getPref } from "./utils/prefs";
 import { createZToolkit } from "./utils/ztoolkit";
 
@@ -24,20 +24,16 @@ async function onStartup() {
 async function onMainWindowLoad(win: Window): Promise<void> {
   // Create ztoolkit for every window
   addon.data.ztoolkit = createZToolkit();
-  win.MozXULElement.insertFTLIfNeeded(`${addon.data.config.addonRef}-rules.ftl`);
-
+  registerMainWindowLocale(win);
   registerShortcuts();
   registerMenu();
-  registerFieldMenu();
   registerExtraColumns();
   new RichTextToolBar(win).init();
 }
 
 async function onMainWindowUnload(win: Window): Promise<void> {
   ztoolkit.unregisterAll();
-  win.document
-    .querySelector(`[href="${addon.data.config.addonRef}-rules.ftl"]`)
-    ?.remove();
+  unregisterMainWindowLocale(win);
 }
 
 async function onShutdown() {

@@ -224,17 +224,17 @@ rule-tool-set-language-menu-item = { rule-tool-set-language.label }
 
 
 ## tool-update-metadata
-tool-update-metadata =
+rule-tool-update-metadata =
   .label = 通过标识符更新元数据
-tool-update-metadata-menu-item = 通过标识符更新元数据并 Lint
+rule-tool-update-metadata-menu-item = 通过标识符更新元数据并 Lint
 
-tool-update-metadata-option-confirm-when-itemtype-change = 
+rule-tool-update-metadata-option-confirm-when-itemtype-change = 
     .label = 当条目类型变更时要求确认
-tool-update-metadata-option-semanticScholarToken = Semantic Scholar API Key: 
+rule-tool-update-metadata-option-semanticScholarToken = Semantic Scholar API Key: 
     .label = Semantic Scholar Token
     .placeholder = Semantic Scholar Token
-tool-update-metadata-option-semanticScholarToken-desc =  当更新预印本的字段数据时，插件会从 Semantic Scholar 查询该预印本是否已正式发表。默认的，此 API 限制请求 1 次/秒，你可以通过免费申请 API Key 来增加速率限制。
-tool-update-metadata-option-semanticScholarToken-link = 申请
+rule-tool-update-metadata-option-semanticScholarToken-desc =  当更新预印本的字段数据时，插件会从 Semantic Scholar 查询该预印本是否已正式发表。默认的，此 API 限制请求 1 次/秒，你可以通过免费申请 API Key 来增加速率限制。
+rule-tool-update-metadata-option-semanticScholarToken-link = 申请
 
 
 ## tool-get-short-doi
