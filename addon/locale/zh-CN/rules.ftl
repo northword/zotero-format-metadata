@@ -70,6 +70,11 @@ rule-no-title-trailing-dot =
   .label = 标题不应以句号结尾
 
 
+## require-creators
+rule-require-creators =
+  .label = 作者不应为空
+
+
 ## correct-creators-case
 rule-correct-creators-case =
   .label = 作者应以首字母大写方式存储

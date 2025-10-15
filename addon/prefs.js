@@ -40,6 +40,7 @@ pref("rule.require-journal-abbr.usefullZh", false);
 pref("rule.require-journal-abbr.customDataPath", "");
 pref("rule.require-university-place", true);
 pref("rule.require-doi", true);
+pref("rule.require-creators", true);
 
 pref("rule.correct-title-sentence-case", true);
 pref("rule.correct-title-sentence-case.custom-term-path", "");

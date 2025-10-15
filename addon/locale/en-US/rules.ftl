@@ -70,6 +70,11 @@ rule-no-title-trailing-dot =
   .label = No title ending with dot
 
 
+## require-creators
+rule-require-creators =
+  .label = Creators should be non-empty
+
+
 ## correct-creators-case
 rule-correct-creators-case =
   .label = Creators should be capitalized

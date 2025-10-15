@@ -36,6 +36,7 @@ declare namespace _ZoteroTypes {
       "rule.require-journal-abbr.customDataPath": string;
       "rule.require-university-place": boolean;
       "rule.require-doi": boolean;
+      "rule.require-creators": boolean;
       "rule.correct-title-sentence-case": boolean;
       "rule.correct-title-sentence-case.custom-term-path": string;
       "rule.correct-shortTitle-sentence-case": boolean;

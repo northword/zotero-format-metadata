@@ -72,6 +72,7 @@ export type FluentMessageId =
   | 'rule-no-title-trailing-dot'
   | 'rule-no-value-nullish'
   | 'rule-no-volume-extra-zeros'
+  | 'rule-require-creators'
   | 'rule-require-doi'
   | 'rule-require-doi-menu-item'
   | 'rule-require-journal-abbr'

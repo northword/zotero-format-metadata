@@ -19,6 +19,7 @@ import { NoJournalPreprint } from "./no-journal-preprint";
 import { NoTitleTrailingDot } from "./no-title-trailing-dot";
 import { NoValueNullish } from "./no-value-nullish";
 import { CorrectConferenceAbbr, RequireJournalAbbr } from "./require-abbr";
+import { RequireCreators } from "./require-creators";
 import { RequireDOI } from "./require-doi";
 import { RequireLanguage } from "./require-language";
 import { RequireShortTitle } from "./require-short-title";
@@ -46,6 +47,7 @@ const register: Rule<any>[] = [
   CorrectShortTitleSentenceCase,
 
   // Creators
+  RequireCreators,
   CorrectCreatorsCase,
   CorrectCreatorsPinyin,
 
