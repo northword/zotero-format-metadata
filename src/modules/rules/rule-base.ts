@@ -45,6 +45,17 @@ interface RuleBase<Option = object> {
   category?: "rule" | "tool";
 
   /**
+   * The documentation link of the rule.
+   *
+   * Prefix is `https://github.com/northword/zotero-format-metadata/blob/main/docs/rules/`,
+   * prefix are not required.
+   *
+   * @default "id.md"
+   * @todo not implemented
+   */
+  documentation?: string;
+
+  /**
    * Handler of the rule.
    *
    * @example

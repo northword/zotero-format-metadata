@@ -1,4 +1,4 @@
-import type { ProgressWindowHelper } from "zotero-plugin-toolkit";
+import type { ProgressWindowHelper, TagElementProps } from "zotero-plugin-toolkit";
 import { groupBy } from "es-toolkit";
 import { getString } from "../utils/locale";
 import { getPref } from "../utils/prefs";
@@ -30,6 +30,7 @@ export function createReporter(infos: ReportInfo[]) {
       gap: "16px",
       maxWidth: "1000px",
       minWidth: "300px",
+      maxHeight: "500px",
       fontFamily: "Segoe UI, sans-serif",
       fontSize: "14px",
     },
@@ -44,7 +45,7 @@ export function createReporter(infos: ReportInfo[]) {
         },
         children: [
           {
-            tag: "label",
+            tag: "a",
             properties: {
               innerHTML: `${infos[0].itemID} - ${infos[0].title}`,
             },
@@ -54,18 +55,32 @@ export function createReporter(infos: ReportInfo[]) {
               display: "block",
               fontSize: "15px",
               color: "var(--fill-primary)",
+              textDecoration: "none",
             },
+            listeners: [
+              {
+                type: "click",
+                listener: () => {
+                  Zotero.getActiveZoteroPane().selectItem(infos[0].itemID);
+                },
+              },
+            ],
           },
           ...infos.map(createRuleResultRows),
         ],
       },
-    ]),
+    ] satisfies TagElementProps[]),
   });
 
-  dialog.open("Linter for Zotero");
+  dialog.open("Linter for Zotero", {
+    centerscreen: true,
+    resizable: true,
+    fitContent: true,
+    alwaysRaised: true,
+  });
 }
 
-function createRuleResultRows(info: ReportInfo) {
+function createRuleResultRows(info: ReportInfo): TagElementProps {
   return {
     tag: "div",
     styles: {
@@ -83,14 +98,16 @@ function createRuleResultRows(info: ReportInfo) {
     },
     children: [
       {
-        tag: "label",
+        tag: "a",
         properties: {
           innerHTML: info.ruleID,
+          // href: `https://github.com/northword/zotero-format-metadata/blob/main/docs/rules/${info.ruleID}.md`,
         },
         styles: {
           fontWeight: "bold",
           color: info.level === "error" ? "var(--accent-red)" : "var(--accent-orange)",
           minWidth: "80px",
+          textDecoration: "none",
         },
       },
       {
