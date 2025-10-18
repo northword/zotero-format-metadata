@@ -54,6 +54,10 @@ This plugin provides a toolbar and shortcuts to insert tags for **superscript, s
 - **Preview**
   A preview of the title rich text is available when editing the title field.
 
+### `correct-title-chemical-formula`
+
+Automatically corrects chemical formulae in titles. Supports Charge Number (e.g. `Co2+` -> `Co<sup>2+</sup>`) and Stoichiometric Number (e.g. `Cu2O` → `Cu<sub>2</sub>O`)
+
 ## Author Rules
 
 ### Require Authors (`require-creators`) _(planned)_

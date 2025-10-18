@@ -7,10 +7,9 @@ import { defineRule } from "./rule-base";
 /** =============================  Special Words Begin  ============================= */
 
 /* eslint-disable antfu/consistent-list-newline  -- We expect to customize the line breaks of these arrays. */
-// unshift 'Be' for function word 'be',
-const chemElements = [
+export const chemElements = [
   "H", "He",
-  "Li", "__Be", "B", "C", "N", "O", "F", "Ne",
+  "Li", "Be", "B", "C", "N", "O", "F", "Ne",
   "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar",
   "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br", "Kr",
   "Rb", "Sr", "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pb", "Ag", "Cd", "In", "Sn", "Sb", "Te", "I", "Xe",
@@ -19,6 +18,9 @@ const chemElements = [
   "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu",
   "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm", "Md", "No", "Lr",
 ];
+
+// unshift 'Be' for function word 'be'
+const _chemElements = chemElements.filter(e => !["Be"].includes(e));
 
 const geographyWords = [
   "Asia", "Europe", "Africa", "North America", "South America",
@@ -130,7 +132,7 @@ export function toSentenceCase(text: string, locale: string = "en-US") {
       // prevent "U.S. Taxes" from starting a new sub-sentence
       preserve.push({ start: i + end.length + markup.length, end: i + end.length + markup.length + char.length });
     }
-    return match; // northword patch: add for ts lint, 避免类型检查报错
+    return match; // northword patch: make tsc happy
   });
 
   // protect leading capital
@@ -138,13 +140,13 @@ export function toSentenceCase(text: string, locale: string = "en-US") {
   text.replace(/^([“"]?)(<[^>]+>)?(\p{Lu})/gu, (match, prefix, markup, char, offset) => {
     markup = markup || "";
     preserve.push({ start: offset + prefix.length + markup.length, end: offset + prefix.length + markup.length + char.length });
-    return match; // northword patch: add for ts lint, 避免类型检查报错
+    return match; // northword patch: make tsc happy
   });
 
   // protect nocase
   text.replace(/<span class="nocase">.*?<\/span>|<nc>.*?<\/nc>/gi, (match, i) => {
     preserve.push({ start: i, end: i + match.length, description: "nocase" });
-    return match; // northword patch: add for ts lint, 避免类型检查报错
+    return match; // northword patch: make tsc happy
   });
 
   // mask html tags with characters so the sentence-casing can deal with them as simple words
@@ -178,7 +180,7 @@ export function toSentenceCase(text: string, locale: string = "en-US") {
       }
 
       // northword patch: 支持化学元素识别
-      if (chemElements.includes(word)) {
+      if (_chemElements.includes(word)) {
         return word;
       }
 

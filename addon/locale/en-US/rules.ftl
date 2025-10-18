@@ -70,6 +70,13 @@ rule-no-title-trailing-dot =
   .label = No title ending with dot
 
 
+## correct-title-chemical-formula
+rule-correct-title-chemical-formula =
+  .label =  Chemical formula should have correct subscripts and superscripts
+rule-correct-title-chemical-formula-menu-item = Correct subscript in chemical formula (experimental)
+rule-correct-title-chemical-formula-menu-field = Chemical formula subscripts (Linter)
+
+
 ## require-creators
 rule-require-creators =
   .label = Creators should be non-empty

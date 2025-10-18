@@ -70,6 +70,13 @@ rule-no-title-trailing-dot =
   .label = 标题不应以句号结尾
 
 
+## correct-title-chemical-formula
+rule-correct-title-chemical-formula =
+  .label =  化学式应有正确的上下标
+rule-correct-title-chemical-formula-menu-item = 尝试修正化学式角标
+rule-correct-title-chemical-formula-menu-field = 修正化学式角标（Linter）
+
+
 ## require-creators
 rule-require-creators =
   .label = 作者不应为空

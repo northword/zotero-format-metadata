@@ -10,6 +10,7 @@ type ID =
   | "correct-title-sentence-case"
   | "require-short-title"
   | "correct-shortTitle-sentence-case"
+  | "correct-title-chemical-formula"
   | "require-creators"
   | "correct-creators-case"
   | "correct-creators-pinyin"

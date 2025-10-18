@@ -39,6 +39,7 @@ declare namespace _ZoteroTypes {
       "rule.require-creators": boolean;
       "rule.correct-title-sentence-case": boolean;
       "rule.correct-title-sentence-case.custom-term-path": string;
+      "rule.correct-title-chemical-formula": boolean;
       "rule.correct-shortTitle-sentence-case": boolean;
       "rule.correct-creators-case": boolean;
       "rule.correct-creators-pinyin": boolean;

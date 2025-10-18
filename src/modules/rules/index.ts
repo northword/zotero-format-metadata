@@ -9,6 +9,7 @@ import { CorrectPagesConnector } from "./correct-pages-connector";
 import { CorrectPagesRange } from "./correct-pages-range";
 import { CorrectPublicationTitle } from "./correct-publication-title";
 import { CorrectThesisType } from "./correct-thesis-type";
+import { CorrectTitleChemicalFormula } from "./correct-title-chemical-formula";
 import { CorrectBookTitleSentenceCase, CorrectProceedingsTitleSentenceCase, CorrectShortTitleSentenceCase, CorrectTitleSentenceCase } from "./correct-title-sentence-case";
 import { CorrectUniversityPunctuation } from "./correct-university-punctuation";
 import { NoArticleWebPage } from "./no-article-webpage";
@@ -45,6 +46,7 @@ const register: Rule<any>[] = [
   CorrectTitleSentenceCase,
   RequireShortTitle,
   CorrectShortTitleSentenceCase,
+  CorrectTitleChemicalFormula,
 
   // Creators
   RequireCreators,

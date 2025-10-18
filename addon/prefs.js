@@ -44,6 +44,7 @@ pref("rule.require-creators", true);
 
 pref("rule.correct-title-sentence-case", true);
 pref("rule.correct-title-sentence-case.custom-term-path", "");
+pref("rule.correct-title-chemical-formula", false);
 pref("rule.correct-shortTitle-sentence-case", true);
 pref("rule.correct-creators-case", true);
 pref("rule.correct-creators-pinyin", false);
