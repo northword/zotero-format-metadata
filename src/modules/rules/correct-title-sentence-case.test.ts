@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import officialData from "../../../test/data/sentenceCase.json";
 import { toSentenceCase } from "./correct-title-sentence-case";
 
 /**
@@ -75,12 +76,31 @@ const testItems: testItem[] = [
     original: `The Chengdu is A City of China`,
     expected: `The Chengdu is a city of China`,
   },
+  {
+    // https://github.com/zotero/utilities/pull/31
+    // https://github.com/zotero/zotero/issues/3787
+    name: "保护引号后的大写",
+    original: `“If you don’t actually care for somebody, how can you help them?”: Exploring Young People’s Core Needs in Mental Healthcare—Directions for Improving Service Provision`,
+    expected: `“If you don’t actually care for somebody, how can you help them?”: exploring young people’s core needs in mental healthcare—directions for improving service provision`,
+  },
+  {
+    // https://github.com/northword/zotero-format-metadata/issues/335
+    name: "保护引号后的大写 2",
+    original: `“Here” Versus “There”: Authoritarian Populism, Environment, and Scapegoat Ecology Among Loggers of Northwestern Russia`,
+    expected: `“Here” versus “there”: authoritarian populism, environment, and scapegoat ecology among loggers of northwestern Russia`,
+  },
 ];
 
 describe("toSentenceCase", () => {
   testItems.forEach((testItem) => {
     it(testItem.name, () => {
       expect(toSentenceCase(testItem.original)).to.equal(testItem.expected);
+    });
+  });
+
+  it("should work with official data", () => {
+    Object.entries(officialData).forEach(([key, value]) => {
+      expect(toSentenceCase(key)).to.equal(value);
     });
   });
 });

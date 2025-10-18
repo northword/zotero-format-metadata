@@ -7,9 +7,10 @@ import { defineRule } from "./rule-base";
 /** =============================  Special Words Begin  ============================= */
 
 /* eslint-disable antfu/consistent-list-newline  -- We expect to customize the line breaks of these arrays. */
+// unshift 'Be' for function word 'be',
 const chemElements = [
   "H", "He",
-  "Li", "Be", "B", "C", "N", "O", "F", "Ne",
+  "Li", "__Be", "B", "C", "N", "O", "F", "Ne",
   "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar",
   "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br", "Kr",
   "Rb", "Sr", "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pb", "Ag", "Cd", "In", "Sn", "Sb", "Te", "I", "Xe",
@@ -43,6 +44,7 @@ const localityWords = [
   "north", "south", "east", "west",
   "northern", "southern", "eastern", "western",
   "southeast", "southwest", "northwest", "northeast",
+  "southeastern", "southwestern", "northwestern", "northeastern",
 ];
 
 const chinaCapitals = [
@@ -132,9 +134,10 @@ export function toSentenceCase(text: string, locale: string = "en-US") {
   });
 
   // protect leading capital
-  text.replace(/^(<[^>]+>)?(\p{Lu})/u, (match, markup, char) => {
+  // patched to https://github.com/zotero/utilities/pull/31/files
+  text.replace(/^([“"]?)(<[^>]+>)?(\p{Lu})/gu, (match, prefix, markup, char, offset) => {
     markup = markup || "";
-    preserve.push({ start: markup.length, end: markup.length + char.length });
+    preserve.push({ start: offset + prefix.length + markup.length, end: offset + prefix.length + markup.length + char.length });
     return match; // northword patch: add for ts lint, 避免类型检查报错
   });
 
