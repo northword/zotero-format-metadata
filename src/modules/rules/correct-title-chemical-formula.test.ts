@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import sentenceCase from "../../../test/data/sentenceCase.json";
-import { containsValidElementsOnly, formatChemicalFormula } from "./correct-title-chemical-formula";
+import { containsValidElementsOnly, formatChemicalFormula, formatPart } from "./correct-title-chemical-formula";
 
 describe("containsValidElementsOnly", () => {
   it("should work", () => {
@@ -26,39 +26,39 @@ describe("containsValidElementsOnly", () => {
 describe("formatPart", () => {
   // skip
   it("should skip if do not have numbers", () => {
-    expect(formatChemicalFormula("NaCl")).toBe("NaCl");
+    expect(formatPart("NaCl")).toBe("NaCl");
   });
 
   it("should skip if letters not in chemical formula", () => {
-    expect(formatChemicalFormula("SAIHOP2")).toBe("SAIHOP2");
+    expect(formatPart("SAIHOP2")).toBe("SAIHOP2");
   });
 
   // supscript
   it("should format end with +/-", () => {
-    expect(formatChemicalFormula("Na-")).toBe("Na<sup>-</sup>");
+    expect(formatPart("Na-")).toBe("Na<sup>-</sup>");
   });
 
   it("should format supscript with +/-", () => {
-    expect(formatChemicalFormula("Co2+")).toBe("Co<sup>2+</sup>");
-    expect(formatChemicalFormula("O2-")).toBe("O<sup>2-</sup>");
+    expect(formatPart("Co2+")).toBe("Co<sup>2+</sup>");
+    expect(formatPart("O2-")).toBe("O<sup>2-</sup>");
   });
 
   // subscript
   it("should format chemical formula", () => {
-    expect(formatChemicalFormula("NO2")).toBe("NO<sub>2</sub>");
+    expect(formatPart("NO2")).toBe("NO<sub>2</sub>");
   });
 
   it("should format chemical formula, multi-characters", () => {
-    expect(formatChemicalFormula("Co3O4")).toBe("Co<sub>3</sub>O<sub>4</sub>");
-    expect(formatChemicalFormula("Mn0.1Co0.9Co2O4")).toBe("Mn<sub>0.1</sub>Co<sub>0.9</sub>Co<sub>2</sub>O<sub>4</sub>");
+    expect(formatPart("Co3O4")).toBe("Co<sub>3</sub>O<sub>4</sub>");
+    expect(formatPart("Mn0.1Co0.9Co2O4")).toBe("Mn<sub>0.1</sub>Co<sub>0.9</sub>Co<sub>2</sub>O<sub>4</sub>");
   });
 
   it("should format cnki style sub/sup", () => {
-    expect(formatChemicalFormula("Co_3O_4")).toBe("Co<sub>3</sub>O<sub>4</sub>");
+    expect(formatPart("Co_3O_4")).toBe("Co<sub>3</sub>O<sub>4</sub>");
   });
 
   it("should format stoichiometric number after ()", () => {
-    expect(formatChemicalFormula("Fe(NO3)3")).toBe("Fe(NO<sub>3</sub>)<sub>3</sub>");
+    expect(formatPart("Fe(NO3)3")).toBe("Fe(NO<sub>3</sub>)<sub>3</sub>");
   });
 });
 
