@@ -89,6 +89,12 @@ const testItems: testItem[] = [
     original: `“Here” Versus “There”: Authoritarian Populism, Environment, and Scapegoat Ecology Among Loggers of Northwestern Russia`,
     expected: `“Here” versus “there”: authoritarian populism, environment, and scapegoat ecology among loggers of northwestern Russia`,
   },
+  {
+    // https://github.com/northword/zotero-format-metadata/issues/335#issuecomment-3419886172
+    name: "保护引号后的大写 3",
+    original: `‘Free Prior and Informed Consent’, Social Complexity and the Mining industry: establishing a knowledge base`,
+    expected: `‘Free prior and informed consent’, social complexity and the mining industry: establishing a knowledge base`,
+  },
 ];
 
 describe("toSentenceCase", () => {

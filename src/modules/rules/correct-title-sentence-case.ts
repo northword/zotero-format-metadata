@@ -137,7 +137,7 @@ export function toSentenceCase(text: string, locale: string = "en-US") {
 
   // protect leading capital
   // patched to https://github.com/zotero/utilities/pull/31/files
-  text.replace(/^([“"]?)(<[^>]+>)?(\p{Lu})/gu, (match, prefix, markup, char, offset) => {
+  text.replace(/^([“"‘']?)(<[^>]+>)?(\p{Lu})/gu, (match, prefix, markup, char, offset) => {
     markup = markup || "";
     preserve.push({ start: offset + prefix.length + markup.length, end: offset + prefix.length + markup.length + char.length });
     return match; // northword patch: make tsc happy
