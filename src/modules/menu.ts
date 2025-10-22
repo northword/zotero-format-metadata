@@ -124,7 +124,7 @@ function registerItemMenus() {
 
   Zotero.MenuManager.registerMenu({
     pluginID: addon.data.config.addonID,
-    menuID: "item-menu",
+    menuID: "collection-menu",
     target: "main/library/collection",
     menus,
   });
