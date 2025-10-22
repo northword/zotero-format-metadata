@@ -7,6 +7,9 @@ const list = [
   "n/a",
   "N/A",
   "n.a.",
+  "n/d",
+  "N/D",
+  "n.d.",
   "no value",
   "无",
 ];
