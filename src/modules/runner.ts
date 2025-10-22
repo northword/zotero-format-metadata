@@ -2,6 +2,7 @@ import type { Arrayable } from "../utils/types";
 import type { ReportInfo } from "./reporter";
 import type { Context, Rule } from "./rules/rule-base";
 import PQueue from "p-queue";
+import { DataLoader } from "../utils/data-loader";
 import { createReporter, ProgressUI } from "./reporter";
 
 const debug = (...args: any[]) => ztoolkit.log("[Runner]", ...args);
@@ -264,8 +265,9 @@ export class LintRunner {
     if (this.stats.records.length !== 0)
       createReporter(this.stats.records);
 
-    debug(`Batch tasks completed in ${duration}s`);
     this.stats = this.createEmptyStats();
+    DataLoader.clearCache();
+    debug(`Batch tasks completed in ${duration}s`);
   }
 
   private createEmptyStats(): RunnerStats {

@@ -1,5 +1,5 @@
 import type { Data } from "../../utils/data-loader";
-import { useData } from "../../utils/data-loader";
+import { DataLoader } from "../../utils/data-loader";
 import { getPref } from "../../utils/prefs";
 import { getTextLanguage, normalizeKey } from "../../utils/str";
 import { defineRule } from "./rule-base";
@@ -41,7 +41,7 @@ export const RequireJournalAbbr = defineRule<Options>({
 
     // 从本地数据集获取缩写
     if (!journalAbbr) {
-      const data = await useData("journalAbbr");
+      const data = await DataLoader.load("journalAbbr");
       journalAbbr = await getAbbrLocally(publicationTitle, data);
     }
 
@@ -102,7 +102,7 @@ export const CorrectConferenceAbbr = defineRule<Options>({
 
     // 从本地数据集获取缩写
     if (!shortConferenceName) {
-      const data = await useData("conferencesAbbr");
+      const data = await DataLoader.load("conferencesAbbr");
       shortConferenceName = await getAbbrLocally(conferenceName, data);
     }
 
@@ -165,7 +165,7 @@ async function getAbbrFromCustom(publicationTitle: string, customAbbrDataPath: s
   const normalizePublicationTitle = normalizeKey(publicationTitle);
 
   if (customAbbrDataPath.endsWith(".json")) {
-    const data = await useData("json", customAbbrDataPath);
+    const data = await DataLoader.load("json", customAbbrDataPath);
 
     for (const term in data) {
       if (normalizeKey(term) === normalizePublicationTitle && data[term])
@@ -174,7 +174,7 @@ async function getAbbrFromCustom(publicationTitle: string, customAbbrDataPath: s
     return undefined;
   }
   else if (customAbbrDataPath.endsWith(".csv")) {
-    const resolvedTerms = await useData("csv", customAbbrDataPath, {
+    const resolvedTerms = await DataLoader.load("csv", customAbbrDataPath, {
       headers: ["publicationTitle", "abbr"],
     });
     for (const term of resolvedTerms) {

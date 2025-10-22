@@ -1,4 +1,4 @@
-import { useData } from "../../utils/data-loader";
+import { DataLoader } from "../../utils/data-loader";
 import { functionWords, isFullUpperCase, normalizeKey } from "../../utils/str";
 import { defineRule } from "./rule-base";
 
@@ -345,7 +345,7 @@ function capitalizePublicationTitle(publicationTitle: string, force = false) {
 
 // 期刊全称消岐
 async function getPublicationTitleDisambiguation(publicationTitle: string) {
-  const data = await useData("journalAbbr");
+  const data = await DataLoader.load("journalAbbr");
   const normalizedInputKey = normalizeKey(publicationTitle);
 
   for (const originalKey of Object.keys(data)) {

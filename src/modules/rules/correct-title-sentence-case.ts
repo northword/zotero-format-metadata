@@ -1,5 +1,5 @@
 import contryJson from "../../utils/country-by-capital-city.json";
-import { useData } from "../../utils/data-loader";
+import { DataLoader } from "../../utils/data-loader";
 import { getPref } from "../../utils/prefs";
 import { convertToRegex, escapeRegex, functionWords } from "../../utils/str";
 import { defineRule } from "./rule-base";
@@ -241,7 +241,7 @@ function createCorrectTitleSentenceCaseRule(targetItemField: "title" | "shortTit
       const customTermFilePath = getPref("rule.correct-title-sentence-case.custom-term-path");
       if (customTermFilePath) {
         return {
-          data: await useData("csv", customTermFilePath, {
+          data: await DataLoader.load("csv", customTermFilePath, {
             headers: ["search", "replace"],
           }),
         };

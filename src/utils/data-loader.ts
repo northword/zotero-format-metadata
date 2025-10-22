@@ -4,61 +4,94 @@ export interface Data {
   [key: string]: string;
 }
 
-export async function useData(key: "journalAbbr" | "conferencesAbbr" | "universityPlace" | "iso6393To6391"): Promise<Data>;
-export async function useData(key: "json", path: string): Promise<Data>;
-export async function useData(key: "csv", path: string, loaderOptions: Parameters<typeof csv>[0]): Promise<any[]>;
-export async function useData(key: "txt", path: string): Promise<string>;
-export async function useData(key: string, path: string): Promise<any>;
-export async function useData(key: string, path?: string, loaderOptions?: any) {
-  switch (key) {
-    case "journalAbbr":
-      key = "json";
-      path = `${rootURI}data/journal-abbr/journal-abbr.json`;
-      break;
-    case "conferencesAbbr":
-      key = "json";
-      path = `${rootURI}data/conference-abbr.json`;
-      break;
-    case "universityPlace":
-      key = "json";
-      path = `${rootURI}data/university-list/university-place.json`;
-      break;
-    case "csv":
-    case "json":
-    case "txt":
-    default:
-      if (!path)
-        throw new Error("path must provide when key is csv or json");
-      break;
+export class DataLoader {
+  private static cache = new Map<string, any>();
+
+  static async load(key: "journalAbbr" | "conferencesAbbr" | "universityPlace" | "iso6393To6391"): Promise<Data>;
+  static async load(key: "json", path: string): Promise<Data>;
+  static async load(key: "csv", path: string, loaderOptions?: Parameters<typeof csv>[0]): Promise<any[]>;
+  static async load(key: "txt", path: string): Promise<string>;
+  static async load(key: string, path?: string, loaderOptions?: any): Promise<any>;
+  static async load(key: string, path?: string, options?: any): Promise<any> {
+    const { type, path: resolvedPath } = this.resolvePath(key, path);
+    const cacheKey = `${type}:${resolvedPath}`;
+
+    if (this.cache.has(cacheKey)) {
+      ztoolkit.log(`[data-loader] Cache hit for ${resolvedPath}`);
+      return this.cache.get(cacheKey);
+    }
+
+    const data = await this.readFile(resolvedPath);
+    ztoolkit.log(`[data-loader] Read ${resolvedPath} (type=${type})`);
+
+    let result: any;
+    switch (type) {
+      case "csv":
+        result = await this.parseCSV(data, options);
+        break;
+      case "json":
+        result = this.parseJSON(data);
+        break;
+      case "txt":
+      default:
+        result = this.parseTXT(data);
+        break;
+    }
+
+    this.cache.set(cacheKey, result);
+    return result;
   }
 
-  let data: string;
-  if (path.startsWith("jar:file://")) {
-    data = (await Zotero.HTTP.request("get", path)).response;
+  static clearCache() {
+    this.cache.clear();
+    ztoolkit.log("[data-loader] Data cache cleared");
   }
-  else {
-    data = await Zotero.File.getContentsAsync(path) as string;
-  }
-  ztoolkit.log(`[data-loader] Success read ${path}, data head: ${data.split("\n").slice(0, 5).join("\n")}`);
 
-  if (key === "csv" || path.endsWith(".csv")) {
-    return (await csv({
+  static getCacheKeys(): string[] {
+    return Array.from(this.cache.keys());
+  }
+
+  private static resolvePath(key: string, path?: string): { type: string; path: string } {
+    switch (key) {
+      case "journalAbbr":
+        return { type: "json", path: `${rootURI}data/journal-abbr/journal-abbr.json` };
+      case "conferencesAbbr":
+        return { type: "json", path: `${rootURI}data/conference-abbr.json` };
+      case "universityPlace":
+        return { type: "json", path: `${rootURI}data/university-list/university-place.json` };
+      default:
+        if (!path)
+          throw new Error("path must be provided when key is csv or json");
+        return { type: path.split(".").pop() || key, path };
+    }
+  }
+
+  private static async readFile(path: string): Promise<string> {
+    if (path.startsWith("jar:file://")) {
+      return (await Zotero.HTTP.request("get", path)).response;
+    }
+    else {
+      return (await Zotero.File.getContentsAsync(path)) as string;
+    }
+  }
+
+  private static async parseCSV(data: string, options?: any): Promise<any[]> {
+    return csv({
       delimiter: "auto",
       trim: true,
       noheader: true,
-      ...loaderOptions,
-    }).fromString(data));
+      ...options,
+    }).fromString(data);
   }
-  else if (key === "json" || path.endsWith(".json")) {
-    if (typeof data !== "string" || data === "") {
-      throw new SyntaxError("The custom json data file format error.");
+
+  private static parseJSON(data: string): any {
+    if (!data || typeof data !== "string") {
+      throw new SyntaxError("Invalid JSON file content.");
     }
     return JSON.parse(data);
   }
-  else if (key === "txt") {
-    return data;
-  }
-  else {
+
+  private static parseTXT(data: string): string {
     return data;
   }
 }

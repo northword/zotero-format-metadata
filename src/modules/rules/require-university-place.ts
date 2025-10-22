@@ -1,4 +1,4 @@
-import { useData } from "../../utils/data-loader";
+import { DataLoader } from "../../utils/data-loader";
 import { defineRule } from "./rule-base";
 
 export const RequireUniversityPlace = defineRule({
@@ -21,7 +21,7 @@ export const RequireUniversityPlace = defineRule({
 });
 
 async function getUniversityPlace(university: string) {
-  const data = await useData("universityPlace");
+  const data = await DataLoader.load("universityPlace");
   const place = data[university];
   if (place === "" || place === null || place === undefined) {
     return "";
