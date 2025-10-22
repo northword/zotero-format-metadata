@@ -100,11 +100,18 @@ rule-correct-date-format =
 rule-correct-date-format-menu-item = Normalize date format to ISO
 
 
-## correct-publication-title
-rule-correct-publication-title =
-  .label = Publication title should remove alias and be capitalized
-rule-correct-publication-title-menu-item = Fix alias and capitalization of publicationTitle
-rule-correct-publication-title-menu-field = Fix alias (Linter)
+## correct-publication-title-alias
+rule-correct-publication-title-alias =
+  .label = Publication title should be official name
+rule-correct-publication-title-alias-menu-item = Fix alias of publicationTitle
+rule-correct-publication-title-alias-menu-field = Fix alias (Linter)
+
+
+## correct-publication-title-case
+rule-correct-publication-title-case =
+  .label = Publication title should be Title Case
+rule-correct-publication-title-case-menu-item = Fix capitalization of publicationTitle
+rule-correct-publication-title-case-menu-field = Fix capitalization (Linter)
 
 
 ## require-journal-abbr

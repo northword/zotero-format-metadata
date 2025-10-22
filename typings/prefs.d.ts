@@ -44,7 +44,8 @@ declare namespace _ZoteroTypes {
       "rule.correct-creators-case": boolean;
       "rule.correct-creators-pinyin": boolean;
       "rule.correct-date-format": boolean;
-      "rule.correct-publication-title": boolean;
+      "rule.correct-publication-title-alias": boolean;
+      "rule.correct-publication-title-case": boolean;
       "rule.correct-pages-connector": boolean;
       "rule.correct-pages-range": boolean;
       "rule.correct-conference-abbr": boolean;

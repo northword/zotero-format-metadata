@@ -1,21 +1,26 @@
 import { DataLoader } from "../../utils/data-loader";
-import { functionWords, isFullUpperCase, normalizeKey } from "../../utils/str";
+import { functionWords, isFullUpperCase } from "../../utils/str";
 import { defineRule } from "./rule-base";
 
-export const CorrectPublicationTitle = defineRule({
-  id: "correct-publication-title",
+export const CorrectPublicationTitleCase = defineRule({
+  id: "correct-publication-title-case",
   scope: "field",
 
   targetItemTypes: ["journalArticle"],
   targetItemField: "publicationTitle",
-  async apply({ item }) {
+  async apply({ item, debug }) {
     const publicationTitle = item.getField("publicationTitle", false, true) as string;
-    let newPublicationTitle = "";
-    const publicationTitleDisambiguation = await getPublicationTitleDisambiguation(publicationTitle);
-    if (publicationTitleDisambiguation) {
-      newPublicationTitle = publicationTitleDisambiguation;
+
+    // If this publicationTitle matches key of build-in data, do not change it
+    const data = await DataLoader.load("journalAbbr");
+    if (data[publicationTitle]) {
+      debug(`Skip capitalize for ${publicationTitle}, it's a standard name in build-in data`);
+      return;
     }
-    else if (keepOriginPublicationTitle(publicationTitle)) {
+
+    // Else, try to capitalize it
+    let newPublicationTitle = "";
+    if (keepOriginPublicationTitle(publicationTitle)) {
       newPublicationTitle = publicationTitle;
     }
     else {
@@ -341,21 +346,6 @@ function capitalizePublicationTitle(publicationTitle: string, force = false) {
     }
     return capitalizeVariant;
   }).join(" ");
-}
-
-// 期刊全称消岐
-async function getPublicationTitleDisambiguation(publicationTitle: string) {
-  const data = await DataLoader.load("journalAbbr");
-  const normalizedInputKey = normalizeKey(publicationTitle);
-
-  for (const originalKey of Object.keys(data)) {
-    const normalizedOriginalKey = normalizeKey(originalKey);
-
-    if (normalizedInputKey === normalizedOriginalKey) {
-      return originalKey;
-    }
-  }
-  return false;
 }
 
 // For iScience-link publication title, keep origin

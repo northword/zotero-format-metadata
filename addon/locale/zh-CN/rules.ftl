@@ -100,11 +100,18 @@ rule-correct-date-format =
 rule-correct-date-format-menu-item = 统一日期格式为 ISO 格式
 
 
-## correct-publication-title
-rule-correct-publication-title =
-  .label = 期刊标题应去除别称并词首大写
-rule-correct-publication-title-menu-item = 修正期刊标题的别称和大小写
-rule-correct-publication-title-menu-field = 修正别称（Linter）
+## correct-publication-title-alias
+rule-correct-publication-title-alias =
+  .label = 期刊标题应去除别称
+rule-correct-publication-title-alias-menu-item = 修正期刊标题别称
+rule-correct-publication-title-alias-menu-field = 修正别称 (Linter)
+
+
+## correct-publication-title-case
+rule-correct-publication-title-case =
+  .label = 期刊标题应使用标题式大写
+rule-correct-publication-title-case-menu-item = 修正期刊标题大小写
+rule-correct-publication-title-case-menu-field = 修正大小写 (Linter)
 
 
 ## require-journal-abbr

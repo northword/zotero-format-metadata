@@ -7,7 +7,8 @@ import { CorrectDOILong } from "./correct-doi-long";
 import { CorrectEditionNumeral, CorrectVolumeNumeral } from "./correct-edition-numeral";
 import { CorrectPagesConnector } from "./correct-pages-connector";
 import { CorrectPagesRange } from "./correct-pages-range";
-import { CorrectPublicationTitle } from "./correct-publication-title";
+import { CorrectPublicationTitleAlias } from "./correct-publication-title-alias";
+import { CorrectPublicationTitleCase } from "./correct-publication-title-case";
 import { CorrectThesisType } from "./correct-thesis-type";
 import { CorrectTitleChemicalFormula } from "./correct-title-chemical-formula";
 import { CorrectBookTitleSentenceCase, CorrectProceedingsTitleSentenceCase, CorrectShortTitleSentenceCase, CorrectTitleSentenceCase } from "./correct-title-sentence-case";
@@ -62,7 +63,8 @@ const register: Rule<any>[] = [
   CorrectDOILong,
 
   // Article specific fields
-  CorrectPublicationTitle,
+  CorrectPublicationTitleAlias,
+  CorrectPublicationTitleCase,
   RequireJournalAbbr,
   CorrectPagesConnector,
   CorrectPagesRange,

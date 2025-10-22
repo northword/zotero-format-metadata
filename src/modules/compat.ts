@@ -91,9 +91,20 @@ export function checkCompat() {
     mvPref("lang.set", "rule.tool-set-language");
     mvPref("updateMetadate", "rule.tool-update-metadata");
     mvPref("updateMetadate.confirmWhenItemTypeChange", "rule.tool-update-metadata.confirm-when-item-type-change", false);
+  }
 
-    // v2.0.0-beta.4 rename rule id
+  // v2.0.0-beta.4 rename rule id
+  if (compareVersion(version, "2.0.0-beta.4") === -1) {
     clearPref("rule.no-nullish-value");
+  }
+
+  // v2.0.0-beta.16 split correct-publication-title to correct-publication-title-case and correct-publication-title-alias
+  if (compareVersion(version, "2.0.0-beta.16") === -1) {
+    // @ts-expect-error has been removed
+    const old = getPref("rule.correct-publication-title") as boolean;
+    setPref("rule.correct-publication-title-case", old);
+    setPref("rule.correct-publication-title-alias", old);
+    clearPref("rule.correct-publication-title");
   }
 
   setPref("version", currentVersion);
@@ -120,7 +131,7 @@ function mvPref(source: string, target: string, defaultValue?: boolean | string 
  * @returns -1|1|0
  * @see https://github.com/syt2/zotero-addons/blob/ba9e5fbf66b11a0fe790d5a116744ba3291245ee/src/utils/utils.ts
  */
-function compareVersion(versionA: string, versionB: string): 1 | -1 | 0 {
+export function compareVersion(versionA: string, versionB: string): 1 | -1 | 0 {
   const partsA = versionA.toLowerCase().replace("v", "").split(".");
   const partsB = versionB.toLowerCase().replace("v", "").split(".");
 
