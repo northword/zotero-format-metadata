@@ -19,18 +19,15 @@ export const CorrectPublicationTitleCase = defineRule({
     }
 
     // Else, try to capitalize it
-    let newPublicationTitle = "";
-    if (keepOriginPublicationTitle(publicationTitle)) {
-      newPublicationTitle = publicationTitle;
+    const newPublicationTitle = capitalizePublicationTitle(publicationTitle);
+    if (newPublicationTitle !== publicationTitle) {
+      debug(`Capitalize ${publicationTitle} -> ${newPublicationTitle}`);
+      item.setField("publicationTitle", newPublicationTitle);
     }
-    else {
-      newPublicationTitle = capitalizePublicationTitle(publicationTitle, isFullUpperCase(publicationTitle));
-    }
-    item.setField("publicationTitle", newPublicationTitle);
   },
 });
 
-const skipWordsForPublicationTitle = [
+const SpecialWords = [
   "AAPG",
   "AAPPS",
   "AAPS",
@@ -324,34 +321,51 @@ const skipWordsForPublicationTitle = [
   "npj",
 ];
 
-// 期刊名应词首大写
-function capitalizePublicationTitle(publicationTitle: string, force = false) {
-  return publicationTitle.split(" ").map((word, index) => {
+export function capitalizePublicationTitle(publicationTitle: string) {
+  const isFullStringUpperCase = isFullUpperCase(publicationTitle);
+
+  return publicationTitle.split(/(\s+)/).map((word, index) => {
+    // Keep spaces
+    if (/^\s$/.test(word))
+      return word;
+
     const upperCaseVariant = word.toUpperCase();
     const lowerCaseVariant = word.toLowerCase();
     const capitalizeVariant = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
 
-    // 对于全大写的词，除非启用 force，否则不予处理
-    if (word === upperCaseVariant && !force) {
-      return word;
-    }
-
+    // Functions words: use lowercase
     if (functionWords.includes(lowerCaseVariant)) {
+      // but if it's the first word, use capitalize variant
       if (index === 0)
         return capitalizeVariant;
       return lowerCaseVariant;
     }
-    if (skipWordsForPublicationTitle.includes(word)) {
+
+    // Special words: build-in words use its own case
+    // e.g. publisher name like "ACS", "IEEE", "npj"
+    for (const specialWord of SpecialWords) {
+      if (lowerCaseVariant === specialWord.toLowerCase()) {
+        return specialWord;
+      }
+    }
+
+    // If all words are uppercase, use capitalize variant
+    if (isFullStringUpperCase) {
+      return capitalizeVariant;
+    }
+
+    // Special words: if this word is uppercase, keep case
+    if (word === upperCaseVariant) {
       return word;
     }
-    return capitalizeVariant;
-  }).join(" ");
-}
 
-// For iScience-link publication title, keep origin
-function keepOriginPublicationTitle(publicationTitle: string): boolean {
-  return publicationTitle.split(" ").length === 1
-    && publicationTitle.length > 1
-    && publicationTitle.charAt(0) === publicationTitle.charAt(0).toLowerCase()
-    && publicationTitle.charAt(1) === publicationTitle.charAt(1).toUpperCase();
+    // Special words: capital letters appear in the middle of words
+    // e.g. iScience
+    if (word !== upperCaseVariant && word !== lowerCaseVariant && word !== capitalizeVariant) {
+      return word;
+    }
+
+    // Otherwise, use capitalize variant
+    return capitalizeVariant;
+  }).join("");
 }
