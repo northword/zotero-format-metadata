@@ -100,6 +100,8 @@ function _getString(
   }
 }
 
-export function getLocaleID(id: FluentMessageId) {
+export function getLocaleID(id?: FluentMessageId): string | undefined {
+  if (!id)
+    return undefined;
   return `${addon.data.config.addonRef}-${id}`;
 }

@@ -6,6 +6,9 @@ export const CorrectTitleChemicalFormula = defineRule({
   scope: "field",
   targetItemTypes: ["journalArticle", "conferencePaper", "preprint"],
   targetItemField: "title",
+  fieldMenu: {
+    i10nID: "rule-correct-title-chemical-formula-menu-field",
+  },
   apply({ item }) {
     const title = item.getField("title");
     const newTitle = formatChemicalFormula(title);

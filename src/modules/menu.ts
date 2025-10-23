@@ -10,27 +10,44 @@ function registerFieldMenus() {
   if (!Zotero.version.startsWith("8"))
     return;
 
-  const menus: FieldMenu[] = Rules.getByType("field").map((rule) => {
-    return {
+  const menus: FieldMenu[] = Rules
+    .getByType("field")
+    .filter(r => r.fieldMenu)
+    .map(rule => ({
       menuType: "menuitem",
-      // @ts-expect-error some rules are not defined in the field menu
-      l10nID: getLocaleID(`rule-${rule.id}-menu-field`),
+      l10nID: getLocaleID(rule.fieldMenu?.i10nID),
+      icon: rule.fieldMenu?.icon,
       enableForTabTypes: rule.targetItemTypes,
       onShowing: (_event, context) => {
-        if (rule.targetItemField !== context.fieldName) {
-          context.setVisible(false);
-        }
+        // set visible
+        const visiable: boolean = rule.targetItemField === context.fieldName;
+        context.setVisible(visiable);
+        if (!visiable)
+          return;
+
+        // set enabled state
+        const disabled: boolean = !!rule.fieldMenu?.setDisabled?.(context);
+        context.setEnabled(!disabled);
       },
-      onShown: (_event, context) => {
-        if (context.menuElem.textContent === "") {
-          context.setVisible(false);
-        }
+      onShown(event, context) {
+        // Since fluent.js is async, when menu first shown, the i10n string is not ready,
+        // so we need to wait for i18n string to be ready
+        setTimeout(() => {
+          if (context.menuElem.textContent === "") {
+            ztoolkit.log(`[menu] miss i18n string: ${rule.fieldMenu?.i10nID}`);
+            context.menuElem.textContent = `Miss i10n string (${rule.id})`;
+          }
+        }, 500);
       },
       onCommand: (_event, context) => {
+        if (rule.fieldMenu?.onCommand) {
+          rule.fieldMenu.onCommand(context);
+          return;
+        }
         addon.hooks.onLintInBatch(rule.id, context.items);
       },
-    };
-  });
+    }
+    ));
 
   Zotero.MenuManager.registerMenu({
     pluginID: addon.data.config.addonID,
@@ -51,9 +68,8 @@ function registerItemMenus() {
       l10nID: getLocaleID(menu?.i10nID || `rule-${ruleID}-menu-item`),
       // enableForTabTypes: rule?.targetItemTypes,
       onShowing(event, context) {
-        if (menu?.mutiltipleItems === false && context.items!.length > 1) {
-          context.setEnabled(false);
-        }
+        const enabled: boolean = !(menu?.mutiltipleItems === false && context.items!.length > 1);
+        context.setEnabled(enabled);
       },
       onCommand(event, context) {
         addon.hooks.onLintInBatch(ruleID, context.items!);

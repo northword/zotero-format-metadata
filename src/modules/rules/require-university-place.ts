@@ -7,7 +7,9 @@ export const RequireUniversityPlace = defineRule({
 
   targetItemTypes: ["thesis"],
   targetItemField: "place",
-
+  fieldMenu: {
+    i10nID: "rule-require-university-place-menu-field",
+  },
   async apply({ item, debug }) {
     const university = item.getField("university") as string;
     const place = await getUniversityPlace(university)

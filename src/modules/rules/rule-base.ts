@@ -124,22 +124,25 @@ export interface RuleForRegularItemScopeItem<Option = object> extends RuleForReg
 export interface RuleForRegularScopeField<Option = object> extends RuleForRegularItem<Option> {
   scope: "field";
   targetItemField: _ZoteroTypes.Item.ItemField | "creators";
+
   /**
    * Field menus
    *
-   * @todo not implemented
+   * `undefined` means no itempane info row menu
    */
-  getFieldMenu?: () => {
+  fieldMenu?: {
     /**
      * The i18n ID of the menu item.
      *
-     * @default `rule-${rule.id}-menu-field`
+     * @example `rule-${rule.id}-menu-field`
      */
-    i10nID?: FluentMessageId;
+    i10nID: Extract<FluentMessageId, `rule-${string}-menu-field`>;
 
     icon?: string;
 
-    onCommand?: () => void;
+    onCommand?: (ctx: _ZoteroTypes.MenuManager.ItemPaneMenuContext) => void;
+
+    setDisabled?: (ctx: _ZoteroTypes.MenuManager.ItemPaneMenuContext) => boolean;
   };
 }
 

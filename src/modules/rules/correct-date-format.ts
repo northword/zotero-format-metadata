@@ -11,4 +11,8 @@ export const CorrectDateFormat = defineRule({
     if (newDate)
       item.setField("date", newDate);
   },
+
+  fieldMenu: {
+    i10nID: "rule-correct-date-format-menu-field",
+  },
 });

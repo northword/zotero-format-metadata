@@ -13,4 +13,8 @@ export const NoDOIPrefix = defineRule({
         item.setField("DOI", cleandDOI);
     }
   },
+
+  fieldMenu: {
+    i10nID: "rule-no-doi-prefix-menu-field",
+  },
 });

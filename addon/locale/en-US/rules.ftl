@@ -98,6 +98,7 @@ rule-correct-creators-pinyin-menu-item = Split creator Pinyin
 rule-correct-date-format =
   .label = Date should be ISO YYYY-MM-DD format
 rule-correct-date-format-menu-item = Normalize date format to ISO
+rule-correct-date-format-menu-field = ISO format (Linter)
 
 
 ## correct-publication-title-alias
@@ -141,14 +142,15 @@ rule-require-journal-abbr-option-custom-data-desc =
 ## require-doi
 rule-require-doi =
   .label = DOI should be non-empty
-rule-require-doi-menu-item = Retrieve DOI
+rule-require-doi-menu-item = Retrieve DOI by title
+rule-require-doi-menu-field = Retrieve DOI (Linter)
 
 
 ## no-doi-prefix
 rule-no-doi-prefix =
   .label = No URL prefix for DOI
 rule-no-doi-prefix-menu-item = Remove DOI prefix
-rule-no-doi-prefix-menu-field = Remove URL prefix
+rule-no-doi-prefix-menu-field = Remove URL prefix (Linter)
 
 
 ## correct-doi-long

@@ -98,6 +98,7 @@ rule-correct-creators-pinyin-menu-item = 拆分作者拼音
 rule-correct-date-format =
   .label = 日期应为 ISO YYYY-MM-DD 格式
 rule-correct-date-format-menu-item = 统一日期格式为 ISO 格式
+rule-correct-date-format-menu-field = 转为 ISO 格式（Linter）
 
 
 ## correct-publication-title-alias
@@ -141,14 +142,15 @@ rule-require-journal-abbr-option-custom-data-desc =
 ## require-doi
 rule-require-doi =
   .label = DOI 应填写完整
-rule-require-doi-menu-item = 获取 DOI
+rule-require-doi-menu-item = 根据标题查找 DOI
+rule-require-doi-menu-item = 查找 DOI（Linter）
 
 
 ## no-doi-prefix
 rule-no-doi-prefix =
   .label = DOI 无须保留网址前缀
 rule-no-doi-prefix-menu-item = 去除 DOI 网址前缀
-rule-no-doi-prefix-menu-field = 去除网址前缀
+rule-no-doi-prefix-menu-field = 去除网址前缀（Linter）
 
 
 ## correct-doi-long

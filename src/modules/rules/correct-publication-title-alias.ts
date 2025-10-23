@@ -9,6 +9,9 @@ export const CorrectPublicationTitleAlias = defineRule({
 
   targetItemTypes: ["journalArticle"],
   targetItemField: "publicationTitle",
+  fieldMenu: {
+    i10nID: "rule-correct-publication-title-alias-menu-field",
+  },
   async apply({ item, debug }) {
     const publicationTitle = item.getField("publicationTitle", false, true) as string;
     const data = await DataLoader.load("journalAbbr");

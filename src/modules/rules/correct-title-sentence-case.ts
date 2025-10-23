@@ -217,7 +217,9 @@ function createCorrectTitleSentenceCaseRule(targetItemField: "title" | "shortTit
     id: `correct-${targetItemField}-sentence-case`,
     scope: "field",
     targetItemField,
-
+    fieldMenu: {
+      i10nID: "rule-correct-title-sentence-case-menu-field",
+    },
     async apply({ item, options, debug }) {
       const lang = item.getField("language");
       let title = item.getField(targetItemField, false, true);

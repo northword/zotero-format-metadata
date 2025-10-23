@@ -8,6 +8,9 @@ export const CorrectPublicationTitleCase = defineRule({
 
   targetItemTypes: ["journalArticle"],
   targetItemField: "publicationTitle",
+  fieldMenu: {
+    i10nID: "rule-correct-publication-title-case-menu-field",
+  },
   async apply({ item, debug }) {
     const publicationTitle = item.getField("publicationTitle", false, true) as string;
 
