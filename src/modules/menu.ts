@@ -92,10 +92,17 @@ function registerItemMenus() {
         makeItemMenu("tool-set-language"),
         makeSeparator(),
         makeItemMenu("correct-publication-title-alias"),
+        makeItemMenu("correct-publication-title-case"),
         makeItemMenu("require-journal-abbr"),
         makeItemMenu("require-university-place"),
         makeSeparator(),
-        makeItemMenu("tool-update-metadata"),
+        {
+          menuType: "menuitem",
+          l10nID: getLocaleID("rule-tool-update-metadata-menu-item"),
+          onCommand(event, { items }) {
+            addon.hooks.onLintInBatch(["tool-update-metadata", "standard"], items!);
+          },
+        },
         makeSeparator(),
         {
           menuType: "submenu",
@@ -190,6 +197,13 @@ function registerItemMenusByZToolkit() {
         label: getString("rule-correct-publication-title-case-menu-item"),
         commandListener: () => {
           addon.hooks.onLintInBatch("correct-publication-title-case", menuPopup);
+        },
+      },
+      {
+        tag: "menuitem",
+        label: getString("rule-correct-publication-title-alias-menu-item"),
+        commandListener: () => {
+          addon.hooks.onLintInBatch("correct-publication-title-alias", menuPopup);
         },
       },
       {
