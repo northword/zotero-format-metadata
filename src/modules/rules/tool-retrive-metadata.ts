@@ -1,5 +1,4 @@
 import { getString } from "../../utils/locale";
-import { progressWindow } from "../../utils/logger";
 import { getPref } from "../../utils/prefs";
 import { defineRule } from "./rule-base";
 
@@ -14,14 +13,17 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption> ({
   scope: "item",
   targetItemTypes: ["journalArticle", "preprint"],
   category: "tool",
-  async apply({ item, options }) {
+  async apply({ item, options, report }) {
     if (item.itemType === "journalArticle") {
       const doi = item.getField("DOI") as string;
       // 不存在 DOI 直接结束
       // todo: 若有附件，尝试从附件获取？
       // todo: 弹出 DOI 输入对话框？
       if (!doi) {
-        progressWindow(getString("info-noDOI"), "fail");
+        report({
+          level: "error",
+          message: getString("info-noDOI"),
+        });
         return;
       }
 

@@ -1,5 +1,8 @@
 import type { SettingsDialogHelper, TagElementProps } from "zotero-plugin-toolkit";
 import { isEmpty } from "es-toolkit/compat";
+import { createLogger } from "./logger";
+
+const logger = createLogger("useDialog");
 
 type Result = Record<string, any>;
 
@@ -33,7 +36,7 @@ export function useDialog<T extends Result>(): {
   async function open(title: string) {
     dialog.open(title);
     await dialog.dialogData.unloadLock?.promise;
-    ztoolkit.log("[useDialog] data:", data);
+    logger.log("data:", data);
 
     if (isEmpty(data))
       return false;

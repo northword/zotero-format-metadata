@@ -1,6 +1,9 @@
 import { homepage } from "../../package.json";
 import { getString } from "../utils/locale";
+import { createLogger } from "../utils/logger";
 import { getPref, setPref } from "../utils/prefs";
+
+const logger = createLogger("prefrence");
 
 export function registerPrefs() {
   Zotero.PreferencePanes.register({
@@ -81,7 +84,7 @@ function bindPrefEvents() {
   addon.data.prefs?.window.document
     .querySelector(`#${addon.data.config.addonRef}-lang-only-enable`)
     ?.addEventListener("command", (e: Event) => {
-      ztoolkit.log(e);
+      logger.debug(e);
       disablePrefsLang();
     });
 }

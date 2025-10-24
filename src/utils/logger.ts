@@ -1,34 +1,51 @@
-export function callingLoggerForMethod(target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) {
-  const original = descriptor.value;
-  descriptor.value = function (...args: never) {
-    try {
-      ztoolkit.log(`Calling ${target.name}.${String(propertyKey)} at ${new Date().toLocaleString()}`);
-      return original.apply(this, args);
-    }
-    catch (e) {
-      ztoolkit.log(`Error in ${target.name}.${String(propertyKey)} at ${new Date().toLocaleString()}`, e);
-      throw e;
-    }
-  };
-  return descriptor;
-}
+type LogLevel = "debug" | "log" | "warn" | "error";
 
-export function progressWindow(text: string, type = "default", progress = 100) {
-  return new ztoolkit.ProgressWindow(addon.data.config.addonName, {
-    closeOnClick: true,
-  })
-    .createLine({
-      text,
-      type,
-      progress,
+class Logger {
+  constructor(private prefix?: string) {}
+
+  private _log(level: LogLevel, ...args: any[]) {
+    const base = [
+      ["debug", "log"].includes(level) ? "" : "[Linter]",
+      this.prefix ? `[${this.prefix}]` : "",
+    ].filter(Boolean).join(" ");
+
+    const data = base ? [base, ...args] : args;
+
+    switch (level) {
+      case "debug":
+      case "log":
+        ztoolkit.log(...data);
+        break;
+      case "warn":
+      case "error":{
+        const console = ztoolkit.getGlobal("window").console;
+        console[level](...data);
+        Zotero.debug(data.join(" "));
+        break;
+      }
+    }
+  }
+
+  debug(...args: any[]) { __env__ === "development" && this._log("debug", ...args); }
+  log(...args: any[]) { this._log("log", ...args); }
+  warn(...args: any[]) { this._log("warn", ...args); }
+  error(...args: any[]) { this._log("error", ...args); }
+
+  hint(text: string, type = "default", progress = 100) {
+    return new ztoolkit.ProgressWindow(addon.data.config.addonName, {
+      closeOnClick: true,
     })
-    .show();
+      .createLine({
+        text,
+        type,
+        progress,
+      })
+      .show();
+  }
 }
 
-export function logError(...data: any | Error) {
-  const orgOption = addon.data.ztoolkit.basicOptions.log.disableConsole;
-  addon.data.ztoolkit.basicOptions.log.disableConsole = false;
-  console.error(`[Linter for Zotero] An error occurred and the detailed error log is shown below: ${data}\n`, data);
-  // ztoolkit.log("Error! ", data);
-  addon.data.ztoolkit.basicOptions.log.disableConsole = orgOption;
+export function createLogger(tag?: string): Logger {
+  return new Logger(tag);
 }
+
+export const logger = createLogger();

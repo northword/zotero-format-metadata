@@ -25,7 +25,7 @@ export const RequireJournalAbbr = defineRule<Options>({
   scope: "field",
   targetItemTypes: ["journalArticle"],
   targetItemField: "journalAbbreviation",
-  async apply({ item, options }) {
+  async apply({ item, options, debug }) {
     const publicationTitle = item.getField("publicationTitle") as string;
 
     // 无期刊全称直接跳过
@@ -47,23 +47,25 @@ export const RequireJournalAbbr = defineRule<Options>({
 
     // 从 ISSN LTWA 推断完整期刊缩写
     if (!journalAbbr && options.infer) {
+      debug("try to infer abbreviation via abbreviso");
       journalAbbr = await getAbbrFromLTWAOnline(publicationTitle);
     // journalAbbr = await this.getAbbrFromLTWALocally(publicationTitle);
     }
 
     // 以期刊全称填充
     if (!journalAbbr) {
-    // 获取条目语言，若无则根据期刊全称判断语言
+      debug("try to fill the abbreviation with its full name");
+      // 获取条目语言，若无则根据期刊全称判断语言
       const itemLanguage = (item.getField("language") as string) ?? getTextLanguage(publicationTitle);
       const isChinese = ["zh", "zh-CN"].includes(itemLanguage);
       if (isChinese && options.usefullZh) {
       // 中文，无缩写的，是否以全称替代
-        ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
+        debug(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
         journalAbbr = publicationTitle;
       }
       else if (!isChinese && options.usefull) {
       // 非中文，无缩写的，是否以全称替代
-        ztoolkit.log(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
+        debug(`[Abbr] The abbr. of ${publicationTitle} is replaced by its full name`);
         journalAbbr = publicationTitle;
       }
     }
@@ -131,7 +133,6 @@ async function getAbbrLocally(publicationTitle: string, data: Data): Promise<str
     }
   }
 
-  ztoolkit.log(`[Abbr] The abbr. of "${publicationTitle}" (${normalizedPublicationTitle}) not exist in local dateset.`);
   return undefined;
 }
 
@@ -151,7 +152,6 @@ async function getAbbrFromLTWAOnline(publicationTitle: string): Promise<string |
   const res = await Zotero.HTTP.request("GET", url);
   const result = res.response as string;
   if (result === "" || result === null || result === undefined) {
-    ztoolkit.log("[Abbr] Failed to infer the abbr. from LTWA");
     return undefined;
   }
   return result;

@@ -9,6 +9,7 @@ import { Rules } from "./modules/rules";
 import { registerShortcuts } from "./modules/shortcuts";
 import { toArray } from "./utils/general";
 import { initLocale, registerMainWindowLocale, unregisterMainWindowLocale } from "./utils/locale";
+import { logger } from "./utils/logger";
 import { getPref } from "./utils/prefs";
 import { createZToolkit } from "./utils/ztoolkit";
 
@@ -51,7 +52,7 @@ async function onNotify(
   ids: Array<string | number>,
   extraData: { [key: string]: unknown },
 ) {
-  ztoolkit.log("notify", event, type, ids, extraData);
+  logger.debug("notify", event, type, ids, extraData);
 
   // Skip if disabled add on lint
   if (!getPref("lint.onAdded"))

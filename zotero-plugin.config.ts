@@ -37,6 +37,7 @@ export default defineConfig({
           __env__: `"${env.NODE_ENV}"`,
         },
         bundle: true,
+        format: "esm",
         target: "firefox115",
         outfile: `.scaffold/build/addon/content/scripts/${pkg.config.addonRef}.js`,
       },

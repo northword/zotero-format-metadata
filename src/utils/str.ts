@@ -1,4 +1,5 @@
 import { detect } from "tinyld";
+import { logger } from "./logger";
 import { getPref } from "./prefs";
 
 // prettier-ignore
@@ -129,10 +130,10 @@ export function getTextLanguage(text: string) {
     if (otherLang !== "" && otherLang !== undefined)
       options.only.push(...otherLang.replace(/ /g, "").split(","));
   }
-  ztoolkit.log("[lang] Selected ISO 639-1 code is: ", options.only);
+  logger.debug("[getTextLanguage] Selected ISO 639-1 code is: ", options.only);
 
   const langGetByTinyLd = detect(text, options) || null;
-  ztoolkit.log(`[lang] Returned from TinyLd: ${langGetByTinyLd}`);
+  logger.debug(`[getTextLanguage] Returned from TinyLd: ${langGetByTinyLd}`);
   if (langGetByTinyLd) {
     return langGetByTinyLd;
   }

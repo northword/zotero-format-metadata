@@ -1,7 +1,10 @@
 import type { MenuitemOptions } from "zotero-plugin-toolkit";
 import { getLocaleID, getString } from "../utils/locale";
+import { createLogger } from "../utils/logger";
 import { isRegularItem } from "../utils/zotero";
 import { Rules } from "./rules";
+
+const logger = createLogger("menu");
 
 type FieldMenu = _ZoteroTypes.MenuManager.MenuData<_ZoteroTypes.MenuManager.ItemPaneMenuContext>;
 type ItemMenu = _ZoteroTypes.MenuManager.MenuData<_ZoteroTypes.MenuManager.LibraryMenuContext>;
@@ -34,7 +37,7 @@ function registerFieldMenus() {
         // so we need to wait for i18n string to be ready
         setTimeout(() => {
           if (context.menuElem.textContent === "") {
-            ztoolkit.log(`[menu] miss i18n string: ${rule.fieldMenu?.i10nID}`);
+            logger.warn(`miss i18n string: ${rule.fieldMenu?.i10nID}`);
             context.menuElem.textContent = `Miss i10n string (${rule.id})`;
           }
         }, 500);

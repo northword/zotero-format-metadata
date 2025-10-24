@@ -1,4 +1,7 @@
 import csv from "csvtojson";
+import { createLogger } from "./logger";
+
+const logger = createLogger("data-loader");
 
 export interface Data {
   [key: string]: string;
@@ -17,12 +20,12 @@ export class DataLoader {
     const cacheKey = `${type}:${resolvedPath}`;
 
     if (this.cache.has(cacheKey)) {
-      ztoolkit.log(`[data-loader] Cache hit for ${resolvedPath}`);
+      logger.debug(`Cache hit for ${resolvedPath}`);
       return this.cache.get(cacheKey);
     }
 
     const data = await this.readFile(resolvedPath);
-    ztoolkit.log(`[data-loader] Read ${resolvedPath} (type=${type})`);
+    logger.debug(`Read ${resolvedPath} (type=${type})`);
 
     let result: any;
     switch (type) {
@@ -44,7 +47,7 @@ export class DataLoader {
 
   static clearCache() {
     this.cache.clear();
-    ztoolkit.log("[data-loader] Data cache cleared");
+    logger.debug("Data cache cleared");
   }
 
   static getCacheKeys(): string[] {

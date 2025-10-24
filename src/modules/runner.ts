@@ -3,9 +3,10 @@ import type { ReportInfo } from "./reporter";
 import type { Context, Rule } from "./rules/rule-base";
 import PQueue from "p-queue";
 import { DataLoader } from "../utils/data-loader";
+import { createLogger } from "../utils/logger";
 import { createReporter, ProgressUI } from "./reporter";
 
-const debug = (...args: any[]) => ztoolkit.log("[Runner]", ...args);
+const logger = createLogger("Runner");
 
 const TASK_TIMEOUT = 60000;
 
@@ -40,16 +41,16 @@ function shouldApplyRule(rule: Rule<any>, item: Zotero.Item): boolean {
 
   /*  For regular item and rule  */
   if (rule.targetItemTypes && rule.ignoreItemTypes) {
-    debug(`[Warn] Rule ${rule.id} has both targetItemTypes and ignoreItemTypes.`);
+    logger.warn(`Rule ${rule.id} has both targetItemTypes and ignoreItemTypes.`);
   }
 
   // Check item type
   if (rule.targetItemTypes && !rule.targetItemTypes.includes(item.itemType)) {
-    debug(`Skip ${rule.id}: ${item.itemType} not supported by this rule`);
+    logger.debug(`Skip ${rule.id}: ${item.itemType} not supported by this rule`);
     return false;
   }
   if (rule.ignoreItemTypes?.includes(item.itemType)) {
-    debug(`Skip ${rule.id}: ${item.itemType} is ignored by this rule`);
+    logger.debug(`Skip ${rule.id}: ${item.itemType} is ignored by this rule`);
     return false;
   }
 
@@ -60,7 +61,7 @@ function shouldApplyRule(rule: Rule<any>, item: Zotero.Item): boolean {
 
     // Check this target field is included in this item type
     if (!Zotero.ItemFields.isValidForType(Zotero.ItemFields.getID(rule.targetItemField), item.itemTypeID)) {
-      debug(`Skip ${rule.id}: ${rule.targetItemField} not valid for ${item.itemType}`);
+      logger.debug(`Skip ${rule.id}: ${rule.targetItemField} not valid for ${item.itemType}`);
       return false;
     }
   }
@@ -92,7 +93,7 @@ export class LintRunner {
     this.stats = this.createEmptyStats();
     this.stats.startTime = Date.now();
 
-    debug(`Add tasks at ${new Date(this.stats.startTime).toLocaleTimeString()}`);
+    logger.debug(`Add tasks at ${new Date(this.stats.startTime).toLocaleTimeString()}`);
     await this.ui.init(slient);
 
     const resolvedTasks = await this.resolveTasks(task);
@@ -124,14 +125,14 @@ export class LintRunner {
             title: "Error: Failed to get options",
             ruleID: rule.id,
           });
-          debug(`Failed to get options for ${rule.id}:`, error);
+          logger.error(`Failed to get options for ${rule.id}:`, error);
           this.onError(error);
           this.onIdle();
           throw error;
         }
       }
     }
-    debug("Options:", optionsMap);
+    logger.debug("Options:", optionsMap);
 
     return items.map(item => ({ item, rules, optionsMap }));
   }
@@ -143,6 +144,8 @@ export class LintRunner {
   }
 
   private async runTask({ item, rules, optionsMap }: ResolvedTask) {
+    logger.debug(`Linting item ${item.id}`);
+
     const errors = [];
 
     for (const rule of rules) {
@@ -152,11 +155,11 @@ export class LintRunner {
 
       const options = optionsMap.get(rule.id) ?? {};
       if (options === false) {
-        debug(`Skip ${rule.id}: options is false`);
+        logger.debug(`Skip ${rule.id}: options is false`);
         continue;
       }
 
-      debug(`Applying ${rule.id}`);
+      logger.debug(`Applying ${rule.id}`);
 
       await this.runRule({
         item,
@@ -189,7 +192,7 @@ export class LintRunner {
     const ctx: Context = {
       item,
       options,
-      debug: (...args: any[]) => ztoolkit.log(`[${rule.id}]`, ...args),
+      debug: (...arg) => createLogger(rule.id).debug(...arg),
       report: (info) => {
         this.stats.records.push({
           ...info,
@@ -197,7 +200,7 @@ export class LintRunner {
           title: item.getDisplayTitle(),
           ruleID: rule.id,
         });
-        ztoolkit.log(`[${rule.id}] Report ${info.level} for item ${item.id}:`, info.message);
+        logger.log(`[${rule.id}] Report ${info.level} for item ${item.id}:`, info.message);
       },
     };
 
@@ -206,6 +209,9 @@ export class LintRunner {
     }
 
     catch (error: any) {
+      logger.error(error, item);
+
+      // We just show the message in the reporter window
       let message: string = "Error: ";
       if (error instanceof Error) {
         message += error.message;
@@ -220,9 +226,6 @@ export class LintRunner {
       else {
         message += String(error);
       }
-
-      console.error(`[Linter for Zotero] ${message}`, error, item);
-      Zotero.debug(`[Linter for Zotero] ${message}`);
 
       this.stats.records.push({
         message,
@@ -267,7 +270,7 @@ export class LintRunner {
 
     this.stats = this.createEmptyStats();
     DataLoader.clearCache();
-    debug(`Batch tasks completed in ${duration}s`);
+    logger.debug(`Batch tasks completed in ${duration}s`);
   }
 
   private createEmptyStats(): RunnerStats {

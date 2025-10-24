@@ -27,7 +27,7 @@ export function createZToolkit() {
 
 function initZToolkit(_ztoolkit: ReturnType<typeof createZToolkit>) {
   const env = __env__;
-  _ztoolkit.basicOptions.log.prefix = `[${config.addonName}]`;
+  _ztoolkit.basicOptions.log.prefix = `[Linter]`;
   _ztoolkit.basicOptions.log.disableConsole = env === "production";
   _ztoolkit.UI.basicOptions.ui.enableElementJSONLog = false;
   _ztoolkit.UI.basicOptions.ui.enableElementDOMLog = __env__ === "development";
