@@ -43,6 +43,11 @@ describe("formatPart", () => {
     expect(formatPart("O2-")).toBe("O<sup>2-</sup>");
   });
 
+  it("should format supscript with ()", () => {
+    expect(formatPart("Co(2+)")).toBe("Co<sup>2+</sup>");
+    expect(formatPart("O(2-)")).toBe("O<sup>2-</sup>");
+  });
+
   // subscript
   it("should format chemical formula", () => {
     expect(formatPart("NO2")).toBe("NO<sub>2</sub>");
@@ -55,6 +60,11 @@ describe("formatPart", () => {
 
   it("should format cnki style sub/sup", () => {
     expect(formatPart("Co_3O_4")).toBe("Co<sub>3</sub>O<sub>4</sub>");
+  });
+
+  it("should format chemical formula, with ()", () => {
+    expect(formatPart("NO(2)")).toBe("NO<sub>2</sub>");
+    expect(formatPart("N(2)O")).toBe("N<sub>2</sub>O");
   });
 
   it("should format stoichiometric number after ()", () => {

@@ -76,7 +76,7 @@ export function formatPart(s: string): string {
 
   // Charge Number - with ()
   // Ce(3+) -> Ce<sup>3+</sup>
-  const oxParenRe = /([a-z])\(\s*(\d+(?:\.\d+)?[+-])\s*/gi;
+  const oxParenRe = /([a-z])\(\s*(\d+(?:\.\d+)?[+-])\s*\)/gi;
   if (oxParenRe.test(s))
     return s.replace(oxParenRe, (_m, el, val) => `${el}<sup>${val}</sup>`);
 
@@ -85,6 +85,12 @@ export function formatPart(s: string): string {
   const subUnderscoreRe = /([a-z])_(\d+(?:\.\d+)?)/gi;
   if (subUnderscoreRe.test(s))
     return s.replace(subUnderscoreRe, (_m, el, num) => `${el}<sub>${num}</sub>`);
+
+  // Stoichiometric Number - with ()
+  // N(2)O -> N<sup>2</sup>O
+  const subParenRe = /([a-z])\(\s*(\d+(?:\.\d+)?)\s*\)/gi;
+  if (subParenRe.test(s))
+    return s.replace(subParenRe, (_m, el, val) => `${el}<sub>${val}</sub>`);
 
   // Stoichiometric Number - after ()
   // (NH4)2 -> (NH4)<sub>2</sub>
