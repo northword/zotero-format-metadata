@@ -13,9 +13,9 @@ class Logger {
 
     switch (level) {
       case "debug":
-      case "log":
         ztoolkit.log(...data);
         break;
+      case "log":
       case "warn":
       case "error":{
         const console = ztoolkit.getGlobal("window").console;
@@ -26,7 +26,7 @@ class Logger {
     }
   }
 
-  debug(...args: any[]) { __env__ === "development" && this._log("debug", ...args); }
+  debug(...args: any[]) { this._log("debug", ...args); }
   log(...args: any[]) { this._log("log", ...args); }
   warn(...args: any[]) { this._log("warn", ...args); }
   error(...args: any[]) { this._log("error", ...args); }
