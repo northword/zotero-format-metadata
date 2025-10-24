@@ -1,10 +1,8 @@
 import type { MenuitemOptions } from "zotero-plugin-toolkit";
 import { getLocaleID, getString } from "../utils/locale";
-import { createLogger } from "../utils/logger";
+import { logger } from "../utils/logger";
 import { isRegularItem } from "../utils/zotero";
 import { Rules } from "./rules";
-
-const logger = createLogger("menu");
 
 type FieldMenu = _ZoteroTypes.MenuManager.MenuData<_ZoteroTypes.MenuManager.ItemPaneMenuContext>;
 type ItemMenu = _ZoteroTypes.MenuManager.MenuData<_ZoteroTypes.MenuManager.LibraryMenuContext>;
@@ -18,7 +16,7 @@ function registerFieldMenus() {
     .filter(r => r.fieldMenu)
     .map(rule => ({
       menuType: "menuitem",
-      l10nID: getLocaleID(rule.fieldMenu?.i10nID),
+      l10nID: getLocaleID(rule.fieldMenu?.l10nID),
       icon: rule.fieldMenu?.icon,
       enableForTabTypes: rule.targetItemTypes,
       onShowing: (_event, context) => {
@@ -33,14 +31,7 @@ function registerFieldMenus() {
         context.setEnabled(!disabled);
       },
       onShown(event, context) {
-        // Since fluent.js is async, when menu first shown, the i10n string is not ready,
-        // so we need to wait for i18n string to be ready
-        setTimeout(() => {
-          if (context.menuElem.textContent === "") {
-            logger.warn(`miss i18n string: ${rule.fieldMenu?.i10nID}`);
-            context.menuElem.textContent = `Miss i10n string (${rule.id})`;
-          }
-        }, 500);
+        checkL10nString(context.menuElem, rule.id, rule.fieldMenu?.l10nID);
       },
       onCommand: (_event, context) => {
         if (rule.fieldMenu?.onCommand) {
@@ -64,15 +55,19 @@ function registerItemMenus() {
   function makeItemMenu(ruleID: ID): ItemMenu {
     const rule = Rules.getByID(ruleID)!;
     const menu = rule?.getItemMenu?.();
+    // @ts-expect-error some rules are not defined in the item menu
+    const l10nID = getLocaleID(menu?.l10nID || `rule-${ruleID}-menu-item`);
 
     return {
       menuType: "menuitem",
-      // @ts-expect-error some rules are not defined in the item menu
-      l10nID: getLocaleID(menu?.i10nID || `rule-${ruleID}-menu-item`),
+      l10nID,
       // enableForTabTypes: rule?.targetItemTypes,
       onShowing(event, context) {
         const enabled: boolean = !(menu?.mutiltipleItems === false && context.items!.length > 1);
         context.setEnabled(enabled);
+      },
+      onShown(event, context) {
+        checkL10nString(context.menuElem, rule.id, l10nID);
       },
       onCommand(event, context) {
         addon.hooks.onLintInBatch(ruleID, context.items!);
@@ -354,4 +349,15 @@ export function registerMenu() {
   else {
     registerItemMenusByZToolkit();
   }
+}
+
+function checkL10nString(menuElem: XULElement, ruleID: string, l10nID?: string) {
+  // Since fluent.js is async, when menu first shown, the l10n string is not ready,
+  // so we need to wait for i18n string to be ready
+  setTimeout(() => {
+    if (menuElem.textContent === "") {
+      logger.warn(`Miss l10n string: ${l10nID}`);
+      menuElem.textContent = `Miss l10n string (${ruleID})`;
+    }
+  }, 500);
 }

@@ -81,7 +81,7 @@ export const RequireJournalAbbr = defineRule<Options>({
   getOptions,
 
   fieldMenu: {
-    i10nID: "rule-require-journal-abbr-menu-field",
+    l10nID: "rule-require-journal-abbr-menu-field",
   },
 });
 
@@ -92,7 +92,7 @@ export const CorrectConferenceAbbr = defineRule<Options>({
   targetItemTypes: ["conferencePaper"],
   targetItemField: "conferenceName",
   fieldMenu: {
-    i10nID: "rule-require-journal-abbr-menu-field",
+    l10nID: "rule-require-journal-abbr-menu-field",
   },
   async apply({ item, options }) {
     const conferenceName = item.getField("conferenceName") as string;

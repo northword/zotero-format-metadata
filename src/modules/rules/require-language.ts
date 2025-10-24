@@ -12,7 +12,7 @@ export const RequireLanguage = defineRule({
   ignoreItemTypes: ["computerProgram"],
   targetItemField: "language",
   fieldMenu: {
-    i10nID: "rule-require-language-menu-field",
+    l10nID: "rule-require-language-menu-field",
   },
   async apply({ item }) {
     // WIP: 已有合法 ISO 639 - ISO 3166 代码的，不予处理

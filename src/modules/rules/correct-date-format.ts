@@ -13,6 +13,6 @@ export const CorrectDateFormat = defineRule({
   },
 
   fieldMenu: {
-    i10nID: "rule-correct-date-format-menu-field",
+    l10nID: "rule-correct-date-format-menu-field",
   },
 });

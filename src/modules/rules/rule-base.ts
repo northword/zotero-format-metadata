@@ -90,7 +90,7 @@ interface RuleBase<Option = object> {
      *
      * @default `rule-${rule.id}-menu-item`
      */
-    i10nID?: FluentMessageId;
+    l10nID?: FluentMessageId;
 
     icon?: string;
 
@@ -136,7 +136,7 @@ export interface RuleForRegularScopeField<Option = object> extends RuleForRegula
      *
      * @example `rule-${rule.id}-menu-field`
      */
-    i10nID: Extract<FluentMessageId, `rule-${string}-menu-field`>;
+    l10nID: Extract<FluentMessageId, `rule-${string}-menu-field`>;
 
     icon?: string;
 

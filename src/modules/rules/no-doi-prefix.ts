@@ -15,6 +15,6 @@ export const NoDOIPrefix = defineRule({
   },
 
   fieldMenu: {
-    i10nID: "rule-no-doi-prefix-menu-field",
+    l10nID: "rule-no-doi-prefix-menu-field",
   },
 });
