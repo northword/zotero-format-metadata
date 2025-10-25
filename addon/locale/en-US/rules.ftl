@@ -274,3 +274,9 @@ rule-tool-csl-helper =
   .label = CSL-M Field Helper
 rule-tool-csl-helper-menu-item = { rule-tool-csl-helper.label }
 rule-tool-csl-helper-menu-field = { rule-tool-csl-helper.label } (Linter)
+
+
+## tool-clean-extra
+rule-tool-clean-extra = 
+  .label = Clean extra fields
+rule-tool-clean-extra-menu-item = { rule-tool-clean-extra.label }

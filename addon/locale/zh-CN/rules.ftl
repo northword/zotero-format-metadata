@@ -274,3 +274,9 @@ rule-tool-csl-helper =
   .label = CSL-M 字段助手
 rule-tool-csl-helper-menu-item = { rule-tool-csl-helper.label }
 rule-tool-csl-helper-menu-field = { rule-tool-csl-helper.label }（Linter）
+
+
+## tool-clean-extra
+rule-tool-clean-extra = 
+  .label = 清理「额外」字段
+rule-tool-clean-extra-menu-item = { rule-tool-clean-extra.label }

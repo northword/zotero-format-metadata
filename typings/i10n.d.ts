@@ -110,6 +110,8 @@ export type FluentMessageId =
   | 'rule-require-university-place'
   | 'rule-require-university-place-menu-field'
   | 'rule-require-university-place-menu-item'
+  | 'rule-tool-clean-extra'
+  | 'rule-tool-clean-extra-menu-item'
   | 'rule-tool-creators-ext'
   | 'rule-tool-creators-ext-menu-item'
   | 'rule-tool-csl-helper'

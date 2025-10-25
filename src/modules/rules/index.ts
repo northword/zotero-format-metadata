@@ -27,6 +27,7 @@ import { RequireDOI } from "./require-doi";
 import { RequireLanguage } from "./require-language";
 import { RequireShortTitle } from "./require-short-title";
 import { RequireUniversityPlace } from "./require-university-place";
+import { ToolCleanExtra } from "./tool-clean-extra";
 import { ToolCreatorsExt } from "./tool-creators-ext";
 import { ToolCSLHelper } from "./tool-csl-extra-helper";
 import { ToolGetShortDOI } from "./tool-get-short-doi";
@@ -96,6 +97,7 @@ const register: Rule<any>[] = [
   ToolUpdateMetadata,
   ToolGetShortDOI,
   ToolCSLHelper,
+  ToolCleanExtra,
 ];
 
 export class Rules {
