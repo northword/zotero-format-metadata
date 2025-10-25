@@ -128,6 +128,7 @@ function registerItemMenus() {
             makeItemMenu("no-doi-prefix"),
             makeItemMenu("tool-get-short-doi"),
             makeItemMenu("correct-date-format"),
+            makeItemMenu("tool-clean-extra-field"),
             makeSeparator(),
             makeItemMenu("tool-creators-ext"),
           ],
@@ -149,6 +150,21 @@ function registerItemMenus() {
     target: "main/library/collection",
     menus,
   });
+
+  if (__env__ === "development") {
+    Zotero.MenuManager.registerMenu({
+      pluginID: addon.data.config.addonID,
+      menuID: "item-menu-test",
+      target: "main/library/item",
+      menus: [{
+        menuType: "menuitem",
+        l10nID: getLocaleID("menuitem-label"),
+        onCommand(event, { items }) {
+          addon.hooks.onLintInBatch("tool-clean-extra-field", items!);
+        },
+      }],
+    });
+  }
 }
 
 function registerItemMenusByZToolkit() {
@@ -327,18 +343,6 @@ function registerItemMenusByZToolkit() {
     icon: menuIcon,
     children: getMenuItem("collection"),
   });
-
-  // 为开发环境编译的插件增加 测试 菜单，以便调试
-  if (addon.data.env === "development") {
-    ztoolkit.Menu.register("item", {
-      tag: "menuitem",
-      label: "测试",
-      icon: menuIcon,
-      commandListener: () => {
-        addon.hooks.onLintInBatch("standard", "item");
-      },
-    });
-  }
 }
 
 export function registerMenu() {

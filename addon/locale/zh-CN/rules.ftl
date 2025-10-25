@@ -260,3 +260,9 @@ rule-tool-update-metadata-option-semanticScholarToken-link = 申请
 
 ## tool-get-short-doi
 rule-tool-get-short-doi-menu-item = Retrieve short DOI
+
+
+## tool-clean-extra-field
+rule-tool-clean-extra-field = 
+  .label = 清理「额外」字段
+rule-tool-clean-extra-field-menu-item = { rule-tool-clean-extra-field.label }
