@@ -260,3 +260,9 @@ rule-tool-update-metadata-option-semanticScholarToken-link = Request API key
 
 ## tool-get-short-doi
 rule-tool-get-short-doi-menu-item = Retrieve short DOI
+
+
+## tool-clean-extra-field
+rule-tool-clean-extra-field = 
+  .label = Clean extra fields
+rule-tool-clean-extra-field-menu-item = { rule-tool-clean-extra-field.label }

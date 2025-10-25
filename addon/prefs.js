@@ -70,6 +70,7 @@ pref("rule.tool-set-language", true);
 pref("rule.tool-get-short-doi", true);
 pref("rule.tool-update-metadata", true);
 pref("rule.tool-update-metadata.confirm-when-item-type-change", false);
+pref("rule.tool-clean-extra-field", true);
 
 // --------------------
 // Other settings

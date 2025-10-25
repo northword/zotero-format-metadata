@@ -62,6 +62,7 @@ declare namespace _ZoteroTypes {
       "rule.tool-get-short-doi": boolean;
       "rule.tool-update-metadata": boolean;
       "rule.tool-update-metadata.confirm-when-item-type-change": boolean;
+      "rule.tool-clean-extra-field": boolean;
       "cleanExtra": boolean;
       "semanticScholarToken": string;
     };
