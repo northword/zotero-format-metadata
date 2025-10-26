@@ -1,4 +1,4 @@
-import { getItemFields } from "../../utils/zotero";
+import { getUsedItemFields } from "../../utils/zotero";
 import { defineRule } from "./rule-base";
 
 const list = [
@@ -19,7 +19,7 @@ export const NoValueNullish = defineRule({
   id: "no-value-nullish",
   scope: "item",
   apply({ item }) {
-    const fields = getItemFields(item);
+    const fields = getUsedItemFields(item);
 
     for (const field of fields) {
       const value = item.getField(field);

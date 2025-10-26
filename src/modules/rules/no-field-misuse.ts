@@ -1,4 +1,4 @@
-import { getItemFields } from "../../utils/zotero";
+import { getUsedItemFields } from "../../utils/zotero";
 import { defineRule } from "./rule-base";
 
 /**
@@ -14,7 +14,7 @@ export const NoFieldMisuse = defineRule({
   id: "no-field-misuse",
   scope: "item",
   apply({ item, debug }) {
-    const fields = getItemFields(item);
+    const fields = getUsedItemFields(item);
 
     for (const field of fields) {
       const value = item.getField(field);
