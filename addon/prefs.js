@@ -62,13 +62,6 @@ pref("rule.correct-volume-numeral", true);
 pref("rule.correct-bookTitle-sentence-case", true);
 pref("rule.correct-proceedingsTitle-sentence-case", false);
 
-// The tool's settings option is compatibility,
-// which suppresses typing error.
-pref("rule.tool-title-guillemet", true);
-pref("rule.tool-creators-ext", true);
-pref("rule.tool-set-language", true);
-pref("rule.tool-get-short-doi", true);
-pref("rule.tool-update-metadata", true);
 pref("rule.tool-update-metadata.confirm-when-item-type-change", false);
 
 // --------------------

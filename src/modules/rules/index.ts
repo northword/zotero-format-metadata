@@ -107,7 +107,16 @@ export class Rules {
 
   static getEnabledStandard() {
     return this.getStandard()
-      .filter(rule => getPref(`rule.${rule.id}`));
+      .filter(rule => this.isRuleEnabled(rule.id));
+  }
+
+  private static isRuleEnabled(id: ID) {
+    // For tools, we always disable them,
+    // we can use getByID to call them.
+    if (id.startsWith("tool-"))
+      return false;
+    // then, we can narrow the type of rule.id to StandardRuleID.
+    return getPref(`rule.${id as StandardRuleID}`);
   }
 
   static getTool() {
@@ -124,3 +133,7 @@ export class Rules {
     return this.getAll().find(rule => rule.id === id);
   }
 }
+
+// The tool's settings option is compatibility,
+// which suppresses typing error.
+type StandardRuleID = Exclude<ID, `tool-${string}`>;
