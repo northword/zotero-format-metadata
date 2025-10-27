@@ -2,14 +2,22 @@ import type { FluentMessageId } from "../../../typings/i10n";
 import type { Awaitable } from "../../utils/types";
 import type { ReportInfo } from "../reporter";
 
-export interface Context<Option = object> {
+type Debug = (...args: any) => void;
+
+export interface ApplyContext<Option = object> {
   item: Zotero.Item;
   /**
+   * The options returned by `Rule.prepare`.
    * @default {}
    */
   options: Option;
-  debug: (...args: any) => void;
+  debug: Debug;
   report: (info: Pick<ReportInfo, "level" | "message" | "action">) => void;
+}
+
+export interface PrepareContext {
+  items: Zotero.Item[];
+  debug: Debug;
 }
 
 interface RuleBase<Option = object> {
@@ -70,14 +78,14 @@ interface RuleBase<Option = object> {
    *   })
    * }
    */
-  apply: (ctx: Context<Option>) => Awaitable<void>;
+  apply: (ctx: ApplyContext<Option>) => Awaitable<void>;
 
   /**
    * Get options of the rule.
    *
    * If returns false, the rule will be skipped.
    */
-  getOptions?: (ctx: { items: Zotero.Item[] }) => Awaitable<Option | false>;
+  prepare?: (ctx: PrepareContext) => Awaitable<Option | false>;
 
   /**
    * Item menus

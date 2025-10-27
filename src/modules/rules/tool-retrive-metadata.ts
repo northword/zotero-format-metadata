@@ -61,7 +61,7 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption> ({
       item = newItem;
   },
 
-  getOptions() {
+  prepare() {
     return {
       mode: "all",
     };

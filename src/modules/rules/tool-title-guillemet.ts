@@ -36,7 +36,7 @@ export const ToolTitleGuillemet = defineRule<TitleGuillemetOptions> ({
     item.setField("title", newTitle);
   },
 
-  async getOptions() {
+  async prepare() {
     const { dialog, open } = useDialog<TitleGuillemetOptions>();
 
     dialog.addSetting("Select your guillemet:", "target", {

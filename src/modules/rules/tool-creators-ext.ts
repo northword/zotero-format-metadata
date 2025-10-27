@@ -95,7 +95,7 @@ export const ToolCreatorsExt = defineRule<CreatorExtOptions> ({
     });
   },
 
-  async getOptions() {
+  async prepare() {
     const { dialog, open } = useDialog<CreatorExtOptions>();
     dialog
       .addSetting("标记符号：", "mark", {

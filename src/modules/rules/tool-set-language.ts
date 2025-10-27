@@ -17,7 +17,7 @@ export const ToolSetLanguage = defineRule<Options>({
       item.setField("language", options.language);
   },
 
-  async getOptions() {
+  async prepare() {
     const allowLangs = ["zh", "en"];
     if (getPref("rule.require-language.only")) {
       const otherLang = getPref("rule.require-language.only.other");

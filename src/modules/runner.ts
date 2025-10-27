@@ -1,6 +1,6 @@
 import type { Arrayable } from "../utils/types";
 import type { ReportInfo } from "./reporter";
-import type { Context, Rule } from "./rules/rule-base";
+import type { ApplyContext, PrepareContext, Rule } from "./rules/rule-base";
 import PQueue from "p-queue";
 import { DataLoader } from "../utils/data-loader";
 import { createLogger } from "../utils/logger";
@@ -113,9 +113,14 @@ export class LintRunner {
 
     const optionsMap = new Map<string, any>();
     for (const rule of rules) {
-      if (rule.getOptions) {
+      if (rule.prepare) {
+        const ctx: PrepareContext = {
+          items,
+          debug: (...args: any[]) => logger.debug("[getOptions]", ...args),
+        };
+
         try {
-          optionsMap.set(rule.id, await rule.getOptions({ items }));
+          optionsMap.set(rule.id, await rule.prepare(ctx));
         }
         catch (error) {
           this.stats.records.push({
@@ -189,7 +194,7 @@ export class LintRunner {
   }
 
   private async runRule({ item, rule, options }: { item: Zotero.Item; rule: Rule<any>; options: object }): Promise<void> {
-    const ctx: Context = {
+    const ctx: ApplyContext = {
       item,
       options,
       debug: (...arg) => createLogger(rule.id).debug(...arg),

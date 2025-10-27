@@ -239,7 +239,7 @@ function createCorrectTitleSentenceCaseRule(targetItemField: "title" | "shortTit
       item.setField(targetItemField, title);
     },
 
-    async getOptions() {
+    async prepare() {
       const customTermFilePath = getPref("rule.correct-title-sentence-case.custom-term-path");
       if (customTermFilePath) {
         return {

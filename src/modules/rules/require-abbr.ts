@@ -11,7 +11,7 @@ interface Options {
   usefullZh: boolean;
 }
 
-function getOptions(): Options {
+function prepare(): Options {
   return {
     customDataPath: getPref("rule.require-journal-abbr.customDataPath"),
     infer: getPref("rule.require-journal-abbr.infer"),
@@ -78,7 +78,7 @@ export const RequireJournalAbbr = defineRule<Options>({
     item.setField("journalAbbreviation", journalAbbr);
   },
 
-  getOptions,
+  prepare,
 
   fieldMenu: {
     l10nID: "rule-require-journal-abbr-menu-field",
@@ -120,7 +120,7 @@ export const CorrectConferenceAbbr = defineRule<Options>({
     ztoolkit.ExtraField.setExtraField(item, "shortConferenceName", shortConferenceName);
   },
 
-  getOptions,
+  prepare,
 
 });
 
