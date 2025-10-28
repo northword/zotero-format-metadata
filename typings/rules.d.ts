@@ -39,3 +39,4 @@ type ID =
   | "tool-set-language"
   | "tool-update-metadata"
   | "tool-get-short-doi"
+  | "tool-csl-helper"

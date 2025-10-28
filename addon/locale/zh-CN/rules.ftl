@@ -260,3 +260,10 @@ rule-tool-update-metadata-option-semanticScholarToken-link = 申请
 
 ## tool-get-short-doi
 rule-tool-get-short-doi-menu-item = Retrieve short DOI
+
+
+## tool-csl-helper
+rule-tool-csl-helper = 
+  .label = CSL-M 字段助手
+rule-tool-csl-helper-menu-item = { rule-tool-csl-helper.label }
+rule-tool-csl-helper-menu-field = { rule-tool-csl-helper.label }
