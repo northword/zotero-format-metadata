@@ -116,7 +116,7 @@ export class LintRunner {
       if (rule.prepare) {
         const ctx: PrepareContext = {
           items,
-          debug: (...args: any[]) => logger.debug("[getOptions]", ...args),
+          debug: (...args: any[]) => logger.debug(`[prepare] [${rule.id}]`, ...args),
         };
 
         try {
@@ -127,10 +127,10 @@ export class LintRunner {
             level: "error",
             message: error instanceof Error ? error.message : String(error),
             itemID: 0,
-            title: "Error: Failed to get options",
+            title: "Error: Failed to prepare",
             ruleID: rule.id,
           });
-          logger.error(`Failed to get options for ${rule.id}:`, error);
+          logger.error(`Failed to prepare rule ${rule.id}:`, error);
           this.onError(error);
           this.onIdle();
           throw error;

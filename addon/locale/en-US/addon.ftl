@@ -10,7 +10,7 @@ menuTools-label = Other Tools
 field-abbr = Abbr
 
 ## batch
-info-batch-init = Initialization
+info-batch-init = Preparing...
 info-batch-no-selected = No selected items
 info-batch-running = Linting...
 info-batch-finish = Finished

@@ -36,7 +36,7 @@ export function useDialog<T extends Result>(): {
   async function open(title: string) {
     dialog.open(title);
     await dialog.dialogData.unloadLock?.promise;
-    logger.log("data:", data);
+    logger.debug("data:", data);
 
     if (isEmpty(data))
       return false;
