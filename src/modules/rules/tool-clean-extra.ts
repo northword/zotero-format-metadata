@@ -43,7 +43,7 @@ export const ToolCleanExtra = defineRule<Options>({
       });
 
     fields.forEach((extra) => {
-      dialog.addSetting(`${extra}`, `${fieldPrefix}${CSS.escape(extra)}`, {
+      dialog.addSetting(`${extra}`, `${fieldPrefix}${extra}`, {
         tag: "input",
         attributes: {
           type: "checkbox",
