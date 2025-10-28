@@ -129,6 +129,7 @@ function registerItemMenus() {
             makeItemMenu("tool-get-short-doi"),
             makeItemMenu("correct-date-format"),
             makeSeparator(),
+            makeItemMenu("tool-csl-helper"),
             makeItemMenu("tool-creators-ext"),
           ],
         },
@@ -286,6 +287,14 @@ function registerItemMenusByZToolkit() {
           },
           {
             tag: "menuseparator",
+          },
+
+          {
+            tag: "menuitem",
+            label: getString("rule-tool-csl-helper-menu-item"),
+            commandListener: () => {
+              addon.hooks.onLintInBatch("tool-csl-helper", menuPopup);
+            },
           },
           {
             tag: "menuitem",
