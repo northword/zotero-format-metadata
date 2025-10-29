@@ -1,5 +1,6 @@
 import { invert } from "es-toolkit";
 import { useDialog } from "../../utils/dialog";
+import { getPinyin, getSurnamePinyin, splitChineseName } from "../../utils/pinyin";
 import { defineRule } from "./rule-base";
 
 interface Options {
@@ -47,6 +48,9 @@ export const ToolCSLHelper = defineRule<Options>({
 
     const ZOTERO_FIELD_TO_CSL_FIELD = Zotero.Schema.CSL_FIELD_MAPPINGS_REVERSE as Record<string, string>;
     const CSL_FIELD_TO_ZOTERO_FIELDS = Zotero.Schema.CSL_TEXT_MAPPINGS as Record<string, string[]>;
+    // 英文刊名缩写建议使用 `original-container-title-short` 字段而不是 `original-journalAbbreviation`。
+    ZOTERO_FIELD_TO_CSL_FIELD.journalAbbreviation = "container-title-short";
+    CSL_FIELD_TO_ZOTERO_FIELDS["container-title-short"] = ["journalAbbreviation"];
 
     // ----- Step 1: Extract existing original metadata -----
     const originalFields: Map<string, string> = new Map();
@@ -77,9 +81,18 @@ export const ToolCSLHelper = defineRule<Options>({
 
       const creatorsInThisType = creators.filter(c => c.creatorTypeID === creatorTypeID);
       for (const creator of creatorsInThisType) {
-        const fullName = creator.fieldMode === 0
-          ? `${creator.firstName} ${creator.lastName}`
-          : creator.lastName;
+        const isZh = item.getField("language").startsWith("zh");
+        let firstName = creator.firstName;
+        let lastName = creator.lastName;
+        if (creator.fieldMode === 1) {
+          [lastName, firstName] = splitChineseName(creator.lastName);
+        }
+        if (isZh) {
+          firstName = getSurnamePinyin(firstName);
+          lastName = getPinyin(lastName);
+        }
+
+        const fullName = `${lastName} ${firstName}`;
 
         if (!originalCreators.has(key))
           originalCreators.set(key, fullName);
