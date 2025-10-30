@@ -19,7 +19,7 @@ export const ToolCleanExtra = defineRule<Options>({
     }
     debug("Cleaned extra fields:", extras);
 
-    await ztoolkit.ExtraField.replaceExtraFields(item, extras, false);
+    await ztoolkit.ExtraField.replaceExtraFields(item, extras, { save: false });
   },
 
   async prepare({ items, debug }) {
