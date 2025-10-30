@@ -26,6 +26,22 @@ export function useDialog<T extends Result>(): {
   const data = {} as Result;
   const dialog = new ztoolkit.SettingsDialog() as Dialog<T>;
 
+  // @ts-expect-error we need to override the default styles to enable scrolling
+  Object.assign(dialog.elementProps.styles!, {
+    maxWidth: "1000px",
+    minWidth: "300px",
+    maxHeight: "500px",
+    backgroundColor: "var(--material-background)",
+  });
+
+  // Don't know why toolkit set overflow to hidden,
+  // but we expect to see the scroll bar.
+  dialog.setDialogData({
+    loadCallback: () => {
+      dialog.window.document.body!.style.overflow = "auto";
+    },
+  });
+
   dialog
     .setSettingHandlers(
       key => data[key],
