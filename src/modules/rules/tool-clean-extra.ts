@@ -22,11 +22,12 @@ export const ToolCleanExtra = defineRule<Options>({
     await ztoolkit.ExtraField.replaceExtraFields(item, extras, false);
   },
 
-  async prepare({ items }) {
+  async prepare({ items, debug }) {
     const fields = new Set<string>();
 
     for (const item of items) {
       const extras = ztoolkit.ExtraField.getExtraFields(item);
+      debug(`Extra fields for ${item.id}`, extras);
       for (const [field, _value] of extras) {
         fields.add(field);
       }
@@ -37,24 +38,31 @@ export const ToolCleanExtra = defineRule<Options>({
       [key: `${typeof fieldPrefix}${string}`]: boolean;
     }>();
 
-    dialog
-      .addStaticRow("Select Fields to Clean", {
+    if (fields.size === 0) {
+      dialog.addStaticRow("No extra fields found", {
         tag: "label",
       });
+    }
+    else {
+      dialog
+        .addStaticRow("Select Fields to Clean", {
+          tag: "label",
+        });
 
-    fields.forEach((extra) => {
-      dialog.addSetting(`${extra}`, `${fieldPrefix}${extra}`, {
-        tag: "input",
-        attributes: {
-          type: "checkbox",
-        },
-        properties: {
-          label: extra,
-        },
-      }, {
-        valueType: "boolean",
+      fields.forEach((extra) => {
+        dialog.addSetting(`${extra}`, `${fieldPrefix}${extra}`, {
+          tag: "input",
+          attributes: {
+            type: "checkbox",
+          },
+          properties: {
+            label: extra,
+          },
+        }, {
+          valueType: "boolean",
+        });
       });
-    });
+    }
 
     const data = await open("Clean Extra Field");
 
