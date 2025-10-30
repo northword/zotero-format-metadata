@@ -143,7 +143,7 @@ rule-require-journal-abbr-option-custom-data-desc =
 rule-require-doi =
   .label = DOI 应填写完整
 rule-require-doi-menu-item = 根据标题查找 DOI
-rule-require-doi-menu-item = 查找 DOI（Linter）
+rule-require-doi-menu-field = 查找 DOI（Linter）
 
 
 ## no-doi-prefix
