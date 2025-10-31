@@ -96,12 +96,19 @@ export const ToolCSLHelper = defineRule<Options>({
 
     // ----- Step 3: Prepare field translations -----
     const candidateFields = [
-      "title",
-      "publicationTitle",
-      "journalAbbreviation",
-      "place",
-      "publisher",
-    ].filter(f => Zotero.ItemFields.isValidForType(Zotero.ItemFields.getID(f), item.itemTypeID));
+      "original-container-title",
+      "original-container-title-short", // 期刊缩写
+      "original-event-place", //  会议地点
+      "original-event-title", //  会议名称
+      "original-genre", //  学位论文类型，例如如 `Doctoral dissertation`
+      "original-jurisdiction", // 专利国别，例如如 `CN`
+      "original-publisher",
+      "original-publisher-place",
+      "original-title",
+    ]
+      .flatMap(f => CSL_FIELD_TO_ZOTERO_FIELDS[f.replace("original-", "")])
+      .filter(f => !!f)
+      .filter(f => Zotero.ItemFields.isValidForType(Zotero.ItemFields.getID(f), item.itemTypeID)); ;
 
     for (const field of candidateFields) {
       const value = item.getField(field);
