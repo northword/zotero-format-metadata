@@ -114,9 +114,6 @@ export const ToolCSLHelper = defineRule<Options>({
 
     for (const field of candidateFields) {
       const value = item.getField(field);
-      if (!value)
-        continue;
-
       const cslField = ZOTERO_FIELD_TO_CSL_FIELD[field];
       if (!cslField)
         continue;
