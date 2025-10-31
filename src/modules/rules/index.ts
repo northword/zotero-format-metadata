@@ -5,6 +5,7 @@ import { CorrectCreatorsPinyin } from "./correct-creators-pinyin";
 import { CorrectDateFormat } from "./correct-date-format";
 import { CorrectDOILong } from "./correct-doi-long";
 import { CorrectEditionNumeral, CorrectVolumeNumeral } from "./correct-edition-numeral";
+import { CorrectExtraOrder } from "./correct-extra-order";
 import { CorrectPagesConnector } from "./correct-pages-connector";
 import { CorrectPagesRange } from "./correct-pages-range";
 import { CorrectPublicationTitleAlias } from "./correct-publication-title-alias";
@@ -57,6 +58,7 @@ const register: Rule<any>[] = [
 
   // Other general fields
   CorrectDateFormat,
+  CorrectExtraOrder,
 
   // Identifiers
   RequireDOI,

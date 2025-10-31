@@ -101,6 +101,13 @@ rule-correct-date-format-menu-item = Normalize date format to ISO
 rule-correct-date-format-menu-field = ISO format (Linter)
 
 
+## correct-extra-order
+rule-correct-extra-order =
+  .label = Extra fields should be in order
+rule-correct-extra-order-menu-item = Fix order of extra fields
+rule-correct-extra-order-menu-field = Fix order (Linter)
+
+
 ## correct-publication-title-alias
 rule-correct-publication-title-alias =
   .label = Publication title should be official name

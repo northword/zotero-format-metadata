@@ -27,7 +27,6 @@ section-creators = Creators
 section-language = Language
 section-article = Article Related Fields
 section-conference = Conference Related Fields
-section-date = Date
 section-thesis = Thesis Related Fields
 section-book = Book Related Fields
 section-identifier = Identifier
