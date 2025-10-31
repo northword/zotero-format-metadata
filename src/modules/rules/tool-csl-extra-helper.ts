@@ -24,11 +24,23 @@ export const ToolCSLHelper = defineRule<Options>({
   },
 
   async apply({ item, options }) {
-    const extraFields = ztoolkit.ExtraField.getExtraFields(item);
+    const data: Map<string, string[]> = new Map();
+    const existingFields = ztoolkit.ExtraField.getExtraFields(item);
+
+    // first apply csl fields
     for (const [key, value] of Object.entries(options.data ?? {})) {
-      extraFields.set(key, value);
+      if (value.filter(v => !!v).length) {
+        data.set(key, value);
+        existingFields.delete(key);
+      }
     }
-    await ztoolkit.ExtraField.replaceExtraFields(item, extraFields, { save: false });
+
+    // restore existing fields
+    for (const [key, value] of existingFields.entries()) {
+      data.set(key, value);
+    }
+
+    await ztoolkit.ExtraField.replaceExtraFields(item, data, { save: false });
   },
 
   async prepare({ items, debug }) {
@@ -182,10 +194,10 @@ export const ToolCSLHelper = defineRule<Options>({
       outputData[key] = isCreatorField
         // in dialog, we use `\n` to separate creators,
         // but in extra fields, we use `||`
-        ? value.split("\n").map(v => v.trim())
+        ? value.split("\n").map(v => v.trim()).filter(v => !!v)
         // in dialog, some fields are multiline for better display,
         // but they are stored as single line, e.g. title
-        : [value.replace("\n", "")];
+        : [value.replace("\n", "")].filter(v => !!v);
     }
 
     return { data: outputData };
