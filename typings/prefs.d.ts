@@ -56,6 +56,7 @@ declare namespace _ZoteroTypes {
       "rule.correct-volume-numeral": boolean;
       "rule.correct-bookTitle-sentence-case": boolean;
       "rule.correct-proceedingsTitle-sentence-case": boolean;
+      "rule.correct-extra-order": boolean;
       "rule.tool-update-metadata.confirm-when-item-type-change": boolean;
       "cleanExtra": boolean;
       "semanticScholarToken": string;

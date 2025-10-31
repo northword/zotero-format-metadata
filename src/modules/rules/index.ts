@@ -5,6 +5,7 @@ import { CorrectCreatorsPinyin } from "./correct-creators-pinyin";
 import { CorrectDateFormat } from "./correct-date-format";
 import { CorrectDOILong } from "./correct-doi-long";
 import { CorrectEditionNumeral, CorrectVolumeNumeral } from "./correct-edition-numeral";
+import { CorrectExtraOrder } from "./correct-extra-order";
 import { CorrectPagesConnector } from "./correct-pages-connector";
 import { CorrectPagesRange } from "./correct-pages-range";
 import { CorrectPublicationTitleAlias } from "./correct-publication-title-alias";
@@ -27,6 +28,7 @@ import { RequireLanguage } from "./require-language";
 import { RequireShortTitle } from "./require-short-title";
 import { RequireUniversityPlace } from "./require-university-place";
 import { ToolCreatorsExt } from "./tool-creators-ext";
+import { ToolCSLHelper } from "./tool-csl-extra-helper";
 import { ToolGetShortDOI } from "./tool-get-short-doi";
 import { ToolUpdateMetadata } from "./tool-retrive-metadata";
 import { ToolSetLanguage } from "./tool-set-language";
@@ -56,6 +58,7 @@ const register: Rule<any>[] = [
 
   // Other general fields
   CorrectDateFormat,
+  CorrectExtraOrder,
 
   // Identifiers
   RequireDOI,
@@ -92,6 +95,7 @@ const register: Rule<any>[] = [
   ToolSetLanguage,
   ToolUpdateMetadata,
   ToolGetShortDOI,
+  ToolCSLHelper,
 ];
 
 export class Rules {
