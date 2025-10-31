@@ -5,7 +5,7 @@ class Logger {
 
   private _log(level: LogLevel, ...args: any[]) {
     const base = [
-      ["debug", "log"].includes(level) ? "" : "[Linter]",
+      ["debug"].includes(level) ? "" : "[Linter]",
       this.prefix ? `[${this.prefix}]` : "",
     ].filter(Boolean).join(" ");
 
