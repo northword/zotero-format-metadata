@@ -101,6 +101,13 @@ rule-correct-date-format-menu-item = 统一日期格式为 ISO 格式
 rule-correct-date-format-menu-field = 转为 ISO 格式（Linter）
 
 
+## correct-extra-order
+rule-correct-extra-order =
+  .label = 「额外」字段应有正确的顺序
+rule-correct-extra-order-menu-item = 修正「额外」字段的顺序
+rule-correct-extra-order-menu-field = 修正顺序 (Linter)
+
+
 ## correct-publication-title-alias
 rule-correct-publication-title-alias =
   .label = 期刊标题应去除别称
