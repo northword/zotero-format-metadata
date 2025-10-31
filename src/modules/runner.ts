@@ -8,8 +8,6 @@ import { createReporter, ProgressUI } from "./reporter";
 
 const logger = createLogger("Runner");
 
-const TASK_TIMEOUT = 60000;
-
 export interface Task {
   items: Arrayable<Zotero.Item>;
   rules: Arrayable<Rule<any>>;
@@ -75,8 +73,7 @@ export class LintRunner {
   private readonly queue: PQueue = new PQueue({
     concurrency: 1,
     autoStart: true,
-    timeout: TASK_TIMEOUT,
-    throwOnTimeout: true,
+    timeout: 60000,
   })
     .on("add", this.onAdd.bind(this))
     .on("completed", this.onComplated.bind(this))
