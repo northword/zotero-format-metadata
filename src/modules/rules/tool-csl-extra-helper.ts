@@ -1,5 +1,7 @@
 import { useDialog } from "../../utils/dialog";
 import { getPinyin, getSurnamePinyin, splitChineseName } from "../../utils/pinyin";
+import { capitalizeFirstLetter } from "../../utils/str";
+import { splitPinyin } from "./correct-creators-pinyin";
 import { defineRule } from "./rule-base";
 
 interface Options {
@@ -140,12 +142,77 @@ export const ToolCSLHelper = defineRule<Options>({
           dialog.addSetting(label, key, {
             tag: "textarea",
             properties: { textContent: value, rows: 5 },
-          }).addStaticRow("", {
-            tag: "label",
-            properties: {
-              textContent: "One name per line",
-            },
-          });
+          })
+            .addStaticRow("", {
+              tag: "label",
+              properties: {
+                textContent: "说明：作者每行一个，姓与名使用 `||` 分隔。",
+              },
+            })
+            .addStaticRow("", {
+              tag: "div",
+              namespace: "html",
+              styles: {
+                display: "flex",
+                justifyContent: "space-between",
+              },
+              children: [
+                {
+                  tag: "button",
+                  namespace: "html",
+                  attributes: {
+                    type: "button",
+                  },
+                  properties: {
+                    innerHTML: "拆分名拼音",
+                  },
+                  listeners: [{
+                    type: "click",
+                    listener: () => {
+                      const textarea = dialog.window.document.querySelector("[data-setting-key='original-author']") as HTMLTextAreaElement;
+                      if (!textarea)
+                        return;
+                      const value = textarea.value || "";
+                      const newValue = value.split("\n").map((line) => {
+                        const [lastName, firstName] = line.split("||").map(s => s.trim());
+                        const newFirstName = splitPinyin(firstName);
+                        return `${lastName} || ${newFirstName}`;
+                      }).join("\n");
+
+                      textarea.value = newValue;
+                    },
+                  }],
+                },
+
+                {
+                  tag: "button",
+                  namespace: "html",
+                  attributes: {
+                    type: "button",
+                  },
+                  properties: {
+                    innerHTML: "合并名拼音",
+                  },
+                  listeners: [{
+                    type: "click",
+                    listener: () => {
+                      const textarea = dialog.window.document.querySelector("[data-setting-key='original-author']") as HTMLTextAreaElement;
+                      if (!textarea)
+                        return;
+                      const value = textarea.value || "";
+                      const newValue = value.split("\n").map((line) => {
+                        const [lastName, firstName] = line.split("||").map(s => s.trim());
+                        const newFirstName = capitalizeFirstLetter(firstName.replaceAll(" ", ""));
+                        return `${lastName} || ${newFirstName}`;
+                      }).join("\n");
+
+                      textarea.value = newValue;
+                    },
+                  }],
+                },
+
+              ],
+            });
           break;
         }
 
