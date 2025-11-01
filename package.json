@@ -49,7 +49,7 @@
     "@types/chai": "^5.2.2",
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.18.8",
-    "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/coverage-v8": "^4.0.6",
     "@zotero-plugin/eslint-config": "^0.6.7",
     "autocorrect-node": "^2.14.0",
     "chai": "^6.2.0",
@@ -60,7 +60,7 @@
     "mocha": "^11.7.3",
     "prettier": "^3.6.2",
     "typescript": "^5.9.3",
-    "vitest": "^3.2.4",
+    "vitest": "^4.0.6",
     "zotero-plugin-scaffold": "^0.8.0",
     "zotero-types": "4.1.0-beta.3"
   },
