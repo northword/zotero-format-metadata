@@ -32,7 +32,7 @@ jobs:
 
       - run: pnpm update-data
 
-      - uses: stefanzweifel/git-auto-commit-action@v6
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "fix(data): update build-in data"
           file_pattern: data/**
