@@ -16,7 +16,7 @@ jobs:
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v5
         with:
-          node-version: 22.20.0
+          node-version: 24.11.0
           cache: pnpm
       - run: pnpm install
       - run: pnpm lint:check
@@ -28,7 +28,7 @@ jobs:
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v5
         with:
-          node-version: 22.20.0
+          node-version: 24.11.0
           cache: pnpm
       - run: pnpm install
       - run: pnpm build
@@ -42,7 +42,7 @@ jobs:
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v5
         with:
-          node-version: 22.20.0
+          node-version: 24.11.0
           cache: pnpm
       - run: pnpm install
       - run: pnpm test
