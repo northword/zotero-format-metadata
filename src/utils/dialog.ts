@@ -1,8 +1,16 @@
 import type { SettingsDialogHelper, TagElementProps } from "zotero-plugin-toolkit";
+import { kebabCase } from "es-toolkit";
 import { isEmpty } from "es-toolkit/compat";
 import { createLogger } from "./logger";
 
 const logger = createLogger("useDialog");
+
+export function closeAllDialogs() {
+  for (const [id, dialog] of addon.data.dialog) {
+    dialog.window.close();
+    addon.data.dialog.delete(id);
+  }
+}
 
 type Result = Record<string, any>;
 
@@ -50,12 +58,17 @@ export function useDialog<T extends Result>(): {
     .addAutoSaveButton("OK");
 
   async function open(title: string) {
+    const id = `${kebabCase(title)}-${Zotero.Utilities.randomString()}`;
+
+    logger.debug(`opening dialog ${id}...`);
     dialog.open(title);
 
     await dialog.dialogData.loadLock?.promise;
+    addon.data.dialog.set(id, dialog.window);
     logger.debug("dialog opened, awaiting operation...");
 
     await dialog.dialogData.unloadLock?.promise;
+    addon.data.dialog.delete(id);
     logger.debug("dialog closed with data:", data);
 
     if (isEmpty(data))

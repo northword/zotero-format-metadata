@@ -78,6 +78,10 @@ export function createReporter(infos: ReportInfo[]) {
     fitContent: true,
     alwaysRaised: true,
   });
+
+  const id = `linter-reporter-${Zotero.Utilities.randomString()}`;
+  dialog.dialogData.loadLock?.promise.then(() => addon.data.dialog.set(id, dialog.window));
+  dialog.dialogData.unloadLock?.promise.then(() => addon.data.dialog.delete(id));
 }
 
 function createRuleResultRows(info: ReportInfo): TagElementProps {
