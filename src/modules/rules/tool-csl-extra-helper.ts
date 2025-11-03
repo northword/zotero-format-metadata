@@ -124,7 +124,7 @@ export const ToolCSLHelper = defineRule<Options>({
 
       const value = (originalFields.get(key) ?? []).join("\n");
       switch (key) {
-        case "original-author":{
+        case "original-author": {
           const label = Zotero.CreatorTypes.getLocalizedString("author");
           dialog.addSetting(label, key, {
             tag: "textarea",
@@ -203,7 +203,7 @@ export const ToolCSLHelper = defineRule<Options>({
           break;
         }
 
-        case "original-title":{
+        case "original-title": {
           const label = Zotero.ItemFields.getLocalizedString("title");
           dialog.addSetting(label, key, {
             tag: "textarea",
@@ -212,7 +212,7 @@ export const ToolCSLHelper = defineRule<Options>({
           break;
         }
 
-        default:{
+        default: {
           const zoteroField: string | undefined = CSL_FIELD_TO_ZOTERO_FIELDS[key.replace("original-", "")]
             ?.filter(k => Zotero.ItemFields.isValidForType(Zotero.ItemFields.getID(k), item.itemTypeID))?.[0];
 
