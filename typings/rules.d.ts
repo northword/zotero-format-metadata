@@ -41,3 +41,4 @@ type ID =
   | "tool-update-metadata"
   | "tool-get-short-doi"
   | "tool-csl-helper"
+  | "tool-clean-extra"
