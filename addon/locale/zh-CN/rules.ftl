@@ -273,4 +273,4 @@ rule-tool-get-short-doi-menu-item = Retrieve short DOI
 rule-tool-csl-helper = 
   .label = CSL-M 字段助手
 rule-tool-csl-helper-menu-item = { rule-tool-csl-helper.label }
-rule-tool-csl-helper-menu-field = { rule-tool-csl-helper.label }
+rule-tool-csl-helper-menu-field = { rule-tool-csl-helper.label }（Linter）
