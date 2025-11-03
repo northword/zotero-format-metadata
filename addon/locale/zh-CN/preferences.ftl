@@ -27,7 +27,6 @@ section-creators = 创作者 Creators
 section-language = 语言 Language
 section-article = Article 相关字段
 section-conference = Conference 相关字段
-section-date = 日期 Date
 section-thesis = Thesis 相关字段
 section-book = Book 相关字段
 section-identifier = 标识符

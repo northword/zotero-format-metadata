@@ -101,6 +101,13 @@ rule-correct-date-format-menu-item = 统一日期格式为 ISO 格式
 rule-correct-date-format-menu-field = 转为 ISO 格式（Linter）
 
 
+## correct-extra-order
+rule-correct-extra-order =
+  .label = 「额外」字段应有正确的顺序
+rule-correct-extra-order-menu-item = 修正「额外」字段的顺序
+rule-correct-extra-order-menu-field = 修正顺序 (Linter)
+
+
 ## correct-publication-title-alias
 rule-correct-publication-title-alias =
   .label = 期刊标题应去除别称
@@ -260,3 +267,10 @@ rule-tool-update-metadata-option-semanticScholarToken-link = 申请
 
 ## tool-get-short-doi
 rule-tool-get-short-doi-menu-item = Retrieve short DOI
+
+
+## tool-csl-helper
+rule-tool-csl-helper = 
+  .label = CSL-M 字段助手
+rule-tool-csl-helper-menu-item = { rule-tool-csl-helper.label }
+rule-tool-csl-helper-menu-field = { rule-tool-csl-helper.label }（Linter）

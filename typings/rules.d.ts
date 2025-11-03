@@ -15,6 +15,7 @@ type ID =
   | "correct-creators-case"
   | "correct-creators-pinyin"
   | "correct-date-format"
+  | "correct-extra-order"
   | "require-doi"
   | "no-doi-prefix"
   | "correct-doi-long"
@@ -39,3 +40,4 @@ type ID =
   | "tool-set-language"
   | "tool-update-metadata"
   | "tool-get-short-doi"
+  | "tool-csl-helper"
