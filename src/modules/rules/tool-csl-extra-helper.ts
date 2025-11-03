@@ -254,7 +254,7 @@ export const ToolCSLHelper = defineRule<Options>({
       const isCreatorField = key === "original-author";
       outputData[key] = isCreatorField
         // in dialog, we use `\n` to separate creators,
-        // but in extra fields, we use `||`
+        // but in extra fields, we use array
         ? value.split("\n").map(v => v.trim()).filter(v => !!v)
         // in dialog, some fields are multiline for better display,
         // but they are stored as single line, e.g. title
