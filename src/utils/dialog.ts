@@ -1,4 +1,4 @@
-import type { SettingsDialogHelper, TagElementProps } from "zotero-plugin-toolkit";
+import type { DialogHelper, SettingsDialogHelper, TagElementProps } from "zotero-plugin-toolkit";
 import { kebabCase } from "es-toolkit";
 import { isEmpty } from "es-toolkit/compat";
 import { createLogger } from "./logger";
@@ -12,33 +12,17 @@ export function closeAllDialogs() {
   }
 }
 
-type Result = Record<string, any>;
-
-interface Dialog<T extends Result> extends SettingsDialogHelper {
-  addSetting: (label: string, settingKey: keyof T, controlProps: TagElementProps, options?: {
-    valueType?: "string" | "number" | "boolean";
-    labelProps?: Partial<TagElementProps>;
-    condition?: () => boolean;
-  }) => this;
-}
-
-type SafeSettingsDialogHelper<T extends Result> = Omit<
-  Dialog<T>,
-  "setSettingHandlers" | "addAutoSaveButton" | "saveAllSettings"
->;
-
-export function useDialog<T extends Result>(): {
-  dialog: SafeSettingsDialogHelper<T>;
-  open: (title: string) => Promise<T | false>;
+export function useDialog<T extends DialogHelper | SettingsDialogHelper>(dialog: T): {
+  dialog: T;
+  openAndWaitClose: (title: string) => Promise<void>;
 } {
-  const data = {} as Result;
-  const dialog = new ztoolkit.SettingsDialog() as Dialog<T>;
+  const { height, width } = getScreenInfoViaWindow() ?? {};
 
   // @ts-expect-error we need to override the default styles to enable scrolling
   Object.assign(dialog.elementProps.styles!, {
-    maxWidth: "1000px",
     minWidth: "300px",
-    maxHeight: "500px",
+    maxWidth: `${width * 0.8 || 1000}px`,
+    maxHeight: `${height * 0.8 || 500}px`,
     backgroundColor: "var(--material-background)",
   });
 
@@ -50,14 +34,7 @@ export function useDialog<T extends Result>(): {
     },
   });
 
-  dialog
-    .setSettingHandlers(
-      key => data[key],
-      (key, value) => data[key] = value,
-    )
-    .addAutoSaveButton("OK");
-
-  async function open(title: string) {
+  async function openAndWaitClose(title: string) {
     const id = `${kebabCase(title)}-${Zotero.Utilities.randomString()}`;
 
     logger.debug(`opening dialog ${id}...`);
@@ -69,13 +46,75 @@ export function useDialog<T extends Result>(): {
 
     await dialog.dialogData.unloadLock?.promise;
     addon.data.dialog.delete(id);
-    logger.debug("dialog closed with data:", data);
+    logger.debug("dialog closed with data");
+  };
 
-    if (isEmpty(data))
-      return false;
-    else
-      return data as T;
+  return { dialog, openAndWaitClose };
+}
+
+type SettingsDialogResult = Record<string, any>;
+
+interface SettingsDialog<T extends SettingsDialogResult> extends SettingsDialogHelper {
+  addSetting: (label: string, settingKey: keyof T, controlProps: TagElementProps, options?: {
+    valueType?: "string" | "number" | "boolean";
+    labelProps?: Partial<TagElementProps>;
+    condition?: () => boolean;
+  }) => this;
+}
+
+type SafeSettingsDialogHelper<T extends SettingsDialogResult> = Omit<
+  SettingsDialog<T>,
+  "setSettingHandlers" | "addAutoSaveButton" | "saveAllSettings"
+>;
+
+export function useSettingsDialog<T extends SettingsDialogResult>(): {
+  dialog: SafeSettingsDialogHelper<T>;
+  openForSettings: (title: string) => Promise<T | false>;
+} {
+  const data = {} as SettingsDialogResult;
+  const { dialog, openAndWaitClose } = useDialog(new ztoolkit.SettingsDialog() as SettingsDialog<T>);
+
+  dialog
+    .setSettingHandlers(
+      key => data[key],
+      (key, value) => data[key] = value,
+    )
+    .addAutoSaveButton("OK");
+
+  async function openForSettings(title: string) {
+    await openAndWaitClose(title);
+    return isEmpty(data) ? false : data as T;
   }
 
-  return { dialog, open };
+  return { dialog, openForSettings };
+}
+
+function getScreenInfoViaWindow() {
+  try {
+    const { classes: Cc, interfaces: Ci } = Components;
+
+    // @ts-expect-error no types
+    const windowMediator = Cc["@mozilla.org/appshell/window-mediator;1"]
+      .getService(Ci.nsIWindowMediator);
+
+    const recentWindow = windowMediator.getMostRecentWindow("navigator:browser");
+
+    if (recentWindow) {
+      const screen = recentWindow.screen;
+      return {
+        width: screen.width,
+        height: screen.height,
+        availWidth: screen.availWidth,
+        availHeight: screen.availHeight,
+        colorDepth: screen.colorDepth,
+        pixelDepth: screen.pixelDepth,
+      };
+    }
+
+    return null;
+  }
+  catch (e) {
+    logger.error("Failed to get screen info", e);
+    return null;
+  }
 }

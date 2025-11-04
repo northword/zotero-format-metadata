@@ -1,5 +1,6 @@
 import type { ProgressWindowHelper, TagElementProps } from "zotero-plugin-toolkit";
 import { groupBy } from "es-toolkit";
+import { useDialog } from "../utils/dialog";
 import { getString } from "../utils/locale";
 import { getPref } from "../utils/prefs";
 import { waitUtilAsync } from "../utils/wait";
@@ -22,15 +23,13 @@ export function createReporter(infos: ReportInfo[]) {
     info => info.itemID,
   );
 
-  const dialog = new ztoolkit.Dialog(1, 1).addCell(0, 0, {
+  const { dialog, openAndWaitClose } = useDialog(new ztoolkit.Dialog(1, 1));
+  dialog.addCell(0, 0, {
     tag: "div",
     styles: {
       display: "flex",
       flexDirection: "column",
       gap: "16px",
-      maxWidth: "1000px",
-      minWidth: "300px",
-      maxHeight: "500px",
       fontFamily: "Segoe UI, sans-serif",
       fontSize: "14px",
     },
@@ -72,16 +71,7 @@ export function createReporter(infos: ReportInfo[]) {
     ] satisfies TagElementProps[]),
   });
 
-  dialog.open("Linter for Zotero", {
-    centerscreen: true,
-    resizable: true,
-    fitContent: true,
-    alwaysRaised: true,
-  });
-
-  const id = `linter-reporter-${Zotero.Utilities.randomString()}`;
-  dialog.dialogData.loadLock?.promise.then(() => addon.data.dialog.set(id, dialog.window));
-  dialog.dialogData.unloadLock?.promise.then(() => addon.data.dialog.delete(id));
+  openAndWaitClose("Linter for Zotero");
 }
 
 function createRuleResultRows(info: ReportInfo): TagElementProps {

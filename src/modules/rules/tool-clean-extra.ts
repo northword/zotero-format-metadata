@@ -1,4 +1,4 @@
-import { useDialog } from "../../utils/dialog";
+import { useSettingsDialog } from "../../utils/dialog";
 import { defineRule } from "./rule-base";
 
 interface Options {
@@ -34,7 +34,7 @@ export const ToolCleanExtra = defineRule<Options>({
     }
 
     const fieldPrefix = "field--" as const;
-    const { dialog, open } = useDialog<{
+    const { dialog, openForSettings } = useSettingsDialog<{
       [key: `${typeof fieldPrefix}${string}`]: boolean;
     }>();
 
@@ -64,7 +64,7 @@ export const ToolCleanExtra = defineRule<Options>({
       });
     }
 
-    const data = await open("Clean Extra Field");
+    const data = await openForSettings("Clean Extra Field");
 
     if (!data)
       return false;

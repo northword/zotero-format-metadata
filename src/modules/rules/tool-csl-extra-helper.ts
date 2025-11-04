@@ -1,4 +1,4 @@
-import { useDialog } from "../../utils/dialog";
+import { useSettingsDialog } from "../../utils/dialog";
 import { getPinyin, getSurnamePinyin, splitChineseName } from "../../utils/pinyin";
 import { capitalizeFirstLetter } from "../../utils/str";
 import { splitPinyin } from "./correct-creators-pinyin";
@@ -117,7 +117,7 @@ export const ToolCSLHelper = defineRule<Options>({
     debug("originalFields after apply item's fields", originalFields);
 
     // ----- Step 4: Open dialog and collect results -----
-    const { dialog, open } = useDialog<Record<string, string>>();
+    const { dialog, openForSettings } = useSettingsDialog<Record<string, string>>();
 
     function addField(key: string) {
       debug("adding", key);
@@ -245,7 +245,7 @@ export const ToolCSLHelper = defineRule<Options>({
     originalFields.delete("original-author");
     originalFields.keys().forEach(addField);
 
-    const result = await open("CSL Helper");
+    const result = await openForSettings("CSL Helper");
     if (!result)
       return false;
 

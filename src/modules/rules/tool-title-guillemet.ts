@@ -1,5 +1,5 @@
 // autocorrect-disable -- autocorrect mismark of `《》`
-import { useDialog } from "../../utils/dialog";
+import { useSettingsDialog } from "../../utils/dialog";
 import { defineRule } from "./rule-base";
 
 interface TitleGuillemetOptions {
@@ -37,7 +37,7 @@ export const ToolTitleGuillemet = defineRule<TitleGuillemetOptions> ({
   },
 
   async prepare() {
-    const { dialog, open } = useDialog<TitleGuillemetOptions>();
+    const { dialog, openForSettings } = useSettingsDialog<TitleGuillemetOptions>();
 
     dialog.addSetting("Select your guillemet:", "target", {
       tag: "select",
@@ -59,7 +59,7 @@ export const ToolTitleGuillemet = defineRule<TitleGuillemetOptions> ({
       ],
     });
 
-    const result = await open("Select Guillemet");
+    const result = await openForSettings("Select Guillemet");
     if (result) {
       return { target: result.target };
     }
