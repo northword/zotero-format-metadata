@@ -132,6 +132,13 @@ export interface RuleForRegularItemScopeItem<Option = object> extends RuleForReg
 export interface RuleForRegularScopeField<Option = object> extends RuleForRegularItem<Option> {
   scope: "field";
   targetItemField: _ZoteroTypes.Item.ItemField | "creators";
+  /**
+   * Whether to include mapped fields.
+   *
+   * @default false
+   * @see https://github.com/northword/zotero-format-metadata/issues/77
+   */
+  includeMappedFields?: boolean;
 
   /**
    * Field menus

@@ -15,8 +15,8 @@ export const ToolTitleGuillemet = defineRule<TitleGuillemetOptions> ({
   nameKey: "title-guillemet",
   scope: "field",
   category: "tool",
-  // targetItemTypes: ["journalArticle", "conferencePaper"],
   targetItemField: "title",
+  includeMappedFields: true,
   async apply({ item, options }) {
     if (!options.target)
       return;

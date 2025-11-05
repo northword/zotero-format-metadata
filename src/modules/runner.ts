@@ -4,6 +4,7 @@ import type { ApplyContext, PrepareContext, Rule } from "./rules/rule-base";
 import PQueue from "p-queue";
 import { DataLoader } from "../utils/data-loader";
 import { createLogger } from "../utils/logger";
+import { isFieldValidForItemType } from "../utils/zotero";
 import { createReporter, ProgressUI } from "./reporter";
 
 const logger = createLogger("Runner");
@@ -58,9 +59,19 @@ function shouldApplyRule(rule: Rule<any>, item: Zotero.Item): boolean {
       return true;
 
     // Check this target field is included in this item type
-    if (!Zotero.ItemFields.isValidForType(Zotero.ItemFields.getID(rule.targetItemField), item.itemTypeID)) {
-      logger.debug(`Skip ${rule.id}: ${rule.targetItemField} not valid for ${item.itemType}`);
-      return false;
+    if (!isFieldValidForItemType(rule.targetItemField, item.itemType)) {
+      if (!rule.includeMappedFields) {
+        logger.debug(`Skip ${rule.id}: ${rule.targetItemField} not valid for ${item.itemType}`);
+        return false;
+      }
+      else {
+        const mappedFields = Zotero.ItemFields.getTypeFieldsFromBase(rule.targetItemField, true) as _ZoteroTypes.Item.ItemField[];
+        mappedFields.filter(field => isFieldValidForItemType(field, item.itemType));
+        if (!mappedFields.length) {
+          logger.debug(`Skip ${rule.id}: no mapped fields ${mappedFields.join(", ")} for ${rule.targetItemField} are valid for ${item.itemType}`);
+          return false;
+        }
+      }
     }
   }
 
