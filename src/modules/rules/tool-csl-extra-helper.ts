@@ -243,7 +243,7 @@ export const ToolCSLHelper = defineRule<Options>({
     originalFields.delete("original-title");
     addField("original-author");
     originalFields.delete("original-author");
-    originalFields.keys().forEach(addField);
+    [...originalFields.keys()].forEach(addField);
 
     const result = await openForSettings("CSL Helper");
     if (!result)
