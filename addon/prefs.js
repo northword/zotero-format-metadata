@@ -63,8 +63,6 @@ pref("rule.correct-bookTitle-sentence-case", true);
 pref("rule.correct-proceedingsTitle-sentence-case", false);
 pref("rule.correct-extra-order", true);
 
-pref("rule.tool-update-metadata.confirm-when-item-type-change", false);
-
 // --------------------
 // Other settings
 // --------------------

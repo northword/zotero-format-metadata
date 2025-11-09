@@ -107,6 +107,11 @@ export function checkCompat() {
     clearPref("rule.correct-publication-title");
   }
 
+  // v2.0.0-beta.22 refactors rule.tool-update-metadata, now we donot need this pref
+  if (compareVersion(version, "2.0.0-beta.22") === -1) {
+    clearPref("rule.tool-update-metadata.confirm-when-item-type-change");
+  }
+
   setPref("version", currentVersion);
 }
 

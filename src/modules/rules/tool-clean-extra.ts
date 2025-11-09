@@ -55,9 +55,6 @@ export const ToolCleanExtra = defineRule<Options>({
           attributes: {
             type: "checkbox",
           },
-          properties: {
-            label: extra,
-          },
         }, {
           valueType: "boolean",
         });

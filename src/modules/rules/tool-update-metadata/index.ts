@@ -1,4 +1,5 @@
 import type { CleanedData } from "./services/base-service";
+import { useSettingsDialog } from "../../../utils/dialog";
 import { getString } from "../../../utils/locale";
 import { isFieldValidForItemType } from "../../../utils/zotero";
 import { defineRule } from "../rule-base";
@@ -7,12 +8,13 @@ import { services } from "./services";
 
 interface UpdateMetadataOption {
   mode: "selected" | "blank" | "all";
+  allowTypeChanged: boolean;
 }
 
 export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
   id: "tool-update-metadata",
   scope: "item",
-  targetItemTypes: ["journalArticle", "preprint"],
+  targetItemTypes: ["journalArticle", "preprint", "conferencePaper"],
   category: "tool",
   async apply({ item, options, report, debug }) {
     // 1. extract identifiers
@@ -68,21 +70,24 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
 
     // 3. apply field changes
     function applyItemType(data: CleanedData) {
-      if (!data.itemType)
-        return;
-
-      const newItemTypeID = Zotero.ItemTypes.getID(data.itemType);
-      const isNeed = newItemTypeID && data.itemType !== item.itemType;
-      if (!isNeed)
-        return;
-
-      if (options.mode !== "all") {
-        debug("itemType need to update but mode is not 'all'.");
+      if (!data.itemType) {
+        debug("Service did not provide itemType");
         return;
       }
 
       if (data.DOI?.match(/arxiv/gi)) {
         debug("DOI has 'arxiv', skip to change itemType.");
+        return;
+      }
+
+      const newItemTypeID = Zotero.ItemTypes.getID(data.itemType);
+      if (!newItemTypeID || data.itemType === item.itemType) {
+        debug("Item type is not changed.");
+        return;
+      }
+
+      if (options.allowTypeChanged === true) {
+        debug("User diasble to change itemType");
         return;
       }
 
@@ -123,9 +128,47 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
     applyItemFields(fields);
   },
 
-  prepare() {
-    return {
-      mode: "all",
-    };
+  async prepare() {
+    const { dialog, openForSettings } = useSettingsDialog<UpdateMetadataOption>();
+
+    dialog.addSetting("Mode", "mode", {
+      tag: "select",
+      children: [{
+        tag: "option",
+        properties: {
+          value: "blank",
+          innerHTML: "Blank Fields Only",
+        },
+      }, {
+        tag: "option",
+        properties: {
+          value: "all",
+          innerHTML: "All Fields",
+        },
+      }],
+    })
+      .addSetting("Allow Change Item Type", "allowTypeChanged", {
+        tag: "input",
+        attributes: {
+          type: "checkbox",
+          checked: true,
+        },
+      }, { valueType: "boolean" })
+      .addStaticRow("Notes", {
+        tag: "ul",
+        children: [{
+          tag: "li",
+          properties: {
+            textContent: "Some APIs have rate limits; please avoid bulk processing.",
+          },
+        }, {
+          tag: "li",
+          properties: {
+            textContent: "Chinese publications could not use this feature due to data source limitations.",
+          },
+        }],
+      });
+
+    return await openForSettings("Retrive Metadata");
   },
 });

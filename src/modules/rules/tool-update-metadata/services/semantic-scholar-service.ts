@@ -33,7 +33,7 @@ export const SemanticScholarService = defineService<Result>({
     else
       throw new Error("No valid paper ID found.");
 
-    const url = `https://api.semanticscholar.org/graph/v1/paper/${paperID.trim()}?fields=${fields.join(",")}`;
+    const url = `https://api.semanticscholar.org/graph/v1/paper/${encodeURIComponent(paperID.trim())}?fields=${fields.join(",")}`;
     const res = await Zotero.HTTP.request("GET", url, {
       headers: {
         "x-api-key": getPref("semanticScholarToken"),
