@@ -18,7 +18,6 @@ export type FluentMessageId =
   | 'info-batch-no-selected'
   | 'info-batch-running'
   | 'info-batch-stop-next'
-  | 'info-noDOI'
   | 'italic'
   | 'lint-on-groupItem-added'
   | 'lint-on-item-added'

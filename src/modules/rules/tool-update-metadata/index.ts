@@ -1,6 +1,5 @@
 import type { CleanedData } from "./services/base-service";
 import { useSettingsDialog } from "../../../utils/dialog";
-import { getString } from "../../../utils/locale";
 import { isFieldValidForItemType } from "../../../utils/zotero";
 import { defineRule } from "../rule-base";
 import { extractIdentifiers } from "./identifies";
@@ -23,7 +22,7 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
     if (Object.entries(identifiers).length === 0) {
       report({
         level: "error",
-        message: getString("info-noDOI"),
+        message: "No valid identifiers found",
       });
       return;
     }

@@ -18,8 +18,6 @@ info-batch-break = Click here to stop this process
 info-batch-stop-next = Will stop when current item is complete
 info-batch-has-error = Error exists, please check in the console
 
-info-noDOI = No DOI found, cannot update fields
-
 ## dialog
 confirm = Confirm
 cancel = Cancel

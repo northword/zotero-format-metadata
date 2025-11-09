@@ -18,8 +18,6 @@ info-batch-break = 点击此处结束本次处理
 info-batch-stop-next = 将在当前条目处理完成后结束
 info-batch-has-error = 存在错误，请在控制台查看错误信息
 
-info-noDOI = 无 DOI，无法完成更新
-
 ## dialog
 confirm = 确认
 cancel = 取消
