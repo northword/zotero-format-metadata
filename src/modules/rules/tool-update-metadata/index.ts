@@ -147,14 +147,14 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
       children: [{
         tag: "option",
         properties: {
-          value: "blank",
-          innerHTML: "Blank Fields Only",
+          value: "all",
+          innerHTML: "All Fields",
         },
       }, {
         tag: "option",
         properties: {
-          value: "all",
-          innerHTML: "All Fields",
+          value: "blank",
+          innerHTML: "Blank Fields Only",
         },
       }],
     })
