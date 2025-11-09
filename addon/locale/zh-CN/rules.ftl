@@ -258,7 +258,9 @@ rule-tool-update-metadata-menu-item = 通过标识符更新元数据并 Lint
 rule-tool-update-metadata-option-semanticScholarToken = Semantic Scholar API Key: 
     .label = Semantic Scholar Token
     .placeholder = Semantic Scholar Token
-rule-tool-update-metadata-option-semanticScholarToken-desc =  当更新字段数据时，插件会从 Semantic Scholar 查询该预印本是否已正式发表。默认的，此 API 限制请求 1 次/秒，你可以通过免费申请 API Key 来增加速率限制。
+rule-tool-update-metadata-option-semanticScholarToken-desc =  
+    当更新字段数据时，插件会从 Semantic Scholar 查询其题录数据。
+    默认的，此 API 限制请求 1 次/秒，你可以通过免费申请 API Key 来增加速率限制。
 rule-tool-update-metadata-option-semanticScholarToken-link = 申请
 
 
