@@ -7,10 +7,10 @@ export const ArxivService = defineService({
   id: "arxiv-service",
   name: "ArXiv Service",
   supportedItemTypes: ["preprint"],
-  shouldProcess: ({ identifiers }) => {
+  shouldApply: ({ identifiers }) => {
     return !!identifiers.arXiv;
   },
-  async refreshIdentifiers({ identifiers }) {
+  async updateIdentifiers({ identifiers }) {
     if (!identifiers.arXiv) {
       return;
     }

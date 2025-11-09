@@ -1,6 +1,6 @@
 import { defineService } from "./base-service";
 
-function cleanTranslatedData(response: any) {
+function transform(response: any) {
   ["notes", "tags", "seeAlso", "attachments"].forEach((field) => {
     delete response[field];
   });
@@ -27,9 +27,9 @@ async function doTranslate(translate: any) {
 export const ItemTranslateService = defineService({
   id: "item-translate-service",
   name: "Item Translate Service",
-  shouldProcess: (): boolean => true,
+  shouldApply: (): boolean => true,
 
-  request: async ({ item }) => {
+  fetch: async ({ item }) => {
     const itemTemp = Zotero.Utilities.Internal.itemToExportFormat(item, false);
 
     // 如果 Item 包含多个标识符，优先使用 DOI
@@ -49,29 +49,29 @@ export const ItemTranslateService = defineService({
     return await doTranslate(translate);
   },
 
-  cleanData: cleanTranslatedData,
+  transform,
 });
 
 export const IdentifiersTranslateService = defineService({
   id: "identifiers-translate-service",
   name: "Identifiers Translate Service",
-  shouldProcess: (): boolean => true,
+  shouldApply: (): boolean => true,
 
-  request: async ({ identifiers }) => {
+  fetch: async ({ identifiers }) => {
     const translate = new Zotero.Translate.Search();
     translate.setIdentifier(identifiers);
     return await doTranslate(translate);
   },
 
-  cleanData: cleanTranslatedData,
+  transform,
 });
 
 export const URLTranslateService = defineService({
   id: "url-translate-service",
   name: "Web Translate Service",
-  shouldProcess: ({ identifiers }) => !!identifiers.URL,
+  shouldApply: ({ identifiers }) => !!identifiers.URL,
 
-  request: async ({ identifiers }) => {
+  fetch: async ({ identifiers }) => {
     if (!identifiers.URL)
       return;
 
@@ -81,5 +81,5 @@ export const URLTranslateService = defineService({
     return await doTranslate(translate);
   },
 
-  cleanData: cleanTranslatedData,
+  transform,
 });

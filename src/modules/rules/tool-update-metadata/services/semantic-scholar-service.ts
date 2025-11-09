@@ -4,8 +4,8 @@ import { defineService } from "./base-service";
 export const SemanticScholarService = defineService<Result>({
   id: "semantic-scholar-service",
   name: "Semantic Scholar Service",
-  shouldProcess: () => true,
-  async request({ identifiers }) {
+  shouldApply: () => true,
+  async fetch({ identifiers }) {
     const fields: (keyof Result)[] = [
       "publicationTypes",
       "title",
@@ -48,7 +48,7 @@ export const SemanticScholarService = defineService<Result>({
     return result;
   },
 
-  cleanData(res) {
+  transform(res) {
     return {
       itemType: res.publicationTypes?.includes("Conference")
         ? "conferencePaper"

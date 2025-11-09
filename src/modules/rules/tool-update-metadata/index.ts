@@ -1,4 +1,4 @@
-import type { CleanedData } from "./services/base-service";
+import type { TransformedData } from "./services/base-service";
 import { useSettingsDialog } from "../../../utils/dialog";
 import { isFieldValidForItemType } from "../../../utils/zotero";
 import { defineRule } from "../rule-base";
@@ -28,17 +28,17 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
     }
 
     // 2. get available metadata services, request metadata and clean data
-    let data: CleanedData | null = null;
+    let data: TransformedData | null = null;
     let errorMessage: string = "";
     for (const service of services) {
-      if (!service.shouldProcess({ item, identifiers }))
+      if (!service.shouldApply({ item, identifiers }))
         continue;
 
       debug(`Service ${service.name} processing...`);
 
-      await service.refreshIdentifiers?.({ item, identifiers });
+      await service.updateIdentifiers?.({ item, identifiers });
 
-      const res = await service.request?.({ item, identifiers })
+      const res = await service.fetch?.({ item, identifiers })
         .catch((error) => {
           debug(`Service ${service.name} failed: ${error.message}`);
           errorMessage += `${service.name}: ${error.message}\n`;
@@ -49,9 +49,9 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
         continue;
       }
 
-      const cleanData = service.cleanData?.(res);
-      if (cleanData) {
-        data = cleanData;
+      const transformedData = service.transform?.(res);
+      if (transformedData) {
+        data = transformedData;
         break;
       }
     }
@@ -67,7 +67,7 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
     debug("Clean data: ", data);
 
     // 3. apply field changes
-    function applyItemType(data: CleanedData) {
+    function applyItemType(data: TransformedData) {
       if (!data.itemType) {
         debug("Service did not provide itemType");
         return;
@@ -93,7 +93,7 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
       item.setType(newItemTypeID);
     }
 
-    function applyItemCreators(data: CleanedData) {
+    function applyItemCreators(data: TransformedData) {
       if (!data.creators) {
         debug("Service doesn't return creators");
         return;
@@ -107,7 +107,7 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
       item.setCreators(data.creators);
     }
 
-    function applyItemFields(data: Omit<CleanedData, "itemType" | "creators">) {
+    function applyItemFields(data: Omit<TransformedData, "itemType" | "creators">) {
       for (const [field, value] of Object.entries(data)) {
         if (!isFieldValidForItemType(field as _ZoteroTypes.Item.ItemField, item.itemType))
           continue;
