@@ -17,7 +17,7 @@ const KNOW_PREPRINTER_SERVICES: {
     id: "arXiv",
     urlPattern: /https?:\/\/arxiv\.org\/abs\//i,
     doiPattern: /10.48550\/arXiv\./gi,
-    archiveIDPattern: /https?:\/\/arxiv\.org\/abs\//,
+    archiveIDPattern: /arxiv:/i,
   },
 ];
 
