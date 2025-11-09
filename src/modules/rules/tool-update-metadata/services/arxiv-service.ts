@@ -1,4 +1,7 @@
+import { createLogger } from "../../../../utils/logger";
 import { defineService } from "./base-service";
+
+const { debug } = createLogger("arxiv-service");
 
 export const ArxivService = defineService({
   id: "arxiv-service",
@@ -19,21 +22,20 @@ export const ArxivService = defineService({
 });
 
 async function getDOIFromArxiv(arxivID: string): Promise<string | undefined> {
-  const id = arxivID.replace(/arxiv:/gi, "").trim();
-  const url = `https://export.arxiv.org/api/query?id_list=${id}`;
+  const url = `https://export.arxiv.org/api/query?id_list=${encodeURIComponent(arxivID)}`;
 
   const res = await Zotero.HTTP.request("GET", url);
   const result = res.response as string;
   if (!result) {
-    ztoolkit.log("从 Arxiv API 请求失败");
+    debug("从 Arxiv API 请求失败");
     return undefined;
   }
   const doc = new DOMParser().parseFromString(result, "text/xml");
   const refDoi = doc.querySelector("doi");
   if (refDoi) {
-    ztoolkit.log("Got DOI from Arxiv", refDoi);
+    debug("Got DOI from Arxiv", refDoi);
     return refDoi.innerHTML as string;
   }
-  ztoolkit.log("ArXiv did not return DOI");
+  debug("ArXiv did not return DOI");
   return undefined;
 }

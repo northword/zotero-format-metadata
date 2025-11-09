@@ -68,6 +68,8 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
       return;
     }
 
+    debug("Clean data: ", data);
+
     // 3. apply field changes
     function applyItemType(data: CleanedData) {
       if (!data.itemType) {
@@ -75,14 +77,14 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
         return;
       }
 
-      if (data.DOI?.match(/arxiv/gi)) {
-        debug("DOI has 'arxiv', skip to change itemType.");
-        return;
-      }
-
       const newItemTypeID = Zotero.ItemTypes.getID(data.itemType);
       if (!newItemTypeID || data.itemType === item.itemType) {
         debug("Item type is not changed.");
+        return;
+      }
+
+      if (data.DOI?.match(/arxiv/gi)) {
+        debug("DOI has 'arxiv', skip to change itemType.");
         return;
       }
 
@@ -95,8 +97,18 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
       item.setType(newItemTypeID);
     }
 
-    function applyItemCreators(_data: CleanedData) {
-      // todo
+    function applyItemCreators(data: CleanedData) {
+      if (!data.creators) {
+        debug("Service doesn't return creators");
+        return;
+      }
+
+      if (item.getCreators().length && options.mode !== "all") {
+        debug("Original item has creators, blank mode, skip to update creators.");
+        return;
+      }
+
+      item.setCreators(data.creators);
     }
 
     function applyItemFields(data: Omit<CleanedData, "itemType" | "creators">) {
