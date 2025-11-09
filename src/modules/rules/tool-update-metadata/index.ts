@@ -13,7 +13,7 @@ interface UpdateMetadataOption {
 export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
   id: "tool-update-metadata",
   scope: "item",
-  targetItemTypes: ["journalArticle", "preprint", "conferencePaper"],
+  targetItemTypes: ["journalArticle", "preprint", "conferencePaper", "webpage"],
   category: "tool",
   async apply({ item, options, report, debug }) {
     // 1. extract identifiers

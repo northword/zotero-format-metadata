@@ -7,10 +7,7 @@ function cleanTranslatedData(response: any) {
   return response;
 }
 
-async function translateCommon(setupTranslate: (translate: any) => void) {
-  const translate = new Zotero.Translate.Search();
-  setupTranslate(translate);
-
+async function doTranslate(translate: any) {
   const translators = await translate.getTranslators();
   if (translators.length === 0)
     return undefined;
@@ -47,10 +44,9 @@ export const ItemTranslateService = defineService({
         delete itemTemp.ISBN;
       }
     }
-
-    return await translateCommon((translate) => {
-      translate.setSearch(itemTemp);
-    });
+    const translate = new Zotero.Translate.Search();
+    translate.setSearch(itemTemp);
+    return await doTranslate(translate);
   },
 
   cleanData: cleanTranslatedData,
@@ -62,9 +58,27 @@ export const IdentifiersTranslateService = defineService({
   shouldProcess: (): boolean => true,
 
   request: async ({ identifiers }) => {
-    return await translateCommon((translate) => {
-      translate.setIdentifier(identifiers);
-    });
+    const translate = new Zotero.Translate.Search();
+    translate.setIdentifier(identifiers);
+    return await doTranslate(translate);
+  },
+
+  cleanData: cleanTranslatedData,
+});
+
+export const URLTranslateService = defineService({
+  id: "url-translate-service",
+  name: "Web Translate Service",
+  shouldProcess: ({ identifiers }) => !!identifiers.URL,
+
+  request: async ({ identifiers }) => {
+    if (!identifiers.URL)
+      return;
+
+    const translate = new Zotero.Translate.Web();
+    const doc = await Zotero.HTTP.processDocuments(identifiers.URL, doc => doc);
+    translate.setDocument(doc[0]);
+    return await doTranslate(translate);
   },
 
   cleanData: cleanTranslatedData,
