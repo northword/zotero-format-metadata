@@ -31,9 +31,9 @@ import { ToolCleanExtra } from "./tool-clean-extra";
 import { ToolCreatorsExt } from "./tool-creators-ext";
 import { ToolCSLHelper } from "./tool-csl-extra-helper";
 import { ToolGetShortDOI } from "./tool-get-short-doi";
-import { ToolUpdateMetadata } from "./tool-retrive-metadata";
 import { ToolSetLanguage } from "./tool-set-language";
 import { ToolTitleGuillemet } from "./tool-title-guillemet";
+import { ToolUpdateMetadata } from "./tool-update-metadata";
 
 const register: Rule<any>[] = [
   // Item rules first

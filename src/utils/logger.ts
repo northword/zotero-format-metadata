@@ -1,12 +1,17 @@
 type LogLevel = "debug" | "log" | "warn" | "error";
 
-class Logger {
-  constructor(private prefix?: string) {}
+export interface Logger {
+  debug: (...args: any[]) => void;
+  log: (...args: any[]) => void;
+  warn: (...args: any[]) => void;
+  error: (...args: any[]) => void;
+}
 
-  private _log(level: LogLevel, ...args: any[]) {
+export function createLogger(prefix?: string): Logger {
+  const _log = (level: LogLevel, ...args: any[]) => {
     const base = [
       ["debug"].includes(level) ? "" : "[Linter]",
-      this.prefix ? `[${this.prefix}]` : "",
+      prefix ? `[${prefix}]` : "",
     ].filter(Boolean).join(" ");
 
     const data = base ? [base, ...args] : args;
@@ -24,28 +29,14 @@ class Logger {
         break;
       }
     }
-  }
+  };
 
-  debug(...args: any[]) { this._log("debug", ...args); }
-  log(...args: any[]) { this._log("log", ...args); }
-  warn(...args: any[]) { this._log("warn", ...args); }
-  error(...args: any[]) { this._log("error", ...args); }
-
-  hint(text: string, type = "default", progress = 100) {
-    return new ztoolkit.ProgressWindow(addon.data.config.addonName, {
-      closeOnClick: true,
-    })
-      .createLine({
-        text,
-        type,
-        progress,
-      })
-      .show();
-  }
-}
-
-export function createLogger(tag?: string): Logger {
-  return new Logger(tag);
+  return {
+    debug: (...args: any[]) => _log("debug", ...args),
+    log: (...args: any[]) => _log("log", ...args),
+    warn: (...args: any[]) => _log("warn", ...args),
+    error: (...args: any[]) => _log("error", ...args),
+  };
 }
 
 export const logger = createLogger();

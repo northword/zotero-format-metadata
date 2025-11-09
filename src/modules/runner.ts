@@ -231,7 +231,7 @@ export class LintRunner {
       }
       // Zotero.HTTP.request error, the message is too long, here we just show the status
       else if ("xmlhttp" in error && "message" in error) {
-        message += `HTTP request error, status ${error.status}`;
+        message += `HTTP request error, status ${error.status}, ${message.slice(0, 250)}`;
       }
       else if ("message" in error) {
         message += `${error.message}`;
