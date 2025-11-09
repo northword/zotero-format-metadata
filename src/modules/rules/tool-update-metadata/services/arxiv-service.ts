@@ -27,7 +27,7 @@ async function getDOIFromArxiv(arxivID: string): Promise<string | undefined> {
   const res = await Zotero.HTTP.request("GET", url);
   const result = res.response as string;
   if (!result) {
-    debug("从 Arxiv API 请求失败");
+    debug("Failed to get DOI from arXiv");
     return undefined;
   }
   const doc = new DOMParser().parseFromString(result, "text/xml");
