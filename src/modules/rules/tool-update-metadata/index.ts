@@ -88,7 +88,7 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
         return;
       }
 
-      if (options.allowTypeChanged === true) {
+      if (!options.allowTypeChanged) {
         debug("User diasble to change itemType");
         return;
       }
