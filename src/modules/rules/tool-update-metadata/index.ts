@@ -29,22 +29,19 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
 
     // 2. get available metadata services, request metadata and clean data
     let data: CleanedData | null = null;
+    let errorMessage: string = "";
     for (const service of services) {
       if (!service.shouldProcess({ item, identifiers }))
         continue;
 
       debug(`Service ${service.name} processing...`);
+
       await service.refreshIdentifiers?.({ item, identifiers });
 
       const res = await service.request?.({ item, identifiers })
         .catch((error) => {
           debug(`Service ${service.name} failed: ${error.message}`);
-          if (error.message.match(/Too Many Requests/i)) {
-            report({
-              level: "error",
-              message: `${service.name}: Too Many Requests`,
-            });
-          }
+          errorMessage += `${service.name}: ${error.message}\n`;
         });
 
       if (!res) {
@@ -62,7 +59,7 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
     if (!data) {
       report({
         level: "error",
-        message: "No metadata found.",
+        message: `No metadata found. ${errorMessage}`,
       });
       return;
     }
