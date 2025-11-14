@@ -62,6 +62,9 @@ export function sortExtraFieldMap(
       return 1;
 
     // 4️⃣ Others, alphabeti
+    if (keyA === "__nonStandard__" || keyB === "__nonStandard__")
+      return -1;
+
     return collator.compare(keyA, keyB);
   });
 
