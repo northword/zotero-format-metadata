@@ -8,6 +8,7 @@ import { services } from "./services";
 interface UpdateMetadataOption {
   mode: "selected" | "blank" | "all";
   allowTypeChanged: boolean;
+  // lint: boolean;
 }
 
 export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
@@ -134,6 +135,9 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
     applyItemCreators(data);
     const { itemType, creators, ...fields } = data;
     applyItemFields(fields);
+
+    // if (options.lint)
+    //   addon.runner.add({ rules: "standard", items: item });
   },
 
   async prepare() {
@@ -162,6 +166,13 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
           checked: true,
         },
       }, { valueType: "boolean" })
+      // .addSetting("Run Lint After Retrive", "lint", {
+      //   tag: "input",
+      //   attributes: {
+      //     type: "checkbox",
+      //     checked: true,
+      //   },
+      // }, { valueType: "boolean" })
       .addStaticRow("Notes", {
         tag: "ul",
         children: [{

@@ -6,6 +6,7 @@ import { toArray } from "../utils/general";
 import { createLogger } from "../utils/logger";
 import { isFieldValidForItemType } from "../utils/zotero";
 import { createReporter, ProgressUI } from "./reporter";
+import { Rules } from "./rules";
 
 const logger = createLogger("Runner");
 /**
@@ -90,17 +91,21 @@ export class LintRunner {
     rules: Arrayable<Rule<any>>;
     silent?: boolean;
   }): Promise<void> {
-    let { items, rules, silent = false } = params;
+    const { items: _items, rules: _rules, silent = false } = params;
 
     this.initStats();
     await this.ui.init(silent);
 
-    items = toArray(items);
-    rules = toArray(rules);
+    const items = toArray(_items);
+    const rules = toArray(_rules);
 
     const optionsMap = await this.prepareRules(rules, items);
 
-    if (items.length === 0 || ![...optionsMap.values().filter(Boolean)].length) {
+    if (
+      items.length === 0 // No items
+      || ![...optionsMap.values()][0] // Main rule is skiped, e.g. tool-update-metadata dialog is closed without click ok
+      || ![...optionsMap.values().filter(Boolean)].length // All rules are skiped
+    ) {
       this.finish();
       return;
     }
@@ -192,8 +197,6 @@ export class LintRunner {
         continue;
       }
 
-      logger.debug(`Applying ${rule.id}`);
-
       await this.applyRule(item, rule, options)
         .catch((e) => { errors.push(e); });
     }
@@ -207,6 +210,8 @@ export class LintRunner {
   }
 
   public async applyRule(item: Zotero.Item, rule: Rule<any>, options: any) {
+    logger.debug(`Applying ${rule.id}`);
+
     const ctx: ApplyContext = {
       item,
       options,
@@ -249,6 +254,10 @@ export class LintRunner {
 
       throw error;
     }
+  }
+
+  public async applyRuleByID(item: Zotero.Item, ruleID: ID, options: any) {
+    return await this.applyRule(item, Rules.getByID(ruleID)!, options);
   }
 
   // ----------------------------

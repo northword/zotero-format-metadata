@@ -2,7 +2,6 @@ import { useSettingsDialog } from "../../utils/dialog";
 import { getPinyin, getSurnamePinyin, splitChineseName } from "../../utils/pinyin";
 import { capitalizeFirstLetter } from "../../utils/str";
 import { splitPinyin } from "./correct-creators-pinyin";
-import { CorrectExtraOrder } from "./correct-extra-order";
 import { defineRule } from "./rule-base";
 
 interface Options {
@@ -26,13 +25,13 @@ export const ToolCSLHelper = defineRule<Options>({
     l10nID: "rule-tool-csl-helper-menu-field",
   },
 
-  async apply({ item, options, debug, report }) {
+  async apply({ item, options }) {
     const existingFields = ztoolkit.ExtraField.getExtraFields(item);
     for (const [key, value] of Object.entries(options.data ?? {})) {
       existingFields.set(key, value);
     }
     ztoolkit.ExtraField.replaceExtraFields(item, existingFields, { save: false });
-    CorrectExtraOrder.apply({ item, options, debug, report });
+    addon.runner.applyRuleByID(item, "correct-extra-order", {});
   },
 
   async prepare({ items, debug }) {
