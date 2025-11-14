@@ -140,6 +140,10 @@ export class ProgressUI {
   private progressWindow?: ProgressWindowHelper;
   private _onCancel?: () => void;
 
+  constructor(options?: { onCancel?: () => void }) {
+    this._onCancel = options?.onCancel;
+  }
+
   public async init(slient?: boolean): Promise<void> {
     this.progressWindow?.close();
 
@@ -171,10 +175,6 @@ export class ProgressUI {
     }
   }
 
-  public onCancel(fn: () => void): void {
-    this._onCancel = fn;
-  }
-
   public updateProgress(current: number, total: number): void {
     if (!this.progressWindow)
       return;
@@ -195,26 +195,20 @@ export class ProgressUI {
     if (!this.progressWindow)
       return;
 
-    const text = [
-      "[",
-      `✔️${successCount}`,
-      errorCount ? ` ❌${errorCount}` : "",
-      "] ",
-      getString("info-batch-finish"),
-    ].join("");
+    const text = successCount + errorCount
+      ? [
+          "[",
+          `✔️${successCount}`,
+          errorCount ? ` ❌${errorCount}` : "",
+          "] ",
+          getString("info-batch-finish"),
+        ].join("")
+      : getString("info-batch-no-selected");
 
     this.progressWindow
       .changeLine({ text, progress: 100, idx: 0 })
       .changeLine({ text: `Finished in ${duration}s`, idx: 1 })
       .startCloseTimer(PROGRESS_WINDOW_CLOSE_DELAY);
-  }
-
-  public showNoTasks(): void {
-    this.progressWindow?.changeLine({
-      text: getString("info-batch-no-selected"),
-      idx: 0,
-    });
-    this.progressWindow?.startCloseTimer(PROGRESS_WINDOW_CLOSE_DELAY);
   }
 
   private handleStopRequest = (ev: MouseEvent): void => {

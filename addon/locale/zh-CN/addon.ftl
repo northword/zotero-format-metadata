@@ -11,7 +11,7 @@ field-abbr = 缩写
 
 ## batch
 info-batch-init = 初始化中...
-info-batch-no-selected = 未选中任何条目
+info-batch-no-selected = 未发现可执行的任务
 info-batch-running = 正在处理中，请耐心等待...
 info-batch-finish = 处理完成
 info-batch-break = 点击此处结束本次处理

@@ -14,9 +14,6 @@ if (!basicTool.getGlobal("Zotero")[config.addonInstance]) {
     return _globalThis.addon.data.ztoolkit;
   });
 
-  // p-queue require queueMicrotask
-  globalThis.queueMicrotask = basicTool.getGlobal("queueMicrotask");
-
   // @ts-expect-error - Plugin instance is not typed
   Zotero[config.addonInstance] = addon;
 }

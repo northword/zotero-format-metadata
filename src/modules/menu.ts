@@ -161,7 +161,7 @@ function registerItemMenus() {
         menuType: "menuitem",
         l10nID: getLocaleID("menuitem-label"),
         onCommand(event, { items }) {
-          addon.hooks.onLintInBatch("tool-update-metadata", items!);
+          addon.hooks.onLintInBatch("standard", items!);
         },
       }],
     });

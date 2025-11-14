@@ -1,24 +1,18 @@
 import type { Arrayable } from "../utils/types";
 import type { ReportInfo } from "./reporter";
 import type { ApplyContext, PrepareContext, Rule } from "./rules/rule-base";
-import PQueue from "p-queue";
 import { DataLoader } from "../utils/data-loader";
+import { toArray } from "../utils/general";
 import { createLogger } from "../utils/logger";
 import { isFieldValidForItemType } from "../utils/zotero";
 import { createReporter, ProgressUI } from "./reporter";
 
 const logger = createLogger("Runner");
-
-export interface Task {
-  items: Arrayable<Zotero.Item>;
-  rules: Arrayable<Rule<any>>;
-}
-
-interface ResolvedTask {
-  item: Zotero.Item;
-  rules: Rule<any>[];
-  optionsMap: Map<string, object | false>;
-}
+/**
+ * ConcurrentCaller
+ * @see https://github.com/zotero/zotero/blob/main/resource/concurrentCaller.mjs
+ */
+const { ConcurrentCaller } = ChromeUtils.importESModule("resource://zotero/concurrentCaller.mjs");
 
 interface RunnerStats {
   total: number;
@@ -79,92 +73,118 @@ function shouldApplyRule(rule: Rule<any>, item: Zotero.Item): boolean {
 }
 
 export class LintRunner {
-  private stats: RunnerStats = this.createEmptyStats();
+  private stats: RunnerStats = this.emptyStats();
+  private readonly ui = new ProgressUI({
+    // caller.stop() throws an CanceledException but we cannot catch it
+    onCancel: () => this.caller.stop(),
+  });
 
-  private readonly queue: PQueue = new PQueue({
-    concurrency: 1,
-    autoStart: true,
-    timeout: 60000,
-  })
-    .on("add", this.onAdd.bind(this))
-    .on("completed", this.onComplated.bind(this))
-    .on("error", this.onError.bind(this))
-    .on("idle", this.onIdle.bind(this));
+  private readonly caller = new ConcurrentCaller({
+    numConcurrent: 1,
+    stopOnError: false,
+    logger: logger.debug,
+  });
 
-  private readonly ui: ProgressUI = new ProgressUI();
+  public async add(params: {
+    items: Arrayable<Zotero.Item>;
+    rules: Arrayable<Rule<any>>;
+    silent?: boolean;
+  }): Promise<void> {
+    let { items, rules, silent = false } = params;
 
-  constructor() {
-    this.ui.onCancel(() => this.queue.clear());
-  }
+    this.initStats();
+    await this.ui.init(silent);
 
-  public async add(task: Task, slient = false): Promise<void> {
-    this.stats = this.createEmptyStats();
-    this.stats.startTime = Date.now();
+    items = toArray(items);
+    rules = toArray(rules);
 
-    logger.debug(`Add tasks at ${new Date(this.stats.startTime).toLocaleTimeString()}`);
-    await this.ui.init(slient);
+    const optionsMap = await this.prepareRules(rules, items);
 
-    const resolvedTasks = await this.resolveTasks(task);
-
-    if (resolvedTasks.length === 0) {
-      this.ui.showNoTasks();
+    if (items.length === 0 || ![...optionsMap.values().filter(Boolean)].length) {
+      this.finish();
       return;
     }
 
-    const queueTasks = resolvedTasks.map(rt => this.wrapTask(rt));
-    this.queue.addAll(queueTasks);
+    this.stats.total += items.length;
+    this.ui.updateProgress(this.stats.current, this.stats.total);
+
+    for (const item of items) {
+      this.enqueueItem(item, rules, optionsMap);
+    }
+
+    this.caller.wait().then(() => this.finish());
   }
 
-  private async resolveTasks(task: Task): Promise<ResolvedTask[]> {
-    const items = Array.isArray(task.items) ? task.items : [task.items];
-    const rules = Array.isArray(task.rules) ? task.rules.flat() : [task.rules];
+  // ----------------------------
+  // Preparation
+  // ----------------------------
 
-    const optionsMap = new Map<string, any>();
+  private async prepareRules(rules: Rule<any>[], items: Zotero.Item[]) {
+    const optionsMap = new Map<ID, any>();
+
     for (const rule of rules) {
-      if (rule.prepare) {
+      try {
         const ctx: PrepareContext = {
           items,
-          debug: (...args: any[]) => logger.debug(`[prepare] [${rule.id}]`, ...args),
+          debug: (...a) => logger.debug(`[prepare] [${rule.id}]`, ...a),
         };
+        optionsMap.set(rule.id, await rule.prepare?.(ctx) ?? {});
+      }
+      catch (err) {
+        this.stats.records.push({
+          message: err instanceof Error ? err.message : String(err),
+          level: "error",
+          itemID: 0,
+          title: "Prepare failed",
+          ruleID: rule.id,
+        });
+        logger.error(`Failed to prepare rule ${rule.id}:`, err);
 
-        try {
-          optionsMap.set(rule.id, await rule.prepare(ctx));
-        }
-        catch (error) {
-          this.stats.records.push({
-            level: "error",
-            message: error instanceof Error ? error.message : String(error),
-            itemID: 0,
-            title: "Error: Failed to prepare",
-            ruleID: rule.id,
-          });
-          logger.error(`Failed to prepare rule ${rule.id}:`, error);
-          this.onError(error);
-          this.onIdle();
-          throw error;
-        }
+        this.finish();
+        throw err;
       }
     }
-    logger.debug("Options:", optionsMap);
 
-    return items.map(item => ({ item, rules, optionsMap }));
+    logger.debug("Options map:", optionsMap);
+    return optionsMap;
   }
 
-  private wrapTask(resolvedTask: ResolvedTask): () => Promise<void> {
-    return async () => {
-      await this.runTask(resolvedTask);
-    };
+  // ----------------------------
+  // Queue
+  // ----------------------------
+
+  private enqueueItem(
+    item: Zotero.Item,
+    rules: Rule<any>[],
+    optionsMap: Map<string, any>,
+  ) {
+    this.caller.start(async () => {
+      try {
+        // await Zotero.Promise.delay(2000);
+        await this.lintItem(item, rules, optionsMap);
+        this.updateStats("pass");
+      }
+      catch {
+        this.updateStats("error");
+      }
+    });
   }
 
-  private async runTask({ item, rules, optionsMap }: ResolvedTask) {
+  // ----------------------------
+  // Lint item
+  // ----------------------------
+
+  public async lintItem(
+    item: Zotero.Item,
+    rules: Rule<any>[],
+    optionsMap: Map<string, any>,
+  ) {
     logger.debug(`Linting item ${item.id}`);
-
-    const errors = [];
+    const errors: any[] = [];
 
     for (const rule of rules) {
-      if (!shouldApplyRule(rule, item)) {
+      if (!shouldApplyRule(rule, item))
         continue;
-      }
 
       const options = optionsMap.get(rule.id) ?? {};
       if (options === false) {
@@ -174,38 +194,23 @@ export class LintRunner {
 
       logger.debug(`Applying ${rule.id}`);
 
-      await this.runRule({
-        item,
-        rule,
-        options,
-      })
-        .catch(e => errors.push(e));
-    }
-
-    // Add tags to indicate whether there are errors
-    // TODO: remove this feature? because we alrady have reports
-    if (!errors.length) {
-      if (item.hasTag("linter/error"))
-        item.removeTag("linter/error");
-    }
-    else {
-      item.addTag("linter/error", 1);
+      await this.applyRule(item, rule, options)
+        .catch((e) => { errors.push(e); });
     }
 
     // Save item, after all rules are applied
     await item.saveTx();
 
     // If there are errors, throw a error so queue can catch
-    if (errors.length) {
+    if (errors.length)
       throw new Error(`Item ${item.id} failed ${errors.length} rules`);
-    }
   }
 
-  private async runRule({ item, rule, options }: { item: Zotero.Item; rule: Rule<any>; options: object }): Promise<void> {
+  public async applyRule(item: Zotero.Item, rule: Rule<any>, options: any) {
     const ctx: ApplyContext = {
       item,
       options,
-      debug: (...arg) => createLogger(rule.id).debug(...arg),
+      debug: (...a) => createLogger(rule.id).debug(...a),
       report: (info) => {
         this.stats.records.push({
           ...info,
@@ -213,32 +218,24 @@ export class LintRunner {
           title: item.getDisplayTitle(),
           ruleID: rule.id,
         });
-        logger.log(`[${rule.id}] Report ${info.level} for item ${item.id}:`, info.message);
       },
     };
 
     try {
       await rule.apply(ctx);
     }
-
     catch (error: any) {
-      logger.error(error, item);
-
       // We just show the message in the reporter window
       let message: string = "Error: ";
-      if (error instanceof Error) {
+      if (error instanceof Error)
         message += error.message;
-      }
       // Zotero.HTTP.request error, the message is too long, here we just show the status
-      else if ("xmlhttp" in error && "message" in error) {
+      else if ("xmlhttp" in error && "message" in error)
         message += `HTTP request error, status ${error.status}, ${message.slice(0, 250)}`;
-      }
-      else if ("message" in error) {
+      else if ("message" in error)
         message += `${error.message}`;
-      }
-      else {
+      else
         message += String(error);
-      }
 
       this.stats.records.push({
         message,
@@ -248,45 +245,44 @@ export class LintRunner {
         ruleID: rule.id,
       });
 
+      logger.error(`[${rule.id}] apply error`, error);
+
       throw error;
     }
   }
 
-  private onAdd(): void {
-    this.stats.total++;
-    this.ui.updateProgress(this.stats.current, this.stats.total);
-  }
+  // ----------------------------
+  // Stats / UI / Finalization
+  // ----------------------------
 
-  private onComplated(): void {
-    this.stats.pass++;
+  private updateStats(type: "pass" | "error") {
+    this.stats[type]++;
     this.stats.current++;
     this.ui.updateProgress(this.stats.current, this.stats.total);
   }
 
-  private onError(_error: unknown): void {
-    this.stats.error++;
-    this.stats.current++;
-    this.ui.updateProgress(this.stats.current, this.stats.total);
-    this.ui.showError();
+  private initStats() {
+    if (!this.stats.startTime)
+      this.stats.startTime = Date.now();
+    logger.debug(`Add tasks at ${new Date().toLocaleTimeString()}`);
   }
 
-  private onIdle(): void {
+  private finish() {
+    if (this.stats.startTime === this.emptyStats().startTime)
+      return;
+
     const duration = (Date.now() - this.stats.startTime) / 1000;
-    this.ui.showFinished(
-      this.stats.pass,
-      this.stats.error,
-      duration,
-    );
+    this.ui.showFinished(this.stats.pass, this.stats.error, duration);
 
-    if (this.stats.records.length !== 0)
+    if (this.stats.records.length)
       createReporter(this.stats.records);
 
-    this.stats = this.createEmptyStats();
     DataLoader.clearCache();
+    this.stats = this.emptyStats();
     logger.debug(`Batch tasks completed in ${duration}s`);
   }
 
-  private createEmptyStats(): RunnerStats {
+  private emptyStats(): RunnerStats {
     return {
       total: 0,
       current: 0,
