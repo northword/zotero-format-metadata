@@ -1,6 +1,7 @@
 import type { Arrayable } from "../utils/types";
 import type { ReportInfo } from "./reporter";
 import type { ApplyContext, PrepareContext, Rule } from "./rules/rule-base";
+import { withTimeout } from "es-toolkit";
 import { DataLoader } from "../utils/data-loader";
 import { toArray } from "../utils/general";
 import { createLogger } from "../utils/logger";
@@ -86,6 +87,7 @@ export class LintRunner {
     numConcurrent: 1,
     stopOnError: false,
     logger: logger.debug,
+    onError: (err: any) => logger.error(err),
   });
 
   public async add(params: {
@@ -167,12 +169,13 @@ export class LintRunner {
   ) {
     this.caller.start(async () => {
       try {
-        // await Zotero.Promise.delay(2000);
+        // await Zotero.Promise.delay(20000);
         await this.lintItem(item, rules, optionsMap);
         this.updateStats("pass");
       }
-      catch {
+      catch (err) {
         this.updateStats("error");
+        throw err;
       }
     });
   }
@@ -199,8 +202,37 @@ export class LintRunner {
         continue;
       }
 
-      await this.applyRule(item, rule, options)
-        .catch((e) => { errors.push(e); });
+      // await withTimeout(() => Zotero.Promise.delay(100), 10)
+      await withTimeout(
+        () => this.applyRule(item, rule, options),
+        15_000,
+      )
+        // We expect one rule's error does not affect next rule apply,
+        // so we eat any error here and throw them after all rules applied.
+        .catch((error) => {
+          let message: string = "";
+          // Zotero.HTTP.request error, the message is too long, here we just show the status
+          if ("xmlhttp" in error && "message" in error)
+            message += `HTTP request error: status ${error.status}, ${message.slice(0, 250)}`;
+          // For regular error, we just show the message in the reporter window
+          else if (error instanceof Error || "message" in error)
+            message += `${error.name}: ${error.message}`;
+          // If error not have message, we show the error string
+          else
+            message += String(error);
+
+          this.stats.records.push({
+            message,
+            level: "error",
+            itemID: item.id,
+            title: item.getDisplayTitle(),
+            ruleID: rule.id,
+          });
+
+          logger.error(`[${rule.id}]`, error);
+
+          errors.push(error);
+        });
     }
 
     // Save item, after all rules are applied
@@ -208,7 +240,7 @@ export class LintRunner {
 
     // If there are errors, throw a error so queue can catch
     if (errors.length)
-      throw new Error(`Item ${item.id} failed ${errors.length} rules`);
+      throw new Error(`Item ${item.id} failed ${errors.length} rules`, { cause: errors });
   }
 
   public async applyRule(item: Zotero.Item, rule: Rule<any>, options: any) {
@@ -228,34 +260,7 @@ export class LintRunner {
       },
     };
 
-    try {
-      await rule.apply(ctx);
-    }
-    catch (error: any) {
-      // We just show the message in the reporter window
-      let message: string = "Error: ";
-      if (error instanceof Error)
-        message += error.message;
-      // Zotero.HTTP.request error, the message is too long, here we just show the status
-      else if ("xmlhttp" in error && "message" in error)
-        message += `HTTP request error, status ${error.status}, ${message.slice(0, 250)}`;
-      else if ("message" in error)
-        message += `${error.message}`;
-      else
-        message += String(error);
-
-      this.stats.records.push({
-        message,
-        level: "error",
-        itemID: item.id,
-        title: item.getDisplayTitle(),
-        ruleID: rule.id,
-      });
-
-      logger.error(`[${rule.id}] apply error`, error);
-
-      throw error;
-    }
+    await rule.apply(ctx);
   }
 
   public async applyRuleByID(item: Zotero.Item, ruleID: ID, options: any) {
