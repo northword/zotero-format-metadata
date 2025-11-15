@@ -7,6 +7,8 @@ import { Rules } from "./rules";
 type FieldMenu = _ZoteroTypes.MenuManager.MenuData<_ZoteroTypes.MenuManager.ItemPaneMenuContext>;
 type ItemMenu = _ZoteroTypes.MenuManager.MenuData<_ZoteroTypes.MenuManager.LibraryMenuContext>;
 
+const icon = `${rootURI}/content/icons/favicon.png`;
+
 function registerFieldMenus() {
   if (!Zotero.version.startsWith("8"))
     return;
@@ -81,7 +83,6 @@ function registerItemMenus() {
     };
   }
 
-  const icon = `${rootURI}/content/icons/favicon.png`;
   const menus: ItemMenu[] = [
     {
       menuType: "submenu",
@@ -169,8 +170,20 @@ function registerItemMenus() {
 }
 
 function registerItemMenusByZToolkit() {
-  const menuIcon = `${rootURI}/content/icons/favicon.png`;
   function getMenuItem(menuPopup: string) {
+    function makeItemMenu(id: ID): MenuitemOptions {
+      return {
+        tag: "menuitem",
+        // @ts-expect-error some rules are not defined in the item menu
+        label: getString(`rule-${id}-menu-item`) || id,
+        commandListener: () => {
+          addon.hooks.onLintInBatch(id, menuPopup);
+        },
+      };
+    }
+
+    const separator: MenuitemOptions = { tag: "menuseparator" };
+
     const menuItem: MenuitemOptions[] = [
       {
         tag: "menuitem",
@@ -179,81 +192,20 @@ function registerItemMenusByZToolkit() {
           addon.hooks.onLintInBatch("standard", menuPopup);
         },
       },
-      {
-        tag: "menuseparator",
-      },
-      {
-        tag: "menuitem",
-        label: getString("rule-correct-title-sentence-case-menu-item"),
-        commandListener: () => {
-          addon.hooks.onLintInBatch("correct-title-sentence-case", menuPopup);
-        },
-      },
-      {
-        tag: "menuitem",
-        label: getString("rule-correct-creators-case-menu-item"),
-        commandListener: () => {
-          addon.hooks.onLintInBatch("correct-creators-case", menuPopup);
-        },
-      },
-      {
-        tag: "menuitem",
-        label: getString("rule-correct-creators-pinyin-menu-item"),
-        commandListener: () => {
-          addon.hooks.onLintInBatch("correct-creators-pinyin", menuPopup);
-        },
-      },
-      {
-        tag: "menuseparator",
-      },
-      {
-        tag: "menuitem",
-        label: getString("rule-require-language-menu-item"),
-        commandListener: () => {
-          addon.hooks.onLintInBatch("require-language", menuPopup);
-        },
-      },
-      {
-        tag: "menuitem",
-        label: getString("rule-tool-set-language-menu-item"),
-        commandListener: () => {
-          addon.hooks.onLintInBatch("tool-set-language", menuPopup);
-        },
-      },
-      {
-        tag: "menuseparator",
-      },
-      {
-        tag: "menuitem",
-        label: getString("rule-correct-publication-title-case-menu-item"),
-        commandListener: () => {
-          addon.hooks.onLintInBatch("correct-publication-title-case", menuPopup);
-        },
-      },
-      {
-        tag: "menuitem",
-        label: getString("rule-correct-publication-title-alias-menu-item"),
-        commandListener: () => {
-          addon.hooks.onLintInBatch("correct-publication-title-alias", menuPopup);
-        },
-      },
-      {
-        tag: "menuitem",
-        label: getString("rule-require-journal-abbr-menu-item"),
-        commandListener: () => {
-          addon.hooks.onLintInBatch("require-journal-abbr", menuPopup);
-        },
-      },
-      {
-        tag: "menuitem",
-        label: getString("rule-require-university-place-menu-item"),
-        commandListener: () => {
-          addon.hooks.onLintInBatch("require-university-place", menuPopup);
-        },
-      },
-      {
-        tag: "menuseparator",
-      },
+      separator,
+      makeItemMenu("correct-title-sentence-case"),
+      makeItemMenu("correct-title-chemical-formula"),
+      makeItemMenu("correct-creators-case"),
+      makeItemMenu("correct-creators-pinyin"),
+      separator,
+      makeItemMenu("require-language"),
+      makeItemMenu("tool-set-language"),
+      separator,
+      makeItemMenu("correct-publication-title-case"),
+      makeItemMenu("correct-publication-title-alias"),
+      makeItemMenu("require-journal-abbr"),
+      makeItemMenu("require-university-place"),
+      separator,
       {
         tag: "menuitem",
         label: getString("rule-tool-update-metadata-menu-item"),
@@ -261,64 +213,21 @@ function registerItemMenusByZToolkit() {
           addon.hooks.onLintInBatch(["tool-update-metadata", "standard"], menuPopup);
         },
       },
-      {
-        tag: "menuseparator",
-      },
+      separator,
       {
         tag: "menu",
         label: getString("menuTools-label"),
-        icon: menuIcon,
+        icon,
         children: [
-          {
-            tag: "menuitem",
-            label: getString("rule-tool-title-guillemet-menu-item"),
-            commandListener: () => {
-              addon.hooks.onLintInBatch("tool-title-guillemet", "item");
-            },
-          },
-          {
-            tag: "menuseparator",
-          },
-          {
-            tag: "menuitem",
-            label: getString("rule-no-doi-prefix-menu-item"),
-            commandListener: () => {
-              addon.hooks.onLintInBatch("no-doi-prefix", menuPopup);
-            },
-            disabled: true,
-          },
-          {
-            tag: "menuitem",
-            label: getString("rule-tool-get-short-doi-menu-item"),
-            commandListener: () => {
-              addon.hooks.onLintInBatch("tool-get-short-doi", menuPopup);
-            },
-          },
-          {
-            tag: "menuitem",
-            label: getString("rule-correct-date-format-menu-item"),
-            commandListener: () => {
-              addon.hooks.onLintInBatch("correct-date-format", menuPopup);
-            },
-          },
-          {
-            tag: "menuseparator",
-          },
-
-          {
-            tag: "menuitem",
-            label: getString("rule-tool-csl-helper-menu-item"),
-            commandListener: () => {
-              addon.hooks.onLintInBatch("tool-csl-helper", menuPopup);
-            },
-          },
-          {
-            tag: "menuitem",
-            label: getString("rule-tool-creators-ext-menu-item"),
-            commandListener: () => {
-              addon.hooks.onLintInBatch("tool-creators-ext", menuPopup);
-            },
-          },
+          makeItemMenu("tool-title-guillemet"),
+          separator,
+          makeItemMenu("no-doi-prefix"),
+          makeItemMenu("tool-get-short-doi"),
+          makeItemMenu("correct-date-format"),
+          separator,
+          makeItemMenu("tool-clean-extra"),
+          makeItemMenu("tool-csl-helper"),
+          makeItemMenu("tool-creators-ext"),
         ],
       },
     ];
@@ -331,9 +240,9 @@ function registerItemMenusByZToolkit() {
   });
   ztoolkit.Menu.register("item", {
     tag: "menu",
-    label: getString("menuitem-label"), // 格式化条目元数据
+    label: getString("menuitem-label"),
     id: "linter-menu-item",
-    icon: menuIcon,
+    icon,
     children: getMenuItem("item"),
     getVisibility: (_elem, _ev) => isRegularItem(),
     styles: {
@@ -349,7 +258,7 @@ function registerItemMenusByZToolkit() {
     tag: "menu",
     label: getString("menuitem-label"),
     id: "",
-    icon: menuIcon,
+    icon,
     children: getMenuItem("collection"),
   });
 }
