@@ -61,10 +61,11 @@ export function sortExtraFieldMap(
     if (!aIsOriginal && bIsOriginal)
       return 1;
 
-    // 4️⃣ Others, alphabeti
+    // 4️⃣ __nonStandard__ keep last
     if (keyA === "__nonStandard__" || keyB === "__nonStandard__")
       return -1;
 
+    // 5️⃣ Others, alphabeti
     return collator.compare(keyA, keyB);
   });
 
