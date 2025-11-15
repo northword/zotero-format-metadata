@@ -32,14 +32,17 @@ export default defineConfig({
     },
     esbuildOptions: [
       {
-        entryPoints: ["src/index.ts"],
+        entryPoints: [
+          { in: "src/index.ts", out: pkg.config.addonRef },
+        ],
         define: {
           __env__: `"${env.NODE_ENV}"`,
         },
         bundle: true,
         format: "esm",
         target: "firefox115",
-        outfile: `.scaffold/build/addon/content/scripts/${pkg.config.addonRef}.js`,
+        outdir: `.scaffold/build/addon/content/scripts/`,
+        external: ["Zotero"],
       },
     ],
     makeUpdateJson: {

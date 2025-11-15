@@ -23,6 +23,7 @@ export const ToolGetShortDOI = defineRule({
   targetItemField: "DOI",
   category: "tool",
   targetItemTypes: ["journalArticle", "conferencePaper"],
+  cooldown: 20, //  The rate limit is 50 requests per second.
 
   async apply({ item, report, debug }) {
     const doi = item.getField("DOI");

@@ -16,6 +16,7 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
   scope: "item",
   targetItemTypes: ["journalArticle", "preprint", "conferencePaper", "webpage"],
   category: "tool",
+  cooldown: Math.max(...services.map(s => s.cooldown ?? 0)),
   async apply({ item, options, report, debug }) {
     // 1. extract identifiers
     const identifiers = extractIdentifiers(item);

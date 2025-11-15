@@ -64,6 +64,14 @@ interface RuleBase<Option = object> {
   documentation?: string;
 
   /**
+   * The minimum time interval (in milliseconds) between consecutive executions of this rule.
+   * Used to avoid excessive API calls when running the rule continuously.
+   *
+   * @default 0
+   */
+  cooldown?: number;
+
+  /**
    * Handler of the rule.
    *
    * @example

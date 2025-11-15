@@ -27,6 +27,7 @@ async function doTranslate(translate: any) {
 export const ItemTranslateService = defineService({
   id: "item-translate-service",
   name: "Item Translate Service",
+  cooldown: 100,
   shouldApply: (): boolean => true,
 
   fetch: async ({ item }) => {
@@ -55,6 +56,7 @@ export const ItemTranslateService = defineService({
 export const IdentifiersTranslateService = defineService({
   id: "identifiers-translate-service",
   name: "Identifiers Translate Service",
+  cooldown: 100,
   shouldApply: (): boolean => true,
 
   fetch: async ({ identifiers }) => {
@@ -69,6 +71,7 @@ export const IdentifiersTranslateService = defineService({
 export const URLTranslateService = defineService({
   id: "url-translate-service",
   name: "Web Translate Service",
+  cooldown: 100,
   shouldApply: ({ identifiers }) => !!identifiers.URL,
 
   fetch: async ({ identifiers }) => {

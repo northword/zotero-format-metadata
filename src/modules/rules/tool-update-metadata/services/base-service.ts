@@ -1,4 +1,5 @@
 import type { Identifiers } from "../identifies";
+import { Rule } from "../../rule-base";
 
 type MetadataResponse = Record<string, any>;
 
@@ -19,7 +20,10 @@ interface MetadataContext {
 export interface MetadataService<T extends MetadataResponse> {
   id: string;
   name: string;
+  /** @todo unimplemented */
   supportedItemTypes?: string[];
+  /** @see {@link Rule.cooldown}   */
+  cooldown: number;
   /**
    * Determines whether this service should be applied to the current item.
    * Returns `true` if this service is relevant for the item.
