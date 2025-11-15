@@ -17,7 +17,7 @@ class Addon {
     prefs?: {
       window: Window;
     };
-    dialog: Map<string, Window>;
+    dialogs: Map<string, Window>;
   };
 
   public runner: LintRunner;
@@ -33,7 +33,7 @@ class Addon {
       config,
       env: __env__,
       ztoolkit: createZToolkit(),
-      dialog: new Map(),
+      dialogs: new Map(),
     };
     this.hooks = hooks;
     this.api = api;

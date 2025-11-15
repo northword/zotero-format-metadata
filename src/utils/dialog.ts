@@ -6,9 +6,9 @@ import { createLogger } from "./logger";
 const logger = createLogger("useDialog");
 
 export function closeAllDialogs() {
-  for (const [id, dialog] of addon.data.dialog) {
-    dialog.window.close();
-    addon.data.dialog.delete(id);
+  for (const [id, window] of addon.data.dialogs) {
+    window.close();
+    addon.data.dialogs.delete(id);
   }
 }
 
@@ -41,11 +41,11 @@ export function useDialog<T extends DialogHelper | SettingsDialogHelper>(dialog:
     dialog.open(title);
 
     await dialog.dialogData.loadLock?.promise;
-    addon.data.dialog.set(id, dialog.window);
+    addon.data.dialogs.set(id, dialog.window);
     logger.debug("dialog opened, awaiting operation...");
 
     await dialog.dialogData.unloadLock?.promise;
-    addon.data.dialog.delete(id);
+    addon.data.dialogs.delete(id);
     logger.debug("dialog closed with data");
   };
 
