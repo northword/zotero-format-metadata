@@ -37,6 +37,7 @@ export function useDialog<T extends DialogHelper | SettingsDialogHelper>(dialog:
   async function openAndWaitClose(title: string) {
     const id = `${kebabCase(title)}-${Zotero.Utilities.randomString()}`;
 
+    logger.group(id);
     logger.debug(`opening dialog ${id}...`);
     dialog.open(title);
 
@@ -47,6 +48,7 @@ export function useDialog<T extends DialogHelper | SettingsDialogHelper>(dialog:
     await dialog.dialogData.unloadLock?.promise;
     addon.data.dialogs.delete(id);
     logger.debug("dialog closed with data");
+    logger.groupEnd(id);
   };
 
   return { dialog, openAndWaitClose };
