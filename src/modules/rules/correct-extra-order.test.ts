@@ -52,6 +52,17 @@ describe("sortMapByZoteroRules", () => {
     expect(result).toEqual(["apple", "banana", "中文字段"]);
   });
 
+  it("should sort non-standard keys", () => {
+    const map = new Map<string, string[]>([
+      ["__nonStandard__", ["titleTranslation"]],
+      ["type", ["b"]],
+      ["apple", ["a"]],
+    ]);
+
+    const result = [...sortExtraFieldMap(map, zoteroFields).keys()];
+    expect(result).toEqual(["type", "apple", "__nonStandard__"]);
+  });
+
   it("should correctly apply all sorting rules together", () => {
     const map = new Map<string, string[]>([
       ["title", ["A"]],
