@@ -25,37 +25,41 @@ rule-no-value-nullish =
 ## require-language
 rule-require-language =
   .label = Language should be ISO 639-1 code
-rule-require-language-menu-item = Auto detect item language
-rule-require-language-menu-field = Auto detect (Linter)
+rule-require-language-menu-item =
+  .label = Auto detect item language
+rule-require-language-menu-field =
+  .label = Auto detect (Linter)
 
 rule-require-language-option-only = 
-    .label = Limit recognized languages to improve accuracy
+  .label = Limit recognized languages to improve accuracy
 rule-require-language-option-only-cmn = 
-    .label = Chinese (zh)
+  .label = Chinese (zh)
 rule-require-language-option-only-eng = 
-    .label = English (en)
+  .label = English (en)
 rule-require-language-option-only-other = and
 rule-require-language-option-only-other-desc = Enter a comma-separated list of additional ISO 639-1 codes.
 rule-require-language-option-only-other-doc = ISO 639-1 codes
-    .href = https://github.com/northword/zotero-format-metadata#readme
+  .href = https://github.com/northword/zotero-format-metadata#readme
 
 
 ## require-short-title
 rule-require-short-title = 
-    .label = Require short title
+  .label = Require short title
 
 
 ## correct-title-sentence-case
 rule-correct-title-sentence-case =
   .label = Title should be sentence case
-rule-correct-title-sentence-case-menu-item = Convert title to sentence case
-rule-correct-title-sentence-case-menu-field = Sentence case (Linter)
+rule-correct-title-sentence-case-menu-item =
+  .label = Convert title to sentence case
+rule-correct-title-sentence-case-menu-field =
+  .label = Sentence case (Linter)
 
 rule-correct-title-sentence-option-custom-term = Custom term: 
-    .label = Custom terms
+  .label = Custom terms
     .placeholder = Path of custom terms file
 rule-correct-title-sentence-option-custom-term-button = 
-    .label = Choose
+  .label = Choose
 rule-correct-title-sentence-option-custom-term-desc = Custom terms file should be CSV: first column search term, second column replacement, no headers. Regex supported. Separator must be comma or semicolon (no tabs).
 
 
@@ -73,8 +77,10 @@ rule-no-title-trailing-dot =
 ## correct-title-chemical-formula
 rule-correct-title-chemical-formula =
   .label =  Chemical formula should have correct subscripts and superscripts
-rule-correct-title-chemical-formula-menu-item = Correct subscript in chemical formula (experimental)
-rule-correct-title-chemical-formula-menu-field = Chemical formula subscripts (Linter)
+rule-correct-title-chemical-formula-menu-item =
+  .label = Correct subscript in chemical formula (experimental)
+rule-correct-title-chemical-formula-menu-field =
+  .label = Chemical formula subscripts (Linter)
 
 
 ## require-creators
@@ -85,79 +91,95 @@ rule-require-creators =
 ## correct-creators-case
 rule-correct-creators-case =
   .label = Creators should be capitalized
-rule-correct-creators-case-menu-item = Fix case of creators
+rule-correct-creators-case-menu-item =
+  .label = Fix case of creators
 
 
 ## correct-creators-pinyin
 rule-correct-creators-pinyin =
   .label = Chinese creators' Pinyin should be splitted (i.e. Zhang Sanfeng → Zhang San Feng)
-rule-correct-creators-pinyin-menu-item = Split creator Pinyin
+rule-correct-creators-pinyin-menu-item =
+  .label = Split creator Pinyin
 
 
 ## correct-date-format
 rule-correct-date-format =
   .label = Date should be ISO YYYY-MM-DD format
-rule-correct-date-format-menu-item = Normalize date format to ISO
-rule-correct-date-format-menu-field = ISO format (Linter)
+rule-correct-date-format-menu-item =
+  .label = Normalize date format to ISO
+rule-correct-date-format-menu-field =
+  .label = ISO format (Linter)
 
 
 ## correct-extra-order
 rule-correct-extra-order =
   .label = Extra fields should be in order
-rule-correct-extra-order-menu-item = Fix order of extra fields
-rule-correct-extra-order-menu-field = Fix order (Linter)
+rule-correct-extra-order-menu-item =
+  .label = Fix order of extra fields
+rule-correct-extra-order-menu-field =
+  .label = Fix order (Linter)
 
 
 ## correct-publication-title-alias
 rule-correct-publication-title-alias =
   .label = Publication title should be official name
-rule-correct-publication-title-alias-menu-item = Fix alias of publicationTitle
-rule-correct-publication-title-alias-menu-field = Fix alias (Linter)
+rule-correct-publication-title-alias-menu-item =
+  .label = Fix alias of publicationTitle
+rule-correct-publication-title-alias-menu-field =
+  .label = Fix alias (Linter)
 
 
 ## correct-publication-title-case
 rule-correct-publication-title-case =
   .label = Publication title should be Title Case
-rule-correct-publication-title-case-menu-item = Fix capitalization of publicationTitle
-rule-correct-publication-title-case-menu-field = Fix capitalization (Linter)
+rule-correct-publication-title-case-menu-item =
+  .label = Fix capitalization of publicationTitle
+rule-correct-publication-title-case-menu-field =
+  .label = Fix capitalization (Linter)
 
 
 ## require-journal-abbr
 rule-require-journal-abbr =
   .label = Journal abbreviations should be non-empty and ISO 4 format
-rule-require-journal-abbr-menu-item = Look up journal abbreviations
-rule-require-journal-abbr-menu-field = Lookup (Linter)
+rule-require-journal-abbr-menu-item =
+  .label = Look up journal abbreviations
+rule-require-journal-abbr-menu-field =
+  .label = Lookup (Linter)
 
 rule-require-journal-abbr-option-infer = 
-    .label = Auto infer abbreviation via ISO 4 if missing
+  .label = Auto infer abbreviation via ISO 4 if missing
 rule-require-journal-abbr-option-usefull = Use full name if abbreviation unavailable:
 rule-require-journal-abbr-option-usefull-en = 
-    .label = English journal
+  .label = English journal
 rule-require-journal-abbr-option-usefull-zh = 
-    .label = Chinese journal
+  .label = Chinese journal
 rule-require-journal-abbr-option-custom-data-label = Custom abbreviations file:
 rule-require-journal-abbr-option-choose-custom-abbr-data-button = 
-    .label = Choose
+  .label = Choose
 rule-require-journal-abbr-option-choose-custom-abbr-data-input = 
-    .placeholder = Path of custom abbreviation file
+  .placeholder = Path of custom abbreviation file
 rule-require-journal-abbr-option-custom-data-desc = 
-    Supports JSON or CSV. 
-    JSON: `"publicationTitle": "abbreviation"`. 
-    CSV: first col = full title, second col = abbreviation. Separator must be comma or semicolon (no tabs).
+  Supports JSON or CSV. 
+  JSON: `"publicationTitle": "abbreviation"`. 
+  CSV: first col = full title, second col = abbreviation. Separator must be comma or semicolon (no tabs).
 
 
 ## require-doi
 rule-require-doi =
   .label = DOI should be non-empty
-rule-require-doi-menu-item = Retrieve DOI by title
-rule-require-doi-menu-field = Retrieve DOI (Linter)
+rule-require-doi-menu-item =
+  .label = Retrieve DOI by title
+rule-require-doi-menu-field =
+  .label = Retrieve DOI (Linter)
 
 
 ## no-doi-prefix
 rule-no-doi-prefix =
   .label = No URL prefix for DOI
-rule-no-doi-prefix-menu-item = Remove DOI prefix
-rule-no-doi-prefix-menu-field = Remove URL prefix (Linter)
+rule-no-doi-prefix-menu-item =
+  .label = Remove DOI prefix
+rule-no-doi-prefix-menu-field =
+  .label = Remove URL prefix (Linter)
 
 
 ## correct-doi-long
@@ -209,8 +231,10 @@ rule-correct-university-punctuation =
 ## require-university-place
 rule-require-university-place =
   .label = University place should not be empty
-rule-require-university-place-menu-item = Fill university place
-rule-require-university-place-menu-field = Lookup (Linter)
+rule-require-university-place-menu-item =
+  .label = Fill university place
+rule-require-university-place-menu-field =
+  .label = Lookup (Linter)
 
 
 ## correct-edition-numeral
@@ -236,46 +260,54 @@ rule-correct-proceedingsTitle-sentence-case =
 ## tool-title-guillemet
 rule-tool-title-guillemet =
   .label = Convert 〈〉 and 《》 in title
-rule-tool-title-guillemet-menu-item = { rule-tool-title-guillemet.label  }
+rule-tool-title-guillemet-menu-item =
+  .label = { rule-tool-title-guillemet.label  }
 
 
 ## tool-creators-ext
 rule-tool-creators-ext =
   .label = Apply creators extended
-rule-tool-creators-ext-menu-item = { rule-tool-creators-ext.label  }
+rule-tool-creators-ext-menu-item =
+  .label = { rule-tool-creators-ext.label  }
 
 
 ## tool-set-language
 rule-tool-set-language =
   .label = Manually set item language
-rule-tool-set-language-menu-item = { rule-tool-set-language.label }
+rule-tool-set-language-menu-item =
+  .label = { rule-tool-set-language.label }
 
 
 ## tool-update-metadata
 rule-tool-update-metadata =
   .label = Retrieve item metadata via identifier
-rule-tool-update-metadata-menu-item = Retrieve metadata via identifier and lint
+rule-tool-update-metadata-menu-item =
+  .label = Retrieve metadata via identifier and lint
 rule-tool-update-metadata-option-semanticScholarToken = Semantic Scholar API Key: 
-    .label = Semantic Scholar Token
-    .placeholder = Semantic Scholar Token
+  .label = Semantic Scholar Token
+  .placeholder = Semantic Scholar Token
 rule-tool-update-metadata-option-semanticScholarToken-desc = 
-    When updating field data, the plugin queries its bibliographic data from Semantic Scholar. 
-    By default, this API limits requests to 1 per second, and you can increase the rate limit by applying for a free API Key.
+  When updating field data, the plugin queries its bibliographic data from Semantic Scholar. 
+  By default, this API limits requests to 1 per second, and you can increase the rate limit by applying for a free API Key.
 rule-tool-update-metadata-option-semanticScholarToken-link = Request API key
 
 
 ## tool-get-short-doi
-rule-tool-get-short-doi-menu-item = Retrieve short DOI
+rule-tool-get-short-doi-menu-item =
+  .label = Retrieve short DOI
 
 
 ## tool-csl-helper
 rule-tool-csl-helper = 
   .label = CSL-M Field Helper
-rule-tool-csl-helper-menu-item = { rule-tool-csl-helper.label }
-rule-tool-csl-helper-menu-field = { rule-tool-csl-helper.label } (Linter)
+rule-tool-csl-helper-menu-item =
+  .label = { rule-tool-csl-helper.label }
+rule-tool-csl-helper-menu-field =
+  .label = { rule-tool-csl-helper.label } (Linter)
 
 
 ## tool-clean-extra
 rule-tool-clean-extra = 
   .label = Clean extra fields
-rule-tool-clean-extra-menu-item = { rule-tool-clean-extra.label }
+rule-tool-clean-extra-menu-item =
+  .label = { rule-tool-clean-extra.label }
