@@ -95,17 +95,22 @@ function _getString(
   localString: FluentMessageId,
   options: { branch?: string | undefined; args?: Record<string, unknown> } = {},
 ): string {
-  const localStringWithPrefix = `${addon.data.config.addonRef}-${localString}`;
-  const { branch, args } = options;
-  const pattern = addon.data.locale?.current.formatMessagesSync([{ id: localStringWithPrefix, args }])[0] as Pattern;
-  if (!pattern) {
-    return localStringWithPrefix;
+  const localeID = getLocaleID(localString);
+  if (!localeID) {
+    return localString;
   }
+
+  const { branch, args } = options;
+  const pattern = addon.data.locale?.current.formatMessagesSync([{ id: localeID, args }])[0] as Pattern;
+  if (!pattern) {
+    return localeID;
+  }
+
   if (branch && pattern.attributes) {
-    return pattern.attributes.find(attr => attr.name === branch)?.value || localStringWithPrefix;
+    return pattern.attributes.find(attr => attr.name === branch)?.value || localeID;
   }
   else {
-    return pattern.value || localStringWithPrefix;
+    return pattern.value || localeID;
   }
 }
 
