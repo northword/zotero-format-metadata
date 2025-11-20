@@ -2,6 +2,7 @@ import type { FluentMessageId } from "../../typings/i10n";
 
 const localeFilesForJS = [
   "addon.ftl",
+  "main-window.ftl",
   "rules.ftl",
 ];
 
@@ -82,18 +83,26 @@ export function getString(...inputs: any[]) {
   }
 }
 
+interface Pattern {
+  value: string;
+  attributes: Array<{
+    name: string;
+    value: string;
+  }> | null;
+}
+
 function _getString(
   localString: FluentMessageId,
   options: { branch?: string | undefined; args?: Record<string, unknown> } = {},
 ): string {
   const localStringWithPrefix = `${addon.data.config.addonRef}-${localString}`;
   const { branch, args } = options;
-  const pattern = addon.data.locale?.current.formatMessagesSync([{ id: localStringWithPrefix, args }])[0];
+  const pattern = addon.data.locale?.current.formatMessagesSync([{ id: localStringWithPrefix, args }])[0] as Pattern;
   if (!pattern) {
     return localStringWithPrefix;
   }
   if (branch && pattern.attributes) {
-    return pattern.attributes[branch] || localStringWithPrefix;
+    return pattern.attributes.find(attr => attr.name === branch)?.value || localStringWithPrefix;
   }
   else {
     return pattern.value || localStringWithPrefix;

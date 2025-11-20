@@ -1,11 +1,6 @@
 ## General
 prefs-title = Linter
 
-## menu  --  TODO: remove this section on Zotero 8 out
-menuitem-label = Linter
-menuitem-stdFormatFlow = Lint 并修复
-menuTools-label = Linter 其他小工具
-
 ## Item tree
 field-abbr = 缩写
 

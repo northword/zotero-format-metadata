@@ -1,4 +1,5 @@
 import type { MenuitemOptions } from "zotero-plugin-toolkit";
+import type { FluentMessageId } from "../../typings/i10n";
 import { getLocaleID, getString } from "../utils/locale";
 import { logger } from "../utils/logger";
 import { isRegularItem } from "../utils/zotero";
@@ -170,12 +171,16 @@ function registerItemMenus() {
 }
 
 function registerItemMenusByZToolkit() {
+  function getLabel(fluentMessage: FluentMessageId) {
+    return getString(fluentMessage, "label");
+  }
+
   function getMenuItem(menuPopup: string) {
     function makeItemMenu(id: ID): MenuitemOptions {
       return {
         tag: "menuitem",
         // @ts-expect-error some rules are not defined in the item menu
-        label: getString(`rule-${id}-menu-item`) || id,
+        label: getLabel(`rule-${id}-menu-item`) || id,
         commandListener: () => {
           addon.hooks.onLintInBatch(id, menuPopup);
         },
@@ -187,7 +192,7 @@ function registerItemMenusByZToolkit() {
     const menuItem: MenuitemOptions[] = [
       {
         tag: "menuitem",
-        label: getString("menuitem-stdFormatFlow"),
+        label: getLabel("menuitem-stdFormatFlow"),
         commandListener: () => {
           addon.hooks.onLintInBatch("standard", menuPopup);
         },
@@ -208,7 +213,7 @@ function registerItemMenusByZToolkit() {
       separator,
       {
         tag: "menuitem",
-        label: getString("rule-tool-update-metadata-menu-item"),
+        label: getLabel("rule-tool-update-metadata-menu-item"),
         commandListener: () => {
           addon.hooks.onLintInBatch(["tool-update-metadata", "standard"], menuPopup);
         },
@@ -216,7 +221,7 @@ function registerItemMenusByZToolkit() {
       separator,
       {
         tag: "menu",
-        label: getString("menuTools-label"),
+        label: getLabel("menuTools-label"),
         icon,
         children: [
           makeItemMenu("tool-title-guillemet"),
@@ -240,7 +245,7 @@ function registerItemMenusByZToolkit() {
   });
   ztoolkit.Menu.register("item", {
     tag: "menu",
-    label: getString("menuitem-label"),
+    label: getLabel("menuitem-label"),
     id: "linter-menu-item",
     icon,
     children: getMenuItem("item"),
@@ -256,7 +261,7 @@ function registerItemMenusByZToolkit() {
   });
   ztoolkit.Menu.register("collection", {
     tag: "menu",
-    label: getString("menuitem-label"),
+    label: getLabel("menuitem-label"),
     id: "",
     icon,
     children: getMenuItem("collection"),
