@@ -7,47 +7,60 @@ export interface Identifiers {
   URL?: string;
 }
 
+/**
+ * Known preprint services and their matching patterns
+ */
 const KNOW_PREPRINTER_SERVICES: {
   id: keyof Identifiers;
-  urlPattern: string | RegExp;
-  doiPattern: string | RegExp;
-  archiveIDPattern: string | RegExp;
+  urlPattern: RegExp;
+  doiPattern: RegExp;
+  archiveIDPattern: RegExp;
 }[] = [
   {
     id: "arXiv",
     urlPattern: /https?:\/\/arxiv\.org\/abs\//i,
-    doiPattern: /10.48550\/arXiv\./gi,
+    doiPattern: /10\.48550\/arXiv\./i,
     archiveIDPattern: /arxiv:/i,
   },
 ];
 
+/**
+ * Extract identifiers from a Zotero item
+ */
 export function extractIdentifiers(item: Zotero.Item): Identifiers {
   const result: Identifiers = {};
 
-  const archiveID = item.getField("archiveID");
-  const DOI = item.getField("DOI");
-  const DOI_Extra = ztoolkit.ExtraField.getExtraField(item, "DOI");
-  const URL = item.getField("url");
+  const archiveID = item.getField("archiveID") || "";
+  const DOI = item.getField("DOI") || "";
+  const URL = item.getField("url") || "";
 
+  const DOI_Extra = ztoolkit.ExtraField.getExtraField(item, "DOI") || "";
+
+  // Detect preprint services based on DOI, archiveID, extra DOI, or URL
   for (const service of KNOW_PREPRINTER_SERVICES) {
+    let matchedValue: string | null = null;
+
     if (DOI.match(service.doiPattern))
-      result[service.id] = DOI.replace(service.doiPattern, "");
+      matchedValue = DOI.replace(service.doiPattern, "");
     else if (archiveID.match(service.archiveIDPattern))
-      result[service.id] = archiveID.replace(service.archiveIDPattern, "");
-    else if (DOI_Extra && DOI_Extra.match(service.doiPattern))
-      result[service.id] = DOI_Extra.replace(service.doiPattern, "");
+      matchedValue = archiveID.replace(service.archiveIDPattern, "");
+    else if (DOI_Extra.match(service.doiPattern))
+      matchedValue = DOI_Extra.replace(service.doiPattern, "");
     else if (URL.match(service.urlPattern))
-      result[service.id] = URL.replace(service.urlPattern, "");
+      matchedValue = URL.replace(service.urlPattern, "");
+
+    if (matchedValue) {
+      result[service.id] = matchedValue;
+    }
   }
 
-  if (
-    DOI
-    && !result.arXiv
-  ) {
-    result.DOI = DOI;
-  }
+  // Determine final DOI (priority: main -> extra -> extracted from URL)
+  const DOI_From_URL = extractDOIFromUrl(URL);
+  result.DOI = DOI || DOI_Extra || DOI_From_URL || undefined;
 
-  const PMCID = ztoolkit.ExtraField.getExtraField(item, "PMCID");
+  // Other optional fields from Extra
+  const PMCID = ztoolkit.ExtraField.getExtraField(item, "PMCID")
+    || ztoolkit.ExtraField.getExtraField(item, "PMID");
   if (PMCID)
     result.PMID = PMCID;
 
@@ -63,4 +76,34 @@ export function extractIdentifiers(item: Zotero.Item): Identifiers {
     result.URL = URL;
 
   return result;
+}
+
+/**
+ * Extract DOI from a given URL string
+ */
+export function extractDOIFromUrl(url: string): string | null {
+  if (typeof url !== "string" || !url.trim())
+    return null;
+
+  // Try decode URL (handle % encoded characters)
+  let decoded = url;
+  try {
+    decoded = decodeURIComponent(url);
+  }
+  catch {
+    // If decode fails, use the original URL
+  }
+
+  // Standard DOI detection regex compatible with Crossref format
+  const doiRegex = /\b10\.\d{4,9}\/[-.\w;()/:]+/;
+  const match = decoded.match(doiRegex);
+  if (!match)
+    return null;
+
+  let doi = match[0];
+
+  // Clean trailing non-DOI characters (common for punctuation)
+  doi = doi.replace(/[^-.\w;()/:]/g, "");
+
+  return doi;
 }
