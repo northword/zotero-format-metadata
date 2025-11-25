@@ -1,4 +1,4 @@
-import type { Identifiers } from "../identifies";
+import type { Identifiers } from "../identifiers";
 import { Rule } from "../../rule-base";
 
 type MetadataResponse = Record<string, any>;

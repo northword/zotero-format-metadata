@@ -2,7 +2,7 @@ import type { TransformedData } from "./services/base-service";
 import { useSettingsDialog } from "../../../utils/dialog";
 import { isFieldValidForItemType } from "../../../utils/zotero";
 import { defineRule } from "../rule-base";
-import { extractIdentifiers } from "./identifies";
+import { extractIdentifiers } from "./identifiers";
 import { services } from "./services";
 
 interface UpdateMetadataOption {
