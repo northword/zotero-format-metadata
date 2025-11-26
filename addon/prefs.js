@@ -1,4 +1,4 @@
-pref("version", "0.0.0");
+pref("version", "__buildVersion__");
 
 // --------------------
 // Lint global settings

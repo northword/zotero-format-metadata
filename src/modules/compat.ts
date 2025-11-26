@@ -117,13 +117,13 @@ export function checkCompat() {
 
 function mvPref(source: string, target: string, defaultValue?: boolean | string | number) {
   // @ts-expect-error target and source may not exist in prefs.js
-  if (getPref(source) !== undefined)
-    // @ts-expect-error target and source may not exist in prefs.js
-    setPref(target, getPref(source));
-  else if (defaultValue !== undefined)
-    // @ts-expect-error target and source may not exist in prefs.js
-    setPref(target, defaultValue);
-  clearPref(source);
+  const sourceValue = getPref(source) as string | boolean | number | undefined;
+  if (!sourceValue && !defaultValue)
+    return;
+
+  // @ts-expect-error target and source may not exist in prefs.js
+  setPref(target, sourceValue || defaultValue);
+  clearPref(target);
 }
 
 /**
