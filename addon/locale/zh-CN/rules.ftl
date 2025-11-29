@@ -65,7 +65,7 @@ rule-correct-title-sentence-option-custom-term-desc =  自定义术语文件使�
 
 ## correct-title-punctuation
 rule-correct-title-punctuation =
-  .label = 规范标题中的符号
+  .label = 标题中的符号应规范
 rule-correct-title-punctuation-menu-field =
   .label = 规范符号（Linter）
 rule-correct-title-punctuation-quotes =
@@ -74,7 +74,7 @@ rule-correct-title-punctuation-quotes =
 
 ## correct-creators-punctuation
 rule-correct-creators-punctuation =
-  .label = 规范作者名中的符号
+  .label = 作者名中的符号应规范
 rule-correct-creators-punctuation-menu-field =
   .label = 规范符号（Linter）
 

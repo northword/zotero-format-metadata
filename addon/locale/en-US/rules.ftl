@@ -65,7 +65,7 @@ rule-correct-title-sentence-option-custom-term-desc = Custom terms file should b
 
 ## correct-title-punctuation
 rule-correct-title-punctuation =
-  .label = Normalize title punctuation
+  .label = Punctuation in title shoule be normalized
 rule-correct-title-punctuation-menu-field =
   .label = Normalize punctuation (Linter)
 rule-correct-title-punctuation-quotes =
@@ -74,7 +74,7 @@ rule-correct-title-punctuation-quotes =
 
 ## correct-creators-punctuation
 rule-correct-creators-punctuation =
-  .label = Normalize creators punctuation
+  .label = Punctuation in creators shoule be normalized
 rule-correct-creators-punctuation-menu-field =
   .label = Normalize punctuation hyphens (Linter)
 
