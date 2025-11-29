@@ -18,7 +18,11 @@ export function convertQuotesToCurly(text: string): string {
   return quote(text);
 }
 
-/** Rule: normalize hyphens in title */
+/**
+ * Rule: normalize punctuation in title
+ *
+ * @see https://github.com/northword/zotero-format-metadata/issues/337
+ */
 export const CorrectTitlePunctuation = defineRule({
   id: "correct-title-punctuation",
   scope: "field",
@@ -45,7 +49,11 @@ export const CorrectTitlePunctuation = defineRule({
   },
 });
 
-/** Rule: normalize hyphens in creators */
+/**
+ * Rule: normalize punctuation in creators
+ *
+ * @see https://github.com/northword/zotero-format-metadata/issues/337
+ */
 export const CorrectCreatorsPunctuation = defineRule({
   id: "correct-creators-punctuation",
   scope: "field",
