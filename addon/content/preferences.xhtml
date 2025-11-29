@@ -87,12 +87,6 @@
     <!-- General Field: Title -->
     <groupbox>
       <label><html:h2 data-l10n-id="section-title" /></label>
-      <!-- 需要短标题 -->
-      <checkbox
-        data-l10n-id="rule-require-short-title"
-        preference="rule.require-short-title"
-        native="true"
-      />
 
       <!-- correct-title-sentence-case -->
       <checkbox
@@ -125,6 +119,20 @@
         />
       </vbox>
 
+      <!-- no-title-trailing-dot -->
+      <checkbox
+        data-l10n-id="rule-no-title-trailing-dot"
+        preference="rule.no-title-trailing-dot"
+        native="true"
+      />
+
+      <!-- 需要短标题 -->
+      <checkbox
+        data-l10n-id="rule-require-short-title"
+        preference="rule.require-short-title"
+        native="true"
+      />
+
       <!-- correct-shortTitle-sentence-case -->
       <checkbox
         data-l10n-id="rule-correct-shortTitle-sentence-case"
@@ -134,13 +142,6 @@
       <description
         data-l10n-id="rule-correct-shortTitle-sentence-case-description"
         class="indented-pref linter-pref-description"
-      />
-
-      <!-- no-title-trailing-dot -->
-      <checkbox
-        data-l10n-id="rule-no-title-trailing-dot"
-        preference="rule.no-title-trailing-dot"
-        native="true"
       />
     </groupbox>
 
