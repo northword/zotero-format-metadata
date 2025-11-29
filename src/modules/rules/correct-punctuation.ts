@@ -8,8 +8,6 @@ import { defineRule } from "./rule-base";
  * HORIZONTAL BAR (U+2015), FULLWIDTH HYPHEN-MINUS (U+FF0D), MINUS SIGN (U+2212)
  */
 export function normalizeHyphens(text: string): string {
-  if (!text)
-    return text;
   const hyphenPattern = /[\u2010\u2011\u2012\u2015\uFF0D\u2212]/g;
   return text.replace(hyphenPattern, "-");
 }
@@ -17,6 +15,20 @@ export function normalizeHyphens(text: string): string {
 export function convertQuotesToCurly(text: string): string {
   return quote(text);
 }
+
+/**
+ * Normalize interpunct-like characters to MIDDLE DOT U+00B7
+ * Covers common variants: KATAKANA MIDDLE DOT (U+30FB), HALFWIDTH KATAKANA MIDDLE DOT (U+FF65),
+ * DOT OPERATOR (U+22C5), BULLET OPERATOR (U+2219), BULLET (U+2022)
+ *
+ * {@link https://github.com/l0o0/translators_CN/issues/257 | Context}
+ */
+export function normalizeInterpuncts(text: string): string {
+  const interpunctPattern = /[\u30FB\uFF65\u22C5\u2219\u2022]/g;
+  return text.replace(interpunctPattern, "\u00B7");
+}
+
+/** ================================================================================= */
 
 /**
  * Rule: normalize punctuation in title
@@ -66,14 +78,16 @@ export const CorrectCreatorsPunctuation = defineRule({
     let changed = false;
     for (const creator of creators) {
       if (creator.firstName) {
-        const nf = normalizeHyphens(creator.firstName);
+        let nf = normalizeHyphens(creator.firstName);
+        nf = normalizeInterpuncts(nf);
         if (nf !== creator.firstName) {
           creator.firstName = nf;
           changed = true;
         }
       }
       if (creator.lastName) {
-        const nl = normalizeHyphens(creator.lastName);
+        let nl = normalizeHyphens(creator.lastName);
+        nl = normalizeInterpuncts(nl);
         if (nl !== creator.lastName) {
           creator.lastName = nl;
           changed = true;

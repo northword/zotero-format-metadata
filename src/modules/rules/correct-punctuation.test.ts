@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { convertQuotesToCurly, normalizeHyphens } from "./correct-punctuation";
+import { convertQuotesToCurly, normalizeHyphens, normalizeInterpuncts } from "./correct-punctuation";
 
 describe("normalizeHyphens", () => {
   it("normalizes various hyphen-like characters to hyphen-minus", () => {
@@ -54,5 +54,13 @@ describe("convertQuotesToCurly", () => {
     const out = convertQuotesToCurly(input);
     // After (, quote should be left quote
     expect(out).toBe("(“hello”)");
+  });
+});
+
+describe("normalizeInterpuncts", () => {
+  it("should work", () => {
+    const input = "名・姓";
+    const out = normalizeInterpuncts(input);
+    expect(out).toBe("名·姓");
   });
 });
