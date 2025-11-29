@@ -1,54 +1,92 @@
 name: issue bot
 on:
-  # schedule:
-  #   - cron: "30 1 * * *"
   issues:
     types:
       - labeled
+      # - opened
+      # - edited
+      # - closed
+      # - reopened
+  issue_comment:
+    types:
+      - created
+      # - edited
+  schedule:
+    - cron: "30 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  pull-requests: write
+  discussions: write
 
 jobs:
-  # close-issues:
-  #   runs-on: ubuntu-latest
-  #   permissions:
-  #     issues: write
-  #     pull-requests: write
-  #   steps:
-  #     - uses: actions/stale@v5
-  #       with:
-  #         days-before-issue-stale: 30
-  #         days-before-issue-close: 7
-  #         stale-issue-label: "stale"
-  #         stale-issue-message: "This issue is stale because it has been open for 30 days with no activity."
-  #         close-issue-message: "This issue was closed because it has been inactive for 7 days since being marked as stale."
-  #         exempt-issue-labels: "help wanted"
-  #         days-before-pr-stale: -1
-  #         days-before-pr-close: -1
-  #         repo-token: ${{ secrets.GITHUB_TOKEN }}
-  issue-invalid:
-    name: close invalid issue
+  feedback:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issue_comment'
+    steps:
+      - name: Add "await-user-feedback" label
+        if: ${{ contains(fromJson('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.comment.author_association) }}
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: add-labels
+          issue-number: ${{ github.event.issue.number }}
+          labels: await-user-feedback
+      - name: Remove "await-user-feedback" label
+        if: ${{ !contains(fromJson('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.comment.author_association) }}
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: remove-labels
+          issue-number: ${{ github.event.issue.number }}
+          labels: await-user-feedback
+
+  invalid:
+    name: Close invalid issue
     if: github.event.label.name == 'invalid'
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
-      pull-requests: write
     steps:
       - uses: actions-cool/issues-helper@v3
         with:
           actions: close-issue, create-comment
-          token: ${{ secrets.GITHUB_TOKEN }}
           body: |
             Hello @${{ github.event.issue.user.login }}. This issue is marked as `invalid` and closed. Please make sure you are reporting an issue and following the issue template.
-  issue-duplicate:
-    name: close duplicate issue
-    if: github.event.label.name == 'duplicate'
+
+  duplicate:
+    name: Close duplicate issue
+    if: github.event_name == 'issue_comment'
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
-      pull-requests: write
     steps:
       - uses: actions-cool/issues-helper@v3
         with:
-          actions: close-issue, create-comment
-          token: ${{ secrets.GITHUB_TOKEN }}
-          body: |
-            Hello @${{ github.event.issue.user.login }}. This issue is marked as `duplicate` and closed. Please make sure you have searched to see if an issue already exists for the bug you encountered.
+          actions: mark-duplicate
+          labels: duplicate
+          close-issue: true
+
+  stale:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    permissions:
+      actions: write
+      contents: write # only for delete-branch option
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Close staled issue
+        uses: actions/stale@v10
+        with:
+          only-labels: await-user-feedback
+          days-before-issue-stale: 30
+          days-before-issue-close: 7
+          stale-issue-label: stale
+          stale-issue-message: This issue is stale because it has been open for 30 days with no activity.
+          close-issue-message: This issue was closed because it has been inactive for 7 days since being marked as stale.
+          days-before-pr-stale: -1
+          days-before-pr-close: -1
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Lock closed issue
+        uses: dessant/lock-threads@v5
+        with:
+          issue-inactive-days: 30
+          pr-inactive-days: 30
+          exclude-any-issue-labels: keep-open
+          exclude-any-pr-labels: keep-open
