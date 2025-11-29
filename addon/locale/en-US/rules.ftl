@@ -63,6 +63,22 @@ rule-correct-title-sentence-option-custom-term-button =
 rule-correct-title-sentence-option-custom-term-desc = Custom terms file should be CSV: first column search term, second column replacement, no headers. Regex supported. Separator must be comma or semicolon (no tabs).
 
 
+## correct-title-punctuation
+rule-correct-title-punctuation =
+  .label = Punctuation in title shoule be normalized
+rule-correct-title-punctuation-menu-field =
+  .label = Normalize punctuation (Linter)
+rule-correct-title-punctuation-quotes =
+  .label = Convert quotes to curly
+
+
+## correct-creators-punctuation
+rule-correct-creators-punctuation =
+  .label = Punctuation in creators shoule be normalized
+rule-correct-creators-punctuation-menu-field =
+  .label = Normalize punctuation hyphens (Linter)
+
+
 ## correct-shortTitle-sentence-case
 rule-correct-shortTitle-sentence-case =
   .label = ShortTitle should be sentence case

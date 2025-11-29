@@ -63,6 +63,22 @@ rule-correct-title-sentence-option-custom-term-button =
 rule-correct-title-sentence-option-custom-term-desc =  自定义术语文件使用 CSV 文件格式，第一列为搜索词，第二列为替换词，不需要标题，搜索词支持正则表达式。分隔符可以为逗号或分号，但须统一，不得为制表符。
 
 
+## correct-title-punctuation
+rule-correct-title-punctuation =
+  .label = 标题中的符号应规范
+rule-correct-title-punctuation-menu-field =
+  .label = 规范符号（Linter）
+rule-correct-title-punctuation-quotes =
+  .label = 直引号转换为弯引号
+
+
+## correct-creators-punctuation
+rule-correct-creators-punctuation =
+  .label = 作者名中的符号应规范
+rule-correct-creators-punctuation-menu-field =
+  .label = 规范符号（Linter）
+
+
 ## correct-shortTitle-sentence-case
 rule-correct-shortTitle-sentence-case =
   .label = ShortTitle 也以句子式大写存储

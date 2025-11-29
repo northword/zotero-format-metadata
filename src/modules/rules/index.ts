@@ -10,6 +10,7 @@ import { CorrectPagesConnector } from "./correct-pages-connector";
 import { CorrectPagesRange } from "./correct-pages-range";
 import { CorrectPublicationTitleAlias } from "./correct-publication-title-alias";
 import { CorrectPublicationTitleCase } from "./correct-publication-title-case";
+import { CorrectCreatorsPunctuation, CorrectTitlePunctuation } from "./correct-punctuation";
 import { CorrectThesisType } from "./correct-thesis-type";
 import { CorrectTitleChemicalFormula } from "./correct-title-chemical-formula";
 import { CorrectBookTitleSentenceCase, CorrectProceedingsTitleSentenceCase, CorrectShortTitleSentenceCase, CorrectTitleSentenceCase } from "./correct-title-sentence-case";
@@ -48,6 +49,7 @@ const register: Rule<any>[] = [
   // Title
   NoTitleTrailingDot,
   CorrectTitleSentenceCase,
+  CorrectTitlePunctuation,
   RequireShortTitle,
   CorrectShortTitleSentenceCase,
   CorrectTitleChemicalFormula,
@@ -56,6 +58,7 @@ const register: Rule<any>[] = [
   RequireCreators,
   CorrectCreatorsCase,
   CorrectCreatorsPinyin,
+  CorrectCreatorsPunctuation,
 
   // Other general fields
   CorrectDateFormat,
