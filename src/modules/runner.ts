@@ -5,6 +5,7 @@ import { withTimeout } from "es-toolkit";
 import { DataLoader } from "../utils/data-loader";
 import { toArray } from "../utils/general";
 import { createLogger } from "../utils/logger";
+import { getPref } from "../utils/prefs";
 import { isFieldValidForItemType } from "../utils/zotero";
 import { createReporter, ProgressUI } from "./reporter";
 import { Rules } from "./rules";
@@ -84,7 +85,7 @@ export class LintRunner {
   });
 
   private readonly caller = new ConcurrentCaller({
-    numConcurrent: 1,
+    numConcurrent: getPref("lint.numConcurrent") || 1,
     stopOnError: false,
     logger: logger.debug,
     onError: (err: any) => logger.error(err),

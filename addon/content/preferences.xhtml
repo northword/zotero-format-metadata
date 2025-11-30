@@ -27,6 +27,15 @@
       preference="lint.notify"
       native="true"
     />
+    <!-- lint.numConcurrent -->
+    <hbox align="center">
+      <label data-l10n-id="lint-numConcurrent" />
+      <html:input type="text" preference="lint.numConcurrent" />
+      <description
+        data-l10n-id="lint-numConcurrent-description"
+        class="linter-pref-description"
+      />
+    </hbox>
   </groupbox>
 
   <!-- 是否启用富文本工具 -->
@@ -47,10 +56,7 @@
       preference="richtext.hotkey"
       native="true"
     />
-    <label
-      data-l10n-id="richtext-restart-needed"
-      class="linter-pref-description"
-    />
+    <label data-l10n-id="restart-needed" class="linter-pref-description" />
   </groupbox>
 
   <!-- 详细设置 -->
