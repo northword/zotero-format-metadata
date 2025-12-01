@@ -11,36 +11,12 @@ permissions:
   pull-requests: write
 
 jobs:
-  release:
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GitHub_TOKEN }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
+  create-release:
+    uses: zotero-plugin-dev/workflows/.github/workflows/release-plugin.yml@main
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24.11.0
-
-      - name: Install deps
-        run: pnpm install
-
-      - name: Release to GitHub
-        run: |
-          pnpm release
-          sleep 1s
-
-      - name: Notify release
-        uses: apexskier/github-release-commenter@v1
-        continue-on-error: true
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          comment-template: |
-            :rocket: _This ticket has been resolved in {release_tag}. See {release_link} for release notes._
+    # You can customize any of the inputs here.
+    # If you omit an input, its default value will be used.
+    # with:
+    #   build: ""
+    #   release: "pnpm release"
+    # secrets: inherit
