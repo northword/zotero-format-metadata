@@ -63,7 +63,7 @@ export const SemanticScholarService = defineService<Result>({
       title: res.title,
       abstractNote: res.abstract,
       DOI: res.externalIds?.DOI,
-      publicationTitle: res.venue?.name,
+      publicationTitle: res.venue,
       conferenceName: res.publicationVenue?.name,
       proceedingsTitle: res.publicationVenue?.name,
       ISSN: res.publicationVenue?.issn,
@@ -102,7 +102,5 @@ interface Result {
   };
   title?: string;
   url?: string;
-  venue?: {
-    name?: string;
-  };
+  venue?: string;
 }
