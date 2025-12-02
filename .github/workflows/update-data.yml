@@ -1,4 +1,4 @@
-name: Update data
+name: update data
 
 on:
   pull_request:
@@ -16,19 +16,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: zotero-plugin-dev/workflows/setup-js@main
         with:
-          fetch-depth: 0
+          fetch-all: true
           ref: ${{ github.head_ref }}
-          submodules: recursive
-
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 24.11.1
-          cache: pnpm
-
-      - run: pnpm install
 
       - run: pnpm update-data
 
