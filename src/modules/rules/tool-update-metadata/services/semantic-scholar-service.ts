@@ -37,7 +37,23 @@ export const SemanticScholarService = defineService<Result>({
     else
       throw new Error("No valid paper ID found.");
 
-    const endpoint = getPref("semanticScholarEndpoint") || "https://api.semanticscholar.org/graph/v1";
+    const defaultEndpoint = "https://api.semanticscholar.org/graph/v1";
+    let endpoint = getPref("semanticScholarEndpoint")?.trim();
+
+    // Validate endpoint URL
+    try {
+      const endpointUrl = new URL(endpoint);
+      if (!endpointUrl.protocol.startsWith("http")) {
+        throw new Error("Invalid protocol");
+      }
+    }
+    catch {
+      Zotero.debug(`[Linter] Invalid Semantic Scholar endpoint: ${endpoint}, using default: ${defaultEndpoint}`);
+      endpoint = defaultEndpoint;
+    }
+    if (endpoint.endsWith("/")) {
+      endpoint = endpoint.slice(0, -1);
+    }
     const url = `${endpoint}/paper/${encodeURIComponent(paperID.trim())}?fields=${fields.join(",")}`;
     const res = await Zotero.HTTP.request("GET", url, {
       headers: {
