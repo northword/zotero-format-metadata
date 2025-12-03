@@ -1,5 +1,6 @@
 import type { TransformedData } from "./services/base-service";
 import { useSettingsDialog } from "../../../utils/dialog";
+import { getString } from "../../../utils/locale";
 import { isFieldValidForItemType } from "../../../utils/zotero";
 import { defineRule } from "../rule-base";
 import { extractIdentifiers } from "./identifiers";
@@ -144,23 +145,23 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
   async prepare() {
     const { dialog, openForSettings } = useSettingsDialog<UpdateMetadataOption>();
 
-    dialog.addSetting("Mode", "mode", {
+    dialog.addSetting(getString("rule-tool-update-metadata-dialog-mode"), "mode", {
       tag: "select",
       children: [{
         tag: "option",
         properties: {
           value: "all",
-          innerHTML: "All Fields",
+          innerHTML: getString("rule-tool-update-metadata-dialog-mode-all"),
         },
       }, {
         tag: "option",
         properties: {
           value: "blank",
-          innerHTML: "Blank Fields Only",
+          innerHTML: getString("rule-tool-update-metadata-dialog-mode-blank"),
         },
       }],
     })
-      .addSetting("Allow Change Item Type", "allowTypeChanged", {
+      .addSetting(getString("rule-tool-update-metadata-dialog-allow-type-changed"), "allowTypeChanged", {
         tag: "input",
         attributes: {
           type: "checkbox",
@@ -174,21 +175,21 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
       //     checked: true,
       //   },
       // }, { valueType: "boolean" })
-      .addStaticRow("Notes", {
+      .addStaticRow(getString("rule-tool-update-metadata-dialog-notes"), {
         tag: "ul",
         children: [{
           tag: "li",
           properties: {
-            textContent: "Some APIs have rate limits; please avoid bulk processing.",
+            textContent: getString("rule-tool-update-metadata-dialog-note-rate-limit"),
           },
         }, {
           tag: "li",
           properties: {
-            textContent: "Chinese publications could not use this feature due to data source limitations.",
+            textContent: getString("rule-tool-update-metadata-dialog-note-chinese-limit"),
           },
         }],
       });
 
-    return await openForSettings("Retrive Metadata");
+    return await openForSettings(getString("rule-tool-update-metadata-dialog-title"));
   },
 });
