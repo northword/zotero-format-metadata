@@ -130,6 +130,8 @@ export type FluentMessageId =
   | 'rule-tool-title-guillemet-menu-item'
   | 'rule-tool-update-metadata'
   | 'rule-tool-update-metadata-menu-item'
+  | 'rule-tool-update-metadata-option-semanticScholarEndpoint'
+  | 'rule-tool-update-metadata-option-semanticScholarEndpoint-desc'
   | 'rule-tool-update-metadata-option-semanticScholarToken'
   | 'rule-tool-update-metadata-option-semanticScholarToken-desc'
   | 'rule-tool-update-metadata-option-semanticScholarToken-link'

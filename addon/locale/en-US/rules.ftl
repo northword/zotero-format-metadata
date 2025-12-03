@@ -306,6 +306,11 @@ rule-tool-update-metadata-option-semanticScholarToken-desc =
   When updating field data, the plugin queries its bibliographic data from Semantic Scholar. 
   By default, this API limits requests to 1 per second, and you can increase the rate limit by applying for a free API Key.
 rule-tool-update-metadata-option-semanticScholarToken-link = Request API key
+rule-tool-update-metadata-option-semanticScholarEndpoint = Semantic Scholar API Endpoint: 
+  .label = Semantic Scholar API Endpoint
+  .placeholder = https://api.semanticscholar.org/graph/v1
+rule-tool-update-metadata-option-semanticScholarEndpoint-desc = 
+  Custom endpoint URL for Semantic Scholar API. Default is https://api.semanticscholar.org/graph/v1
 
 
 ## tool-get-short-doi
