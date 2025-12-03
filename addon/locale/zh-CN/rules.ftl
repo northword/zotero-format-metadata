@@ -312,6 +312,15 @@ rule-tool-update-metadata-option-semanticScholarEndpoint = Semantic Scholar API 
 rule-tool-update-metadata-option-semanticScholarEndpoint-desc =  
   自定义 Semantic Scholar API 的端点地址。默认为 https://api.semanticscholar.org/graph/v1
 
+rule-tool-update-metadata-dialog-title = 更新条目元数据
+rule-tool-update-metadata-dialog-mode = 更新模式
+rule-tool-update-metadata-dialog-mode-all = 所有字段
+rule-tool-update-metadata-dialog-mode-blank = 仅空白字段
+rule-tool-update-metadata-dialog-allow-type-changed = 允许更改条目类型
+rule-tool-update-metadata-dialog-notes = 说明
+rule-tool-update-metadata-dialog-note-rate-limit = 某些 API 有速率限制；请避免批量处理。
+rule-tool-update-metadata-dialog-note-chinese-limit = 由于数据源限制，中文出版物无法使用此功能。
+
 
 ## tool-get-short-doi
 rule-tool-get-short-doi-menu-item =

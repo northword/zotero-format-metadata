@@ -312,6 +312,15 @@ rule-tool-update-metadata-option-semanticScholarEndpoint = Semantic Scholar API 
 rule-tool-update-metadata-option-semanticScholarEndpoint-desc = 
   Custom endpoint URL for Semantic Scholar API. Default is https://api.semanticscholar.org/graph/v1
 
+rule-tool-update-metadata-dialog-title = Update Item Metadata
+rule-tool-update-metadata-dialog-mode = Update Mode
+rule-tool-update-metadata-dialog-mode-all = All Fields
+rule-tool-update-metadata-dialog-mode-blank = Blank Fields Only
+rule-tool-update-metadata-dialog-allow-type-changed = Allow Change Item Type
+rule-tool-update-metadata-dialog-notes = Notes
+rule-tool-update-metadata-dialog-note-rate-limit = Some APIs have rate limits; please avoid bulk processing.
+rule-tool-update-metadata-dialog-note-chinese-limit = Chinese publications could not use this feature due to data source limitations.
+
 
 ## tool-get-short-doi
 rule-tool-get-short-doi-menu-item =
