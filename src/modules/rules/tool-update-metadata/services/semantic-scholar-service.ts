@@ -1,3 +1,4 @@
+import { logger } from "../../../../utils/logger";
 import { getPref } from "../../../../utils/prefs";
 import { defineService } from "./base-service";
 
@@ -37,23 +38,7 @@ export const SemanticScholarService = defineService<Result>({
     else
       throw new Error("No valid paper ID found.");
 
-    const defaultEndpoint = "https://api.semanticscholar.org/graph/v1";
-    let endpoint = getPref("semanticScholarEndpoint")?.trim();
-
-    // Validate endpoint URL
-    try {
-      const endpointUrl = new URL(endpoint);
-      if (!endpointUrl.protocol.startsWith("http")) {
-        throw new Error("Invalid protocol");
-      }
-    }
-    catch {
-      Zotero.debug(`[Linter] Invalid Semantic Scholar endpoint: ${endpoint}, using default: ${defaultEndpoint}`);
-      endpoint = defaultEndpoint;
-    }
-    if (endpoint.endsWith("/")) {
-      endpoint = endpoint.slice(0, -1);
-    }
+    const endpoint = getEndpoint(getPref("semanticScholarEndpoint"));
     const url = `${endpoint}/paper/${encodeURIComponent(paperID.trim())}?fields=${fields.join(",")}`;
     const res = await Zotero.HTTP.request("GET", url, {
       headers: {
@@ -91,6 +76,24 @@ export const SemanticScholarService = defineService<Result>({
     };
   },
 });
+
+const DEFAULT_ENDPOINT = "https://api.semanticscholar.org/graph/v1";
+
+function getEndpoint(customEndpoint?: string): string {
+  if (!customEndpoint)
+    return DEFAULT_ENDPOINT;
+
+  try {
+    const endpointUrl = new URL(customEndpoint);
+    if (!endpointUrl.protocol.startsWith("http"))
+      throw new Error(`Invalid protocol: ${endpointUrl.protocol}. Must be 'http' or 'https'.`);
+    return endpointUrl.href;
+  }
+  catch {
+    logger.error(`Invalid custom endpoint: "${customEndpoint}". Falling back to default: ${DEFAULT_ENDPOINT}`);
+    return DEFAULT_ENDPOINT;
+  }
+}
 
 interface Result {
   paperId?: string;
