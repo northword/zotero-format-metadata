@@ -28,7 +28,7 @@ export function withThrottle<T extends (...args: any[]) => any>(
   const numConcurrent = getPref("lint.numConcurrent") || 1;
 
   const throttled = pThrottle({
-    limit: numConcurrent,
+    limit: Math.min(Math.floor(10000 / cooldown), numConcurrent),
     interval: cooldown,
   });
 
