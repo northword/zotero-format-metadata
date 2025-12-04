@@ -2,14 +2,11 @@ import { version as currentVersion } from "../../package.json";
 import { clearPref, getPref, setPref } from "../utils/prefs";
 
 export function checkCompat() {
-  const version = (getPref("version") as string) ?? "0.0.0";
+  const version = (getPref("version")) ?? "0.0.0";
 
-  if (compareVersion(version, currentVersion) === 0) {
+  if (compareVersion(version, currentVersion) >= 0) {
+    setPref("version", currentVersion);
     return;
-  }
-
-  if (compareVersion(version, "1.20.2") === -1) {
-    mvPref("abbr", "abbr.journalArticle", true);
   }
 
   if (compareVersion(version, "1.8.0") === -1) {
@@ -48,6 +45,10 @@ export function checkCompat() {
     mvPref("isEnableCleanFields", "cleanExtra", true);
     clearPref("richtext.isEnableChem");
     clearPref("lintAfterRetriveByDOI");
+  }
+
+  if (compareVersion(version, "1.20.2") === -1) {
+    mvPref("abbr", "abbr.journalArticle", true);
   }
 
   // v2.0.0 refactor the rules id and preference key
