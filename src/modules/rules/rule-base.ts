@@ -2,6 +2,7 @@ import type { FluentMessageId } from "../../../typings/i10n";
 import type { Awaitable } from "../../utils/types";
 import type { ReportInfo } from "../reporter";
 import pThrottle from "p-throttle";
+import { getPref } from "../../utils/prefs";
 
 type Debug = (...args: any) => void;
 
@@ -198,8 +199,9 @@ export function defineRule<Options = unknown>(
   rule: WithStringID<Rule<Options>>,
 ): Rule<Options> {
   if (rule.cooldown && rule.cooldown > 0) {
+    const numConcurrent = getPref("lint.numConcurrent") || 1;
     const throttle = pThrottle({
-      limit: 1,
+      limit: rule.cooldown < 100 ? 1 : numConcurrent,
       interval: rule.cooldown,
     });
     rule.apply = throttle(rule.apply);
