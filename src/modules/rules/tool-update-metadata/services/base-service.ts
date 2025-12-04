@@ -1,6 +1,5 @@
 import type { Identifiers } from "../identifiers";
-import pThrottle from "p-throttle";
-import { getPref } from "../../../../utils/prefs";
+import { withThrottle } from "../../../../utils/throttle";
 import { Rule } from "../../rule-base";
 
 type MetadataResponse = Record<string, any>;
@@ -49,14 +48,7 @@ export interface MetadataService<T extends MetadataResponse> {
 }
 
 export function defineService<T extends MetadataResponse>(service: MetadataService<T>) {
-  if (service.cooldown && service.cooldown > 0) {
-    const numConcurrent = getPref("lint.numConcurrent") || 1;
-    const throttle = pThrottle({
-      limit: service.cooldown < 100 ? 1 : numConcurrent,
-      interval: service.cooldown,
-    });
-    service.fetch = service.fetch ? throttle(service.fetch) : undefined;
-    service.updateIdentifiers = service.updateIdentifiers ? throttle(service.updateIdentifiers) : undefined;
-  }
+  service.fetch = withThrottle(service.fetch, service.cooldown);
+  service.updateIdentifiers = withThrottle(service.updateIdentifiers, service.cooldown);
   return service;
 }
