@@ -1,6 +1,7 @@
 import type { FluentMessageId } from "../../../typings/i10n";
 import type { Awaitable } from "../../utils/types";
 import type { ReportInfo } from "../reporter";
+import { withThrottle } from "../../utils/throttle";
 
 type Debug = (...args: any) => void;
 
@@ -196,5 +197,6 @@ type WithStringID<R> = R extends any ? Omit<R, "id"> & { id: string } : never;
 export function defineRule<Options = unknown>(
   rule: WithStringID<Rule<Options>>,
 ): Rule<Options> {
+  rule.apply = withThrottle(rule.apply, rule.cooldown ?? 0);
   return rule as Rule<Options>;
 }

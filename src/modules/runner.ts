@@ -122,8 +122,6 @@ export class LintRunner {
       this.enqueueItem(item, rules, optionsMap);
     }
 
-    this.setInterval(this.getMaxIntervalFromRules(rules));
-
     this.caller.wait().then(() => this.finish());
   }
 
@@ -160,15 +158,6 @@ export class LintRunner {
     logger.debug("Options map:", optionsMap);
     return optionsMap;
   }
-
-  private getMaxIntervalFromRules(rules: Rule<any>[]): number {
-    return Math.max(...rules.map(rule => rule.cooldown || 0));
-  }
-
-  public setInterval(interval: number) {
-    this.caller._interval = interval;
-    logger.debug("Set interval to", interval);
-  };
 
   // ----------------------------
   // Queue

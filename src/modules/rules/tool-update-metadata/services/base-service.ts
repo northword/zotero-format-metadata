@@ -1,4 +1,5 @@
 import type { Identifiers } from "../identifiers";
+import { withThrottle } from "../../../../utils/throttle";
 import { Rule } from "../../rule-base";
 
 type MetadataResponse = Record<string, any>;
@@ -47,5 +48,7 @@ export interface MetadataService<T extends MetadataResponse> {
 }
 
 export function defineService<T extends MetadataResponse>(service: MetadataService<T>) {
+  service.fetch = withThrottle(service.fetch, service.cooldown);
+  service.updateIdentifiers = withThrottle(service.updateIdentifiers, service.cooldown);
   return service;
 }
