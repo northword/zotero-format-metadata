@@ -1,6 +1,7 @@
 import type { FluentMessageId } from "../../../typings/i10n";
 import type { Awaitable } from "../../utils/types";
 import type { ReportInfo } from "../reporter";
+import pThrottle from "p-throttle";
 
 type Debug = (...args: any) => void;
 
@@ -196,5 +197,12 @@ type WithStringID<R> = R extends any ? Omit<R, "id"> & { id: string } : never;
 export function defineRule<Options = unknown>(
   rule: WithStringID<Rule<Options>>,
 ): Rule<Options> {
+  if (rule.cooldown && rule.cooldown > 0) {
+    const throttle = pThrottle({
+      limit: 1,
+      interval: rule.cooldown,
+    });
+    rule.apply = throttle(rule.apply);
+  }
   return rule as Rule<Options>;
 }
