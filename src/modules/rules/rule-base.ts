@@ -198,10 +198,10 @@ export function defineRule<Options = unknown>(
   rule: WithStringID<Rule<Options>>,
 ): Rule<Options> {
   return new Proxy(rule, {
-    get: (target, prop: keyof Rule<Options>) => {
+    get: (target, prop: keyof Rule<Options>, receiver: any) => {
       if (prop === "apply")
-        return withThrottle(target[prop], rule.cooldown ?? 0);
-      return target[prop];
+        return withThrottle(Reflect.get(target, prop, receiver), rule.cooldown ?? 0);
+      return Reflect.get(target, prop, receiver);
     },
   }) as Rule<Options>;
 }
