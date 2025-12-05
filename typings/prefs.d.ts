@@ -63,6 +63,7 @@ declare namespace _ZoteroTypes {
       "rule.correct-extra-order": boolean;
       "cleanExtra": boolean;
       "semanticScholarToken": string;
+      "semanticScholarEndpoint": string;
     };
   }
 }
