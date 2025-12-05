@@ -50,10 +50,8 @@ export interface MetadataService<T extends MetadataResponse> {
 export function defineService<T extends MetadataResponse>(service: MetadataService<T>) {
   return new Proxy(service, {
     get: (target, prop: keyof MetadataService<T>) => {
-      if (prop === "fetch")
-        return withThrottle(service.fetch, service.cooldown);
-      else if (prop === "updateIdentifiers")
-        return withThrottle(service.updateIdentifiers, service.cooldown);
+      if (prop === "fetch" || prop === "updateIdentifiers")
+        return withThrottle(target[prop], service.cooldown);
       return target[prop];
     },
   });

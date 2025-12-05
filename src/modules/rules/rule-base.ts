@@ -200,7 +200,7 @@ export function defineRule<Options = unknown>(
   return new Proxy(rule, {
     get: (target, prop: keyof Rule<Options>) => {
       if (prop === "apply")
-        return withThrottle(rule.apply, rule.cooldown ?? 0);
+        return withThrottle(target[prop], rule.cooldown ?? 0);
       return target[prop];
     },
   }) as Rule<Options>;
