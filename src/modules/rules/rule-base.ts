@@ -197,6 +197,13 @@ type WithStringID<R> = R extends any ? Omit<R, "id"> & { id: string } : never;
 export function defineRule<Options = unknown>(
   rule: WithStringID<Rule<Options>>,
 ): Rule<Options> {
-  rule.apply = withThrottle(rule.apply, rule.cooldown ?? 0);
-  return rule as Rule<Options>;
+  const throttledApply = withThrottle(rule.apply, rule.cooldown ?? 0);
+
+  return new Proxy(rule, {
+    get: (target, prop: keyof Rule<Options>) => {
+      if (prop === "apply")
+        return throttledApply;
+      return target[prop];
+    },
+  }) as Rule<Options>;
 }

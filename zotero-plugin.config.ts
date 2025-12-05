@@ -61,12 +61,6 @@ export default defineConfig({
     },
     hooks: {
       "build:bundle": async () => {
-        // resolve esbuild "ReferenceError: Zotero is not defined" error
-        globalThis.Zotero = {
-          Prefs: {
-            get: () => 1,
-          },
-        };
         // Generate declaration file for rule ids
         const { Rules } = await import("./src/modules/rules/index.ts");
 
