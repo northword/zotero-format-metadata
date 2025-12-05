@@ -52,12 +52,12 @@ export function defineService<T extends MetadataResponse>(service: MetadataServi
   const throttledUpdateIdentifiers = withThrottle(service.updateIdentifiers, service.cooldown);
 
   return new Proxy(service, {
-    get: (target, prop: keyof MetadataService<T>) => {
+    get: (target, prop: keyof MetadataService<T>, receiver) => {
       if (prop === "fetch")
         return throttledFetch;
       else if (prop === "updateIdentifiers")
         return throttledUpdateIdentifiers;
-      return target[prop];
+      return Reflect.get(target, prop, receiver);
     },
   });
 }
