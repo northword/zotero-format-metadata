@@ -49,7 +49,7 @@ rule-require-short-title =
 
 ## correct-title-sentence-case
 rule-correct-title-sentence-case =
-  .label = 标题标题应以句子式大写存储
+  .label = 标题应以句子式大写存储
 rule-correct-title-sentence-case-menu-item =
   .label = 将标题改为句首大写
 rule-correct-title-sentence-case-menu-field =
