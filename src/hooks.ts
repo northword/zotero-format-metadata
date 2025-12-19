@@ -20,7 +20,7 @@ async function onStartup() {
   registerPrefs();
   registerNotifier();
   await Promise.all(Zotero.getMainWindows().map(onMainWindowLoad));
-  checkCompat();
+  await checkCompat();
 }
 
 async function onMainWindowLoad(win: Window): Promise<void> {
