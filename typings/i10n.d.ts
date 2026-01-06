@@ -138,6 +138,8 @@ export type FluentMessageId =
   | 'rule-tool-update-metadata-dialog-notes'
   | 'rule-tool-update-metadata-dialog-title'
   | 'rule-tool-update-metadata-menu-item'
+  | 'rule-tool-update-metadata-option-semanticScholarEndpoint'
+  | 'rule-tool-update-metadata-option-semanticScholarEndpoint-desc'
   | 'rule-tool-update-metadata-option-semanticScholarToken'
   | 'rule-tool-update-metadata-option-semanticScholarToken-desc'
   | 'rule-tool-update-metadata-option-semanticScholarToken-link'

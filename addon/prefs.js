@@ -72,3 +72,4 @@ pref("rule.correct-extra-order", true);
 // --------------------
 pref("cleanExtra", false);
 pref("semanticScholarToken", "");
+pref("semanticScholarEndpoint", "https://api.semanticscholar.org/graph/v1");
