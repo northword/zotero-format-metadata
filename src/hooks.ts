@@ -54,23 +54,26 @@ async function onNotify(
   ids: Array<string | number>,
   extraData: { [key: string]: unknown },
 ) {
-  logger.debug("notify", event, type, ids, extraData);
+  logger.debug("notifyyy", event, type, ids, extraData);
 
+  logger.debug("lint.onAdded", getPref("lint.onAdded"));
   // Skip if disabled add on lint
   if (!getPref("lint.onAdded"))
     return;
 
+  logger.debug("event", event, "type", type, "ids", ids, "extraData", extraData);
   // We only process the add item event
   if (event !== "add" || type !== "item")
     return;
 
   // Skip synced item
-  if (extraData.skipAutoSync)
+  if (extraData.skipAutoSync && !getPref("lint.onApiImport"))
     return;
 
   // Wait 500ms to wait other plugins changes saved
   await Zotero.Promise.delay(500);
 
+  logger.debug("starting item retrieval")
   const items = Zotero.Items.get(ids as number[]).filter(
     (item) => {
       // skip attachment

@@ -19,6 +19,7 @@ export type FluentMessageId =
   | 'info-batch-running'
   | 'info-batch-stop-next'
   | 'italic'
+  | 'lint-on-api'
   | 'lint-on-groupItem-added'
   | 'lint-on-item-added'
   | 'menuTools-label'

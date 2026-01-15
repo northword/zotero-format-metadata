@@ -6,6 +6,7 @@ pref("version", "__buildVersion__");
 pref("lint.onAdded", true);
 pref("lint.onGroup", false);
 pref("lint.notify", true);
+pref("lint.onApiImport", true);
 
 // --------------------
 // Richtext settings

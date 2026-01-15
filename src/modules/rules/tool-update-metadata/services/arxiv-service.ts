@@ -7,7 +7,7 @@ export const ArxivService = defineService({
   id: "arxiv-service",
   name: "ArXiv Service",
   supportedItemTypes: ["preprint"],
-  cooldown: 3_000,
+  cooldown: 1_000,
   shouldApply: ({ identifiers }) => {
     return !!identifiers.arXiv;
   },

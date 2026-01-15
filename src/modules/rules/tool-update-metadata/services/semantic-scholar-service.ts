@@ -7,14 +7,13 @@ export const SemanticScholarService = defineService<Result>({
   // TODO: set cooldown to 1_000 when token is set,
   // need to resolve esbuild "ReferenceError: Zotero is not defined" error
   // get cooldown() { return getPref("semanticScholarToken") ? 1_000 : 3_000; },
-  cooldown: 3_000,
+  cooldown: 1_000,
   shouldApply: () => true,
   async fetch({ identifiers }) {
     const fields: (keyof Result)[] = [
       "publicationTypes",
       "title",
       "authors",
-      "abstract",
       "externalIds",
       "url",
       "venue",
@@ -22,6 +21,8 @@ export const SemanticScholarService = defineService<Result>({
       "publicationDate",
       "journal",
     ];
+
+    console.log("This is the semantic scholar service");
 
     let paperID: string;
     if (identifiers.arXiv)
@@ -61,7 +62,6 @@ export const SemanticScholarService = defineService<Result>({
           : undefined,
       creators: [],
       title: res.title,
-      abstractNote: res.abstract,
       DOI: res.externalIds?.DOI,
       publicationTitle: res.venue?.name,
       conferenceName: res.publicationVenue?.name,
@@ -77,7 +77,6 @@ export const SemanticScholarService = defineService<Result>({
 
 interface Result {
   paperId?: string;
-  abstract?: string;
   authors?: {
     name: string;
     authorId: string;

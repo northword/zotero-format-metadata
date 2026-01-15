@@ -11,6 +11,7 @@ declare namespace _ZoteroTypes {
       "lint.onAdded": boolean;
       "lint.onGroup": boolean;
       "lint.notify": boolean;
+      "lint.onApiImport": boolean;
       "richtext.toolBar": boolean;
       "richtext.hotkey": boolean;
       "richtext.preview": boolean;

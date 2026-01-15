@@ -18,6 +18,9 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
   category: "tool",
   cooldown: Math.max(...services.map(s => s.cooldown ?? 0)),
   async apply({ item, options, report, debug }) {
+    // Save original abstract for potential special handling
+    const originalAbstract = item.getField("abstractNote") as string;
+
     // 1. extract identifiers
     const identifiers = extractIdentifiers(item);
     debug("Identifiers: ", identifiers);
@@ -111,6 +114,10 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
 
     function applyItemFields(data: Omit<TransformedData, "itemType" | "creators">) {
       for (const [field, value] of Object.entries(data)) {
+        // Skip abstractNote - we'll handle it separately
+        if (field === "abstractNote")
+          continue;
+
         if (!isFieldValidForItemType(field as _ZoteroTypes.Item.ItemField, item.itemType))
           continue;
 
@@ -136,6 +143,49 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
     applyItemCreators(data);
     const { itemType, creators, ...fields } = data;
     applyItemFields(fields);
+
+    // Special handling for abstract field based on original abstract
+    if (data.abstractNote) {
+      debug(`Processing abstractNote field with special handling`);
+      const hasAbstractHeader = originalAbstract && originalAbstract.includes("ABSTRACT");
+      const hasAbstractNotFound = originalAbstract && originalAbstract.includes("Abstract not found");
+
+      if (hasAbstractHeader && !hasAbstractNotFound) {
+        // Pipeline already found an abstract - leave it completely alone
+        debug(`Skipping abstractNote update - "ABSTRACT" header exists and abstract was already found by pipeline`);
+      } else if (hasAbstractNotFound) {
+        // Pipeline didn't find abstract - replace "Abstract not found" with Zotero-retrieved abstract
+        if (hasAbstractHeader) {
+          // ABSTRACT label is present - insert the new abstract after it, preserving everything after "Abstract not found"
+          const abstractInsertionPoint = originalAbstract.indexOf("ABSTRACT");
+          const beforeAbstract = originalAbstract.substring(0, abstractInsertionPoint + "ABSTRACT".length);
+
+          // Find "Abstract not found" and preserve everything after it
+          const abstractNotFoundIndex = originalAbstract.indexOf("Abstract not found");
+          const afterAbstractNotFound = originalAbstract.substring(abstractNotFoundIndex + "Abstract not found".length);
+
+          const modifiedAbstract = beforeAbstract + "\n" + data.abstractNote + afterAbstractNotFound;
+          debug(`Inserting Zotero-retrieved abstract after "ABSTRACT" label, preserving content after "Abstract not found"`);
+          item.setField("abstractNote", modifiedAbstract);
+        } else {
+          // ABSTRACT label is missing - replace "Abstract not found" but preserve everything after it
+          const abstractNotFoundIndex = originalAbstract.indexOf("Abstract not found");
+          const afterAbstractNotFound = originalAbstract.substring(abstractNotFoundIndex + "Abstract not found".length);
+
+          const modifiedAbstract = data.abstractNote + afterAbstractNotFound;
+          debug(`Replacing "Abstract not found" with Zotero-retrieved abstract, preserving content after`);
+          item.setField("abstractNote", modifiedAbstract);
+        }
+      } else {
+        // Normal abstract field update logic (respect mode setting)
+        if (options.mode === "all" || !originalAbstract) {
+          debug(`Update "abstractNote" from "${originalAbstract}" to "${data.abstractNote}"`);
+          item.setField("abstractNote", data.abstractNote);
+        } else {
+          debug(`Skipping abstractNote update - original value exists and mode is not "all"`);
+        }
+      }
+    }
 
     // if (options.lint)
     //   addon.runner.add({ rules: "standard", items: item });

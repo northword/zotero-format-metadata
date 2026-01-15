@@ -1,21 +1,23 @@
 ## General settings
 section-general = General Settings
-lint-on-item-added = 
-    .label = Lint when item added to library 
-lint-on-groupItem-added = 
+lint-on-item-added =
+    .label = Lint when item added to library
+lint-on-groupItem-added =
     .label = Lint when item added to group
-notify-on-lint = 
+notify-on-lint =
     .label = Show progress notification when Lint
+lint-on-api =
+    .label = Lint on API import
 
-enable-richtext-toolbar = 
+enable-richtext-toolbar =
     .label = Enable rich text toolbar
-enable-richtext-preview = 
+enable-richtext-preview =
     .label = Enable rich text preview
-enable-richtext-hotkey = 
+enable-richtext-hotkey =
     .label = Enable rich text hotkey
 richtext-restart-needed = These settings changes will apply after restarting Zotero.
 
-wip = 
+wip =
     .label = Work in progress...
 
 
