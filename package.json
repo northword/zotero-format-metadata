@@ -47,7 +47,7 @@
     "zotero-plugin-toolkit": "5.1.0-beta.13"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^6.2.0",
+    "@antfu/eslint-config": "^7.2.0",
     "@types/chai": "^5.2.3",
     "@types/mocha": "^10.0.10",
     "@types/node": "^24.10.1",
