@@ -33,6 +33,7 @@ section-article = Article Related Fields
 section-conference = Conference Related Fields
 section-thesis = Thesis Related Fields
 section-book = Book Related Fields
+section-patent = Patent Related Fields
 section-identifier = Identifier
 section-others = Others
 section-updateMetadata = Update Metadata

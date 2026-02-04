@@ -129,7 +129,20 @@ function registerItemMenus() {
             makeSeparator(),
             makeItemMenu("no-doi-prefix"),
             makeItemMenu("tool-get-short-doi"),
-            makeItemMenu("correct-date-format"),
+            {
+              menuType: "menuitem",
+              l10nID: getLocaleID("rule-correct-date-format-menu-item"),
+              onCommand(event, { items }) {
+                if (items) {
+                  addon.hooks.onLintInBatch([
+                    "correct-date-format",
+                    "correct-filing-date-format",
+                    "correct-issue-date-format",
+                    "correct-priority-date-format",
+                  ], items);
+                }
+              },
+            },
             makeItemMenu("tool-clean-extra"),
             makeSeparator(),
             makeItemMenu("tool-csl-helper"),

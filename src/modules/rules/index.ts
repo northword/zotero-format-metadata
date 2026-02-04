@@ -2,7 +2,7 @@ import type { Rule, RuleForRegularItemScopeItem, RuleForRegularScopeField } from
 import { getPref } from "../../utils/prefs";
 import { CorrectCreatorsCase } from "./correct-creators-case";
 import { CorrectCreatorsPinyin } from "./correct-creators-pinyin";
-import { CorrectDateFormat } from "./correct-date-format";
+import { CorrectDateFormat, CorrectFilingDateFormat, CorrectIssueDateFormat, CorrectPriorityDateFormat } from "./correct-date-format";
 import { CorrectDOILong } from "./correct-doi-long";
 import { CorrectEditionNumeral, CorrectVolumeNumeral } from "./correct-edition-numeral";
 import { CorrectExtraOrder } from "./correct-extra-order";
@@ -92,6 +92,11 @@ const register: Rule<any>[] = [
   CorrectEditionNumeral,
   CorrectVolumeNumeral,
   CorrectBookTitleSentenceCase,
+
+  // Patent
+  CorrectFilingDateFormat,
+  CorrectIssueDateFormat,
+  CorrectPriorityDateFormat,
 
   // Tools
   ToolTitleGuillemet,

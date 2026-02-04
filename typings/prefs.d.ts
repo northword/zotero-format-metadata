@@ -48,6 +48,9 @@ declare namespace _ZoteroTypes {
       "rule.correct-creators-pinyin": boolean;
       "rule.correct-creators-punctuation": boolean;
       "rule.correct-date-format": boolean;
+      "rule.correct-filing-date-format": boolean;
+      "rule.correct-issue-date-format": boolean;
+      "rule.correct-priority-date-format": boolean;
       "rule.correct-publication-title-alias": boolean;
       "rule.correct-publication-title-case": boolean;
       "rule.correct-pages-connector": boolean;

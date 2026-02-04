@@ -127,6 +127,15 @@ rule-correct-date-format-menu-field =
   .label = 转为 ISO 格式（Linter）
 
 
+rule-correct-filing-date-format =
+  .label = Filing Date 应为 ISO YYYY-MM-DD 格式
+rule-correct-issue-date-format =
+  .label = Issue Date 应为 ISO YYYY-MM-DD 格式
+rule-correct-priority-date-format =
+  .label = Priority Date 应为 ISO YYYY-MM-DD 格式
+
+
+
 ## correct-extra-order
 rule-correct-extra-order =
   .label = 「额外」字段应有正确的顺序

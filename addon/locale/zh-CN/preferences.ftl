@@ -33,6 +33,7 @@ section-article = Article 相关字段
 section-conference = Conference 相关字段
 section-thesis = Thesis 相关字段
 section-book = Book 相关字段
+section-patent = Patent 相关字段
 section-identifier = 标识符
 section-others = 其他
 section-updateMetadata = 更新元数据

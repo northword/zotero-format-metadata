@@ -1,6 +1,7 @@
 <linkset>
   <html:link rel="localization" href="__addonRef__-preferences.ftl" />
   <html:link rel="localization" href="__addonRef__-rules.ftl" />
+  <html:link rel="localization" href="schema.ftl" />
 </linkset>
 <vbox
   id="__addonRef__"
@@ -419,6 +420,26 @@
       />
     </groupbox>
 
+    <!-- 字段：专利相关 -->
+    <groupbox>
+      <label><html:h2 data-l10n-id="section-patent" /></label>
+      <checkbox
+        data-l10n-id="rule-correct-filing-date-format"
+        preference="rule.correct-filing-date-format"
+        native="true"
+      />
+      <checkbox
+        data-l10n-id="rule-correct-issue-date-format"
+        preference="rule.correct-issue-date-format"
+        native="true"
+      />
+      <checkbox
+        data-l10n-id="rule-correct-priority-date-format"
+        preference="rule.correct-priority-date-format"
+        native="true"
+      />
+    </groupbox>
+
     <!-- 标识符 -->
     <groupbox>
       <label><html:h2 data-l10n-id="section-identifier" /></label>
@@ -441,23 +462,23 @@
         native="true"
       />
     </groupbox>
-  </groupbox>
 
-  <!-- General Field: Others -->
-  <groupbox>
-    <label><html:h2 data-l10n-id="section-others" /></label>
-    <!-- 更新日期格式 -->
-    <checkbox
-      data-l10n-id="rule-correct-date-format"
-      preference="rule.correct-date-format"
-      native="true"
-    />
-    <!-- Extra -->
-    <checkbox
-      data-l10n-id="rule-correct-extra-order"
-      preference="rule.correct-extra-order"
-      native="true"
-    />
+    <!-- General Field: Others -->
+    <groupbox>
+      <label><html:h2 data-l10n-id="section-others" /></label>
+      <!-- 更新日期格式 -->
+      <checkbox
+        data-l10n-id="rule-correct-date-format"
+        preference="rule.correct-date-format"
+        native="true"
+      />
+      <!-- Extra -->
+      <checkbox
+        data-l10n-id="rule-correct-extra-order"
+        preference="rule.correct-extra-order"
+        native="true"
+      />
+    </groupbox>
   </groupbox>
 
   <!-- 更新元数据 -->

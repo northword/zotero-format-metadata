@@ -127,6 +127,14 @@ rule-correct-date-format-menu-field =
   .label = ISO format (Linter)
 
 
+rule-correct-filing-date-format =
+  .label = Filing Date should be ISO YYYY-MM-DD format
+rule-correct-issue-date-format =
+  .label = Issue Date should be ISO YYYY-MM-DD format
+rule-correct-priority-date-format =
+  .label = Priority Date should be ISO YYYY-MM-DD format
+
+
 ## correct-extra-order
 rule-correct-extra-order =
   .label = Extra fields should be in order
