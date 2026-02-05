@@ -484,28 +484,66 @@
   <!-- 更新元数据 -->
   <groupbox>
     <label><html:h2 data-l10n-id="section-updateMetadata" /></label>
-    <hbox align="center">
-      <label
-        data-l10n-id="rule-tool-update-metadata-option-semanticScholarToken"
-      />
-      <html:input
-        style="flex: 1"
-        type="text"
-        size="60"
-        data-l10n-id="rule-tool-update-metadata-option-semanticScholarToken"
-        preference="semanticScholarToken"
-      />
-      <label
-        data-l10n-id="rule-tool-update-metadata-option-semanticScholarToken-link"
-        is="zotero-text-link"
-        class="zotero-text-link"
-        href="https://www.semanticscholar.org/product/api#api-key"
-      />
-    </hbox>
-    <description
-      data-l10n-id="rule-tool-update-metadata-option-semanticScholarToken-desc"
-      class="linter-pref-description"
+    <!-- Request Options Everytimes -->
+    <checkbox
+      data-l10n-id="rule-tool-update-metadata-option-slient"
+      preference="rule.tool-update-metadata.option.slient"
+      native="true"
     />
+
+    <!-- Default Dialog Options -->
+    <groupbox>
+      <label><html:h3>Default Settings</html:h3></label>
+      <hbox align="center">
+        <label data-l10n-id="rule-tool-update-metadata-dialog-mode"></label>
+        <radiogroup
+          orient="horizontal"
+          preference="rule.tool-update-metadata.option.mode"
+        >
+          <radio
+            data-l10n-id="rule-tool-update-metadata-dialog-mode-all"
+            value="all"
+          />
+          <radio
+            data-l10n-id="rule-tool-update-metadata-dialog-mode-blank"
+            value="blank"
+          />
+        </radiogroup>
+      </hbox>
+
+      <checkbox
+        data-l10n-id="rule-tool-update-metadata-dialog-allow-type-changed"
+        preference="rule.correct-date-format"
+        native="true"
+      />
+    </groupbox>
+
+    <!-- Semantic Scholar Token -->
+    <groupbox>
+      <label><html:h3>Data Provider Options</html:h3></label>
+      <hbox align="center">
+        <label
+          data-l10n-id="rule-tool-update-metadata-option-semanticScholarToken"
+        />
+        <html:input
+          style="flex: 1"
+          type="text"
+          size="60"
+          data-l10n-id="rule-tool-update-metadata-option-semanticScholarToken"
+          preference="semanticScholarToken"
+        />
+        <label
+          data-l10n-id="rule-tool-update-metadata-option-semanticScholarToken-link"
+          is="zotero-text-link"
+          class="zotero-text-link"
+          href="https://www.semanticscholar.org/product/api#api-key"
+        />
+      </hbox>
+      <description
+        data-l10n-id="rule-tool-update-metadata-option-semanticScholarToken-desc"
+        class="linter-pref-description"
+      />
+    </groupbox>
   </groupbox>
 
   <!-- 关于 -->

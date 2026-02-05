@@ -316,11 +316,16 @@ rule-tool-update-metadata-option-semanticScholarToken-desc =
   默认的，此 API 限制请求 1 次/秒，你可以通过免费申请 API Key 来增加速率限制。
 rule-tool-update-metadata-option-semanticScholarToken-link = 申请
 
+rule-tool-update-metadata-option-slient = 
+  .label = 使用默认设置直接更新，而不是每次操作都确认设置
 rule-tool-update-metadata-dialog-title = 更新条目元数据
 rule-tool-update-metadata-dialog-mode = 更新模式
-rule-tool-update-metadata-dialog-mode-all = 所有字段
-rule-tool-update-metadata-dialog-mode-blank = 仅空白字段
-rule-tool-update-metadata-dialog-allow-type-changed = 允许更改条目类型
+rule-tool-update-metadata-dialog-mode-all = 
+  .label = 所有字段
+rule-tool-update-metadata-dialog-mode-blank = 
+  .label = 仅空白字段
+rule-tool-update-metadata-dialog-allow-type-changed = 
+  .label = 允许更改条目类型
 rule-tool-update-metadata-dialog-notes = 说明
 rule-tool-update-metadata-dialog-note-rate-limit = 某些 API 有速率限制；请避免批量处理。
 rule-tool-update-metadata-dialog-note-chinese-limit = 由于数据源限制，中文出版物无法使用此功能。

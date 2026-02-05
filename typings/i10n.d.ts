@@ -144,6 +144,7 @@ export type FluentMessageId =
   | 'rule-tool-update-metadata-option-semanticScholarToken'
   | 'rule-tool-update-metadata-option-semanticScholarToken-desc'
   | 'rule-tool-update-metadata-option-semanticScholarToken-link'
+  | 'rule-tool-update-metadata-option-slient'
   | 'section-article'
   | 'section-book'
   | 'section-conference'

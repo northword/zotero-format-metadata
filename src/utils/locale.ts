@@ -116,7 +116,15 @@ function _getString(id: FluentMessageId, options: GetStringOptions): string {
     return attr?.value ?? localeID;
   }
 
-  return pattern.value ?? localeID;
+  if (pattern.value)
+    return pattern.value;
+
+  // fallback to `label` branch
+  const attr = pattern.attributes?.find(a => a.name === "label");
+  if (attr)
+    return attr?.value ?? localeID;
+
+  return localeID;
 }
 
 export function getLocaleID(id?: FluentMessageId): string | undefined {

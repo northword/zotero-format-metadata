@@ -315,11 +315,16 @@ rule-tool-update-metadata-option-semanticScholarToken-desc =
   By default, this API limits requests to 1 per second, and you can increase the rate limit by applying for a free API Key.
 rule-tool-update-metadata-option-semanticScholarToken-link = Request API key
 
+rule-tool-update-metadata-option-slient = 
+  .label = Use default settings without confirmation each time
 rule-tool-update-metadata-dialog-title = Update Item Metadata
 rule-tool-update-metadata-dialog-mode = Update Mode
-rule-tool-update-metadata-dialog-mode-all = All Fields
-rule-tool-update-metadata-dialog-mode-blank = Blank Fields Only
-rule-tool-update-metadata-dialog-allow-type-changed = Allow Change Item Type
+rule-tool-update-metadata-dialog-mode-all = 
+  .label = All Fields
+rule-tool-update-metadata-dialog-mode-blank = 
+  .label = Blank Fields Only
+rule-tool-update-metadata-dialog-allow-type-changed = 
+  .label = Allow Change Item Type
 rule-tool-update-metadata-dialog-notes = Notes
 rule-tool-update-metadata-dialog-note-rate-limit = Some APIs have rate limits; please avoid bulk processing.
 rule-tool-update-metadata-dialog-note-chinese-limit = Chinese publications could not use this feature due to data source limitations.

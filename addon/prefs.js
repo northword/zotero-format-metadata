@@ -71,7 +71,14 @@ pref("rule.correct-proceedingsTitle-sentence-case", false);
 pref("rule.correct-extra-order", true);
 
 // --------------------
+// Update Metadata Tool
+// --------------------
+pref("rule.tool-update-metadata.option.slient", false);
+pref("rule.tool-update-metadata.option.mode", "all");
+pref("rule.tool-update-metadata.option.allow-type-changed", true);
+pref("semanticScholarToken", "");
+
+// --------------------
 // Other settings
 // --------------------
 pref("cleanExtra", false);
-pref("semanticScholarToken", "");

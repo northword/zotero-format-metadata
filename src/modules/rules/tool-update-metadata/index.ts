@@ -1,6 +1,7 @@
 import type { TransformedData } from "./services/base-service";
 import { useSettingsDialog } from "../../../utils/dialog";
 import { getString } from "../../../utils/locale";
+import { getPref } from "../../../utils/prefs";
 import { isFieldValidForItemType } from "../../../utils/zotero";
 import { defineRule } from "../rule-base";
 import { extractIdentifiers } from "./identifiers";
@@ -143,6 +144,17 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
   },
 
   async prepare() {
+    // Get Default Settings
+    const isSlient = getPref("rule.tool-update-metadata.option.slient");
+    const defaultOptions: UpdateMetadataOption = {
+      mode: getPref("rule.tool-update-metadata.option.mode") as UpdateMetadataOption["mode"],
+      allowTypeChanged: getPref("rule.tool-update-metadata.option.allow-type-changed"),
+    };
+
+    if (isSlient)
+      return defaultOptions;
+
+    // Create Dialog
     const { dialog, openForSettings } = useSettingsDialog<UpdateMetadataOption>();
 
     dialog.addSetting(getString("rule-tool-update-metadata-dialog-mode"), "mode", {
@@ -153,11 +165,17 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
           value: "all",
           innerHTML: getString("rule-tool-update-metadata-dialog-mode-all"),
         },
+        attributes: {
+          selected: defaultOptions.mode === "all",
+        },
       }, {
         tag: "option",
         properties: {
           value: "blank",
           innerHTML: getString("rule-tool-update-metadata-dialog-mode-blank"),
+        },
+        attributes: {
+          selected: defaultOptions.mode === "blank",
         },
       }],
     })
@@ -165,7 +183,7 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
         tag: "input",
         attributes: {
           type: "checkbox",
-          checked: true,
+          checked: defaultOptions.allowTypeChanged,
         },
       }, { valueType: "boolean" })
       // .addSetting("Run Lint After Retrive", "lint", {

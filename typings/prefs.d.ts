@@ -64,8 +64,11 @@ declare namespace _ZoteroTypes {
       "rule.correct-bookTitle-sentence-case": boolean;
       "rule.correct-proceedingsTitle-sentence-case": boolean;
       "rule.correct-extra-order": boolean;
-      "cleanExtra": boolean;
+      "rule.tool-update-metadata.option.slient": boolean;
+      "rule.tool-update-metadata.option.mode": string;
+      "rule.tool-update-metadata.option.allow-type-changed": boolean;
       "semanticScholarToken": string;
+      "cleanExtra": boolean;
     };
   }
 }
