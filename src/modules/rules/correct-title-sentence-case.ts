@@ -149,6 +149,13 @@ export function toSentenceCase(text: string, locale: string = "en-US") {
     return match; // northword patch: make tsc happy
   });
 
+  // northword patch https://github.com/northword/zotero-format-metadata/issues/383
+  // protect content inside specific formatting tags (i, b, em, strong, sup, sub)
+  text.replace(/<(i|b|em|strong|sup|sub)(?:\s[^>]*)?>.*?<\/\1>/gi, (match, tagName, offset) => {
+    preserve.push({ start: offset, end: offset + match.length, description: "protected-formatting-tag" });
+    return match;
+  });
+
   // mask html tags with characters so the sentence-casing can deal with them as simple words
   let masked = text.replace(/<[^>]+>/g, (match, i) => {
     preserve.push({ start: i, end: i + match.length, description: "markup" });
