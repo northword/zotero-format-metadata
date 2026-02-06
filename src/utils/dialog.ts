@@ -5,6 +5,8 @@ import { createLogger } from "./logger";
 
 const logger = createLogger("useDialog");
 
+const OK_BUTTON_ID = "btn-ok";
+
 export function closeAllDialogs() {
   for (const [id, window] of addon.data.dialogs) {
     window.close();
@@ -44,6 +46,8 @@ export function useDialog<T extends DialogHelper | SettingsDialogHelper>(dialog:
     addon.data.dialogs.set(id, dialog.window);
     logger.debug("dialog opened, awaiting operation...");
 
+    (dialog.window.document.getElementById(OK_BUTTON_ID) as HTMLButtonElement | null)?.focus();
+
     await dialog.dialogData.unloadLock?.promise;
     addon.data.dialogs.delete(id);
     logger.debug("dialog closed with data");
@@ -79,7 +83,7 @@ export function useSettingsDialog<T extends SettingsDialogResult>(): {
       key => data[key],
       (key, value) => data[key] = value,
     )
-    .addAutoSaveButton("OK");
+    .addAutoSaveButton("OK", OK_BUTTON_ID);
 
   async function openForSettings(title: string) {
     await openAndWaitClose(title);
