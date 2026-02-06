@@ -59,16 +59,16 @@ export function extractIdentifiers(item: Zotero.Item): Identifiers {
   result.DOI = DOI || DOI_Extra || DOI_From_URL || undefined;
 
   // Other optional fields from Extra
-  const PMCID = ztoolkit.ExtraField.getExtraField(item, "PMCID")
-    || ztoolkit.ExtraField.getExtraField(item, "PMID");
-  if (PMCID)
-    result.PMID = PMCID;
+  const PMCID = item.getField("PMCID") || ztoolkit.ExtraField.getExtraField(item, "PMCID");
+  const PMID = item.getField("PMID") || ztoolkit.ExtraField.getExtraField(item, "PMID");
+  if (PMCID || PMID)
+    result.PMID = PMCID || PMID;
 
   const SemanticScholarID = ztoolkit.ExtraField.getExtraField(item, "SemanticScholar");
   if (SemanticScholarID)
     result.SemanticScholarID = SemanticScholarID;
 
-  const ISBN = ztoolkit.ExtraField.getExtraField(item, "ISBN");
+  const ISBN = item.getField("ISBN") || ztoolkit.ExtraField.getExtraField(item, "ISBN");
   if (ISBN)
     result.ISBN = ISBN;
 
