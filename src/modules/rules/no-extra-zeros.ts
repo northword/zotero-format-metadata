@@ -1,7 +1,9 @@
 import { defineRule } from "./rule-base";
 
 export function removeLeadingZeros(input: string): string {
-  return input.replace(/\b0+(\d+)/g, "$1");
+  return input
+    .replace(/\b0+(\d+)/g, "$1")
+    .replace("0-", "1-");
 }
 
 type Field = "pages" | "issue" | "volume";
