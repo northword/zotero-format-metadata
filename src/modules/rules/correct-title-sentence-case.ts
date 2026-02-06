@@ -24,6 +24,7 @@ const _chemElements = chemElements.filter(e => !["Be"].includes(e));
 
 const geographyWords = [
   "Asia", "Europe", "Africa", "North America", "South America",
+  "Asian", "European", "African", "American",
   "Oceania", "Antarctica", "Pacific Ocean", "Atlantic Ocean", "Indian Ocean", "Arctic Ocean",
   "Mediterranean", "Tibetan Plateau",
   "Yangtze River", "Yangtze", "Beijing–Tianjin–Hebei", "Yellow River", "Huang He",

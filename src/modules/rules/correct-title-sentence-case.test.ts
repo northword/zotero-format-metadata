@@ -104,8 +104,11 @@ const testItems: testItem[] = [
 ];
 
 const OFFICIAL_DATA_SKIP_LIST = [
-  // https://github.com/northword/zotero-format-metadata/issues/383
+  // https://github.com/northword/zotero-format-metadata/issues/383 - scientific names between italics tags
   "Instrumental <i>With/</i> and the Control Relation in English",
+
+  // https://github.com/northword/zotero-format-metadata/issues/389 - Asian
+  "Proceedings of the American Control Conference (ACC)",
 ];
 
 describe("toSentenceCase", () => {
