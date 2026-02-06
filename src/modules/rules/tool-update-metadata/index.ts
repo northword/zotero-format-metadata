@@ -166,7 +166,7 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
           innerHTML: getString("rule-tool-update-metadata-dialog-mode-all"),
         },
         attributes: {
-          selected: defaultOptions.mode === "all",
+          ...defaultOptions.mode === "all" && { selected: "" },
         },
       }, {
         tag: "option",
@@ -175,7 +175,7 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
           innerHTML: getString("rule-tool-update-metadata-dialog-mode-blank"),
         },
         attributes: {
-          selected: defaultOptions.mode === "blank",
+          ...defaultOptions.mode === "blank" && { selected: "" },
         },
       }],
     })
@@ -183,7 +183,7 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
         tag: "input",
         attributes: {
           type: "checkbox",
-          checked: defaultOptions.allowTypeChanged,
+          ...defaultOptions.allowTypeChanged && { checked: defaultOptions.allowTypeChanged },
         },
       }, { valueType: "boolean" })
       // .addSetting("Run Lint After Retrive", "lint", {
