@@ -23,7 +23,7 @@ export function createReporter(infos: ReportInfo[]) {
     info => info.itemID,
   );
 
-  const { dialog, openAndWaitClose } = useDialog(new ztoolkit.Dialog(1, 1));
+  const { dialog, openAndWaitClose, close } = useDialog(new ztoolkit.Dialog(1, 1));
   dialog.addCell(0, 0, {
     tag: "div",
     styles: {
@@ -71,67 +71,75 @@ export function createReporter(infos: ReportInfo[]) {
     ] satisfies TagElementProps[]),
   });
 
-  openAndWaitClose("Linter for Zotero");
-}
-
-function createRuleResultRows(info: ReportInfo): TagElementProps {
-  return {
-    tag: "div",
-    styles: {
-      display: "flex",
-      alignItems: "center",
-      gap: "8px",
-      padding: "6px 8px",
-      borderRadius: "6px",
-      minHeight: "2rem",
-      backgroundColor:
+  function createRuleResultRows(info: ReportInfo): TagElementProps {
+    return {
+      tag: "div",
+      styles: {
+        display: "flex",
+        alignItems: "center",
+        gap: "8px",
+        padding: "6px 8px",
+        borderRadius: "6px",
+        minHeight: "2rem",
+        backgroundColor:
           info.level === "error"
             ? "rgba(255, 0, 0, 0.08)"
             : "rgba(255, 165, 0, 0.08)",
-      marginBottom: "6px",
-    },
-    children: [
-      {
-        tag: "a",
-        properties: {
-          innerHTML: info.ruleID,
+        marginBottom: "6px",
+      },
+      children: [
+        {
+          tag: "a",
+          properties: {
+            innerHTML: info.ruleID,
           // href: `https://github.com/northword/zotero-format-metadata/blob/main/docs/rules/${info.ruleID}.md`,
+          },
+          styles: {
+            fontWeight: "bold",
+            color: info.level === "error" ? "var(--accent-red)" : "var(--accent-orange)",
+            minWidth: "80px",
+            textDecoration: "none",
+          },
         },
-        styles: {
-          fontWeight: "bold",
-          color: info.level === "error" ? "var(--accent-red)" : "var(--accent-orange)",
-          minWidth: "80px",
-          textDecoration: "none",
+        {
+          tag: "label",
+          properties: {
+            innerHTML: info.message,
+          },
+          styles: {
+            flex: "1",
+            color: "var(--fill-primary)",
+            fontSize: "13px",
+            lineHeight: "1.4",
+          },
         },
-      },
-      {
-        tag: "label",
-        properties: {
-          innerHTML: info.message,
+        {
+          tag: "button",
+          styles: {
+            display: info.action ? "inline-block" : "none",
+            padding: "4px 10px",
+            border: "none",
+            cursor: "pointer",
+            fontSize: "12px",
+          },
+          properties: {
+            innerHTML: info.action?.label,
+            onclick: () => {
+              info.action?.callback();
+
+              // If only one rule reports an issue for an item,
+              // close the dialog when clicking the button
+              if (infos.length === 1) {
+                close();
+              }
+            },
+          },
         },
-        styles: {
-          flex: "1",
-          color: "var(--fill-primary)",
-          fontSize: "13px",
-          lineHeight: "1.4",
-        },
-      },
-      {
-        tag: "button",
-        styles: {
-          display: info.action ? "inline-block" : "none",
-          padding: "4px 10px",
-          border: "none",
-          cursor: "pointer",
-          fontSize: "12px",
-        },
-        properties: {
-          innerHTML: info.action?.label,
-          onclick: () => info.action?.callback(),
-        },
-      },
-    ],
-  };
+      ],
+    };
+  }
+
+  openAndWaitClose("Linter for Zotero");
 }
 
 const PROGRESS_WINDOW_CLOSE_DELAY = 5000;

@@ -17,6 +17,7 @@ export function closeAllDialogs() {
 export function useDialog<T extends DialogHelper | SettingsDialogHelper>(dialog: T): {
   dialog: T;
   openAndWaitClose: (title: string) => Promise<void>;
+  close: () => void;
 } {
   const { height, width } = getScreenInfoViaWindow() ?? {};
 
@@ -36,8 +37,10 @@ export function useDialog<T extends DialogHelper | SettingsDialogHelper>(dialog:
     },
   });
 
+  let id: string;
+
   async function openAndWaitClose(title: string) {
-    const id = `${kebabCase(title)}-${Zotero.Utilities.randomString()}`;
+    id = `${kebabCase(title)}-${Zotero.Utilities.randomString()}`;
 
     logger.debug(`opening dialog ${id}...`);
     dialog.open(title);
@@ -46,14 +49,20 @@ export function useDialog<T extends DialogHelper | SettingsDialogHelper>(dialog:
     addon.data.dialogs.set(id, dialog.window);
     logger.debug("dialog opened, awaiting operation...");
 
+    dialog.window.focus();
     (dialog.window.document.getElementById(OK_BUTTON_ID) as HTMLButtonElement | null)?.focus();
 
     await dialog.dialogData.unloadLock?.promise;
     addon.data.dialogs.delete(id);
-    logger.debug("dialog closed with data");
+    logger.debug("dialog closed");
   };
 
-  return { dialog, openAndWaitClose };
+  function close() {
+    dialog.window.close();
+    logger.debug("dialog closed without data");
+  }
+
+  return { dialog, openAndWaitClose, close };
 }
 
 type SettingsDialogResult = Record<string, any>;
