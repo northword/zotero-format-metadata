@@ -5,7 +5,6 @@ import {
   FilePickerHelper,
   KeyboardManager,
   makeHelperTool,
-  MenuManager,
   ProgressWindowHelper,
   SettingsDialogHelper,
   UITool,
@@ -38,7 +37,6 @@ function initZToolkit(_ztoolkit: ReturnType<typeof createZToolkit>) {
 
 class MyToolkit extends BasicTool {
   UI: UITool;
-  Menu: MenuManager;
   Keyboard: KeyboardManager;
   ProgressWindow: typeof ProgressWindowHelper;
   VirtualizedTable: typeof VirtualizedTableHelper;
@@ -50,7 +48,6 @@ class MyToolkit extends BasicTool {
   constructor() {
     super();
     this.UI = new UITool(this);
-    this.Menu = new MenuManager(this);
     this.Keyboard = new KeyboardManager(this);
     this.ExtraField = new ExtraFieldTool(this);
     this.Dialog = makeHelperTool(DialogHelper, this);
