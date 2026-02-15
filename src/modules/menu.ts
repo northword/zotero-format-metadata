@@ -1,8 +1,5 @@
-import type { MenuitemOptions } from "zotero-plugin-toolkit";
-import type { FluentMessageId } from "../../typings/i10n";
-import { getLocaleID, getString } from "../utils/locale";
+import { getLocaleID } from "../utils/locale";
 import { logger } from "../utils/logger";
-import { isRegularItem } from "../utils/zotero";
 import { Rules } from "./rules";
 
 type FieldMenu = _ZoteroTypes.MenuManager.MenuData<_ZoteroTypes.MenuManager.ItemPaneMenuContext>;
@@ -10,10 +7,12 @@ type ItemMenu = _ZoteroTypes.MenuManager.MenuData<_ZoteroTypes.MenuManager.Libra
 
 const icon = `${rootURI}/content/icons/favicon.png`;
 
-function registerFieldMenus() {
-  if (!Zotero.version.startsWith("8"))
-    return;
+export function registerMenu() {
+  registerItemMenus();
+  registerFieldMenus();
+}
 
+function registerFieldMenus() {
   const menus: FieldMenu[] = Rules
     .getByType("field")
     .filter(r => r.fieldMenu)
@@ -180,114 +179,6 @@ function registerItemMenus() {
         },
       }],
     });
-  }
-}
-
-function registerItemMenusByZToolkit() {
-  function getLabel(fluentMessage: FluentMessageId) {
-    return getString(fluentMessage, "label");
-  }
-
-  function getMenuItem(menuPopup: string) {
-    function makeItemMenu(id: ID): MenuitemOptions {
-      return {
-        tag: "menuitem",
-        // @ts-expect-error some rules are not defined in the item menu
-        label: getLabel(`rule-${id}-menu-item`) || id,
-        commandListener: () => {
-          addon.hooks.onLintInBatch(id, menuPopup);
-        },
-      };
-    }
-
-    const separator: MenuitemOptions = { tag: "menuseparator" };
-
-    const menuItem: MenuitemOptions[] = [
-      {
-        tag: "menuitem",
-        label: getLabel("menuitem-stdFormatFlow"),
-        commandListener: () => {
-          addon.hooks.onLintInBatch("standard", menuPopup);
-        },
-      },
-      separator,
-      makeItemMenu("correct-title-sentence-case"),
-      makeItemMenu("correct-title-chemical-formula"),
-      makeItemMenu("correct-creators-case"),
-      makeItemMenu("correct-creators-pinyin"),
-      separator,
-      makeItemMenu("require-language"),
-      makeItemMenu("tool-set-language"),
-      separator,
-      makeItemMenu("correct-publication-title-case"),
-      makeItemMenu("correct-publication-title-alias"),
-      makeItemMenu("require-journal-abbr"),
-      makeItemMenu("require-university-place"),
-      separator,
-      {
-        tag: "menuitem",
-        label: getLabel("rule-tool-update-metadata-menu-item"),
-        commandListener: () => {
-          addon.hooks.onLintInBatch(["tool-update-metadata", "standard"], menuPopup);
-        },
-      },
-      separator,
-      {
-        tag: "menu",
-        label: getLabel("menuTools-label"),
-        icon,
-        children: [
-          makeItemMenu("tool-title-guillemet"),
-          separator,
-          makeItemMenu("no-doi-prefix"),
-          makeItemMenu("tool-get-short-doi"),
-          makeItemMenu("correct-date-format"),
-          separator,
-          makeItemMenu("tool-clean-extra"),
-          makeItemMenu("tool-csl-helper"),
-          makeItemMenu("tool-creators-ext"),
-        ],
-      },
-    ];
-    return menuItem;
-  }
-
-  ztoolkit.Menu.register("item", {
-    tag: "menuseparator",
-    getVisibility: (_elem, _ev) => isRegularItem(),
-  });
-  ztoolkit.Menu.register("item", {
-    tag: "menu",
-    label: getLabel("menuitem-label"),
-    id: "linter-menu-item",
-    icon,
-    children: getMenuItem("item"),
-    getVisibility: (_elem, _ev) => isRegularItem(),
-    styles: {
-      fill: "var(--fill-secondary)",
-      stroke: "currentColor",
-    },
-  });
-
-  ztoolkit.Menu.register("collection", {
-    tag: "menuseparator",
-  });
-  ztoolkit.Menu.register("collection", {
-    tag: "menu",
-    label: getLabel("menuitem-label"),
-    id: "",
-    icon,
-    children: getMenuItem("collection"),
-  });
-}
-
-export function registerMenu() {
-  if (Zotero.version.startsWith("8")) {
-    registerItemMenus();
-    registerFieldMenus();
-  }
-  else {
-    registerItemMenusByZToolkit();
   }
 }
 

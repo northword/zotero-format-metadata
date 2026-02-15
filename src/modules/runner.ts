@@ -15,9 +15,7 @@ const logger = createLogger("Runner");
  * ConcurrentCaller
  * @see https://github.com/zotero/zotero/blob/main/resource/concurrentCaller.mjs
  */
-const { ConcurrentCaller } = Zotero.version.startsWith("8")
-  ? ChromeUtils.importESModule("resource://zotero/concurrentCaller.mjs")
-  : Components.utils.import("resource://zotero/concurrentCaller.js");
+const { ConcurrentCaller } = ChromeUtils.importESModule("resource://zotero/concurrentCaller.mjs");
 
 interface RunnerStats {
   total: number;

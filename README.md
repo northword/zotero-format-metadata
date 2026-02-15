@@ -2,7 +2,7 @@
 
 ![Linter for Zotero](./docs/assets/slogan-for-readme.jpg)
 
-[![zotero target version](https://img.shields.io/badge/Zotero-^7_||_^8_||_^9-green?&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
+[![zotero target version](https://img.shields.io/badge/Zotero-^8_||_^9-green?&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![version](https://img.shields.io/github/package-json/v/northword/zotero-format-metadata)](https://github.com/northword/zotero-format-metadata/releases/)
 [![download number](https://img.shields.io/github/downloads/northword/zotero-format-metadata/latest/total)](https://github.com/northword/zotero-format-metadata/releases/)
 [![license](https://img.shields.io/github/license/northword/zotero-format-metadata)](#licence)

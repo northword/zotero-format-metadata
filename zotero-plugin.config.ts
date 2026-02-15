@@ -57,11 +57,21 @@ export default defineConfig({
             },
           },
         },
+        {
+          version: "2.3.0",
+          update_link: "https://github.com/northword/zotero-format-metadata/releases/download/v2.3.0/linter-for-zotero.xpi",
+          applications: {
+            zotero: {
+              strict_min_version: "6.999",
+              strict_max_version: "8.*",
+            },
+          },
+        },
       ],
     },
     hooks: {
       "build:bundle": async () => {
-        // resolve esbuild "ReferenceError: Zotero is not defined" error
+        // @ts-expect-error resolve esbuild "ReferenceError: Zotero is not defined" error
         globalThis.Zotero = {
           Prefs: {
             get: () => 1,
