@@ -230,7 +230,6 @@ export class RichTextToolBar {
   }
 
   private get contextPaneHeader(): HTMLElement | null {
-    // @ts-expect-error ZoteroContextPane has context
     return ztoolkit.getGlobal("ZoteroContextPane").context?._itemPaneDeck.firstChild?._header;
   }
 
