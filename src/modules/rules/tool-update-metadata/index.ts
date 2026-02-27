@@ -35,14 +35,20 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
     let data: TransformedData | null = null;
     let errorMessage: string = "";
     for (const service of services) {
-      if (!service.shouldApply({ item, identifiers }))
+      const ctx = {
+        item,
+        identifiers,
+        debug: (msg: string) => debug(`[${service.id}] ${msg}`),
+      };
+
+      if (!service.shouldApply(ctx))
         continue;
 
       debug(`Service ${service.name} processing...`);
 
-      await service.updateIdentifiers?.({ item, identifiers });
+      await service.updateIdentifiers?.(ctx);
 
-      const res = await service.fetch?.({ item, identifiers })
+      const res = await service.fetch?.(ctx)
         .catch((error) => {
           debug(`Service ${service.name} failed: ${error.message}`);
           errorMessage += `${service.name}: ${error.message}\n`;

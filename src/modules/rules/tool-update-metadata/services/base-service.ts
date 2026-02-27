@@ -1,3 +1,4 @@
+import type { ApplyContext } from "../../rule-base";
 import type { Identifiers } from "../identifiers";
 import { withThrottle } from "../../../../utils/throttle";
 import { Rule } from "../../rule-base";
@@ -15,7 +16,7 @@ interface MetadataContext {
   item: Zotero.Item;
   identifiers: Identifiers;
   // options: UpdateMetadataOptions;
-  // debug: Logger["debug"];
+  debug: ApplyContext["debug"];
 }
 
 export interface MetadataService<T extends MetadataResponse> {
