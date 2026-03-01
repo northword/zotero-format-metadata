@@ -56,7 +56,7 @@
     "autocorrect-node": "^2.14.0",
     "chai": "^6.2.2",
     "eslint": "^9.39.3",
-    "eslint-plugin-format": "^1.5.0",
+    "eslint-plugin-format": "^2.0.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "mocha": "^11.7.5",
