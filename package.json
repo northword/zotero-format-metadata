@@ -64,7 +64,7 @@
     "typescript": "^5.9.3",
     "vitest": "^4.0.18",
     "zotero-plugin-scaffold": "^0.8.3",
-    "zotero-types": "4.1.1"
+    "zotero-types": "4.1.2"
   },
   "lint-staged": {
     "*": [
