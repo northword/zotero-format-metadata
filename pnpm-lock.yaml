@@ -30,7 +30,7 @@ importers:
         specifier: ^1.3.4
         version: 1.3.4
       zotero-plugin-toolkit:
-        specifier: 5.1.2
+        specifier: ^5.1.2
         version: 5.1.2
     devDependencies:
       '@antfu/eslint-config':
@@ -85,8 +85,8 @@ importers:
         specifier: ^0.8.3
         version: 0.8.3(magicast@0.5.2)
       zotero-types:
-        specifier: 4.1.1
-        version: 4.1.1(magicast@0.5.2)
+        specifier: ^4.1.2
+        version: 4.1.2
 
 packages:
 
@@ -2381,8 +2381,8 @@ packages:
   pathe@2.0.3:
     resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
 
-  pdfjs-dist@https://codeload.github.com/zotero-plugin-dev/zotero-pdfjs-types/tar.gz/17c27d6516dbfc9c6f2739b9a3ffd337a305a2f9:
-    resolution: {tarball: https://codeload.github.com/zotero-plugin-dev/zotero-pdfjs-types/tar.gz/17c27d6516dbfc9c6f2739b9a3ffd337a305a2f9}
+  pdfjs-dist@https://codeload.github.com/zotero-plugin-dev/zotero-pdfjs-types/tar.gz/910e190a9deb4d6d79fcf2232c6fbc4d69b9bc21:
+    resolution: {tarball: https://codeload.github.com/zotero-plugin-dev/zotero-pdfjs-types/tar.gz/910e190a9deb4d6d79fcf2232c6fbc4d69b9bc21}
     version: 0.0.0
     engines: {node: '>=18'}
 
@@ -2909,8 +2909,8 @@ packages:
     resolution: {integrity: sha512-mOxWGWCrwnkNoIAiXQv03La7pfiRyBeLmwbiQQDtm/6PvGAuRYZWTKahPPS+ORKblNs84lpMQ6CdPgwJm0ATZw==}
     engines: {node: '>=18'}
 
-  zotero-types@4.1.1:
-    resolution: {integrity: sha512-iW2FFG7+T6CVrzeSvmtJV416Ig2to7usJtWT46LRv7TWtTNeE/+/PDy5ZRnBsunvtxBsXUcyXlVdbC68fzXfQw==}
+  zotero-types@4.1.2:
+    resolution: {integrity: sha512-i1z/j8Yv5AiKfzglNupq2imqbv0GoyEp32ga4dqi4XnCk/z4DZx12aDP4KVM4cdo6yjQFkEotjKlOWFlrdP1GA==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -5322,7 +5322,7 @@ snapshots:
 
   pathe@2.0.3: {}
 
-  pdfjs-dist@https://codeload.github.com/zotero-plugin-dev/zotero-pdfjs-types/tar.gz/17c27d6516dbfc9c6f2739b9a3ffd337a305a2f9: {}
+  pdfjs-dist@https://codeload.github.com/zotero-plugin-dev/zotero-pdfjs-types/tar.gz/910e190a9deb4d6d79fcf2232c6fbc4d69b9bc21: {}
 
   perfect-debounce@2.1.0: {}
 
@@ -5835,14 +5835,11 @@ snapshots:
 
   zotero-plugin-toolkit@5.1.2: {}
 
-  zotero-types@4.1.1(magicast@0.5.2):
+  zotero-types@4.1.2:
     dependencies:
       '@types/bluebird': 3.5.42
       '@types/react': 18.3.28
-      bumpp: 10.4.1(magicast@0.5.2)
       epubjs: https://codeload.github.com/zotero/epub.js/tar.gz/a6139d586b66d404f3da2b846598960c0394afc5
-      pdfjs-dist: https://codeload.github.com/zotero-plugin-dev/zotero-pdfjs-types/tar.gz/17c27d6516dbfc9c6f2739b9a3ffd337a305a2f9
-    transitivePeerDependencies:
-      - magicast
+      pdfjs-dist: https://codeload.github.com/zotero-plugin-dev/zotero-pdfjs-types/tar.gz/910e190a9deb4d6d79fcf2232c6fbc4d69b9bc21
 
   zwitch@2.0.4: {}
