@@ -137,7 +137,7 @@ export function getTextLanguage(text: string) {
     return langGetByTinyLd;
   }
   else {
-    return text.match(/[\u4E00-\u9FA5]/) ? "zh" : "en";
+    return /[\u4E00-\u9FA5]/.test(text) ? "zh" : "en";
   }
 }
 

@@ -14,6 +14,11 @@ export default antfu(
     },
     formatters: true,
     javascript: { },
+    typescript: {
+      overrides: {
+        "e18e/prefer-static-regex": "off",
+      },
+    },
     ignores: [
       "addon/lib/**",
       "data",

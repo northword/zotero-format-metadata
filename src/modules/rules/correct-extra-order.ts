@@ -22,7 +22,7 @@ export function sortExtraFieldMap(
   const isCitationKey = (key: string) => key.toLowerCase() === "citation key" || key.toLowerCase() === "citation-key";
   const isOriginalField = (key: string) => key.toLowerCase().startsWith("original-");
 
-  const entries = Array.from(input.entries());
+  const entries = [...input.entries()];
   const collator = new Intl.Collator("en", { sensitivity: "base" });
 
   entries.sort(([keyA], [keyB]) => {

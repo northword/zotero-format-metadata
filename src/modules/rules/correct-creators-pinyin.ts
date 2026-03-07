@@ -21,7 +21,7 @@ export function correctCreatorPinyin(creator: _ZoteroTypes.Item.Creator) {
   if (lastNamePinyin.length === 0)
     return creator;
 
-  if (creator.firstName.match(/[ -]/))
+  if (/[ -]/.test(creator.firstName))
     return creator;
 
   const firstNamePinyin = splitPinyin(creator.firstName);

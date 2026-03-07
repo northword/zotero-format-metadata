@@ -129,7 +129,10 @@ export function toSentenceCase(text: string, locale: string = "en-US") {
   // sub-sentence start
   text.replace(/([.?!]\s+)(<[^>]+>)?(\p{Lu})/gu, (match, end, markup, char, i) => {
     markup = markup || "";
-    if (!text.substring(0, i + 1).match(/(\p{Lu}\.){2,}$/u)) {
+    // We expect to keep the regular expression unchanged to maintain consistency with
+    // Zotero's built-in version, even though it includes redundant capture groups.
+    /* eslint-disable-next-line regexp/no-unused-capturing-group */
+    if (!/(\p{Lu}\.){2,}$/u.test(text.substring(0, i + 1))) {
       // prevent "U.S. Taxes" from starting a new sub-sentence
       preserve.push({ start: i + end.length + markup.length, end: i + end.length + markup.length + char.length });
     }
@@ -178,12 +181,12 @@ export function toSentenceCase(text: string, locale: string = "en-US") {
       }
 
       // inner capital somewhere
-      if (unmasked.match(/.\p{Lu}/u)) {
+      if (/.\p{Lu}/u.test(unmasked)) {
         return word;
       }
 
       // identifiers or allcaps
-      if (unmasked.match(/^\p{L}+\p{N}[\p{L}\p{N}]*$/u) || unmasked.match(/^[\p{Lu}\p{N}]+$/u)) {
+      if (/^\p{L}+\p{N}[\p{L}\p{N}]*$/u.test(unmasked) || /^[\p{Lu}\p{N}]+$/u.test(unmasked)) {
         return word;
       }
 

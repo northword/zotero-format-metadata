@@ -29,13 +29,13 @@ export const CorrectThesisType = defineRule({
     else if (type.match("博士")) {
       type = "博士学位论文";
     }
-    else if (type.match(/doctor/i)) {
+    else if (/doctor/i.test(type)) {
       type = "Doctoral dissertation";
     }
-    else if (type.match(/master/i)) {
+    else if (/master/i.test(type)) {
       type = "Master thesis";
     }
-    else if (type.match(/ph\.? ?d\.?/i)) {
+    else if (/ph\.? ?d\.?/i.test(type)) {
       type = "Doctoral dissertation";
     }
     else {
