@@ -1,4 +1,5 @@
 import type { FluentMessageId } from "../../typings/i10n";
+import { logger } from "./logger";
 
 const localeFilesForJS = [
   "addon.ftl",
@@ -17,14 +18,28 @@ function getLocaleFileFullNames(files: string[]) {
 
 export function registerMainWindowLocale(win: Window) {
   getLocaleFileFullNames(localeFilesForMainWindow)
-    .forEach(file => (win as any).MozXULElement.insertFTLIfNeeded(file));
+    .forEach((file) => {
+      if (win.document.l10n)
+        win.document.l10n.addResourceIds([{ path: file, optional: true }]);
+      else
+        win.MozXULElement.insertFTLIfNeeded(file);
+    });
 }
 
 export function unregisterMainWindowLocale(win: Window) {
   getLocaleFileFullNames(localeFilesForMainWindow)
-    .forEach(file => win.document
-      .querySelector(`[href="${file}"]`)
-      ?.remove());
+    .forEach((file) => {
+      if (win.document.l10n) {
+        logger.debug(`removing main window ftl res ${file}`);
+        win.document.l10n.removeResourceIds([{ path: file }]);
+        // win.document.l10n
+      }
+      else {
+        win.document
+          .querySelector(`[href="${file}"]`)
+          ?.remove();
+      }
+    });
 }
 
 /**
