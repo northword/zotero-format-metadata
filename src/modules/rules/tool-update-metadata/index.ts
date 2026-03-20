@@ -122,14 +122,27 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
         if (!isFieldValidForItemType(field as _ZoteroTypes.Item.ItemField, item.itemType))
           continue;
 
-        let newFieldValue = value;
+        let newFieldValue = "";
         const oldFieldValue = item.getField(field);
 
         if (options.mode !== "all" && !!oldFieldValue)
           continue;
 
-        if (field === "accessDate") {
-          newFieldValue = Zotero.Date.dateToSQL(new Date(data[field] ?? ""), true);
+        switch (field) {
+          case "accessDate":
+            // https://github.com/northword/zotero-format-metadata/issues/239
+            // https://forums.zotero.org/discussion/117940/zoteroobjectuploaderror#latest
+            newFieldValue = Zotero.Date.dateToSQL(new Date(data[field] ?? ""), true);
+            break;
+
+          case "abstractNote":
+            // https://github.com/northword/zotero-format-metadata/issues/404
+            newFieldValue = Zotero.Utilities.trimInternal(data[field] || "");
+            break;
+
+          default:
+            newFieldValue = value;
+            break;
         }
 
         if (!newFieldValue)
