@@ -28,6 +28,13 @@ export function normalizeInterpuncts(text: string): string {
   return text.replace(interpunctPattern, "\u00B7");
 }
 
+/**
+ * Remove extra spaces before a colon (e.g. "Moving : Living in Place" → "Moving: Living in Place")
+ */
+export function normalizeSpacesBeforeColon(text: string): string {
+  return text.replace(/ +:/g, ":");
+}
+
 /** ================================================================================= */
 
 /**
@@ -49,8 +56,9 @@ export const CorrectTitlePunctuation = defineRule({
       return;
 
     let newTitle = normalizeHyphens(title);
+    newTitle = normalizeSpacesBeforeColon(newTitle);
     if (getPref("rule.correct-title-punctuation.quotes")) {
-      newTitle = convertQuotesToCurly(title);
+      newTitle = convertQuotesToCurly(newTitle);
       debug("Converted quotes to curly");
     }
 

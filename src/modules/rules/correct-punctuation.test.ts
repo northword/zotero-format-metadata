@@ -1,5 +1,35 @@
 import { describe, expect, it } from "vitest";
-import { convertQuotesToCurly, normalizeHyphens, normalizeInterpuncts } from "./correct-punctuation";
+import { convertQuotesToCurly, normalizeHyphens, normalizeInterpuncts, normalizeSpacesBeforeColon } from "./correct-punctuation";
+
+describe("normalizeSpacesBeforeColon", () => {
+  it("removes single space before colon", () => {
+    const input = "Moving : Living in Place";
+    const out = normalizeSpacesBeforeColon(input);
+    expect(out).toBe("Moving: Living in Place");
+  });
+
+  it("removes multiple spaces before colon", () => {
+    const input = "Ecology  : A New Approach";
+    const out = normalizeSpacesBeforeColon(input);
+    expect(out).toBe("Ecology: A New Approach");
+  });
+
+  it("leaves colon without preceding space unchanged", () => {
+    const input = "Moving: Living in Place";
+    const out = normalizeSpacesBeforeColon(input);
+    expect(out).toBe("Moving: Living in Place");
+  });
+
+  it("handles empty string", () => {
+    expect(normalizeSpacesBeforeColon("")).toBe("");
+  });
+
+  it("handles string with no colons", () => {
+    const input = "Just a regular title";
+    const out = normalizeSpacesBeforeColon(input);
+    expect(out).toBe("Just a regular title");
+  });
+});
 
 describe("normalizeHyphens", () => {
   it("normalizes various hyphen-like characters to hyphen-minus", () => {
