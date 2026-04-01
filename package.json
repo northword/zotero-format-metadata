@@ -61,7 +61,7 @@
     "lint-staged": "^16.4.0",
     "mocha": "^11.7.5",
     "prettier": "^3.8.1",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.2",
     "vitest": "^4.1.0",
     "zotero-plugin-scaffold": "^0.8.5",
     "zotero-types": "^4.1.2"
