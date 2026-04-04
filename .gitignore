@@ -22,3 +22,7 @@ coverage
 # ts 编译的 js
 src/**/*.js
 .scaffold
+
+# vitepress
+docs/.vitepress/dist
+docs/.vitepress/cache

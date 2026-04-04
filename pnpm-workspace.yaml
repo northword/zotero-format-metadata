@@ -3,6 +3,7 @@ shellEmulator: true
 trustPolicy: no-downgrade
 trustPolicyExclude:
   - chokidar@4.0.3
+  - vite@5.4.21
 
 ignoredBuiltDependencies:
   - "@swc/core"

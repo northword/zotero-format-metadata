@@ -34,6 +34,9 @@
     "coverage": "vitest run --coverage",
     "release": "zotero-plugin release",
     "update-deps": "pnpx taze minor -w -i",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
     "prepare": "husky"
   },
   "dependencies": {
@@ -62,6 +65,7 @@
     "mocha": "^11.7.5",
     "prettier": "^3.8.1",
     "typescript": "^6.0.2",
+    "vitepress": "^2.0.0-alpha.17",
     "vitest": "^4.1.2",
     "zotero-plugin-scaffold": "^0.8.5",
     "zotero-types": "^4.1.2"

@@ -1,0 +1,150 @@
+[
+  {
+    "text": "会议缩写规范化",
+    "link": "/rules/correct-conference-abbr"
+  },
+  {
+    "text": "更新元数据",
+    "link": "/rules/correct-creators-case"
+  },
+  {
+    "text": "作者名拼音音节分割",
+    "link": "/rules/correct-creators-pinyin"
+  },
+  {
+    "text": "作者名标点规范化",
+    "link": "/rules/correct-creators-punctuation"
+  },
+  {
+    "text": "长 DOI 转换",
+    "link": "/rules/correct-doi-long"
+  },
+  {
+    "text": "版次数字规范化",
+    "link": "/rules/correct-edition-numeral"
+  },
+  {
+    "text": "额外字段排序",
+    "link": "/rules/correct-extra-order"
+  },
+  {
+    "text": "页码连接符规范化",
+    "link": "/rules/correct-pages-connector"
+  },
+  {
+    "text": "页码范围补全",
+    "link": "/rules/correct-pages-range"
+  },
+  {
+    "text": "专利申请日期格式",
+    "link": "/rules/correct-priority-date-format"
+  },
+  {
+    "text": "期刊名别称处理",
+    "link": "/rules/correct-publication-title-alias"
+  },
+  {
+    "text": "期刊名大小写",
+    "link": "/rules/correct-publication-title-case"
+  },
+  {
+    "text": "期刊名规范化",
+    "link": "/rules/correct-publication-title"
+  },
+  {
+    "text": "学位类型规范化",
+    "link": "/rules/correct-thesis-type"
+  },
+  {
+    "text": "标题化学公式处理",
+    "link": "/rules/correct-title-chemical-formula"
+  },
+  {
+    "text": "标题 Sentence Case",
+    "link": "/rules/correct-title-sentence-case"
+  },
+  {
+    "text": "大学名标点规范化",
+    "link": "/rules/correct-university-punctuation"
+  },
+  {
+    "text": "文章网页误分类检测",
+    "link": "/rules/no-article-webpage"
+  },
+  {
+    "text": "DOI URL 前缀移除",
+    "link": "/rules/no-doi-prefix"
+  },
+  {
+    "text": "多余零移除",
+    "link": "/rules/no-extra-zeros"
+  },
+  {
+    "text": "重复条目检测",
+    "link": "/rules/no-item-duplication"
+  },
+  {
+    "text": "期刊预印本误分类检测",
+    "link": "/rules/no-journal-preprint"
+  },
+  {
+    "text": "标题末尾句号移除",
+    "link": "/rules/no-title-trailing-dot"
+  },
+  {
+    "text": "空值字段检测",
+    "link": "/rules/no-value-nullish"
+  },
+  {
+    "text": "期刊缩写补全",
+    "link": "/rules/require-abbr"
+  },
+  {
+    "text": "作者信息检查",
+    "link": "/rules/require-creators"
+  },
+  {
+    "text": "DOI 字段检查",
+    "link": "/rules/require-doi"
+  },
+  {
+    "text": "语言字段检查",
+    "link": "/rules/require-language"
+  },
+  {
+    "text": "短标题补全",
+    "link": "/rules/require-short-title"
+  },
+  {
+    "text": "大学所在地补全",
+    "link": "/rules/require-university-place"
+  },
+  {
+    "text": "清理额外字段工具",
+    "link": "/rules/tool-clean-extra"
+  },
+  {
+    "text": "作者信息扩展工具",
+    "link": "/rules/tool-creators-ext"
+  },
+  {
+    "text": "CSL 字段助手工具",
+    "link": "/rules/tool-csl-helper"
+  },
+  {
+    "text": "短 DOI 获取工具",
+    "link": "/rules/tool-get-short-doi"
+  },
+  {
+    "text": "语言设置工具",
+    "link": "/rules/tool-set-language"
+  },
+  {
+    "text": "尖角引号工具",
+    "link": "/rules/tool-title-guillemet"
+  },
+  {
+    "text": "更新元数据",
+    "link": "/rules/tool-update-metadata"
+  }
+]

@@ -1,0 +1,598 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-04-04T11:55:46.655Z",
+  "rules": [
+    {
+      "id": "correct-conference-abbr",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "其他",
+      "hasMenu": true,
+      "hasOptions": true,
+      "isPlanned": false
+    },
+    {
+      "id": "correct-creators-case",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "作者规则",
+      "hasMenu": false,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "correct-creators-pinyin",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "作者规则",
+      "hasMenu": false,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "correct-creators-punctuation",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "其他",
+      "hasMenu": true,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "correct-doi-long",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "标识符规则",
+      "hasMenu": false,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "correct-extra-order",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "书籍规则",
+      "hasMenu": true,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "correct-pages-connector",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "页码规则",
+      "hasMenu": false,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "correct-pages-range",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "页码规则",
+      "hasMenu": false,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "correct-priority-date-format",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "其他",
+      "hasMenu": true,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "correct-publication-title-alias",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "期刊规则",
+      "hasMenu": true,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "correct-publication-title-case",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "期刊规则",
+      "hasMenu": true,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "correct-thesis-type",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "学位论文规则",
+      "hasMenu": false,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "correct-title-chemical-formula",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "标题规则",
+      "hasMenu": true,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "correct-university-punctuation",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "学位论文规则",
+      "hasMenu": false,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "no-article-webpage",
+      "category": "rule",
+      "scope": "item",
+      "ruleCategory": "条目级规则",
+      "hasMenu": false,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "no-doi-prefix",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "标识符规则",
+      "hasMenu": true,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "no-item-duplication",
+      "category": "rule",
+      "scope": "item",
+      "ruleCategory": "条目级规则",
+      "hasMenu": false,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "no-journal-preprint",
+      "category": "rule",
+      "scope": "item",
+      "ruleCategory": "条目级规则",
+      "hasMenu": false,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "no-title-trailing-dot",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "标题规则",
+      "hasMenu": false,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "no-value-nullish",
+      "category": "rule",
+      "scope": "item",
+      "ruleCategory": "校验规则",
+      "hasMenu": false,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "require-creators",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "作者规则",
+      "hasMenu": false,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "require-doi",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "标识符规则",
+      "hasMenu": false,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "require-short-title",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "标题规则",
+      "hasMenu": false,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "require-university-place",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "学位论文规则",
+      "hasMenu": true,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "tool-clean-extra",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "工具和清理",
+      "hasMenu": false,
+      "hasOptions": true,
+      "isPlanned": false
+    },
+    {
+      "id": "tool-creators-ext",
+      "category": "tool",
+      "scope": "field",
+      "ruleCategory": "工具和清理",
+      "hasMenu": true,
+      "hasOptions": true,
+      "isPlanned": false
+    },
+    {
+      "id": "tool-csl-helper",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "其他",
+      "hasMenu": true,
+      "hasOptions": true,
+      "isPlanned": false
+    },
+    {
+      "id": "tool-get-short-doi",
+      "category": "tool",
+      "scope": "field",
+      "ruleCategory": "工具和清理",
+      "hasMenu": false,
+      "hasOptions": false,
+      "isPlanned": false
+    },
+    {
+      "id": "tool-set-language",
+      "category": "tool",
+      "scope": "field",
+      "ruleCategory": "语言规则",
+      "hasMenu": false,
+      "hasOptions": true,
+      "isPlanned": false
+    },
+    {
+      "id": "tool-title-guillemet",
+      "category": "tool",
+      "scope": "field",
+      "ruleCategory": "工具和清理",
+      "hasMenu": false,
+      "hasOptions": true,
+      "isPlanned": false
+    },
+    {
+      "id": "yi",
+      "category": "rule",
+      "scope": "field",
+      "ruleCategory": "其他",
+      "hasMenu": true,
+      "hasOptions": false,
+      "isPlanned": false
+    }
+  ],
+  "categories": {
+    "其他": [
+      {
+        "id": "correct-conference-abbr",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "其他",
+        "hasMenu": true,
+        "hasOptions": true,
+        "isPlanned": false
+      },
+      {
+        "id": "correct-creators-punctuation",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "其他",
+        "hasMenu": true,
+        "hasOptions": false,
+        "isPlanned": false
+      },
+      {
+        "id": "correct-priority-date-format",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "其他",
+        "hasMenu": true,
+        "hasOptions": false,
+        "isPlanned": false
+      },
+      {
+        "id": "tool-csl-helper",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "其他",
+        "hasMenu": true,
+        "hasOptions": true,
+        "isPlanned": false
+      },
+      {
+        "id": "yi",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "其他",
+        "hasMenu": true,
+        "hasOptions": false,
+        "isPlanned": false
+      }
+    ],
+    "作者规则": [
+      {
+        "id": "correct-creators-case",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "作者规则",
+        "hasMenu": false,
+        "hasOptions": false,
+        "isPlanned": false
+      },
+      {
+        "id": "correct-creators-pinyin",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "作者规则",
+        "hasMenu": false,
+        "hasOptions": false,
+        "isPlanned": false
+      },
+      {
+        "id": "require-creators",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "作者规则",
+        "hasMenu": false,
+        "hasOptions": false,
+        "isPlanned": false
+      }
+    ],
+    "标识符规则": [
+      {
+        "id": "correct-doi-long",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "标识符规则",
+        "hasMenu": false,
+        "hasOptions": false,
+        "isPlanned": false
+      },
+      {
+        "id": "no-doi-prefix",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "标识符规则",
+        "hasMenu": true,
+        "hasOptions": false,
+        "isPlanned": false
+      },
+      {
+        "id": "require-doi",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "标识符规则",
+        "hasMenu": false,
+        "hasOptions": false,
+        "isPlanned": false
+      }
+    ],
+    "书籍规则": [
+      {
+        "id": "correct-extra-order",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "书籍规则",
+        "hasMenu": true,
+        "hasOptions": false,
+        "isPlanned": false
+      }
+    ],
+    "页码规则": [
+      {
+        "id": "correct-pages-connector",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "页码规则",
+        "hasMenu": false,
+        "hasOptions": false,
+        "isPlanned": false
+      },
+      {
+        "id": "correct-pages-range",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "页码规则",
+        "hasMenu": false,
+        "hasOptions": false,
+        "isPlanned": false
+      }
+    ],
+    "期刊规则": [
+      {
+        "id": "correct-publication-title-alias",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "期刊规则",
+        "hasMenu": true,
+        "hasOptions": false,
+        "isPlanned": false
+      },
+      {
+        "id": "correct-publication-title-case",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "期刊规则",
+        "hasMenu": true,
+        "hasOptions": false,
+        "isPlanned": false
+      }
+    ],
+    "学位论文规则": [
+      {
+        "id": "correct-thesis-type",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "学位论文规则",
+        "hasMenu": false,
+        "hasOptions": false,
+        "isPlanned": false
+      },
+      {
+        "id": "correct-university-punctuation",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "学位论文规则",
+        "hasMenu": false,
+        "hasOptions": false,
+        "isPlanned": false
+      },
+      {
+        "id": "require-university-place",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "学位论文规则",
+        "hasMenu": true,
+        "hasOptions": false,
+        "isPlanned": false
+      }
+    ],
+    "标题规则": [
+      {
+        "id": "correct-title-chemical-formula",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "标题规则",
+        "hasMenu": true,
+        "hasOptions": false,
+        "isPlanned": false
+      },
+      {
+        "id": "no-title-trailing-dot",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "标题规则",
+        "hasMenu": false,
+        "hasOptions": false,
+        "isPlanned": false
+      },
+      {
+        "id": "require-short-title",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "标题规则",
+        "hasMenu": false,
+        "hasOptions": false,
+        "isPlanned": false
+      }
+    ],
+    "条目级规则": [
+      {
+        "id": "no-article-webpage",
+        "category": "rule",
+        "scope": "item",
+        "ruleCategory": "条目级规则",
+        "hasMenu": false,
+        "hasOptions": false,
+        "isPlanned": false
+      },
+      {
+        "id": "no-item-duplication",
+        "category": "rule",
+        "scope": "item",
+        "ruleCategory": "条目级规则",
+        "hasMenu": false,
+        "hasOptions": false,
+        "isPlanned": false
+      },
+      {
+        "id": "no-journal-preprint",
+        "category": "rule",
+        "scope": "item",
+        "ruleCategory": "条目级规则",
+        "hasMenu": false,
+        "hasOptions": false,
+        "isPlanned": false
+      }
+    ],
+    "校验规则": [
+      {
+        "id": "no-value-nullish",
+        "category": "rule",
+        "scope": "item",
+        "ruleCategory": "校验规则",
+        "hasMenu": false,
+        "hasOptions": false,
+        "isPlanned": false
+      }
+    ],
+    "工具和清理": [
+      {
+        "id": "tool-clean-extra",
+        "category": "rule",
+        "scope": "field",
+        "ruleCategory": "工具和清理",
+        "hasMenu": false,
+        "hasOptions": true,
+        "isPlanned": false
+      },
+      {
+        "id": "tool-creators-ext",
+        "category": "tool",
+        "scope": "field",
+        "ruleCategory": "工具和清理",
+        "hasMenu": true,
+        "hasOptions": true,
+        "isPlanned": false
+      },
+      {
+        "id": "tool-get-short-doi",
+        "category": "tool",
+        "scope": "field",
+        "ruleCategory": "工具和清理",
+        "hasMenu": false,
+        "hasOptions": false,
+        "isPlanned": false
+      },
+      {
+        "id": "tool-title-guillemet",
+        "category": "tool",
+        "scope": "field",
+        "ruleCategory": "工具和清理",
+        "hasMenu": false,
+        "hasOptions": true,
+        "isPlanned": false
+      }
+    ],
+    "语言规则": [
+      {
+        "id": "tool-set-language",
+        "category": "tool",
+        "scope": "field",
+        "ruleCategory": "语言规则",
+        "hasMenu": false,
+        "hasOptions": true,
+        "isPlanned": false
+      }
+    ]
+  },
+  "statistics": {
+    "total": 31,
+    "rules": 27,
+    "tools": 4,
+    "withMenu": 12,
+    "withOptions": 6,
+    "planned": 0
+  }
+}
