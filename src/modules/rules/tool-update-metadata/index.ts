@@ -70,10 +70,14 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
 
     // 3. request metadata and clean data
     let data: TransformedData | null = null;
+    let successService: string;
     for (const service of availableServices) {
+      if (!service.fetch)
+        continue;
+
       debug(`Service ${service.name} processing...`);
 
-      const res = await service.fetch?.(createServiceContext(service))
+      const res = await service.fetch(createServiceContext(service))
         .catch((error) => {
           debug(`Service ${service.name} failed: ${error.message}`);
           errorMessage += `${service.name}: ${error.message}\n`;
@@ -87,6 +91,7 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
       const transformedData = service.transform?.(res);
       if (transformedData) {
         data = transformedData;
+        successService = service.name;
         break;
       }
     }
@@ -101,7 +106,7 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
     else if (errorMessage) {
       report({
         level: "warning",
-        message: `Metadata updated with errors:\n\n${errorMessage}`,
+        message: `Metadata updated successfully via ${successService!} (${data.libraryCatalog}), but some services encountered errors:\n\n${errorMessage}`,
       });
     }
 
