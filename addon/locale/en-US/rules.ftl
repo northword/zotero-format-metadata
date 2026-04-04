@@ -312,7 +312,7 @@ rule-tool-update-metadata-option-semanticScholarToken = Semantic Scholar API Key
   .placeholder = Semantic Scholar Token
 rule-tool-update-metadata-option-semanticScholarToken-desc = 
   When updating field data, the plugin queries its bibliographic data from Semantic Scholar. 
-  By default, this API limits requests to 1 per second, and you can increase the rate limit by applying for a free API Key.
+  By default, all unauthenticated users share a rate limit of 1k requests per second, and you can increase the rate limit by applying for a free API Key.
 rule-tool-update-metadata-option-semanticScholarToken-link = Request API key
 
 rule-tool-update-metadata-option-slient = 
