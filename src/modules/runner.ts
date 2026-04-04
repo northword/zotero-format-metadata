@@ -205,7 +205,7 @@ export class LintRunner {
       // await withTimeout(() => Zotero.Promise.delay(100), 10)
       await withTimeout(
         () => this.applyRule(item, rule, options),
-        15_000,
+        60_000,
       )
         // We expect one rule's error does not affect next rule apply,
         // so we eat any error here and throw them after all rules applied.

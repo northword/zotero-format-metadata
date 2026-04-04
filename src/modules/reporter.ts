@@ -104,13 +104,14 @@ export function createReporter(infos: ReportInfo[]) {
         {
           tag: "label",
           properties: {
-            innerHTML: info.message,
+            textContent: info.message,
           },
           styles: {
             flex: "1",
             color: "var(--fill-primary)",
             fontSize: "13px",
             lineHeight: "1.4",
+            whiteSpace: "pre-line",
           },
         },
         {
