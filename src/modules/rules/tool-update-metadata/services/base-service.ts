@@ -12,9 +12,10 @@ export type TransformedData = {
   [field in _ZoteroTypes.Item.ItemField]?: string
 };
 
-interface MetadataContext {
+export interface MetadataContext {
   item: Zotero.Item;
   identifiers: Identifiers;
+  isPreprint: boolean;
   // options: UpdateMetadataOptions;
   debug: ApplyContext["debug"];
 }
@@ -34,8 +35,10 @@ export interface MetadataService<T extends MetadataResponse> {
   /**
    * Optionally update or enrich the item's identifiers before fetching metadata.
    * For example, using an arXiv ID to retrieve and store the corresponding DOI.
+   *
+   * Return true if the identifier is successfully modified, otherwise return false.
    */
-  updateIdentifiers?: (ctx: MetadataContext) => Promise<void>;
+  updateIdentifiers?: (ctx: MetadataContext) => Promise<boolean>;
   /**
    * Fetch metadata from an external API.
    * Returns a format-specific raw response, or `null`/`undefined` if no data is available.

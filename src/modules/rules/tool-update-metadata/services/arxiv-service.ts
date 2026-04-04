@@ -10,7 +10,7 @@ export const ArxivService = defineService({
   },
   async updateIdentifiers({ identifiers, debug }) {
     if (!identifiers.arXiv) {
-      return;
+      return false;
     }
 
     const url = `https://export.arxiv.org/api/query?id_list=${encodeURIComponent(identifiers.arXiv)}`;
@@ -19,17 +19,18 @@ export const ArxivService = defineService({
     const result = res.response as string;
     if (!result) {
       debug("Failed to get DOI from arXiv");
-      return;
+      return false;
     }
 
     const doc = new DOMParser().parseFromString(result, "text/xml");
     const refDoi = doc.querySelector("doi");
     if (!refDoi) {
       debug("ArXiv did not return DOI");
-      return;
+      return false;
     }
 
     debug("Got DOI from Arxiv", refDoi);
     identifiers.DOI = refDoi.innerHTML as string;
+    return true;
   },
 });
