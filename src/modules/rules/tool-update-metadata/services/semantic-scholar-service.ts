@@ -6,7 +6,7 @@ async function request(paperID: string, fields: (keyof Result)[]): Promise<Reque
   const url = `https://api.semanticscholar.org/graph/v1/paper/${encodeURIComponent(paperID.trim())}?fields=${fields.join(",")}`;
   const res = await Zotero.HTTP.request("GET", url, {
     headers: {
-      "x-api-key": getPref("semanticScholarToken"),
+      ...getPref("semanticScholarToken") && { "x-api-key": getPref("semanticScholarToken") },
       "User-Agent": "Linter for Zotero",
     },
   });
@@ -43,8 +43,10 @@ export const SemanticScholarService = defineService<Result>({
   get cooldown() { return getPref("semanticScholarToken") ? 1_000 : 3_000; },
   shouldApply: () => true,
 
-  async updateIdentifiers({ identifiers, isPreprint }) {
-    if (!isPreprint)
+  async updateIdentifiers({ item, identifiers, isPreprint }) {
+    // only update preprints and conference papers;
+    // journal articles and other types are not updated.
+    if (!isPreprint && item.itemType !== "conferencePaper")
       return false;
 
     const identifiersToCheck: (keyof Identifiers)[] = ["arXiv", "DOI", "URL"];
