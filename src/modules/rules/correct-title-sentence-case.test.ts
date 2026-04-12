@@ -72,6 +72,12 @@ const testItems: testItem[] = [
     expected: `A shrubby resprouting pine with serotinous cones endemic to southwest China`,
   },
   {
+    // https://github.com/northword/zotero-format-metadata/issues/410
+    name: "国名应大写 - over 后",
+    original: "Changes in air temperature over China in response to the recent global warming hiatus",
+    expected: "Changes in air temperature over China in response to the recent global warming hiatus",
+  },
+  {
     name: "城市名",
     original: `The Chengdu is A City of China`,
     expected: `The Chengdu is a city of China`,

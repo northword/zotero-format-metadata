@@ -48,6 +48,9 @@ const localityWords = [
   "northern", "southern", "eastern", "western",
   "southeast", "southwest", "northwest", "northeast",
   "southeastern", "southwestern", "northwestern", "northeastern",
+
+  // 其他后可以跟地名等的虚词，虽不是方位词，但在此一并列出
+  "over",
 ];
 
 const chinaCapitals = [
