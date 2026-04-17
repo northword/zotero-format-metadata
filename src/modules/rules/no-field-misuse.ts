@@ -82,7 +82,7 @@ export const NoFieldMisuse = defineRule({
 
         case "abstractNote":
           if (value.match("摘要翻译")) {
-            cleaned = value.replace(/【?摘要翻译[\s\S]*$/, "");
+            cleaned = value.replace(/【?摘要翻译[\s\S]*$/, "").trim();
           }
           break;
 
