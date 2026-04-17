@@ -5,6 +5,7 @@ type ID =
   | "no-article-webpage"
   | "no-journal-preprint"
   | "no-value-nullish"
+  | "no-field-misuse"
   | "require-language"
   | "no-title-trailing-dot"
   | "correct-title-sentence-case"
