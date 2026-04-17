@@ -12,3 +12,7 @@ export function isFieldValidForItemType(field: _ZoteroTypes.Item.ItemField, item
     typeof itemType === "number" ? itemType : Zotero.ItemTypes.getID(itemType),
   );
 }
+
+export function getUsedItemFields(item: Zotero.Item): _ZoteroTypes.Item.ItemField[] {
+  return item.getUsedFields().map(Zotero.ItemFields.getName);
+}
