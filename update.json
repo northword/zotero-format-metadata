@@ -12,12 +12,22 @@
           }
         },
         {
-          "version": "1.26.0",
-          "update_link": "https://github.com/northword/zotero-format-metadata/releases/download/v1.26.0/linter-for-zotero.xpi",
+          "version": "2.3.0",
+          "update_link": "https://github.com/northword/zotero-format-metadata/releases/download/v2.3.0/linter-for-zotero.xpi",
           "applications": {
             "zotero": {
               "strict_min_version": "6.999",
-              "strict_max_version": "8.*"
+              "strict_max_version": "7.*"
+            }
+          }
+        },
+        {
+          "version": "3.0.3",
+          "update_link": "https://github.com/northword/zotero-format-metadata/releases/download/v3.0.3/linter-for-zotero.xpi",
+          "applications": {
+            "zotero": {
+              "strict_min_version": "7.999",
+              "strict_max_version": "9.*"
             }
           }
         }

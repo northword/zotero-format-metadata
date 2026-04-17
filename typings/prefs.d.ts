@@ -11,6 +11,7 @@ declare namespace _ZoteroTypes {
       "lint.onAdded": boolean;
       "lint.onGroup": boolean;
       "lint.notify": boolean;
+      "lint.numConcurrent": number;
       "richtext.toolBar": boolean;
       "richtext.hotkey": boolean;
       "richtext.preview": boolean;
@@ -40,10 +41,16 @@ declare namespace _ZoteroTypes {
       "rule.correct-title-sentence-case": boolean;
       "rule.correct-title-sentence-case.custom-term-path": string;
       "rule.correct-title-chemical-formula": boolean;
+      "rule.correct-title-punctuation": boolean;
+      "rule.correct-title-punctuation.quotes": boolean;
       "rule.correct-shortTitle-sentence-case": boolean;
       "rule.correct-creators-case": boolean;
       "rule.correct-creators-pinyin": boolean;
+      "rule.correct-creators-punctuation": boolean;
       "rule.correct-date-format": boolean;
+      "rule.correct-filing-date-format": boolean;
+      "rule.correct-issue-date-format": boolean;
+      "rule.correct-priority-date-format": boolean;
       "rule.correct-publication-title-alias": boolean;
       "rule.correct-publication-title-case": boolean;
       "rule.correct-pages-connector": boolean;
@@ -56,9 +63,12 @@ declare namespace _ZoteroTypes {
       "rule.correct-volume-numeral": boolean;
       "rule.correct-bookTitle-sentence-case": boolean;
       "rule.correct-proceedingsTitle-sentence-case": boolean;
-      "rule.tool-update-metadata.confirm-when-item-type-change": boolean;
-      "cleanExtra": boolean;
+      "rule.correct-extra-order": boolean;
+      "rule.tool-update-metadata.option.slient": boolean;
+      "rule.tool-update-metadata.option.mode": string;
+      "rule.tool-update-metadata.option.allow-type-changed": boolean;
       "semanticScholarToken": string;
+      "cleanExtra": boolean;
     };
   }
 }

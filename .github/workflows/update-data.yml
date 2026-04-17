@@ -1,4 +1,4 @@
-name: Update data
+name: update data
 
 on:
   pull_request:
@@ -16,23 +16,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: zotero-plugin-dev/workflows/setup-js@main
         with:
-          fetch-depth: 0
+          fetch-all: true
           ref: ${{ github.head_ref }}
-          submodules: recursive
-
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 22.20.0
-          cache: pnpm
-
-      - run: pnpm install
 
       - run: pnpm update-data
 
-      - uses: stefanzweifel/git-auto-commit-action@v6
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "fix(data): update build-in data"
           file_pattern: data/**

@@ -1,4 +1,4 @@
-import { useDialog } from "../../utils/dialog";
+import { useSettingsDialog } from "../../utils/dialog";
 import { defineRule } from "./rule-base";
 
 interface CreatorExt extends _ZoteroTypes.Item.Creator {
@@ -96,7 +96,7 @@ export const ToolCreatorsExt = defineRule<CreatorExtOptions> ({
   },
 
   async prepare() {
-    const { dialog, open } = useDialog<CreatorExtOptions>();
+    const { dialog, openForSettings } = useSettingsDialog<CreatorExtOptions>();
     dialog
       .addSetting("标记符号：", "mark", {
         tag: "select",
@@ -118,7 +118,7 @@ export const ToolCreatorsExt = defineRule<CreatorExtOptions> ({
         },
       });
 
-    const result = await open("作者扩展信息");
+    const result = await openForSettings("作者扩展信息");
     return result;
   },
 

@@ -5,7 +5,9 @@ export const RequireDOI = defineRule({
   scope: "field",
   targetItemField: "DOI",
   targetItemTypes: ["journalArticle", "conferencePaper"],
-
+  // The rate limit is 50 requests per second.
+  // https://crossref.readthedocs.io/en/latest/
+  cooldown: 20,
   async apply({ item, report, debug }) {
     if (item.getField("language").startsWith("zh")) {
       debug("Skipping for Chinese language");

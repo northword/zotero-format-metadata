@@ -1,5 +1,5 @@
 import { langName, toISO3 } from "tinyld";
-import { useDialog } from "../../utils/dialog";
+import { useSettingsDialog } from "../../utils/dialog";
 import { getPref } from "../../utils/prefs";
 import { defineRule } from "./rule-base";
 
@@ -26,7 +26,7 @@ export const ToolSetLanguage = defineRule<Options>({
       }
     }
 
-    const { dialog, open } = useDialog<{ option: string; input: string }>();
+    const { dialog, openForSettings } = useSettingsDialog<{ option: string; input: string }>();
     dialog.addSetting("Select a Language:", "option", {
       tag: "select",
       children: allowLangs.map(lang => ({
@@ -46,7 +46,7 @@ export const ToolSetLanguage = defineRule<Options>({
         tag: "input",
       });
 
-    const result = await open("Select Language");
+    const result = await openForSettings("Select Language");
 
     let language: string;
     if (!result) {

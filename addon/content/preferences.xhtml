@@ -1,10 +1,11 @@
 <linkset>
   <html:link rel="localization" href="__addonRef__-preferences.ftl" />
   <html:link rel="localization" href="__addonRef__-rules.ftl" />
+  <html:link rel="localization" href="schema.ftl" />
 </linkset>
 <vbox
   id="__addonRef__"
-  onload="Zotero.__addonInstance__.hooks.onPrefsEvent('load', {window})"
+  onload="Zotero.__addonInstance__.hooks.onPrefsEvent('load', { window })"
 >
   <!-- 一般设置 -->
   <groupbox>
@@ -27,6 +28,15 @@
       preference="lint.notify"
       native="true"
     />
+    <!-- lint.numConcurrent -->
+    <hbox align="center">
+      <label data-l10n-id="lint-numConcurrent" />
+      <html:input type="number" preference="lint.numConcurrent" />
+      <description
+        data-l10n-id="lint-numConcurrent-description"
+        class="linter-pref-description"
+      />
+    </hbox>
   </groupbox>
 
   <!-- 是否启用富文本工具 -->
@@ -47,10 +57,7 @@
       preference="richtext.hotkey"
       native="true"
     />
-    <label
-      data-l10n-id="richtext-restart-needed"
-      class="linter-pref-description"
-    />
+    <label data-l10n-id="restart-needed" class="linter-pref-description" />
   </groupbox>
 
   <!-- 详细设置 -->
@@ -87,12 +94,6 @@
     <!-- General Field: Title -->
     <groupbox>
       <label><html:h2 data-l10n-id="section-title" /></label>
-      <!-- 需要短标题 -->
-      <checkbox
-        data-l10n-id="rule-require-short-title"
-        preference="rule.require-short-title"
-        native="true"
-      />
 
       <!-- correct-title-sentence-case -->
       <checkbox
@@ -125,6 +126,34 @@
         />
       </vbox>
 
+      <!-- no-title-trailing-dot -->
+      <checkbox
+        data-l10n-id="rule-no-title-trailing-dot"
+        preference="rule.no-title-trailing-dot"
+        native="true"
+      />
+
+      <!-- correct-title-punctuation -->
+      <checkbox
+        data-l10n-id="rule-correct-title-punctuation"
+        preference="rule.correct-title-punctuation"
+        native="true"
+      />
+      <vbox class="indented-pref">
+        <checkbox
+          data-l10n-id="rule-correct-title-punctuation-quotes"
+          preference="rule.correct-title-punctuation.quotes"
+          native="true"
+        />
+      </vbox>
+
+      <!-- 需要短标题 -->
+      <checkbox
+        data-l10n-id="rule-require-short-title"
+        preference="rule.require-short-title"
+        native="true"
+      />
+
       <!-- correct-shortTitle-sentence-case -->
       <checkbox
         data-l10n-id="rule-correct-shortTitle-sentence-case"
@@ -134,13 +163,6 @@
       <description
         data-l10n-id="rule-correct-shortTitle-sentence-case-description"
         class="indented-pref linter-pref-description"
-      />
-
-      <!-- no-title-trailing-dot -->
-      <checkbox
-        data-l10n-id="rule-no-title-trailing-dot"
-        preference="rule.no-title-trailing-dot"
-        native="true"
       />
     </groupbox>
 
@@ -163,6 +185,12 @@
       <checkbox
         data-l10n-id="rule-correct-creators-pinyin"
         preference="rule.correct-creators-pinyin"
+        native="true"
+      />
+      <!-- correct-creators-punctuation -->
+      <checkbox
+        data-l10n-id="rule-correct-creators-punctuation"
+        preference="rule.correct-creators-punctuation"
         native="true"
       />
     </groupbox>
@@ -215,17 +243,6 @@
           />
         </vbox>
       </vbox>
-    </groupbox>
-
-    <!-- General Field: Date -->
-    <groupbox>
-      <label><html:h2 data-l10n-id="section-date" /></label>
-      <!-- 更新日期格式 -->
-      <checkbox
-        data-l10n-id="rule-correct-date-format"
-        preference="rule.correct-date-format"
-        native="true"
-      />
     </groupbox>
 
     <!-- Article Related Field -->
@@ -403,6 +420,26 @@
       />
     </groupbox>
 
+    <!-- 字段：专利相关 -->
+    <groupbox>
+      <label><html:h2 data-l10n-id="section-patent" /></label>
+      <checkbox
+        data-l10n-id="rule-correct-filing-date-format"
+        preference="rule.correct-filing-date-format"
+        native="true"
+      />
+      <checkbox
+        data-l10n-id="rule-correct-issue-date-format"
+        preference="rule.correct-issue-date-format"
+        native="true"
+      />
+      <checkbox
+        data-l10n-id="rule-correct-priority-date-format"
+        preference="rule.correct-priority-date-format"
+        native="true"
+      />
+    </groupbox>
+
     <!-- 标识符 -->
     <groupbox>
       <label><html:h2 data-l10n-id="section-identifier" /></label>
@@ -425,39 +462,88 @@
         native="true"
       />
     </groupbox>
+
+    <!-- General Field: Others -->
+    <groupbox>
+      <label><html:h2 data-l10n-id="section-others" /></label>
+      <!-- 更新日期格式 -->
+      <checkbox
+        data-l10n-id="rule-correct-date-format"
+        preference="rule.correct-date-format"
+        native="true"
+      />
+      <!-- Extra -->
+      <checkbox
+        data-l10n-id="rule-correct-extra-order"
+        preference="rule.correct-extra-order"
+        native="true"
+      />
+    </groupbox>
   </groupbox>
 
   <!-- 更新元数据 -->
   <groupbox>
     <label><html:h2 data-l10n-id="section-updateMetadata" /></label>
-    <!-- 条目类型变更时要求确认 -->
+    <!-- Request Options Everytimes -->
     <checkbox
-      data-l10n-id="rule-tool-update-metadata-option-confirm-when-itemtype-change"
-      preference="rule.tool-update-metadata.confirm-when-item-type-change"
+      data-l10n-id="rule-tool-update-metadata-option-slient"
+      preference="rule.tool-update-metadata.option.slient"
       native="true"
     />
-    <hbox align="center">
-      <label
-        data-l10n-id="rule-tool-update-metadata-option-semanticScholarToken"
+
+    <!-- Default Dialog Options -->
+    <groupbox>
+      <label><html:h3>Default Settings</html:h3></label>
+      <hbox align="center">
+        <label data-l10n-id="rule-tool-update-metadata-dialog-mode"></label>
+        <radiogroup
+          orient="horizontal"
+          preference="rule.tool-update-metadata.option.mode"
+        >
+          <radio
+            data-l10n-id="rule-tool-update-metadata-dialog-mode-all"
+            value="all"
+          />
+          <radio
+            data-l10n-id="rule-tool-update-metadata-dialog-mode-blank"
+            value="blank"
+          />
+        </radiogroup>
+      </hbox>
+
+      <checkbox
+        data-l10n-id="rule-tool-update-metadata-dialog-allow-type-changed"
+        preference="rule.tool-update-metadata.option.allow-type-changed"
+        native="true"
       />
-      <html:input
-        style="flex: 1"
-        type="text"
-        size="60"
-        data-l10n-id="rule-tool-update-metadata-option-semanticScholarToken"
-        preference="semanticScholarToken"
+    </groupbox>
+
+    <!-- Semantic Scholar Token -->
+    <groupbox>
+      <label><html:h3>Data Provider Options</html:h3></label>
+      <hbox align="center">
+        <label
+          data-l10n-id="rule-tool-update-metadata-option-semanticScholarToken"
+        />
+        <html:input
+          style="flex: 1"
+          type="text"
+          size="60"
+          data-l10n-id="rule-tool-update-metadata-option-semanticScholarToken"
+          preference="semanticScholarToken"
+        />
+        <label
+          data-l10n-id="rule-tool-update-metadata-option-semanticScholarToken-link"
+          is="zotero-text-link"
+          class="zotero-text-link"
+          href="https://www.semanticscholar.org/product/api#api-key"
+        />
+      </hbox>
+      <description
+        data-l10n-id="rule-tool-update-metadata-option-semanticScholarToken-desc"
+        class="linter-pref-description"
       />
-      <label
-        data-l10n-id="rule-tool-update-metadata-option-semanticScholarToken-link"
-        is="zotero-text-link"
-        class="zotero-text-link"
-        href="https://www.semanticscholar.org/product/api#api-key"
-      />
-    </hbox>
-    <description
-      data-l10n-id="rule-tool-update-metadata-option-semanticScholarToken-desc"
-      class="linter-pref-description"
-    />
+    </groupbox>
   </groupbox>
 
   <!-- 关于 -->

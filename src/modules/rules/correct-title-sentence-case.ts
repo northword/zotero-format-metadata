@@ -24,6 +24,7 @@ const _chemElements = chemElements.filter(e => !["Be"].includes(e));
 
 const geographyWords = [
   "Asia", "Europe", "Africa", "North America", "South America",
+  "Asian", "European", "African", "American",
   "Oceania", "Antarctica", "Pacific Ocean", "Atlantic Ocean", "Indian Ocean", "Arctic Ocean",
   "Mediterranean", "Tibetan Plateau",
   "Yangtze River", "Yangtze", "Beijing–Tianjin–Hebei", "Yellow River", "Huang He",
@@ -47,6 +48,9 @@ const localityWords = [
   "northern", "southern", "eastern", "western",
   "southeast", "southwest", "northwest", "northeast",
   "southeastern", "southwestern", "northwestern", "northeastern",
+
+  // 其他后可以跟地名等的虚词，虽不是方位词，但在此一并列出
+  "over",
 ];
 
 const chinaCapitals = [
@@ -128,7 +132,10 @@ export function toSentenceCase(text: string, locale: string = "en-US") {
   // sub-sentence start
   text.replace(/([.?!]\s+)(<[^>]+>)?(\p{Lu})/gu, (match, end, markup, char, i) => {
     markup = markup || "";
-    if (!text.substring(0, i + 1).match(/(\p{Lu}\.){2,}$/u)) {
+    // We expect to keep the regular expression unchanged to maintain consistency with
+    // Zotero's built-in version, even though it includes redundant capture groups.
+    /* eslint-disable-next-line regexp/no-unused-capturing-group */
+    if (!/(\p{Lu}\.){2,}$/u.test(text.substring(0, i + 1))) {
       // prevent "U.S. Taxes" from starting a new sub-sentence
       preserve.push({ start: i + end.length + markup.length, end: i + end.length + markup.length + char.length });
     }
@@ -147,6 +154,13 @@ export function toSentenceCase(text: string, locale: string = "en-US") {
   text.replace(/<span class="nocase">.*?<\/span>|<nc>.*?<\/nc>/gi, (match, i) => {
     preserve.push({ start: i, end: i + match.length, description: "nocase" });
     return match; // northword patch: make tsc happy
+  });
+
+  // northword patch https://github.com/northword/zotero-format-metadata/issues/383
+  // protect content inside specific formatting tags (i, b, em, strong, sup, sub)
+  text.replace(/<(i|b|em|strong|sup|sub)(?:\s[^>]*)?>.*?<\/\1>/gi, (match, tagName, offset) => {
+    preserve.push({ start: offset, end: offset + match.length, description: "protected-formatting-tag" });
+    return match;
   });
 
   // mask html tags with characters so the sentence-casing can deal with them as simple words
@@ -170,12 +184,12 @@ export function toSentenceCase(text: string, locale: string = "en-US") {
       }
 
       // inner capital somewhere
-      if (unmasked.match(/.\p{Lu}/u)) {
+      if (/.\p{Lu}/u.test(unmasked)) {
         return word;
       }
 
       // identifiers or allcaps
-      if (unmasked.match(/^\p{L}+\p{N}[\p{L}\p{N}]*$/u) || unmasked.match(/^[\p{Lu}\p{N}]+$/u)) {
+      if (/^\p{L}+\p{N}[\p{L}\p{N}]*$/u.test(unmasked) || /^[\p{Lu}\p{N}]+$/u.test(unmasked)) {
         return word;
       }
 

@@ -82,7 +82,7 @@ async function updatePrefsUI() {
 
 function bindPrefEvents() {
   addon.data.prefs?.window.document
-    .querySelector(`#${addon.data.config.addonRef}-lang-only-enable`)
+    .querySelector(`#${addon.data.config.addonRef}-lang-only`)
     ?.addEventListener("command", (e: Event) => {
       logger.debug(e);
       disablePrefsLang();
@@ -91,13 +91,16 @@ function bindPrefEvents() {
 
 function disablePrefsLang() {
   const state = getPref("rule.require-language.only");
-  addon.data.prefs?.window.document
-    .getElementById(`${addon.data.config.addonRef}-lang-only-cmn`)
-    ?.setAttribute("disabled", String(!state));
-  addon.data.prefs?.window.document
-    .getElementById(`${addon.data.config.addonRef}-lang-only-eng`)
-    ?.setAttribute("disabled", String(!state));
-  // addon.data
-  //     .prefs!.window.document.getElementById(`${addon.data.config.addonRef}-lang-only-other`)!
-  //     .setAttribute("disabled", String(!state));
+  const cmnElement = addon.data.prefs?.window.document
+    .getElementById(`${addon.data.config.addonRef}-lang-only-cmn`) as HTMLInputElement;
+  const engElement = addon.data.prefs?.window.document
+    .getElementById(`${addon.data.config.addonRef}-lang-only-eng`) as HTMLInputElement;
+  const otherElement = addon.data.prefs?.window.document
+    .getElementById(`${addon.data.config.addonRef}-lang-only-other`) as HTMLInputElement;
+  if (cmnElement)
+    cmnElement.disabled = !state;
+  if (engElement)
+    engElement.disabled = !state;
+  if (otherElement)
+    otherElement.disabled = !state;
 }

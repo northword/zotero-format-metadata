@@ -54,9 +54,8 @@ export function normalizeKey(key: string): string {
     .trim()
     .replace(/the |[&\-:, ()]|and/g, "");
 }
-
 export function capitalizeFirstLetter(str: string): string {
-  return str.charAt(0).toUpperCase() + str.slice(1);
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
 /**
@@ -138,7 +137,7 @@ export function getTextLanguage(text: string) {
     return langGetByTinyLd;
   }
   else {
-    return text.match(/[\u4E00-\u9FA5]/) ? "zh" : "en";
+    return /[\u4E00-\u9FA5]/.test(text) ? "zh" : "en";
   }
 }
 

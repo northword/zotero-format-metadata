@@ -15,6 +15,7 @@ describe("removeLeadingZeros", () => {
   });
 
   it("should handle page ranges", () => {
+    expect(removeLeadingZeros("0-20")).toBe("1-20");
     expect(removeLeadingZeros("0012-0020")).toBe("12-20");
     expect(removeLeadingZeros("0005-0010")).toBe("5-10");
     expect(removeLeadingZeros("0005,0010")).toBe("5,10");

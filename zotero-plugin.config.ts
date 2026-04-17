@@ -32,14 +32,17 @@ export default defineConfig({
     },
     esbuildOptions: [
       {
-        entryPoints: ["src/index.ts"],
+        entryPoints: [
+          { in: "src/index.ts", out: pkg.config.addonRef },
+        ],
         define: {
           __env__: `"${env.NODE_ENV}"`,
         },
         bundle: true,
         format: "esm",
         target: "firefox115",
-        outfile: `.scaffold/build/addon/content/scripts/${pkg.config.addonRef}.js`,
+        outdir: `.scaffold/build/addon/content/scripts/`,
+        external: ["Zotero"],
       },
     ],
     makeUpdateJson: {
@@ -54,10 +57,26 @@ export default defineConfig({
             },
           },
         },
+        {
+          version: "2.3.0",
+          update_link: "https://github.com/northword/zotero-format-metadata/releases/download/v2.3.0/linter-for-zotero.xpi",
+          applications: {
+            zotero: {
+              strict_min_version: "6.999",
+              strict_max_version: "8.*",
+            },
+          },
+        },
       ],
     },
     hooks: {
       "build:bundle": async () => {
+        // @ts-expect-error resolve esbuild "ReferenceError: Zotero is not defined" error
+        globalThis.Zotero = {
+          Prefs: {
+            get: () => 1,
+          },
+        };
         // Generate declaration file for rule ids
         const { Rules } = await import("./src/modules/rules/index.ts");
 

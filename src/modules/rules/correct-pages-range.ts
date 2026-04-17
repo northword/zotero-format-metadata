@@ -60,5 +60,8 @@ async function getPDFPages(item: Zotero.Item): Promise<number | void> {
 }
 
 export function generateRange(first: string, total: number): string {
-  return `${Number(first)}-${Number(first) + total}`;
+  if (Number(first))
+    return `${Number(first)}-${Number(first) + total - 1}`;
+  else
+    return `${1}-${total}`;
 }

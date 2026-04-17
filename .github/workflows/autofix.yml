@@ -1,0 +1,15 @@
+name: autofix.ci
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  autofix:
+    uses: zotero-plugin-dev/workflows/.github/workflows/autofix.yml@main
+    permissions:
+      contents: read
+    with:
+      command: "pnpm lint:fix"

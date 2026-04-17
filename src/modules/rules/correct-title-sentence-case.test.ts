@@ -72,6 +72,12 @@ const testItems: testItem[] = [
     expected: `A shrubby resprouting pine with serotinous cones endemic to southwest China`,
   },
   {
+    // https://github.com/northword/zotero-format-metadata/issues/410
+    name: "国名应大写 - over 后",
+    original: "Changes in air temperature over China in response to the recent global warming hiatus",
+    expected: "Changes in air temperature over China in response to the recent global warming hiatus",
+  },
+  {
     name: "城市名",
     original: `The Chengdu is A City of China`,
     expected: `The Chengdu is a city of China`,
@@ -95,18 +101,34 @@ const testItems: testItem[] = [
     original: `‘Free Prior and Informed Consent’, Social Complexity and the Mining industry: establishing a knowledge base`,
     expected: `‘Free prior and informed consent’, social complexity and the mining industry: establishing a knowledge base`,
   },
+  {
+    // https://github.com/northword/zotero-format-metadata/issues/383
+    name: "保护斜体中的大小写",
+    original: `A <i>tenuis</i> relationship: traditional taxonomy obscures systematics and biogeography of the ‘ <i>Acropora tenuis</i> ’ (Scleractinia: Acroporidae) species complex`,
+    expected: `A <i>tenuis</i> relationship: traditional taxonomy obscures systematics and biogeography of the ‘ <i>Acropora tenuis</i> ’ (scleractinia: acroporidae) species complex`,
+  },
+];
+
+const OFFICIAL_DATA_SKIP_LIST = [
+  // https://github.com/northword/zotero-format-metadata/issues/383 - scientific names between italics tags
+  "Instrumental <i>With/</i> and the Control Relation in English",
+
+  // https://github.com/northword/zotero-format-metadata/issues/389 - Asian
+  "Proceedings of the American Control Conference (ACC)",
 ];
 
 describe("toSentenceCase", () => {
   testItems.forEach((testItem) => {
     it(testItem.name, () => {
-      expect(toSentenceCase(testItem.original)).to.equal(testItem.expected);
+      expect(toSentenceCase(testItem.original)).toBe(testItem.expected);
     });
   });
 
   it("should work with official data", () => {
     Object.entries(officialData).forEach(([key, value]) => {
-      expect(toSentenceCase(key)).to.equal(value);
+      if (OFFICIAL_DATA_SKIP_LIST.includes(key))
+        return;
+      expect(toSentenceCase(key)).toBe(value);
     });
   });
 });

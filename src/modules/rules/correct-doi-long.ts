@@ -4,7 +4,7 @@ export const CorrectDOILong = defineRule({
   id: "correct-doi-long",
   scope: "field",
   targetItemField: "DOI",
-
+  cooldown: 20, //  The rate limit is 50 requests per second.
   async apply({ item, debug, report }) {
     const doi = item.getField("DOI");
     if (!doi)

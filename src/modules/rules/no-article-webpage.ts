@@ -103,6 +103,12 @@ export const NoArticleWebPage = defineRule({
       report({
         level: "error",
         message: getString("rule-no-article-webpage-report-message"),
+        action: {
+          label: "Try to Retrieve",
+          callback: () => {
+            addon.hooks.onUpdateInBatch("tool-update-metadata", [item]);
+          },
+        },
       });
     }
   },

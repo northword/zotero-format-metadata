@@ -2,13 +2,15 @@ import type { Rule, RuleForRegularItemScopeItem, RuleForRegularScopeField } from
 import { getPref } from "../../utils/prefs";
 import { CorrectCreatorsCase } from "./correct-creators-case";
 import { CorrectCreatorsPinyin } from "./correct-creators-pinyin";
-import { CorrectDateFormat } from "./correct-date-format";
+import { CorrectDateFormat, CorrectFilingDateFormat, CorrectIssueDateFormat, CorrectPriorityDateFormat } from "./correct-date-format";
 import { CorrectDOILong } from "./correct-doi-long";
 import { CorrectEditionNumeral, CorrectVolumeNumeral } from "./correct-edition-numeral";
+import { CorrectExtraOrder } from "./correct-extra-order";
 import { CorrectPagesConnector } from "./correct-pages-connector";
 import { CorrectPagesRange } from "./correct-pages-range";
 import { CorrectPublicationTitleAlias } from "./correct-publication-title-alias";
 import { CorrectPublicationTitleCase } from "./correct-publication-title-case";
+import { CorrectCreatorsPunctuation, CorrectTitlePunctuation } from "./correct-punctuation";
 import { CorrectThesisType } from "./correct-thesis-type";
 import { CorrectTitleChemicalFormula } from "./correct-title-chemical-formula";
 import { CorrectBookTitleSentenceCase, CorrectProceedingsTitleSentenceCase, CorrectShortTitleSentenceCase, CorrectTitleSentenceCase } from "./correct-title-sentence-case";
@@ -26,11 +28,13 @@ import { RequireDOI } from "./require-doi";
 import { RequireLanguage } from "./require-language";
 import { RequireShortTitle } from "./require-short-title";
 import { RequireUniversityPlace } from "./require-university-place";
+import { ToolCleanExtra } from "./tool-clean-extra";
 import { ToolCreatorsExt } from "./tool-creators-ext";
+import { ToolCSLHelper } from "./tool-csl-extra-helper";
 import { ToolGetShortDOI } from "./tool-get-short-doi";
-import { ToolUpdateMetadata } from "./tool-retrive-metadata";
 import { ToolSetLanguage } from "./tool-set-language";
 import { ToolTitleGuillemet } from "./tool-title-guillemet";
+import { ToolUpdateMetadata } from "./tool-update-metadata";
 
 const register: Rule<any>[] = [
   // Item rules first
@@ -45,6 +49,7 @@ const register: Rule<any>[] = [
   // Title
   NoTitleTrailingDot,
   CorrectTitleSentenceCase,
+  CorrectTitlePunctuation,
   RequireShortTitle,
   CorrectShortTitleSentenceCase,
   CorrectTitleChemicalFormula,
@@ -53,9 +58,11 @@ const register: Rule<any>[] = [
   RequireCreators,
   CorrectCreatorsCase,
   CorrectCreatorsPinyin,
+  CorrectCreatorsPunctuation,
 
   // Other general fields
   CorrectDateFormat,
+  CorrectExtraOrder,
 
   // Identifiers
   RequireDOI,
@@ -86,12 +93,19 @@ const register: Rule<any>[] = [
   CorrectVolumeNumeral,
   CorrectBookTitleSentenceCase,
 
+  // Patent
+  CorrectFilingDateFormat,
+  CorrectIssueDateFormat,
+  CorrectPriorityDateFormat,
+
   // Tools
   ToolTitleGuillemet,
   ToolCreatorsExt,
   ToolSetLanguage,
   ToolUpdateMetadata,
   ToolGetShortDOI,
+  ToolCSLHelper,
+  ToolCleanExtra,
 ];
 
 export class Rules {

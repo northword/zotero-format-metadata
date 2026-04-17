@@ -1,4 +1,4 @@
-pref("version", "0.0.0");
+pref("version", "__buildVersion__");
 
 // --------------------
 // Lint global settings
@@ -6,6 +6,7 @@ pref("version", "0.0.0");
 pref("lint.onAdded", true);
 pref("lint.onGroup", false);
 pref("lint.notify", true);
+pref("lint.numConcurrent", 1);
 
 // --------------------
 // Richtext settings
@@ -45,10 +46,16 @@ pref("rule.require-creators", true);
 pref("rule.correct-title-sentence-case", true);
 pref("rule.correct-title-sentence-case.custom-term-path", "");
 pref("rule.correct-title-chemical-formula", false);
+pref("rule.correct-title-punctuation", true);
+pref("rule.correct-title-punctuation.quotes", false);
 pref("rule.correct-shortTitle-sentence-case", true);
 pref("rule.correct-creators-case", true);
 pref("rule.correct-creators-pinyin", false);
+pref("rule.correct-creators-punctuation", true);
 pref("rule.correct-date-format", true);
+pref("rule.correct-filing-date-format", true);
+pref("rule.correct-issue-date-format", true);
+pref("rule.correct-priority-date-format", true);
 pref("rule.correct-publication-title-alias", true);
 pref("rule.correct-publication-title-case", true);
 pref("rule.correct-pages-connector", true);
@@ -61,11 +68,17 @@ pref("rule.correct-edition-numeral", true);
 pref("rule.correct-volume-numeral", true);
 pref("rule.correct-bookTitle-sentence-case", true);
 pref("rule.correct-proceedingsTitle-sentence-case", false);
+pref("rule.correct-extra-order", true);
 
-pref("rule.tool-update-metadata.confirm-when-item-type-change", false);
+// --------------------
+// Update Metadata Tool
+// --------------------
+pref("rule.tool-update-metadata.option.slient", false);
+pref("rule.tool-update-metadata.option.mode", "all");
+pref("rule.tool-update-metadata.option.allow-type-changed", true);
+pref("semanticScholarToken", "");
 
 // --------------------
 // Other settings
 // --------------------
 pref("cleanExtra", false);
-pref("semanticScholarToken", "");

@@ -1,6 +1,7 @@
 import type { FluentMessageId } from "../../../typings/i10n";
 import type { Awaitable } from "../../utils/types";
 import type { ReportInfo } from "../reporter";
+import { withThrottle } from "../../utils/throttle";
 
 type Debug = (...args: any) => void;
 
@@ -62,6 +63,14 @@ interface RuleBase<Option = object> {
    * @todo not implemented
    */
   documentation?: string;
+
+  /**
+   * The minimum time interval (in milliseconds) between consecutive executions of this rule.
+   * Used to avoid excessive API calls when running the rule continuously.
+   *
+   * @default 0
+   */
+  cooldown?: number;
 
   /**
    * Handler of the rule.
@@ -132,6 +141,13 @@ export interface RuleForRegularItemScopeItem<Option = object> extends RuleForReg
 export interface RuleForRegularScopeField<Option = object> extends RuleForRegularItem<Option> {
   scope: "field";
   targetItemField: _ZoteroTypes.Item.ItemField | "creators";
+  /**
+   * Whether to include mapped fields.
+   *
+   * @default false
+   * @see https://github.com/northword/zotero-format-metadata/issues/77
+   */
+  includeMappedFields?: boolean;
 
   /**
    * Field menus
@@ -181,5 +197,6 @@ type WithStringID<R> = R extends any ? Omit<R, "id"> & { id: string } : never;
 export function defineRule<Options = unknown>(
   rule: WithStringID<Rule<Options>>,
 ): Rule<Options> {
+  rule.apply = withThrottle(rule.apply, rule.cooldown ?? 0);
   return rule as Rule<Options>;
 }

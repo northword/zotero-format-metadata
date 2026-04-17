@@ -28,15 +28,21 @@ export const NoItemDuplication = defineRule({
           label: getString("rule-no-item-duplication-report-action"),
           callback: () => {
             const mainWindow = Zotero.getMainWindow();
-            if (mainWindow) {
+            if (!mainWindow)
+              return;
+
             // Un-minimize if minimized
-              if (mainWindow.windowState === mainWindow.STATE_MINIMIZED) {
-                mainWindow.restore();
-              }
-              // Focus the main window
-              mainWindow.focus();
-              Zotero.getActiveZoteroPane().setVirtual(item.libraryID, "duplicates", true, true);
-            }
+            if (mainWindow.windowState === mainWindow.STATE_MINIMIZED)
+              mainWindow.restore();
+
+            // Focus the main window
+            mainWindow.focus();
+
+            // Focus to item tree view
+            mainWindow.Zotero_Tabs.select("zotero-pane");
+
+            // Focus to 'duplicates' collection
+            mainWindow.ZoteroPane.setVirtual(item.libraryID, "duplicates", true, true);
           },
         },
       });

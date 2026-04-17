@@ -4,12 +4,11 @@ export function isRegularItem() {
   return isRegularItem;
 }
 
-export function getItemFields(item: Zotero.Item): _ZoteroTypes.Item.ItemField[] {
-  return Zotero.ItemFields
-    .getItemTypeFields(item.itemTypeID)
-    .map((id: number) => Zotero.ItemFields.getName(id));
-}
-
-export function getUsedItemFields(item: Zotero.Item): _ZoteroTypes.Item.ItemField[] {
-  return item.getUsedFields().map(Zotero.ItemFields.getName);
+export function isFieldValidForItemType(field: _ZoteroTypes.Item.ItemField, itemTypeID: number): boolean;
+export function isFieldValidForItemType(field: _ZoteroTypes.Item.ItemField, itemType: _ZoteroTypes.Item.ItemType): boolean;
+export function isFieldValidForItemType(field: _ZoteroTypes.Item.ItemField, itemType: _ZoteroTypes.Item.ItemType | number) {
+  return Zotero.ItemFields.isValidForType(
+    Zotero.ItemFields.getID(field),
+    typeof itemType === "number" ? itemType : Zotero.ItemTypes.getID(itemType),
+  );
 }

@@ -1,15 +1,13 @@
 import { version as currentVersion } from "../../package.json";
+import { logger } from "../utils/logger";
 import { clearPref, getPref, setPref } from "../utils/prefs";
 
-export function checkCompat() {
-  const version = (getPref("version") as string) ?? "0.0.0";
+export async function checkCompat() {
+  const version = (getPref("version")) ?? "0.0.0";
 
-  if (compareVersion(version, currentVersion) === 0) {
+  if (compareVersion(version, currentVersion) >= 0) {
+    setPref("version", currentVersion);
     return;
-  }
-
-  if (compareVersion(version, "1.20.2") === -1) {
-    mvPref("abbr", "abbr.journalArticle", true);
   }
 
   if (compareVersion(version, "1.8.0") === -1) {
@@ -48,6 +46,10 @@ export function checkCompat() {
     mvPref("isEnableCleanFields", "cleanExtra", true);
     clearPref("richtext.isEnableChem");
     clearPref("lintAfterRetriveByDOI");
+  }
+
+  if (compareVersion(version, "1.20.2") === -1) {
+    mvPref("abbr", "abbr.journalArticle", true);
   }
 
   // v2.0.0 refactor the rules id and preference key
@@ -107,18 +109,33 @@ export function checkCompat() {
     clearPref("rule.correct-publication-title");
   }
 
+  // v2.0.0-beta.22 refactors rule.tool-update-metadata, now we donot need this pref
+  if (compareVersion(version, "2.0.0-beta.22") === -1) {
+    clearPref("rule.tool-update-metadata.confirm-when-item-type-change");
+  }
+
+  // v2.2.0-2.2.2 incorrectly modified the type of `lint.numConcurrent`, we need to fix this type error in v2.2.3
+  if (compareVersion(version, "2.2.3") === -1 && typeof getPref("lint.numConcurrent") !== "number") {
+    logger.debug("[Pref] reset lint.numConcurrent to 1");
+    clearPref("lint.numConcurrent");
+    setPref("lint.numConcurrent", 1);
+    setPref("version", "2.2.3");
+
+    await reloadPlugin();
+  }
+
   setPref("version", currentVersion);
 }
 
 function mvPref(source: string, target: string, defaultValue?: boolean | string | number) {
   // @ts-expect-error target and source may not exist in prefs.js
-  if (getPref(source) !== undefined)
-    // @ts-expect-error target and source may not exist in prefs.js
-    setPref(target, getPref(source));
-  else if (defaultValue !== undefined)
-    // @ts-expect-error target and source may not exist in prefs.js
-    setPref(target, defaultValue);
-  clearPref(source);
+  const sourceValue = getPref(source) as string | boolean | number | undefined;
+  if (!sourceValue && !defaultValue)
+    return;
+
+  // @ts-expect-error target and source may not exist in prefs.js
+  setPref(target, sourceValue || defaultValue);
+  clearPref(target);
 }
 
 /**
@@ -146,4 +163,11 @@ export function compareVersion(versionA: string, versionB: string): 1 | -1 | 0 {
     }
   }
   return 0;
+}
+
+async function reloadPlugin() {
+  logger.debug("[Pref] reloading plugin");
+  const { AddonManager } = ChromeUtils.importESModule("resource://gre/modules/AddonManager.sys.mjs");
+  const _addon: any = (await AddonManager.getAllAddons()).filter((e: any) => e.id === addon.data.config.addonID)?.[0];
+  await _addon?.reload();
 }

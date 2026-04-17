@@ -25,7 +25,8 @@ describe("shouldApply", () => {
 
 describe("generateRange", () => {
   it("should work", () => {
-    expect(generateRange("1", 10)).toBe("1-11");
-    expect(generateRange("011", 10)).toBe("11-21");
+    expect(generateRange("0", 10)).toBe("1-10");
+    expect(generateRange("1", 10)).toBe("1-10");
+    expect(generateRange("011", 10)).toBe("11-20");
   });
 });

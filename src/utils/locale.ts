@@ -2,6 +2,7 @@ import type { FluentMessageId } from "../../typings/i10n";
 
 const localeFilesForJS = [
   "addon.ftl",
+  "main-window.ftl",
   "rules.ftl",
 ];
 
@@ -39,6 +40,11 @@ export function initLocale() {
   };
 }
 
+interface GetStringOptions {
+  branch?: string;
+  args?: Record<string, unknown>;
+}
+
 /**
  * Get locale string, see https://firefox-source-docs.mozilla.org/l10n/fluent/tutorial.html#fluent-translation-list-ftl
  * @example
@@ -59,49 +65,68 @@ export function initLocale() {
  * getString("addon-dynamic-example", { args: { count: 2 } }); // I have 2 apples
  * ```
  */
-export function getString(localString: FluentMessageId): string;
-export function getString(localString: FluentMessageId, branch: string): string;
-export function getString(
-  localString: FluentMessageId,
-  options: { branch?: string | undefined; args?: Record<string, unknown> },
-): string;
-export function getString(...inputs: any[]) {
-  if (inputs.length === 1) {
-    return _getString(inputs[0]);
-  }
-  else if (inputs.length === 2) {
-    if (typeof inputs[1] === "string") {
-      return _getString(inputs[0], { branch: inputs[1] });
-    }
-    else {
-      return _getString(inputs[0], inputs[1]);
-    }
-  }
-  else {
-    throw new Error("Invalid arguments");
-  }
+export function getString(id: FluentMessageId): string;
+export function getString(id: FluentMessageId, branch: string): string;
+export function getString(id: FluentMessageId, options: GetStringOptions): string;
+export function getString(...inputs: any[]): string {
+  const { id, options } = normalizeOptions(inputs);
+  return _getString(id, options);
 }
 
-function _getString(
-  localString: FluentMessageId,
-  options: { branch?: string | undefined; args?: Record<string, unknown> } = {},
-): string {
-  const localStringWithPrefix = `${addon.data.config.addonRef}-${localString}`;
+function normalizeOptions(inputs: any[]): { id: FluentMessageId; options: GetStringOptions } {
+  if (inputs.length === 1) {
+    return { id: inputs[0], options: {} };
+  }
+
+  if (inputs.length === 2) {
+    const [id, second] = inputs;
+    if (typeof second === "string") {
+      return { id, options: { branch: second } };
+    }
+    return { id, options: second ?? {} };
+  }
+
+  throw new Error("Invalid arguments");
+}
+
+interface PatternAttribute {
+  name: string;
+  value: string;
+}
+
+interface Pattern {
+  value?: string | null;
+  attributes?: PatternAttribute[] | null;
+}
+
+function _getString(id: FluentMessageId, options: GetStringOptions): string {
+  const localeID = getLocaleID(id);
+  if (!localeID)
+    return id;
+
   const { branch, args } = options;
-  const pattern = addon.data.locale?.current.formatMessagesSync([{ id: localStringWithPrefix, args }])[0];
-  if (!pattern) {
-    return localStringWithPrefix;
+
+  const msgs = addon.data.locale?.current.formatMessagesSync([{ id: localeID, args }]);
+  const pattern = msgs?.[0] as Pattern | undefined;
+  if (!pattern)
+    return localeID;
+
+  if (branch) {
+    const attr = pattern.attributes?.find(a => a.name === branch);
+    return attr?.value ?? localeID;
   }
-  if (branch && pattern.attributes) {
-    return pattern.attributes[branch] || localStringWithPrefix;
-  }
-  else {
-    return pattern.value || localStringWithPrefix;
-  }
+
+  if (pattern.value)
+    return pattern.value;
+
+  // fallback to `label` branch
+  const attr = pattern.attributes?.find(a => a.name === "label");
+  if (attr)
+    return attr?.value ?? localeID;
+
+  return localeID;
 }
 
 export function getLocaleID(id?: FluentMessageId): string | undefined {
-  if (!id)
-    return undefined;
-  return `${addon.data.config.addonRef}-${id}`;
+  return id ? `${addon.data.config.addonRef}-${id}` : undefined;
 }
