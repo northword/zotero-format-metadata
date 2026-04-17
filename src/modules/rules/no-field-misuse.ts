@@ -33,7 +33,7 @@ export const NoFieldMisuse = defineRule({
         case "shortTitle":
           if (
             hasEmoji(value)
-            || !item.getField("title").endsWith(value.split(" ")[-1])
+            || !item.getField("title").startsWith(value.split(" ")[0])
           ) {
             cleaned = "";
           }
