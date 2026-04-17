@@ -31,25 +31,59 @@ export const NoFieldMisuse = defineRule({
         // Some plugins use shortTitle to store the translated title
         // e.g. Zotero One (by qingning), Translate (old version)
         case "shortTitle":
-          if (!value.startsWith(item.getField("title")))
+          if (
+            hasEmoji(value)
+            || !item.getField("title").endsWith(value.split(" ")[-1])
+          ) {
             cleaned = "";
+          }
+
           break;
 
         case "series":
         case "seriesNumber":
         case "seriesText":
         case "seriesTitle":
+          if (
+            hasEmoji(value)
+            || value === "EI"
+            || /SCI/i.test(value)
+          ) {
+            cleaned = "";
+          }
+
+          break;
+
         case "archive":
         case "archiveLocation":
         case "archiveID":
         case "rights":
-          if (hasEmoji(value)) {
+        case "callNumber":
+        case "libraryCatalog":
+          if (
+            hasEmoji(value)
+            // Q1
+            || /^[A-Z]\d$/.test(value)
+            // 31 citations
+            || /^\d+\s+citation/.test(value)
+            // 工程技术 2 区
+            || /\d区$/.test(value)
+            // 0.75 (SQ3)
+            // 69.504
+            || /^\d+\.\d+/.test(value)
+            // 北大核心 / 南大核心 / CSCD 核心库
+            || /核心/.test(value)
+          ) {
             cleaned = "";
             break;
           }
 
-          // TODO: IFs, journal ranks, citation counts, etc.
-          // Bad Zotero One plugin, why not use `extra` field and custom column?
+          break;
+
+        case "abstractNote":
+          if (value.match("摘要翻译")) {
+            cleaned = value.replace(/【?摘要翻译[\s\S]*$/, "");
+          }
           break;
 
         default:
@@ -57,7 +91,7 @@ export const NoFieldMisuse = defineRule({
       }
 
       if (cleaned !== value) {
-        debug(`Field ${field} was cleaned from ${value} to ${cleaned}`);
+        debug(`Field '${field}' was cleaned from '${value}' to '${cleaned}'`);
         item.setField(field, cleaned);
       }
     }
