@@ -81,6 +81,7 @@ export type FluentMessageId =
   | 'rule-no-doi-prefix'
   | 'rule-no-doi-prefix-menu-field'
   | 'rule-no-doi-prefix-menu-item'
+  | 'rule-no-field-misuse'
   | 'rule-no-issue-extra-zeros'
   | 'rule-no-item-duplication'
   | 'rule-no-item-duplication-report-action'
