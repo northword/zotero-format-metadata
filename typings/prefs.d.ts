@@ -19,6 +19,7 @@ declare namespace _ZoteroTypes {
       "rule.no-article-webpage": boolean;
       "rule.no-journal-preprint": boolean;
       "rule.no-value-nullish": boolean;
+      "rule.no-field-misuse": boolean;
       "rule.no-title-trailing-dot": boolean;
       "rule.no-doi-prefix": boolean;
       "rule.no-issue-extra-zeros": boolean;

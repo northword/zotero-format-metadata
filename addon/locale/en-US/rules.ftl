@@ -22,6 +22,11 @@ rule-no-value-nullish =
   .label = No nullish field values
 
 
+## no-field-misuse
+rule-no-field-misuse =
+  .label = Clean up misused standard fields
+
+
 ## require-language
 rule-require-language =
   .label = Language should be ISO 639-1 code

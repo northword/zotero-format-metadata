@@ -22,6 +22,11 @@ rule-no-value-nullish =
   .label = 字段值不应为无效值（无、N/A 等）
 
 
+## no-field-misuse
+rule-no-field-misuse =
+  .label = 清理被滥用的标准字段
+
+
 ## require-language
 rule-require-language =
   .label = 语言字段应填写 ISO 639-1 语言代码

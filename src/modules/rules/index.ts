@@ -18,6 +18,7 @@ import { CorrectUniversityPunctuation } from "./correct-university-punctuation";
 import { NoArticleWebPage } from "./no-article-webpage";
 import { NoDOIPrefix } from "./no-doi-prefix";
 import { NoIssueExtraZeros, NoPagesExtraZeros, NoVolumeExtraZeros } from "./no-extra-zeros";
+import { NoFieldMisuse } from "./no-field-misuse";
 import { NoItemDuplication } from "./no-item-duplication";
 import { NoJournalPreprint } from "./no-journal-preprint";
 import { NoTitleTrailingDot } from "./no-title-trailing-dot";
@@ -42,6 +43,7 @@ const register: Rule<any>[] = [
   NoArticleWebPage,
   NoJournalPreprint,
   NoValueNullish,
+  NoFieldMisuse,
 
   // Language
   RequireLanguage,
