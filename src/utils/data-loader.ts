@@ -71,7 +71,7 @@ export class DataLoader {
 
   private static async readFile(path: string): Promise<string> {
     if (path.startsWith("jar:file://")) {
-      return (await Zotero.HTTP.request("get", path)).response;
+      return await Zotero.File.getResourceAsync(path);
     }
     else {
       return (await Zotero.File.getContentsAsync(path)) as string;
