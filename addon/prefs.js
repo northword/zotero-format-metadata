@@ -34,6 +34,7 @@ pref("rule.require-language.only", true);
 pref("rule.require-language.only.cmn", true);
 pref("rule.require-language.only.eng", true);
 pref("rule.require-language.only.other", "");
+pref("rule.require-language.verify-before", false);
 pref("rule.require-short-title", true);
 pref("rule.require-journal-abbr", true);
 pref("rule.require-journal-abbr.infer", true);

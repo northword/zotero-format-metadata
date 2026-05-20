@@ -45,6 +45,8 @@ rule-require-language-option-only-other = and
 rule-require-language-option-only-other-desc = Enter a comma-separated list of additional ISO 639-1 codes.
 rule-require-language-option-only-other-doc = ISO 639-1 codes
   .href = https://github.com/northword/zotero-format-metadata#readme
+rule-require-language-option-verify-before =
+  .label = Skip processing if the language field is already a valid ISO 639-1 code
 
 
 ## require-short-title

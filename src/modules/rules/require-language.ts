@@ -1,4 +1,6 @@
 import type { Data } from "../../utils/data-loader";
+import { validateISO2 } from "tinyld";
+import { getPref } from "../../utils/prefs";
 import { getTextLanguage } from "../../utils/str";
 import { defineRule } from "./rule-base";
 
@@ -14,12 +16,18 @@ export const RequireLanguage = defineRule({
   fieldMenu: {
     l10nID: "rule-require-language-menu-field",
   },
-  async apply({ item }) {
-    // WIP: 已有合法 ISO 639 - ISO 3166 代码的，不予处理
-    // if (verifyIso3166(item.getField("language") as string) && getPref("lang.verifyBefore")) {
-    //   this.debug("[lang] The item has been skipped due to the presence of valid ISO 639 - ISO 3166 code.");
-    //   return;
-    // }
+  async apply({ item, debug }) {
+    // Check if language field already has a valid ISO 639-1 code
+    const existingLanguage = item.getField("language") as string;
+    if (existingLanguage && getPref("rule.require-language.verify-before")) {
+      const iso2Code = existingLanguage.substring(0, 2).toLowerCase();
+      const validated = validateISO2(iso2Code);
+      if (validated) {
+        debug(`The item has been skipped due to the presence of valid ISO 639-1 code: ${validated}`);
+        return;
+      }
+    }
+
     const title = item.getField("title") as string;
     const language = getTextLanguage(title);
     item.setField("language", language);
@@ -42,7 +50,6 @@ export const RequireLanguage = defineRule({
     //     progressWindow(`Failed to identify the language of text “${title}”`, "failed");
     // }
   },
-
 });
 
 /**

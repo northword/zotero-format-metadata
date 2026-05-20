@@ -30,6 +30,7 @@ declare namespace _ZoteroTypes {
       "rule.require-language.only.cmn": boolean;
       "rule.require-language.only.eng": boolean;
       "rule.require-language.only.other": string;
+      "rule.require-language.verify-before": boolean;
       "rule.require-short-title": boolean;
       "rule.require-journal-abbr": boolean;
       "rule.require-journal-abbr.infer": boolean;

@@ -45,6 +45,8 @@ rule-require-language-option-only-other = 和
 rule-require-language-option-only-other-desc = 如需添加其他语言，请在空白处输入 ISO 693-1 语言代码，英文逗号','分隔。
 rule-require-language-option-only-other-doc = ISO 639-1 代码
   .href = https://github.com/northword/zotero-format-metadata#readme
+rule-require-language-option-verify-before =
+  .label = 若语言字段已包含有效的 ISO 639-1 代码，跳过处理
 
 
 ## require-short-title
