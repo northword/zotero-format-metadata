@@ -36,6 +36,7 @@ async function updatePrefsUI() {
   // You can initialize some UI elements on prefs window
   // with addon.data.prefs.window.document
   // Or bind some events to the elements
+  disablePrefsTitleLang();
   disablePrefsLang();
 
   addon.data.prefs?.window.document
