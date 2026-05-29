@@ -71,6 +71,7 @@ declare namespace _ZoteroTypes {
       "rule.tool-update-metadata.option.allow-type-changed": boolean;
       "semanticScholarToken": string;
       "cleanExtra": boolean;
+      "lint.delayOnAdded": number;
     };
   }
 }

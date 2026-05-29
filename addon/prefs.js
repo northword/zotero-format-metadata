@@ -84,3 +84,4 @@ pref("semanticScholarToken", "");
 // Other settings
 // --------------------
 pref("cleanExtra", false);
+pref("lint.delayOnAdded", 500);
