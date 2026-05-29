@@ -47,6 +47,7 @@ pref("rule.require-creators", true);
 
 pref("rule.correct-title-sentence-case", true);
 pref("rule.correct-title-sentence-case.custom-term-path", "");
+pref("rule.correct-title-sentence-case.disabled-languages-list", "zh");
 pref("rule.correct-title-chemical-formula", false);
 pref("rule.correct-title-punctuation", true);
 pref("rule.correct-title-punctuation.quotes", false);

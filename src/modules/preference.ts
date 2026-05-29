@@ -82,11 +82,25 @@ async function updatePrefsUI() {
 
 function bindPrefEvents() {
   addon.data.prefs?.window.document
+    .querySelector(`#${addon.data.config.addonRef}-title-case`)
+    ?.addEventListener("command", (e: Event) => {
+      logger.debug(e);
+      disablePrefsTitleLang();
+    });
+  addon.data.prefs?.window.document
     .querySelector(`#${addon.data.config.addonRef}-lang-only`)
     ?.addEventListener("command", (e: Event) => {
       logger.debug(e);
       disablePrefsLang();
     });
+}
+
+function disablePrefsTitleLang() {
+  const titleCaseState = getPref("rule.correct-title-sentence-case");
+  const languageElement = addon.data.prefs?.window.document
+    .getElementById(`${addon.data.config.addonRef}-title-case-disabled-languages`) as HTMLInputElement;
+  if (languageElement)
+    languageElement.disabled = !titleCaseState;
 }
 
 function disablePrefsLang() {

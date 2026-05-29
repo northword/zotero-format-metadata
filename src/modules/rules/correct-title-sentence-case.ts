@@ -226,6 +226,15 @@ interface Options {
   data?: any[];
 }
 
+export function keepOriginalTitle(language: string, disabledLanguagesList: string) {
+  const normalizedLanguage = language.toLowerCase();
+  return disabledLanguagesList
+    .split(",")
+    .map(item => item.trim().toLowerCase())
+    .filter(Boolean)
+    .some(item => normalizedLanguage === item || normalizedLanguage.startsWith(`${item}-`));
+}
+
 function createCorrectTitleSentenceCaseRule(targetItemField: "title" | "shortTitle" | "bookTitle" | "proceedingsTitle") {
   return defineRule<Options>({
     id: `correct-${targetItemField}-sentence-case`,
@@ -237,7 +246,8 @@ function createCorrectTitleSentenceCaseRule(targetItemField: "title" | "shortTit
     async apply({ item, options, debug }) {
       const lang = item.getField("language") || "en-US";
       let title = item.getField(targetItemField, false, true);
-      title = lang.match("zh") ? title : toSentenceCase(title, lang);
+      const disabledLanguagesList = getPref("rule.correct-title-sentence-case.disabled-languages-list") || "zh";
+      title = keepOriginalTitle(lang, disabledLanguagesList) ? title : toSentenceCase(title, lang);
 
       const data = options.data;
       if (data) {
