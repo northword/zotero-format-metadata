@@ -16,6 +16,10 @@ export function registerNotifier() {
       },
     },
     ["item"],
+    "linter",
+    // We expect the Linter to run after all plugins so that we can
+    // clear up any unexpected data performed by other plugins.
+    666,
   );
 
   // Unregister callback when the plugin shutdown (important to avoid a memory leak)
