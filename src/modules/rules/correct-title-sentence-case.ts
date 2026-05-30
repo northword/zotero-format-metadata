@@ -246,7 +246,7 @@ function createCorrectTitleSentenceCaseRule(targetItemField: "title" | "shortTit
     async apply({ item, options, debug }) {
       const lang = item.getField("language") || "en-US";
       let title = item.getField(targetItemField, false, true);
-      const disabledLanguagesList = getPref("rule.correct-title-sentence-case.disabled-languages-list") || "zh";
+      const disabledLanguagesList = getPref("rule.correct-title-sentence-case.disabled-languages") || "zh";
       title = keepOriginalTitle(lang, disabledLanguagesList) ? title : toSentenceCase(title, lang);
 
       const data = options.data;
