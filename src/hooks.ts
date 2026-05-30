@@ -2,7 +2,7 @@ import type { Arrayable } from "./utils/types";
 import { checkCompat } from "./modules/compat";
 import { registerExtraColumns } from "./modules/item-tree";
 import { registerMenu } from "./modules/menu";
-import { registerNotifier } from "./modules/notifier";
+import { registerNotifier, unregisterNotifier } from "./modules/notifier";
 import { registerPrefs, registerPrefsScripts } from "./modules/preference";
 import { RichTextToolBar, setHtmlTag } from "./modules/rich-text";
 import { Rules } from "./modules/rules";
@@ -39,6 +39,7 @@ async function onMainWindowUnload(win: Window): Promise<void> {
 }
 
 async function onShutdown() {
+  unregisterNotifier();
   ztoolkit.unregisterAll();
   await Promise.all(Zotero.getMainWindows().map(onMainWindowUnload));
   closeAllDialogs();

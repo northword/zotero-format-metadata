@@ -1,6 +1,8 @@
+let notifierID: string;
+
 export function registerNotifier() {
   // Register the callback in Zotero as an item observer
-  const notifierID = Zotero.Notifier.registerObserver(
+  notifierID = Zotero.Notifier.registerObserver(
     {
       notify: async (
         event: string,
@@ -9,7 +11,7 @@ export function registerNotifier() {
         extraData: { [key: string]: unknown },
       ) => {
         if (!addon?.data.alive) {
-          unregisterNotifier(notifierID);
+          unregisterNotifier();
           return;
         }
         await addon.hooks.onNotify(event, type, ids, extraData);
@@ -21,16 +23,8 @@ export function registerNotifier() {
     // clear up any unexpected data performed by other plugins.
     666,
   );
-
-  // Unregister callback when the plugin shutdown (important to avoid a memory leak)
-  Zotero.Plugins.addObserver({
-    shutdown: ({ id }) => {
-      if (id === addon.data.config.addonID)
-        unregisterNotifier(notifierID);
-    },
-  });
 }
 
-function unregisterNotifier(notifierID: string) {
+export function unregisterNotifier() {
   Zotero.Notifier.unregisterObserver(notifierID);
 }
