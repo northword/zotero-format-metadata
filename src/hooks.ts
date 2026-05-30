@@ -68,8 +68,10 @@ async function onNotify(
   if (extraData.skipAutoSync)
     return;
 
-  // Wait 500ms to wait other plugins changes saved
-  await Zotero.Promise.delay(500);
+  // Wait a short time to allow other plugins' changes to be saved
+  // Use hidden pref `lint.delayOnAdded` but enforce a minimum of 500ms
+  const delay = Math.max(500, getPref("lint.delayOnAdded"));
+  await Zotero.Promise.delay(delay);
 
   const items = Zotero.Items.get(ids as number[]).filter(
     (item) => {
