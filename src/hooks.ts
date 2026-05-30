@@ -70,8 +70,7 @@ async function onNotify(
 
   // Wait a short time to allow other plugins' changes to be saved
   // Use hidden pref `lint.delayOnAdded` but enforce a minimum of 500ms
-  const rawDelay = getPref("lint.delayOnAdded") as number;
-  const delay = Math.max(500, rawDelay);
+  const delay = Math.max(500, getPref("lint.delayOnAdded"));
   await Zotero.Promise.delay(delay);
 
   const items = Zotero.Items.get(ids as number[]).filter(

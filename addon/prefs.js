@@ -7,6 +7,7 @@ pref("lint.onAdded", true);
 pref("lint.onGroup", false);
 pref("lint.notify", true);
 pref("lint.numConcurrent", 1);
+pref("lint.delayOnAdded", 500);
 
 // --------------------
 // Richtext settings
@@ -84,4 +85,3 @@ pref("semanticScholarToken", "");
 // Other settings
 // --------------------
 pref("cleanExtra", false);
-pref("lint.delayOnAdded", 500);

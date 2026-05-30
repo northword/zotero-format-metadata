@@ -12,6 +12,7 @@ declare namespace _ZoteroTypes {
       "lint.onGroup": boolean;
       "lint.notify": boolean;
       "lint.numConcurrent": number;
+      "lint.delayOnAdded": number;
       "richtext.toolBar": boolean;
       "richtext.hotkey": boolean;
       "richtext.preview": boolean;
@@ -71,7 +72,6 @@ declare namespace _ZoteroTypes {
       "rule.tool-update-metadata.option.allow-type-changed": boolean;
       "semanticScholarToken": string;
       "cleanExtra": boolean;
-      "lint.delayOnAdded": number;
     };
   }
 }
