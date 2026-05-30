@@ -97,8 +97,10 @@ async function onNotify(
   );
 
   if (items.length !== 0) {
-    addon.hooks.onLintInBatch("standard", items);
+    await addon.hooks.onLintInBatch("standard", items);
   }
+
+  logger.debug("notify end for", event, type, ids, extraData);
 }
 
 async function onPrefsEvent(type: string, data: { [key: string]: never }) {
@@ -172,7 +174,7 @@ async function onLintInBatch(
     return;
 
   const tasks = { items, rules };
-  addon.runner.add(tasks);
+  await addon.runner.add(tasks);
 }
 
 /**

@@ -12,7 +12,7 @@ export function registerNotifier() {
           unregisterNotifier(notifierID);
           return;
         }
-        addon.hooks.onNotify(event, type, ids, extraData);
+        await addon.hooks.onNotify(event, type, ids, extraData);
       },
     },
     ["item"],

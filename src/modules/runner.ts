@@ -120,7 +120,7 @@ export class LintRunner {
       this.enqueueItem(item, rules, optionsMap);
     }
 
-    this.caller.wait().then(() => this.finish());
+    await this.caller.wait().then(() => this.finish());
   }
 
   // ----------------------------
