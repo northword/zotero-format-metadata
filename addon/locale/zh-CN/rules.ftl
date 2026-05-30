@@ -44,7 +44,7 @@ rule-require-language-option-only-eng =
 rule-require-language-option-only-other = 和
 rule-require-language-option-only-other-desc = 如需添加其他语言，请在空白处输入 ISO 693-1 语言代码，英文逗号','分隔。
 rule-require-language-option-only-other-doc = ISO 639-1 代码
-  .href = https://github.com/northword/zotero-format-metadata#readme
+  .href = https://github.com/northword/zotero-format-metadata/blob/main/docs/features.md#require-language-require-language
 rule-require-language-option-verify-before =
   .label = 若语言字段已包含有效的 ISO 639-1 代码，跳过处理
 
@@ -68,6 +68,11 @@ rule-correct-title-sentence-option-custom-term = 自定义术语：
 rule-correct-title-sentence-option-custom-term-button = 
   .label = 选择
 rule-correct-title-sentence-option-custom-term-desc =  自定义术语文件使用 CSV 文件格式，第一列为搜索词，第二列为替换词，不需要标题，搜索词支持正则表达式。分隔符可以为逗号或分号，但须统一，不得为制表符。
+rule-correct-title-sentence-option-disabled-languages = 为以下条目语言禁用自动标题大小写转换：
+  .label = 为以下条目语言禁用自动标题大小写转换
+  .placeholder = zh,ja,ko
+rule-correct-title-sentence-option-disabled-languages-doc = ISO 639-1 alpha2 代码
+rule-correct-title-sentence-option-disabled-languages-desc = 如需添加其他语言，请在空白处输入 ISO 693-1 alpha2 语言代码，英文逗号','分隔。
 
 
 ## correct-title-punctuation

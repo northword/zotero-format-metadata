@@ -44,7 +44,7 @@ rule-require-language-option-only-eng =
 rule-require-language-option-only-other = and
 rule-require-language-option-only-other-desc = Enter a comma-separated list of additional ISO 639-1 codes.
 rule-require-language-option-only-other-doc = ISO 639-1 codes
-  .href = https://github.com/northword/zotero-format-metadata#readme
+  .href = https://github.com/northword/zotero-format-metadata/blob/main/docs/features.md#require-language-require-language
 rule-require-language-option-verify-before =
   .label = Skip processing if the language field is already a valid ISO 639-1 code
 
@@ -64,10 +64,15 @@ rule-correct-title-sentence-case-menu-field =
 
 rule-correct-title-sentence-option-custom-term = Custom term: 
   .label = Custom terms
-    .placeholder = Path of custom terms file
+  .placeholder = Path of custom terms file
 rule-correct-title-sentence-option-custom-term-button = 
   .label = Choose
 rule-correct-title-sentence-option-custom-term-desc = Custom terms file should be CSV: first column search term, second column replacement, no headers. Regex supported. Separator must be comma or semicolon (no tabs).
+rule-correct-title-sentence-option-disabled-languages = Disable automatic title conversion for item languages:
+  .label = Disable automatic title conversion for item languages
+  .placeholder = zh,ja,ko
+rule-correct-title-sentence-option-disabled-languages-doc = ISO 639-1 alpha2 codes
+rule-correct-title-sentence-option-disabled-languages-desc = Enter a comma-separated list of ISO 639-1 alpha2 language codes.
 
 
 ## correct-title-punctuation

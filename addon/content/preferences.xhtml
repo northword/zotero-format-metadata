@@ -103,6 +103,7 @@
 
       <!-- correct-title-sentence-case -->
       <checkbox
+        id="__addonRef__-title-case"
         data-l10n-id="rule-correct-title-sentence-case"
         preference="rule.correct-title-sentence-case"
         native="true"
@@ -128,6 +129,29 @@
         </hbox>
         <description
           data-l10n-id="rule-correct-title-sentence-option-custom-term-desc"
+          class="linter-pref-description"
+        />
+        <hbox align="center">
+          <label
+            data-l10n-id="rule-correct-title-sentence-option-disabled-languages"
+          />
+          <html:input
+            style="flex: 1"
+            type="text"
+            size="15"
+            id="__addonRef__-title-case-disabled-languages"
+            data-l10n-id="rule-correct-title-sentence-option-disabled-languages"
+            preference="rule.correct-title-sentence-case.disabled-languages"
+          />
+          <label
+            data-l10n-id="rule-correct-title-sentence-option-disabled-languages-doc"
+            is="zotero-text-link"
+            class="zotero-text-link"
+            href="https://github.com/datasets/language-codes/blob/main/data/language-codes.csv"
+          />
+        </hbox>
+        <description
+          data-l10n-id="rule-correct-title-sentence-option-disabled-languages-desc"
           class="linter-pref-description"
         />
       </vbox>
@@ -240,7 +264,7 @@
               data-l10n-id="rule-require-language-option-only-other-doc"
               is="zotero-text-link"
               class="zotero-text-link"
-              href="https://github.com/northword/zotero-format-metadata#readme"
+              href="https://github.com/northword/zotero-format-metadata/blob/main/docs/features.md#require-language-require-language"
             />
           </hbox>
           <description
