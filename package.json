@@ -1,7 +1,7 @@
 {
   "name": "zotero-format-metadata",
   "type": "module",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "packageManager": "pnpm@10.33.2",
   "description": "An addon for Zotero to format item metadata.",
   "config": {
