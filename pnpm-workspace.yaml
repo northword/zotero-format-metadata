@@ -2,9 +2,12 @@ shellEmulator: true
 
 trustPolicy: no-downgrade
 trustPolicyExclude:
-  - chokidar@4.0.3
+  - chokidar@4.0.3 # mocha@11 -> chokidar@4.0.3
 
-ignoredBuiltDependencies:
-  - "@swc/core"
-onlyBuiltDependencies:
-  - pdfjs-dist
+# Temporarily allow git links, as zotero-types are now using it
+blockExoticSubdeps: false
+
+allowBuilds:
+  "@swc/core": false
+  es5-ext: false
+  esbuild: false
