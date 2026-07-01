@@ -1,16 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended",
-    "schedule:monthly",
-    "group:allNonMajor",
-    ":dependencyDashboard",
-    ":prHourlyLimitNone",
-    ":prConcurrentLimitNone",
-    ":enableVulnerabilityAlerts"
-  ],
-  "labels": ["dependencies"],
-  "rangeStrategy": "bump",
+  "extends": ["local>zotero-plugin-dev/renovate-config"],
   "git-submodules": {
     "enabled": true
   }
