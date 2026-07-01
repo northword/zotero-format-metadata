@@ -107,7 +107,7 @@ export class LintRunner {
     if (
       items.length === 0 // No items
       || ![...optionsMap.values()][0] // Main rule is skiped, e.g. tool-update-metadata dialog is closed without click ok
-      || ![...optionsMap.values()].filter(Boolean).length // All rules are skiped
+      || ![...optionsMap.values()].some(Boolean) // All rules are skiped
     ) {
       this.finish();
       return;
