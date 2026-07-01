@@ -1792,7 +1792,7 @@ packages:
     engines: {node: '>=18'}
 
   epubjs@https://codeload.github.com/zotero/epub.js/tar.gz/a6139d586b66d404f3da2b846598960c0394afc5:
-    resolution: {tarball: https://codeload.github.com/zotero/epub.js/tar.gz/a6139d586b66d404f3da2b846598960c0394afc5}
+    resolution: {gitHosted: true, tarball: https://codeload.github.com/zotero/epub.js/tar.gz/a6139d586b66d404f3da2b846598960c0394afc5}
     version: 0.3.93
 
   es-module-lexer@2.0.0:
@@ -2698,7 +2698,7 @@ packages:
     resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
 
   pdfjs-dist@https://codeload.github.com/zotero-plugin-dev/zotero-pdfjs-types/tar.gz/f313f91b584eeb4c5dbc675bdc50156af8598fdf:
-    resolution: {tarball: https://codeload.github.com/zotero-plugin-dev/zotero-pdfjs-types/tar.gz/f313f91b584eeb4c5dbc675bdc50156af8598fdf}
+    resolution: {gitHosted: true, tarball: https://codeload.github.com/zotero-plugin-dev/zotero-pdfjs-types/tar.gz/f313f91b584eeb4c5dbc675bdc50156af8598fdf}
     version: 0.0.0
     engines: {node: '>=18'}
 
