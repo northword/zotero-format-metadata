@@ -95,29 +95,37 @@ export const CorrectConferenceAbbr = defineRule<Options>({
     l10nID: "rule-require-journal-abbr-menu-field",
   },
   async apply({ item, options }) {
-    const conferenceName = item.getField("conferenceName") as string;
+    const conferenceNames = [
+      item.getField("conferenceName") as string,
+      item.getField("proceedingsTitle") as string,
+    ].filter(Boolean);
 
     // 无全称直接跳过
-    if (conferenceName === "")
+    if (conferenceNames.length === 0)
       return;
 
     let shortConferenceName: string | undefined;
 
-    // 从自定义数据集获取
-    if (options.customDataPath !== "") {
-      shortConferenceName = await getAbbrFromCustom(conferenceName, options.customDataPath);
-    }
+    for (const conferenceName of conferenceNames) {
+      // 从自定义数据集获取
+      if (options.customDataPath !== "") {
+        shortConferenceName = await getAbbrFromCustom(conferenceName, options.customDataPath);
+      }
 
-    // 从本地数据集获取缩写
-    if (!shortConferenceName) {
-      const data = await DataLoader.load("conferencesAbbr");
-      shortConferenceName = await getAbbrLocally(conferenceName, data);
+      // 从本地数据集获取缩写
+      if (!shortConferenceName) {
+        const data = await DataLoader.load("conferencesAbbr");
+        shortConferenceName = await getAbbrLocally(conferenceName, data);
+      }
+
+      if (shortConferenceName)
+        break;
     }
 
     if (!shortConferenceName)
       shortConferenceName = "";
 
-    ztoolkit.ExtraField.setExtraField(item, "shortConferenceName", shortConferenceName);
+    await ztoolkit.ExtraField.setExtraField(item, "shortConferenceName", shortConferenceName, { save: false });
   },
 
   prepare,

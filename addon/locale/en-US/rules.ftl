@@ -251,6 +251,8 @@ rule-no-volume-extra-zeros =
 ## correct-conference-abbr
 rule-correct-conference-abbr =
   .label = Conference abbreviation should be in extra.shortConferenceName
+rule-correct-conference-abbr-menu-item =
+  .label = Look up conference abbreviations
 rule-correct-conference-abbr-description = Shares config with '{ rule-require-journal-abbr.label }'
 
 

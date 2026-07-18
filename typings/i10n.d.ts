@@ -33,6 +33,7 @@ export type FluentMessageId =
   | 'rule-correct-bookTitle-sentence-case'
   | 'rule-correct-conference-abbr'
   | 'rule-correct-conference-abbr-description'
+  | 'rule-correct-conference-abbr-menu-item'
   | 'rule-correct-creators-case'
   | 'rule-correct-creators-case-menu-item'
   | 'rule-correct-creators-pinyin'
