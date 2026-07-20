@@ -109,6 +109,7 @@ function registerItemMenus() {
         makeItemMenu("correct-publication-title-alias"),
         makeItemMenu("correct-publication-title-case"),
         makeItemMenu("require-journal-abbr"),
+        makeItemMenu("correct-conference-abbr"),
         makeItemMenu("require-university-place"),
         makeSeparator(),
         {

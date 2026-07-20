@@ -252,6 +252,8 @@ rule-no-volume-extra-zeros =
 ## correct-conference-abbr
 rule-correct-conference-abbr =
   .label = 会议名的缩写填入 extra.shortConferenceName 字段
+rule-correct-conference-abbr-menu-item =
+  .label = 查找会议缩写
 rule-correct-conference-abbr-description = 此规则与「{ rule-require-journal-abbr.label }」共享配置 
 
 
