@@ -197,7 +197,7 @@ function setupShortcutInputs() {
       if (!km.key)
         return;
 
-      input.value = km.getRaw();
+      input.value = km.getRaw().replace("control,", "").replace("meta", "");
       updatePreview();
       input.blur();
     });
