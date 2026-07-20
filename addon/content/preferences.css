@@ -2,14 +2,28 @@
   font-size: 0.85em;
 }
 
-.shortcut-input:focus {
+.linter-shortcut-label {
+  width: 6em;
+  text-align: left;
+}
+
+.linter-shortcut-input:focus {
   background-color: Highlight;
   color: HighlightText;
 }
 
-.shortcut-preview {
+.linter-shortcut-preview {
   margin-inline-start: 8px;
   font-family: monospace;
   font-size: 0.9em;
-  opacity: 0.8;
+}
+
+.linter-shortcut-conn {
+  font-weight: normal;
+  opacity: 0.6;
+}
+
+.linter-shortcut-mod,
+.linter-shortcut-key {
+  font-weight: bold;
 }

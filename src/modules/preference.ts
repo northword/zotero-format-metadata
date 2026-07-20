@@ -124,33 +124,32 @@ function disablePrefsLang() {
 
 // ---------- Shortcut input recording & preview ----------
 
-function formatShortcut(raw: string): string {
+function formatShortcutPreview(raw: string): string {
   if (!raw)
     return "";
-  try {
-    const km = new KeyModifier(raw);
-    const parts: string[] = [];
-    const isMac = Zotero.isMac;
 
-    if (km.accel)
-      parts.push(isMac ? "⌘" : "Ctrl");
-    if (km.shift)
-      parts.push(isMac ? "⇧" : "Shift");
-    if (km.alt)
-      parts.push(isMac ? "⌥" : "Alt");
+  const km = new KeyModifier(raw);
+  const parts: string[] = [];
+  const isMac = Zotero.isMac;
+
+  const mod = (s: string) => `<html:span class="linter-shortcut-mod">${s}</html:span>`;
+  const key = (s: string) => `<html:span class="linter-shortcut-key">${s}</html:span>`;
+
+  if (km.accel)
+    parts.push(mod(isMac ? "⌘" : "Ctrl"));
+  if (km.shift)
+    parts.push(mod(isMac ? "⇧" : "Shift"));
+  if (km.alt)
+    parts.push(mod(isMac ? "⌥" : "Alt"));
     // Dedup: accel already covers control on Win and meta on Mac
-    if (km.control && !(!isMac && km.accel))
-      parts.push(isMac ? "⌃" : "Ctrl");
-    if (km.meta && !(isMac && km.accel))
-      parts.push(isMac ? "⌘" : "Win");
-    if (km.key)
-      parts.push(km.key.toUpperCase());
+  if (km.control && !(!isMac && km.accel))
+    parts.push(mod(isMac ? "⌃" : "Ctrl"));
+  if (km.meta && !(isMac && km.accel))
+    parts.push(mod(isMac ? "⌘" : "Win"));
+  if (km.key)
+    parts.push(key(km.key.toUpperCase()));
 
-    return parts.map(k => `\`${k}\``).join(isMac ? "" : " + ");
-  }
-  catch {
-    return "";
-  }
+  return parts.join(isMac ? "" : "<html:span class=\"linter-shortcut-conn\"> + </html:span>");
 }
 
 function setupShortcutInputs() {
@@ -158,7 +157,7 @@ function setupShortcutInputs() {
   if (!doc)
     return;
 
-  const inputs = doc.querySelectorAll<HTMLInputElement>(".shortcut-input");
+  const inputs = doc.querySelectorAll<HTMLInputElement>(".linter-shortcut-input");
   if (inputs.length === 0)
     return;
 
@@ -167,7 +166,7 @@ function setupShortcutInputs() {
 
     const updatePreview = () => {
       if (previewEl) {
-        previewEl.textContent = input.value ? formatShortcut(input.value) : "";
+        previewEl.innerHTML = input.value ? formatShortcutPreview(input.value) : "";
       }
     };
     // Defer initial preview to ensure pref binding has populated the input value
