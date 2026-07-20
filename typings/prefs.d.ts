@@ -16,6 +16,12 @@ declare namespace _ZoteroTypes {
       "richtext.toolBar": boolean;
       "richtext.hotkey": boolean;
       "richtext.preview": boolean;
+      "shortcut.subscript": string;
+      "shortcut.supscript": string;
+      "shortcut.bold": string;
+      "shortcut.italic": string;
+      "shortcut.nocase": string;
+      "shortcut.lint": string;
       "rule.no-item-duplication": boolean;
       "rule.no-article-webpage": boolean;
       "rule.no-journal-preprint": boolean;

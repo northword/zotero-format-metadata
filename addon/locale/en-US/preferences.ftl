@@ -19,6 +19,15 @@ enable-richtext-preview =
 enable-richtext-hotkey = 
     .label = Enable rich text hotkey
 
+shortcuts-header = Keyboard shortcuts
+shortcut-description = Format: accel,key (e.g. "accel,="). "accel" = Ctrl on Windows/Linux or Cmd on macOS.
+shortcut-subscript = Subscript
+shortcut-supscript = Supscript
+shortcut-bold = Bold
+shortcut-italic = Italic
+shortcut-nocase = No-case
+shortcut-lint = Lint
+
 wip = 
     .label = Work in progress...
 

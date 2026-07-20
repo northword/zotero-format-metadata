@@ -15,6 +15,12 @@ pref("lint.delayOnAdded", 500);
 pref("richtext.toolBar", true);
 pref("richtext.hotkey", true);
 pref("richtext.preview", true);
+pref("shortcut.subscript", "accel,=");
+pref("shortcut.supscript", "accel,+");
+pref("shortcut.bold", "accel,B");
+pref("shortcut.italic", "accel,I");
+pref("shortcut.nocase", "accel,N");
+pref("shortcut.lint", "accel,alt,L");
 
 // --------------------
 // Rule settings

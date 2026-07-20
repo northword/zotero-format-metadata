@@ -19,6 +19,15 @@ enable-richtext-preview =
 enable-richtext-hotkey = 
     .label = 启用富文本编辑快捷键
 
+shortcuts-header = 快捷键设置
+shortcut-description = 格式：accel,key (如 "accel,=")。"accel" 对应 Windows/Linux 上的 Ctrl 或 macOS 上的 Cmd。
+shortcut-subscript = 下标
+shortcut-supscript = 上标
+shortcut-bold = 粗体
+shortcut-italic = 斜体
+shortcut-nocase = 保持大小写
+shortcut-lint = 执行 Lint
+
 wip = 
     .label = 开发中...
 
