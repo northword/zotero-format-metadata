@@ -15,6 +15,11 @@ jobs:
       - name: Setup JS
         uses: zotero-plugin-dev/workflows/setup-js@main
       - run: pnpm build
+      - name: Upload XPI artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: linter-for-zotero
+          path: .scaffold/build/addon/
 
   test:
     runs-on: ubuntu-latest
