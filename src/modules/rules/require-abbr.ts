@@ -107,15 +107,26 @@ export const CorrectConferenceAbbr = defineRule<Options>({
     let shortConferenceName: string | undefined;
 
     for (const conferenceName of conferenceNames) {
-      // 从自定义数据集获取
-      if (options.customDataPath !== "") {
-        shortConferenceName = await getAbbrFromCustom(conferenceName, options.customDataPath);
-      }
+      // 先精确匹配，再移除会议届次序数（如 32nd）后匹配
+      const conferenceNameWithoutOrdinal = conferenceName.replace(/\b\d+(?:st|nd|rd|th)\b/gi, "");
+      const conferenceNameVariants = conferenceNameWithoutOrdinal === conferenceName
+        ? [conferenceName]
+        : [conferenceName, conferenceNameWithoutOrdinal];
 
-      // 从本地数据集获取缩写
-      if (!shortConferenceName) {
-        const data = await DataLoader.load("conferencesAbbr");
-        shortConferenceName = await getAbbrLocally(conferenceName, data);
+      for (const conferenceNameVariant of conferenceNameVariants) {
+        // 从自定义数据集获取
+        if (options.customDataPath !== "") {
+          shortConferenceName = await getAbbrFromCustom(conferenceNameVariant, options.customDataPath);
+        }
+
+        // 从本地数据集获取缩写
+        if (!shortConferenceName) {
+          const data = await DataLoader.load("conferencesAbbr");
+          shortConferenceName = await getAbbrLocally(conferenceNameVariant, data);
+        }
+
+        if (shortConferenceName)
+          break;
       }
 
       if (shortConferenceName)
