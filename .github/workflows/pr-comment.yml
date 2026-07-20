@@ -22,7 +22,16 @@ jobs:
             const run = context.payload.workflow_run;
             const pr = run.pull_requests[0];
             if (!pr) return;
-            const artifactUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${run.id}/artifacts`;
+
+            const { data: artifacts } = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: run.id,
+            });
+            const xpiArtifact = artifacts.artifacts.find(a => a.name === 'linter-for-zotero');
+            if (!xpiArtifact) return;
+
+            const artifactUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${run.id}/artifacts/${xpiArtifact.id}`;
             const shortSha = run.head_sha.substring(0, 7);
             const body = `## Build Artifact
 
