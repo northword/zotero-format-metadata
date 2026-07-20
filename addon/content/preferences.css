@@ -1,3 +1,15 @@
 .linter-pref-description {
   font-size: 0.85em;
 }
+
+.shortcut-input:focus {
+  background-color: Highlight;
+  color: HighlightText;
+}
+
+.shortcut-preview {
+  margin-inline-start: 8px;
+  font-family: monospace;
+  font-size: 0.9em;
+  opacity: 0.8;
+}

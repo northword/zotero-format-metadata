@@ -20,7 +20,7 @@ enable-richtext-hotkey =
     .label = Enable rich text hotkey
 
 shortcuts-header = Keyboard shortcuts
-shortcut-description = Format: accel,key (e.g. "accel,="). "accel" = Ctrl on Windows/Linux or Cmd on macOS.
+shortcut-description = Click the input field and press your desired key combination to record. Format: accel,key (e.g. "accel,="). "accel" = Ctrl on Windows/Linux or Cmd on macOS.
 shortcut-subscript = Subscript
 shortcut-supscript = Supscript
 shortcut-bold = Bold
