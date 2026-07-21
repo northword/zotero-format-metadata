@@ -8,6 +8,7 @@ on:
 
 permissions:
   pull-requests: write
+  issues: write
   actions: read
 
 jobs:
@@ -30,6 +31,30 @@ jobs:
             });
             const xpiArtifact = artifacts.artifacts.find(a => a.name === 'linter-for-zotero');
             if (!xpiArtifact) return;
+
+            // Mark previous build comments as outdated
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+            });
+            const oldComments = comments.filter(c =>
+              c.user && c.user.type === 'Bot' &&
+              c.body && c.body.includes('Build Artifact')
+            );
+            for (const comment of oldComments) {
+              const query = `mutation($id: ID!) {
+                minimizeComment(input: { subjectId: $id, classifier: OUTDATED }) {
+                  clientMutationId
+                }
+              }`;
+              try {
+                await github.graphql(query, { id: comment.node_id });
+              } catch {
+                // Minimization may not be available for all tokens;
+                // fall through and still post the new comment.
+              }
+            }
 
             const artifactUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${run.id}/artifacts/${xpiArtifact.id}`;
             const shortSha = run.head_sha.substring(0, 7);
