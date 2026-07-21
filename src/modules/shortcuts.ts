@@ -1,54 +1,55 @@
 import { logger } from "../utils/logger";
 import { getPref } from "../utils/prefs";
 
-export function registerShortcuts() {
-  const SHORTCUTS = {
-    subscript: getPref("shortcut.subscript") ?? "accel,=",
-    supscript: getPref("shortcut.supscript") ?? "accel,shift,+",
-    bold: getPref("shortcut.bold") ?? "accel,B",
-    italic: getPref("shortcut.italic") ?? "accel,I",
-    nocase: getPref("shortcut.nocase") ?? "accel,N",
-    lint: getPref("shortcut.lint") ?? "accel,alt,L",
-  };
+const DEFAULTS = {
+  subscript: "accel,=",
+  supscript: "accel,shift,+",
+  bold: "accel,B",
+  italic: "accel,I",
+  nocase: "accel,N",
+  lint: "accel,alt,L",
+} as const;
 
+function resolveShortcut(key: keyof typeof DEFAULTS): string {
+  let raw = (getPref(`shortcut.${key}`)) ?? DEFAULTS[key] ?? "";
   if (Zotero.isMac) {
-    // `accel,shift,=` is for compatibility with macOS
-    // 2026-7-21 tested, `Ctrl` + `shift` + `+` is `meta` + `shift` + `+`
-    // if (SHORTCUTS.supscript === "accel,shift,+")
-    //   SHORTCUTS.supscript = "accel,shift,=";
-
-    // `accel,alt,¬` is for compatibility with macOS, because option+L will become `¬`
-    if (SHORTCUTS.lint === "accel,alt,L")
-      SHORTCUTS.lint = "accel,alt,¬";
+    if (key === "lint" && raw === "accel,alt,L")
+      raw = "accel,alt,¬";
   }
+  return raw;
+}
 
+export function registerShortcuts() {
   ztoolkit.Keyboard.register((ev, data) => {
     if (data.type !== "keyup" || !data.keyboard) {
       return;
     }
 
-    logger.debug(data);
+    logger.debug(data.type, data.keyboard);
 
-    if (getPref("richtext.hotkey")) {
-      if (data.keyboard.equals(SHORTCUTS.subscript)) {
-        addon.hooks.onShortcuts("subscript");
-      }
-      else if (data.keyboard.equals(SHORTCUTS.supscript)) {
-        addon.hooks.onShortcuts("supscript");
-      }
-      else if (data.keyboard.equals(SHORTCUTS.bold)) {
-        addon.hooks.onShortcuts("bold");
-      }
-      else if (data.keyboard.equals(SHORTCUTS.italic)) {
-        addon.hooks.onShortcuts("italic");
-      }
-      else if (data.keyboard.equals(SHORTCUTS.nocase)) {
-        addon.hooks.onShortcuts("nocase");
-      }
+    if (data.keyboard.equals(resolveShortcut("lint"))) {
+      addon.hooks.onLintInBatch("standard", "item");
+      return;
     }
 
-    if (data.keyboard.equals(SHORTCUTS.lint)) {
-      addon.hooks.onLintInBatch("standard", "item");
+    if (!getPref("richtext.hotkey")) {
+      return;
+    }
+
+    if (data.keyboard.equals(resolveShortcut("subscript"))) {
+      addon.hooks.onShortcuts("subscript");
+    }
+    else if (data.keyboard.equals(resolveShortcut("supscript"))) {
+      addon.hooks.onShortcuts("supscript");
+    }
+    else if (data.keyboard.equals(resolveShortcut("bold"))) {
+      addon.hooks.onShortcuts("bold");
+    }
+    else if (data.keyboard.equals(resolveShortcut("italic"))) {
+      addon.hooks.onShortcuts("italic");
+    }
+    else if (data.keyboard.equals(resolveShortcut("nocase"))) {
+      addon.hooks.onShortcuts("nocase");
     }
   });
 }
