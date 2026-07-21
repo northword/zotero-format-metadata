@@ -13,6 +13,7 @@ const DEFAULTS = {
 function resolveShortcut(key: keyof typeof DEFAULTS): string {
   let raw = (getPref(`shortcut.${key}`)) ?? DEFAULTS[key] ?? "";
   if (Zotero.isMac) {
+    // `accel,alt,¬` is for compatibility with macOS, because option+L will become `¬`
     if (key === "lint" && raw === "accel,alt,L")
       raw = "accel,alt,¬";
   }
