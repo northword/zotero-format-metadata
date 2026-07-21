@@ -20,16 +20,28 @@ jobs:
         with:
           script: |
             const run = context.payload.workflow_run;
+            console.log('Workflow run info:', JSON.stringify({ id: run.id, name: run.name, head_sha: run.head_sha, head_branch: run.head_branch, event: run.event, conclusion: run.conclusion }));
+
             const pr = run.pull_requests[0];
-            if (!pr) return;
+            if (!pr) {
+              console.log('No pull_request found in workflow_run, skipping.');
+              return;
+            }
+            console.log(`PR #${pr.number} found: ${pr.number}, head ref: ${run.head_branch}`);
 
             const { data: artifacts } = await github.rest.actions.listWorkflowRunArtifacts({
               owner: context.repo.owner,
               repo: context.repo.repo,
               run_id: run.id,
             });
+            console.log(`Fetched ${artifacts.artifacts.length} artifacts:`, artifacts.artifacts.map(a => a.name));
+
             const xpiArtifact = artifacts.artifacts.find(a => a.name === 'linter-for-zotero');
-            if (!xpiArtifact) return;
+            if (!xpiArtifact) {
+              console.log('XPI artifact "linter-for-zotero" not found, skipping.');
+              return;
+            }
+            console.log(`Found XPI artifact: id=${xpiArtifact.id}, size=${xpiArtifact.size_in_bytes} bytes`);
 
             const artifactUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${run.id}/artifacts/${xpiArtifact.id}`;
             const shortSha = run.head_sha.substring(0, 7);
@@ -37,10 +49,12 @@ jobs:
 
             - **Commit**: [\`${shortSha}\`](https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${run.head_sha})
             - **XPI**: [Download](${artifactUrl})`;
+            console.log('Comment body:', body);
 
-            await github.rest.issues.createComment({
+            const commentResult = await github.rest.issues.createComment({
               issue_number: pr.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body,
             });
+            console.log(`Comment created: ${commentResult.data.html_url}`);
