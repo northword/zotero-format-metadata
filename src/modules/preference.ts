@@ -149,7 +149,7 @@ function formatShortcutPreview(raw: string): string {
   if (km.key)
     parts.push(key(km.key.toUpperCase()));
 
-  return parts.join(isMac ? "" : "<html:span class=\"linter-shortcut-conn\"> + </html:span>");
+  return parts.join(`<html:span class="linter-shortcut-conn"> + </html:span>`);
 }
 
 function setupShortcutInputs() {
@@ -199,6 +199,8 @@ function setupShortcutInputs() {
 
       input.value = km.getRaw().replace("control,", "").replace("meta", "");
       updatePreview();
+      const Event = Zotero.getMainWindow().Event;
+      input.dispatchEvent(new Event("input", { bubbles: true }));
       input.blur();
     });
 
