@@ -1,3 +1,4 @@
+import { logger } from "../utils/logger";
 import { getPref } from "../utils/prefs";
 
 export function registerShortcuts() {
@@ -12,8 +13,9 @@ export function registerShortcuts() {
 
   if (Zotero.isMac) {
     // `accel,shift,=` is for compatibility with macOS
-    if (SHORTCUTS.supscript === "accel,shift,+")
-      SHORTCUTS.supscript = "accel,shift,=";
+    // 2026-7-21 tested, `Ctrl` + `shift` + `+` is `meta` + `shift` + `+`
+    // if (SHORTCUTS.supscript === "accel,shift,+")
+    //   SHORTCUTS.supscript = "accel,shift,=";
 
     // `accel,alt,¬` is for compatibility with macOS, because option+L will become `¬`
     if (SHORTCUTS.lint === "accel,alt,L")
@@ -24,6 +26,8 @@ export function registerShortcuts() {
     if (data.type !== "keyup" || !data.keyboard) {
       return;
     }
+
+    logger.debug(data);
 
     if (getPref("richtext.hotkey")) {
       if (data.keyboard.equals(SHORTCUTS.subscript)) {
