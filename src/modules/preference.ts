@@ -147,14 +147,8 @@ function formatShortcutPreview(raw: string): string {
   if (km.meta && !(isMac && km.accel))
     parts.push(mod(isMac ? "⌘" : "Win"));
 
-  // KeyModifier's string parser strips valid key chars (e.g. "-"); fall back to last segment
-  let keyStr = km.key;
-  if (!keyStr) {
-    const segs = raw.split(",");
-    keyStr = segs[segs.length - 1] || "";
-  }
-  if (keyStr)
-    parts.push(key(keyStr.toUpperCase()));
+  if (km.key)
+    parts.push(key(km.key.toUpperCase()));
 
   return parts.join(`<html:span class="linter-shortcut-conn"> + </html:span>`);
 }
