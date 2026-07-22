@@ -1,3 +1,8 @@
+minimumReleaseAgeExclude:
+  - zotero-plugin-toolkit
+  - zotero-plugin-scaffold
+  - zotero-types
+
 shellEmulator: true
 
 trustPolicy: no-downgrade
