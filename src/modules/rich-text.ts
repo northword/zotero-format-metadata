@@ -237,7 +237,7 @@ export class RichTextToolBar {
    * @todo title not initialized when richtext class init
    */
   get itemPaneTitleField() {
-    const itemPane = Zotero.getActiveZoteroPane().itemPane;
+    const itemPane = Zotero.getActiveZoteroPane()?.itemPane;
     if (!itemPane)
       return undefined;
 

@@ -152,13 +152,13 @@ async function onLintInBatch(
   if (typeof items === "string") {
     switch (items) {
       case "item":
-        items = Zotero.getActiveZoteroPane().getSelectedItems();
+        items = Zotero.getActiveZoteroPane()?.getSelectedItems() ?? [];
         break;
       case "collection":
-        items = Zotero.getActiveZoteroPane().getSelectedCollection()?.getChildItems() ?? [];
+        items = Zotero.getActiveZoteroPane()?.getSelectedCollection()?.getChildItems() ?? [];
         break;
       default:
-        items = Zotero.getActiveZoteroPane().getSelectedItems();
+        items = Zotero.getActiveZoteroPane()?.getSelectedItems() ?? [];
         break;
     }
   }
