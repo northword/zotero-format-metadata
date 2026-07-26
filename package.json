@@ -63,7 +63,7 @@
     "prettier": "^3.9.4",
     "typescript": "^6.0.3",
     "vitest": "^4.1.9",
-    "zotero-plugin-scaffold": "https://pkg.pr.new/zotero-plugin-scaffold@190",
+    "zotero-plugin-scaffold": "^0.8.8",
     "zotero-types": "^4.1.3"
   },
   "lint-staged": {
