@@ -60,7 +60,7 @@ export function createReporter(infos: ReportInfo[]) {
               {
                 type: "click",
                 listener: () => {
-                  Zotero.getActiveZoteroPane().selectItem(infos[0].itemID);
+                  Zotero.getActiveZoteroPane()?.selectItem(infos[0].itemID);
                 },
               },
             ],
