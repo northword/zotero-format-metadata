@@ -22,6 +22,7 @@ export default antfu(
     ignores: [
       "addon/lib/**",
       "data",
+      "docs",
       "CLAUDE.md",
     ],
   },
