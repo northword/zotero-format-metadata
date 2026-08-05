@@ -24,6 +24,7 @@ interface RunnerStats {
   error: number;
   startTime: number;
   records: ReportInfo[];
+  phase: "idle" | "linting" | "saving";
 }
 
 function shouldApplyRule(rule: Rule<any>, item: Zotero.Item): boolean {
@@ -77,6 +78,7 @@ function shouldApplyRule(rule: Rule<any>, item: Zotero.Item): boolean {
 
 export class LintRunner {
   private stats: RunnerStats = this.emptyStats();
+  private modifiedItems = new Set<Zotero.Item>();
   private readonly ui = new ProgressUI({
     // caller.stop() throws an CanceledException but we cannot catch it
     onCancel: () => this.caller.stop(),
@@ -102,6 +104,9 @@ export class LintRunner {
     const items = toArray(_items);
     const rules = toArray(_rules);
 
+    this.stats.phase = "idle";
+    this.ui.updateProgress(0, items.length, this.stats.phase);
+
     const optionsMap = await this.prepareRules(rules, items);
 
     if (
@@ -114,13 +119,16 @@ export class LintRunner {
     }
 
     this.stats.total += items.length;
-    this.ui.updateProgress(this.stats.current, this.stats.total);
+    this.stats.phase = "linting";
+    this.ui.updateProgress(this.stats.current, this.stats.total, this.stats.phase);
 
     for (const item of items) {
       this.enqueueItem(item, rules, optionsMap);
     }
 
-    await this.caller.wait().then(() => this.finish());
+    await this.caller.wait();
+    await this.batchSave();
+    this.finish();
   }
 
   // ----------------------------
@@ -235,12 +243,54 @@ export class LintRunner {
         });
     }
 
-    // Save item, after all rules are applied
-    await item.saveTx();
+    if (item.hasChanged()) {
+      this.modifiedItems.add(item);
+    }
 
     // If there are errors, throw a error so queue can catch
     if (errors.length)
       throw new Error(`Item ${item.id} failed ${errors.length} rules`, { cause: errors });
+  }
+
+  private async batchSave(): Promise<void> {
+    if (this.modifiedItems.size === 0)
+      return;
+
+    const items = [...this.modifiedItems];
+    this.stats.phase = "saving";
+    this.ui.updateProgress(0, items.length, this.stats.phase);
+
+    try {
+      let savedCount = 0;
+      await Zotero.DB.executeTransaction(async () => {
+        for (const item of items) {
+          if (!item.hasChanged())
+            continue;
+          await item.save({ skipSelect: true });
+          savedCount++;
+          this.ui.updateProgress(savedCount, items.length, this.stats.phase);
+        }
+        if (savedCount > 0) {
+          // @ts-expect-error - Zotero.UndoHistory not yet typed in zotero-types
+          Zotero.UndoHistory.stageAction(
+            "linter-undo-action-lint-metadata",
+            { count: savedCount },
+          );
+        }
+      });
+    }
+    catch (err) {
+      this.stats.records.push({
+        message: err instanceof Error ? err.message : String(err),
+        level: "error",
+        itemID: 0,
+        title: "Batch save failed",
+        ruleID: "batch-save",
+      });
+      logger.error("Batch save failed:", err);
+    }
+
+    this.modifiedItems.clear();
   }
 
   public async applyRule(item: Zotero.Item, rule: Rule<any>, options: any) {
@@ -274,7 +324,7 @@ export class LintRunner {
   private updateStats(type: "pass" | "error") {
     this.stats[type]++;
     this.stats.current++;
-    this.ui.updateProgress(this.stats.current, this.stats.total);
+    this.ui.updateProgress(this.stats.current, this.stats.total, this.stats.phase);
   }
 
   private initStats() {
@@ -293,6 +343,7 @@ export class LintRunner {
     if (this.stats.records.length)
       createReporter(this.stats.records);
 
+    this.modifiedItems.clear();
     DataLoader.clearCache();
     this.stats = this.emptyStats();
     logger.debug(`Batch tasks completed in ${duration}s`);
@@ -306,6 +357,7 @@ export class LintRunner {
       error: 0,
       startTime: 0,
       records: [],
+      phase: "idle",
     };
   }
 }
