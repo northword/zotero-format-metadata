@@ -23,3 +23,10 @@ italic = 斜体
 no-case = 保持大小写
 small-caps = 小型大写字母
 unimplemented = 此功能尚未实现。
+
+info-batch-pending-save = 等待保存...
+info-batch-saving = 正在保存...
+undo-action-lint-metadata = { $count ->
+    [one] Lint 元数据
+   *[other] Lint { $count } 个条目的元数据
+}

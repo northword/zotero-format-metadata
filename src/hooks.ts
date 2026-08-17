@@ -9,7 +9,7 @@ import { Rules } from "./modules/rules";
 import { registerShortcuts } from "./modules/shortcuts";
 import { closeAllDialogs } from "./utils/dialog";
 import { toArray } from "./utils/general";
-import { initLocale, registerMainWindowLocale, unregisterMainWindowLocale } from "./utils/locale";
+import { initLocale, registerMainWindowLocale, unloadLocale, unregisterMainWindowLocale } from "./utils/locale";
 import { logger } from "./utils/logger";
 import { getPref } from "./utils/prefs";
 import { createZToolkit } from "./utils/ztoolkit";
@@ -43,6 +43,7 @@ async function onShutdown() {
   ztoolkit.unregisterAll();
   await Promise.all(Zotero.getMainWindows().map(onMainWindowUnload));
   closeAllDialogs();
+  unloadLocale();
   // Remove addon object
   addon.data.alive = false;
   // @ts-expect-error - Plugin instance is not typed
