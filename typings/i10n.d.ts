@@ -173,6 +173,7 @@ export type FluentMessageId =
   | 'shortcut-subscript'
   | 'shortcut-supscript'
   | 'shortcuts-header'
+  | 'show-report-on-lint'
   | 'small-caps'
   | 'subscript'
   | 'supscript'
