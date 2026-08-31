@@ -6,6 +6,8 @@ lint-on-groupItem-added =
     .label = Lint when item added to group
 notify-on-lint = 
     .label = Show progress notification when Lint
+show-report-on-lint = 
+    .label = Show report window after Lint finds issues
 lint-numConcurrent = Number of concurrent: 
 lint-numConcurrent-description = Recommended: 1 ({ restart-needed.short }).
 

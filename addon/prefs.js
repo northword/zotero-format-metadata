@@ -6,6 +6,7 @@ pref("version", "__buildVersion__");
 pref("lint.onAdded", true);
 pref("lint.onGroup", false);
 pref("lint.notify", true);
+pref("lint.showReportDialog", true);
 pref("lint.numConcurrent", 1);
 pref("lint.delayOnAdded", 500);
 
