@@ -11,6 +11,7 @@ info-batch-finish = 处理完成
 info-batch-stopped = 处理已停止
 info-batch-break = 点击此处结束本次处理
 info-batch-stop-next = 将在当前条目处理完成后结束
+reporter-batch-header = { $time } · { $count } 条发现
 
 ## dialog
 confirm = 确认

@@ -10,7 +10,7 @@ import { getPref } from "../utils/prefs";
 import { timeoutPromise } from "../utils/wait";
 import { isFieldValidForItemType } from "../utils/zotero";
 import { ProgressUI } from "./progress";
-import { createReporter } from "./reporter";
+import { Reporter } from "./reporter";
 import { Rules } from "./rules";
 
 const logger = createLogger("Runner");
@@ -182,6 +182,9 @@ export class LintRunner {
     onCancel: () => this.stop(),
   });
 
+  /** The one results window of the plugin, appended to by every batch. */
+  private readonly reporter = new Reporter();
+
   private progress = new RunProgress();
 
   /**
@@ -249,7 +252,7 @@ export class LintRunner {
       if (this.pending === 0)
         this.finish();
       if (batch.records.length && !accepted.silent)
-        createReporter(batch.records);
+        this.reporter.report(batch.records);
     }
 
     return batch.records;
