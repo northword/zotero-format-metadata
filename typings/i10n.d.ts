@@ -16,7 +16,9 @@ export type FluentMessageId =
   | 'info-batch-has-error'
   | 'info-batch-init'
   | 'info-batch-no-selected'
+  | 'info-batch-pending-save'
   | 'info-batch-running'
+  | 'info-batch-saving'
   | 'info-batch-stop-next'
   | 'italic'
   | 'lint-numConcurrent'
@@ -176,5 +178,6 @@ export type FluentMessageId =
   | 'small-caps'
   | 'subscript'
   | 'supscript'
+  | 'undo-action-lint-metadata'
   | 'unimplemented'
   | 'wip';

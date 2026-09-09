@@ -170,27 +170,46 @@ export class ProgressUI {
         idx: 0,
       })
       .createLine({
-        text: getString("info-batch-break"),
+        type: "default",
+        text: getString("info-batch-pending-save"),
+        progress: 0,
         idx: 1,
+      })
+      .createLine({
+        text: getString("info-batch-break"),
+        idx: 2,
       })
       .show();
 
     // @ts-expect-error miss types
-    await waitUtilAsync(() => Boolean(this.progressWindow?.lines?.[1]?._itemText));
+    await waitUtilAsync(() => Boolean(this.progressWindow?.lines?.[2]?._itemText));
     // @ts-expect-error miss types
-    const stopLine = this.progressWindow?.lines?.[1];
+    const stopLine = this.progressWindow?.lines?.[2];
     if (stopLine?._hbox) {
       stopLine._hbox.addEventListener("click", this.handleStopRequest);
     }
   }
 
-  public updateProgress(current: number, total: number): void {
+  public updateProgress(current: number, total: number, phase?: "idle" | "linting" | "saving"): void {
     if (!this.progressWindow)
       return;
-    const text = `[${current}/${total}] ${getString("info-batch-running")}`;
-    const progress = (current / total) * 100;
 
-    this.progressWindow.changeLine({ text, progress, idx: 0 });
+    const progress = total > 0 ? (current / total) * 100 : 100;
+
+    if (phase === "saving") {
+      this.progressWindow.changeLine({
+        text: `[${current}/${total}] ${getString("info-batch-saving")}`,
+        progress,
+        idx: 1,
+      });
+    }
+    else {
+      const label = phase === "idle"
+        ? getString("info-batch-init")
+        : getString("info-batch-running");
+      const text = phase === "idle" ? label : `[${current}/${total}] ${label}`;
+      this.progressWindow.changeLine({ text, progress, idx: 0 });
+    }
   }
 
   public showError(): void {
@@ -216,7 +235,7 @@ export class ProgressUI {
 
     this.progressWindow
       .changeLine({ text, progress: 100, idx: 0 })
-      .changeLine({ text: `Finished in ${duration}s`, idx: 1 })
+      .changeLine({ text: `Finished in ${duration}s`, idx: 2 })
       .startCloseTimer(PROGRESS_WINDOW_CLOSE_DELAY);
   }
 
@@ -225,7 +244,7 @@ export class ProgressUI {
     ev.preventDefault();
     this.progressWindow?.changeLine({
       text: getString("info-batch-stop-next"),
-      idx: 1,
+      idx: 2,
     });
     this._onCancel?.();
   };

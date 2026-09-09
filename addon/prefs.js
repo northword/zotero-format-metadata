@@ -69,7 +69,7 @@ pref("rule.correct-priority-date-format", true);
 pref("rule.correct-publication-title-alias", true);
 pref("rule.correct-publication-title-case", true);
 pref("rule.correct-pages-connector", true);
-pref("rule.correct-pages-range", true);
+pref("rule.correct-pages-range", false);
 pref("rule.correct-conference-abbr", true);
 pref("rule.correct-thesis-type", true);
 pref("rule.correct-university-punctuation", true);

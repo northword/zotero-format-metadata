@@ -23,3 +23,10 @@ italic = Italic
 no-case = Maintain case
 small-caps = Small Caps
 unimplemented = This feature is unimplemented.
+
+info-batch-pending-save = Pending save...
+info-batch-saving = Saving...
+undo-action-lint-metadata = { $count ->
+    [one] Lint Metadata
+   *[other] Lint Metadata for { $count } Items
+}

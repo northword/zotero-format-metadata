@@ -38,6 +38,15 @@ export function initLocale() {
   addon.data.locale = {
     current: l10n,
   };
+
+  // Register addon.ftl with Zotero.ftl so UndoHistory can resolve undo action labels.
+  // @ts-expect-error - Zotero.ftl not yet typed in zotero-types
+  Zotero.ftl.addResourceIds(["linter-addon.ftl"]);
+}
+
+export function unloadLocale() {
+  // @ts-expect-error - Zotero.ftl not yet typed in zotero-types
+  Zotero.ftl.removeResourceIds(["linter-addon.ftl"]);
 }
 
 interface GetStringOptions {

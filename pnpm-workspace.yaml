@@ -1,16 +1,17 @@
+# Temporarily allow git links, as zotero-types are now using it
+blockExoticSubdeps: false
+
+minimumReleaseAgeExcludePrune: true
 minimumReleaseAgeExclude:
   - zotero-plugin-toolkit
   - zotero-plugin-scaffold
   - zotero-types
 
-shellEmulator: true
-
 trustPolicy: no-downgrade
 trustPolicyExclude:
   - chokidar@4.0.3 # mocha@11 -> chokidar@4.0.3
 
-# Temporarily allow git links, as zotero-types are now using it
-blockExoticSubdeps: false
+shellEmulator: true
 
 allowBuilds:
   "@swc/core": false
