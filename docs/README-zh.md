@@ -80,4 +80,4 @@ GNU Affero General Public License v3.0
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=northword/zotero-format-metadata&type=Date)](https://star-history.com/#northword/zotero-format-metadata&Date)
+[![Star History Chart](https://star-history.dera.page/svg?repos=northword/zotero-format-metadata&type=Date)](https://star-history.dera.page/#northword/zotero-format-metadata&Date)
