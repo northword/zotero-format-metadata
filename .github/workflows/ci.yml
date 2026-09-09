@@ -28,4 +28,6 @@ jobs:
     steps:
       - name: Setup JS
         uses: zotero-plugin-dev/workflows/setup-js@main
+      - name: Setup Zotero
+        uses: zotero-plugin-dev/setup-zotero@v1
       - run: pnpm test
