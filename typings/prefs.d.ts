@@ -11,6 +11,7 @@ declare namespace _ZoteroTypes {
       "lint.onAdded": boolean;
       "lint.onGroup": boolean;
       "lint.notify": boolean;
+      "lint.showReportDialog": boolean;
       "lint.numConcurrent": number;
       "lint.delayOnAdded": number;
       "richtext.toolBar": boolean;
