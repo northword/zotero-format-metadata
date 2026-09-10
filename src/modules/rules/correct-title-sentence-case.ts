@@ -6,6 +6,7 @@ import { chatJSON, getLlmConfig } from "../../utils/llm";
 import { getString } from "../../utils/locale";
 import { getPref } from "../../utils/prefs";
 import { convertToRegex, escapeRegex, functionWords } from "../../utils/str";
+import { isFieldValidForItemType } from "../../utils/zotero";
 import { defineRule } from "./rule-base";
 
 /** =============================  Special Words Begin  ============================= */
@@ -269,7 +270,19 @@ The input is a JSON object with a "titles" array. Reply with a JSON object only,
  * cases the LLM should be allowed to fix.
  */
 export function isCaseOnlyVariant(source: string, candidate: string): boolean {
-  return source.toLocaleLowerCase() === candidate.toLocaleLowerCase();
+  const sourceChars = [...source];
+  const candidateChars = [...candidate];
+  if (sourceChars.length !== candidateChars.length)
+    return false;
+
+  // 逐字符比较：仅「小写后相等」还不够，"K" 与 K(U+212A)、"Å" 与 Å(U+212B) 这类同形字符
+  // 小写后相同，会让替换字符的回复混进库中。
+  return sourceChars.every((char, index) => {
+    const candidateChar = candidateChars[index] ?? "";
+    return char === candidateChar
+      || char.toLowerCase() === candidateChar
+      || char.toUpperCase() === candidateChar;
+  });
 }
 
 /** 同一批标题的并发请求数；模型越慢，并发越能缩短 prepare 阶段的等待 */
@@ -290,6 +303,9 @@ async function prepareLlmCases(
   const disabledLanguagesList = getPref("rule.correct-title-sentence-case.disabled-languages") || "zh";
   const titles = [...new Set(
     items
+      // 与 runner 的 shouldApplyRule 保持一致，避免把附件/笔记（其标题取自笔记内容）
+      // 或不支持该字段的条目类型发给第三方接口
+      .filter(item => item.isRegularItem() && isFieldValidForItemType(targetItemField, item.itemType))
       .filter(item => !keepOriginalTitle(item.getField("language") || "en-US", disabledLanguagesList))
       .map(item => item.getField(targetItemField, false, true) as string)
       // 含富文本标签的标题交由本地规则处理
@@ -299,7 +315,11 @@ async function prepareLlmCases(
   const map = new Map<string, string>();
   let failed = false;
 
-  const batches = chunk(titles, getPref("llm.batchSize") || 20);
+  // 用户可能在数字框里输入 0、负数或小数，而 chunk() 遇到非正整数会直接抛错、
+  // 让整批 lint 中断
+  const batchSize = Math.max(1, Math.floor(getPref("llm.batchSize") || 20));
+  const batches = chunk(titles, batchSize);
+
   for (const group of chunk(batches, LLM_CONCURRENCY)) {
     await Promise.all(group.map(async (batch) => {
       const res = await chatJSON<{ titles: string[] }>({

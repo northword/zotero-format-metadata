@@ -23,6 +23,16 @@ export type LlmRequest = (
 
 const _request: LlmRequest = (method, url, options) => Zotero.HTTP.request(method, url, options);
 
+/**
+ * 归一化接口地址：容忍结尾斜杠，以及用户直接粘贴的完整 /chat/completions 地址。
+ *
+ * 带 `/chat/completions` 的地址若照原样再拼一次后缀，请求会 404 并静默回退到本地规则，
+ * 用户只会看到「没效果」。
+ */
+export function normalizeBaseUrl(raw: string): string {
+  return raw.trim().replace(/\/+$/, "").replace(/\/chat\/completions$/, "");
+}
+
 const cache = new Map<string, unknown>();
 
 /**
@@ -35,7 +45,7 @@ export function getLlmConfig(): LlmConfig | undefined {
   if (!getPref("llm.enabled"))
     return undefined;
 
-  const baseUrl = (getPref("llm.baseUrl") || "").replace(/\/+$/, "");
+  const baseUrl = normalizeBaseUrl(getPref("llm.baseUrl") || "");
   const model = getPref("llm.model") || "";
   if (!baseUrl || !model)
     return undefined;
@@ -118,12 +128,17 @@ export async function chatJSON<T>(options: LlmChatOptions<T>): Promise<T | undef
   }
 }
 
-/** Test the connection with one minimal request */
+/**
+ * Test the connection with one minimal request.
+ *
+ * 每次点击都要真的走一次网络，否则按钮只会复述上一次的结果，掩盖配置错误。
+ */
 export async function testLlmConnection(request?: LlmRequest): Promise<boolean> {
   const config = getLlmConfig();
   if (!config)
     return false;
 
+  clearLlmCache();
   const res = await chatJSON({
     config,
     system: "Reply with a JSON object only.",

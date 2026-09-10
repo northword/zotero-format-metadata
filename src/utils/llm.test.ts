@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { chatJSON, parseModelOutput } from "./llm";
+import { chatJSON, normalizeBaseUrl, parseModelOutput } from "./llm";
 
 const config = {
   baseUrl: "https://example.com/v1",
@@ -25,6 +25,17 @@ function fakeRequest(content: string) {
   };
   return { request, calls };
 }
+
+describe("normalizeBaseUrl", () => {
+  it("strips trailing slashes", () => {
+    expect(normalizeBaseUrl(" https://example.com/v1/ ")).toBe("https://example.com/v1");
+  });
+
+  it("strips a pasted chat completions path", () => {
+    expect(normalizeBaseUrl("https://example.com/v1/chat/completions")).toBe("https://example.com/v1");
+    expect(normalizeBaseUrl("https://example.com/v1/chat/completions/")).toBe("https://example.com/v1");
+  });
+});
 
 describe("parseModelOutput", () => {
   it("parses plain JSON", () => {

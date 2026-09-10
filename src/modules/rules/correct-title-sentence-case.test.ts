@@ -135,6 +135,10 @@ describe("toSentenceCase", () => {
 });
 
 describe("isCaseOnlyVariant", () => {
+  it("rejects a character the model swapped for a look-alike", () => {
+    expect(isCaseOnlyVariant("Kilo", "\u212Ailo")).toBe(false);
+    expect(isCaseOnlyVariant("\u00C5ngstrom", "\u212Bngstrom")).toBe(false);
+  });
   it("accepts a capitalization fix", () => {
     const source = "Size-resolved particles during East Asian dust events";
     expect(isCaseOnlyVariant(source, "Size-resolved particles during East Asian dust events")).toBe(true);
@@ -177,6 +181,13 @@ let httpError = false;
       return { response: JSON.stringify({ choices: [{ message: { content: llmReply } }] }) };
     },
   },
+  ItemFields: {
+    getID: (field: string) => field,
+    isValidForType: () => true,
+  },
+  ItemTypes: {
+    getID: (itemType: string) => itemType,
+  },
 };
 (globalThis as any).addon = { data: { config: { addonRef: "linter" } } };
 
@@ -187,10 +198,12 @@ const rule = CorrectTitleSentenceCase as unknown as {
 
 function debug() {}
 
-function createItem(title: string, language = "en-US") {
+function createItem(title: string, language = "en-US", regular = true) {
   let value = title;
   return {
     id: 1,
+    itemType: "journalArticle",
+    isRegularItem: () => regular,
     value: () => value,
     getField: (field: string) => (field === "language" ? language : value),
     setField: (_field: string, newValue: string) => {
@@ -244,15 +257,26 @@ describe("titles converted with the LLM", () => {
     expect(item.value()).toBe("Size-resolved particles during east Asian dust events");
   });
 
-  it("skips titles with markup and disabled languages", async () => {
+  it("skips titles with markup, disabled languages and non-regular items", async () => {
     enableLlm();
     const items = [
       createItem("Haze over <i>East Asia</i>"),
       createItem("Haze over East Asia", "zh-CN"),
+      createItem("A note whose title comes from its content", "en-US", false),
     ];
     await rule.prepare({ items, debug });
 
     expect(httpCalls).toHaveLength(0);
+  });
+
+  it("survives an out-of-range batch size", async () => {
+    enableLlm();
+    prefValues["llm.batchSize"] = -1;
+    const item = createItem("Size-resolved particles during East Asian dust events");
+    const options = await rule.prepare({ items: [item], debug });
+    await rule.apply({ item, options, debug, report: () => {} });
+
+    expect(item.value()).toBe("Size-resolved particles during East Asian dust events");
   });
 
   it("reports a single warning when the request fails", async () => {
