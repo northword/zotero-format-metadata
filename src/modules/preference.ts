@@ -1,5 +1,6 @@
 import { KeyModifier } from "zotero-plugin-toolkit";
 import { homepage } from "../../package.json";
+import { testLlmConnection } from "../utils/llm";
 import { getString } from "../utils/locale";
 import { createLogger } from "../utils/logger";
 import { getPref, setPref } from "../utils/prefs";
@@ -40,6 +41,8 @@ async function updatePrefsUI() {
   // Or bind some events to the elements
   disablePrefsTitleLang();
   disablePrefsLang();
+  disablePrefsLlm();
+  setupLlmTestButton();
 
   addon.data.prefs?.window.document
     .querySelector(`#${addon.data.config.addonRef}-abbr-choose-custom-data-button`)
@@ -96,6 +99,9 @@ function bindPrefEvents() {
       logger.debug(e);
       disablePrefsLang();
     });
+  addon.data.prefs?.window.document
+    .querySelector(`#${addon.data.config.addonRef}-llm-enabled`)
+    ?.addEventListener("command", () => disablePrefsLlm());
 }
 
 function disablePrefsTitleLang() {
@@ -120,6 +126,34 @@ function disablePrefsLang() {
     engElement.disabled = !state;
   if (otherElement)
     otherElement.disabled = !state;
+}
+
+function disablePrefsLlm() {
+  const state = getPref("llm.enabled");
+  const doc = addon.data.prefs?.window.document;
+  if (!doc)
+    return;
+
+  for (const id of ["llm-base-url", "llm-api-key", "llm-model", "llm-batch-size"]) {
+    const element = doc.getElementById(`${addon.data.config.addonRef}-${id}`) as HTMLInputElement | null;
+    if (element)
+      element.disabled = !state;
+  }
+}
+
+function setupLlmTestButton() {
+  const doc = addon.data.prefs?.window.document;
+  const button = doc?.getElementById(`${addon.data.config.addonRef}-llm-test-button`) as HTMLButtonElement | null;
+  const result = doc?.getElementById(`${addon.data.config.addonRef}-llm-test-result`) as HTMLElement | null;
+  if (!button || !result)
+    return;
+
+  button.addEventListener("command", async () => {
+    button.disabled = true;
+    result.textContent = getString("llm-test-pending");
+    result.textContent = await testLlmConnection() ? getString("llm-test-ok") : getString("llm-test-failed");
+    button.disabled = false;
+  });
 }
 
 // ---------- Shortcut input recording & preview ----------
