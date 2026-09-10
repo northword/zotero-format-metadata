@@ -260,23 +260,20 @@ The input is a JSON object with a "titles" array. Reply with a JSON object only,
 /**
  * Check whether an LLM output may be adopted.
  *
- * 1. It may differ from the input in letter case only, i.e. no word is added, removed or changed.
- * 2. It must not drop a capitalization that the local rules already guarantee (built-in proper
- *    noun lists, the protected leading capital and sub-sentence starts).
+ * It may differ from the input in letter case only, i.e. no word may be added,
+ * removed, replaced or reordered. Everything else is left to the local rules.
  *
- * As `toSentenceCase` keeps word order and whitespace, both texts line up word by word.
+ * Note that we deliberately do not require the output to keep every capitalization
+ * of the local result: the local rules capitalize what follows "vs." or "e.g."
+ * and keep words with inner capitals ("PLanning") as-is, and those are exactly the
+ * cases the LLM should be allowed to fix.
  */
-export function isAcceptableCaseVariant(source: string, candidate: string): boolean {
-  if (source.toLocaleLowerCase() !== candidate.toLocaleLowerCase())
-    return false;
-
-  const deterministicWords = toSentenceCase(source).split(/(\s+)/);
-  const candidateWords = candidate.split(/(\s+)/);
-
-  return deterministicWords.every((word, index) =>
-    !/\p{Lu}/u.test(word) || /\p{Lu}/u.test(candidateWords[index] ?? ""),
-  );
+export function isCaseOnlyVariant(source: string, candidate: string): boolean {
+  return source.toLocaleLowerCase() === candidate.toLocaleLowerCase();
 }
+
+/** 同一批标题的并发请求数；模型越慢，并发越能缩短 prepare 阶段的等待 */
+const LLM_CONCURRENCY = 3;
 
 /**
  * Convert titles through the LLM in batches of `llm.batchSize`.
@@ -302,26 +299,29 @@ async function prepareLlmCases(
   const map = new Map<string, string>();
   let failed = false;
 
-  for (const batch of chunk(titles, getPref("llm.batchSize") || 20)) {
-    const res = await chatJSON<{ titles: string[] }>({
-      config,
-      system: LLM_SYSTEM_PROMPT,
-      user: { titles: batch },
-      validate: (value): value is { titles: string[] } =>
-        Array.isArray((value as any)?.titles) && (value as any).titles.length === batch.length,
-      debug,
-    });
+  const batches = chunk(titles, getPref("llm.batchSize") || 20);
+  for (const group of chunk(batches, LLM_CONCURRENCY)) {
+    await Promise.all(group.map(async (batch) => {
+      const res = await chatJSON<{ titles: string[] }>({
+        config,
+        system: LLM_SYSTEM_PROMPT,
+        user: { titles: batch },
+        validate: (value): value is { titles: string[] } =>
+          Array.isArray((value as any)?.titles) && (value as any).titles.length === batch.length,
+        debug,
+      });
 
-    if (!res) {
-      failed = true;
-      continue;
-    }
+      if (!res) {
+        failed = true;
+        return;
+      }
 
-    batch.forEach((title, index) => {
-      const candidate = res.titles[index];
-      if (typeof candidate === "string" && isAcceptableCaseVariant(title, candidate))
-        map.set(title, candidate);
-    });
+      batch.forEach((title, index) => {
+        const candidate = res.titles[index];
+        if (typeof candidate === "string" && isCaseOnlyVariant(title, candidate))
+          map.set(title, candidate);
+      });
+    }));
   }
 
   return { map, failed };
@@ -344,7 +344,7 @@ function createCorrectTitleSentenceCaseRule(targetItemField: "title" | "shortTit
       if (!keepOriginalTitle(lang, disabledLanguagesList)) {
         const converted = toSentenceCase(title, lang);
         const fromLlm = options.llm?.get(title);
-        title = fromLlm && isAcceptableCaseVariant(title, fromLlm) ? fromLlm : converted;
+        title = fromLlm && isCaseOnlyVariant(title, fromLlm) ? fromLlm : converted;
 
         if (options.llmFailed && !llmWarningReported) {
           llmWarningReported = true;

@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import officialData from "../../../test/data/sentenceCase.json";
 import { clearLlmCache } from "../../utils/llm";
-import { CorrectTitleSentenceCase, isAcceptableCaseVariant, toSentenceCase } from "./correct-title-sentence-case";
+import { CorrectTitleSentenceCase, isCaseOnlyVariant, toSentenceCase } from "./correct-title-sentence-case";
 
 /**
  * Test item / 测试项目信息
@@ -134,22 +134,25 @@ describe("toSentenceCase", () => {
   });
 });
 
-describe("isAcceptableCaseVariant", () => {
+describe("isCaseOnlyVariant", () => {
   it("accepts a capitalization fix", () => {
     const source = "Size-resolved particles during East Asian dust events";
-    expect(isAcceptableCaseVariant(source, "Size-resolved particles during East Asian dust events")).toBe(true);
-    expect(isAcceptableCaseVariant(source, "Size-resolved particles during east Asian dust events")).toBe(true);
+    expect(isCaseOnlyVariant(source, "Size-resolved particles during East Asian dust events")).toBe(true);
+    expect(isCaseOnlyVariant(source, "Size-resolved particles during east Asian dust events")).toBe(true);
+  });
+
+  it("accepts removing a capitalization the local rules got wrong", () => {
+    const source = "Human vs. Autonomous Control of UAV Surveillance";
+    expect(isCaseOnlyVariant(source, "Human vs. autonomous control of UAV surveillance")).toBe(true);
+    // 本地规则会保留含内部大写的词，LLM 修正它是允许的
+    expect(isCaseOnlyVariant("FF: The Fast-Forward PLanning System", "FF: The Fast-Forward planning system")).toBe(true);
   });
 
   it("rejects a rewritten title", () => {
     const source = "Size-resolved particles during East Asian dust events";
-    expect(isAcceptableCaseVariant(source, "Size-resolved particles during East Asian haze events")).toBe(false);
-    expect(isAcceptableCaseVariant(source, "Size-resolved particles during East Asian dust events.")).toBe(false);
-  });
-
-  it("rejects dropping a capitalization the local rules guarantee", () => {
-    const source = "Winter haze over the Yangtze River";
-    expect(isAcceptableCaseVariant(source, "Winter haze over the yangtze river")).toBe(false);
+    expect(isCaseOnlyVariant(source, "Size-resolved particles during East Asian haze events")).toBe(false);
+    expect(isCaseOnlyVariant(source, "Size-resolved particles during East Asian dust events.")).toBe(false);
+    expect(isCaseOnlyVariant(source, "Size-resolved particles during East Asian dust")).toBe(false);
   });
 });
 

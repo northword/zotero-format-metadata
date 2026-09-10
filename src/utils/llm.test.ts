@@ -63,7 +63,7 @@ describe("chatJSON", () => {
     expect(result).toEqual({ titles: ["East Asian dust"] });
     expect(calls[0].url).toBe("https://example.com/v1/chat/completions");
     expect(calls[0].options.headers.Authorization).toBe("Bearer secret");
-    expect(calls[0].options.timeout).toBe(30_000);
+    expect(calls[0].options.timeout).toBe(120_000);
     expect(JSON.parse(calls[0].options.body)).toMatchObject({
       model: "test-model",
       temperature: 0,

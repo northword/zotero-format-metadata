@@ -207,8 +207,8 @@ only on the built-in word lists.
 
 - Applies to `correct-title-sentence-case`, `correct-shortTitle-sentence-case`,
   `correct-bookTitle-sentence-case` and `correct-proceedingsTitle-sentence-case`.
-- The reply is adopted only when it differs from the input in letter case alone **and** keeps
-  every capitalization the local rules already guarantee; otherwise the local rules are used.
+- The reply is adopted only when it differs from the input in letter case alone — no word may be
+  added, removed or repaired; otherwise the local rules are used.
 - Requests are batched (default 20 titles per request) and cached per batch.
 - Titles containing rich-text markup, and languages disabled for sentence case, are skipped.
 - When a request fails, the local rules handle the titles and a warning is reported once.

@@ -3,8 +3,11 @@ import { getPref } from "./prefs";
 
 const logger = createLogger("llm");
 
-/** 请求超时，应小于 runner 对单条规则的 60s 上限 */
-const TIMEOUT = 30_000;
+/**
+ * 请求超时。LLM 目前只用于 prepare 阶段，不受 runner 对单条规则的 60s 上限约束；
+ * 推理型模型在 20 条的批次上实测约 30s，因此留出充裕余量。
+ */
+const TIMEOUT = 120_000;
 
 export interface LlmConfig {
   baseUrl: string;
