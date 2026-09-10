@@ -30,3 +30,8 @@ undo-action-lint-metadata = { $count ->
     [one] Lint Metadata
    *[other] Lint Metadata for { $count } Items
 }
+
+## LLM
+llm-test-pending = Testing connection...
+llm-test-ok = Connected
+llm-test-failed = Connection failed, please check base URL, API key and model

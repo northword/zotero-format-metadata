@@ -1,7 +1,12 @@
+import type { LlmConfig } from "../../utils/llm";
+import { chunk } from "es-toolkit";
 import contryJson from "../../utils/country-by-capital-city.json";
 import { DataLoader } from "../../utils/data-loader";
+import { chatJSON, getLlmConfig } from "../../utils/llm";
+import { getString } from "../../utils/locale";
 import { getPref } from "../../utils/prefs";
 import { convertToRegex, escapeRegex, functionWords } from "../../utils/str";
+import { isFieldValidForItemType } from "../../utils/zotero";
 import { defineRule } from "./rule-base";
 
 /** =============================  Special Words Begin  ============================= */
@@ -224,6 +229,10 @@ export function toSentenceCase(text: string, locale: string = "en-US") {
 
 interface Options {
   data?: any[];
+  /** LLM 结果：原文 → 修正后文本 */
+  llm?: Map<string, string>;
+  /** LLM 请求失败，用于在结果对话框提示一次 */
+  llmFailed?: boolean;
 }
 
 export function keepOriginalTitle(language: string, disabledLanguagesList: string) {
@@ -235,7 +244,111 @@ export function keepOriginalTitle(language: string, disabledLanguagesList: strin
     .some(item => normalizedLanguage === item || normalizedLanguage.startsWith(`${item}-`));
 }
 
+/** 用于标题大小写修正的系统提示词 */
+const LLM_SYSTEM_PROMPT = `You convert the capitalization of bibliographic titles into sentence case.
+
+Rules:
+- Change letter case only. Never add, remove, replace, reorder or translate any character, and never fix spelling.
+- Keep the title's language and any markup untouched.
+- Capitalize the first word, and the first word after a colon, question mark, exclamation mark, period or em dash.
+- Capitalize proper nouns, place and person names, organization and brand names, acronyms and abbreviations, and symbols of chemical elements, genes and proteins, as they are conventionally written.
+- Keep every other word lowercase.
+- Do not add a trailing period.
+
+The input is a JSON object with a "titles" array. Reply with a JSON object only, in the same shape, with exactly one string per input title and in the same order:
+{"titles": ["...", "..."]}`;
+
+/**
+ * Check whether an LLM output may be adopted.
+ *
+ * It may differ from the input in letter case only, i.e. no word may be added,
+ * removed, replaced or reordered. Everything else is left to the local rules.
+ *
+ * Note that we deliberately do not require the output to keep every capitalization
+ * of the local result: the local rules capitalize what follows "vs." or "e.g."
+ * and keep words with inner capitals ("PLanning") as-is, and those are exactly the
+ * cases the LLM should be allowed to fix.
+ */
+export function isCaseOnlyVariant(source: string, candidate: string): boolean {
+  const sourceChars = [...source];
+  const candidateChars = [...candidate];
+  if (sourceChars.length !== candidateChars.length)
+    return false;
+
+  // 逐字符比较：仅「小写后相等」还不够，"K" 与 K(U+212A)、"Å" 与 Å(U+212B) 这类同形字符
+  // 小写后相同，会让替换字符的回复混进库中。
+  return sourceChars.every((char, index) => {
+    const candidateChar = candidateChars[index] ?? "";
+    return char === candidateChar
+      || char.toLowerCase() === candidateChar
+      || char.toUpperCase() === candidateChar;
+  });
+}
+
+/** 同一批标题的并发请求数；模型越慢，并发越能缩短 prepare 阶段的等待 */
+const LLM_CONCURRENCY = 3;
+
+/**
+ * Convert titles through the LLM in batches of `llm.batchSize`.
+ *
+ * Titles with markup and languages disabled for sentence case are skipped,
+ * and failed batches are left to the local rules.
+ */
+async function prepareLlmCases(
+  config: LlmConfig,
+  targetItemField: "title" | "shortTitle" | "bookTitle" | "proceedingsTitle",
+  items: Zotero.Item[],
+  debug: (...args: any[]) => void,
+) {
+  const disabledLanguagesList = getPref("rule.correct-title-sentence-case.disabled-languages") || "zh";
+  const titles = [...new Set(
+    items
+      // 与 runner 的 shouldApplyRule 保持一致，避免把附件/笔记（其标题取自笔记内容）
+      // 或不支持该字段的条目类型发给第三方接口
+      .filter(item => item.isRegularItem() && isFieldValidForItemType(targetItemField, item.itemType))
+      .filter(item => !keepOriginalTitle(item.getField("language") || "en-US", disabledLanguagesList))
+      .map(item => item.getField(targetItemField, false, true) as string)
+      // 含富文本标签的标题交由本地规则处理
+      .filter(title => title && !title.includes("<")),
+  )];
+
+  const map = new Map<string, string>();
+  let failed = false;
+
+  // 用户可能在数字框里输入 0、负数或小数，而 chunk() 遇到非正整数会直接抛错、
+  // 让整批 lint 中断
+  const batchSize = Math.max(1, Math.floor(getPref("llm.batchSize") || 20));
+  const batches = chunk(titles, batchSize);
+
+  for (const group of chunk(batches, LLM_CONCURRENCY)) {
+    await Promise.all(group.map(async (batch) => {
+      const res = await chatJSON<{ titles: string[] }>({
+        config,
+        system: LLM_SYSTEM_PROMPT,
+        user: { titles: batch },
+        validate: (value): value is { titles: string[] } =>
+          Array.isArray((value as any)?.titles) && (value as any).titles.length === batch.length,
+        debug,
+      });
+
+      if (!res) {
+        failed = true;
+        return;
+      }
+
+      batch.forEach((title, index) => {
+        const candidate = res.titles[index];
+        if (typeof candidate === "string" && isCaseOnlyVariant(title, candidate))
+          map.set(title, candidate);
+      });
+    }));
+  }
+
+  return { map, failed };
+}
+
 function createCorrectTitleSentenceCaseRule(targetItemField: "title" | "shortTitle" | "bookTitle" | "proceedingsTitle") {
+  let llmWarningReported = false;
   return defineRule<Options>({
     id: `correct-${targetItemField}-sentence-case`,
     scope: "field",
@@ -243,11 +356,21 @@ function createCorrectTitleSentenceCaseRule(targetItemField: "title" | "shortTit
     fieldMenu: {
       l10nID: "rule-correct-title-sentence-case-menu-field",
     },
-    async apply({ item, options, debug }) {
+    async apply({ item, options, debug, report }) {
       const lang = item.getField("language") || "en-US";
       let title = item.getField(targetItemField, false, true);
       const disabledLanguagesList = getPref("rule.correct-title-sentence-case.disabled-languages") || "zh";
-      title = keepOriginalTitle(lang, disabledLanguagesList) ? title : toSentenceCase(title, lang);
+
+      if (!keepOriginalTitle(lang, disabledLanguagesList)) {
+        const converted = toSentenceCase(title, lang);
+        const fromLlm = options.llm?.get(title);
+        title = fromLlm && isCaseOnlyVariant(title, fromLlm) ? fromLlm : converted;
+
+        if (options.llmFailed && !llmWarningReported) {
+          llmWarningReported = true;
+          report({ level: "warning", message: getString("rule-correct-title-sentence-case-report-llm-failed") });
+        }
+      }
 
       const data = options.data;
       if (data) {
@@ -263,18 +386,27 @@ function createCorrectTitleSentenceCaseRule(targetItemField: "title" | "shortTit
       item.setField(targetItemField, title);
     },
 
-    async prepare() {
+    async prepare({ items, debug }) {
+      llmWarningReported = false;
+      const options: Options = {};
+
       const customTermFilePath = getPref("rule.correct-title-sentence-case.custom-term-path");
       if (customTermFilePath) {
-        return {
-          data: await DataLoader.load("csv", customTermFilePath, {
-            headers: ["search", "replace"],
-          }),
-        };
+        options.data = await DataLoader.load("csv", customTermFilePath, {
+          headers: ["search", "replace"],
+        });
       }
-      else {
-        return {};
+
+      const config = getLlmConfig();
+      if (config) {
+        const { map, failed } = await prepareLlmCases(config, targetItemField, items, debug);
+        if (map.size)
+          options.llm = map;
+        if (failed)
+          options.llmFailed = true;
       }
+
+      return options;
     },
   });
 }
