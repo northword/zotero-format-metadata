@@ -50,3 +50,7 @@ section-updateMetadata = Update Metadata
 
 ## 关于
 help-version = { $name }, Build { $version }, { $time }
+
+default-settings-title = Default Settings
+data-provider-options-title = Data Provider Options
+about-title = About
