@@ -47,6 +47,7 @@ export type FluentMessageId =
   | 'rule-correct-date-format'
   | 'rule-correct-date-format-menu-field'
   | 'rule-correct-date-format-menu-item'
+  | 'rule-correct-date-format-report-lost-precision'
   | 'rule-correct-doi-long'
   | 'rule-correct-edition-numeral'
   | 'rule-correct-extra-order'
