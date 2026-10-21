@@ -10,6 +10,8 @@ export type FluentMessageId =
   | 'enable-richtext-preview'
   | 'enable-richtext-toolbar'
   | 'field-abbr'
+  | 'help-license'
+  | 'help-source'
   | 'help-version'
   | 'info-batch-break'
   | 'info-batch-finish'

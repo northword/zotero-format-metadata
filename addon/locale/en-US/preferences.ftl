@@ -50,3 +50,5 @@ section-updateMetadata = Update Metadata
 
 ## 关于
 help-version = { $name }, Build { $version }, { $time }
+help-license = Licensed under the GNU Affero General Public License v3.0 or later (AGPL-3.0-or-later)
+help-source = Source code

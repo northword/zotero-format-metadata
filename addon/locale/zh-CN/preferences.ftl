@@ -50,3 +50,5 @@ section-updateMetadata = 更新元数据
 
 ## 关于
 help-version = { $name }, Build { $version }, { $time }
+help-license = 本插件以 GNU Affero 通用公共许可证第 3 版或更高版本（AGPL-3.0-or-later）发布
+help-source = 源代码

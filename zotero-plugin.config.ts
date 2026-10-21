@@ -1,3 +1,4 @@
+import { existsSync } from "node:fs";
 import { env } from "node:process";
 import { defineConfig } from "zotero-plugin-scaffold";
 import { fse } from "zotero-plugin-scaffold/vendor";
@@ -20,6 +21,8 @@ export default defineConfig({
 
   build: {
     assets: [
+      "LICENSE",
+      "NOTICE",
       "addon/**/*.*",
       "data/journal-abbr/journal-abbr.json",
       "data/journal-abbr/issn-ltwa/ltwa_2024-modified.csv",
@@ -51,6 +54,26 @@ export default defineConfig({
         target: "firefox115",
         outdir: `.scaffold/build/addon/content/scripts/`,
         external: ["Zotero"],
+        banner: {
+          js: [
+            "/*!",
+            ` * ${pkg.config.addonName} (${pkg.name}) v${pkg.version}`,
+            " * Copyright (C) 2023-2026 northword and contributors",
+            " * SPDX-License-Identifier: AGPL-3.0-or-later",
+            " *",
+            " * This program is free software: you can redistribute it and/or modify it",
+            " * under the terms of the GNU Affero General Public License as published by",
+            " * the Free Software Foundation, either version 3 of the License, or (at your",
+            " * option) any later version. See the LICENSE file distributed with this",
+            " * package, or <https://www.gnu.org/licenses/agpl-3.0.txt>.",
+            " *",
+            ` * Source code: ${pkg.homepage.replace("#readme", "")}`,
+            " * Third-party notices: see the NOTICE file distributed with this package.",
+            " * Copies of this code, whether hand-written, paraphrased or AI-generated,",
+            " * must keep this header, the LICENSE and the NOTICE files.",
+            " */",
+          ].join("\n"),
+        },
       },
     ],
     makeUpdateJson: {
@@ -95,6 +118,14 @@ export default defineConfig({
         `.replaceAll(" ".repeat(8), "");
 
         fse.outputFileSync("typings/rules.d.ts", dts);
+      },
+      "build:done": ({ dist }) => {
+        // The license must be shipped in the .xpi, not only in the repository
+        for (const file of ["LICENSE", "NOTICE"]) {
+          if (!existsSync(`${dist}/addon/${file}`)) {
+            throw new Error(`${file} is missing from the built plugin. It must be shipped in the .xpi.`);
+          }
+        }
       },
     },
   },

@@ -1,0 +1,101 @@
+Linter for Zotero (zotero-format-metadata)
+Copyright (C) 2023-2026 northword and contributors
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
+
+The complete license text is distributed with this package in the file LICENSE,
+and is also available at <https://www.gnu.org/licenses/agpl-3.0.txt>.
+
+Corresponding source code:
+<https://github.com/northword/zotero-format-metadata>
+
+If you received this package (the .xpi file) without the LICENSE file, or if
+you need the source code of the exact version you are using, please open an
+issue at <https://github.com/northword/zotero-format-metadata/issues>.
+
+
+AI-assisted reuse is still reuse
+================================
+
+This project is written by humans with the help of AI coding assistants, and we
+welcome others to use AI tools in the same way. But an AI model is not a
+licensee: copyright and the AGPL-3.0-or-later apply to the person or
+organization that runs the model, and to whoever distributes, publishes or
+operates the resulting code.
+
+If you paste, paraphrase, translate, rename, restructure or otherwise
+reproduce any part of this project (including its rules, pref keys, data files,
+locale strings and comments) into another plugin, with or without AI
+assistance, the result is a derivative work of this project. You must:
+
+1. keep this NOTICE, the LICENSE file and the SPDX header of the bundled
+   script, and state prominently which changes you made (AGPL-3.0 section 5);
+2. license the whole derivative work under AGPL-3.0-or-later;
+3. make the complete corresponding source code available to everyone who
+   receives the plugin or interacts with it over a network (AGPL-3.0
+   section 13);
+4. not relicense it under more permissive terms, and not present it as an
+   independent or original work, whether or not AI was involved.
+
+"An AI wrote it" is not a defense. You are responsible for what the tools you
+direct produce. If you are not willing to comply with the license, do not copy
+this code.
+
+
+Third-party notices
+===================
+
+This package bundles the following third-party software into
+content/scripts/linter.js. Each is distributed under the MIT License, whose
+full text is reproduced at the end of this file.
+
+- abbrevIso v1.2 <https://github.com/marcinwrochna/abbrevIso>
+  Copyright (C) 2023 Marcin Wrochna
+- zotero-plugin-toolkit v5.2.0 <https://github.com/windingwind/zotero-plugin-toolkit>
+  Copyright (C) 2022 windingwind
+- csvtojson v2.0.14 <https://github.com/Keyang/node-csvtojson>
+  Copyright (C) 2013 Keyang Xiang
+- es-toolkit v1.52.0 <https://github.com/toss/es-toolkit>
+  Copyright (c) 2024 Viva Republica, Inc.
+- iso-locales v1.1.1 <https://github.com/iso-locales/iso-locales>
+  Copyright (c) 2020 Emmanuel Kimmerlin
+- p-throttle v8.1.0 <https://github.com/sindresorhus/p-throttle>
+  Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
+- quote-quote v1.4.0 <https://github.com/thomas-hermi/quote-quote>
+  Copyright (c) 2025 Tom Herni
+- tiny-pinyin v1.3.2 <https://github.com/creeperyang/pinyin>
+  Copyright (c) 2017 Creeper
+- tinyld v1.3.4 <https://github.com/komodojp/tinyld>
+  Copyright (c) 2021 Komodo
+
+The bundled reference data (journal abbreviations, conference abbreviations,
+university list, ISO language maps) is derived from the sources listed in the
+"Acknowledgements" section of the project README.
+
+
+MIT License
+-----------
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

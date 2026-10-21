@@ -44,7 +44,9 @@ See [CONTRIBUTING.md](./docs/CONTRIBUTING.md).
 
 GNU Affero General Public License v3.0
 
-Permissions of this strongest copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. When a modified version is used to provide a service over a network, the complete source code of the modified version must be made available.
+> Permissions of this strongest copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. When a modified version is used to provide a service over a network, the complete source code of the modified version must be made available.
+
+Code, rules, pref keys, data files, locale strings or comments copied from this project into another plugin — copied, paraphrased, translated, renamed or generated with AI assistance — make that plugin a derivative work. It must keep the `LICENSE` / `NOTICE` files and the SPDX header, state the changes made, be licensed as a whole under AGPL-3.0-or-later, and publish its complete corresponding source code. "An AI wrote it" does not change any of this. See [`NOTICE`](./NOTICE) for details.
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnorthword%2Fzotero-format-metadata.svg?type=large&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnorthword%2Fzotero-format-metadata?ref=badge_large&issueType=license)
 
