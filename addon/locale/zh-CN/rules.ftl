@@ -137,6 +137,8 @@ rule-correct-date-format-menu-item =
   .label = 统一日期格式为 ISO 格式
 rule-correct-date-format-menu-field =
   .label = 转为 ISO 格式（Linter）
+rule-correct-date-format-report-lost-precision =
+  日期“{ $date }”无法在不丢失月份或日期的情况下转换为 ISO 格式，请手动修正。
 
 
 rule-correct-filing-date-format =

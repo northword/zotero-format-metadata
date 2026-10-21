@@ -137,6 +137,8 @@ rule-correct-date-format-menu-item =
   .label = Normalize date format to ISO
 rule-correct-date-format-menu-field =
   .label = ISO format (Linter)
+rule-correct-date-format-report-lost-precision =
+  The date "{ $date }" cannot be converted to ISO format without losing the month or day. Please fix it manually.
 
 
 rule-correct-filing-date-format =
