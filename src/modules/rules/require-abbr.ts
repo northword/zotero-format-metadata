@@ -1,4 +1,5 @@
 import type { Data } from "../../utils/data-loader";
+import { AbbrevIso } from "../../lib/abbrev-iso";
 import { DataLoader } from "../../utils/data-loader";
 import { getPref } from "../../utils/prefs";
 import { getTextLanguage, normalizeKey } from "../../utils/str";
@@ -47,9 +48,8 @@ export const RequireJournalAbbr = defineRule<Options>({
 
     // 从 ISSN LTWA 推断完整期刊缩写
     if (!journalAbbr && options.infer) {
-      debug("try to infer abbreviation via abbreviso");
-      journalAbbr = await getAbbrFromLTWAOnline(publicationTitle);
-    // journalAbbr = await this.getAbbrFromLTWALocally(publicationTitle);
+      debug("try to infer abbreviation from the local LTWA data via abbrevIso");
+      journalAbbr = await getAbbrFromLTWA(publicationTitle);
     }
 
     // 以期刊全称填充
@@ -155,35 +155,34 @@ async function getAbbrLocally(publicationTitle: string, data: Data): Promise<str
   return undefined;
 }
 
+let abbrevIso: AbbrevIso | undefined;
+
 /**
- *
- * Get abbreviation from abbreviso API.
- * This API infer journal abbreviation from ISSN List of Title Word Abbreviations.
- * Until March 31, 2023, this API uses the LTWA released in 2017.
+ * Infer a journal abbreviation from the ISSN List of Title Word Abbreviations
+ * (LTWA) with abbrevIso, which implements the ISO 4 rules locally.
+ * @see https://github.com/marcinwrochna/abbrevIso
  * @param publicationTitle
  * @returns
- * - String of `ISO 4 with dot abbr` when API returns a valid response
- * - `undefined` when API returns an invalid response
+ * - String of `ISO 4 with dot abbr` when a pattern matches
+ * - `undefined` when the title can not be abbreviated
  */
-async function getAbbrFromLTWAOnline(publicationTitle: string): Promise<string | undefined> {
-  publicationTitle = encodeURI(publicationTitle);
-  const url = `https://abbreviso.toolforge.org/abbreviso/a/${publicationTitle}`;
-  const res = await Zotero.HTTP.request("GET", url);
-  const result = res.response as string;
-  if (result === "" || result === null || result === undefined) {
-    return undefined;
+async function getAbbrFromLTWA(publicationTitle: string): Promise<string | undefined> {
+  // Building the prefix tree index of the LTWA is slow (hundreds of ms),
+  // so instantiate abbrevIso only once.
+  if (!abbrevIso) {
+    const [ltwa, shortwords] = await Promise.all([
+      DataLoader.load("txt", `${rootURI}data/journal-abbr/issn-ltwa/ltwa_2024-modified.csv`),
+      DataLoader.load("txt", `${rootURI}data/journal-abbr/issn-ltwa/shortwords.txt`),
+    ]);
+    abbrevIso = new AbbrevIso(ltwa, shortwords);
   }
-  return result;
-}
 
-async function _getAbbrFromLTWALocally(publicationTitle: string): Promise<string | undefined> {
-  const shortwords = await Zotero.File.getContentsAsync(`${rootURI}/lib/abbreviso/shortwords.txt`);
-  const ltwa = await Zotero.File.getContentsAsync(`${rootURI}/lib/abbreviso/LTWA_20210702-modified.csv`);
-  Services.scriptloader.loadSubScript(`${rootURI}/lib/abbreviso/browserBundle.js`);
-  // @ts-expect-error AbbrevIso 来自引入的脚本
-  const abbrevIso = new AbbrevIso.AbbrevIso(ltwa, shortwords);
-  const abbr = abbrevIso.makeAbbreviation(publicationTitle);
-  return abbr;
+  const abbreviation = abbrevIso.makeAbbreviation(publicationTitle).trim();
+  // abbrevIso returns the title itself when no pattern matches.
+  if (abbreviation === publicationTitle.trim())
+    return undefined;
+
+  return abbreviation || undefined;
 }
 
 async function getAbbrFromCustom(publicationTitle: string, customAbbrDataPath: string): Promise<string | undefined> {

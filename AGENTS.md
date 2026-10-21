@@ -87,6 +87,8 @@ Entry points into a batch run go through `addon.hooks.onLintInBatch(ruleIDs, ite
 
 Large reference datasets (journal abbreviations, conference abbreviations, university→place map, ISO language maps) live in `data/` and are bundled as assets (see `zotero-plugin.config.ts` `build.assets`). At runtime they are loaded lazily and cached via `src/utils/data-loader.ts` (`DataLoader.load(key, ...)`), resolving paths under `${rootURI}data/...`. The cache is cleared after each batch run. Regenerate these files with `pnpm update-data`, not by hand.
 
+The ISO 4 journal abbreviation inference (`require-journal-abbr` when no built-in abbreviation matches) uses the vendored [abbrevIso](https://github.com/marcinwrochna/abbrevIso) library in `src/lib/abbrev-iso/` (upstream JS copied verbatim, MIT) together with `data/journal-abbr/issn-ltwa/ltwa_2024-modified.csv` and `shortwords.txt`. Everything runs offline; `DataLoader` reads the LTWA once and the parsed `AbbrevIso` instance is cached in `require-abbr.ts`.
+
 ## Conventions
 
 - ESLint config is `@antfu/eslint-config` + `@zotero-plugin/eslint-config` (double quotes, semicolons — see `eslint.config.mjs`). `autocorrect` fixes CJK/Latin spacing in text. Both run on staged files via husky + lint-staged.

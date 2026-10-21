@@ -62,6 +62,14 @@ export class DataLoader {
         return { type: "json", path: `${rootURI}data/conference-abbr.json` };
       case "universityPlace":
         return { type: "json", path: `${rootURI}data/university-list/university-place.json` };
+      case "csv":
+      case "json":
+      case "txt":
+        // The parser is chosen by the given key, not by the file extension.
+        // E.g. `load("txt", "foo.csv")` should return the raw text of a CSV file.
+        if (!path)
+          throw new Error(`path must be provided when key is ${key}`);
+        return { type: key, path };
       default:
         if (!path)
           throw new Error("path must be provided when key is csv or json");

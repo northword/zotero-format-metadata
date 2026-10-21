@@ -23,6 +23,7 @@ export default antfu(
       "addon/lib/**",
       "data",
       "docs",
+      "src/lib/abbrev-iso/**",
       "CLAUDE.md",
     ],
   },

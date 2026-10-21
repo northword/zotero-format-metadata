@@ -56,13 +56,13 @@ We would like to express our sincere gratitude to the following:
 - We thank the providers of the following data resources:
   - [ISO 639-3](https://github.com/wooorm/iso-639-3) and its associated [mapping table](https://github.com/amitbend/iso-639-3-to-1/blob/master/6393-6391.json)
   - [JabRef journal abbreviation list](https://github.com/JabRef/abbrv.jabref.org)
+  - [abbrevIso](https://github.com/marcinwrochna/abbrevIso) (MIT), bundled for inferring journal abbreviations from the ISSN LTWA per ISO 4
   - [List of National Higher Education Institutions](http://www.moe.gov.cn/jyb_xxgk/s5743/s5744/A03/202110/t20211025_574874.html), published by the Ministry of Education of the People’s Republic of China
 - We gratefully acknowledge the data support provided by the following API services:
   - [CrossRef API](https://api.crossref.org/): for retrieving DOI metadata and bibliographic metadata
   - [Semantic Scholar API](https://api.semanticscholar.org/): for retrieving bibliographic metadata
   - [shortdoi.org](https://shortdoi.org/): for generating short DOIs
   - [doi.org](https://www.doi.org/): for resolving DOIs
-  - [abbreviso](https://github.com/marcocorvi/abbreviso): for inferring journal abbreviations
 - We are indebted to the [DOI Manager](https://github.com/bwiernik/zotero-shortdoi) (MPL-2.0 License) for inspiring the implementation of the `require-doi`, `correct-doi-long`, and `tool-get-short-doi` rules.
 - Special thanks to @zepinglee for curating the [Zotero Field Specification](https://github.com/l0o0/translators_CN/issues/257).
 - We would also like to thank the Zotero French translation team for providing a French user guide for this plugin.

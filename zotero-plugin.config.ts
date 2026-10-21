@@ -12,10 +12,18 @@ export default defineConfig({
   updateURL: `https://github.com/{{owner}}/{{repo}}/releases/download/releaser/{{updateJson}}`,
   xpiDownloadLink: "https://github.com/{{owner}}/{{repo}}/releases/download/v{{version}}/{{xpiName}}.xpi",
 
+  server: {
+    prefs: {
+      "extensions.zotero.httpServer.port": 23119,
+    },
+  },
+
   build: {
     assets: [
       "addon/**/*.*",
       "data/journal-abbr/journal-abbr.json",
+      "data/journal-abbr/issn-ltwa/ltwa_2024-modified.csv",
+      "data/journal-abbr/issn-ltwa/shortwords.txt",
       "data/conference-abbr.json",
       "data/university-list/university-place.json",
     ],

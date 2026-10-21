@@ -106,7 +106,7 @@ By default, only **Simplified Chinese** and **English** are detected. You can di
 
 Uses a built-in dataset (JabRef + Woodward Library) to look up journal abbreviations.
 
-- If missing, infers abbreviation from the [ISSN LTWA list](https://www.issn.org/services/online-services/access-to-the-ltwa/).
+- If missing, infers abbreviation from the bundled [ISSN LTWA list](https://www.issn.org/services/online-services/access-to-the-ltwa/) per ISO 4, fully offline.
 - If still missing, defaults to full journal title (can be disabled).
 
 ### No Leading Zeros (`no-issue-extra-zeros`, `no-pages-extra-zeros`, `no-volume-extra-zeros`)

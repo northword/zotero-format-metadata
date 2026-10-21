@@ -21,4 +21,6 @@ coverage
 
 # ts 编译的 js
 src/**/*.js
+# 但内置的 abbrevIso 是第三方 JS 源码
+!src/lib/abbrev-iso/*.js
 .scaffold

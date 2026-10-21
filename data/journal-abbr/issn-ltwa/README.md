@@ -22,8 +22,14 @@ ISSN 网络所识别出的期刊名称用词
 
 数据集发布地址：<https://www.issn.org/zh-hans/services-et-prestations/services-en-ligne/acces-a-la-ltwa/>
 
-## 集成该数据集的轮子
+## 集成本数据集的轮子
 
 项目地址：<https://github.com/marcinwrochna/abbrevIso>
 浏览器视图：<https://marcinwrochna.github.io/abbrevIso/>
-API: <https://abbreviso.toolforge.org/>
+
+本插件已将该库及以下数据内置（离线使用，不再依赖在线 API）：
+
+- `ltwa_2024-modified.csv`：abbrevIso 项目对官方 LTWA 的修订版，修正了官方数据中的若干错误，缩写推断必须使用该版本；
+- `shortwords.txt`：缩写时应省略的冠词、介词、连词等短词列表。
+
+库源码内置在 `src/lib/abbrev-iso/` 中，随插件一起打包；以上两个数据文件由 `pnpm update-data` 更新。`ltwa_20210702.csv` 为官方原始数据，仅作存档参考。

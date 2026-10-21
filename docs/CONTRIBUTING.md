@@ -18,6 +18,7 @@
 |   `-- university-list
 |-- docs                       # Documentation
 |-- src                        # Source code
+|   |-- lib                    # Vendored third-party libraries (abbrevIso)
 |   |-- modules
 |   |   `-- rules              ## Rules directory
 |   `-- utils
