@@ -340,7 +340,7 @@ export class LintRunner {
     const duration = (Date.now() - this.stats.startTime) / 1000;
     this.ui.showFinished(this.stats.pass, this.stats.error, duration);
 
-    if (this.stats.records.length)
+    if (this.stats.records.length && getPref("lint.showReportDialog"))
       createReporter(this.stats.records);
 
     this.modifiedItems.clear();

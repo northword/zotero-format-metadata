@@ -6,6 +6,8 @@ lint-on-groupItem-added =
     .label = 添加群组条目时自动执行 Lint
 notify-on-lint = 
     .label = Lint 时显示进度通知
+show-report-on-lint = 
+    .label = Lint 发现问题后显示报告窗口
 lint-numConcurrent = 并行运行的数量：
 lint-numConcurrent-description = 推荐设置为 1 ({ restart-needed.short })。
 
