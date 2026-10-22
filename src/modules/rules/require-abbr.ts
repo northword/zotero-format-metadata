@@ -177,12 +177,15 @@ async function getAbbrFromLTWA(publicationTitle: string): Promise<string | undef
     abbrevIso = new AbbrevIso(ltwa, shortwords);
   }
 
-  const abbreviation = abbrevIso.makeAbbreviation(publicationTitle).trim();
-  // abbrevIso returns the title itself when no pattern matches.
-  if (abbreviation === publicationTitle.trim())
-    return undefined;
+  const title = publicationTitle.trim();
+  const abbreviation = abbrevIso.makeAbbreviation(title).trim();
 
-  return abbreviation || undefined;
+  if (abbreviation && abbreviation !== title)
+    return abbreviation;
+
+  const isOneWordTitle = !/\s/.test(title) && /[a-z]/i.test(title);
+
+  return isOneWordTitle ? title : undefined;
 }
 
 async function getAbbrFromCustom(publicationTitle: string, customAbbrDataPath: string): Promise<string | undefined> {
