@@ -1,6 +1,7 @@
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 import officialData from "../../../test/data/sentenceCase.json";
-import { toSentenceCase } from "./correct-title-sentence-case";
+import { clearLlmCache } from "../../utils/llm";
+import { CorrectTitleSentenceCase, isCaseOnlyVariant, toSentenceCase } from "./correct-title-sentence-case";
 
 /**
  * Test item / 测试项目信息
@@ -130,5 +131,168 @@ describe("toSentenceCase", () => {
         return;
       expect(toSentenceCase(key)).toBe(value);
     });
+  });
+});
+
+describe("isCaseOnlyVariant", () => {
+  it("rejects a character the model swapped for a look-alike", () => {
+    expect(isCaseOnlyVariant("Kilo", "\u212Ailo")).toBe(false);
+    expect(isCaseOnlyVariant("\u00C5ngstrom", "\u212Bngstrom")).toBe(false);
+  });
+  it("accepts a capitalization fix", () => {
+    const source = "Size-resolved particles during East Asian dust events";
+    expect(isCaseOnlyVariant(source, "Size-resolved particles during East Asian dust events")).toBe(true);
+    expect(isCaseOnlyVariant(source, "Size-resolved particles during east Asian dust events")).toBe(true);
+  });
+
+  it("accepts removing a capitalization the local rules got wrong", () => {
+    const source = "Human vs. Autonomous Control of UAV Surveillance";
+    expect(isCaseOnlyVariant(source, "Human vs. autonomous control of UAV surveillance")).toBe(true);
+    // 本地规则会保留含内部大写的词，LLM 修正它是允许的
+    expect(isCaseOnlyVariant("FF: The Fast-Forward PLanning System", "FF: The Fast-Forward planning system")).toBe(true);
+  });
+
+  it("rejects a rewritten title", () => {
+    const source = "Size-resolved particles during East Asian dust events";
+    expect(isCaseOnlyVariant(source, "Size-resolved particles during East Asian haze events")).toBe(false);
+    expect(isCaseOnlyVariant(source, "Size-resolved particles during East Asian dust events.")).toBe(false);
+    expect(isCaseOnlyVariant(source, "Size-resolved particles during East Asian dust")).toBe(false);
+  });
+});
+
+// ------------------------------
+// LLM conversion (Zotero globals stubbed)
+// ------------------------------
+
+const prefValues: Record<string, any> = {};
+const httpCalls: { body: any }[] = [];
+let llmReply = "";
+let httpError = false;
+
+(globalThis as any).Zotero = {
+  Prefs: {
+    get: (key: string) => prefValues[key.replace("extensions.zotero.formatmetadata.", "")],
+  },
+  HTTP: {
+    request: async (_method: string, _url: string, options: any) => {
+      httpCalls.push({ body: JSON.parse(options.body) });
+      if (httpError)
+        throw new Error("network down");
+      return { response: JSON.stringify({ choices: [{ message: { content: llmReply } }] }) };
+    },
+  },
+  ItemFields: {
+    getID: (field: string) => field,
+    isValidForType: () => true,
+  },
+  ItemTypes: {
+    getID: (itemType: string) => itemType,
+  },
+};
+(globalThis as any).addon = { data: { config: { addonRef: "linter" } } };
+
+const rule = CorrectTitleSentenceCase as unknown as {
+  prepare: (ctx: any) => Promise<any>;
+  apply: (ctx: any) => Promise<void>;
+};
+
+function debug() {}
+
+function createItem(title: string, language = "en-US", regular = true) {
+  let value = title;
+  return {
+    id: 1,
+    itemType: "journalArticle",
+    isRegularItem: () => regular,
+    value: () => value,
+    getField: (field: string) => (field === "language" ? language : value),
+    setField: (_field: string, newValue: string) => {
+      value = newValue;
+    },
+  };
+}
+
+function enableLlm() {
+  prefValues["llm.enabled"] = true;
+  prefValues["llm.baseUrl"] = "https://example.com/v1";
+  prefValues["llm.model"] = "test-model";
+}
+
+describe("titles converted with the LLM", () => {
+  beforeEach(() => {
+    for (const key of Object.keys(prefValues))
+      delete prefValues[key];
+    clearLlmCache();
+    httpCalls.length = 0;
+    httpError = false;
+    llmReply = `{"titles":["Size-resolved particles during East Asian dust events"]}`;
+  });
+
+  it("adopts the corrected capitalization from the LLM", async () => {
+    enableLlm();
+    const item = createItem("Size-resolved particles during East Asian dust events");
+    const options = await rule.prepare({ items: [item], debug });
+    await rule.apply({ item, options, debug, report: () => {} });
+
+    expect(httpCalls).toHaveLength(1);
+    expect(item.value()).toBe("Size-resolved particles during East Asian dust events");
+  });
+
+  it("keeps the local result when the LLM is disabled", async () => {
+    const item = createItem("Size-resolved particles during East Asian dust events");
+    const options = await rule.prepare({ items: [item], debug });
+    await rule.apply({ item, options, debug, report: () => {} });
+
+    expect(httpCalls).toHaveLength(0);
+    expect(item.value()).toBe("Size-resolved particles during east Asian dust events");
+  });
+
+  it("keeps the local result when the LLM rewrites the title", async () => {
+    enableLlm();
+    llmReply = `{"titles":["An entirely different title"]}`;
+    const item = createItem("Size-resolved particles during East Asian dust events");
+    const options = await rule.prepare({ items: [item], debug });
+    await rule.apply({ item, options, debug, report: () => {} });
+
+    expect(item.value()).toBe("Size-resolved particles during east Asian dust events");
+  });
+
+  it("skips titles with markup, disabled languages and non-regular items", async () => {
+    enableLlm();
+    const items = [
+      createItem("Haze over <i>East Asia</i>"),
+      createItem("Haze over East Asia", "zh-CN"),
+      createItem("A note whose title comes from its content", "en-US", false),
+    ];
+    await rule.prepare({ items, debug });
+
+    expect(httpCalls).toHaveLength(0);
+  });
+
+  it("survives an out-of-range batch size", async () => {
+    enableLlm();
+    prefValues["llm.batchSize"] = -1;
+    const item = createItem("Size-resolved particles during East Asian dust events");
+    const options = await rule.prepare({ items: [item], debug });
+    await rule.apply({ item, options, debug, report: () => {} });
+
+    expect(item.value()).toBe("Size-resolved particles during East Asian dust events");
+  });
+
+  it("reports a single warning when the request fails", async () => {
+    enableLlm();
+    httpError = true;
+    const items = [
+      createItem("Haze over East Asia"),
+      createItem("Haze over South Asia"),
+    ];
+    const options = await rule.prepare({ items, debug });
+
+    const reports: any[] = [];
+    for (const item of items)
+      await rule.apply({ item, options, debug, report: (info: any) => reports.push(info) });
+
+    expect(reports).toHaveLength(1);
+    expect(reports[0].level).toBe("warning");
   });
 });

@@ -649,6 +649,69 @@
     </groupbox>
   </groupbox>
 
+  <!-- LLM -->
+  <groupbox>
+    <label><html:h2 data-l10n-id="section-llm" /></label>
+    <checkbox
+      id="__addonRef__-llm-enabled"
+      data-l10n-id="llm-enabled"
+      preference="llm.enabled"
+      native="true"
+    />
+    <vbox class="indented-pref">
+      <hbox align="center">
+        <label data-l10n-id="llm-base-url" />
+        <html:input
+          id="__addonRef__-llm-base-url"
+          style="flex: 1"
+          type="text"
+          size="60"
+          preference="llm.baseUrl"
+        />
+      </hbox>
+      <hbox align="center">
+        <label data-l10n-id="llm-api-key" />
+        <html:input
+          id="__addonRef__-llm-api-key"
+          style="flex: 1"
+          type="password"
+          size="60"
+          preference="llm.apiKey"
+        />
+      </hbox>
+      <hbox align="center">
+        <label data-l10n-id="llm-model" />
+        <html:input
+          id="__addonRef__-llm-model"
+          style="flex: 1"
+          type="text"
+          size="60"
+          preference="llm.model"
+        />
+      </hbox>
+      <hbox align="center">
+        <label data-l10n-id="llm-batch-size" />
+        <html:input
+          id="__addonRef__-llm-batch-size"
+          type="number"
+          preference="llm.batchSize"
+        />
+      </hbox>
+      <hbox align="center">
+        <button
+          id="__addonRef__-llm-test-button"
+          data-l10n-id="llm-test-connection"
+          native="true"
+        />
+        <description id="__addonRef__-llm-test-result" />
+      </hbox>
+      <description
+        data-l10n-id="llm-privacy-note"
+        class="linter-pref-description"
+      />
+    </vbox>
+  </groupbox>
+
   <!-- 关于 -->
   <groupbox>
     <label><html:h2>About</html:h2></label>

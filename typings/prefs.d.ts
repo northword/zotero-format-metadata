@@ -78,6 +78,11 @@ declare namespace _ZoteroTypes {
       "rule.tool-update-metadata.option.mode": string;
       "rule.tool-update-metadata.option.allow-type-changed": boolean;
       "semanticScholarToken": string;
+      "llm.enabled": boolean;
+      "llm.baseUrl": string;
+      "llm.apiKey": string;
+      "llm.model": string;
+      "llm.batchSize": number;
       "cleanExtra": boolean;
     };
   }

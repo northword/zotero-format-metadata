@@ -30,3 +30,8 @@ undo-action-lint-metadata = { $count ->
     [one] Lint 元数据
    *[other] Lint { $count } 个条目的元数据
 }
+
+## LLM
+llm-test-pending = 正在测试连接...
+llm-test-ok = 连接成功
+llm-test-failed = 连接失败，请检查接口地址、密钥和模型

@@ -89,6 +89,15 @@ pref("rule.tool-update-metadata.option.allow-type-changed", true);
 pref("semanticScholarToken", "");
 
 // --------------------
+// LLM
+// --------------------
+pref("llm.enabled", false);
+pref("llm.baseUrl", "https://api.deepseek.com/v1");
+pref("llm.apiKey", "");
+pref("llm.model", "deepseek-chat");
+pref("llm.batchSize", 20);
+
+// --------------------
 // Other settings
 // --------------------
 pref("cleanExtra", false);

@@ -57,6 +57,7 @@ rule-require-short-title =
 ## correct-title-sentence-case
 rule-correct-title-sentence-case =
   .label = 标题应以句子式大写存储
+rule-correct-title-sentence-case-report-llm-failed = LLM 请求失败，标题已改用本地规则处理
 rule-correct-title-sentence-case-menu-item =
   .label = 将标题改为句首大写
 rule-correct-title-sentence-case-menu-field =

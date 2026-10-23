@@ -57,6 +57,7 @@ rule-require-short-title =
 ## correct-title-sentence-case
 rule-correct-title-sentence-case =
   .label = Title should be sentence case
+rule-correct-title-sentence-case-report-llm-failed = LLM request failed, titles were processed by local rules
 rule-correct-title-sentence-case-menu-item =
   .label = Convert title to sentence case
 rule-correct-title-sentence-case-menu-field =

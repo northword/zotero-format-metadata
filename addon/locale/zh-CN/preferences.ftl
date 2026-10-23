@@ -47,6 +47,19 @@ section-identifier = 标识符
 section-others = 其他
 section-updateMetadata = 更新元数据
 
+section-llm = LLM 智能处理
+
+
+## LLM
+llm-enabled =
+    .label = 启用 LLM 辅助处理标题的大小写
+llm-base-url = 接口地址：
+llm-api-key = API Key：
+llm-model = 模型：
+llm-batch-size = 批量大小：
+llm-test-connection =
+    .label = 测试连接
+llm-privacy-note = 启用后，条目标题等文本会发送到上述接口。接口需兼容 OpenAI 的 /chat/completions；密钥以明文保存在 Zotero 首选项中。
 
 ## 关于
 help-version = { $name }, Build { $version }, { $time }

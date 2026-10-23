@@ -198,3 +198,21 @@ Example: `2023-01-01`.
 Allows filling in missing fields (date, volume, issue, pages, etc.) from identifiers such as DOI or ISBN.
 
 For preprints, updates item type to `journalArticle` when possible.
+
+## LLM Assistance (optional)
+
+When enabled (Settings → Linter → LLM), the plugin sends titles to an OpenAI-compatible
+`/chat/completions` endpoint and uses the reply to decide capitalization, instead of relying
+only on the built-in word lists.
+
+- Applies to `correct-title-sentence-case`, `correct-shortTitle-sentence-case`,
+  `correct-bookTitle-sentence-case` and `correct-proceedingsTitle-sentence-case`.
+- The reply is adopted only when it differs from the input in letter case alone — no word may be
+  added, removed or repaired; otherwise the local rules are used.
+- Requests are batched (default 20 titles per request) and cached per batch.
+- Titles containing rich-text markup, and languages disabled for sentence case, are skipped.
+- When a request fails, the local rules handle the titles and a warning is reported once.
+
+The API key is stored in plain text in Zotero's preferences, and titles are sent to the
+configured endpoint — use a local OpenAI-compatible server (e.g. Ollama, LM Studio) if the
+library content is sensitive.

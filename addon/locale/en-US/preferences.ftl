@@ -47,6 +47,19 @@ section-identifier = Identifier
 section-others = Others
 section-updateMetadata = Update Metadata
 
+section-llm = LLM Assistance
+
+
+## LLM
+llm-enabled =
+    .label = Use LLM to convert titles to sentence case
+llm-base-url = Base URL:
+llm-api-key = API key:
+llm-model = Model:
+llm-batch-size = Batch size:
+llm-test-connection =
+    .label = Test connection
+llm-privacy-note = When enabled, titles are sent to the endpoint above. The API must be compatible with OpenAI's /chat/completions. The key is stored in plain text in Zotero's preferences.
 
 ## 关于
 help-version = { $name }, Build { $version }, { $time }

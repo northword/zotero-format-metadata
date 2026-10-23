@@ -4,6 +4,7 @@ import type { ApplyContext, PrepareContext, Rule } from "./rules/rule-base";
 import { withTimeout } from "es-toolkit";
 import { DataLoader } from "../utils/data-loader";
 import { toArray } from "../utils/general";
+import { clearLlmCache } from "../utils/llm";
 import { createLogger } from "../utils/logger";
 import { getPref } from "../utils/prefs";
 import { isFieldValidForItemType } from "../utils/zotero";
@@ -345,6 +346,7 @@ export class LintRunner {
 
     this.modifiedItems.clear();
     DataLoader.clearCache();
+    clearLlmCache();
     this.stats = this.emptyStats();
     logger.debug(`Batch tasks completed in ${duration}s`);
   }
