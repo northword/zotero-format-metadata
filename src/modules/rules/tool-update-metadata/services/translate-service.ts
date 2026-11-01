@@ -1,7 +1,12 @@
 import { defineService } from "./base-service";
 
 function transform(response: any) {
-  ["notes", "tags", "seeAlso", "attachments"].forEach((field) => {
+  [
+    "notes",
+    "tags",
+    "seeAlso",
+    "attachments",
+  ].forEach((field) => {
     delete response[field];
   });
   return response;

@@ -167,7 +167,9 @@ function setupShortcutInputs() {
 
     const updatePreview = () => {
       if (previewEl) {
-        previewEl.innerHTML = input.value ? formatShortcutPreview(input.value) : "";
+        previewEl.innerHTML = input.value
+          ? formatShortcutPreview(input.value)
+          : "";
       }
     };
     // Defer initial preview to ensure pref binding has populated the input value

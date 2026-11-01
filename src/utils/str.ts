@@ -3,7 +3,30 @@ import { logger } from "./logger";
 import { getPref } from "./prefs";
 
 // prettier-ignore
-export const functionWords = ["but", "or", "yet", "so", "for", "and", "nor", "a", "an", "the", "at", "by", "from", "in", "into", "of", "on", "to", "with", "up", "down", "as"];
+export const functionWords = [
+  "but",
+  "or",
+  "yet",
+  "so",
+  "for",
+  "and",
+  "nor",
+  "a",
+  "an",
+  "the",
+  "at",
+  "by",
+  "from",
+  "in",
+  "into",
+  "of",
+  "on",
+  "to",
+  "with",
+  "up",
+  "down",
+  "as",
+];
 
 /**
  * 统计给定字符串中大写字母的数量
@@ -137,7 +160,9 @@ export function getTextLanguage(text: string) {
     return langGetByTinyLd;
   }
   else {
-    return /[\u4E00-\u9FA5]/.test(text) ? "zh" : "en";
+    return /[\u4E00-\u9FA5]/.test(text)
+      ? "zh"
+      : "en";
   }
 }
 

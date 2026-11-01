@@ -153,8 +153,12 @@ export function compareVersion(versionA: string, versionB: string): 1 | -1 | 0 {
   const partsB = versionB.toLowerCase().replace("v", "").split(".");
 
   for (let i = 0; i < Math.max(partsA.length, partsB.length); i++) {
-    const a = i < partsA.length ? partsA[i] : "0";
-    const b = i < partsB.length ? partsB[i] : "0";
+    const a = i < partsA.length
+      ? partsA[i]
+      : "0";
+    const b = i < partsB.length
+      ? partsB[i]
+      : "0";
     if (a < b) {
       return -1;
     }

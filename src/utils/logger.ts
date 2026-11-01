@@ -10,11 +10,17 @@ export interface Logger {
 export function createLogger(prefix?: string): Logger {
   const _log = (level: LogLevel, ...args: any[]) => {
     const base = [
-      ["debug"].includes(level) ? "" : "[Linter]",
-      prefix ? `[${prefix}]` : "",
+      ["debug"].includes(level)
+        ? ""
+        : "[Linter]",
+      prefix
+        ? `[${prefix}]`
+        : "",
     ].filter(Boolean).join(" ");
 
-    const data = base ? [base, ...args] : args;
+    const data = base
+      ? [base, ...args]
+      : args;
 
     switch (level) {
       case "debug":

@@ -96,7 +96,9 @@ export function useSettingsDialog<T extends SettingsDialogResult>(): {
 
   async function openForSettings(title: string) {
     await openAndWaitClose(title);
-    return isEmpty(data) ? false : data as T;
+    return isEmpty(data)
+      ? false
+      : data as T;
   }
 
   return { dialog, openForSettings };

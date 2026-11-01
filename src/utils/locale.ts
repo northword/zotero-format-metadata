@@ -90,7 +90,10 @@ function normalizeOptions(inputs: any[]): { id: FluentMessageId; options: GetStr
   if (inputs.length === 2) {
     const [id, second] = inputs;
     if (typeof second === "string") {
-      return { id, options: { branch: second } };
+      return {
+        id,
+        options: { branch: second },
+      };
     }
     return { id, options: second ?? {} };
   }
@@ -115,7 +118,9 @@ function _getString(id: FluentMessageId, options: GetStringOptions): string {
 
   const { branch, args } = options;
 
-  const msgs = addon.data.locale?.current.formatMessagesSync([{ id: localeID, args }]);
+  const msgs = addon.data.locale?.current.formatMessagesSync([
+    { id: localeID, args },
+  ]);
   const pattern = msgs?.[0] as Pattern | undefined;
   if (!pattern)
     return localeID;
@@ -137,5 +142,7 @@ function _getString(id: FluentMessageId, options: GetStringOptions): string {
 }
 
 export function getLocaleID(id?: FluentMessageId): string | undefined {
-  return id ? `${addon.data.config.addonRef}-${id}` : undefined;
+  return id
+    ? `${addon.data.config.addonRef}-${id}`
+    : undefined;
 }

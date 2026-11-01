@@ -2,7 +2,12 @@ import { getString } from "../../utils/locale";
 import { isStringMatchStringInArray } from "../../utils/str";
 import { defineRule } from "./rule-base";
 
-const publisherUrlKeyWords = ["arxiv.org", "biorxiv.org", "medrxiv.org", "chinaxiv.org"];
+const publisherUrlKeyWords = [
+  "arxiv.org",
+  "biorxiv.org",
+  "medrxiv.org",
+  "chinaxiv.org",
+];
 
 export const NoJournalPreprint = defineRule({
   id: "no-journal-preprint",

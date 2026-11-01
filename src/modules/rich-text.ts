@@ -347,7 +347,9 @@ export function setHtmlTag(tag: string, attribute?: string, value?: string): voi
   const { selectionStart: start, selectionEnd: end, value: text } = textarea;
   let selectedText = text.slice(start, end);
 
-  const attributeText = attribute ? ` ${attribute}="${value}"` : "";
+  const attributeText = attribute
+    ? ` ${attribute}="${value}"`
+    : "";
   selectedText = selectedText.startsWith(`<${tag}`)
     ? removeHtmlTag(selectedText)
     : `<${tag}${attributeText}>${selectedText}</${tag}>`;

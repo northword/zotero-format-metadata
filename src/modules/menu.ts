@@ -172,13 +172,15 @@ function registerItemMenus() {
       pluginID: addon.data.config.addonID,
       menuID: "item-menu-test",
       target: "main/library/item",
-      menus: [{
-        menuType: "menuitem",
-        l10nID: getLocaleID("menuitem-label"),
-        onCommand(event, { items }) {
-          addon.hooks.onLintInBatch("standard", items!);
+      menus: [
+        {
+          menuType: "menuitem",
+          l10nID: getLocaleID("menuitem-label"),
+          onCommand(event, { items }) {
+            addon.hooks.onLintInBatch("standard", items!);
+          },
         },
-      }],
+      ],
     });
   }
 }

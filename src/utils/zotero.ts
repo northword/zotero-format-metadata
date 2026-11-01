@@ -9,7 +9,9 @@ export function isFieldValidForItemType(field: _ZoteroTypes.Item.ItemField, item
 export function isFieldValidForItemType(field: _ZoteroTypes.Item.ItemField, itemType: _ZoteroTypes.Item.ItemType | number) {
   return Zotero.ItemFields.isValidForType(
     Zotero.ItemFields.getID(field),
-    typeof itemType === "number" ? itemType : Zotero.ItemTypes.getID(itemType),
+    typeof itemType === "number"
+      ? itemType
+      : Zotero.ItemTypes.getID(itemType),
   );
 }
 

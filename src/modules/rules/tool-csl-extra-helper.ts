@@ -152,22 +152,24 @@ export const ToolCSLHelper = defineRule<Options>({
                   properties: {
                     innerHTML: "拆分名拼音",
                   },
-                  listeners: [{
-                    type: "click",
-                    listener: () => {
-                      const textarea = dialog.window.document.querySelector("[data-setting-key='original-author']") as HTMLTextAreaElement;
-                      if (!textarea)
-                        return;
-                      const value = textarea.value || "";
-                      const newValue = value.split("\n").map((line) => {
-                        const [lastName, firstName] = line.split("||").map(s => s.trim());
-                        const newFirstName = splitPinyin(firstName);
-                        return `${lastName} || ${newFirstName}`;
-                      }).join("\n");
+                  listeners: [
+                    {
+                      type: "click",
+                      listener: () => {
+                        const textarea = dialog.window.document.querySelector("[data-setting-key='original-author']") as HTMLTextAreaElement;
+                        if (!textarea)
+                          return;
+                        const value = textarea.value || "";
+                        const newValue = value.split("\n").map((line) => {
+                          const [lastName, firstName] = line.split("||").map(s => s.trim());
+                          const newFirstName = splitPinyin(firstName);
+                          return `${lastName} || ${newFirstName}`;
+                        }).join("\n");
 
-                      textarea.value = newValue;
+                        textarea.value = newValue;
+                      },
                     },
-                  }],
+                  ],
                 },
 
                 {
@@ -179,22 +181,24 @@ export const ToolCSLHelper = defineRule<Options>({
                   properties: {
                     innerHTML: "合并名拼音",
                   },
-                  listeners: [{
-                    type: "click",
-                    listener: () => {
-                      const textarea = dialog.window.document.querySelector("[data-setting-key='original-author']") as HTMLTextAreaElement;
-                      if (!textarea)
-                        return;
-                      const value = textarea.value || "";
-                      const newValue = value.split("\n").map((line) => {
-                        const [lastName, firstName] = line.split("||").map(s => s.trim());
-                        const newFirstName = capitalizeFirstLetter(firstName.replaceAll(" ", ""));
-                        return `${lastName} || ${newFirstName}`;
-                      }).join("\n");
+                  listeners: [
+                    {
+                      type: "click",
+                      listener: () => {
+                        const textarea = dialog.window.document.querySelector("[data-setting-key='original-author']") as HTMLTextAreaElement;
+                        if (!textarea)
+                          return;
+                        const value = textarea.value || "";
+                        const newValue = value.split("\n").map((line) => {
+                          const [lastName, firstName] = line.split("||").map(s => s.trim());
+                          const newFirstName = capitalizeFirstLetter(firstName.replaceAll(" ", ""));
+                          return `${lastName} || ${newFirstName}`;
+                        }).join("\n");
 
-                      textarea.value = newValue;
+                        textarea.value = newValue;
+                      },
                     },
-                  }],
+                  ],
                 },
 
               ],
@@ -242,7 +246,9 @@ export const ToolCSLHelper = defineRule<Options>({
     originalFields.delete("original-title");
     addField("original-author");
     originalFields.delete("original-author");
-    [...originalFields.keys()].forEach(addField);
+    [
+      ...originalFields.keys(),
+    ].forEach(addField);
 
     const result = await openForSettings("CSL Helper");
     if (!result)
@@ -257,7 +263,9 @@ export const ToolCSLHelper = defineRule<Options>({
         ? value.split("\n").map(v => v.trim()).filter(v => !!v)
         // in dialog, some fields are multiline for better display,
         // but they are stored as single line, e.g. title
-        : [value.replace("\n", "")].filter(v => !!v);
+        : [
+            value.replace("\n", ""),
+          ].filter(v => !!v);
     }
 
     return { data: outputData };

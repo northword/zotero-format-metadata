@@ -6,12 +6,17 @@ async function request(paperID: string, fields: (keyof Result)[]): Promise<Reque
   const url = `https://api.semanticscholar.org/graph/v1/paper/${encodeURIComponent(paperID.trim())}?fields=${fields.join(",")}`;
   const res = await Zotero.HTTP.request("GET", url, {
     headers: {
-      ...getPref("semanticScholarToken") && { "x-api-key": getPref("semanticScholarToken") },
+      ...getPref("semanticScholarToken") && {
+        "x-api-key": getPref("semanticScholarToken"),
+      },
       "User-Agent": "Linter for Zotero",
     },
   });
 
-  return { _status: res.status, ...JSON.parse(res.response) };
+  return {
+    _status: res.status,
+    ...JSON.parse(res.response),
+  };
 }
 
 function parsePaperID(type: keyof Identifiers, value: string): string {
@@ -40,7 +45,11 @@ export const SemanticScholarService = defineService<Result>({
   id: "semantic-scholar-service",
   name: "Semantic Scholar Service",
   // set cooldown to 1_000 when token is set,
-  get cooldown() { return getPref("semanticScholarToken") ? 1_000 : 3_000; },
+  get cooldown() {
+    return getPref("semanticScholarToken")
+      ? 1_000
+      : 3_000;
+  },
   shouldApply: () => true,
 
   async updateIdentifiers({ item, identifiers, isPreprint }) {

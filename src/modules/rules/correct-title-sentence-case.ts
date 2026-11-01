@@ -6,98 +6,319 @@ import { defineRule } from "./rule-base";
 
 /** =============================  Special Words Begin  ============================= */
 
-/* eslint-disable antfu/consistent-list-newline  -- We expect to customize the line breaks of these arrays. */
 export const chemElements = [
-  "H", "He",
-  "Li", "Be", "B", "C", "N", "O", "F", "Ne",
-  "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar",
-  "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br", "Kr",
-  "Rb", "Sr", "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pb", "Ag", "Cd", "In", "Sn", "Sb", "Te", "I", "Xe",
-  "Cs", "Ba", "La", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn",
-  "Fr", "Ra", "Ac", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og",
-  "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu",
-  "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm", "Md", "No", "Lr",
+  "H",
+  "He",
+  "Li",
+  "Be",
+  "B",
+  "C",
+  "N",
+  "O",
+  "F",
+  "Ne",
+  "Na",
+  "Mg",
+  "Al",
+  "Si",
+  "P",
+  "S",
+  "Cl",
+  "Ar",
+  "K",
+  "Ca",
+  "Sc",
+  "Ti",
+  "V",
+  "Cr",
+  "Mn",
+  "Fe",
+  "Co",
+  "Ni",
+  "Cu",
+  "Zn",
+  "Ga",
+  "Ge",
+  "As",
+  "Se",
+  "Br",
+  "Kr",
+  "Rb",
+  "Sr",
+  "Y",
+  "Zr",
+  "Nb",
+  "Mo",
+  "Tc",
+  "Ru",
+  "Rh",
+  "Pb",
+  "Ag",
+  "Cd",
+  "In",
+  "Sn",
+  "Sb",
+  "Te",
+  "I",
+  "Xe",
+  "Cs",
+  "Ba",
+  "La",
+  "Hf",
+  "Ta",
+  "W",
+  "Re",
+  "Os",
+  "Ir",
+  "Pt",
+  "Au",
+  "Hg",
+  "Tl",
+  "Pb",
+  "Bi",
+  "Po",
+  "At",
+  "Rn",
+  "Fr",
+  "Ra",
+  "Ac",
+  "Rf",
+  "Db",
+  "Sg",
+  "Bh",
+  "Hs",
+  "Mt",
+  "Ds",
+  "Rg",
+  "Cn",
+  "Nh",
+  "Fl",
+  "Mc",
+  "Lv",
+  "Ts",
+  "Og",
+  "La",
+  "Ce",
+  "Pr",
+  "Nd",
+  "Pm",
+  "Sm",
+  "Eu",
+  "Gd",
+  "Tb",
+  "Dy",
+  "Ho",
+  "Er",
+  "Tm",
+  "Yb",
+  "Lu",
+  "Ac",
+  "Th",
+  "Pa",
+  "U",
+  "Np",
+  "Pu",
+  "Am",
+  "Cm",
+  "Bk",
+  "Cf",
+  "Es",
+  "Fm",
+  "Md",
+  "No",
+  "Lr",
 ];
 
 // unshift 'Be' for function word 'be'
 const _chemElements = chemElements.filter(e => !["Be"].includes(e));
 
 const geographyWords = [
-  "Asia", "Europe", "Africa", "North America", "South America",
-  "Asian", "European", "African", "American",
-  "Oceania", "Antarctica", "Pacific Ocean", "Atlantic Ocean", "Indian Ocean", "Arctic Ocean",
-  "Mediterranean", "Tibetan Plateau",
-  "Yangtze River", "Yangtze", "Beijing–Tianjin–Hebei", "Yellow River", "Huang He",
+  "Asia",
+  "Europe",
+  "Africa",
+  "North America",
+  "South America",
+  "Asian",
+  "European",
+  "African",
+  "American",
+  "Oceania",
+  "Antarctica",
+  "Pacific Ocean",
+  "Atlantic Ocean",
+  "Indian Ocean",
+  "Arctic Ocean",
+  "Mediterranean",
+  "Tibetan Plateau",
+  "Yangtze River",
+  "Yangtze",
+  "Beijing–Tianjin–Hebei",
+  "Yellow River",
+  "Huang He",
 ];
 
 const dateWords = [
-  "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday",
-  "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
-const plantWords = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"];
+const plantWords = [
+  "Mercury",
+  "Venus",
+  "Earth",
+  "Mars",
+  "Jupiter",
+  "Saturn",
+  "Uranus",
+  "Neptune",
+  "Pluto",
+];
 
 const brands = [
-  "Apple", "Microsoft", "Google", "Amazon", "Alibaba", "Tencent", "Facebook", "Twitter", "Instagram",
-  "YouTube", "Netflix", "Spotify", "Tidal",
-  "Inc", "Ltd",
+  "Apple",
+  "Microsoft",
+  "Google",
+  "Amazon",
+  "Alibaba",
+  "Tencent",
+  "Facebook",
+  "Twitter",
+  "Instagram",
+  "YouTube",
+  "Netflix",
+  "Spotify",
+  "Tidal",
+  "Inc",
+  "Ltd",
 ];
 
 const localityWords = [
-  "north", "south", "east", "west",
-  "northern", "southern", "eastern", "western",
-  "southeast", "southwest", "northwest", "northeast",
-  "southeastern", "southwestern", "northwestern", "northeastern",
+  "north",
+  "south",
+  "east",
+  "west",
+  "northern",
+  "southern",
+  "eastern",
+  "western",
+  "southeast",
+  "southwest",
+  "northwest",
+  "northeast",
+  "southeastern",
+  "southwestern",
+  "northwestern",
+  "northeastern",
 
   // 其他后可以跟地名等的虚词，虽不是方位词，但在此一并列出
   "over",
 ];
 
 const chinaCapitals = [
-  "Beijing", "Tianjin", "Shijiazhuang", "Taiyuan", "Hohhot", "Shenyang",
-  "Changchun", "Harbin", "Shanghai", "Nanjing", "Hangzhou", "Hefei",
-  "Fuzhou", "Nanchang", "Jinan", "Zhengzhou", "Wuhan", "Changsha",
-  "Guangzhou", "Nanning", "Haikou", "Chongqing", "Chengdu", "Guiyang",
-  "Kunming", "Lhasa", "Xi’an", "Lanzhou", "Xining", "Yinchuan",
-  "Urumqi", "Hong Kong", "Macao",
+  "Beijing",
+  "Tianjin",
+  "Shijiazhuang",
+  "Taiyuan",
+  "Hohhot",
+  "Shenyang",
+  "Changchun",
+  "Harbin",
+  "Shanghai",
+  "Nanjing",
+  "Hangzhou",
+  "Hefei",
+  "Fuzhou",
+  "Nanchang",
+  "Jinan",
+  "Zhengzhou",
+  "Wuhan",
+  "Changsha",
+  "Guangzhou",
+  "Nanning",
+  "Haikou",
+  "Chongqing",
+  "Chengdu",
+  "Guiyang",
+  "Kunming",
+  "Lhasa",
+  "Xi’an",
+  "Lanzhou",
+  "Xining",
+  "Yinchuan",
+  "Urumqi",
+  "Hong Kong",
+  "Macao",
 ];
 
 const worldCities = [
-  "New York", "Los Angeles", "San Francisco", "Chicago", "Miami", // United States
+  "New York",
+  "Los Angeles",
+  "San Francisco",
+  "Chicago",
+  "Miami", // United States
   "London", // United Kingdom
   "Paris", // France
-  "Berlin", "Munich", // Germany
-  "Rome", "Milan", // Italy
-  "Madrid", "Barcelona", // Spain
+  "Berlin",
+  "Munich", // Germany
+  "Rome",
+  "Milan", // Italy
+  "Madrid",
+  "Barcelona", // Spain
   "Amsterdam", // Netherlands
   "Brussels", // Belgium
   "Vienna", // Austria
   "Zurich", // Switzerland
-  "Moscow", "Saint Petersburg", // Russia
+  "Moscow",
+  "Saint Petersburg", // Russia
   "Istanbul", // Turkey
-  "Dubai", "Abu Dhabi", // United Arab Emirates
+  "Dubai",
+  "Abu Dhabi", // United Arab Emirates
   "Doha", // Qatar
   "Riyadh", // Saudi Arabia
   "Tel Aviv", // Israel
   "Singapore", // Singapore
-  "Tokyo", "Osaka", "Kyoto", // Japan
-  "Seoul", "Busan", // South Korea
+  "Tokyo",
+  "Osaka",
+  "Kyoto", // Japan
+  "Seoul",
+  "Busan", // South Korea
   "Bangkok", // Thailand
   "Jakarta", // Indonesia
   "Kuala Lumpur", // Malaysia
   "Manila", // Philippines
-  "Hanoi", "Ho Chi Minh City", // Vietnam
-  "Sydney", "Melbourne", // Australia
+  "Hanoi",
+  "Ho Chi Minh City", // Vietnam
+  "Sydney",
+  "Melbourne", // Australia
   "Auckland", // New Zealand
-  "Toronto", "Vancouver", "Montreal", // Canada
+  "Toronto",
+  "Vancouver",
+  "Montreal", // Canada
   "Mexico City", // Mexico
-  "São Paulo", "Rio de Janeiro", // Brazil
+  "São Paulo",
+  "Rio de Janeiro", // Brazil
   "Buenos Aires", // Argentina
   "Lima", // Peru
-  "Cape Town", "Johannesburg", // South Africa
+  "Cape Town",
+  "Johannesburg", // South Africa
 ];
-
-/* eslint-enable antfu/consistent-list-newline */
 
 const contriesAndCities = [
   ...contryJson.flatMap(c => Object.values(c)).filter(v => v !== null) as string[],
@@ -180,7 +401,9 @@ export function toSentenceCase(text: string, locale: string = "en-US") {
       const unmasked = word.replace(/\uFFFD/g, "");
 
       if (unmasked.length === 1) {
-        return unmasked === "A" ? word.toLocaleLowerCase(locale) : word;
+        return unmasked === "A"
+          ? word.toLocaleLowerCase(locale)
+          : word;
       }
 
       // inner capital somewhere
@@ -247,7 +470,9 @@ function createCorrectTitleSentenceCaseRule(targetItemField: "title" | "shortTit
       const lang = item.getField("language") || "en-US";
       let title = item.getField(targetItemField, false, true);
       const disabledLanguagesList = getPref("rule.correct-title-sentence-case.disabled-languages") || "zh";
-      title = keepOriginalTitle(lang, disabledLanguagesList) ? title : toSentenceCase(title, lang);
+      title = keepOriginalTitle(lang, disabledLanguagesList)
+        ? title
+        : toSentenceCase(title, lang);
 
       const data = options.data;
       if (data) {

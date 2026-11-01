@@ -96,7 +96,9 @@ export function createReporter(infos: ReportInfo[]) {
           },
           styles: {
             fontWeight: "bold",
-            color: info.level === "error" ? "var(--accent-red)" : "var(--accent-orange)",
+            color: info.level === "error"
+              ? "var(--accent-red)"
+              : "var(--accent-orange)",
             minWidth: "80px",
             textDecoration: "none",
           },
@@ -194,7 +196,9 @@ export class ProgressUI {
     if (!this.progressWindow)
       return;
 
-    const progress = total > 0 ? (current / total) * 100 : 100;
+    const progress = total > 0
+      ? (current / total) * 100
+      : 100;
 
     if (phase === "saving") {
       this.progressWindow.changeLine({
@@ -207,7 +211,9 @@ export class ProgressUI {
       const label = phase === "idle"
         ? getString("info-batch-init")
         : getString("info-batch-running");
-      const text = phase === "idle" ? label : `[${current}/${total}] ${label}`;
+      const text = phase === "idle"
+        ? label
+        : `[${current}/${total}] ${label}`;
       this.progressWindow.changeLine({ text, progress, idx: 0 });
     }
   }
@@ -227,7 +233,9 @@ export class ProgressUI {
       ? [
           "[",
           `✔️${successCount}`,
-          errorCount ? ` ❌${errorCount}` : "",
+          errorCount
+            ? ` ❌${errorCount}`
+            : "",
           "] ",
           getString("info-batch-finish"),
         ].join("")

@@ -84,7 +84,9 @@ const CHINESE_NUM_MAP: Record<string, number> = {
 function normalizeOrdinalWord(value: string): string {
   return value.replace(/\b([a-z]+)\b/gi, (match) => {
     const num = ORDINAL_WORD_MAP[match.toLowerCase()];
-    return num !== undefined ? String(num) : match;
+    return num !== undefined
+      ? String(num)
+      : match;
   });
 }
 
@@ -97,7 +99,9 @@ function normalizeOrdinal(value: string): string {
 function normalizeRoman(value: string): string {
   return value.replace(/\b([ivxlcdm]+)\b/gi, (match) => {
     const num = ROMAN_MAP[match.toLowerCase()];
-    return num !== undefined ? String(num) : match;
+    return num !== undefined
+      ? String(num)
+      : match;
   });
 }
 
@@ -131,14 +135,18 @@ function normalizeChineseOrdinal(value: string): string {
     if (/^\d+$/.test(match))
       return match; // already numeric
     const num = CHINESE_NUM_MAP[match];
-    return num !== undefined ? String(num) : match;
+    return num !== undefined
+      ? String(num)
+      : match;
   });
 
   // Convert standalone Chinese numbers
   // Remove \b, since Chinese characters do not respect word boundaries
   result = result.replace(/([一二三四五六七八九十]{1,2})/g, (match) => {
     const num = CHINESE_NUM_MAP[match];
-    return num !== undefined ? String(num) : match;
+    return num !== undefined
+      ? String(num)
+      : match;
   });
 
   return result;

@@ -3,7 +3,9 @@ import { DataLoader } from "./data-loader";
 
 describe("dataLoader", () => {
   beforeEach(() => {
-    vi.stubGlobal("ztoolkit", { log: vi.fn() });
+    vi.stubGlobal("ztoolkit", {
+      log: vi.fn(),
+    });
   });
 
   afterEach(() => {
@@ -14,7 +16,9 @@ describe("dataLoader", () => {
   it("should select the parser by the given key instead of the file extension", async () => {
     const content = "word\tabbr. # a CSV-like line\n";
     vi.stubGlobal("Zotero", {
-      File: { getContentsAsync: vi.fn(async () => content) },
+      File: {
+        getContentsAsync: vi.fn(async () => content),
+      },
     });
 
     // A CSV file loaded as `txt` should be returned as raw text,
@@ -24,7 +28,9 @@ describe("dataLoader", () => {
 
   it("should parse JSON by the given key", async () => {
     vi.stubGlobal("Zotero", {
-      File: { getContentsAsync: vi.fn(async () => "{\"a\":\"b\"}") },
+      File: {
+        getContentsAsync: vi.fn(async () => "{\"a\":\"b\"}"),
+      },
     });
 
     await expect(DataLoader.load("json", "file:///plugin/data/whatever.txt")).resolves.toEqual({ a: "b" });

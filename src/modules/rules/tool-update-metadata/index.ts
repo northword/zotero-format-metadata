@@ -16,7 +16,12 @@ interface UpdateMetadataOption {
 export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
   id: "tool-update-metadata",
   scope: "item",
-  targetItemTypes: ["journalArticle", "preprint", "conferencePaper", "webpage"],
+  targetItemTypes: [
+    "journalArticle",
+    "preprint",
+    "conferencePaper",
+    "webpage",
+  ],
   category: "tool",
   cooldown: 0,
   async apply({ item, options, report, debug }) {
@@ -214,25 +219,28 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
 
     dialog.addSetting(getString("rule-tool-update-metadata-dialog-mode"), "mode", {
       tag: "select",
-      children: [{
-        tag: "option",
-        properties: {
-          value: "all",
-          innerHTML: getString("rule-tool-update-metadata-dialog-mode-all"),
+      children: [
+        {
+          tag: "option",
+          properties: {
+            value: "all",
+            innerHTML: getString("rule-tool-update-metadata-dialog-mode-all"),
+          },
+          attributes: {
+            ...defaultOptions.mode === "all" && { selected: "" },
+          },
         },
-        attributes: {
-          ...defaultOptions.mode === "all" && { selected: "" },
+        {
+          tag: "option",
+          properties: {
+            value: "blank",
+            innerHTML: getString("rule-tool-update-metadata-dialog-mode-blank"),
+          },
+          attributes: {
+            ...defaultOptions.mode === "blank" && { selected: "" },
+          },
         },
-      }, {
-        tag: "option",
-        properties: {
-          value: "blank",
-          innerHTML: getString("rule-tool-update-metadata-dialog-mode-blank"),
-        },
-        attributes: {
-          ...defaultOptions.mode === "blank" && { selected: "" },
-        },
-      }],
+      ],
     })
       .addSetting(getString("rule-tool-update-metadata-dialog-allow-type-changed"), "allowTypeChanged", {
         tag: "input",
@@ -250,17 +258,20 @@ export const ToolUpdateMetadata = defineRule<UpdateMetadataOption>({
       // }, { valueType: "boolean" })
       .addStaticRow(getString("rule-tool-update-metadata-dialog-notes"), {
         tag: "ul",
-        children: [{
-          tag: "li",
-          properties: {
-            textContent: getString("rule-tool-update-metadata-dialog-note-rate-limit"),
+        children: [
+          {
+            tag: "li",
+            properties: {
+              textContent: getString("rule-tool-update-metadata-dialog-note-rate-limit"),
+            },
           },
-        }, {
-          tag: "li",
-          properties: {
-            textContent: getString("rule-tool-update-metadata-dialog-note-chinese-limit"),
+          {
+            tag: "li",
+            properties: {
+              textContent: getString("rule-tool-update-metadata-dialog-note-chinese-limit"),
+            },
           },
-        }],
+        ],
       });
 
     return await openForSettings(getString("rule-tool-update-metadata-dialog-title"));
