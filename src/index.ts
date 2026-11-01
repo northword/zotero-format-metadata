@@ -23,7 +23,9 @@ function defineGlobal(name: string, getter: () => any): void;
 function defineGlobal(name: string, getter?: () => any) {
   Object.defineProperty(_globalThis, name, {
     get() {
-      return getter ? getter() : basicTool.getGlobal(name);
+      return getter
+        ? getter()
+        : basicTool.getGlobal(name);
     },
   });
 }

@@ -51,7 +51,9 @@ export class DataLoader {
   }
 
   static getCacheKeys(): string[] {
-    return [...this.cache.keys()];
+    return [
+      ...this.cache.keys(),
+    ];
   }
 
   private static resolvePath(key: string, path?: string): { type: string; path: string } {

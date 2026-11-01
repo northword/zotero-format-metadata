@@ -111,8 +111,12 @@ export class LintRunner {
 
     if (
       items.length === 0 // No items
-      || ![...optionsMap.values()][0] // Main rule is skiped, e.g. tool-update-metadata dialog is closed without click ok
-      || ![...optionsMap.values()].some(Boolean) // All rules are skiped
+      || ![
+        ...optionsMap.values(),
+      ][0] // Main rule is skiped, e.g. tool-update-metadata dialog is closed without click ok
+      || ![
+        ...optionsMap.values(),
+      ].some(Boolean) // All rules are skiped
     ) {
       this.finish();
       return;
@@ -148,7 +152,9 @@ export class LintRunner {
       }
       catch (err) {
         this.stats.records.push({
-          message: err instanceof Error ? err.message : String(err),
+          message: err instanceof Error
+            ? err.message
+            : String(err),
           level: "error",
           itemID: 0,
           title: "Prepare failed",
@@ -281,7 +287,9 @@ export class LintRunner {
     }
     catch (err) {
       this.stats.records.push({
-        message: err instanceof Error ? err.message : String(err),
+        message: err instanceof Error
+          ? err.message
+          : String(err),
         level: "error",
         itemID: 0,
         title: "Batch save failed",

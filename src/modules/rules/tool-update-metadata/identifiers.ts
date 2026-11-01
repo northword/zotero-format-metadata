@@ -7,7 +7,15 @@ interface BaseIdentifiers {
   URL?: string;
 }
 
-const KNOW_PREPRINTER_SERVICE_IDs = ["arXiv", "bioRxiv", "medRxiv", "ChemRxiv", "SSRN", "OSF", "ResearchSquare"] as const;
+const KNOW_PREPRINTER_SERVICE_IDs = [
+  "arXiv",
+  "bioRxiv",
+  "medRxiv",
+  "ChemRxiv",
+  "SSRN",
+  "OSF",
+  "ResearchSquare",
+] as const;
 type PreprintServiceId = (typeof KNOW_PREPRINTER_SERVICE_IDs)[number];
 type PreprintIdentifiers = Partial<Record<PreprintServiceId, string>>;
 

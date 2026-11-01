@@ -36,13 +36,16 @@ export default antfu(
       format,
     },
     rules: {
-      "format/prettier": ["error", {
-        parser: "html",
-        languageOptions: {
-          htmlWhitespaceSensitivity: "css",
-          singleAttributePerLine: true,
+      "format/prettier": [
+        "error",
+        {
+          parser: "html",
+          languageOptions: {
+            htmlWhitespaceSensitivity: "css",
+            singleAttributePerLine: true,
+          },
         },
-      }],
+      ],
     },
   },
   {

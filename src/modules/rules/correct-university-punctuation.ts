@@ -9,7 +9,9 @@ export const CorrectUniversityPunctuation = defineRule({
     const language = item.getField("language");
     let university = item.getField("university");
 
-    university = language.includes("zh") ? university.replace("(", "（").replace(")", "）") : university;
+    university = language.includes("zh")
+      ? university.replace("(", "（").replace(")", "）")
+      : university;
 
     item.setField("university", university);
   },

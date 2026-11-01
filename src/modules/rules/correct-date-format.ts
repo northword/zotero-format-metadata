@@ -2,7 +2,20 @@ import type { ApplyContext } from "./rule-base";
 import { getString } from "../../utils/locale";
 import { defineRule } from "./rule-base";
 
-const DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+const DAYS_IN_MONTH = [
+  31,
+  28,
+  31,
+  30,
+  31,
+  30,
+  31,
+  31,
+  30,
+  31,
+  30,
+  31,
+];
 
 /**
  * Zotero's `Zotero.Date.strToISO()` only recognizes `-`, `/` and `.` as date
@@ -36,7 +49,9 @@ export function normalizeDateSeparators(date: string): string {
       return trimmed;
   }
 
-  return day === undefined ? `${year}-${month}` : `${year}-${month}-${day}`;
+  return day === undefined
+    ? `${year}-${month}`
+    : `${year}-${month}-${day}`;
 }
 
 function isLeapYear(year: number): boolean {
