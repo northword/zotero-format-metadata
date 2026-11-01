@@ -50,7 +50,7 @@
     "@antfu/eslint-config": "^9.5.1",
     "@types/chai": "^5.2.3",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^25.9.9",
+    "@types/node": "^26.6.6",
     "@vitest/coverage-v8": "^5.0.5",
     "@zotero-plugin/eslint-config": "^0.6.10",
     "autocorrect-node": "^2.14.0",
