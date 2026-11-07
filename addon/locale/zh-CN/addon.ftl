@@ -12,6 +12,7 @@ info-batch-finish = 处理完成
 info-batch-break = 点击此处结束本次处理
 info-batch-stop-next = 将在当前条目处理完成后结束
 info-batch-has-error = 存在错误，请在控制台查看错误信息
+reporter-batch-header = { $time } · { $count } 条发现
 
 ## dialog
 confirm = 确认
