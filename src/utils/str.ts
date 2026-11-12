@@ -62,19 +62,19 @@ export function capitalizeFirstLetter(str: string): string {
  * 将字符串转换为正则表达式
  * @author GPT
  * @param str
+ * @param flags 追加的正则标志，如 "g"
  * @returns RegExp
  */
-export function convertToRegex(str: string) {
+export function convertToRegex(str: string, flags = "") {
   // 匹配正则表达式和标志
   const regexPattern = str.match(/^\/(.*?)\/([gimy]*)$/);
 
   if (regexPattern) {
     const pattern = regexPattern[1];
-    const flags = regexPattern[2];
-    return new RegExp(pattern, flags);
+    return new RegExp(pattern, [...new Set(regexPattern[2] + flags)].join(""));
   }
   else {
-    return new RegExp(escapeRegex(str));
+    return new RegExp(escapeRegex(str), flags);
   }
 }
 

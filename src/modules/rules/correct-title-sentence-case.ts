@@ -223,7 +223,7 @@ export function toSentenceCase(text: string, locale: string = "en-US") {
 }
 
 interface Options {
-  data?: any[];
+  data?: { search: string; replace: string }[];
 }
 
 export function keepOriginalTitle(language: string, disabledLanguagesList: string) {
@@ -252,10 +252,13 @@ function createCorrectTitleSentenceCaseRule(targetItemField: "title" | "shortTit
       const data = options.data;
       if (data) {
         data.forEach((term) => {
-          const search = convertToRegex(term.search);
-          if (search.test(title)) {
-            title = title.replace(search, term.replace);
-            debug(`[title] Hit custom term: `, search);
+          // Replace all the occurrences, not only the first one.
+          // @see https://github.com/northword/zotero-format-metadata/issues/462
+          const search = convertToRegex(term.search, "g");
+          const replaced = title.replace(search, term.replace);
+          if (replaced !== title) {
+            title = replaced;
+            debug(`[title] Hit custom term: `, term.search);
           }
         });
       }
