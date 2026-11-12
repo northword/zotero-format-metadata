@@ -78,6 +78,8 @@ function shouldApplyRule(rule: Rule<any>, item: Zotero.Item): boolean {
 
 export class LintRunner {
   private stats: RunnerStats = this.emptyStats();
+  private lastReport: ReportInfo[] = [];
+  private silent = false;
   private modifiedItems = new Set<Zotero.Item>();
   private readonly ui = new ProgressUI({
     // caller.stop() throws an CanceledException but we cannot catch it
@@ -95,9 +97,10 @@ export class LintRunner {
     items: Arrayable<Zotero.Item>;
     rules: Arrayable<Rule<any>>;
     silent?: boolean;
-  }): Promise<void> {
+  }): Promise<ReportInfo[]> {
     const { items: _items, rules: _rules, silent = false } = params;
 
+    this.silent = silent;
     this.initStats();
     await this.ui.init(silent);
 
@@ -115,7 +118,7 @@ export class LintRunner {
       || ![...optionsMap.values()].some(Boolean) // All rules are skiped
     ) {
       this.finish();
-      return;
+      return this.lastReport;
     }
 
     this.stats.total += items.length;
@@ -129,6 +132,8 @@ export class LintRunner {
     await this.caller.wait();
     await this.batchSave();
     this.finish();
+
+    return this.lastReport;
   }
 
   // ----------------------------
@@ -331,7 +336,15 @@ export class LintRunner {
   private initStats() {
     if (!this.stats.startTime)
       this.stats.startTime = Date.now();
+    this.lastReport = [];
     logger.debug(`Add tasks at ${new Date().toLocaleTimeString()}`);
+  }
+
+  /**
+   * Records of the latest batch run, i.e. what the report window shows.
+   */
+  public getReport(): ReportInfo[] {
+    return this.lastReport;
   }
 
   private finish() {
@@ -341,8 +354,9 @@ export class LintRunner {
     const duration = (Date.now() - this.stats.startTime) / 1000;
     this.ui.showFinished(this.stats.pass, this.stats.error, duration);
 
-    if (this.stats.records.length)
-      createReporter(this.stats.records);
+    this.lastReport = this.stats.records;
+    if (this.lastReport.length && !this.silent)
+      createReporter(this.lastReport);
 
     this.modifiedItems.clear();
     DataLoader.clearCache();

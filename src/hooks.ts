@@ -1,3 +1,4 @@
+import type { ReportInfo } from "./modules/reporter";
 import type { Arrayable } from "./utils/types";
 import { checkCompat } from "./modules/compat";
 import { registerExtraColumns } from "./modules/item-tree";
@@ -145,11 +146,15 @@ function onShortcuts(type: string) {
  * 分发批量执行某函数的任务
  * @param ruleIDs 批量处理任务的类别，决定调用的函数
  * @param items 需要批量处理的 Zotero.Item[]，或通过触发批量任务的位置决定 Zotero Item 的获取方式。 "item" | "collection" | XUL.MenuPopup | "menuFile" | "menuEdit" | "menuView" | "menuGo" | "menuTools" | "menuHelp"
+ * @param options 批量执行的选项
+ * @param options.silent 不显示进度窗口和结果窗口
+ * @returns 本次批量处理的记录，即结果窗口中显示的条目
  */
 async function onLintInBatch(
   ruleIDs: Arrayable<ID | "standard">,
   items: Zotero.Item[] | "item" | "collection" | string,
-) {
+  options: { silent?: boolean } = {},
+): Promise<ReportInfo[]> {
   if (typeof items === "string") {
     switch (items) {
       case "item":
@@ -173,10 +178,10 @@ async function onLintInBatch(
   ).flat();
 
   if (rules.length === 0 || items.length === 0)
-    return;
+    return [];
 
   const tasks = { items, rules };
-  await addon.runner.add(tasks);
+  return await addon.runner.add({ ...tasks, silent: options.silent });
 }
 
 /**
