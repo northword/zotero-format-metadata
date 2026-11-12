@@ -1,11 +1,11 @@
 import type { Arrayable } from "../utils/types";
 import type { ReportInfo } from "./reporter";
 import type { ApplyContext, PrepareContext, Rule } from "./rules/rule-base";
-import { withTimeout } from "es-toolkit";
 import { DataLoader } from "../utils/data-loader";
 import { toArray } from "../utils/general";
 import { createLogger } from "../utils/logger";
 import { getPref } from "../utils/prefs";
+import { timeoutPromise } from "../utils/wait";
 import { isFieldValidForItemType } from "../utils/zotero";
 import { createReporter, ProgressUI } from "./reporter";
 import { Rules } from "./rules";
@@ -210,9 +210,10 @@ export class LintRunner {
         continue;
       }
 
-      // await withTimeout(() => Zotero.Promise.delay(100), 10)
-      await withTimeout(
-        () => this.applyRule(item, rule, options),
+      // Not `withTimeout` from es-toolkit: it requires `AbortController`,
+      // which is not defined in the plugin sandbox.
+      await timeoutPromise(
+        this.applyRule(item, rule, options),
         60_000,
       )
         // We expect one rule's error does not affect next rule apply,

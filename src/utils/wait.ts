@@ -41,17 +41,28 @@ export function waitUtilAsync(condition: () => boolean, interval = 100, timeout 
   });
 }
 
-export async function timeoutPromise<T>(promise: Promise<T>, timeoutMs: number): Promise<T> {
-  let timeoutId: NodeJS.Timeout;
+/**
+ * Reject with the given message if the promise does not settle within `timeoutMs`.
+ *
+ * Implemented with `setTimeout` on purpose: `withTimeout` from es-toolkit v1.53+
+ * relies on `AbortController`, which is not exposed in the plugin sandbox.
+ * @see https://github.com/northword/zotero-format-metadata/issues/463
+ */
+export async function timeoutPromise<T>(promise: Promise<T>, timeoutMs: number, message = "Timeout"): Promise<T> {
+  let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
-  const timeoutPromise = new Promise<T>((resolve, reject) => {
+  const timeoutPromise = new Promise<never>((_resolve, reject) => {
     timeoutId = setTimeout(() => {
-      reject(new Error("Timeout"));
+      reject(new Error(message));
     }, timeoutMs);
   });
 
-  // Race between the original promise and the timeout promise
-  return Promise.race([promise, timeoutPromise]).finally(() => {
-    clearTimeout(timeoutId);
-  });
+  try {
+    // Race between the original promise and the timeout promise
+    return await Promise.race([promise, timeoutPromise]);
+  }
+  finally {
+    if (timeoutId !== undefined)
+      clearTimeout(timeoutId);
+  }
 }
