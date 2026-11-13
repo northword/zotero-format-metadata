@@ -35,6 +35,7 @@ export type FluentMessageId =
   | 'no-case'
   | 'notify-on-lint'
   | 'prefs-title'
+  | 'reporter-batch-header'
   | 'restart-needed'
   | 'rule-correct-bookTitle-sentence-case'
   | 'rule-correct-conference-abbr'

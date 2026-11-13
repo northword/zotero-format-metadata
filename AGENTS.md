@@ -76,9 +76,14 @@ Rule IDs are the source of truth for the `ID` type: `zotero-plugin.config.ts`'s 
 2. It calls each rule's `prepare` to build an `optionsMap`; a `false` there cancels the batch before anything is shown.
 3. It opens `ProgressUI` (`progress.ts`) — a single instance for the whole plugin, reused by every batch of the run — and lints with `limitAsync` from es-toolkit (concurrency pref `lint.numConcurrent`, read per batch). A stop request bumps a generation counter and sets `progress.stopped`: the items and the batches queued before it are dropped, the running ones finish.
 4. For each item, it iterates rules, skipping via `shouldApplyRule` (item-type + field-validity checks), wraps each `apply` in a 60s timeout, and collects errors without aborting sibling rules.
-5. It saves all changed items of a batch in one transaction (so one undo reverts the batch). When the queue drains, the run is reported through `ProgressUI.finish()` (from a `finally`, so cancelled and failed runs report too) and every batch reports its own results dialog from `reporter.ts`.
+5. It saves all changed items of a batch in one transaction (so one undo reverts the batch). When the queue drains, the run is reported through `ProgressUI.finish()` (from a `finally`, so cancelled and failed runs report too) and every batch hands its `records` to the runner's `Reporter` (`reporter.ts`).
 
 `RunProgress` accumulates what the notification shows (`total`, `pass`, `error`, `saved`, `stopped`); `Batch` keeps what must not leak between batches (`records`, `changed`). Note that the plugin sandbox has no `AbortController`, so neither `withTimeout` from es-toolkit nor any cancel-by-signal API can be used here.
+
+Two windows are involved, with different lifetimes. `ProgressUI` describes one run and closes itself.
+`reporter.ts` owns the plugin-wide results window: it opens on the first batch and later batches are
+rendered into it as new sections instead of new windows, so the user can still read a previous run's
+findings. Use `ProgressUI` for anything that describes a run's progress, and the reporter for findings.
 
 Entry points into a batch run go through `addon.hooks.onLintInBatch(ruleIDs, items)` in `hooks.ts`.
 

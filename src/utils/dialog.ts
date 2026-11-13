@@ -6,6 +6,20 @@ import { createLogger } from "./logger";
 const logger = createLogger("useDialog");
 
 const OK_BUTTON_ID = "btn-ok";
+/** Share of the screen a dialog may take. */
+const MAX_DIALOG_SIZE_RATIO = 0.8;
+
+/**
+ * Largest size a dialog window may take, so that it stays on the screen.
+ * Pass the dialog window to measure the screen the dialog is actually on.
+ */
+function getMaxDialogSize(win?: Window): { width: number; height: number } {
+  const screen = win?.screen ?? getScreenInfoViaWindow();
+  return {
+    width: Math.floor((screen?.availWidth ?? 1280) * MAX_DIALOG_SIZE_RATIO),
+    height: Math.floor((screen?.availHeight ?? 900) * MAX_DIALOG_SIZE_RATIO),
+  };
+}
 
 export function closeAllDialogs() {
   for (const [id, window] of addon.data.dialogs) {
@@ -18,14 +32,16 @@ export function useDialog<T extends DialogHelper | SettingsDialogHelper>(dialog:
   dialog: T;
   openAndWaitClose: (title: string) => Promise<void>;
   close: () => void;
+  /** Grow the window to what it now shows, up to the size below. */
+  fitToContent: () => void;
 } {
-  const { height, width } = getScreenInfoViaWindow() ?? {};
+  const { width, height } = getMaxDialogSize();
 
   // @ts-expect-error we need to override the default styles to enable scrolling
   Object.assign(dialog.elementProps.styles!, {
     minWidth: "300px",
-    maxWidth: `${width * 0.8 || 1000}px`,
-    maxHeight: `${height * 0.8 || 500}px`,
+    maxWidth: `${width}px`,
+    maxHeight: `${height}px`,
     backgroundColor: "var(--material-background)",
   });
 
@@ -33,7 +49,31 @@ export function useDialog<T extends DialogHelper | SettingsDialogHelper>(dialog:
   // but we expect to see the scroll bar.
   dialog.setDialogData({
     loadCallback: () => {
-      dialog.window.document.body!.style.overflow = "auto";
+      const doc = dialog.window.document;
+      const body = doc.body!;
+
+      // The toolkit makes the document `color-scheme: light dark`, so on a dark
+      // system the canvas — what the content does not cover, e.g. the strip
+      // left along the right and bottom after the window is sized to its
+      // content — is painted with the dark default colour. A background on the
+      // root element is the canvas background, so the window keeps the palette
+      // of the dialog however its size and the system scheme come out.
+      (doc.documentElement as HTMLElement).style.backgroundColor = "var(--material-background)";
+
+      // The same scheme paints the scroll bars: give them the dialog colours.
+      body.style.scrollbarColor = "var(--fill-quinary) transparent";
+
+      // A dialog scrolls vertically only. The horizontal bar is always an
+      // accident of the content being one scroll bar too wide once the
+      // vertical bar takes its space.
+      body.style.overflowX = "hidden";
+      body.style.overflowY = "auto";
+
+      // `max-height` on the dialog element does not reach the document size
+      // that a window is fitted to, so cap the scroll container itself: the
+      // document then stops growing at the same size as the dialog.
+      body.style.maxHeight = `${height}px`;
+      body.style.maxWidth = `${width}px`;
     },
   });
 
@@ -62,7 +102,35 @@ export function useDialog<T extends DialogHelper | SettingsDialogHelper>(dialog:
     logger.debug("dialog closed without data");
   }
 
-  return { dialog, openAndWaitClose, close };
+  /**
+   * Grow the window to the content it shows now, without ever passing the size
+   * the dialog is capped to. A window only follows its content when asked to,
+   * and the toolkit only asks once, when the dialog opens.
+   */
+  function fitToContent() {
+    const win = dialog.window;
+    if (!win || win.closed)
+      return;
+
+    const body = win.document.body;
+    if (!body)
+      return;
+
+    // `maxHeight` is what `loadCallback` put on the scroll container, so this
+    // never asks for more than the dialog may take; the rest scrolls.
+    const maxHeight = Number.parseFloat(win.getComputedStyle(body)?.maxHeight ?? "");
+    const needed = Math.min(body.scrollHeight, maxHeight || Number.POSITIVE_INFINITY);
+
+    // Resizing a window that already has the size is what leaves an unpainted
+    // strip along the right and bottom edges, until the window is resized by
+    // hand: stop as soon as there is nothing left to grow into.
+    if (win.innerHeight >= needed - 2)
+      return;
+
+    win.sizeToContent();
+  }
+
+  return { dialog, openAndWaitClose, close, fitToContent };
 }
 
 type SettingsDialogResult = Record<string, any>;

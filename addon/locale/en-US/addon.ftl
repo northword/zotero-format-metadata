@@ -11,6 +11,11 @@ info-batch-finish = Finished
 info-batch-stopped = Stopped
 info-batch-break = Click here to stop this process
 info-batch-stop-next = Will stop when current item is complete
+reporter-batch-header =
+    { $time } · { $count } {$count ->
+        [one] finding
+       *[other] findings
+    }
 
 ## dialog
 confirm = Confirm
