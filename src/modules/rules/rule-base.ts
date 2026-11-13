@@ -1,6 +1,6 @@
 import type { FluentMessageId } from "../../../typings/i10n";
 import type { Awaitable } from "../../utils/types";
-import type { ReportInfo } from "../reporter";
+import type { ReportDetail } from "../reporter";
 import { withThrottle } from "../../utils/throttle";
 
 type Debug = (...args: any) => void;
@@ -13,7 +13,7 @@ export interface ApplyContext<Option = object> {
    */
   options: Option;
   debug: Debug;
-  report: (info: Pick<ReportInfo, "level" | "message" | "action">) => void;
+  report: (info: ReportDetail) => void;
 }
 
 export interface PrepareContext {
@@ -90,9 +90,10 @@ interface RuleBase<Option = object> {
   apply: (ctx: ApplyContext<Option>) => Awaitable<void>;
 
   /**
-   * Get options of the rule.
+   * Get options of the rule, once before the batch.
    *
-   * If returns false, the rule will be skipped.
+   * If it returns `false`, the whole batch is cancelled, e.g. when the user
+   * closes the dialog of a tool rule without confirming it.
    */
   prepare?: (ctx: PrepareContext) => Awaitable<Option | false>;
 

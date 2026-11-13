@@ -40,8 +40,8 @@ describe("lint in the plugin sandbox", function () {
   before(async function () {
     await waitForAddon();
 
-    // Saving an item must not start another batch: the runner is a singleton,
-    // and two concurrent batches share the same stats.
+    // Saving the item must not start another batch: batches are serialized,
+    // and the next one would only run after this test finished.
     setPref("lint.onAdded", false);
     // No progress window in tests.
     setPref("lint.notify", false);

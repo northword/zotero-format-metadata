@@ -1,31 +1,67 @@
+import type { Logger } from "../utils/logger";
 import type { Arrayable } from "../utils/types";
-import type { ReportInfo } from "./reporter";
+import type { ReportDetail, ReportInfo } from "./reporter";
 import type { ApplyContext, PrepareContext, Rule } from "./rules/rule-base";
+import { limitAsync } from "es-toolkit";
 import { DataLoader } from "../utils/data-loader";
 import { toArray } from "../utils/general";
 import { createLogger } from "../utils/logger";
 import { getPref } from "../utils/prefs";
 import { timeoutPromise } from "../utils/wait";
 import { isFieldValidForItemType } from "../utils/zotero";
-import { createReporter, ProgressUI } from "./reporter";
+import { ProgressUI } from "./progress";
+import { createReporter } from "./reporter";
 import { Rules } from "./rules";
 
 const logger = createLogger("Runner");
-/**
- * ConcurrentCaller
- * @see https://github.com/zotero/zotero/blob/main/resource/concurrentCaller.mjs
- */
-const { ConcurrentCaller } = ChromeUtils.importESModule("resource://zotero/concurrentCaller.mjs");
 
-interface RunnerStats {
-  total: number;
-  current: number;
-  pass: number;
-  error: number;
-  saved: number;
-  startTime: number;
-  records: ReportInfo[];
-  phase: "idle" | "linting" | "saving";
+/** How long a rule may take on one item before it is reported as failed. */
+const RULE_TIMEOUT = 60_000;
+
+interface AddParams {
+  items: Arrayable<Zotero.Item>;
+  rules: Arrayable<Rule<any>>;
+  /** Do not show the notification and the results window. */
+  silent?: boolean;
+}
+
+/** What `add()` captured for the batch it accepted. */
+interface Accepted {
+  /** The stop generation the batch belongs to, see `LintRunner.stop()`. */
+  generation: number;
+  silent: boolean;
+}
+
+const ruleLoggers = new Map<string, Logger>();
+
+/** Logger of one rule, created once instead of once per item. */
+function loggerFor(ruleID: string): Logger {
+  let ruleLogger = ruleLoggers.get(ruleID);
+  if (!ruleLogger) {
+    ruleLogger = createLogger(ruleID);
+    ruleLoggers.set(ruleID, ruleLogger);
+  }
+  return ruleLogger;
+}
+
+/**
+ * `limitAsync` waits for a permit forever when its capacity is below 1, so the
+ * pref must never reach it as such.
+ */
+function getConcurrency(): number {
+  return Math.max(1, getPref("lint.numConcurrent") || 1);
+}
+
+/**
+ * A short message for the results window. A `Zotero.HTTP` error carries the
+ * whole response body, of which only the status is worth showing.
+ */
+function messageOf(error: any): string {
+  if (error?.xmlhttp)
+    return `HTTP request error: status ${error.status ?? error.xmlhttp.status}`;
+  if (error?.message)
+    return `${error.name ?? "Error"}: ${error.message}`;
+  return String(error);
 }
 
 function shouldApplyRule(rule: Rule<any>, item: Zotero.Item): boolean {
@@ -77,308 +113,337 @@ function shouldApplyRule(rule: Rule<any>, item: Zotero.Item): boolean {
   return true;
 }
 
-export class LintRunner {
-  private stats: RunnerStats = this.emptyStats();
-  private lastReport: ReportInfo[] = [];
-  private silent = false;
-  private modifiedItems = new Set<Zotero.Item>();
-  private readonly ui = new ProgressUI({
-    // caller.stop() throws an CanceledException but we cannot catch it
-    onCancel: () => this.caller.stop(),
-  });
+/**
+ * How far the notification has got. A run spans every batch accepted while the
+ * notification is open: batches run one at a time and share the window, so
+ * their numbers add up instead of describing a single batch.
+ */
+class RunProgress {
+  readonly startedAt = Date.now();
+  /** Items accepted so far, including those of the batches still queued. */
+  total = 0;
+  pass = 0;
+  error = 0;
+  saved = 0;
+  /** The user asked to stop the run. */
+  stopped = false;
 
-  private readonly caller = new ConcurrentCaller({
-    numConcurrent: getPref("lint.numConcurrent") || 1,
-    stopOnError: false,
-    logger: logger.debug,
-    onError: (err: any) => logger.error(err),
-  });
-
-  public async add(params: {
-    items: Arrayable<Zotero.Item>;
-    rules: Arrayable<Rule<any>>;
-    silent?: boolean;
-  }): Promise<ReportInfo[]> {
-    const { items: _items, rules: _rules, silent = false } = params;
-
-    this.silent = silent;
-    this.initStats();
-    await this.ui.init(silent);
-
-    const items = toArray(_items);
-    const rules = toArray(_rules);
-
-    this.stats.phase = "idle";
-    this.ui.updateProgress(0, items.length, this.stats.phase);
-
-    const optionsMap = await this.prepareRules(rules, items);
-
-    if (
-      items.length === 0 // No items
-      || ![...optionsMap.values()][0] // Main rule is skiped, e.g. tool-update-metadata dialog is closed without click ok
-      || ![...optionsMap.values()].some(Boolean) // All rules are skiped
-    ) {
-      this.finish();
-      return this.lastReport;
-    }
-
-    this.stats.total += items.length;
-    this.stats.phase = "linting";
-    this.ui.updateProgress(this.stats.current, this.stats.total, this.stats.phase);
-
-    for (const item of items) {
-      this.enqueueItem(item, rules, optionsMap);
-    }
-
-    await this.caller.wait();
-    await this.batchSave();
-    this.finish();
-
-    return this.lastReport;
+  /** Items done, i.e. what the notification reports as `done`. */
+  get done(): number {
+    return this.pass + this.error;
   }
 
-  // ----------------------------
-  // Preparation
-  // ----------------------------
-
-  private async prepareRules(rules: Rule<any>[], items: Zotero.Item[]) {
-    const optionsMap = new Map<ID, any>();
-
-    for (const rule of rules) {
-      try {
-        const ctx: PrepareContext = {
-          items,
-          debug: (...a) => logger.debug(`[prepare] [${rule.id}]`, ...a),
-        };
-        optionsMap.set(rule.id, await rule.prepare?.(ctx) ?? {});
-      }
-      catch (err) {
-        this.stats.records.push({
-          message: err instanceof Error ? err.message : String(err),
-          level: "error",
-          itemID: 0,
-          title: "Prepare failed",
-          ruleID: rule.id,
-        });
-        logger.error(`Failed to prepare rule ${rule.id}:`, err);
-
-        this.finish();
-        throw err;
-      }
-    }
-
-    logger.debug("Options map:", optionsMap);
-    return optionsMap;
+  get duration(): number {
+    return (Date.now() - this.startedAt) / 1000;
   }
 
-  // ----------------------------
-  // Queue
-  // ----------------------------
+  /** A run only counts as stopped when it left items unlinted. */
+  get aborted(): boolean {
+    return this.stopped && this.done < this.total;
+  }
+}
 
-  private enqueueItem(
-    item: Zotero.Item,
-    rules: Rule<any>[],
-    optionsMap: Map<string, any>,
-  ) {
-    this.caller.start(async () => {
-      try {
-        // logger.debug(`start ${item.id}`);
-        // await Zotero.Promise.delay(100);
-        await this.lintItem(item, rules, optionsMap);
-        this.updateStats("pass");
-      }
-      catch (err) {
-        this.updateStats("error");
-        throw err;
-      }
+/** What must not leak between the batches of a run. */
+class Batch {
+  /** Findings to show in the results window of this batch. */
+  readonly records: ReportInfo[] = [];
+  /** Items changed by the rules, saved when the batch ends. */
+  readonly changed = new Set<Zotero.Item>();
+
+  /** Add a finding reported by a rule for an item. */
+  report(item: Zotero.Item, ruleID: string, detail: ReportDetail): void {
+    this.records.push({
+      ...detail,
+      itemID: item.id,
+      title: item.getDisplayTitle(),
+      ruleID,
     });
   }
 
-  // ----------------------------
-  // Lint item
-  // ----------------------------
+  /** Add a failure of the batch itself, which belongs to no single item. */
+  fail(title: string, error: unknown, ruleID = "batch"): void {
+    this.records.push({
+      level: "error",
+      message: messageOf(error),
+      itemID: 0,
+      title,
+      ruleID,
+    });
+  }
+}
 
-  public async lintItem(
+export class LintRunner {
+  /**
+   * The one notification of the plugin. Batches are serialized and share it, so
+   * a batch accepted while another one runs shows up in that window at once
+   * instead of opening a second one.
+   */
+  private readonly ui = new ProgressUI({
+    onCancel: () => this.stop(),
+  });
+
+  private progress = new RunProgress();
+
+  /**
+   * Batches run one at a time. Two at once would mix their progress, and one
+   * could drop the changes of the other: whatever the second collects while the
+   * first saves is never saved.
+   */
+  private tail: Promise<unknown> = Promise.resolve();
+  /** Batches accepted but not finished yet, i.e. the length of the queue. */
+  private pending = 0;
+  /**
+   * Bumped on every stop request. A batch remembers the generation it was
+   * accepted in, so the batches queued before a stop are dropped, while the ones
+   * accepted afterwards run normally.
+   */
+  private generation = 0;
+
+  public add(params: AddParams): Promise<ReportInfo[]> {
+    const accepted: Accepted = { generation: this.generation, silent: params.silent ?? false };
+
+    this.progress.total += toArray(params.items).length;
+    // A batch accepted while a run is going must be visible in the notification
+    // right away, otherwise the user cannot tell that adding it worked.
+    if (this.pending > 0)
+      this.ui.linting(this.progress.done, this.progress.total);
+
+    this.pending += 1;
+
+    const run = this.tail.then(() => this.run(params, accepted));
+    // Keep the chain alive even when this batch fails.
+    this.tail = run.then(
+      () => {},
+      () => {},
+    );
+    return run;
+  }
+
+  private stop(): void {
+    this.generation += 1;
+    this.progress.stopped = true;
+  }
+
+  private async run({ items: _items, rules: _rules }: AddParams, accepted: Accepted): Promise<ReportInfo[]> {
+    const items = toArray(_items);
+    const rules = toArray(_rules);
+    const batch = new Batch();
+
+    try {
+      // A batch queued before a stop request is dropped, dialogs included.
+      if (accepted.generation === this.generation) {
+        const options = await this.prepare(rules, items, batch);
+        // The batch was cancelled by a rule's `prepare` or could not be
+        // prepared: there is nothing to lint.
+        if (options) {
+          await this.ui.init(accepted.silent);
+          await this.lint(items, rules, options, batch, accepted.generation);
+          await this.save(batch);
+        }
+      }
+    }
+    finally {
+      this.pending -= 1;
+      // The notification describes the whole run, so it reports only when the
+      // last batch of the run is done.
+      if (this.pending === 0)
+        this.finish();
+      if (batch.records.length && !accepted.silent)
+        createReporter(batch.records);
+    }
+
+    return batch.records;
+  }
+
+  /**
+   * Run the `prepare` of every rule once, before the batch.
+   * @returns The options of each rule, or `undefined` when the batch must not run.
+   */
+  private async prepare(
+    rules: Rule<any>[],
+    items: Zotero.Item[],
+    batch: Batch,
+  ): Promise<Map<ID, any> | undefined> {
+    const options = new Map<ID, any>();
+
+    for (const rule of rules) {
+      const ctx: PrepareContext = {
+        items,
+        debug: (...args) => logger.debug(`[prepare] [${rule.id}]`, ...args),
+      };
+
+      try {
+        const option = await rule.prepare?.(ctx) ?? {};
+        // `prepare` returns `false` to cancel the whole batch, e.g. when the
+        // user closes the dialog of a tool rule without confirming it.
+        if (option === false) {
+          logger.debug(`Batch cancelled by ${rule.id}`);
+          return undefined;
+        }
+        options.set(rule.id, option);
+      }
+      catch (error) {
+        batch.fail("Prepare failed", error, rule.id);
+        logger.error(`Failed to prepare rule ${rule.id}:`, error);
+        return undefined;
+      }
+    }
+
+    logger.debug("Options map:", options);
+    return options;
+  }
+
+  /** Apply the rules to the items, at most `lint.numConcurrent` items at a time. */
+  private async lint(
+    items: Zotero.Item[],
+    rules: Rule<any>[],
+    options: Map<ID, any>,
+    batch: Batch,
+    generation: number,
+  ): Promise<void> {
+    this.ui.linting(this.progress.done, this.progress.total);
+
+    const lintItem = async (item: Zotero.Item) => {
+      // Items that have not started yet are dropped once the user stops.
+      if (generation !== this.generation)
+        return;
+      await this.lintItem(item, rules, options, batch);
+    };
+
+    const limit = limitAsync(lintItem, getConcurrency());
+    const results = await Promise.allSettled(items.map(item => limit(item)));
+
+    // Linting records rule failures instead of throwing, so a rejection here
+    // is a bug in the runner rather than a failure of a rule.
+    for (const result of results) {
+      if (result.status === "rejected")
+        logger.error("Unexpected failure while linting:", result.reason);
+    }
+  }
+
+  /**
+   * Apply every applicable rule to one item and count it for the progress.
+   * A failing rule is recorded and does not stop the next rule on the item.
+   */
+  private async lintItem(
     item: Zotero.Item,
     rules: Rule<any>[],
-    optionsMap: Map<string, any>,
-  ) {
-    logger.debug(`Linting item ${item.id}`);
-    const errors: any[] = [];
+    options: Map<ID, any>,
+    batch: Batch,
+  ): Promise<void> {
+    let failed = false;
 
     for (const rule of rules) {
       if (!shouldApplyRule(rule, item))
         continue;
 
-      const options = optionsMap.get(rule.id) ?? {};
-      if (options === false) {
-        logger.debug(`Skip ${rule.id}: options is false`);
-        continue;
-      }
-
       // Not `withTimeout` from es-toolkit: it requires `AbortController`,
       // which is not defined in the plugin sandbox.
       await timeoutPromise(
-        this.applyRule(item, rule, options),
-        60_000,
+        this.applyRule(item, rule, options.get(rule.id) ?? {}, batch),
+        RULE_TIMEOUT,
       )
-        // We expect one rule's error does not affect next rule apply,
-        // so we eat any error here and throw them after all rules applied.
         .catch((error) => {
-          let message: string = "";
-          // Zotero.HTTP.request error, the message is too long, here we just show the status
-          if ("xmlhttp" in error && "message" in error)
-            message += `HTTP request error: status ${error.status}, ${message.slice(0, 250)}`;
-          // For regular error, we just show the message in the reporter window
-          else if (error instanceof Error || "message" in error)
-            message += `${error.name}: ${error.message}`;
-          // If error not have message, we show the error string
-          else
-            message += String(error);
-
-          this.stats.records.push({
-            message,
-            level: "error",
-            itemID: item.id,
-            title: item.getDisplayTitle(),
-            ruleID: rule.id,
-          });
-
+          batch.report(item, rule.id, { level: "error", message: messageOf(error) });
           logger.error(`[${rule.id}]`, error);
-
-          errors.push(error);
+          failed = true;
         });
     }
 
-    if (item.hasChanged()) {
-      this.modifiedItems.add(item);
-    }
+    if (item.hasChanged())
+      batch.changed.add(item);
 
-    // If there are errors, throw a error so queue can catch
-    if (errors.length)
-      throw new Error(`Item ${item.id} failed ${errors.length} rules`, { cause: errors });
+    if (failed)
+      this.progress.error += 1;
+    else
+      this.progress.pass += 1;
+
+    this.ui.linting(this.progress.done, this.progress.total);
   }
 
-  private async batchSave(): Promise<void> {
-    if (this.modifiedItems.size === 0)
+  /**
+   * Save the changed items of a batch in a single transaction, so that one undo
+   * reverts the whole batch.
+   */
+  private async save(batch: Batch): Promise<void> {
+    const items = [...batch.changed];
+    batch.changed.clear();
+    if (items.length === 0)
       return;
 
-    const items = [...this.modifiedItems];
-    this.stats.phase = "saving";
-    this.ui.updateProgress(0, items.length, this.stats.phase);
+    this.ui.saving(0, items.length);
 
+    let done = 0;
+    let saved = 0;
     try {
       await Zotero.DB.executeTransaction(async () => {
         for (const item of items) {
-          if (!item.hasChanged())
-            continue;
-          await item.save({ skipSelect: true });
-          this.stats.saved++;
-          this.ui.updateProgress(this.stats.saved, items.length, this.stats.phase);
+          if (item.hasChanged()) {
+            await item.save({ skipSelect: true });
+            saved += 1;
+          }
+          this.ui.saving(++done, items.length);
         }
-        if (this.stats.saved > 0) {
+
+        if (saved > 0) {
           // @ts-expect-error - Zotero.UndoHistory not yet typed in zotero-types
           Zotero.UndoHistory.stageAction(
             "linter-undo-action-lint-metadata",
-            { count: this.stats.saved },
+            { count: saved },
           );
         }
       });
+      this.progress.saved += saved;
     }
-    catch (err) {
-      this.stats.records.push({
-        message: err instanceof Error ? err.message : String(err),
-        level: "error",
-        itemID: 0,
-        title: "Batch save failed",
-        ruleID: "batch-save",
-      });
-      logger.error("Batch save failed:", err);
+    catch (error) {
+      // The transaction was rolled back, so nothing was saved.
+      batch.fail("Batch save failed", error);
+      logger.error("Batch save failed:", error);
     }
-
-    this.modifiedItems.clear();
   }
 
-  public async applyRule(item: Zotero.Item, rule: Rule<any>, options: any) {
+  /** Report the run in the notification, and start the next one from scratch. */
+  private finish(): void {
+    const progress = this.progress;
+
+    this.ui.finish({
+      pass: progress.pass,
+      error: progress.error,
+      saved: progress.saved,
+      duration: progress.duration,
+      stopped: progress.aborted,
+    });
+
+    DataLoader.clearCache();
+    this.progress = new RunProgress();
+  }
+
+  /**
+   * Apply one rule to one item.
+   *
+   * `batch` is where the findings go. A throwaway one is used when a rule
+   * applies another rule, outside of a batch of its own.
+   */
+  public async applyRule(
+    item: Zotero.Item,
+    rule: Rule<any>,
+    options: any,
+    batch: Batch = new Batch(),
+  ): Promise<void> {
     logger.debug(`Applying ${rule.id}`);
 
     const ctx: ApplyContext = {
       item,
       options,
-      debug: (...a) => createLogger(rule.id).debug(...a),
-      report: (info) => {
-        this.stats.records.push({
-          ...info,
-          itemID: item.id,
-          title: item.getDisplayTitle(),
-          ruleID: rule.id,
-        });
-      },
+      debug: loggerFor(rule.id).debug,
+      report: detail => batch.report(item, rule.id, detail),
     };
 
     await rule.apply(ctx);
   }
 
-  public async applyRuleByID(item: Zotero.Item, ruleID: ID, options: any) {
-    return await this.applyRule(item, Rules.getByID(ruleID)!, options);
-  }
-
-  // ----------------------------
-  // Stats / UI / Finalization
-  // ----------------------------
-
-  private updateStats(type: "pass" | "error") {
-    this.stats[type]++;
-    this.stats.current++;
-    this.ui.updateProgress(this.stats.current, this.stats.total, this.stats.phase);
-  }
-
-  private initStats() {
-    if (!this.stats.startTime)
-      this.stats.startTime = Date.now();
-    this.lastReport = [];
-    logger.debug(`Add tasks at ${new Date().toLocaleTimeString()}`);
-  }
-
-  /**
-   * Records of the latest batch run, i.e. what the report window shows.
-   */
-  public getReport(): ReportInfo[] {
-    return this.lastReport;
-  }
-
-  private finish() {
-    if (this.stats.startTime === this.emptyStats().startTime)
-      return;
-
-    const duration = (Date.now() - this.stats.startTime) / 1000;
-    this.ui.showFinished(
-      this.stats.pass,
-      this.stats.error,
-      duration,
-      this.stats.saved,
-    );
-
-    this.lastReport = this.stats.records;
-    if (this.lastReport.length && !this.silent)
-      createReporter(this.lastReport);
-
-    this.modifiedItems.clear();
-    DataLoader.clearCache();
-    this.stats = this.emptyStats();
-    logger.debug(`Batch tasks completed in ${duration}s`);
-  }
-
-  private emptyStats(): RunnerStats {
-    return {
-      total: 0,
-      current: 0,
-      pass: 0,
-      error: 0,
-      saved: 0,
-      startTime: 0,
-      records: [],
-      phase: "idle",
-    };
+  /** Apply one rule to one item outside of a batch. The findings are discarded. */
+  public async applyRuleByID(item: Zotero.Item, ruleID: ID, options: any): Promise<void> {
+    return this.applyRule(item, Rules.getByID(ruleID)!, options);
   }
 }

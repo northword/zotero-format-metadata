@@ -58,8 +58,8 @@ Everything the plugin does is expressed as a **Rule**. Rules live in `src/module
 - `scope` — `"item"` (operates on whole item) or `"field"` (operates on one field; requires `targetItemField`). `"tag"`/`"attachment"` are declared but unimplemented.
 - `category`: `"rule"` (default) or `"tool"`. `category: "tool"` rules are user-invoked utilities (never auto-run); standard rules are toggleable via preferences and can run automatically.
 - `targetItemTypes` / `ignoreItemTypes` — restrict which Zotero item types the rule applies to.
-- `apply({ item, options, debug, report })` — the handler. Mutate the item with `item.setField(...)`; the runner calls `item.saveTx()` once after all rules run. Call `report({ level, message, action })` to surface a finding in the results dialog.
-- `prepare({ items, debug })` — optional; runs once before the batch, returns `options` passed to every `apply` call. Returning `false` skips the rule entirely (used e.g. to abort when a dialog is cancelled).
+- `apply({ item, options, debug, report })` — the handler. Mutate the item with `item.setField(...)`; the runner saves all changed items of the batch in one transaction after all rules run. Call `report({ level, message, action })` to surface a finding in the results dialog.
+- `prepare({ items, debug })` — optional; runs once before the batch, returns `options` passed to every `apply` call. Returning `false` cancels the whole batch (used e.g. when a dialog is closed without confirming).
 - `cooldown` — min ms between executions; `defineRule` wraps `apply` in `withThrottle` to rate-limit external API calls.
 
 ### Rule registration
@@ -70,12 +70,15 @@ Rule IDs are the source of truth for the `ID` type: `zotero-plugin.config.ts`'s 
 
 ### Runner
 
-`src/modules/runner.ts` (`LintRunner`) orchestrates a batch. It:
+`src/modules/runner.ts` (`LintRunner`) orchestrates batches, and groups them into runs:
 
-1. Calls each rule's `prepare` to build an `optionsMap`.
-2. Enqueues items into Zotero's `ConcurrentCaller` (concurrency from pref `lint.numConcurrent`).
-3. For each item, iterates rules, skipping via `shouldApplyRule` (item-type + field-validity checks), wraps each `apply` in a 60s timeout, collects errors without aborting sibling rules, then `saveTx()`.
-4. Aggregates results into a report shown via `reporter.ts` (`ProgressUI` + results dialog).
+1. A **run** is everything accepted while the notification is open. `add()` serializes batches with a promise chain (two at once would mix their progress, and one could drop the changes of the other), and counts the items of the new batch in the run's total immediately, so a batch added mid-run is visible in the notification at once.
+2. It calls each rule's `prepare` to build an `optionsMap`; a `false` there cancels the batch before anything is shown.
+3. It opens `ProgressUI` (`progress.ts`) — a single instance for the whole plugin, reused by every batch of the run — and lints with `limitAsync` from es-toolkit (concurrency pref `lint.numConcurrent`, read per batch). A stop request bumps a generation counter and sets `progress.stopped`: the items and the batches queued before it are dropped, the running ones finish.
+4. For each item, it iterates rules, skipping via `shouldApplyRule` (item-type + field-validity checks), wraps each `apply` in a 60s timeout, and collects errors without aborting sibling rules.
+5. It saves all changed items of a batch in one transaction (so one undo reverts the batch). When the queue drains, the run is reported through `ProgressUI.finish()` (from a `finally`, so cancelled and failed runs report too) and every batch reports its own results dialog from `reporter.ts`.
+
+`RunProgress` accumulates what the notification shows (`total`, `pass`, `error`, `saved`, `stopped`); `Batch` keeps what must not leak between batches (`records`, `changed`). Note that the plugin sandbox has no `AbortController`, so neither `withTimeout` from es-toolkit nor any cancel-by-signal API can be used here.
 
 Entry points into a batch run go through `addon.hooks.onLintInBatch(ruleIDs, items)` in `hooks.ts`.
 
@@ -85,7 +88,7 @@ Entry points into a batch run go through `addon.hooks.onLintInBatch(ruleIDs, ite
 
 ### Built-in data
 
-Large reference datasets (journal abbreviations, conference abbreviations, university→place map, ISO language maps) live in `data/` and are bundled as assets (see `zotero-plugin.config.ts` `build.assets`). At runtime they are loaded lazily and cached via `src/utils/data-loader.ts` (`DataLoader.load(key, ...)`), resolving paths under `${rootURI}data/...`. The cache is cleared after each batch run. Regenerate these files with `pnpm update-data`, not by hand.
+Large reference datasets (journal abbreviations, conference abbreviations, university→place map, ISO language maps) live in `data/` and are bundled as assets (see `zotero-plugin.config.ts` `build.assets`). At runtime they are loaded lazily and cached via `src/utils/data-loader.ts` (`DataLoader.load(key, ...)`), resolving paths under `${rootURI}data/...`. The cache is cleared when a run ends. Regenerate these files with `pnpm update-data`, not by hand.
 
 The ISO 4 journal abbreviation inference (`require-journal-abbr` when no built-in abbreviation matches) uses the vendored [abbrevIso](https://github.com/marcinwrochna/abbrevIso) library in `src/lib/abbrev-iso/` (upstream JS copied verbatim, MIT) together with `data/journal-abbr/issn-ltwa/ltwa_2024-modified.csv` and `shortwords.txt`. Everything runs offline; `DataLoader` reads the LTWA once and the parsed `AbbrevIso` instance is cached in `require-abbr.ts`.
 
