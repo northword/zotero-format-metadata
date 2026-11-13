@@ -1,10 +1,11 @@
 import { assert } from "chai";
 import { config } from "../../package.json";
+import { useFakeTimersOn } from "../helpers/fake-timers";
 
 const PREF_PREFIX = config.prefsPrefix;
 const FTL = `${config.addonRef}-addon.ftl`;
 
-// Keep in sync with `PROGRESS_WINDOW_CLOSE_DELAY` in src/modules/reporter.ts
+// Keep in sync with `CLOSE_DELAY` in src/modules/progress.ts
 const CLOSE_DELAY = 5000;
 
 function getAddon(): any {
@@ -129,20 +130,25 @@ describe("progress window", function () {
     assert.equal(lines[1], l10nMessage("info-batch-saved", { count: 1 }));
     assert.notEqual(lines[2], l10nMessage("info-batch-break"));
 
-    // Keeping the mouse over the window postpones the close (#461)
-    win.dispatchEvent(new (win as any).MouseEvent("mouseover"));
-    assert.isFalse(
-      await waitFor(() => win.closed, CLOSE_DELAY + 1500),
-      "progress window should stay while the mouse is over it",
-    );
+    const clock = useFakeTimersOn(win);
+    try {
+      // Keeping the mouse over the window postpones the close (#461). The timer
+      // `finish()` scheduled is a real one and is cancelled here.
+      win.dispatchEvent(new (win as any).MouseEvent("mouseover"));
+      assert.equal(clock.countTimers(), 1, "mouseover should schedule one timer");
+      // A timer that was not postponed would fire at `CLOSE_DELAY`.
+      await clock.tickAsync(CLOSE_DELAY + 1);
+      assert.isFalse(win.closed, "progress window should stay while the mouse is over it");
 
-    // Moving it out restarts the close timer, even if Zotero's own `mouseout`
-    // bounds check misjudges the pointer position on scaled displays.
-    win.dispatchEvent(new (win as any).MouseEvent("mouseout"));
-    assert.isTrue(
-      await waitFor(() => win.closed, CLOSE_DELAY + 2000),
-      "progress window should close after the mouse leaves it",
-    );
+      // Moving it out restarts the close timer, even if Zotero's own `mouseout`
+      // bounds check misjudges the pointer position on scaled displays.
+      win.dispatchEvent(new (win as any).MouseEvent("mouseout"));
+      await clock.tickAsync(CLOSE_DELAY);
+      assert.isTrue(win.closed, "progress window should close after the mouse leaves it");
+    }
+    finally {
+      clock.uninstall();
+    }
   });
 
   it("reports a batch without changes and closes on click", async function () {

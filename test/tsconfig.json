@@ -3,6 +3,6 @@
   "compilerOptions": {
     "types": ["mocha", "chai", "zotero-types"]
   },
-  "include": ["./**/*.spec.ts", "typings", "../src"],
+  "include": ["./**/*.ts", "typings", "../src"],
   "exclude": []
 }
