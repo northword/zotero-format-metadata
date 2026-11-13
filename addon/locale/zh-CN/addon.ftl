@@ -26,6 +26,11 @@ unimplemented = 此功能尚未实现。
 
 info-batch-pending-save = 等待保存...
 info-batch-saving = 正在保存...
+info-batch-saved = { $count ->
+   *[other] 已保存 { $count } 个条目
+}
+info-batch-nothing-to-save = 没有需要保存的修改
+info-batch-duration = 耗时 { $seconds } 秒
 undo-action-lint-metadata = { $count ->
     [one] Lint 元数据
    *[other] Lint { $count } 个条目的元数据

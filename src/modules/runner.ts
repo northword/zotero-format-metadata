@@ -22,6 +22,7 @@ interface RunnerStats {
   current: number;
   pass: number;
   error: number;
+  saved: number;
   startTime: number;
   records: ReportInfo[];
   phase: "idle" | "linting" | "saving";
@@ -267,20 +268,19 @@ export class LintRunner {
     this.ui.updateProgress(0, items.length, this.stats.phase);
 
     try {
-      let savedCount = 0;
       await Zotero.DB.executeTransaction(async () => {
         for (const item of items) {
           if (!item.hasChanged())
             continue;
           await item.save({ skipSelect: true });
-          savedCount++;
-          this.ui.updateProgress(savedCount, items.length, this.stats.phase);
+          this.stats.saved++;
+          this.ui.updateProgress(this.stats.saved, items.length, this.stats.phase);
         }
-        if (savedCount > 0) {
+        if (this.stats.saved > 0) {
           // @ts-expect-error - Zotero.UndoHistory not yet typed in zotero-types
           Zotero.UndoHistory.stageAction(
             "linter-undo-action-lint-metadata",
-            { count: savedCount },
+            { count: this.stats.saved },
           );
         }
       });
@@ -352,7 +352,12 @@ export class LintRunner {
       return;
 
     const duration = (Date.now() - this.stats.startTime) / 1000;
-    this.ui.showFinished(this.stats.pass, this.stats.error, duration);
+    this.ui.showFinished(
+      this.stats.pass,
+      this.stats.error,
+      duration,
+      this.stats.saved,
+    );
 
     this.lastReport = this.stats.records;
     if (this.lastReport.length && !this.silent)
@@ -370,6 +375,7 @@ export class LintRunner {
       current: 0,
       pass: 0,
       error: 0,
+      saved: 0,
       startTime: 0,
       records: [],
       phase: "idle",

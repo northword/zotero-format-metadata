@@ -144,9 +144,16 @@ export function createReporter(infos: ReportInfo[]) {
 }
 
 const PROGRESS_WINDOW_CLOSE_DELAY = 5000;
+// While the mouse is over the window, the close timer is postponed instead of
+// being paused forever, so that the window cannot stay on the screen when a
+// mouse event is missed.
+const PROGRESS_WINDOW_HOVER_CLOSE_DELAY = 15_000;
 
 export class ProgressUI {
   private progressWindow?: ProgressWindowHelper;
+  private popupWin?: Window;
+  private closeTimer?: number;
+  private finished = false;
   private _onCancel?: () => void;
 
   constructor(options?: { onCancel?: () => void }) {
@@ -154,7 +161,7 @@ export class ProgressUI {
   }
 
   public async init(slient?: boolean): Promise<void> {
-    this.progressWindow?.close();
+    this.dispose();
 
     if (slient || !getPref("lint.notify"))
       return;
@@ -185,9 +192,23 @@ export class ProgressUI {
     await waitUtilAsync(() => Boolean(this.progressWindow?.lines?.[2]?._itemText));
     // @ts-expect-error miss types
     const stopLine = this.progressWindow?.lines?.[2];
-    if (stopLine?._hbox) {
-      stopLine._hbox.addEventListener("click", this.handleStopRequest);
-    }
+    if (!stopLine?._hbox)
+      return;
+
+    stopLine._hbox.addEventListener("click", this.handleStopRequest);
+
+    // Zotero's own close timer relies on a coordinate-based bounds check in its
+    // `mouseout` handler, which is wrong on scaled displays: the timer is never
+    // restarted once the mouse leaves the window and the notification stays
+    // forever (#461). Take over the auto close here instead.
+    // `ownerGlobal` is ChromeOnly and not visible from the plugin sandbox.
+    this.popupWin = stopLine._hbox.ownerDocument?.defaultView as Window | undefined;
+    if (!this.popupWin)
+      return;
+
+    this.popupWin.addEventListener("mouseover", this.handleMouseOver);
+    this.popupWin.addEventListener("mouseout", this.handleMouseOut);
+    this.popupWin.addEventListener("mouseup", this.handleMouseUp);
   }
 
   public updateProgress(current: number, total: number, phase?: "idle" | "linting" | "saving"): void {
@@ -219,9 +240,16 @@ export class ProgressUI {
     });
   }
 
-  public showFinished(successCount: number, errorCount: number, duration: number): void {
+  public showFinished(
+    successCount: number,
+    errorCount: number,
+    duration: number,
+    savedCount: number,
+  ): void {
     if (!this.progressWindow)
       return;
+
+    this.finished = true;
 
     const text = successCount + errorCount
       ? [
@@ -233,15 +261,104 @@ export class ProgressUI {
         ].join("")
       : getString("info-batch-no-selected");
 
+    const savedText = savedCount > 0
+      ? getString("info-batch-saved", { args: { count: savedCount } })
+      : getString("info-batch-nothing-to-save");
+
     this.progressWindow
       .changeLine({ text, progress: 100, idx: 0 })
-      .changeLine({ text: `Finished in ${duration}s`, idx: 2 })
-      .startCloseTimer(PROGRESS_WINDOW_CLOSE_DELAY);
+      .changeLine({ text: savedText, progress: 100, idx: 1 })
+      .changeLine({
+        text: getString("info-batch-duration", { args: { seconds: duration } }),
+        idx: 2,
+      });
+
+    this.scheduleClose(PROGRESS_WINDOW_CLOSE_DELAY);
   }
+
+  // ----------------------------
+  // Close handling
+  // ----------------------------
+
+  private scheduleClose(delay: number): void {
+    this.clearCloseTimer();
+
+    if (!this.finished)
+      return;
+
+    const win = this.popupWin;
+    if (!win || win.closed) {
+      // Fall back to Zotero's timer, which works unless the mouse touched the window
+      this.progressWindow?.startCloseTimer(delay);
+      return;
+    }
+
+    this.closeTimer = win.setTimeout(() => {
+      this.closeTimer = undefined;
+      this.close();
+    }, delay);
+  }
+
+  private clearCloseTimer(): void {
+    if (this.closeTimer === undefined)
+      return;
+
+    const win = this.popupWin;
+    if (win && !win.closed)
+      win.clearTimeout(this.closeTimer);
+
+    this.closeTimer = undefined;
+  }
+
+  public close(): void {
+    this.dispose();
+  }
+
+  private dispose(): void {
+    this.clearCloseTimer();
+    this.finished = false;
+
+    const win = this.popupWin;
+    if (win && !win.closed) {
+      win.removeEventListener("mouseover", this.handleMouseOver);
+      win.removeEventListener("mouseout", this.handleMouseOut);
+      win.removeEventListener("mouseup", this.handleMouseUp);
+    }
+    this.popupWin = undefined;
+
+    this.progressWindow?.close();
+    this.progressWindow = undefined;
+  }
+
+  private handleMouseOver = (): void => {
+    this.scheduleClose(PROGRESS_WINDOW_HOVER_CLOSE_DELAY);
+  };
+
+  private handleMouseOut = (ev: MouseEvent): void => {
+    // `relatedTarget` is set when the mouse just moves between elements inside
+    // the window, and is null (or a node of another window) when it leaves.
+    const related = ev.relatedTarget as Node | null;
+    if (related && this.popupWin?.document.contains(related))
+      return;
+
+    this.scheduleClose(PROGRESS_WINDOW_CLOSE_DELAY);
+  };
+
+  private handleMouseUp = (): void => {
+    // Allow to close the notification manually once the batch is done
+    if (this.finished)
+      this.close();
+  };
 
   private handleStopRequest = (ev: MouseEvent): void => {
     ev.stopPropagation();
     ev.preventDefault();
+
+    if (this.finished) {
+      this.close();
+      return;
+    }
+
     this.progressWindow?.changeLine({
       text: getString("info-batch-stop-next"),
       idx: 2,

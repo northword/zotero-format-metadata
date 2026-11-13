@@ -26,6 +26,12 @@ unimplemented = This feature is unimplemented.
 
 info-batch-pending-save = Pending save...
 info-batch-saving = Saving...
+info-batch-saved = { $count ->
+    [one] Saved { $count } item
+   *[other] Saved { $count } items
+}
+info-batch-nothing-to-save = Nothing to save
+info-batch-duration = Finished in { $seconds }s
 undo-action-lint-metadata = { $count ->
     [one] Lint Metadata
    *[other] Lint Metadata for { $count } Items
