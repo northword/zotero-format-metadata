@@ -147,6 +147,11 @@ describe("custom terms", () => {
       .toBe("Finnish identity and Finnish bears");
   });
 
+  it("should match the term case-insensitively", () => {
+    expect(applyTerms("Ecology of Brazilian Amazonia", [{ search: "Amazonia", replace: "Amazonia" }]))
+      .toBe("Ecology of brazilian Amazonia");
+  });
+
   it("should keep the semantics of a regex literal", () => {
     expect(applyTerms("Natural resources", [{ search: "/(?<=Nat)ural/g", replace: "contra" }]))
       .toBe("Natcontra resources");

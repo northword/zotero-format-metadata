@@ -230,7 +230,7 @@ export function toSearchRegex(search: string) {
   if (search.startsWith("/") && /\/[gimy]*$/.test(search))
     return convertToRegex(search, "g");
 
-  return new RegExp(`(?<![A-Za-z0-9])${escapeRegex(search)}(?![A-Za-z0-9])`, "g");
+  return new RegExp(`(?<![A-Za-z0-9])${escapeRegex(search)}(?![A-Za-z0-9])`, "gi");
 }
 
 export function keepOriginalTitle(language: string, disabledLanguagesList: string) {
