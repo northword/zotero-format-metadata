@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import officialData from "../../../test/data/sentenceCase.json";
-import { toSentenceCase } from "./correct-title-sentence-case";
+import { toSearchRegex, toSentenceCase } from "./correct-title-sentence-case";
 
 /**
  * Test item / 测试项目信息
@@ -130,5 +130,25 @@ describe("toSentenceCase", () => {
         return;
       expect(toSentenceCase(key)).toBe(value);
     });
+  });
+});
+
+describe("custom terms", () => {
+  const applyTerms = (title: string, terms: { search: string; replace: string }[]) =>
+    terms.reduce((acc, term) => acc.replace(toSearchRegex(term.search), term.replace), toSentenceCase(title));
+
+  it("should match whole words only", () => {
+    expect(applyTerms("Natural history of the Ural Mountains", [{ search: "ural", replace: "Ural" }]))
+      .toBe("Natural history of the Ural mountains");
+  });
+
+  it("should replace every occurrence", () => {
+    expect(applyTerms("finnish identity and finnish bears", [{ search: "finnish", replace: "Finnish" }]))
+      .toBe("Finnish identity and Finnish bears");
+  });
+
+  it("should keep the semantics of a regex literal", () => {
+    expect(applyTerms("Natural resources", [{ search: "/(?<=Nat)ural/g", replace: "contra" }]))
+      .toBe("Natcontra resources");
   });
 });
